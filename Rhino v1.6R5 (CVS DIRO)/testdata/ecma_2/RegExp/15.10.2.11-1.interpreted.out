@@ -1,0 +1,10 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\RegExp\15.10.2.11-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\RegExp\shell.js -f mozilla\js\tests\ecma_2\RegExp\15.10.2.11-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+RegExp/octal-001.js RegExp patterns that contain OctalEscapeSequences
+BUGNUMBER: http://scopus/bugsplat/show_bug.cgi?id=346196
+/(.)\1/.exec(HI!).length = 2 PASSED!
+/(.)\1/.exec(HI!).index = 2 PASSED!
+/(.)\1/.exec(HI!).input = HI!! PASSED!
+/(.)\1/.exec(HI!).toString() = !!,! PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\RegExp\15.10.2.11-1.interpreted.arff] ...

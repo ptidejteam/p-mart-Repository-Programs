@@ -1,0 +1,770 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JDepend Analysis</title>
+<style type="text/css">
+	  body {
+		font:normal 68% verdana,arial,helvetica;
+		color:#000000;
+	  }
+	  table tr td, tr th {
+		  font-size: 68%;
+	  }
+	  table.details tr th{
+		font-weight: bold;
+		text-align:left;
+		background:#a6caf0;
+	  }
+	  table.details tr td{
+		background:#eeeee0;
+	  }
+	  
+	  p {
+		line-height:1.5em;
+		margin-top:0.5em; margin-bottom:1.0em;
+		margin-left:2em;
+		margin-right:2em;
+	  }
+	  h1 {
+		margin: 0px 0px 5px; font: 165% verdana,arial,helvetica
+	  }
+	  h2 {
+		margin-top: 1em; margin-bottom: 0.5em; font: bold 125% verdana,arial,helvetica
+	  }
+	  h3 {
+		margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica
+	  }
+	  h4 {
+		margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+	  }
+	  h5 {
+		margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+	  }
+	  h6 {
+		margin-bottom: 0.5em; font: bold 100% verdana,arial,helvetica
+	  }
+	  .Error {
+		font-weight:bold; color:red;
+	  }
+	  .Failure {
+		font-weight:bold; color:purple;
+	  }
+	  .Properties {
+		text-align:right;
+	  }
+	  </style>
+</head>
+<body>
+<h1>
+<a name="top">JDepend Analysis</a>
+</h1>
+<p align="right">Designed for use with <a href="http://www.clarkware.com/software/JDepend.html">JDepend</a> and <a href="http://jakarta.apache.org">Ant</a>.</p>
+<hr size="2">
+<table width="100%">
+<tr>
+<td><a name="NVsummary">
+<h2>Summary</h2>
+</a></td><td align="right">
+	[<a href="#NVsummary">summary</a>]
+	[<a href="#NVpackages">packages</a>]
+	[<a href="#NVcycles">cycles</a>]
+	[<a href="#NVexplanations">explanations</a>]
+	</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Package</th><th>Total Classes</th><th><a href="#EXnumber">Abstract Classes</a></th><th><a href="#EXnumber">Concrete Classes</a></th><th><a href="#EXafferent">Afferent Couplings</a></th><th><a href="#EXefferent">Efferent Couplings</a></th><th><a href="#EXabstractness">Abstractness</a></th><th><a href="#EXinstability">Instability</a></th><th><a href="#EXdistance">Distance</a></th>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.dev">org.apache.poi.dev</a></td><td align="right">1</td><td align="right">0</td><td align="right">1</td><td align="right">0</td><td align="right">1</td><td align="right">0</td><td align="right">1</td><td align="right">0</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hpsf">org.apache.poi.hpsf</a></td><td align="right">15</td><td align="right">1</td><td align="right">14</td><td align="right">0</td><td align="right">3</td><td align="right">0.07</td><td align="right">1</td><td align="right">0.07</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hpsf.littleendian">org.apache.poi.hpsf.littleendian</a></td><td align="right">5</td><td align="right">1</td><td align="right">4</td><td align="right">1</td><td align="right">0</td><td align="right">0.2</td><td align="right">0</td><td align="right">0.8</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hpsf.wellknown">org.apache.poi.hpsf.wellknown</a></td><td align="right">2</td><td align="right">0</td><td align="right">2</td><td align="right">1</td><td align="right">0</td><td align="right">0</td><td align="right">0</td><td align="right">1</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a></td><td align="right">5</td><td align="right">0</td><td align="right">5</td><td align="right">0</td><td align="right">8</td><td align="right">0</td><td align="right">1</td><td align="right">0</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a></td><td align="right">3</td><td align="right">1</td><td align="right">2</td><td align="right">1</td><td align="right">3</td><td align="right">0.33</td><td align="right">0.75</td><td align="right">0.08</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a></td><td align="right">2</td><td align="right">0</td><td align="right">2</td><td align="right">2</td><td align="right">5</td><td align="right">0</td><td align="right">0.71</td><td align="right">0.29</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a></td><td align="right">105</td><td align="right">2</td><td align="right">103</td><td align="right">5</td><td align="right">3</td><td align="right">0.02</td><td align="right">0.38</td><td align="right">0.61</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.record.aggregates">org.apache.poi.hssf.record.aggregates</a></td><td align="right">2</td><td align="right">0</td><td align="right">2</td><td align="right">0</td><td align="right">1</td><td align="right">0</td><td align="right">1</td><td align="right">0</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a></td><td align="right">19</td><td align="right">2</td><td align="right">17</td><td align="right">3</td><td align="right">1</td><td align="right">0.11</td><td align="right">0.25</td><td align="right">0.64</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a></td><td align="right">10</td><td align="right">2</td><td align="right">8</td><td align="right">1</td><td align="right">5</td><td align="right">0.2</td><td align="right">0.83</td><td align="right">0.03</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.hssf.util">org.apache.poi.hssf.util</a></td><td align="right">3</td><td align="right">0</td><td align="right">3</td><td align="right">3</td><td align="right">1</td><td align="right">0</td><td align="right">0.25</td><td align="right">0.75</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.common">org.apache.poi.poifs.common</a></td><td align="right">1</td><td align="right">1</td><td align="right">0</td><td align="right">3</td><td align="right">0</td><td align="right">1</td><td align="right">0</td><td align="right">0</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.dev">org.apache.poi.poifs.dev</a></td><td align="right">3</td><td align="right">1</td><td align="right">2</td><td align="right">2</td><td align="right">1</td><td align="right">0.33</td><td align="right">0.33</td><td align="right">0.33</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.eventfilesystem">org.apache.poi.poifs.eventfilesystem</a></td><td align="right">4</td><td align="right">1</td><td align="right">3</td><td align="right">0</td><td align="right">3</td><td align="right">0.25</td><td align="right">1</td><td align="right">0.25</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a></td><td align="right">15</td><td align="right">6</td><td align="right">9</td><td align="right">8</td><td align="right">5</td><td align="right">0.4</td><td align="right">0.38</td><td align="right">0.22</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a></td><td align="right">9</td><td align="right">4</td><td align="right">5</td><td align="right">3</td><td align="right">5</td><td align="right">0.44</td><td align="right">0.62</td><td align="right">0.07</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a></td><td align="right">19</td><td align="right">5</td><td align="right">14</td><td align="right">3</td><td align="right">4</td><td align="right">0.26</td><td align="right">0.57</td><td align="right">0.17</td>
+</tr>
+<tr>
+<td align="left"><a href="#PKorg.apache.poi.util">org.apache.poi.util</a></td><td align="right">16</td><td align="right">2</td><td align="right">14</td><td align="right">9</td><td align="right">1</td><td align="right">0.12</td><td align="right">0.1</td><td align="right">0.77</td>
+</tr>
+<tr>
+<td align="left">org.apache.poi</td><td colspan="8" align="left">No stats available: package referenced, but not analyzed.</td>
+</tr>
+<tr>
+<td align="left">org.apache.poi.hssf</td><td colspan="8" align="left">No stats available: package referenced, but not analyzed.</td>
+</tr>
+<tr>
+<td align="left">org.apache.poi.hssf.record.MergeCellsRecord</td><td colspan="8" align="left">No stats available: package referenced, but not analyzed.</td>
+</tr>
+<tr>
+<td align="left">org.apache.poi.util.LittleEndian</td><td colspan="8" align="left">No stats available: package referenced, but not analyzed.</td>
+</tr>
+<tr>
+<td align="left">org.w3c.dom</td><td colspan="8" align="left">No stats available: package referenced, but not analyzed.</td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+<td><a name="NVpackages">
+<h2>Packages</h2>
+</a></td><td align="right">
+	[<a href="#NVsummary">summary</a>]
+	[<a href="#NVpackages">packages</a>]
+	[<a href="#NVcycles">cycles</a>]
+	[<a href="#NVexplanations">explanations</a>]
+	</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.dev">org.apache.poi.dev</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 0</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 1</td><td><a href="#EXdistance">Distance</a>: 0</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">RecordGenerator<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.w3c.dom">org.w3c.dom</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hpsf">org.apache.poi.hpsf</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 0</td><td><a href="#EXefferent">Efferent Couplings</a>: 3</td><td><a href="#EXabstractness">Abstractness</a>: 0.07</td><td><a href="#EXinstability">Instability</a>: 1</td><td><a href="#EXdistance">Distance</a>: 0.07</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">SpecialPropertySet<br>
+</td><td width="25%" valign="top">DocumentSummaryInformation<br>HPSFException<br>HPSFRuntimeException<br>MarkUnsupportedException<br>NoPropertySetStreamException<br>NoSingleSectionException<br>Property<br>PropertySet<br>PropertySetFactory<br>Section<br>SummaryInformation<br>UnexpectedPropertySetTypeException<br>Util<br>Variant<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hpsf.littleendian">org.apache.poi.hpsf.littleendian</a>
+<br>
+<a href="#PKorg.apache.poi.hpsf.wellknown">org.apache.poi.hpsf.wellknown</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hpsf.littleendian">org.apache.poi.hpsf.littleendian</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 1</td><td><a href="#EXefferent">Efferent Couplings</a>: 0</td><td><a href="#EXabstractness">Abstractness</a>: 0.2</td><td><a href="#EXinstability">Instability</a>: 0</td><td><a href="#EXdistance">Distance</a>: 0.8</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">LittleEndian<br>
+</td><td width="25%" valign="top">Byte<br>ClassID<br>DWord<br>Word<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hpsf">org.apache.poi.hpsf</a>
+<br>
+</td><td width="25%" valign="top"><i>None</i></td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hpsf.wellknown">org.apache.poi.hpsf.wellknown</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 1</td><td><a href="#EXefferent">Efferent Couplings</a>: 0</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 0</td><td><a href="#EXdistance">Distance</a>: 1</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">PropertyIDMap<br>SectionIDMap<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hpsf">org.apache.poi.hpsf</a>
+<br>
+</td><td width="25%" valign="top"><i>None</i></td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 0</td><td><a href="#EXefferent">Efferent Couplings</a>: 8</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 1</td><td><a href="#EXdistance">Distance</a>: 0</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">BiffViewer<br>EFBiffViewer<br>EFHSSF<br>FormulaViewer<br>HSSF<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.util">org.apache.poi.hssf.util</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 1</td><td><a href="#EXefferent">Efferent Couplings</a>: 3</td><td><a href="#EXabstractness">Abstractness</a>: 0.33</td><td><a href="#EXinstability">Instability</a>: 0.75</td><td><a href="#EXdistance">Distance</a>: 0.08</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">HSSFListener<br>
+</td><td width="25%" valign="top">HSSFEventFactory<br>HSSFRequest<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 2</td><td><a href="#EXefferent">Efferent Couplings</a>: 5</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 0.71</td><td><a href="#EXdistance">Distance</a>: 0.29</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">Sheet<br>Workbook<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi">org.apache.poi</a>
+<br>
+<a href="#PKorg.apache.poi.hssf">org.apache.poi.hssf</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 5</td><td><a href="#EXefferent">Efferent Couplings</a>: 3</td><td><a href="#EXabstractness">Abstractness</a>: 0.02</td><td><a href="#EXinstability">Instability</a>: 0.38</td><td><a href="#EXdistance">Distance</a>: 0.61</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">CellValueRecordInterface<br>Record<br>
+</td><td width="25%" valign="top">AreaFormatRecord<br>AreaRecord<br>AxisRecord<br>AxisUsedRecord<br>BOFRecord<br>BackupRecord<br>BarRecord<br>BeginRecord<br>BlankRecord<br>BookBoolRecord<br>BoolErrRecord<br>BoundSheetRecord<br>CalcCountRecord<br>CalcModeRecord<br>CategorySeriesAxisRecord<br>ChartFormatRecord<br>ChartRecord<br>CodepageRecord<br>ColumnInfoRecord<br>ContinueRecord<br>CountryRecord<br>DBCellRecord<br>DSFRecord<br>DatRecord<br>DataFormatRecord<br>DateWindow1904Record<br>DefaultColWidthRecord<br>DefaultDataLabelTextPropertiesRecord<br>DefaultRowHeightRecord<br>DeltaRecord<br>DimensionsRecord<br>EOFRecord<br>EndRecord<br>ExtSSTInfoSubRecord<br>ExtSSTRecord<br>ExtendedFormatRecord<br>FnGroupCountRecord<br>FontBasisRecord<br>FontIndexRecord<br>FontRecord<br>FooterRecord<br>FormatRecord<br>FormulaRecord<br>FrameRecord<br>GridsetRecord<br>GutsRecord<br>HCenterRecord<br>HeaderRecord<br>HideObjRecord<br>IndexRecord<br>InterfaceEndRecord<br>InterfaceHdrRecord<br>IterationRecord<br>LabelRecord<br>LabelSSTRecord<br>LegendRecord<br>LineFormatRecord<br>LinkedDataRecord<br>MMSRecord<br>MergeCellsRecord<br>MulBlankRecord<br>MulRKRecord<br>NumberFormatIndexRecord<br>NumberRecord<br>PasswordRecord<br>PasswordRev4Record<br>PlotGrowthRecord<br>PrecisionRecord<br>PrintGridlinesRecord<br>PrintHeadersRecord<br>PrintSetupRecord<br>ProtectRecord<br>ProtectionRev4Record<br>RKRecord<br>RecordFactory<br>RecordFormatException<br>RecordProcessor<br>RefModeRecord<br>RefreshAllRecord<br>RowRecord<br>SSTDeserializer<br>SSTRecord<br>SSTSerializer<br>SaveRecalcRecord<br>SelectionRecord<br>SeriesChartGroupIndexRecord<br>SeriesLabelsRecord<br>SeriesListRecord<br>SeriesRecord<br>SheetPropertiesRecord<br>StyleRecord<br>TabIdRecord<br>UnicodeString<br>UnitsRecord<br>UnknownRecord<br>UseSelFSRecord<br>VCenterRecord<br>ValueRangeRecord<br>WSBoolRecord<br>WindowOneRecord<br>WindowProtectRecord<br>WindowTwoRecord<br>WriteAccessRecord<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record.aggregates">org.apache.poi.hssf.record.aggregates</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.util">org.apache.poi.hssf.util</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.record.aggregates">org.apache.poi.hssf.record.aggregates</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 0</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 1</td><td><a href="#EXdistance">Distance</a>: 0</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">RowRecordsAggregate<br>ValueRecordsAggregate<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 3</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0.11</td><td><a href="#EXinstability">Instability</a>: 0.25</td><td><a href="#EXdistance">Distance</a>: 0.64</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">OperationPtg<br>Ptg<br>
+</td><td width="25%" valign="top">AddPtg<br>AreaPtg<br>AttrPtg<br>DividePtg<br>ExpPtg<br>FormulaParser<br>FormulaUtil<br>IntPtg<br>MemErrPtg<br>MultiplyPtg<br>NamePtg<br>ParenthesisPtg<br>PowerPtg<br>SubtractPtg<br>UnknownPtg<br>ValueReferencePtg<br>ValueVariableFunctionPtg<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 1</td><td><a href="#EXefferent">Efferent Couplings</a>: 5</td><td><a href="#EXabstractness">Abstractness</a>: 0.2</td><td><a href="#EXinstability">Instability</a>: 0.83</td><td><a href="#EXdistance">Distance</a>: 0.03</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">HSSFColorConstants<br>HSSFErrorConstants<br>
+</td><td width="25%" valign="top">HSSFCell<br>HSSFCellStyle<br>HSSFDataFormat<br>HSSFDateUtil<br>HSSFFont<br>HSSFRow<br>HSSFSheet<br>HSSFWorkbook<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.util">org.apache.poi.hssf.util</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.hssf.util">org.apache.poi.hssf.util</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 3</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0</td><td><a href="#EXinstability">Instability</a>: 0.25</td><td><a href="#EXdistance">Distance</a>: 0.75</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top">HSSFColor<br>RKUtil<br>Region<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.record.MergeCellsRecord">org.apache.poi.hssf.record.MergeCellsRecord</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.common">org.apache.poi.poifs.common</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 3</td><td><a href="#EXefferent">Efferent Couplings</a>: 0</td><td><a href="#EXabstractness">Abstractness</a>: 1</td><td><a href="#EXinstability">Instability</a>: 0</td><td><a href="#EXdistance">Distance</a>: 0</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">POIFSConstants<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+</td><td width="25%" valign="top"><i>None</i></td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.dev">org.apache.poi.poifs.dev</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 2</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0.33</td><td><a href="#EXinstability">Instability</a>: 0.33</td><td><a href="#EXdistance">Distance</a>: 0.33</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">POIFSViewable<br>
+</td><td width="25%" valign="top">POIFSViewEngine<br>POIFSViewer<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.eventfilesystem">org.apache.poi.poifs.eventfilesystem</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 0</td><td><a href="#EXefferent">Efferent Couplings</a>: 3</td><td><a href="#EXabstractness">Abstractness</a>: 0.25</td><td><a href="#EXinstability">Instability</a>: 1</td><td><a href="#EXdistance">Distance</a>: 0.25</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">POIFSReaderListener<br>
+</td><td width="25%" valign="top">POIFSReader<br>POIFSReaderEvent<br>POIFSReaderRegistry<br>
+</td><td width="25%" valign="top"><i>None</i></td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 8</td><td><a href="#EXefferent">Efferent Couplings</a>: 5</td><td><a href="#EXabstractness">Abstractness</a>: 0.4</td><td><a href="#EXinstability">Instability</a>: 0.38</td><td><a href="#EXdistance">Distance</a>: 0.22</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">BATManaged<br>DirectoryEntry<br>DocumentEntry<br>Entry<br>EntryNode<br>POIFSWriterListener<br>
+</td><td width="25%" valign="top">DirectoryNode<br>DocumentDescriptor<br>DocumentInputStream<br>DocumentNode<br>DocumentOutputStream<br>POIFSDocument<br>POIFSDocumentPath<br>POIFSFileSystem<br>POIFSWriterEvent<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hpsf">org.apache.poi.hpsf</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.dev">org.apache.poi.poifs.dev</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.eventfilesystem">org.apache.poi.poifs.eventfilesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.common">org.apache.poi.poifs.common</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.dev">org.apache.poi.poifs.dev</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 3</td><td><a href="#EXefferent">Efferent Couplings</a>: 5</td><td><a href="#EXabstractness">Abstractness</a>: 0.44</td><td><a href="#EXinstability">Instability</a>: 0.62</td><td><a href="#EXdistance">Distance</a>: 0.07</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">Child<br>Parent<br>Property<br>PropertyConstants<br>
+</td><td width="25%" valign="top">DirectoryProperty<br>DocumentProperty<br>PropertyFactory<br>PropertyTable<br>RootProperty<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.eventfilesystem">org.apache.poi.poifs.eventfilesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.common">org.apache.poi.poifs.common</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.dev">org.apache.poi.poifs.dev</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 3</td><td><a href="#EXefferent">Efferent Couplings</a>: 4</td><td><a href="#EXabstractness">Abstractness</a>: 0.26</td><td><a href="#EXinstability">Instability</a>: 0.57</td><td><a href="#EXdistance">Distance</a>: 0.17</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">BigBlock<br>BlockList<br>BlockWritable<br>HeaderBlockConstants<br>ListManagedBlock<br>
+</td><td width="25%" valign="top">BATBlock<br>BlockAllocationTableReader<br>BlockAllocationTableWriter<br>BlockListImpl<br>DocumentBlock<br>HeaderBlockReader<br>HeaderBlockWriter<br>PropertyBlock<br>RawDataBlock<br>RawDataBlockList<br>SmallBlockTableReader<br>SmallBlockTableWriter<br>SmallDocumentBlock<br>SmallDocumentBlockList<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.eventfilesystem">org.apache.poi.poifs.eventfilesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.poifs.common">org.apache.poi.poifs.common</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.util">org.apache.poi.util</a>
+<br>
+</td>
+</tr>
+</table>
+<h3>
+<a name="PKorg.apache.poi.util">org.apache.poi.util</a>
+</h3>
+<table width="100%">
+<tr>
+<td><a href="#EXafferent">Afferent Couplings</a>: 9</td><td><a href="#EXefferent">Efferent Couplings</a>: 1</td><td><a href="#EXabstractness">Abstractness</a>: 0.12</td><td><a href="#EXinstability">Instability</a>: 0.1</td><td><a href="#EXdistance">Distance</a>: 0.77</td>
+</tr>
+</table>
+<table class="details" width="100%">
+<tr>
+<th>Abstract Classes</th><th>Concrete Classes</th><th>Used by Packages</th><th>Uses Packages</th>
+</tr>
+<tr>
+<td width="25%" valign="top">FixedField<br>LittleEndianConsts<br>
+</td><td width="25%" valign="top">BinaryTree<br>BitField<br>ByteField<br>HexDump<br>HexRead<br>IntList<br>IntegerField<br>LittleEndian<br>LongField<br>POILogFactory<br>POILogger<br>ShortField<br>ShortList<br>StringUtil<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.hssf.dev">org.apache.poi.hssf.dev</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.eventmodel">org.apache.poi.hssf.eventmodel</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.model">org.apache.poi.hssf.model</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record">org.apache.poi.hssf.record</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.record.formula">org.apache.poi.hssf.record.formula</a>
+<br>
+<a href="#PKorg.apache.poi.hssf.usermodel">org.apache.poi.hssf.usermodel</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.filesystem">org.apache.poi.poifs.filesystem</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.property">org.apache.poi.poifs.property</a>
+<br>
+<a href="#PKorg.apache.poi.poifs.storage">org.apache.poi.poifs.storage</a>
+<br>
+</td><td width="25%" valign="top"><a href="#PKorg.apache.poi.util.LittleEndian">org.apache.poi.util.LittleEndian</a>
+<br>
+</td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+<td><a name="NVcycles">
+<h2>Cycles</h2>
+</a></td><td align="right">
+	[<a href="#NVsummary">summary</a>]
+	[<a href="#NVpackages">packages</a>]
+	[<a href="#NVcycles">cycles</a>]
+	[<a href="#NVexplanations">explanations</a>]
+	</td>
+</tr>
+</table>
+<h3>org.apache.poi.hpsf</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.hssf.dev</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.hssf.eventmodel</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.hssf.usermodel</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.poifs.dev</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>
+</p>
+<h3>org.apache.poi.poifs.eventfilesystem</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.poifs.filesystem</h3>
+<p>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.poifs.property</h3>
+<p>org.apache.poi.poifs.storage<br>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<h3>org.apache.poi.poifs.storage</h3>
+<p>org.apache.poi.poifs.filesystem<br>org.apache.poi.poifs.dev<br>org.apache.poi.poifs.filesystem<br>
+</p>
+<table width="100%">
+<tr>
+<td><a name="NVexplanations">
+<h2>Explanations</h2>
+</a></td><td align="right">
+	[<a href="#NVsummary">summary</a>]
+	[<a href="#NVpackages">packages</a>]
+	[<a href="#NVcycles">cycles</a>]
+	[<a href="#NVexplanations">explanations</a>]
+	</td>
+</tr>
+</table>
+<p>The following explanations are for quick reference and are lifted directly from the original <a href="http://www.clarkware.com/software/JDepend.html">JDepend documentation</a>.</p>
+<h3>
+<a name="EXnumber">Number of Classes</a>
+</h3>
+<p>The number of concrete and abstract classes (and interfaces) in the package is an indicator of the extensibility of the package.</p>
+<h3>
+<a name="EXafferent">Afferent Couplings</a>
+</h3>
+<p>The number of other packages that depend upon classes within the package is an indicator of the package's responsibility. </p>
+<h3>
+<a name="EXefferent">Efferent Couplings</a>
+</h3>
+<p>The number of other packages that the classes in the package depend upon is an indicator of the package's independence. </p>
+<h3>
+<a name="EXabstractness">Abstractness</a>
+</h3>
+<p>The ratio of the number of abstract classes (and interfaces) in the analyzed package to the total number of classes in the analyzed package. </p>
+<p>The range for this metric is 0 to 1, with A=0 indicating a completely concrete package and A=1 indicating a completely abstract package. </p>
+<h3>
+<a name="EXinstability">Instability</a>
+</h3>
+<p>The ratio of efferent coupling (Ce) to total coupling (Ce / (Ce + Ca)). This metric is an indicator of the package's resilience to change. </p>
+<p>The range for this metric is 0 to 1, with I=0 indicating a completely stable package and I=1 indicating a completely instable package. </p>
+<h3>
+<a name="EXdistance">Distance</a>
+</h3>
+<p>The perpendicular distance of a package from the idealized line A + I = 1. This metric is an indicator of the package's balance between abstractness and stability. </p>
+<p>A package squarely on the main sequence is optimally balanced with respect to its abstractness and stability. Ideal packages are either completely abstract and stable (x=0, y=1) or completely concrete and instable (x=1, y=0). </p>
+<p>The range for this metric is 0 to 1, with D=0 indicating a package that is coincident with the main sequence and D=1 indicating a package that is as far from the main sequence as possible. </p>
+</body>
+</html>

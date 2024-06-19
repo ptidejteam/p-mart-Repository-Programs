@@ -1,0 +1,17 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.4-1 Array Objects
+var myarr = new Array(); myarr[Math.pow(2,32)-2]='hi'; myarr[Math.pow(2,32)-2] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,32)-2]='hi'; myarr.length = 4294967295 PASSED!
+var myarr = new Array(); myarr[Math.pow(2,32)-3]='hi'; myarr[Math.pow(2,32)-3] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,32)-3]='hi'; myarr.length = 4294967294 PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)-2]='hi'; myarr[Math.pow(2,31)-2] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)-2]='hi'; myarr.length = 2147483647 PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)-1]='hi'; myarr[Math.pow(2,31)-1] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)-1]='hi'; myarr.length = 2147483648 PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)]='hi'; myarr[Math.pow(2,31)] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,31)]='hi'; myarr.length = 2147483649 PASSED!
+var myarr = new Array(); myarr[Math.pow(2,30)-2]='hi'; myarr[Math.pow(2,30)-2] = hi PASSED!
+var myarr = new Array(); myarr[Math.pow(2,30)-2]='hi'; myarr.length = 1073741823 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4-1.compiled.arff] ...

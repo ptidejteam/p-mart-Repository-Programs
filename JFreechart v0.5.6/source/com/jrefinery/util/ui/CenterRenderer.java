@@ -1,0 +1,55 @@
+/* ================================
+ * JRefinery Utility Class Library;
+ * ================================
+ * Version 0.20;
+ * (C) Copyright 2000, Simba Management Limited;
+ * Contact: David Gilbert (david.gilbert@bigfoot.com);
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this library;
+ * if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ * MA 02111-1307, USA.
+ *
+ * $Id: CenterRenderer.java,v 1.1 2007/10/10 18:52:17 vauchers Exp $
+ */
+
+package com.jrefinery.util.ui;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.*;
+
+/** A table cell renderer that centers information in each cell. */
+public class CenterRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+
+  /** Default constructor. */
+  public CenterRenderer() {
+    super();
+    setHorizontalAlignment(JLabel.CENTER);
+  }
+
+  /** Returns itself (a JLabel with CENTER alignment) as the renderer. Supports the
+      TableCellRenderer interface. */
+  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                 boolean hasFocus, int row, int column) {
+
+    setFont(null);
+    setText(value.toString());
+
+    if (isSelected) {
+      setBackground(table.getSelectionBackground());
+    }
+    else {
+      setBackground(null);
+    }
+    return this;
+  }
+
+}

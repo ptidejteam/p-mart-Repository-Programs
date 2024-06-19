@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Download</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<B>Download</B> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csrtodo.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Download
+		</TD>
+
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+
+			<P ALIGN="RIGHT"><A HREF="authors.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+
+			BORDER="2"></A>
+
+		</TD>
+
+	</TR>
+
+	<TR>
+
+		<TD COLSPAN="3">
+
+			<H4>License</H4>
+
+			<P>This software is covered by the GNU public license.  For
+			the text of the license, click <A HREF="license.txt">here</A>.
+
+			<H4>Warranty</H4>
+
+			<P>This software is free. It is provided as is,
+			without any promise of support.  If you find a bug, I'll
+			look into it.  If you don't like how it works, modify the source
+			code and mail it back to me.</P>
+
+			<P>
+
+			<H4>Download</H4>
+
+			<P>For the latest download, please go to the
+			<A HREF="http://www.sourceforge.net/projects/jrefactory">Jrefactory's
+			SourceForge pages</A>.  This is page contains the
+			latest release version.  The daily builds available on
+			SourceForge are released once all the unit tests are
+			executed.  The release builds means that some additional
+			testing has been done to assure that the user interface
+			works properly.</P>
+
+			<P>The installation and downloading of the refactory and
+			pretty printer has been simplified.  You simply download
+			a single file.  This one jar is the same for any of the
+			classes described in this documentation:  line numbering tool,
+			metrics, etc.</P>
+
+		   <H5>Installation Instructions</H5>
+
+		   <P>To install this software, extract jrefactory.jar from
+		   the zip file.  To
+		   run the programs here from the command line, include the jar on your
+		   class path.</P>
+		   <P>If this software is only used in conjunction with the
+		   Elixir IDE version 2.4.* software, place it in
+		   <EM>&lt;your home directory&gt;/.ElixirIDE/2.4/ext</EM> directory.
+		   </P>
+		   <P>If this software is to be used with JBuilder 3.0 Foundation or
+		   JBuilder 3.5, then add the refactory jar file to
+		   &lt;JBuilder Directory&gt;/lib/ext.  After adding the jar file,
+		   the first time that you run JBuilder, it will prompt you for the
+		   directory or jar file with the JDK's src.jar.</P>
+		   <P><STRONG><EM>Important!!!</EM></STRONG>  The control for the
+		   pretty printer output is in the (System.getProperty("user.home"))/.Refactory.
+		   The file is called <A HREF="csprettysettings.html">pretty.settings</A>.</P>
+		   <P>When you launch the software for the first time, the program
+		   will prompt you for the location of the JDK source files for your
+		   release of the JDK.  You can specify either a jar or a source
+		   directory.  It uses this mechanism to initialize the packages
+		   available.  This data is used for the refactoring tool which
+		   needs to know about java.lang.Object to perform some operations.</P>
+
+			<H4>Source</H4>
+
+			<P>Interested in modifying source code?
+			Please send me an <A HREF="mailto:seguin@acm.org">e-mail</A>,
+			and let me know what you want to use it for. I'm just curious,
+			and I'll be glad to provide pointers into the code where to
+			make certain changes.</P>
+
+			<P>Also if you want to modify the source, create the javadoc
+			comments for the source code.  Especially look at the package
+			descriptions for org.acm.seguin.summary, org.acm.seguin.refactor,
+			and org.acm.seguin.uml.  The following two commands will generate
+			the javadoc comments for the source code:</P>
+
+<TT>
+java org.acm.seguin.tools.build.JavadocBuilder package.lst .<BR>
+javadoc -author -version -d c:\web\doc @package.lst *.java
+</TT>
+
+<P>
+		</TD>
+
+	</TR>
+
+	<TR>
+
+		<TD WIDTH="35"><A HREF="csrtodo.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+
+		<TD WIDTH="380" ALIGN="CENTER">
+
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: November 28, 2000</FONT>
+
+		</TD>
+
+		<TD WIDTH="35" ALIGN="RIGHT">
+
+			<P ALIGN="RIGHT"><A HREF="authors.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+
+			BORDER="2"></A>
+
+		</TD>
+
+	</TR>
+
+</TABLE>
+
+
+
+
+
+</BODY>
+
+
+
+</HTML>

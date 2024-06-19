@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Types\8.6.2.1-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Types\shell.js -f mozilla\js\tests\ecma\Types\8.6.2.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 375 ms]
+8.6.2.1-1 [[Get]] (Value)
+var OBJ = new MyObject(true); OBJ.valueOf() = true PASSED!
+var OBJ = new MyObject(Number.POSITIVE_INFINITY); OBJ.valueOf() = Infinity PASSED!
+var OBJ = new MyObject('string'); OBJ.valueOf() = string PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Types\8.6.2.1-1.interpreted.arff] ...

@@ -1,0 +1,19 @@
+=============================================================================
+                       R E L E A S E   S T E P S
+                               MapperXML
+=============================================================================
+
+o Finalize Release notes
+o	Increment releaseNo in build.xml
+o Tag MapperXML CVS with version
+o Run Ant task build-release
+o Run Ant task copy-javadoc-releases
+o Update Web and commit site
+	o Update releases.shtml
+	o Update news.shtml
+	o (Optional) Update newsarchive.shtml
+	o Update common/footer.shtml
+o Run Ant task upload-sourceforge
+o Login to Sourceforge and do release processing
+o Run Ant task deploy-website
+

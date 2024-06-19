@@ -1,0 +1,44 @@
+MapperXML
+Version 1.9.8 (PRE-RELEASE)
+Release Notes:
+
+=============================================================================
+                       R E L E A S E   N O T E S
+=============================================================================
+
+Quick Highlights
+================================================================
+
+Important Changes
+================================================================
+
+New Features:
+================================================================
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Bux Fixes:
+================================================================
+o	Issue with custom components when used in multi-row input.
+	Dispatchers in children of custom component were using their
+	own index instead of the grand-parent template's dispatcher
+	which was iterating the index. This resulted in the children
+	always retrieving the first value of multi-row input.
+
+
+Other Changes:
+================================================================
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none
+

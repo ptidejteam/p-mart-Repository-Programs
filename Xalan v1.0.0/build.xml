@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ===================================================================
+
+   Build file for Xalan
+
+Notes:
+   This is a build file for use with the Jakarta Ant java build tool.
+   
+Installation Instructions:   
+   To install Ant on your system, you need to checkout the
+   "jakarta-tools" CVS module. Then you should place the files
+     - ant.jar
+     - projectx-tr2.jar
+     - javac.jar
+   in your classpath. (XML parser abstraction is currently in
+   the todo list, volunteers welcome!)
+   
+Build Instructions:   
+   To build, run
+    
+     java org.apache.tools.ant.Main
+     
+   on the directory where this file is located.
+
+Authors:
+  Stefano Mazzocchi <stefano@apache.org>
+  Shane Curcuru <shane_curcuru@lotus.com>
+  
+Fixme:
+  - Still need to update docs, javadocs, dist targets to work properly
+  - use token evaluation to keep versining info in this file only - nearly ready
+  - Much of this file now stolen from Stefano's xml-xerces build.xml
+
+Copyright:
+  Copyright (c) 1999 The Apache Software Foundation.
+  
+   $Id: build.xml,v 1.1 2006/02/27 22:48:22 vauchers Exp $
+   
+==================================================================== -->
+
+<project name="Xalan" default="package" basedir=".">
+
+<!-- You must set up your classpath ahead of time! -->
+<!-- It must include: xerces.jar, bsf.jar, bsfengines.jar -->
+
+<!-- ====== You should not need to touch anything below here ====== -->
+
+  <target name="init">
+    <property name="version" value="0.19.3-dev"/>
+    <property name="name" value="xalan"/>
+    <property name="Name" value="Xalan"/>
+    <property name="year" value="2000"/>
+    <property name="jarname" value="${name}"/>
+
+    <property name="build.compiler" value="classic"/>
+    <property name="debug" value="off"/>
+
+    <property name="src.dir" value="./src"/>
+    <property name="docs.dir" value="./docs"/>
+    <property name="samples.dir" value="./samples"/>
+    <property name="version.file" value="org/apache/xalan/xslt/XSLProcessorVersion.java"/>
+    <property name="packages" value="org.*"/><!-- Check that this correctly gets all needed javadoc 17-Jan-00 SCurcuru -->
+
+    <property name="docs.book" value="${docs.dir}/docs-book.xml"/>
+    <property name="doc.generator" value="Stylebook"/>
+
+    <property name="build.dir" value="./build"/>
+    <property name="build.src" value="./build/src"/>
+    <property name="build.dest" value="./build/classes"/>
+    <property name="build.docs" value="./build/docs"/>
+    <property name="build.samples" value="./build/samples"/>
+    <property name="build.javadocs" value="./build/javadocs"/>  <!-- Changed name from old Makefile 17-Jan-00 SCurcuru -->
+
+    <property name="dist.dir" value="./${name}-${version}"/>    <!-- Check dir name dash/underscore 17-Jan-00 SCurcuru -->
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Copy over the source code                                            -->
+  <!-- =================================================================== -->
+  <target name="prepare-src" depends="prepare">
+    <!-- create directories -->
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${build.dest}"/>
+
+    <!-- copy src files -->
+    <copydir src="${src.dir}" dest="${build.src}"/>
+
+    <echo message="FIXME: Updating the version number"/>
+    <!-- <replace file="${build.src}/${version.file}" token="@@version@@" value="${version}"/> -->
+    <!-- <replace file="${build.src}/${version.file}" token="@@year@@" value="${year}"/> -->
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the source directory                                       -->
+  <!-- You must have already set your classpath appropriately! -->
+  <!-- =================================================================== -->
+  <target name="compile" depends="prepare-src">
+    <javac srcdir="${build.src}" destdir="${build.dest}" debug="${debug}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the class package                                           -->
+  <!-- =================================================================== -->
+  <target name="package" depends="compile">
+    <jar jarfile="${build.dir}/${jarname}.jar" basedir="${build.dest}" items="org"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the samples                                                -->
+  <!-- =================================================================== -->
+  <target name="samples" depends="package">
+    <mkdir dir="${build.samples}"/>
+    <copydir src="${samples.dir}" dest="${build.samples}"/>
+    <!-- Since the samples are packageless, they must be compiled separately. -->
+    <javac srcdir="${build.samples}/dom1" destdir="${build.samples}/dom1" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+    <javac srcdir="${build.samples}/params" destdir="${build.samples}/params" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+    <javac srcdir="${build.samples}/pipe" destdir="${build.samples}/pipe" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+    <javac srcdir="${build.samples}/simple" destdir="${build.samples}/simple" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+    <javac srcdir="${build.samples}/ValidateXPath" destdir="${build.samples}/ValidateXPath" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Generate HTML docs                                                  -->
+  <!-- =================================================================== -->
+  <target name="docs" depends="package">
+    <mkdir dir="${build.docs}"/>
+    <copydir src="${docs.dir}" dest="${build.docs}"/>
+    <echo message="FIXME: Compile and then run the Xalan-specific Stylebook class"/>
+    <javac srcdir="${build.docs}" destdir="${build.docs}" classpath="${build.dir}/${jarname}.jar" debug="${debug}"/>
+    <java class="${doc.generator}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the API documentation                                       -->
+  <!-- =================================================================== -->
+  <target name="javadocs" depends="prepare-src">
+    <mkdir dir="${build.javadocs}"/>
+    <echo message="FIXME: javadocs target still need updating; see docs/Makefile"/>
+    <javadoc2 packagenames="${packages}"
+              sourcepath="${build.src}"
+              destdir="${build.javadocs}"
+              author="true"
+              version="true"
+              use="true"
+              windowtitle="${Name}"
+              doctitle="${Name}"
+              bottom="Copyright &#169; ${year} Apache XML Project. All Rights Reserved."
+    />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Cleans everything                                                   -->
+  <!-- =================================================================== -->
+  <target name="clean" depends="init">
+    <deltree dir="${build.dir}"/>
+    <deltree dir="${dist.dir}"/>
+  </target>
+  
+  <!-- =================================================================== -->
+  <!-- Creates the distribution                                            -->
+  <!-- =================================================================== -->
+  <target name="dist" depends="package, docs, javadocs, samples">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${dist.dir}/src"/>
+    <mkdir dir="${dist.dir}/docs"/>
+    <mkdir dir="${dist.dir}/docs/images"/>
+    <mkdir dir="${dist.dir}/docs/javadocs"/>
+    <mkdir dir="${dist.dir}/samples"/>
+
+    <copydir src="${build.src}" dest="${dist.dir}/src"/>
+    <copydir src="${build.docs}" dest="${dist.dir}/docs"/>
+    <copydir src="${build.javadocs}" dest="${dist.dir}/docs/javadocs"/>
+    <copydir src="${build.samples}" dest="${dist.dir}/samples"/>
+
+    <copyfile src="${build.dir}/${name}.jar" dest="${dist.dir}/${name}.jar"/>
+    <copyfile src="README" dest="${dist.dir}/README"/>
+    <copyfile src="DONE" dest="${dist.dir}/DONE"/>
+    <copyfile src="BUGS" dest="${dist.dir}/BUGS"/>
+    <copyfile src="CREDITS" dest="${dist.dir}/CREDITS"/>
+    <copyfile src="KEYS" dest="${dist.dir}/KEYS"/>
+    <copyfile src="License" dest="${dist.dir}/License"/>
+    <copyfile src="STATUS" dest="${dist.dir}/STATUS"/>
+    <copyfile src="build.xml" dest="${dist.dir}/build.xml"/>
+    <copyfile src="bsf.jar" dest="${dist.dir}/bsf.jar"/>
+    <copyfile src="bsfengines.jar" dest="${dist.dir}/bsfengines.jar"/>
+    <copyfile src="Makefile" dest="${dist.dir}/Makefile"/>
+    <copyfile src="make.include" dest="${dist.dir}/make.include"/>
+    <copyfile src="make.include2" dest="${dist.dir}/make.include2"/>
+
+    <echo message="FIXME: Should really be creating a jar file, not a zip file! 17-Jan-00 SCurcuru"/>
+    <zip zipfile="${name}-${version}.zip" basedir="${dist.dir}" items="*"/>
+  </target>
+</project>

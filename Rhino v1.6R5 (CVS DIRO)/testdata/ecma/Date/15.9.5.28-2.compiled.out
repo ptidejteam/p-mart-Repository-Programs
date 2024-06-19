@@ -1,0 +1,22 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.28-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.28-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.9.5.24-1 Date.prototype.setMilliseconds(ms)
+var date = new Date(0); date.setMilliseconds(-86400000); date.getTime() = -86400000 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.valueOf() = -86400000 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCFullYear() = 1969 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCMonth() = 11 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCDate() = 31 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCHours() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCMinutes() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCSeconds() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getUTCMilliseconds() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getFullYear() = 1969 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getMonth() = 11 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getDate() = 30 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getHours() = 19 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getMinutes() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getSeconds() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.getMilliseconds() = 0 PASSED!
+var date = new Date(0); date.setMilliseconds(-86400000); date.toString=Object.prototype.toString;var date = new Date(0); date.setMilliseconds(-86400000); date.toString() = [object Date] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.28-2.compiled.arff] ...

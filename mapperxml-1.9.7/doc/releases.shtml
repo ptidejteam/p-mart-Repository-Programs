@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <title>Mapper - A presentation framework</title>
+  <link href="common/style.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+      <td><a href="http://sourceforge.net/"><img
+        src="http://sourceforge.net/sflogo.php?group_id=9359&amp;type=5"
+        name="Graphic2" alt="SourceForge Logo" align="bottom" width="210"
+        height="62" border="0"></a></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" valign="top" bgcolor="#0000ff" style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="common/leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="60%">
+        <div class="content">
+        <h1>Release Notes</h1>
+        <a href="releases/release-1.9.7.txt" target="_blank">Release 1.9.7 - 05/16/2002</a><br>
+        <a href="releases/release-1.9.6.txt" target="_blank">Release 1.9.6 - 11/08/2002</a><br>
+        <a href="releases/release-1.9.5.txt" target="_blank">Release 1.9.5 - 08/10/2002</a><br>
+        <a href="releases/release-1.9.4.txt" target="_blank">Release 1.9.4 - 07/09/2002</a><br>
+        <a href="releases/release-1.9.3.txt" target="_blank">Release 1.9.3 - 05/25/2002</a><br>
+        <a href="releases/release-1.9.2.txt" target="_blank">Release 1.9.2 - 05/21/2002</a><br>
+        <a href="releases/release-1.9.1.txt" target="_blank">Release 1.9.1 - 04/28/2002</a><br>
+        </div>
+      </td>
+      <td bgcolor="#e6e6e6" width="25%">
+        <div class="related">
+        <h1>News<br/>
+        </h1>
+        <!--#include virtual="news.shtml" -->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" valign="top" bgcolor="#9999ff" style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="common/footer.shtml" -->
+</div>
+</body>
+</html>

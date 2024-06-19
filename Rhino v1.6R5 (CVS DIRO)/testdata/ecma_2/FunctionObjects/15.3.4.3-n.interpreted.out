@@ -1,0 +1,9 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\FunctionObjects\15.3.4.3-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\FunctionObjects\shell.js -f mozilla\js\tests\ecma_2\FunctionObjects\15.3.4.3-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+STATUS: f.apply crash test.
+BUGNUMBER: 21836
+apply-001-n undefined
+apply-001-n f.apply(2,2) doesn't crash
+js: "mozilla\js\tests\ecma_2\FunctionObjects\15.3.4.3-n.js#59(eval)", line 1: uncaught JavaScript runtime exception: TypeError: second argument to Function.prototype.apply must be an array
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\FunctionObjects\15.3.4.3-n.interpreted.arff] ...

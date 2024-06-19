@@ -1,0 +1,126 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\RegExp\15.10.7-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\RegExp\shell.js -f mozilla\js\tests\ecma_2\RegExp\15.10.7-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+RegExp/properties-001.js Properties of RegExp Instances
+/(?:)/.test == RegExp.prototype.test = true PASSED!
+/(?:)/.toString == RegExp.prototype.toString = true PASSED!
+/(?:)/.contructor == RegExp.prototype.constructor = true PASSED!
+/(?:)/.compile == RegExp.prototype.compile = true PASSED!
+/(?:)/.exec == RegExp.prototype.exec = true PASSED!
+/(?:)/.source =  PASSED!
+/(?:)/.toString() = /(?:)/ PASSED!
+/(?:)/.global = false PASSED!
+/(?:)/.ignoreCase = false PASSED!
+/(?:)/.multiline = false PASSED!
+/(?:)/.lastIndex = 0 PASSED!
+/.*/.test == RegExp.prototype.test = true PASSED!
+/.*/.toString == RegExp.prototype.toString = true PASSED!
+/.*/.contructor == RegExp.prototype.constructor = true PASSED!
+/.*/.compile == RegExp.prototype.compile = true PASSED!
+/.*/.exec == RegExp.prototype.exec = true PASSED!
+/.*/.source = .* PASSED!
+/.*/.toString() = /.*/ PASSED!
+/.*/.global = false PASSED!
+/.*/.ignoreCase = false PASSED!
+/.*/.multiline = false PASSED!
+/.*/.lastIndex = 0 PASSED!
+/[\d]{5}/g.test == RegExp.prototype.test = true PASSED!
+/[\d]{5}/g.toString == RegExp.prototype.toString = true PASSED!
+/[\d]{5}/g.contructor == RegExp.prototype.constructor = true PASSED!
+/[\d]{5}/g.compile == RegExp.prototype.compile = true PASSED!
+/[\d]{5}/g.exec == RegExp.prototype.exec = true PASSED!
+/[\d]{5}/g.source = [\d]{5} PASSED!
+/[\d]{5}/g.toString() = /[\d]{5}/g PASSED!
+/[\d]{5}/g.global = true PASSED!
+/[\d]{5}/g.ignoreCase = false PASSED!
+/[\d]{5}/g.multiline = false PASSED!
+/[\d]{5}/g.lastIndex = 0 PASSED!
+/[\S]?$/i.test == RegExp.prototype.test = true PASSED!
+/[\S]?$/i.toString == RegExp.prototype.toString = true PASSED!
+/[\S]?$/i.contructor == RegExp.prototype.constructor = true PASSED!
+/[\S]?$/i.compile == RegExp.prototype.compile = true PASSED!
+/[\S]?$/i.exec == RegExp.prototype.exec = true PASSED!
+/[\S]?$/i.source = [\S]?$ PASSED!
+/[\S]?$/i.toString() = /[\S]?$/i PASSED!
+/[\S]?$/i.global = false PASSED!
+/[\S]?$/i.ignoreCase = true PASSED!
+/[\S]?$/i.multiline = false PASSED!
+/[\S]?$/i.lastIndex = 0 PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.test == RegExp.prototype.test = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.toString == RegExp.prototype.toString = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.contructor == RegExp.prototype.constructor = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.compile == RegExp.prototype.compile = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.exec == RegExp.prototype.exec = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.source = ^([a-z]*)[^\w\s\f\n\r]+ PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.toString() = /^([a-z]*)[^\w\s\f\n\r]+/m PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.global = false PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.ignoreCase = false PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.multiline = true PASSED!
+/^([a-z]*)[^\w\s\f\n\r]+/m.lastIndex = 0 PASSED!
+/[\D]{1,5}[\ -][\d]/gi.test == RegExp.prototype.test = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.toString == RegExp.prototype.toString = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.contructor == RegExp.prototype.constructor = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.compile == RegExp.prototype.compile = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.exec == RegExp.prototype.exec = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.source = [\D]{1,5}[\ -][\d] PASSED!
+/[\D]{1,5}[\ -][\d]/gi.toString() = /[\D]{1,5}[\ -][\d]/gi PASSED!
+/[\D]{1,5}[\ -][\d]/gi.global = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.ignoreCase = true PASSED!
+/[\D]{1,5}[\ -][\d]/gi.multiline = false PASSED!
+/[\D]{1,5}[\ -][\d]/gi.lastIndex = 0 PASSED!
+/[a-zA-Z0-9]*/gm.test == RegExp.prototype.test = true PASSED!
+/[a-zA-Z0-9]*/gm.toString == RegExp.prototype.toString = true PASSED!
+/[a-zA-Z0-9]*/gm.contructor == RegExp.prototype.constructor = true PASSED!
+/[a-zA-Z0-9]*/gm.compile == RegExp.prototype.compile = true PASSED!
+/[a-zA-Z0-9]*/gm.exec == RegExp.prototype.exec = true PASSED!
+/[a-zA-Z0-9]*/gm.source = [a-zA-Z0-9]* PASSED!
+/[a-zA-Z0-9]*/gm.toString() = /[a-zA-Z0-9]*/gm PASSED!
+/[a-zA-Z0-9]*/gm.global = true PASSED!
+/[a-zA-Z0-9]*/gm.ignoreCase = false PASSED!
+/[a-zA-Z0-9]*/gm.multiline = true PASSED!
+/[a-zA-Z0-9]*/gm.lastIndex = 0 PASSED!
+/x|y|z/gim.test == RegExp.prototype.test = true PASSED!
+/x|y|z/gim.toString == RegExp.prototype.toString = true PASSED!
+/x|y|z/gim.contructor == RegExp.prototype.constructor = true PASSED!
+/x|y|z/gim.compile == RegExp.prototype.compile = true PASSED!
+/x|y|z/gim.exec == RegExp.prototype.exec = true PASSED!
+/x|y|z/gim.source = x|y|z PASSED!
+/x|y|z/gim.toString() = /x|y|z/gim PASSED!
+/x|y|z/gim.global = true PASSED!
+/x|y|z/gim.ignoreCase = true PASSED!
+/x|y|z/gim.multiline = true PASSED!
+/x|y|z/gim.lastIndex = 0 PASSED!
+/\u0051/im.test == RegExp.prototype.test = true PASSED!
+/\u0051/im.toString == RegExp.prototype.toString = true PASSED!
+/\u0051/im.contructor == RegExp.prototype.constructor = true PASSED!
+/\u0051/im.compile == RegExp.prototype.compile = true PASSED!
+/\u0051/im.exec == RegExp.prototype.exec = true PASSED!
+/\u0051/im.source = \u0051 PASSED!
+/\u0051/im.toString() = /\u0051/im PASSED!
+/\u0051/im.global = false PASSED!
+/\u0051/im.ignoreCase = true PASSED!
+/\u0051/im.multiline = true PASSED!
+/\u0051/im.lastIndex = 0 PASSED!
+/\x45/gm.test == RegExp.prototype.test = true PASSED!
+/\x45/gm.toString == RegExp.prototype.toString = true PASSED!
+/\x45/gm.contructor == RegExp.prototype.constructor = true PASSED!
+/\x45/gm.compile == RegExp.prototype.compile = true PASSED!
+/\x45/gm.exec == RegExp.prototype.exec = true PASSED!
+/\x45/gm.source = \x45 PASSED!
+/\x45/gm.toString() = /\x45/gm PASSED!
+/\x45/gm.global = true PASSED!
+/\x45/gm.ignoreCase = false PASSED!
+/\x45/gm.multiline = true PASSED!
+/\x45/gm.lastIndex = 0 PASSED!
+/\097/gi.test == RegExp.prototype.test = true PASSED!
+/\097/gi.toString == RegExp.prototype.toString = true PASSED!
+/\097/gi.contructor == RegExp.prototype.constructor = true PASSED!
+/\097/gi.compile == RegExp.prototype.compile = true PASSED!
+/\097/gi.exec == RegExp.prototype.exec = true PASSED!
+/\097/gi.source = \097 PASSED!
+/\097/gi.toString() = /\097/gi PASSED!
+/\097/gi.global = true PASSED!
+/\097/gi.ignoreCase = true PASSED!
+/\097/gi.multiline = false PASSED!
+/\097/gi.lastIndex = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\RegExp\15.10.7-1.interpreted.arff] ...

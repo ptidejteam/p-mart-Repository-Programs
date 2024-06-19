@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Elixir Extensions</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> Elixir Extensions<BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csprint.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::Elixir Extensions
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="cslineno.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+
+			<H3>Elixir Source Safe</H3>
+
+			<P>Elixir provides a mechanism for plugging in version control, so
+			that files can be checked in and out from the
+			project window. The refactory.jar contains a source safe
+			version control plugin.</P>
+
+			<P>Source safe is very slow on my machine at work. As a result,
+			a lot of the operations are placed in separate
+			threads. For files that are readable, it is possible that it will
+			take a minute for Source Safe to respond.
+			By placing source safe queries in a separate thread, Elixir
+			continues to run. However, it takes a while for the
+			menu items to become enabled for checkins.</P>
+
+			<P>This release does not include a function to add a file to source safe.</P>
+
+			<P>To add Elixir Source Safe to the version control,
+			edit the project settings</P>
+
+			<P><TT><FONT SIZE="1">VersionControl=YES<BR>
+
+			VersionControlClass=org.acm.seguin.version.ElixirVersionControl</FONT></TT></P>
+
+			<P>Further, you need to execute the following two environment
+			variables before launching Elixir.</P>
+
+			<P><TT><FONT SIZE="1">set ssuser=seguinca<BR>
+			set ssdir=f:\dbnet\vss</FONT></TT></P>
+
+			<P>Now you should be able to check in and check out files
+			from source safe from the popup menu in Elixir.</P>
+
+			<P>Serveral bug fixes were added.  First, while the file is
+			being checked in or out, the menu option is greyed out.  Second,
+			multiple files can be selected to be checked in our out simultaneously,
+			and the program will check them out in some order.</P>
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csprint.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: January 22, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="cslineno.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

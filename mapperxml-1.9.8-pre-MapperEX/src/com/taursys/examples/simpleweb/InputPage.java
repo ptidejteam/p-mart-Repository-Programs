@@ -1,0 +1,93 @@
+/**
+ * Example Mapper Application
+ * by: Marty Phelan
+ *
+ * This example is free software; you can redistribute it and/or
+ * modify it as you wish.  It is released to the public domain.
+ *
+ * This example is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+package com.taursys.examples.simpleweb;
+
+import org.apache.xerces.parsers.DOMParser;
+import org.xml.sax.InputSource;
+
+import com.taursys.html.HTMLInputText;
+import com.taursys.model.VOValueHolder;
+import com.taursys.servlet.ServletForm;
+
+/**
+ * InputPage Servlet Form demonstrates input/output features using TextFields and VOValueHolder.
+ */
+public class InputPage extends ServletForm {
+  HTMLInputText firstName = new HTMLInputText();
+  HTMLInputText lastName = new HTMLInputText();
+  VOValueHolder person = new VOValueHolder();
+
+  /**
+   * Constructs a new SecondPage and initializes component properties.
+   */
+  public InputPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Set component properties here.  It is not recommended to put anything
+   * other than property settings in here.  Any Exception will cause the
+   * constructor to fail.
+   */
+  private void jbInit() throws Exception {
+    firstName.setParameter("firstName");
+    firstName.setPropertyName("firstName");
+    firstName.setValueHolder(person);
+    firstName.setId("firstName");
+    lastName.setParameter("lastName");
+    lastName.setPropertyName("lastName");
+    lastName.setValueHolder(person);
+    lastName.setId("lastName");
+    this.add(firstName);
+    this.add(lastName);
+  }
+
+  /**
+   * One time initialization of the ServletForm.  This method is invoked ONCE.
+   * It is the first method invoked by the doGet method.  If the form is
+   * recycled, it will NOT be invoked again by doGet.
+   */
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    // Use Xerces to Parse document to a DOM and store as this form's document
+    // You can use any method you like to create the DOM
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        getClass().getResourceAsStream("InputPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+
+  /**
+   * This method is invoked by doGet to open the form.
+   * It is invoked after any parameters have been read, but before input
+   * values have been read.  Override this method to provide custom
+   * behavior such as opening data sources.  There is no need to invoke
+   * super.openForm().
+   */
+  protected void openForm() throws java.lang.Exception {
+    // Try to retrieve from session else create
+    Person personVO = (Person)getRequest().getSession().getAttribute("ThePerson");
+    if (personVO == null) {
+      // Create the value object and store
+      personVO = new Person(1629, "Pulaski", "Katherine", null);
+      getRequest().getSession().setAttribute("ThePerson", personVO);
+    }
+    // Bind value object to person ValueHolder
+    person.setValueObject(personVO);
+  }
+}

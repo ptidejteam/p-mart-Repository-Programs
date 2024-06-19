@@ -1,0 +1,28 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.12.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.12.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 76439
+15.8.2.12 Math.min(x, y)
+Math.min.length = 2 PASSED!
+Math.min() = Infinity PASSED!
+Math.min(void 0, 1) = NaN PASSED!
+Math.min(void 0, void 0) = NaN PASSED!
+Math.min(null, 1) = 0 PASSED!
+Math.min(-1, null) = -1 PASSED!
+Math.min(true, false) = 0 PASSED!
+Math.min('-99','99') = -99 PASSED!
+Math.min(NaN,0) = NaN PASSED!
+Math.min(NaN,1) = NaN PASSED!
+Math.min(NaN,-1) = NaN PASSED!
+Math.min(0,NaN) = NaN PASSED!
+Math.min(1,NaN) = NaN PASSED!
+Math.min(-1,NaN) = NaN PASSED!
+Math.min(NaN,NaN) = NaN PASSED!
+Math.min(1,1.0000000001) = 1 PASSED!
+Math.min(1.0000000001,1) = 1 PASSED!
+Math.min(0,0) = 0 PASSED!
+Math.min(0,-0) = 0 PASSED!
+Math.min(-0,-0) = 0 PASSED!
+Infinity/Math.min(0,-0) = -Infinity PASSED!
+Infinity/Math.min(-0,-0) = -Infinity PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.12.interpreted.arff] ...

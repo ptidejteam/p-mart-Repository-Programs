@@ -1,0 +1,63 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.19.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.19.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.9.5.15 Date.prototype.getUTCHours()
+(new Date(1184093703593)).getUTCHours() = 18 PASSED!
+(new Date(1184097303593)).getUTCHours() = 19 PASSED!
+(new Date(1184100903593)).getUTCHours() = 20 PASSED!
+(new Date(1184104503593)).getUTCHours() = 21 PASSED!
+(new Date(1184108103593)).getUTCHours() = 22 PASSED!
+(new Date(1184111703593)).getUTCHours() = 23 PASSED!
+(new Date(1184115303593)).getUTCHours() = 0 PASSED!
+(new Date(1184118903593)).getUTCHours() = 1 PASSED!
+(new Date(-62167215600000)).getUTCHours() = 1 PASSED!
+(new Date(-62167212000000)).getUTCHours() = 2 PASSED!
+(new Date(-62167208400000)).getUTCHours() = 3 PASSED!
+(new Date(-62167204800000)).getUTCHours() = 4 PASSED!
+(new Date(-62167201200000)).getUTCHours() = 5 PASSED!
+(new Date(-62167197600000)).getUTCHours() = 6 PASSED!
+(new Date(-62167194000000)).getUTCHours() = 7 PASSED!
+(new Date(-62167190400000)).getUTCHours() = 8 PASSED!
+(new Date(3600000)).getUTCHours() = 1 PASSED!
+(new Date(7200000)).getUTCHours() = 2 PASSED!
+(new Date(10800000)).getUTCHours() = 3 PASSED!
+(new Date(14400000)).getUTCHours() = 4 PASSED!
+(new Date(18000000)).getUTCHours() = 5 PASSED!
+(new Date(21600000)).getUTCHours() = 6 PASSED!
+(new Date(25200000)).getUTCHours() = 7 PASSED!
+(new Date(28800000)).getUTCHours() = 8 PASSED!
+(new Date(-2208985200000)).getUTCHours() = 1 PASSED!
+(new Date(-2208981600000)).getUTCHours() = 2 PASSED!
+(new Date(-2208978000000)).getUTCHours() = 3 PASSED!
+(new Date(-2208974400000)).getUTCHours() = 4 PASSED!
+(new Date(-2208970800000)).getUTCHours() = 5 PASSED!
+(new Date(-2208967200000)).getUTCHours() = 6 PASSED!
+(new Date(-2208963600000)).getUTCHours() = 7 PASSED!
+(new Date(-2208960000000)).getUTCHours() = 8 PASSED!
+(new Date(946688400000)).getUTCHours() = 1 PASSED!
+(new Date(946692000000)).getUTCHours() = 2 PASSED!
+(new Date(946695600000)).getUTCHours() = 3 PASSED!
+(new Date(946699200000)).getUTCHours() = 4 PASSED!
+(new Date(946702800000)).getUTCHours() = 5 PASSED!
+(new Date(946706400000)).getUTCHours() = 6 PASSED!
+(new Date(946710000000)).getUTCHours() = 7 PASSED!
+(new Date(946713600000)).getUTCHours() = 8 PASSED!
+(new Date(951786000000)).getUTCHours() = 1 PASSED!
+(new Date(951789600000)).getUTCHours() = 2 PASSED!
+(new Date(951793200000)).getUTCHours() = 3 PASSED!
+(new Date(951796800000)).getUTCHours() = 4 PASSED!
+(new Date(951800400000)).getUTCHours() = 5 PASSED!
+(new Date(951804000000)).getUTCHours() = 6 PASSED!
+(new Date(951807600000)).getUTCHours() = 7 PASSED!
+(new Date(951811200000)).getUTCHours() = 8 PASSED!
+(new Date(1104541200000)).getUTCHours() = 1 PASSED!
+(new Date(1104544800000)).getUTCHours() = 2 PASSED!
+(new Date(1104548400000)).getUTCHours() = 3 PASSED!
+(new Date(1104552000000)).getUTCHours() = 4 PASSED!
+(new Date(1104555600000)).getUTCHours() = 5 PASSED!
+(new Date(1104559200000)).getUTCHours() = 6 PASSED!
+(new Date(1104562800000)).getUTCHours() = 7 PASSED!
+(new Date(1104566400000)).getUTCHours() = 8 PASSED!
+(new Date(NaN)).getUTCHours() = NaN PASSED!
+Date.prototype.getUTCHours.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.19.compiled.arff] ...

@@ -1,0 +1,29 @@
+read message window (attachment panel)
+  export;  attachment(s) (as filelist)
+		*) save as the actual attachment's filename.
+	   default swing editor stuff (text)
+  import:  nothing
+
+new message window
+  export:  default swing editor stuff
+  import:  other message (file/attachment)
+		*) note:  name attachment.
+	   file (file/attachment)
+	   default swing editor stuff
+
+folder window
+  export:  message(s) (message or file)
+  import:  message(s)
+    note:  we'll need some sort of 'display as cut' system.
+
+folder node
+  export:  none
+  import:  message(s)
+
+testing:
+
+1)  drag and drop for all.
+	move and copy
+2)  cut, copy, and paste for all.
+3)  enable/disable drag and drop.
+

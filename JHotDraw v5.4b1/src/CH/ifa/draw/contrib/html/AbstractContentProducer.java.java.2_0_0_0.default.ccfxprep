@@ -1,0 +1,15 @@
+1d.11.314	+0	(def_block
+1d.11.314	+5	r_class
+1d.17.31a	+17	id|AbstractContentProducer
+1e.2d.35f	+1	(brace
+24.9.3e9	+0	(def_block
+24.9.3e9	+17	id|AbstractContentProducer
+24.20.400	+0	c_func
+24.20.400	+1	(paren
+24.21.401	+1	)paren
+24.23.403	+1	(brace
+24.25.405	+1	)brace
+24.26.406	+0	)def_block
+38.1.55a	+1	)brace
+38.2.55b	+0	)def_block
+39.1.55d	+0	eof

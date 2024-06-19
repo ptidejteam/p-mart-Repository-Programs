@@ -1,0 +1,195 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.4-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.4.4-1 String.prototype.charAt
+TEST_STRING = new String(" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~")
+TEST_STRING.charAt(0) =   PASSED!
+TEST_STRING.charAt(1) = ! PASSED!
+TEST_STRING.charAt(2) = " PASSED!
+TEST_STRING.charAt(3) = # PASSED!
+TEST_STRING.charAt(4) = $ PASSED!
+TEST_STRING.charAt(5) = % PASSED!
+TEST_STRING.charAt(6) = & PASSED!
+TEST_STRING.charAt(7) = ' PASSED!
+TEST_STRING.charAt(8) = ( PASSED!
+TEST_STRING.charAt(9) = ) PASSED!
+TEST_STRING.charAt(10) = * PASSED!
+TEST_STRING.charAt(11) = + PASSED!
+TEST_STRING.charAt(12) = , PASSED!
+TEST_STRING.charAt(13) = - PASSED!
+TEST_STRING.charAt(14) = . PASSED!
+TEST_STRING.charAt(15) = / PASSED!
+TEST_STRING.charAt(16) = 0 PASSED!
+TEST_STRING.charAt(17) = 1 PASSED!
+TEST_STRING.charAt(18) = 2 PASSED!
+TEST_STRING.charAt(19) = 3 PASSED!
+TEST_STRING.charAt(20) = 4 PASSED!
+TEST_STRING.charAt(21) = 5 PASSED!
+TEST_STRING.charAt(22) = 6 PASSED!
+TEST_STRING.charAt(23) = 7 PASSED!
+TEST_STRING.charAt(24) = 8 PASSED!
+TEST_STRING.charAt(25) = 9 PASSED!
+TEST_STRING.charAt(26) = : PASSED!
+TEST_STRING.charAt(27) = ; PASSED!
+TEST_STRING.charAt(28) = < PASSED!
+TEST_STRING.charAt(29) = = PASSED!
+TEST_STRING.charAt(30) = > PASSED!
+TEST_STRING.charAt(31) = ? PASSED!
+TEST_STRING.charAt(32) = @ PASSED!
+TEST_STRING.charAt(33) = A PASSED!
+TEST_STRING.charAt(34) = B PASSED!
+TEST_STRING.charAt(35) = C PASSED!
+TEST_STRING.charAt(36) = D PASSED!
+TEST_STRING.charAt(37) = E PASSED!
+TEST_STRING.charAt(38) = F PASSED!
+TEST_STRING.charAt(39) = G PASSED!
+TEST_STRING.charAt(40) = H PASSED!
+TEST_STRING.charAt(41) = I PASSED!
+TEST_STRING.charAt(42) = J PASSED!
+TEST_STRING.charAt(43) = K PASSED!
+TEST_STRING.charAt(44) = L PASSED!
+TEST_STRING.charAt(45) = M PASSED!
+TEST_STRING.charAt(46) = N PASSED!
+TEST_STRING.charAt(47) = O PASSED!
+TEST_STRING.charAt(48) = P PASSED!
+TEST_STRING.charAt(49) = Q PASSED!
+TEST_STRING.charAt(50) = R PASSED!
+TEST_STRING.charAt(51) = S PASSED!
+TEST_STRING.charAt(52) = T PASSED!
+TEST_STRING.charAt(53) = U PASSED!
+TEST_STRING.charAt(54) = V PASSED!
+TEST_STRING.charAt(55) = W PASSED!
+TEST_STRING.charAt(56) = X PASSED!
+TEST_STRING.charAt(57) = Y PASSED!
+TEST_STRING.charAt(58) = Z PASSED!
+TEST_STRING.charAt(59) = [ PASSED!
+TEST_STRING.charAt(60) = \ PASSED!
+TEST_STRING.charAt(61) = ] PASSED!
+TEST_STRING.charAt(62) = ^ PASSED!
+TEST_STRING.charAt(63) = _ PASSED!
+TEST_STRING.charAt(64) = ` PASSED!
+TEST_STRING.charAt(65) = a PASSED!
+TEST_STRING.charAt(66) = b PASSED!
+TEST_STRING.charAt(67) = c PASSED!
+TEST_STRING.charAt(68) = d PASSED!
+TEST_STRING.charAt(69) = e PASSED!
+TEST_STRING.charAt(70) = f PASSED!
+TEST_STRING.charAt(71) = g PASSED!
+TEST_STRING.charAt(72) = h PASSED!
+TEST_STRING.charAt(73) = i PASSED!
+TEST_STRING.charAt(74) = j PASSED!
+TEST_STRING.charAt(75) = k PASSED!
+TEST_STRING.charAt(76) = l PASSED!
+TEST_STRING.charAt(77) = m PASSED!
+TEST_STRING.charAt(78) = n PASSED!
+TEST_STRING.charAt(79) = o PASSED!
+TEST_STRING.charAt(80) = p PASSED!
+TEST_STRING.charAt(81) = q PASSED!
+TEST_STRING.charAt(82) = r PASSED!
+TEST_STRING.charAt(83) = s PASSED!
+TEST_STRING.charAt(84) = t PASSED!
+TEST_STRING.charAt(85) = u PASSED!
+TEST_STRING.charAt(86) = v PASSED!
+TEST_STRING.charAt(87) = w PASSED!
+TEST_STRING.charAt(88) = x PASSED!
+TEST_STRING.charAt(89) = y PASSED!
+TEST_STRING.charAt(90) = z PASSED!
+TEST_STRING.charAt(91) = { PASSED!
+TEST_STRING.charAt(92) = | PASSED!
+TEST_STRING.charAt(93) = } PASSED!
+TEST_STRING.charAt(94) == TEST_STRING.substring( 94, 95) = true PASSED!
+TEST_STRING.charAt(95) == TEST_STRING.substring( 95, 96) = true PASSED!
+TEST_STRING.charAt(96) == TEST_STRING.substring( 96, 97) = true PASSED!
+TEST_STRING.charAt(97) == TEST_STRING.substring( 97, 98) = true PASSED!
+TEST_STRING.charAt(98) == TEST_STRING.substring( 98, 99) = true PASSED!
+TEST_STRING.charAt(99) == TEST_STRING.substring( 99, 100) = true PASSED!
+TEST_STRING.charAt(100) == TEST_STRING.substring( 100, 101) = true PASSED!
+TEST_STRING.charAt(101) == TEST_STRING.substring( 101, 102) = true PASSED!
+TEST_STRING.charAt(102) == TEST_STRING.substring( 102, 103) = true PASSED!
+TEST_STRING.charAt(103) == TEST_STRING.substring( 103, 104) = true PASSED!
+TEST_STRING.charAt(104) == TEST_STRING.substring( 104, 105) = true PASSED!
+TEST_STRING.charAt(105) == TEST_STRING.substring( 105, 106) = true PASSED!
+TEST_STRING.charAt(106) == TEST_STRING.substring( 106, 107) = true PASSED!
+TEST_STRING.charAt(107) == TEST_STRING.substring( 107, 108) = true PASSED!
+TEST_STRING.charAt(108) == TEST_STRING.substring( 108, 109) = true PASSED!
+TEST_STRING.charAt(109) == TEST_STRING.substring( 109, 110) = true PASSED!
+TEST_STRING.charAt(110) == TEST_STRING.substring( 110, 111) = true PASSED!
+TEST_STRING.charAt(111) == TEST_STRING.substring( 111, 112) = true PASSED!
+TEST_STRING.charAt(112) == TEST_STRING.substring( 112, 113) = true PASSED!
+TEST_STRING.charAt(113) == TEST_STRING.substring( 113, 114) = true PASSED!
+TEST_STRING.charAt(114) == TEST_STRING.substring( 114, 115) = true PASSED!
+TEST_STRING.charAt(115) == TEST_STRING.substring( 115, 116) = true PASSED!
+TEST_STRING.charAt(116) == TEST_STRING.substring( 116, 117) = true PASSED!
+TEST_STRING.charAt(117) == TEST_STRING.substring( 117, 118) = true PASSED!
+TEST_STRING.charAt(118) == TEST_STRING.substring( 118, 119) = true PASSED!
+TEST_STRING.charAt(119) == TEST_STRING.substring( 119, 120) = true PASSED!
+TEST_STRING.charAt(120) == TEST_STRING.substring( 120, 121) = true PASSED!
+TEST_STRING.charAt(121) == TEST_STRING.substring( 121, 122) = true PASSED!
+TEST_STRING.charAt(122) == TEST_STRING.substring( 122, 123) = true PASSED!
+TEST_STRING.charAt(123) == TEST_STRING.substring( 123, 124) = true PASSED!
+TEST_STRING.charAt(124) == TEST_STRING.substring( 124, 125) = true PASSED!
+TEST_STRING.charAt(125) == TEST_STRING.substring( 125, 126) = true PASSED!
+TEST_STRING.charAt(126) == TEST_STRING.substring( 126, 127) = true PASSED!
+TEST_STRING.charAt(127) == TEST_STRING.substring( 127, 128) = true PASSED!
+TEST_STRING.charAt(128) == TEST_STRING.substring( 128, 129) = true PASSED!
+TEST_STRING.charAt(129) == TEST_STRING.substring( 129, 130) = true PASSED!
+TEST_STRING.charAt(130) == TEST_STRING.substring( 130, 131) = true PASSED!
+TEST_STRING.charAt(131) == TEST_STRING.substring( 131, 132) = true PASSED!
+TEST_STRING.charAt(132) == TEST_STRING.substring( 132, 133) = true PASSED!
+TEST_STRING.charAt(133) == TEST_STRING.substring( 133, 134) = true PASSED!
+TEST_STRING.charAt(134) == TEST_STRING.substring( 134, 135) = true PASSED!
+TEST_STRING.charAt(135) == TEST_STRING.substring( 135, 136) = true PASSED!
+TEST_STRING.charAt(136) == TEST_STRING.substring( 136, 137) = true PASSED!
+TEST_STRING.charAt(137) == TEST_STRING.substring( 137, 138) = true PASSED!
+TEST_STRING.charAt(138) == TEST_STRING.substring( 138, 139) = true PASSED!
+TEST_STRING.charAt(139) == TEST_STRING.substring( 139, 140) = true PASSED!
+TEST_STRING.charAt(140) == TEST_STRING.substring( 140, 141) = true PASSED!
+TEST_STRING.charAt(141) == TEST_STRING.substring( 141, 142) = true PASSED!
+TEST_STRING.charAt(142) == TEST_STRING.substring( 142, 143) = true PASSED!
+TEST_STRING.charAt(143) == TEST_STRING.substring( 143, 144) = true PASSED!
+TEST_STRING.charAt(144) == TEST_STRING.substring( 144, 145) = true PASSED!
+TEST_STRING.charAt(145) == TEST_STRING.substring( 145, 146) = true PASSED!
+TEST_STRING.charAt(146) == TEST_STRING.substring( 146, 147) = true PASSED!
+TEST_STRING.charAt(147) == TEST_STRING.substring( 147, 148) = true PASSED!
+TEST_STRING.charAt(148) == TEST_STRING.substring( 148, 149) = true PASSED!
+TEST_STRING.charAt(149) == TEST_STRING.substring( 149, 150) = true PASSED!
+TEST_STRING.charAt(150) == TEST_STRING.substring( 150, 151) = true PASSED!
+TEST_STRING.charAt(151) == TEST_STRING.substring( 151, 152) = true PASSED!
+TEST_STRING.charAt(152) == TEST_STRING.substring( 152, 153) = true PASSED!
+TEST_STRING.charAt(153) == TEST_STRING.substring( 153, 154) = true PASSED!
+TEST_STRING.charAt(154) == TEST_STRING.substring( 154, 155) = true PASSED!
+TEST_STRING.charAt(155) == TEST_STRING.substring( 155, 156) = true PASSED!
+TEST_STRING.charAt(156) == TEST_STRING.substring( 156, 157) = true PASSED!
+TEST_STRING.charAt(157) == TEST_STRING.substring( 157, 158) = true PASSED!
+TEST_STRING.charAt(158) == TEST_STRING.substring( 158, 159) = true PASSED!
+TEST_STRING.charAt(159) == TEST_STRING.substring( 159, 160) = true PASSED!
+TEST_STRING.charAt(160) == TEST_STRING.substring( 160, 161) = true PASSED!
+TEST_STRING.charAt(161) == TEST_STRING.substring( 161, 162) = true PASSED!
+TEST_STRING.charAt(162) == TEST_STRING.substring( 162, 163) = true PASSED!
+TEST_STRING.charAt(163) == TEST_STRING.substring( 163, 164) = true PASSED!
+TEST_STRING.charAt(164) == TEST_STRING.substring( 164, 165) = true PASSED!
+TEST_STRING.charAt(165) == TEST_STRING.substring( 165, 166) = true PASSED!
+TEST_STRING.charAt(166) == TEST_STRING.substring( 166, 167) = true PASSED!
+TEST_STRING.charAt(167) == TEST_STRING.substring( 167, 168) = true PASSED!
+TEST_STRING.charAt(168) == TEST_STRING.substring( 168, 169) = true PASSED!
+TEST_STRING.charAt(169) == TEST_STRING.substring( 169, 170) = true PASSED!
+TEST_STRING.charAt(170) == TEST_STRING.substring( 170, 171) = true PASSED!
+TEST_STRING.charAt(171) == TEST_STRING.substring( 171, 172) = true PASSED!
+TEST_STRING.charAt(172) == TEST_STRING.substring( 172, 173) = true PASSED!
+TEST_STRING.charAt(173) == TEST_STRING.substring( 173, 174) = true PASSED!
+TEST_STRING.charAt(174) == TEST_STRING.substring( 174, 175) = true PASSED!
+TEST_STRING.charAt(175) == TEST_STRING.substring( 175, 176) = true PASSED!
+TEST_STRING.charAt(176) == TEST_STRING.substring( 176, 177) = true PASSED!
+TEST_STRING.charAt(177) == TEST_STRING.substring( 177, 178) = true PASSED!
+TEST_STRING.charAt(178) == TEST_STRING.substring( 178, 179) = true PASSED!
+TEST_STRING.charAt(179) == TEST_STRING.substring( 179, 180) = true PASSED!
+TEST_STRING.charAt(180) == TEST_STRING.substring( 180, 181) = true PASSED!
+TEST_STRING.charAt(181) == TEST_STRING.substring( 181, 182) = true PASSED!
+TEST_STRING.charAt(182) == TEST_STRING.substring( 182, 183) = true PASSED!
+TEST_STRING.charAt(183) == TEST_STRING.substring( 183, 184) = true PASSED!
+TEST_STRING.charAt(184) == TEST_STRING.substring( 184, 185) = true PASSED!
+TEST_STRING.charAt(185) == TEST_STRING.substring( 185, 186) = true PASSED!
+TEST_STRING.charAt(186) == TEST_STRING.substring( 186, 187) = true PASSED!
+TEST_STRING.charAt(187) == TEST_STRING.substring( 187, 188) = true PASSED!
+String.prototype.charAt.length = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.4-1.compiled.arff] ...

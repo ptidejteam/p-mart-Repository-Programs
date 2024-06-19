@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JRefactory  -  Move Method</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csr-pushdownmethod.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory  -  Move Method
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-extractmethod.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H4>Moving a method between classes</H4>
+			<P>There are times that a specific method in a class suffers from
+			feature envy.  It will call a lot of messages in another class and
+			access the other class's fields.  When this occurs, you should
+			consider moving the method to the other class.</P>
+
+			<P>This implementation allows you to move a method to a class that
+			is included in the parameter list.</P>
+
+			<P>To move a method right click on the method in the class diagram.
+			Select Method Refactorings and then Move method from the popup
+			menu.  In the dialog box, pick which parameter should be used
+			as the destination class.</P>
+
+			<P>A class cannot be moved when it accesses package level methods
+			in the current class and the destination is in another class.  It
+			also cannot be moved when it sends private messages.  The final reason
+			that a class cannot be moved is if it accesses private variables in
+			the current class, and the current class does not provide
+			getters and setters for that variable.</P>
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csr-pushdownmethod.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: August 23, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-extractmethod.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

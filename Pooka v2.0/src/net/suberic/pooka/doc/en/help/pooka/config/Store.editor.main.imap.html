@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Incoming Mail Accounts</title>
+</head>
+<body>
+<h1>Incoming Mail Accounts - Main Settings</h1>
+
+<dl>
+  <dt>Connection Information</dt>
+  <dd>
+    <dl>
+      <dt>Server Name</dt>
+      <dd>The machine name on which your IMAP account is stored, or the IP address of that machine.  Required.</dd>
+      <dt>Username</dt>
+      <dd>The username for your account.  Required.</dd>
+      <dt>Password</dt>
+      <dd>The password for your account.  Optional--if you do not enter a password, then you will be prompted for your password each time you log into your account.  This setting is more secure, but also can be more inconvenient.</dd>
+      <dt>Port (blank for default)</dt>
+      <dd>The port to use to connect to your IMAP server.  Leave blank unless you know your server is running on a non-standard port.</dd>
+    </dl>
+  </dd>
+  <dt>Security</dt>
+  <dd>The encryption settings to use for your IMAP connection.  Options are:
+    <ul>
+      <li>None:  No encryption.  All communication with the mailserver will be sent in plaintext over the network.  Recommended only over already secure networks (secure LAN or VPN), or when this is the only option available.</li>
+      <li>TLS if available:  Use Transport Layer Security (TLS) if available, or fall back to unencrypted connection if TLS is not available.</li>
+      <li>TLS:  Use Transport Layer Security (TLS).  TLS connects to the normal IMAP port (143), and then starts up a secure connection using the STARTTLS command.  This is the preferred option for servers which support this setting.</li>
+      <li>SSL:  Use Secure Socket Layer (SSL).  The connection is made over the imaps port (993), which negotiates a secure connection before the IMAP session begins.</li>
+    </ul>
+  </dd>
+  <dt>Automatically check for new messages</dt>
+  <dd>Determines whether or not Pooka will automatically check the server for new messages.  Enabled by default.  If disabled, then you will only check for new messages when you manually request a refresh, or when you access a message from the server.<br/><br/>This setting may be overridden on a per-Folder basis.</dd>
+  <dt>Check interval (seconds)</dt>
+  <dd>The time in seconds between server checks.  Defaults to 300 seconds (5 minutes).<br/><br/>This setting may be overridden on a per-Folder basis.</dd>
+  <dt>Default Profile</dt>
+  <dd>The Email Profile to use with this account by default.  If blank, will use the Default Profile setting for the system, available under the Email Profiles section.</dd>
+</dl>
+
+</body>
+</html>

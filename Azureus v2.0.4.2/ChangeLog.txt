@@ -1,0 +1,78 @@
+CHANGELOG
+---------
+
+20.11.03 | Azureus 2.0.4.2
+
+FEATURE: Added tooltip general support [Gudy]
+FEATURE: Default torrent encoding selection added to Config->File [Parg]
+FEATURE: Public tracker support - config item allows external use of tracker [Parg]
+
+CHANGE: Full scrape of embedded tracker now supported as SN requires this for hosting [Parg]
+CHANGE: Better peer client identification [Nolar]
+CHANGE: Added AZ version + torrent size to stats [Parg]
+CHANGE: Added 'comment' field to torrent create [Parg]
+CHANGE: Moving of .torrent to completed dir now optional [Nolar]
+CHANGE: Additional upload speed options [Nolar]
+CHANGE: Cleanup of Configuration tabs [Nolar]
+CHANGE: Rewrite of locale selection code for torrents. Only one encoding allowed per torrent [Parg]
+CHANGE: File->Open... now opens to the default download/torrent dirs set in config [Parg]
+CHANGE: ETA/TimeRemaining now uses just two significant measures, and "kB" changed to "KB"  [Nolar] 
+
+BUGFIX: Torrent hosting - resetting of tracker url to original after hosting cancelled [Parg]
+BUGFIX: Allow for torrent files with '.tor' extention [Nolar]
+BUGFIX: Renamed file not reused after torrent Stop-Start: Bug #842750 [Nolar]
+BUGFIX: No longer deletes files if the 'completed' dir points to the download dir: Bug #842896 [Nolar]
+BUGFIX: Fast resume data no longer duplicated [Nolar]
+BUGFIX: File 'downloads.config' kept better up-to-date [Nolar]
+BUGFIX: % Completed is now correct again in MyTorrents view on stopped downloads [Gudy]
+BUGFIX: Non-UTF8 encoded 'comment' fields in torrents not showing properly [Parg]
+BUGFIX: Some dead-lock issues (especially on startup) [Gudy]
+BUGFIX: Better recovery on connection closing [Nolar]
+BUGFIX: Uncleaned buffers in peer handling code [Nolar]
+BUGFIX: Outgoing message correctness verification [Nolar]
+BUGFIX: Text scroll is now ok in irc view [Gudy]
+BUGFIX: Size is now displayed even when the torrent is stopped [Gudy]
+BUGFIX: Sorting by 'Discarded', 'Overall Down Speed', 'Stat Up' in Details view [Nolar]
+BUGFIX: Torrent 'discarded' and 'hash fails' now remembered between sessions [Nolar]
+BUGFIX: Corrected sorting by DownSpeed, UpSpeed, ETA in MyTorrents view [Nolar]
+
+
+
+13.11.03 | Azureus 2.0.4.0
+
+FEATURE: Disable (per torrent) the auto priority setting when seeding [Gudy]
+FEATURE: Disable (per torrent) the rules to start / stop a seeding torrent [Gudy]
+FEATURE: Move files to a directory upon completion [Nolar]
+FEATURE: Slowly establish new connections to peers (for those with internet disconnection issues) [Nolar]
+FEATURE: Bind to local IP address [Nolar]
+FEATURE: Export/import torrent file to/from XML file [Parg]
+FEATURE: Export of runtime statistics to XML file [Parg]
+FEATURE: Hosting of torrents using built-in tracker [Parg]
+FEATURE: Trackers used in the 'make torrent' wizard are now remembered.
+FEATURE: Embedded tracker [Parg]
+FEATURE: Enhanced peer client identification [Nolar]
+FEATURE: Publishing of torrents to tracker (as opposed to hosting them) [Parg]
+FEATURE: Choosable color for the progress bars [Gudy]
+FEATURE: Plugin support [Gudy]
+FEATURE: Open a torrent file without using the default save location [Gudy]
+FEATURE: Added a FAQ and a Donate link in Help menu [Gudy]
+FEATURE: New languages : Brazilian-Portuguese, Czech, Lithuanian [Gouss - Translators]
+
+CHANGE: Some GUI Changes, so that SWT WinXP theme is better supported [Gudy]
+CHANGE: Saving of torrent files to central dir now optional [Nolar]
+CHANGE: Checking after crash now remembers Fast Resume data [Nolar]
+CHANGE: Internal refactorization of core classes [Parg]
+CHANGE: More logging of reasons for connection closed [Gudy]
+
+BUGFIX: Fixed snub/unsnub multiple peers on the peers list [Gudy]
+BUGFIX: Save file dialog now opens as a 'save' dialog, and not 'open' (for OSX) [Gudy]
+BUGFIX: DNS name resolution caching no longer infinite [Nolar]
+BUGFIX: Better recovery checking of partially-allocated files [Nolar]
+BUGFIX: Re-check file(s) integrity after completion [Nolar]
+BUGFIX: Max torrent file size was limited to 1MB - limit removed [Parg]
+BUGFIX: Fix for several exceptions thrown during socket reads/writes [Nolar]
+BUGFIX: Fix for exception thrown when peer sends an invalid bitfield [Nolar]
+BUGFIX: AZ was reporting cumulative upload/download stats to tracker - should be per session [Parg]
+BUGFIX: Fix for handling single data files larger than 2GB [Nolar]
+BUGFIX: Corrected socket writing [Gudy]
+BUGFIX: Weren't sending "complete" event to tracker on download->seeding transition [Parg]

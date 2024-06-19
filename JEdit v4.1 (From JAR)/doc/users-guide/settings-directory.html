@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>The jEdit Settings Directory</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="customizing.html" title="Chapter 6. Customizing jEdit"><link rel="previous" href="global-opts.html" title="The Global Options Dialog Box"><link rel="next" href="using-macros.html" title="Chapter 7. Using Macros"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The jEdit Settings Directory</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="global-opts.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Customizing jEdit</th><td width="20%" align="right"> <a accesskey="n" href="using-macros.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="settings-directory"></a>The jEdit Settings Directory</h2></div></div><p>
+   jEdit stores settings, macros, and plugins as files
+   inside the <i>settings directory</i>. In most cases, editing
+   these files by hand is not necessary, since graphical tools and editor
+   commands can do the job. However, being familiar with the structure of the
+   settings directory still comes in handy
+   in certain situations, for example when you want to copy jEdit settings
+   between computers.
+  </p><p>
+   The location of the settings directory is system-specific; it is printed to
+   the activity log
+   (<b>Utilities</b>&gt;<b>Troubleshooting</b>&gt;<b>Activity
+   Log</b>). For example:
+  </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen">[message] jEdit: Settings directory is /home/slava/.jedit</pre></td></tr></table><p>
+   Specifying the <b><tt>-settings</tt></b> switch on the command line
+   instructs jEdit to store settings in a directory other than the default.
+   For example, the following command will instruct jEdit to
+   store all settings
+   in the <tt>jedit</tt> subdirectory of the <tt>C:</tt>
+   drive:
+  </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen"><tt>C:\jedit&gt;</tt> <b><tt>jedit -settings=C:\jedit</tt></b></pre></td></tr></table><p>
+   The <b><tt>-nosettings</tt></b> switch will force jEdit to not look for
+   or create a settings directory; default settings will be used instead.
+  </p><p>
+   If you are using jEditLauncher
+   to start jEdit on Windows, these parameters cannot be specified on the
+   MS-DOS prompt command line when starting jEdit; they must be set as described
+   in <a href="launcher-starting.html" title="Starting jEdit">the section called &#8220;Starting jEdit&#8221;</a>.
+  </p><p>
+   jEdit creates the following files and directories
+   inside the settings directory; plugins may add more:
+  </p><div class="itemizedlist"><ul type="disc"><li><p><tt>abbrevs</tt> - a plain text file which
+   stores all defined abbreviations. See <a href="abbrevs.html" title="Abbreviations">the section called &#8220;Abbreviations&#8221;</a>.
+   </p></li><li><p><tt>activity.log</tt> - a plain text file which
+   contains the full activity log. See <a href="activity-log.html" title="Appendix B. The Activity Log">Appendix B</a>.
+   </p></li><li><p><tt>history</tt> - a plain text file which
+   stores history lists, used by history text fields and the
+   <b>Edit</b>&gt;<b>Paste Previous</b> command.
+   See <a href="text-transfer.html" title="Transferring Text">the section called &#8220;Transferring Text&#8221;</a> and <a href="history.html" title="Appendix C. History Text Fields">Appendix C</a>.
+   </p></li><li><p><tt>jars</tt> - this directory contains
+   plugins. See <a href="using-plugins.html" title="Chapter 8. Installing and Using Plugins">Chapter 8</a>.</p></li><li><p><tt>macros</tt> - this directory contains
+   macros. See <a href="using-macros.html" title="Chapter 7. Using Macros">Chapter 7</a>.</p></li><li><p><tt>modes</tt> - this directory contains custom
+   edit modes. See <a href="writing-modes-part.html" title="Part II. Writing Edit Modes">Part II</a>.
+   </p></li><li><p><tt>PluginManager.download</tt> - this directory
+   is usually empty. It only contains files while the plugin manager is
+   downloading a plugin. For information about the plugin manager,
+   see <a href="using-plugins.html" title="Chapter 8. Installing and Using Plugins">Chapter 8</a>.</p></li><li><p><tt>printspec</tt> - a binary file which
+   stores printing settings when running under Java 2 version 1.4.
+   </p></li><li><p><tt>properties</tt> - a plain text file which
+   stores the majority of jEdit's settings.</p></li><li><p><tt>recent.xml</tt> - an XML file which stores
+   the list of recently opened files. jEdit remembers the caret position and
+   character encoding of each recent file, and
+   automatically restores those values when one of the files is opened.
+   </p></li><li><p><tt>server</tt> - a plain text file that only
+   exists while jEdit is running. The edit server's port number and
+   authorization key is stored here. See <a href="starting.html" title="Chapter 1. Starting jEdit">Chapter 1</a>.
+   </p></li><li><p><tt>session</tt> - a list of files, used when
+   restoring previously open files on startup.</p></li><li><p><tt>settings-backups</tt> - this directory
+   contains numbered backups of all automatically-written settings files
+   (<tt>abbrevs</tt>, <tt>activity.log</tt>,
+   <tt>history</tt>, <tt>properties</tt>,
+   <tt>recent.xml</tt>, and <tt>session</tt>).
+   </p></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="global-opts.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="customizing.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="using-macros.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The Global Options Dialog Box </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 7. Using Macros</td></tr></table></div></body></html>

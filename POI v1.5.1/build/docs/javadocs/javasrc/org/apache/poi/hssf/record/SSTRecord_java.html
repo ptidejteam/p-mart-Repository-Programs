@@ -1,0 +1,562 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: SSTRecord');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: SSTRecord';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">/* ====================================================================
+<a name=2 class="linenum">2    </a> * The Apache Software License, Version 1.1
+<a name=3 class="linenum">3    </a> *
+<a name=4 class="linenum">4    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=5 class="linenum">5    </a> * reserved.
+<a name=6 class="linenum">6    </a> *
+<a name=7 class="linenum">7    </a> * Redistribution and use in source and binary forms, with or without
+<a name=8 class="linenum">8    </a> * modification, are permitted provided that the following conditions
+<a name=9 class="linenum">9    </a> * are met:
+<a name=10 class="linenum">10   </a> *
+<a name=11 class="linenum">11   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=12 class="linenum">12   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=13 class="linenum">13   </a> *
+<a name=14 class="linenum">14   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=15 class="linenum">15   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=16 class="linenum">16   </a> *    the documentation and/or other materials provided with the
+<a name=17 class="linenum">17   </a> *    distribution.
+<a name=18 class="linenum">18   </a> *
+<a name=19 class="linenum">19   </a> * 3. The end-user documentation included with the redistribution,
+<a name=20 class="linenum">20   </a> *    if any, must include the following acknowledgment:
+<a name=21 class="linenum">21   </a> *       "This product includes software developed by the
+<a name=22 class="linenum">22   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=23 class="linenum">23   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=24 class="linenum">24   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=25 class="linenum">25   </a> *
+<a name=26 class="linenum">26   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=27 class="linenum">27   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=28 class="linenum">28   </a> *    derived from this software without prior written permission. For
+<a name=29 class="linenum">29   </a> *    written permission, please contact apache@apache.org.
+<a name=30 class="linenum">30   </a> *
+<a name=31 class="linenum">31   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=32 class="linenum">32   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=33 class="linenum">33   </a> *    prior written permission of the Apache Software Foundation.
+<a name=34 class="linenum">34   </a> *
+<a name=35 class="linenum">35   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=36 class="linenum">36   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=37 class="linenum">37   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=38 class="linenum">38   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=39 class="linenum">39   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=40 class="linenum">40   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=41 class="linenum">41   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=42 class="linenum">42   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=43 class="linenum">43   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=44 class="linenum">44   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=45 class="linenum">45   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=46 class="linenum">46   </a> * SUCH DAMAGE.
+<a name=47 class="linenum">47   </a> * ====================================================================
+<a name=48 class="linenum">48   </a> *
+<a name=49 class="linenum">49   </a> * This software consists of voluntary contributions made by many
+<a name=50 class="linenum">50   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=51 class="linenum">51   </a> * information on the Apache Software Foundation, please see
+<a name=52 class="linenum">52   </a> * &lt;http://www.apache.org/&gt;.
+<a name=53 class="linenum">53   </a> */</span>
+<a name=54 class="linenum">54   </a>
+<a name=55 class="linenum">55   </a>package org.apache.poi.hssf.record;
+<a name=56 class="linenum">56   </a>
+<a name=57 class="linenum">57   </a>import org.apache.poi.util.BinaryTree;
+<a name=58 class="linenum">58   </a>import org.apache.poi.util.LittleEndian;
+<a name=59 class="linenum">59   </a>import org.apache.poi.util.LittleEndianConsts;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a>import java.util.Iterator;
+<a name=62 class="linenum">62   </a>import java.util.List;
+<a name=63 class="linenum">63   </a>
+<a name=64 class="linenum">64   </a><span class="comment">/**
+<a name=65 class="linenum">65   </a> * Title:        Static String Table Record
+<a name=66 class="linenum">66   </a> * &lt;P&gt;
+<a name=67 class="linenum">67   </a> * Description:  This holds all the strings for LabelSSTRecords.
+<a name=68 class="linenum">68   </a> * &lt;P&gt;
+<a name=69 class="linenum">69   </a> * REFERENCE:    PG 389 Microsoft Excel 97 Developer's Kit (ISBN:
+<a name=70 class="linenum">70   </a> *               1-57231-498-2)
+<a name=71 class="linenum">71   </a> * &lt;P&gt;
+<a name=72 class="linenum">72   </a> * @author Andrew C. Oliver (acoliver at apache dot org)
+<a name=73 class="linenum">73   </a> * @author Marc Johnson (mjohnson at apache dot org)
+<a name=74 class="linenum">74   </a> * @author Glen Stampoultzis (glens at apache.org)
+<a name=75 class="linenum">75   </a> * @version 2.0-pre
+<a name=76 class="linenum">76   </a> * @see org.apache.poi.hssf.record.LabelSSTRecord
+<a name=77 class="linenum">77   </a> * @see org.apache.poi.hssf.record.ContinueRecord
+<a name=78 class="linenum">78   </a> */</span>
+<a name=79 class="linenum">79   </a>
+<a name=80 class="linenum">80   </a>public class <a class="classDef" name=SSTRecord href=SSTRecord_java_ref.html#SSTRecord>SSTRecord</a>
+<a name=81 class="linenum">81   </a>        extends <a class="classRef" href=Record_java.html#Record>Record</a>
+<a name=82 class="linenum">82   </a>{
+<a name=83 class="linenum">83   </a>
+<a name=84 class="linenum">84   </a>    <span class="comment">/** how big can an SST record be? As big as any record can be: 8228 bytes */</span>
+<a name=85 class="linenum">85   </a>    static final int <a class="varDef" name=SSTRecord.MAX_RECORD_SIZE href=SSTRecord_java_ref.html#SSTRecord.MAX_RECORD_SIZE>MAX_RECORD_SIZE</a> = 8228;
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>    <span class="comment">/** standard record overhead: two shorts (record id plus data space size)*/</span>
+<a name=88 class="linenum">88   </a>    static final int <a class="varDef" name=SSTRecord.STD_RECORD_OVERHEAD href=SSTRecord_java_ref.html#SSTRecord.STD_RECORD_OVERHEAD>STD_RECORD_OVERHEAD</a> =
+<a name=89 class="linenum">89   </a>            2 * <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>;
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    <span class="comment">/** SST overhead: the standard record overhead, plus the number of strings and the number of unique strings -- two ints */</span>
+<a name=92 class="linenum">92   </a>    static final int <a class="varDef" name=SSTRecord.SST_RECORD_OVERHEAD href=SSTRecord_java_ref.html#SSTRecord.SST_RECORD_OVERHEAD>SST_RECORD_OVERHEAD</a> =
+<a name=93 class="linenum">93   </a>            ( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.STD_RECORD_OVERHEAD>STD_RECORD_OVERHEAD</a> + ( 2 * <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a> ) );
+<a name=94 class="linenum">94   </a>
+<a name=95 class="linenum">95   </a>    <span class="comment">/** how much data can we stuff into an SST record? That would be _max minus the standard SST record overhead */</span>
+<a name=96 class="linenum">96   </a>    static final int <a class="varDef" name=SSTRecord.MAX_DATA_SPACE href=SSTRecord_java_ref.html#SSTRecord.MAX_DATA_SPACE>MAX_DATA_SPACE</a> = <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.MAX_RECORD_SIZE>MAX_RECORD_SIZE</a> - <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.SST_RECORD_OVERHEAD>SST_RECORD_OVERHEAD</a>;
+<a name=97 class="linenum">97   </a>
+<a name=98 class="linenum">98   </a>    <span class="comment">/** overhead for each string includes the string's character count (a short) and the flag describing its characteristics (a byte) */</span>
+<a name=99 class="linenum">99   </a>    static final int <a class="varDef" name=SSTRecord.STRING_MINIMAL_OVERHEAD href=SSTRecord_java_ref.html#SSTRecord.STRING_MINIMAL_OVERHEAD>STRING_MINIMAL_OVERHEAD</a> = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a> + <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.BYTE_SIZE>BYTE_SIZE</a>;
+<a name=100 class="linenum">100  </a>
+<a name=101 class="linenum">101  </a>    public static final short <a class="varDef" name=SSTRecord.sid href=SSTRecord_java_ref.html#SSTRecord.sid>sid</a> = 0xfc;
+<a name=102 class="linenum">102  </a>
+<a name=103 class="linenum">103  </a>    <span class="comment">/** union of strings in the SST and EXTSST */</span>
+<a name=104 class="linenum">104  </a>    private int <a class="varDef" name=SSTRecord.field_1_num_strings href=SSTRecord_java_ref.html#SSTRecord.field_1_num_strings>field_1_num_strings</a>;
+<a name=105 class="linenum">105  </a>
+<a name=106 class="linenum">106  </a>    <span class="comment">/** according to docs ONLY SST */</span>
+<a name=107 class="linenum">107  </a>    private int <a class="varDef" name=SSTRecord.field_2_num_unique_strings href=SSTRecord_java_ref.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>;
+<a name=108 class="linenum">108  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree>BinaryTree</a> <a class="varDef" name=SSTRecord.field_3_strings href=SSTRecord_java_ref.html#SSTRecord.field_3_strings>field_3_strings</a>;
+<a name=109 class="linenum">109  </a>
+<a name=110 class="linenum">110  </a>    <span class="comment">/** Record lengths for initial SST record and all continue records */</span>
+<a name=111 class="linenum">111  </a>    private List <a class="varDef" name=SSTRecord._record_lengths href=SSTRecord_java_ref.html#SSTRecord._record_lengths>_record_lengths</a> = null;
+<a name=112 class="linenum">112  </a>    private <a class="classRef" href=SSTDeserializer_java.html#SSTDeserializer>SSTDeserializer</a> <a class="varDef" name=SSTRecord.deserializer href=SSTRecord_java_ref.html#SSTRecord.deserializer>deserializer</a>;
+<a name=113 class="linenum">113  </a>
+<a name=114 class="linenum">114  </a>    <span class="comment">/**
+<a name=115 class="linenum">115  </a>     * default constructor
+<a name=116 class="linenum">116  </a>     */</span>
+<a name=117 class="linenum">117  </a>
+<a name=118 class="linenum">118  </a>    public <a class="methodDef" name=SSTRecord.SSTRecord() href=SSTRecord_java_ref.html#SSTRecord.SSTRecord()>SSTRecord</a>()
+<a name=119 class="linenum">119  </a>    {
+<a name=120 class="linenum">120  </a>        field_1_num_strings = 0;
+<a name=121 class="linenum">121  </a>        field_2_num_unique_strings = 0;
+<a name=122 class="linenum">122  </a>        field_3_strings = new BinaryTree();
+<a name=123 class="linenum">123  </a>        deserializer = new <a class="methodRef" title="SSTDeserializer" href=SSTDeserializer_java.html#SSTDeserializer.SSTDeserializer(BinaryTree)>SSTDeserializer</a>(field_3_strings);
+<a name=124 class="linenum">124  </a>    }
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>    <span class="comment">/**
+<a name=127 class="linenum">127  </a>     * Constructs an SST record and sets its fields appropriately.
+<a name=128 class="linenum">128  </a>     *
+<a name=129 class="linenum">129  </a>     * @param id must be 0xfc or an exception will be throw upon
+<a name=130 class="linenum">130  </a>     *           validation
+<a name=131 class="linenum">131  </a>     * @param size the size of the data area of the record
+<a name=132 class="linenum">132  </a>     * @param data of the record (should not contain sid/len)
+<a name=133 class="linenum">133  </a>     */</span>
+<a name=134 class="linenum">134  </a>
+<a name=135 class="linenum">135  </a>    public <a class="methodDef" name=SSTRecord.SSTRecord(short,short,byte) href=SSTRecord_java_ref.html#SSTRecord.SSTRecord(short,short,byte)>SSTRecord</a>( final short id, final short size, final byte[] data )
+<a name=136 class="linenum">136  </a>    {
+<a name=137 class="linenum">137  </a>        super( <a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.SSTRecord.id>id</a>, <a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.SSTRecord.size>size</a>, <a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.SSTRecord.data>data</a> );
+<a name=138 class="linenum">138  </a>    }
+<a name=139 class="linenum">139  </a>
+<a name=140 class="linenum">140  </a>    <span class="comment">/**
+<a name=141 class="linenum">141  </a>     * Constructs an SST record and sets its fields appropriately.
+<a name=142 class="linenum">142  </a>     *
+<a name=143 class="linenum">143  </a>     * @param id must be 0xfc or an exception will be throw upon
+<a name=144 class="linenum">144  </a>     *           validation
+<a name=145 class="linenum">145  </a>     * @param size the size of the data area of the record
+<a name=146 class="linenum">146  </a>     * @param data of the record (should not contain sid/len)
+<a name=147 class="linenum">147  </a>     * @param offset of the record
+<a name=148 class="linenum">148  </a>     */</span>
+<a name=149 class="linenum">149  </a>
+<a name=150 class="linenum">150  </a>    public <a class="methodDef" name=SSTRecord.SSTRecord(short,short,byte,int) href=SSTRecord_java_ref.html#SSTRecord.SSTRecord(short,short,byte,int)>SSTRecord</a>( final short id, final short size, final byte[] data,
+<a name=151 class="linenum">151  </a>                      int offset )
+<a name=152 class="linenum">152  </a>    {
+<a name=153 class="linenum">153  </a>        super( <a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.SSTRecord.id>id</a>, <a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.SSTRecord.size>size</a>, <a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.SSTRecord.data>data</a>, <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.SSTRecord.offset>offset</a> );
+<a name=154 class="linenum">154  </a>    }
+<a name=155 class="linenum">155  </a>
+<a name=156 class="linenum">156  </a>    <span class="comment">/**
+<a name=157 class="linenum">157  </a>     * Add a string. Determines whether 8-bit encoding can be used, or
+<a name=158 class="linenum">158  </a>     * whether 16-bit encoding must be used.
+<a name=159 class="linenum">159  </a>     * &lt;p&gt;
+<a name=160 class="linenum">160  </a>     * THIS IS THE PREFERRED METHOD OF ADDING A STRING. IF YOU USE THE
+<a name=161 class="linenum">161  </a>     * OTHER ,code&gt;addString&lt;/code&gt; METHOD AND FORCE 8-BIT ENCODING ON
+<a name=162 class="linenum">162  </a>     * A STRING THAT SHOULD USE 16-BIT ENCODING, YOU WILL CORRUPT THE
+<a name=163 class="linenum">163  </a>     * STRING; IF YOU USE THAT METHOD AND FORCE 16-BIT ENCODING, YOU
+<a name=164 class="linenum">164  </a>     * ARE WASTING SPACE WHEN THE WORKBOOK IS WRITTEN OUT.
+<a name=165 class="linenum">165  </a>     *
+<a name=166 class="linenum">166  </a>     * @param string string to be added
+<a name=167 class="linenum">167  </a>     *
+<a name=168 class="linenum">168  </a>     * @return the index of that string in the table
+<a name=169 class="linenum">169  </a>     */</span>
+<a name=170 class="linenum">170  </a>
+<a name=171 class="linenum">171  </a>    public int <a class="methodDef" name=SSTRecord.addString(String) href=SSTRecord_java_ref.html#SSTRecord.addString(String)>addString</a>( final String string )
+<a name=172 class="linenum">172  </a>    {
+<a name=173 class="linenum">173  </a>        int rval;
+<a name=174 class="linenum">174  </a>
+<a name=175 class="linenum">175  </a>        if ( <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a> == null )
+<a name=176 class="linenum">176  </a>        {
+<a name=177 class="linenum">177  </a>            <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a> = <a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.addString(String,boolean)>addString</a>( "", false );
+<a name=178 class="linenum">178  </a>        }
+<a name=179 class="linenum">179  </a>        else
+<a name=180 class="linenum">180  </a>        {
+<a name=181 class="linenum">181  </a>
+<a name=182 class="linenum">182  </a>            <span class="comment">// scan for characters greater than 255 ... if any are</span>
+<a name=183 class="linenum">183  </a>            <span class="comment">// present, we have to use 16-bit encoding. Otherwise, we</span>
+<a name=184 class="linenum">184  </a>            <span class="comment">// can use 8-bit encoding</span>
+<a name=185 class="linenum">185  </a>            boolean useUTF16 = false;
+<a name=186 class="linenum">186  </a>            int strlen = <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a>.length();
+<a name=187 class="linenum">187  </a>
+<a name=188 class="linenum">188  </a>            for ( int j = 0; <a class="varRef" title="int" href=SSTRecord_java.html#~NO NAME~.j>j</a> &lt; <a class="varRef" title="int" href=SSTRecord_java.html#~NO NAME~.strlen>strlen</a>; <a class="varRef" title="int" href=SSTRecord_java.html#~NO NAME~.j>j</a>++ )
+<a name=189 class="linenum">189  </a>            {
+<a name=190 class="linenum">190  </a>                if ( <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a>.charAt( <a class="varRef" title="int" href=SSTRecord_java.html#~NO NAME~.j>j</a> ) &gt; 255 )
+<a name=191 class="linenum">191  </a>                {
+<a name=192 class="linenum">192  </a>                    <a class="varRef" title="boolean" href=SSTRecord_java.html#~NO NAME~.useUTF16>useUTF16</a> = true;
+<a name=193 class="linenum">193  </a>                    break;
+<a name=194 class="linenum">194  </a>                }
+<a name=195 class="linenum">195  </a>            }
+<a name=196 class="linenum">196  </a>            <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a> = <a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.addString(String,boolean)>addString</a>( <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a>, <a class="varRef" title="boolean" href=SSTRecord_java.html#~NO NAME~.useUTF16>useUTF16</a> );
+<a name=197 class="linenum">197  </a>        }
+<a name=198 class="linenum">198  </a>        return <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a>;
+<a name=199 class="linenum">199  </a>    }
+<a name=200 class="linenum">200  </a>
+<a name=201 class="linenum">201  </a>    <span class="comment">/**
+<a name=202 class="linenum">202  </a>     * Add a string and assert the encoding (8-bit or 16-bit) to be
+<a name=203 class="linenum">203  </a>     * used.
+<a name=204 class="linenum">204  </a>     * &lt;P&gt;
+<a name=205 class="linenum">205  </a>     * USE THIS METHOD AT YOUR OWN RISK. IF YOU FORCE 8-BIT ENCODING,
+<a name=206 class="linenum">206  </a>     * YOU MAY CORRUPT YOUR STRING. IF YOU FORCE 16-BIT ENCODING AND
+<a name=207 class="linenum">207  </a>     * IT ISN'T NECESSARY, YOU WILL WASTE SPACE WHEN THIS RECORD IS
+<a name=208 class="linenum">208  </a>     * WRITTEN OUT.
+<a name=209 class="linenum">209  </a>     *
+<a name=210 class="linenum">210  </a>     * @param string string to be added
+<a name=211 class="linenum">211  </a>     * @param useUTF16 if true, forces 16-bit encoding. If false,
+<a name=212 class="linenum">212  </a>     *                 forces 8-bit encoding
+<a name=213 class="linenum">213  </a>     *
+<a name=214 class="linenum">214  </a>     * @return the index of that string in the table
+<a name=215 class="linenum">215  </a>     */</span>
+<a name=216 class="linenum">216  </a>
+<a name=217 class="linenum">217  </a>    public int <a class="methodDef" name=SSTRecord.addString(String,boolean) href=SSTRecord_java_ref.html#SSTRecord.addString(String,boolean)>addString</a>( final String string, final boolean useUTF16 )
+<a name=218 class="linenum">218  </a>    {
+<a name=219 class="linenum">219  </a>        <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a>++;
+<a name=220 class="linenum">220  </a>        String str = ( <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a> == null ) ? ""
+<a name=221 class="linenum">221  </a>                : <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.string>string</a>;
+<a name=222 class="linenum">222  </a>        int rval = -1;
+<a name=223 class="linenum">223  </a>        <a class="classRef" href=UnicodeString_java.html#UnicodeString>UnicodeString</a> ucs = new UnicodeString();
+<a name=224 class="linenum">224  </a>
+<a name=225 class="linenum">225  </a>        <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.addString.ucs>ucs</a>.<a class="methodRef" title="UnicodeString" href=UnicodeString_java.html#UnicodeString.setString(String)>setString</a>( <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.str>str</a> );
+<a name=226 class="linenum">226  </a>        <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.addString.ucs>ucs</a>.<a class="methodRef" title="UnicodeString" href=UnicodeString_java.html#UnicodeString.setCharCount(short)>setCharCount</a>( (short) <a class="varRef" title="String" href=SSTRecord_java.html#SSTRecord.addString.str>str</a>.length() );
+<a name=227 class="linenum">227  </a>        <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.addString.ucs>ucs</a>.<a class="methodRef" title="UnicodeString" href=UnicodeString_java.html#UnicodeString.setOptionFlags(byte)>setOptionFlags</a>( (byte) ( <a class="varRef" title="boolean" href=SSTRecord_java.html#SSTRecord.addString.useUTF16>useUTF16</a> ? 1
+<a name=228 class="linenum">228  </a>                : 0 ) );
+<a name=229 class="linenum">229  </a>        Integer integer = (Integer) <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>.<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.getKeyForValue(Object)>getKeyForValue</a>( <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.addString.ucs>ucs</a> );
+<a name=230 class="linenum">230  </a>
+<a name=231 class="linenum">231  </a>        if ( <a class="varRef" title="Integer" href=SSTRecord_java.html#SSTRecord.addString.integer>integer</a> != null )
+<a name=232 class="linenum">232  </a>        {
+<a name=233 class="linenum">233  </a>            <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a> = <a class="varRef" title="Integer" href=SSTRecord_java.html#SSTRecord.addString.integer>integer</a>.intValue();
+<a name=234 class="linenum">234  </a>        }
+<a name=235 class="linenum">235  </a>        else
+<a name=236 class="linenum">236  </a>        {
+<a name=237 class="linenum">237  </a>
+<a name=238 class="linenum">238  </a>            <span class="comment">// This is a new string -- we didn't see it among the</span>
+<a name=239 class="linenum">239  </a>            <span class="comment">// strings we've already collected</span>
+<a name=240 class="linenum">240  </a>            <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a> = <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>.<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.size()>size</a>();
+<a name=241 class="linenum">241  </a>            <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>++;
+<a name=242 class="linenum">242  </a>            <a class="varRef" title="Integer" href=SSTRecord_java.html#SSTRecord.addString.integer>integer</a> = new Integer( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a> );
+<a name=243 class="linenum">243  </a>            SSTDeserializer.addToStringTable( <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>, <a class="varRef" title="Integer" href=SSTRecord_java.html#SSTRecord.addString.integer>integer</a>, <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.addString.ucs>ucs</a> );
+<a name=244 class="linenum">244  </a><span class="comment">//            field_3_strings.put( integer, ucs );</span>
+<a name=245 class="linenum">245  </a>        }
+<a name=246 class="linenum">246  </a>        return <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.addString.rval>rval</a>;
+<a name=247 class="linenum">247  </a>    }
+<a name=248 class="linenum">248  </a>
+<a name=249 class="linenum">249  </a>    <span class="comment">/**
+<a name=250 class="linenum">250  </a>     * @return number of strings
+<a name=251 class="linenum">251  </a>     */</span>
+<a name=252 class="linenum">252  </a>
+<a name=253 class="linenum">253  </a>    public int <a class="methodDef" name=SSTRecord.getNumStrings() href=SSTRecord_java_ref.html#SSTRecord.getNumStrings()>getNumStrings</a>()
+<a name=254 class="linenum">254  </a>    {
+<a name=255 class="linenum">255  </a>        return <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a>;
+<a name=256 class="linenum">256  </a>    }
+<a name=257 class="linenum">257  </a>
+<a name=258 class="linenum">258  </a>    <span class="comment">/**
+<a name=259 class="linenum">259  </a>     * @return number of unique strings
+<a name=260 class="linenum">260  </a>     */</span>
+<a name=261 class="linenum">261  </a>
+<a name=262 class="linenum">262  </a>    public int <a class="methodDef" name=SSTRecord.getNumUniqueStrings() href=SSTRecord_java_ref.html#SSTRecord.getNumUniqueStrings()>getNumUniqueStrings</a>()
+<a name=263 class="linenum">263  </a>    {
+<a name=264 class="linenum">264  </a>        return <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>;
+<a name=265 class="linenum">265  </a>    }
+<a name=266 class="linenum">266  </a>
+<a name=267 class="linenum">267  </a>    <span class="comment">/**
+<a name=268 class="linenum">268  </a>     * USE THIS METHOD AT YOUR OWN PERIL: THE &lt;code&gt;addString&lt;/code&gt;
+<a name=269 class="linenum">269  </a>     * METHODS MANIPULATE THE NUMBER OF STRINGS AS A SIDE EFFECT; YOUR
+<a name=270 class="linenum">270  </a>     * ATTEMPTS AT MANIPULATING THE STRING COUNT IS LIKELY TO BE VERY
+<a name=271 class="linenum">271  </a>     * WRONG AND WILL RESULT IN BAD BEHAVIOR WHEN THIS RECORD IS
+<a name=272 class="linenum">272  </a>     * WRITTEN OUT AND ANOTHER PROCESS ATTEMPTS TO READ THE RECORD
+<a name=273 class="linenum">273  </a>     *
+<a name=274 class="linenum">274  </a>     * @param count  number of strings
+<a name=275 class="linenum">275  </a>     *
+<a name=276 class="linenum">276  </a>     */</span>
+<a name=277 class="linenum">277  </a>
+<a name=278 class="linenum">278  </a>    public void <a class="methodDef" name=SSTRecord.setNumStrings(int) href=SSTRecord_java_ref.html#SSTRecord.setNumStrings(int)>setNumStrings</a>( final int count )
+<a name=279 class="linenum">279  </a>    {
+<a name=280 class="linenum">280  </a>        <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a> = <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.setNumStrings.count>count</a>;
+<a name=281 class="linenum">281  </a>    }
+<a name=282 class="linenum">282  </a>
+<a name=283 class="linenum">283  </a>    <span class="comment">/**
+<a name=284 class="linenum">284  </a>     * USE THIS METHOD AT YOUR OWN PERIL: THE &lt;code&gt;addString&lt;/code&gt;
+<a name=285 class="linenum">285  </a>     * METHODS MANIPULATE THE NUMBER OF UNIQUE STRINGS AS A SIDE
+<a name=286 class="linenum">286  </a>     * EFFECT; YOUR ATTEMPTS AT MANIPULATING THE UNIQUE STRING COUNT
+<a name=287 class="linenum">287  </a>     * IS LIKELY TO BE VERY WRONG AND WILL RESULT IN BAD BEHAVIOR WHEN
+<a name=288 class="linenum">288  </a>     * THIS RECORD IS WRITTEN OUT AND ANOTHER PROCESS ATTEMPTS TO READ
+<a name=289 class="linenum">289  </a>     * THE RECORD
+<a name=290 class="linenum">290  </a>     *
+<a name=291 class="linenum">291  </a>     * @param count  number of strings
+<a name=292 class="linenum">292  </a>     */</span>
+<a name=293 class="linenum">293  </a>
+<a name=294 class="linenum">294  </a>    public void <a class="methodDef" name=SSTRecord.getNumUniqueStrings(int) href=SSTRecord_java_ref.html#SSTRecord.getNumUniqueStrings(int)>getNumUniqueStrings</a>( final int count )
+<a name=295 class="linenum">295  </a>    {
+<a name=296 class="linenum">296  </a>        <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a> = <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.getNumUniqueStrings.count>count</a>;
+<a name=297 class="linenum">297  </a>    }
+<a name=298 class="linenum">298  </a>
+<a name=299 class="linenum">299  </a>    <span class="comment">/**
+<a name=300 class="linenum">300  </a>     * Get a particular string by its index
+<a name=301 class="linenum">301  </a>     *
+<a name=302 class="linenum">302  </a>     * @param id index into the array of strings
+<a name=303 class="linenum">303  </a>     *
+<a name=304 class="linenum">304  </a>     * @return the desired string
+<a name=305 class="linenum">305  </a>     */</span>
+<a name=306 class="linenum">306  </a>
+<a name=307 class="linenum">307  </a>    public String <a class="methodDef" name=SSTRecord.getString(int) href=SSTRecord_java_ref.html#SSTRecord.getString(int)>getString</a>( final int id )
+<a name=308 class="linenum">308  </a>    {
+<a name=309 class="linenum">309  </a>        return ( (UnicodeString) <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>.<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.get(Object)>get</a>( new Integer( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.getString.id>id</a> ) ) ).getString();
+<a name=310 class="linenum">310  </a>    }
+<a name=311 class="linenum">311  </a>
+<a name=312 class="linenum">312  </a>    public boolean <a class="methodDef" name=SSTRecord.isString16bit(int) href=SSTRecord_java_ref.html#SSTRecord.isString16bit(int)>isString16bit</a>( final int id )
+<a name=313 class="linenum">313  </a>    {
+<a name=314 class="linenum">314  </a>        <a class="classRef" href=UnicodeString_java.html#UnicodeString>UnicodeString</a> unicodeString = ( (UnicodeString) <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>.<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.get(Object)>get</a>( new Integer( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.isString16bit.id>id</a> ) ) );
+<a name=315 class="linenum">315  </a>        return ( ( <a class="varRef" title="UnicodeString" href=SSTRecord_java.html#SSTRecord.isString16bit.unicodeString>unicodeString</a>.<a class="methodRef" title="UnicodeString" href=UnicodeString_java.html#UnicodeString.getOptionFlags()>getOptionFlags</a>() & 0x01 ) == 1 );
+<a name=316 class="linenum">316  </a>    }
+<a name=317 class="linenum">317  </a>
+<a name=318 class="linenum">318  </a>    <span class="comment">/**
+<a name=319 class="linenum">319  </a>     * Return a debugging string representation
+<a name=320 class="linenum">320  </a>     *
+<a name=321 class="linenum">321  </a>     * @return string representation
+<a name=322 class="linenum">322  </a>     */</span>
+<a name=323 class="linenum">323  </a>
+<a name=324 class="linenum">324  </a>    public String <a class="methodDef" name=SSTRecord.toString() href=SSTRecord_java_ref.html#SSTRecord.toString()>toString</a>()
+<a name=325 class="linenum">325  </a>    {
+<a name=326 class="linenum">326  </a>        StringBuffer buffer = new StringBuffer();
+<a name=327 class="linenum">327  </a>
+<a name=328 class="linenum">328  </a>        <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.append( "[SST]\n" );
+<a name=329 class="linenum">329  </a>        <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.append( "    .numstrings     = " )
+<a name=330 class="linenum">330  </a>                .append( Integer.toHexString( <a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumStrings()>getNumStrings</a>() ) ).append( "\n" );
+<a name=331 class="linenum">331  </a>        <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.append( "    .uniquestrings  = " )
+<a name=332 class="linenum">332  </a>                .append( Integer.toHexString( <a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumUniqueStrings()>getNumUniqueStrings</a>() ) ).append( "\n" );
+<a name=333 class="linenum">333  </a>        for ( int k = 0; <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.toString.k>k</a> &lt; <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>.<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.size()>size</a>(); <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.toString.k>k</a>++ )
+<a name=334 class="linenum">334  </a>        {
+<a name=335 class="linenum">335  </a>            <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.append( "    .string_" + <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.toString.k>k</a> + "      = " )
+<a name=336 class="linenum">336  </a>                    .<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.get(Object)>get</a>end( ( (UnicodeString) <a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>
+<a name=337 class="linenum">337  </a>                    .get( new Integer( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.toString.k>k</a> ) ) ).toString() ).append( "\n" );
+<a name=338 class="linenum">338  </a>        }
+<a name=339 class="linenum">339  </a>        <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.append( "[/SST]\n" );
+<a name=340 class="linenum">340  </a>        return <a class="varRef" title="StringBuffer" href=SSTRecord_java.html#SSTRecord.toString.buffer>buffer</a>.toString();
+<a name=341 class="linenum">341  </a>    }
+<a name=342 class="linenum">342  </a>
+<a name=343 class="linenum">343  </a>    <span class="comment">/**
+<a name=344 class="linenum">344  </a>     * @return sid
+<a name=345 class="linenum">345  </a>     */</span>
+<a name=346 class="linenum">346  </a>    public short <a class="methodDef" name=SSTRecord.getSid() href=SSTRecord_java_ref.html#SSTRecord.getSid()>getSid</a>()
+<a name=347 class="linenum">347  </a>    {
+<a name=348 class="linenum">348  </a>        return <a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.sid>sid</a>;
+<a name=349 class="linenum">349  </a>    }
+<a name=350 class="linenum">350  </a>
+<a name=351 class="linenum">351  </a>    <span class="comment">/**
+<a name=352 class="linenum">352  </a>     * @return hashcode
+<a name=353 class="linenum">353  </a>     */</span>
+<a name=354 class="linenum">354  </a>    public int <a class="methodDef" name=SSTRecord.hashCode() href=SSTRecord_java_ref.html#SSTRecord.hashCode()>hashCode</a>()
+<a name=355 class="linenum">355  </a>    {
+<a name=356 class="linenum">356  </a>        return <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>;
+<a name=357 class="linenum">357  </a>    }
+<a name=358 class="linenum">358  </a>
+<a name=359 class="linenum">359  </a>    public boolean <a class="methodDef" name=SSTRecord.equals(Object) href=SSTRecord_java_ref.html#SSTRecord.equals(Object)>equals</a>( Object o )
+<a name=360 class="linenum">360  </a>    {
+<a name=361 class="linenum">361  </a>        if ( ( <a class="varRef" title="Object" href=SSTRecord_java.html#SSTRecord.equals.o>o</a> == null ) || ( <a class="varRef" title="Object" href=SSTRecord_java.html#SSTRecord.equals.o>o</a>.getClass() != this.getClass() ) )
+<a name=362 class="linenum">362  </a>        {
+<a name=363 class="linenum">363  </a>            return false;
+<a name=364 class="linenum">364  </a>        }
+<a name=365 class="linenum">365  </a>        <a class="classRef" href=SSTRecord_java.html#SSTRecord>SSTRecord</a> other = (SSTRecord) <a class="varRef" title="Object" href=SSTRecord_java.html#SSTRecord.equals.o>o</a>;
+<a name=366 class="linenum">366  </a>
+<a name=367 class="linenum">367  </a>        return ( <a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a><a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a>         .field_1_num_strings ) && ( field_2_num_unique_strings == other
+<a name=368 class="linenum">368  </a>                .field_2_num_unique_strings ) && field_3_strings
+<a name=369 class="linenum">369  </a>                .equals( other.field_3_strings ) );
+<a name=370 class="linenum">370  </a>    }
+<a name=371 class="linenum">371  </a>
+<a name=372 class="linenum">372  </a>    /**
+<a name=373 class="linenum">373  </a>     * validate SID
+<a name=374 class="linenum">374  </a>     *
+<a name=375 class="linenum">375  </a>     * @param id the alleged SID
+<a name=376 class="linenum">376  </a>     *
+<a name=377 class="linenum">377  </a>     * @exception RecordFormatException if validation fails
+<a name=378 class="linenum">378  </a>     */
+<a name=379 class="linenum">379  </a>
+<a name=380 class="linenum">380  </a>    protected void validateSid( final short id )
+<a name=381 class="linenum">381  </a>            throws RecordFormatException
+<a name=382 class="linenum">382  </a>    {
+<a name=383 class="linenum">383  </a>        if ( id != sid )
+<a name=384 class="linenum">384  </a>        {
+<a name=385 class="linenum">385  </a>            throw new RecordFormatException( "NOT An SST RECORD" );
+<a name=386 class="linenum">386  </a>        }
+<a name=387 class="linenum">387  </a>    }
+<a name=388 class="linenum">388  </a>
+<a name=389 class="linenum">389  </a>    /**
+<a name=390 class="linenum">390  </a>     * Fill the fields from the data
+<a name=391 class="linenum">391  </a>     * &lt;P&gt;
+<a name=392 class="linenum">392  </a>     * The data consists of sets of string data. This string data is
+<a name=393 class="linenum">393  </a>     * arranged as follows:
+<a name=394 class="linenum">394  </a>     * &lt;P&gt;
+<a name=395 class="linenum">395  </a>     * &lt;CODE&gt;
+<a name=396 class="linenum">396  </a>     * short  string_length;   // length of string data
+<a name=397 class="linenum">397  </a>     * byte   string_flag;     // flag specifying special string
+<a name=398 class="linenum">398  </a>     *                         // handling
+<a name=399 class="linenum">399  </a>     * short  run_count;       // optional count of formatting runs
+<a name=400 class="linenum">400  </a>     * int    extend_length;   // optional extension length
+<a name=401 class="linenum">401  </a>     * char[] string_data;     // string data, can be byte[] or
+<a name=402 class="linenum">402  </a>     *                         // short[] (length of array is
+<a name=403 class="linenum">403  </a>     *                         // string_length)
+<a name=404 class="linenum">404  </a>     * int[]  formatting_runs; // optional formatting runs (length of
+<a name=405 class="linenum">405  </a>     *                         // array is run_count)
+<a name=406 class="linenum">406  </a>     * byte[] extension;       // optional extension (length of array
+<a name=407 class="linenum">407  </a>     *                         // is extend_length)
+<a name=408 class="linenum">408  </a>     * &lt;/CODE&gt;
+<a name=409 class="linenum">409  </a>     * &lt;P&gt;
+<a name=410 class="linenum">410  </a>     * The string_flag is bit mapped as follows:
+<a name=411 class="linenum">411  </a>     * &lt;P&gt;
+<a name=412 class="linenum">412  </a>     * &lt;TABLE&gt;
+<a name=413 class="linenum">413  </a>     *   &lt;TR&gt;
+<a name=414 class="linenum">414  </a>     *      &lt;TH&gt;Bit number&lt;/TH&gt;
+<a name=415 class="linenum">415  </a>     *      &lt;TH&gt;Meaning if 0&lt;/TH&gt;
+<a name=416 class="linenum">416  </a>     *      &lt;TH&gt;Meaning if 1&lt;/TH&gt;
+<a name=417 class="linenum">417  </a>     *   &lt;TR&gt;
+<a name=418 class="linenum">418  </a>     *   &lt;TR&gt;
+<a name=419 class="linenum">419  </a>     *      &lt;TD&gt;0&lt;/TD&gt;
+<a name=420 class="linenum">420  </a>     *      &lt;TD&gt;string_data is byte[]&lt;/TD&gt;
+<a name=421 class="linenum">421  </a>     *      &lt;TD&gt;string_data is short[]&lt;/TH&gt;
+<a name=422 class="linenum">422  </a>     *   &lt;TR&gt;
+<a name=423 class="linenum">423  </a>     *   &lt;TR&gt;
+<a name=424 class="linenum">424  </a>     *      &lt;TD&gt;1&lt;/TD&gt;
+<a name=425 class="linenum">425  </a>     *      &lt;TD&gt;Should always be 0&lt;/TD&gt;
+<a name=426 class="linenum">426  </a>     *      &lt;TD&gt;string_flag is defective&lt;/TH&gt;
+<a name=427 class="linenum">427  </a>     *   &lt;TR&gt;
+<a name=428 class="linenum">428  </a>     *   &lt;TR&gt;
+<a name=429 class="linenum">429  </a>     *      &lt;TD&gt;2&lt;/TD&gt;
+<a name=430 class="linenum">430  </a>     *      &lt;TD&gt;extension is not included&lt;/TD&gt;
+<a name=431 class="linenum">431  </a>     *      &lt;TD&gt;extension is included&lt;/TH&gt;
+<a name=432 class="linenum">432  </a>     *   &lt;TR&gt;
+<a name=433 class="linenum">433  </a>     *   &lt;TR&gt;
+<a name=434 class="linenum">434  </a>     *      &lt;TD&gt;3&lt;/TD&gt;
+<a name=435 class="linenum">435  </a>     *      &lt;TD&gt;formatting run data is not included&lt;/TD&gt;
+<a name=436 class="linenum">436  </a>     *      &lt;TD&gt;formatting run data is included&lt;/TH&gt;
+<a name=437 class="linenum">437  </a>     *   &lt;TR&gt;
+<a name=438 class="linenum">438  </a>     *   &lt;TR&gt;
+<a name=439 class="linenum">439  </a>     *      &lt;TD&gt;4&lt;/TD&gt;
+<a name=440 class="linenum">440  </a>     *      &lt;TD&gt;Should always be 0&lt;/TD&gt;
+<a name=441 class="linenum">441  </a>     *      &lt;TD&gt;string_flag is defective&lt;/TH&gt;
+<a name=442 class="linenum">442  </a>     *   &lt;TR&gt;
+<a name=443 class="linenum">443  </a>     *   &lt;TR&gt;
+<a name=444 class="linenum">444  </a>     *      &lt;TD&gt;5&lt;/TD&gt;
+<a name=445 class="linenum">445  </a>     *      &lt;TD&gt;Should always be 0&lt;/TD&gt;
+<a name=446 class="linenum">446  </a>     *      &lt;TD&gt;string_flag is defective&lt;/TH&gt;
+<a name=447 class="linenum">447  </a>     *   &lt;TR&gt;
+<a name=448 class="linenum">448  </a>     *   &lt;TR&gt;
+<a name=449 class="linenum">449  </a>     *      &lt;TD&gt;6&lt;/TD&gt;
+<a name=450 class="linenum">450  </a>     *      &lt;TD&gt;Should always be 0&lt;/TD&gt;
+<a name=451 class="linenum">451  </a>     *      &lt;TD&gt;string_flag is defective&lt;/TH&gt;
+<a name=452 class="linenum">452  </a>     *   &lt;TR&gt;
+<a name=453 class="linenum">453  </a>     *   &lt;TR&gt;
+<a name=454 class="linenum">454  </a>     *      &lt;TD&gt;7&lt;/TD&gt;
+<a name=455 class="linenum">455  </a>     *      &lt;TD&gt;Should always be 0&lt;/TD&gt;
+<a name=456 class="linenum">456  </a>     *      &lt;TD&gt;string_flag is defective&lt;/TH&gt;
+<a name=457 class="linenum">457  </a>     *   &lt;TR&gt;
+<a name=458 class="linenum">458  </a>     * &lt;/TABLE&gt;
+<a name=459 class="linenum">459  </a>     * &lt;P&gt;
+<a name=460 class="linenum">460  </a>     * We can handle eating the overhead associated with bits 2 or 3
+<a name=461 class="linenum">461  </a>     * (or both) being set, but we have no idea what to do with the
+<a name=462 class="linenum">462  </a>     * associated data. The UnicodeString class can handle the byte[]
+<a name=463 class="linenum">463  </a>     * vs short[] nature of the actual string data
+<a name=464 class="linenum">464  </a>     *
+<a name=465 class="linenum">465  </a>     * @param data raw data
+<a name=466 class="linenum">466  </a>     * @param size size of the raw data
+<a name=467 class="linenum">467  </a>     */
+<a name=468 class="linenum">468  </a>
+<a name=469 class="linenum">469  </a>    protected void fillFields( final byte[] data, final short size,
+<a name=470 class="linenum">470  </a>                               int offset )
+<a name=471 class="linenum">471  </a>    {
+<a name=472 class="linenum">472  </a>
+<a name=473 class="linenum">473  </a>        // this method is ALWAYS called after construction -- using
+<a name=474 class="linenum">474  </a>        // the nontrivial constructor, of course -- so this is where
+<a name=475 class="linenum">475  </a>        // we initialize our fields
+<a name=476 class="linenum">476  </a>        field_1_num_strings = LittleEndian.getInt( data, 0 + offset );
+<a name=477 class="linenum">477  </a>        field_2_num_unique_strings = LittleEndian.getInt( data, 4 + offset );
+<a name=478 class="linenum">478  </a>        field_3_strings = new BinaryTree();
+<a name=479 class="linenum">479  </a>        deserializer = new SSTDeserializer(field_3_strings);
+<a name=480 class="linenum">480  </a>        deserializer.manufactureStrings( data, 8 + offset, (short)(size - 8) );
+<a name=481 class="linenum">481  </a>    }
+<a name=482 class="linenum">482  </a>
+<a name=483 class="linenum">483  </a>
+<a name=484 class="linenum">484  </a>    /**
+<a name=485 class="linenum">485  </a>     * @return an iterator of the strings we hold. All instances are
+<a name=486 class="linenum">486  </a>     *         UnicodeStrings
+<a name=487 class="linenum">487  </a>     */
+<a name=488 class="linenum">488  </a>
+<a name=489 class="linenum">489  </a>    Iterator getStrings()
+<a name=490 class="linenum">490  </a>    {
+<a name=491 class="linenum">491  </a>        return field_3_strings.values().iterator();
+<a name=492 class="linenum">492  </a>    }
+<a name=493 class="linenum">493  </a>
+<a name=494 class="linenum">494  </a>    /**
+<a name=495 class="linenum">495  </a>     * @return count of the strings we hold.
+<a name=496 class="linenum">496  </a>     */
+<a name=497 class="linenum">497  </a>
+<a name=498 class="linenum">498  </a>    int countStrings()
+<a name=499 class="linenum">499  </a>    {
+<a name=500 class="linenum">500  </a>        return field_3_strings.size();
+<a name=501 class="linenum">501  </a>    }
+<a name=502 class="linenum">502  </a>
+<a name=503 class="linenum">503  </a>    /**
+<a name=504 class="linenum">504  </a>     * called by the class that is responsible for writing this sucker.
+<a name=505 class="linenum">505  </a>     * Subclasses should implement this so that their data is passed back in a
+<a name=506 class="linenum">506  </a>     * byte array.
+<a name=507 class="linenum">507  </a>     *
+<a name=508 class="linenum">508  </a>     * @return byte array containing instance data
+<a name=509 class="linenum">509  </a>     */
+<a name=510 class="linenum">510  </a>
+<a name=511 class="linenum">511  </a>    public int serialize( int offset, byte[] data )
+<a name=512 class="linenum">512  </a>    {
+<a name=513 class="linenum">513  </a>        SSTSerializer serializer = new SSTSerializer(
+<a name=514 class="linenum">514  </a>                _record_lengths, field_3_strings, getNumStrings(), getNumUniqueStrings() );
+<a name=515 class="linenum">515  </a>        return serializer.serialize( offset, data );
+<a name=516 class="linenum">516  </a>    }
+<a name=517 class="linenum">517  </a>
+<a name=518 class="linenum">518  </a>
+<a name=519 class="linenum">519  </a>    // we can probably simplify this later...this calculates the size
+<a name=520 class="linenum">520  </a>    // w/o serializing but still is a bit slow
+<a name=521 class="linenum">521  </a>    public int getRecordSize()
+<a name=522 class="linenum">522  </a>    {
+<a name=523 class="linenum">523  </a>        SSTSerializer serializer = new SSTSerializer(
+<a name=524 class="linenum">524  </a>                _record_lengths, field_3_strings, getNumStrings(), getNumUniqueStrings() );
+<a name=525 class="linenum">525  </a>
+<a name=526 class="linenum">526  </a>        return serializer.getRecordSize();
+<a name=527 class="linenum">527  </a>    }
+<a name=528 class="linenum">528  </a>
+<a name=529 class="linenum">529  </a>    SSTDeserializer getDeserializer()
+<a name=530 class="linenum">530  </a>    {
+<a name=531 class="linenum">531  </a>        return deserializer;
+<a name=532 class="linenum">532  </a>    }
+<a name=533 class="linenum">533  </a>
+<a name=534 class="linenum">534  </a>    /**
+<a name=535 class="linenum">535  </a>     * Strange to handle continue records this way.  Is it a smell?
+<a name=536 class="linenum">536  </a>     */
+<a name=537 class="linenum">537  </a>    public void processContinueRecord( byte[] record )
+<a name=538 class="linenum">538  </a>    {
+<a name=539 class="linenum">539  </a>        deserializer.processContinueRecord( record );
+<a name=540 class="linenum">540  </a>    }
+<a name=541 class="linenum">541  </a>}
+<a name=542 class="linenum">542  </a>
+<a name=543 class="linenum">543  </a>
+<a name=544 class="linenum">544  </a>???????????????????????????????????????????<a class="varRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.equals.other>other</a>??????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>?????????????????????????????????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>???????????????????????????????????????????????????????????????????????????<a class="varRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.equals.other>other</a>??????????????????????????????????????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>??????????????????????????<a class="varRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.equals.other>other</a>????????????????????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=SSTRecord.validateSid(short) href=SSTRecord_java_ref.html#SSTRecord.validateSid(short)>validateSid</a>????????????????????<a class="classRef" href=RecordFormatException_java.html#RecordFormatException>RecordFormatException</a>??????????????<a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.validateSid.id>id</a>????????????????????<a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.sid>sid</a>?????<span class="comment">????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=SSTRecord.fillFields(byte,short,int) href=SSTRecord_java_ref.html#SSTRecord.fillFields(byte,short,int)>fillFields</a>?????????<span class="comment">???????????????????????????????????????????????????????????</span>?????????<span class="comment">????????????????????????????????????????????????????????????</span>?????????<span class="comment">???????????????????????????</span>?????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_1_num_strings>field_1_num_strings</a>???????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>????????????????????????????????????????????<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getInt(byte,int)>getInt</a>????????????????????????????????????????????????????<a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.fillFields.data>data</a>??????????????????????????????????????????????????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.fillFields.offset>offset</a>?????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.field_2_num_unique_strings>field_2_num_unique_strings</a>??????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>???????????????????????????????????????????????????<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getInt(byte,int)>getInt</a>???????????????????????????????????????????????????????????<a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.fillFields.data>data</a>?????????????????????????????????????????????????????????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.fillFields.offset>offset</a>?????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>???????????????????????????????<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.BinaryTree()>BinaryTree</a>?????????<a class="varRef" title="SSTDeserializer" href=SSTRecord_java.html#SSTRecord.deserializer>deserializer</a>????????????????????????????????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>?????????<a class="varRef" title="SSTDeserializer" href=SSTRecord_java.html#SSTRecord.deserializer>deserializer</a>??????????????????????<a class="methodRef" title="SSTDeserializer" href=SSTDeserializer_java.html#SSTDeserializer.manufactureStrings(byte,int,short)>manufactureStrings</a>??????????????????????????????????????????<a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.fillFields.data>data</a>????????????????????????????????????????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.fillFields.offset>offset</a>????????????????????????????????????????????????????????????????????<a class="varRef" title="short" href=SSTRecord_java.html#SSTRecord.fillFields.size>size</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>??????????????<a class="methodDef" name=SSTRecord.getStrings() href=SSTRecord_java_ref.html#SSTRecord.getStrings()>getStrings</a>????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>????????????????????????????????<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.values()>values</a>?????<span class="comment">????????????????????????????????????????????????????????</span>?????????<a class="methodDef" name=SSTRecord.countStrings() href=SSTRecord_java_ref.html#SSTRecord.countStrings()>countStrings</a>????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>????????????????????????????????<a class="methodRef" title="BinaryTree" href=..\..\..\..\..\org\apache\poi\util\BinaryTree_java.html#BinaryTree.size()>size</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????<a class="methodDef" name=SSTRecord.serialize(int,byte) href=SSTRecord_java_ref.html#SSTRecord.serialize(int,byte)>serialize</a>?????????<a class="classRef" href=SSTSerializer_java.html#SSTSerializer>SSTSerializer</a>?????????????????<a class="varRef" title="List" href=SSTRecord_java.html#SSTRecord._record_lengths>_record_lengths</a>??????????????????????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>???????????????????????????????????????????????????<a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumStrings()>getNumStrings</a>????????????????????????????????????????????????????????????????????<a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumUniqueStrings()>getNumUniqueStrings</a>????????????????<a class="varRef" title="SSTSerializer" href=SSTRecord_java.html#SSTRecord.serialize.serializer>serializer</a>???????????????????????????<a class="methodRef" title="SSTSerializer" href=SSTSerializer_java.html#SSTSerializer.serialize(int,byte)>serialize</a>??????????????????????????????????????<a class="varRef" title="int" href=SSTRecord_java.html#SSTRecord.serialize.offset>offset</a>??????????????????????????????????????????????<a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.serialize.data>data</a>?????<span class="comment">?????????????????????????????????????????????????????????????????</span>?????<span class="comment">??????????????????????????????????????????</span>????????????????<a class="methodDef" name=SSTRecord.getRecordSize() href=SSTRecord_java_ref.html#SSTRecord.getRecordSize()>getRecordSize</a>?????????<a class="classRef" href=SSTSerializer_java.html#SSTSerializer>SSTSerializer</a>?????????????????<a class="varRef" title="List" href=SSTRecord_java.html#SSTRecord._record_lengths>_record_lengths</a>??????????????????????????????????<a class="varRef" title="BinaryTree" href=SSTRecord_java.html#SSTRecord.field_3_strings>field_3_strings</a>???????????????????????????????????????????????????<a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumStrings()>getNumStrings</a>????????????????????????????????????????????????????????????????????<a class="methodRef" title="SSTRecord" href=SSTRecord_java.html#SSTRecord.getNumUniqueStrings()>getNumUniqueStrings</a>????????????????<a class="varRef" title="SSTSerializer" href=SSTRecord_java.html#SSTRecord.getRecordSize.serializer>serializer</a>???????????????????????????<a class="methodRef" title="SSTSerializer" href=SSTSerializer_java.html#SSTSerializer.getRecordSize()>getRecordSize</a>?????<a class="classRef" href=SSTDeserializer_java.html#SSTDeserializer>SSTDeserializer</a>?????????????????????<a class="methodDef" name=SSTRecord.getDeserializer() href=SSTRecord_java_ref.html#SSTRecord.getDeserializer()>getDeserializer</a>????????????????<a class="varRef" title="SSTDeserializer" href=SSTRecord_java.html#SSTRecord.deserializer>deserializer</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????</span>?????????????????<a class="methodDef" name=SSTRecord.processContinueRecord(byte) href=SSTRecord_java_ref.html#SSTRecord.processContinueRecord(byte)>processContinueRecord</a>?????????<a class="varRef" title="SSTDeserializer" href=SSTRecord_java.html#SSTRecord.deserializer>deserializer</a>??????????????????????<a class="methodRef" title="SSTDeserializer" href=SSTDeserializer_java.html#SSTDeserializer.processContinueRecord(byte)>processContinueRecord</a>?????????????????????????????????????????????<a class="varRef" title="byte" href=SSTRecord_java.html#SSTRecord.processContinueRecord.record>record</a></pre>

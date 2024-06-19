@@ -1,0 +1,2 @@
+Existing file for bug #44636 written to c:\DOCUME~1\yegor\LOCALS~1\Temp\44636-existing.xls
+New file for bug #44636 written to c:\DOCUME~1\yegor\LOCALS~1\Temp\44636-scratch.xls

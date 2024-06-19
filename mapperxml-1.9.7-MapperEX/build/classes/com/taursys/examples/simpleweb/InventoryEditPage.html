@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>MapperXML Example: Inventory Edit Page</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: Inventory Edit Page</h1>
+    <h2>List of Inventory Items to Edit</h2>
+    <form method="post" action="InventoryEditPage.sf">
+      <table border="1" width="100%">
+        <tr bgcolor="orange">
+          <td>Quantity</td>
+          <td>Product ID</td>
+          <td>Warehouse</td>
+          <td>Unit Price</td>
+          <td>Extension</td>
+          <td>Remove</td>
+        </tr>
+        <tr id="Inventory__TEMPLATE_NODE">
+          <td>
+            <input type="text" id="Inventory__quantity" name="quantity" value="1"/>
+          </td>
+          <td id="Inventory__productID">XXXX</td>
+          <td>
+            <select name="warehouseID" id="Inventory__warehouseID">
+              <option>Option 1</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" id="Inventory__unitPrice" name="unitPrice" value="0.00"/>
+          </td>
+          <td id="Inventory__extension">0.00</td>
+          <td>
+            <input type="text" id="Inventory__productID__2" name="remove" value="0"/>
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <input type="submit" name="action" value="Save"/>
+    </form>
+    <hr/>
+    <br/><br/>
+    <p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

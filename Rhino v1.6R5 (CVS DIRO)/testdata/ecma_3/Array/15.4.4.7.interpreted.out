@@ -1,0 +1,12 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Array\15.4.4.7.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Array\shell.js -f mozilla\js\tests\ecma_3\Array\15.4.4.7.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 390 ms]
+BUGNUMBER: 322135
+STATUS: Array.prototype.push on Array with length 2^32-1
+STATUS: This bug passes if it does not cause an out of memory error
+STATUS: Other issues related to array length are not tested.
+STATUS: before array.length = 4294967295
+js: "mozilla\js\tests\ecma_3\Array\15.4.4.7.js", line 57: Inappropriate array length.
+STATUS: InternalError: Inappropriate array length. (mozilla\js\tests\ecma_3\Array\15.4.4.7.js#57)
+PASSED! Array.prototype.push on Array with length 2^32-1
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Array\15.4.4.7.interpreted.arff] ...

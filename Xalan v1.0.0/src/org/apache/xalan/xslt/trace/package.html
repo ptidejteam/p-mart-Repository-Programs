@@ -1,0 +1,51 @@
+<HTML><HEAD></HEAD><BODY>
+     <P>Xalan debugging interface.</P>
+   
+     	<UL>
+		  <LI>{@link org.apache.xalan.xslt.trace.TraceListener} is an interface that debuggers 
+		  can implement. The interface can be set on the {@link org.apache.xalan.xslt.XSLTProcessor}
+      by calling the addTraceListener function.<BR><BR></LI>
+		  <LI>{@link org.apache.xalan.xslt.trace.PrintTraceListener} is an implementation of 
+		  the TraceListener interface that is used by the Xalan command-line utility
+      for the -TT, TG, and -TTC flags. You can examine the utility code ({@link org.apache.xalan.xslt.Process})
+      for examples of how you might use the trace functionality.<BR><BR></LI>
+		  <LI>{@link org.apache.xalan.xslt.trace.TracerEvent} is an event that is passed to the
+       TraceListener trace function. It is called before a node is 'executed' in the stylesheet.<BR><BR></LI>
+		  <LI>{@link org.apache.xalan.xslt.trace.GenerateEvent} is an event that is passed to the TraceListener.generated()
+       function. It is called after an event creating something in the result tree occurs.<BR><BR></LI>
+      <LI>{@link org.apache.xalan.xslt.trace.SelectionEvent} is an event triggered by the selection of a given
+      style tree node.</LI>
+		</UL>
+    
+<TABLE border="0" width="100%"><TR><TD width="20">&nbsp;</TD><TD bgcolor="#88aacc"><PRE>import org.apache.xalan.xslt.XSLTProcessor;
+import org.apache.xalan.xslt.trace.PrintTraceListener;
+...
+// Set up a PrintTraceListener object to print to a file.
+java.io.FileWriter fw = new java.io.FileWriter(&quot;events.log&quot;);
+java.io.PrintWriter pw = new java.io.PrintWriter(fw);
+PrintTraceListener ptl = new PrintTraceListener(pw);
+
+// Print information as each node is 'executed' in the stylesheet.
+ptl.m_traceElements = true;
+// Print information after each result-tree generation event.
+ptl.m_traceGeneration = true;
+// Print information after each selection event.
+ptl.m_traceSelection = true;
+// Print information whenever a template is invoked.
+ptl.m_traceTemplates = true;
+
+// Register the PrintTraceListener with the XSLTProcessor.
+XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+processor.addTraceListener(ptl);
+
+...
+// Perform the transformation -- printing information to 
+// events.log during the process.
+processor.process(new XSLTInputSource(&quot;foo.xml&quot;),
+                  new XSLTInputSource(&quot;foo.xsl&quot;),
+                  new XSLTResultTarget(&quot;foo.out&quot;));
+...
+// Close the PrintWriter and FileWriter.
+pw.close();
+fw.close();</PRE></TD><TD width="20">&nbsp;</TD></TR></TABLE>
+ </BODY></HTML>

@@ -1,0 +1,15 @@
+1f.8.45b	+0	(def_block
+1f.8.45b	+5	r_class
+1f.e.461	+e	id|XPathConstants
+1f.1d.470	+1	(brace
+24.d.4d6	+0	(def_block
+24.d.4d6	+e	id|XPathConstants
+24.1b.4e4	+0	c_func
+24.1b.4e4	+1	(paren
+24.1c.4e5	+1	)paren
+24.1e.4e7	+1	(brace
+24.20.4e9	+1	)brace
+24.21.4ea	+0	)def_block
+4d.1.a1b	+1	)brace
+4d.2.a1c	+0	)def_block
+4e.1.a1e	+0	eof

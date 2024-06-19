@@ -1,0 +1,96 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\RegExp\15.10.6.2-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\RegExp\shell.js -f mozilla\js\tests\ecma_3\RegExp\15.10.6.2-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+BUGNUMBER: 76717
+STATUS: Testing re.exec(str) when re.lastIndex is < 0 or > str.length
+PASSED! Section 1 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 2 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 3 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 4 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 5 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 6 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 7 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 8 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 9 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 10 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 11 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 12 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 13 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 14 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 15 of test -
+regexp = /abc/gi
+string = 'AbcaBcabC'
+PASSED! Section 16 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 17 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 18 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 19 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 20 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 21 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 22 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 23 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 24 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 25 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 26 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 27 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 28 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 29 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+PASSED! Section 30 of test -
+regexp = /abc/i
+string = 'AbcaBcabC'
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\RegExp\15.10.6.2-2.interpreted.arff] ...

@@ -1,0 +1,342 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE s1 SYSTEM "sbk:/style/dtd/document.dtd">
+<!--
+ * The Apache Software License, Version 1.1
+ *
+ *
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The names "Xalan" and "Apache Software Foundation" must
+ *    not be used to endorse or promote products derived from this
+ *    software without prior written permission. For written 
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999, Lotus
+ * Development Corporation., http://www.lotus.com.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ -->
+<s1 title="Basic usage patterns">
+<ul>
+<li><link anchor="intro">Introduction</link></li>
+<li><link anchor="files">Using a stylesheet file to transform an XML source file into an output file</link></li>
+<li><link anchor="streams">Using data streams in place of files</link></li>
+<li><link anchor="params">Setting stylesheet parameters</link></li>
+<li><link anchor="compiled">Compiling stylesheets</link></li>
+<li><link anchor="dom-in">Processing DOM input</link></li>
+<li><link anchor="dom-out">Producing DOM output</link></li>
+<li><link anchor="sax">Generating and responding to SAX events</link></li>
+<li><link anchor="xpath">Working with XPath expressions</link></li>
+<li><link anchor="applet">Using the &xslt4j; applet wrapper</link></li>
+<li><link anchor="servlet">Using &xslt4j; in a servlet</link></li>
+<li><link anchor="extensions">Creating and using extensions</link></li>
+<li><link anchor="debugging">Debugger interface</link></li>
+
+</ul><anchor name="intro"/>
+
+  <s2 title="Introduction">  
+<p>&xslt4j; takes as primary input an XML source document and an XSL stylesheet, both represented by instances of the <resource-ref idref="XSLTInputSourceDoc"/>. You can use a URL or file, a character stream, a byte stream, a DOM tree, or a SAX input source to create an XSLTInputSource object. The stylesheet may also take the form of a compiled stylesheet (an instance of the <resource-ref idref="StylesheetRootDoc"/>. If the XML document contains a stylesheet Processing Instruction (PI), a separate stylesheet is not required.</p>
+<p>&xslt4j; uses an implementation of the <resource-ref idref="XMLParserLiaisonDoc"/> to interact with an XML parser and sends the output to <resource-ref idref="XSLTResultTargetDoc"/>. Unless your are reading or creating a DOM, you probably want to use the default <link idref="dtm">DTM (Document Table Model)</link> liaison and XML parser. When you read from a DOM or write to a DOM, use the <resource-ref idref="XercesLiaisonDoc"/> along with the &xml4j; XML parser.</p>
+<p>The XSLT and XPath engines are independent of any given XML parser implementation. All parser-dependent
+calls are funneled through the XMLParserLiaison.</p>
+<p>For detailed API documentation (javadoc), see <resource-ref idref="APIDocumentation"/>. For an overview of the
+command-line utility, see <link idref="commandline">Command-Line Utility</link>.</p>     
+</s2>
+<anchor name="files"/>
+<s2 title="Using a stylesheet file to transform an XML source file into an output file">
+<p>Use an XML file and an XSL file to instantiate XSLTInput objects, create a processor, and write the transformation output to a file. For example:</p>
+<source>public static void Transform(String xmlSourceURL, String xslURL, String outputURL)
+  throws java.io.IOException, 
+         java.net.MalformedURLException, 
+         org.xml.sax.SAXException
+{
+  // Use XSLTProcessorFactory to instantiate an XSLTProcessor.
+  org.apache.xalan.xslt.XSLTProcessor processor =
+                 org.apache.xalan.xslt.XSLTProcessorFactory.getProcessor();
+                 
+  // Create the 3 objects the XSLTProcessor needs to perform the transformation.
+  org.apache.xalan.xslt.XSLTInputSource xmlSource = 
+                        new org.apache.xalan.xslt.XSLTInputSource ("foo.xml");
+  org.apache.xalan.xslt.XSLTInputSource xslSheet = 
+                       new org.apache.xalan.xslt.XSLTInputSource ("foo.xsl");
+  org.apache.xalan.xslt.XSLTResultTarget xmlResult = 
+                       new org.apache.xalan.xslt.XSLTResultTarget ("foo.out");
+
+  // Perform the transformation.
+  processor.process(xmlSource, xslSheet, xmlResult);
+ }</source>
+<p>You can perform this same transformation from the <link idref="commandline">command line</link>. For example:</p>
+<p><code>java org.apache.xalan.xslt.Process -in foo.xml -xsl foo.xsl -out output.xml</code></p>
+<p>For an online example, see <link idref="samples" anchor="simpletransform">SimpleTransform</link>.</p>
+</s2><anchor name="streams"/>
+<s2 title="Using data streams in place of files">
+<p>The context in which you perform a transformation may call for input in the form of a character stream, byte stream, or SAX input stream, and output in the form of a character stream, byte stream, or SAX document handler. Suppose, for example, you want to output a stream of bytes for further processing:</p>
+<source>import org.apache.xalan.xslt.*;
+...
+java.io.OutputStream byteStream = new java.io.ByteArrayOutputStream();
+XSLTResultTarget out = new XSLTResultTarget(byteStream)
+// Do the transformation...
+// Work with the OutputStream...</source>
+
+</s2><anchor name="params"/>
+<s2 title="Setting stylesheet parameters">
+<p>An XSL stylesheet can include parameters that get set at run time when a transformation takes place. When we generate the HTML documents that make up the Xalan doc set, for example, we send the stylesheet an id parameter along with each XML source document. The id identifies that document and enables the stylesheet to integrate it into the overall doc set.</p>
+<p>To set a stylesheet parameter, use the XSLTProcessor setStylesheetParam(String key, String expression) method, where key is the parameter name and expression is an XPath expression. If the parameter is a String, enclose it in single quotes to make it a String expression.</p>
+<p>You can also use setStylesheetParam(String key, XObject value). This option is useful when you are working with the XPath API. For example, you could use the XObject returned by an Xpath function to set a parameter.</p>
+<p>From the <link idref="commandline">command line</link>, include a -param argument. For example:</p>
+<p><code>java org.apache.xalan.xslt.Process -in foo.xml -xsl foo.xsl -param 'boo'</code></p>
+</s2><anchor name="compiled"/>
+<s2 title="Compiling stylesheets">
+<p>A <resource-ref idref="StylesheetRootDoc"/> object is a binary representation of a stylesheet that adds efficiency to the performance of repeated transformations and supports thread-safe concurrent access by multiple clients. If, for example, you are setting up a servlet to perform transformations, you can improve performance by compiling any stylesheets the servlet repeatedly uses.</p>
+<p>To compile a stylesheet, use one of the the <resource-ref idref="XSLTProcessorDoc"/> processStylesheet methods. This operation also sets the XSLTProcessor Stylesheet property. In the interest of clarity, you may want to explicitly set that property. When you call the process method, include a null for the "uncompiled" stylesheet parameter so XSLTProcessor uses the compiled stylesheet. For example:</p>
+<source>import org.apache.xalan.xslt.*;
+...
+XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+StylesheetRoot style = processor.processStylesheet
+                                       (new XSLTInputSource("foo.xsl"));
+processor.setStylesheet(style); // Good form!
+...
+processor.process(new XSLTInputSource("foo.xml"),
+                  null, // Use the Stylesheet property setting.
+                  new XSLTResultTarget("foo.out"));</source>
+<p>Alternative: StylesheetRoot has its own process method, so another way to do the preceding is as follows:</p>
+<source>import org.apache.xalan.xslt.*;
+..
+XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+StylesheetRoot style = processor.processStylesheet(new XSLTInputSource("foo.xsl"));
+...
+style.process(new XSLTInputSource("foo.xml"), new XSLTResultTarget("foo.out"));</source>
+<p>You should use the StylesheetRoot process() method if you are using a StylesheetRoot object to transform multiple XML sources.</p>
+<p>If you want to use the XSLTProcessor as a SAX document handler, you must provide the processor a compiled stylesheet. See <link anchor="sax">Generating and Responding to SAX events</link>.</p>
+</s2><anchor name="dom-in"/>
+<s2 title="Processing DOM input">
+<p>The XML source and XSL stylesheet for a transformation may appear in the form of a DOM Node. To perform transformations with DOM input, you cannot use the default <link idref="dtm">DTM (Document Table Model)</link> liaison and parser. If you are processing DOM input, set up the XSLTProcessor to use XercesLiaison and the Xerces XML parser.</p>
+<p>The following code fragments illustrate the procedure for working with DOM input:</p>
+<source>import org.apache.xerces.parsers.DOMParser;
+import org.w3c.dom.Document;
+import org.apache.xalan.xpath.xdom.XercesLiaison;
+import org.apache.xalan.xslt.*;
+...
+// Just in case you want to produce your own DOM input...
+DOMParser parser = new DOMParser();
+parser.parse("foo.xml");
+Document in = parser.getDocument();
+XSLTInputSource xmlID = new XSLTInputSource(in);
+
+// Set up the XSLTProcessor to use XercesLiaison.
+XSLTProcessor xsltProc = XSLTProcessorFactory.getProcessor
+                 (new org.apache.xalan.xpath.xdom.XercesLiaison());
+// or you can use XSLTProcessorFactory.getProcessorUsingLiaisonName
+//                ("org.apache.xalan.xpath.xdom.XercesLiaison");
+...
+// Perform the transformation.</source>
+</s2><anchor name="dom-out"/>
+<s2 title="Producing DOM output">
+<p>To produce a DOM Node as your transformation output, use a new Node to create the XSLTResultTarget for the transformation. Then when you perform the transformation, the result is output as a DOM Node. As with DOM input, you must set up the XSLTProcessor to use the Xerces liaison and XML parser. For example:</p>
+<source>import org.w3.dom.Document;
+import org.apache.xalan.xslt.*;
+...
+XSLTProcessor xsltProc = XSLTProcessorFactory.getProcessor
+                 (new org.apache.xalan.xpath.xdom.XercesLiaison());
+org.w3c.dom.Document out = new org.apache.xerces.dom.DocumentImpl();
+XSLTResultTarget resultTarget = new XSLTResultTarget(out);
+processor.process(new XSLTInputSource("foo.xml"),
+                  new XSLTInputSource("foo.xsl"),
+                  resultTarget);</source>
+<p>The XSLTResultTarget object (resultTarget) now contains a Node. For a working example, see <link idref="samples" anchor="transformtodom">TransformToDom</link>.</p>
+</s2><anchor name="sax"/>
+<s2 title="Generating and responding to SAX events">
+<p>To set up a transformation to generate SAX events, set the DocumentHandler property of the XSLTResultTarget object. The transformation consumer can then respond to these events as they occur, rather than waiting (as the consumer of a DOM must) for the complete result tree.</p>
+<p>This example sends the output to System.out.</p>
+<source>import org.apache.xalan.xslt.XSLTProcessor;
+import org.apache.xalan.xslt.XSLTInputSource;
+import org.apache.xalan.xslt.XSLTResultTarget;
+import org.apache.xalan.xslt.XSLTProcessorFactory;
+import org.apache.xalan.xslt.StylesheetRoot;
+
+public class TransformToSax
+{
+	public static void main(String[] args)
+    throws java.io.IOException,
+           java.net.MalformedURLException,
+           org.xml.sax.SAXException
+	{
+    XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+
+    // Set the processor to use a compiled stylesheet.
+    // The stylesheet provides access to a SAX DocumentHandler,
+    // passing it the stylesheet xsl:output settings.
+    StylesheetRoot stylesheet = processor.processStylesheet("foo.xsl");
+    // This property was just set implicitly, but for good form...
+    processor.setStylesheet(stylesheet);
+    // In this case, send the output to System.out.
+    org.xml.sax.DocumentHandler dh = stylesheet.getSAXSerializer(System.out);
+
+    // Use the DocumentHandler to construct an XSLTResultTarget object.
+    XSLTResultTarget saxResult = new XSLTResultTarget(dh);
+
+    // Perform the transformation. The stylesheet parameter is null, so
+    // the processor uses the compiled stylesheet identified by its 
+    // Stylesheet property setting.
+    processor.process(new XSLTInputSource("foo.xml"), null, saxResult);
+	}
+}</source>
+<p>XSLTProcessor also has a DocumentHandler property. By setting this property, you instruct the processor to process a sequence of SAX events. The processor needs a compiled stylesheet to perform this transformation.</p>
+<p>The following example uses the output of one transformation as the input for a second transformation. It does this by using two SAX DocumentHandlers to pipe SAX events from the first transformation to the second.</p>
+<source>import org.apache.xalan.xslt.*;
+
+public class ChainTransforms
+{
+	public static void main(String[] args)
+    throws java.io.IOException,
+           java.net.MalformedURLException,
+           org.xml.sax.SAXException
+	{
+    // Create processor for 1st transform.
+    XSLTProcessor processor1 = XSLTProcessorFactory.getProcessor();
+
+    // Create processor for 2nd transform. Set Stylesheet and
+    // DocumentHandler properties so this processor uses the
+    // 2nd stylesheet and processes SAX events (output from the
+    // 1st transform), sending the final result to System.out.
+    XSLTProcessor processor2 = XSLTProcessorFactory.getProcessor();
+    StylesheetRoot stylesheet2 = processor2.processStylesheet("foo2.xsl");
+    processor2.setStylesheet(stylesheet2);
+    org.xml.sax.DocumentHandler dh = stylesheet2.getSAXSerializer(System.out);
+    processor2.setDocumentHandler(dh);
+
+    // Set up the 1st transform to produce a series of SAX events, and
+    // to pass these events to the processor for the 2nd transform.
+    // To accomplish this, create an XSLTResultTarget object for the
+    // 1st transform, and use the processor for the 2nd transform to set
+    // the XSLTResultTarget DocumentHandler property.
+    XSLTResultTarget intermedResult = new XSLTResultTarget();
+    intermedResult.setDocumentHandler(processor2);
+
+    // Perform the 1st transform, which produces a series of
+    // SAX events that are in turn processed by the processor2 DocumentHandler
+    // in conjunction with stylesheet2, sending the output to System.out.
+    processor1.process(new XSLTInputSource("foo.xml"),
+                       new XSLTInputSource("foo.xsl"),
+                       intermedResult);
+	}
+}</source>
+<p>For a more compact (and elegant) form of this example, see the <link idref="samples" anchor="pipe">Pipe</link>. For an example that uses SAX DocumentHandlers and the Xerces SAX parser to parse the XML input and XSL stylesheet and produce the transformation result, see the <link idref="samples" anchor="sax">PureSAX</link>.</p>
+</s2><anchor name="xpath"/>
+<s2 title="Working with XPath expressions">
+<p>XSL stylesheets use XPath expressions to select nodes, specify conditions, and generate text for the result tree. XPath provides an API that you can call directly. For example, you may want to select nodes programmatically and do your own processing without a stylesheet.</p>
+<p>The XPathAPI class, in the samples/ApplyXPath subdirectory, contains several convenience methods that you can use to return single DOM Nodes, NodeLists, and XObjects. In the future, we plan to incorporate user feedback and move these methods into the core API.</p>
+<p>If you are interested in the API for executing XPath expressions, we suggest you take a look at the methods in XPathAPI,
+and send us feedback on what best meets your needs.</p>
+<p>For an example that uses the XPathAPI convenience methods to execute XPath expressions against XML source files, see <link idref="samples" anchor="xpath">ApplyXPath</link>.</p>
+</s2><anchor name="applet"/>
+<s2 title="Using the &xslt4j; applet wrapper">
+<ol> 
+<li>Include <resource-ref idref="XSLTProcessorAppletDoc"/> in an HTML client.<br/><br/></li>
+<li>Specify the XML source document and XSL stylesheet.<br/><br/>
+You can use the DocumentURL and StyleURL PARAM tags or the <resource-ref idref="XSLTProcessorAppletsetDocumentURLDoc"/> and <resource-ref idref="XSLTProcessorAppletsetStyleURLDoc"/>. If the XML document contains a stylesheet Processing Instruction (PI), you do not need to specify an XSL stylesheet.<br/><br/></li>
+<li>Call the <resource-ref idref="XSLTProcessorApplettransformtoHTMLstringstringDoc"/> which performs the transformation and returns the new document as a String.</li></ol>
+<p>For an example, see the <jump href="../samples/appletXMLtoHTML/readme.html">sample applet readme</jump>.</p>
+</s2><anchor name="servlet"/>
+<s2 title="Using &xslt4j; in a servlet">
+<p>You can set up a servlet to use &xslt4j; to respond to requests for XML documents by transforming those documents into HTML and serving them to clients. For a sample of how this might be done, see <link idref="samples" anchor="servlet">sample servlet</link>.</p>
+</s2><anchor name="extensions"/>
+<s2 title="Creating and using extensions">
+<p>For those cases where you want to be able to call procedural code from within a stylesheet, the &xslt4j; Extensions facility supports the creation of extension elements and extension functions. See <link idref="extensions">Extensions</link> and <link idref="samples" anchor="extensions">Extensions samples</link>.</p>
+</s2>
+<anchor name="debugging"/>
+<s2 title="Debugger Interface">
+		<p>&xslt4j; contains a debugger interface in the org.apache.xalan.xslt.trace package:</p> 
+		<ul>
+		  <li>The <resource-ref idref="TraceListenerDoc"/> is an interface that debuggers 
+		  can implement. The interface can be set on the 
+		  <resource-ref idref="XSLTProcessorDoc"/> by calling the addTraceListener function.<br/><br/></li>
+		  <li>The <resource-ref idref="PrintTraceListenerDoc"/> is an implementation of 
+		  the TraceListener interface. It is used by the <link idref="commandline">command-line utility</link><br/><br/></li>
+		  <li>The <resource-ref idref="TracerEventDoc"/> is an event that is 
+		  passed to the TraceListener.trace function. It is called before a node is 'executed' 
+		  in the stylesheet.<br/><br/></li>
+		  <li>The <resource-ref idref="GenerateEventDoc"/> is an event that is 
+		  passed to the TraceListener.generated() function. It is called after an event 
+		  occurs to create something in the result tree.<br/><br/></li>
+      <li>The <resource-ref idref="SelectionEventDoc"/> is an event triggered by the selection of a give
+      style tree node.</li>
+		</ul>
+    <p>The <link idref="commandline">command-line utility</link> uses the debugger interface when you include one or more of the
+     following switches: -TT, -TG, -TS, -TTC.</p>
+    <p>Example:</p>
+    <source>
+import org.apache.xalan.xslt.XSLTProcessor;
+import org.apache.xalan.xslt.trace.PrintTraceListener;
+...
+// Set up a PrintTraceListener object to print to a file.
+java.io.FileWriter fw = new java.io.FileWriter("events.log");
+java.io.PrintWriter pw = new java.io.PrintWriter(fw);
+PrintTraceListener ptl = new PrintTraceListener(pw);
+
+// Print information as each node is 'executed' in the stylesheet.
+ptl.m_traceElements = true;
+// Print information after each result-tree generation event.
+ptl.m_traceGeneration = true;
+// Print information after each selection event.
+ptl.m_traceSelection = true;
+// Print information whenever a template is invoked.
+ptl.m_traceTemplates = true;
+
+// Register the PrintTraceListener with the XSLTProcessor.
+XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+processor.addTraceListener(ptl);
+
+...
+// Perform the transformation -- printing information to 
+// events.log during the process.
+processor.process(new XSLTInputSource("foo.xml"),
+                  new XSLTInputSource("foo.xsl"),
+                  new XSLTResultTarget("foo.out"));
+...
+// Close the PrintWriter and FileWriter.
+pw.close();
+fw.close();
+</source>
+</s2>
+</s1>

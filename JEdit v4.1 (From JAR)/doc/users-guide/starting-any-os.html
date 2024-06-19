@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Platform-Independent Instructions</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="starting.html" title="Chapter 1. Starting jEdit"><link rel="previous" href="conventions.html" title="Conventions"><link rel="next" href="starting-windows.html" title="Starting jEdit on Windows"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Platform-Independent Instructions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="conventions.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Starting jEdit</th><td width="20%" align="right"> <a accesskey="n" href="starting-windows.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="starting-any-os"></a>Platform-Independent Instructions</h2></div></div><p>
+   Exactly how jEdit is started depends on the operating system;
+   on Unix systems, usually you would
+   run the &#8220;jedit&#8221; command at the command line,
+   or select jEdit from a menu; on Windows, you might
+   use the jEditLauncher package, which is documented in
+   <a href="starting-windows.html" title="Starting jEdit on Windows">the section called &#8220;Starting jEdit on Windows&#8221;</a>.
+  </p><p>
+   If jEdit is started while another copy is already running, control is
+   transferred to the running copy, and a second instance is not loaded.
+   This saves time and memory if jEdit is started multiple times.
+   Communication between instances of jEdit is implemented using
+   TCP/IP sockets; the initial instance is known as the
+   <i>server</i>, and subsequent invocations are
+   <i>clients</i>.
+  </p><p>
+   If the <b><tt>-background</tt></b> command line switch is specified,
+   jEdit will continue running and waiting for client requests even
+   after all editor windows are closed. When run in background mode,
+   you can open and close jEdit any number of times, only having
+   to wait for it to start the first time. The downside of this
+   is that jEdit will continue to consume memory when no windows
+   are open.
+  </p><p>
+   For more information about command line switches that control the
+   server feature, see <a href="cli-usage.html" title="Command Line Usage">the section called &#8220;Command Line Usage&#8221;</a>.
+   Note that if you are using jEditLauncher
+   to start jEdit on Windows, this switch cannot be specified on the
+   MS-DOS prompt command line when starting jEdit; it must be set as described
+   in <a href="launcher-starting.html" title="Starting jEdit">the section called &#8220;Starting jEdit&#8221;</a>.
+  </p><p>
+   Unlike other applications, jEdit automatically loads any files that were
+   open last time in was used, so you can get back to work immediately, without
+   having to find the files you are working on first. This feature can be
+   disabled in the <b>Loading and Saving</b> pane of the
+   <b>Utilities</b>&gt;<b>Global Options</b>
+   dialog box; see <a href="global-opts.html" title="The Global Options Dialog Box">the section called &#8220;The Global Options Dialog Box&#8221;</a>.
+  </p><div class="sidebar"><p class="title"><b>The edit server and security</b></p><p>
+    Not only does the server pick a random TCP port number on startup,
+    it also requires that clients provide an <i>authorization
+    key</i>; a randomly-generated number only accessible to
+    processes running on the local machine.
+    So not only will &#8220;bad guys&#8221; have to guess a 64-bit integer,
+    they will need to get it right on the first try; the edit server
+    shuts itself off upon receiving an invalid packet.
+   </p><p>
+    In environments that demand absolute security, the edit server can be
+    disabled by specifying the <b><tt>-noserver</tt></b> command line switch.
+   </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="conventions.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="starting.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="starting-windows.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Conventions </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting jEdit on Windows</td></tr></table></div></body></html>

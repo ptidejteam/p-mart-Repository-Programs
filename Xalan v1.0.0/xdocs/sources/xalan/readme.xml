@@ -1,0 +1,163 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE s1 SYSTEM "sbk:/style/dtd/document.dtd"[
+<!ENTITY done-j SYSTEM "DONE">
+<!ENTITY status-j SYSTEM "STATUS">
+<!ENTITY bugs-j SYSTEM "BUGS">]>
+
+<!--
+ * The Apache Software License, Version 1.1
+ *
+ *
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The names "Xalan" and "Apache Software Foundation" must
+ *    not be used to endorse or promote products derived from this
+ *    software without prior written permission. For written 
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999, Lotus
+ * Development Corporation., http://www.lotus.com.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ -->
+<s1 title="Release Notes">
+ <ul>
+  <li><link anchor="status">Status</link></li>
+  <li><link anchor="build">Build Notes</link></li>
+  <li><link anchor="contact">Getting in touch</link></li>
+ </ul>
+  <s2 title="Status">
+   <ul>
+    <li><link anchor="status">Version of Xerces to use</link></li>
+    <li><link anchor="bugs">Outstanding bugs</link></li>
+   </ul>
+     <anchor name="status"/>
+     &status-j;
+     <anchor name="bugs"/>
+     &bugs-j;
+  </s2>
+  <anchor name="build"/>
+  <s2 title="Build Notes">
+<ul>
+<li><link anchor="jar">Rebuilding xalan.jar</link></li>
+<li><link anchor="samples">Rebuilding sample applications</link></li>
+<li><link anchor="doc">Rebuilding the &xslt4j; documentation</link></li>
+</ul>
+<anchor name="jar"/> 
+   <s3 title="Rebuilding &xslt4j;">
+     <p>The &xslt4j; build is in xalan.jar. The &xslt4j; source code tree is in the src directory.
+     If you want to rebuild xalan.jar, you can do the following:</p>
+     <ol>
+       <li>Set up GNU or the equivalent build environment on your workstation.<br/><br/>
+       If you are running Windows 95/98/NT, you can use the Cygwin port of GNU. Be sure to put the
+       appropriate Cygwin bin directory at the beginning of your system path. For information about
+       Cygwin, see <jump href="http://www.sourceware.cygnus.com/cygwin/">Cygwin</jump>.<br/><br/></li>
+       <li>Place <resource-ref idref="xerces-used"/> xerces.jar in the Java class path.<br/><br/></li>
+       <li>If you are working in Windows, set MAKE_MODE as follows:<br/><br/>
+       <code>set MAKE_MODE=UNIX</code><br/><br/></li>
+       <li>Run the make file in the &xslt4j; root directory:<br/><br/>
+       <code>make build</code><br/><br/></li>
+     </ol>
+     <p>If you want to do the build without the GNU build environment, keep the following in mind:</p>
+     <ul>
+     <li>Set the class path to include the src directory, xerces.jar, bsf.jar, and bsfengines.jar.</li>
+     <li>Use a Java compiler (such as the IBM Just-In-Time compiler or the Sun javac) to compile all the .java files in the src
+     tree. </li>
+     <li>Use the Sun jar utility to store the resulting .class files in xalan.jar</li>
+     </ul>
+   </s3><anchor name="samples"/>
+   <s3 title="Rebuilding a sample application">
+   <p>If you modify a sample and want to recompile it, you can run the Java compiler in the directory containing the
+   example. Be sure xalan.jar and xerces.jar are on the class path. To recompile (and run!) the class files in the
+   Servlet subdirectory, the javax.servlet and javax.servlet.http packages must also be on the class path. Sun
+   distributes these packages in the JSWDK 1.0.1 servlet.jar file.</p> 
+   <p>After recompiling a sample, you can use the Sun jar utility to place your new .class files in
+    xalansamples.jar.</p>
+   </s3><anchor name="doc"/>
+   <s3 title="Rebuilding the &xslt4j; documentation">
+     <p>&xslt4j; includes a number of XML source files, XSL stylesheets, document type definition (DTD)
+      files, entity relationship (ENT) files, graphics, and a JavaScript file that provide the input for the Xalan
+      HTML User's Guide, and the overview and package-level documents used during the generation of Javadoc.</p>
+      <p>To rebuild the documentation, you must use a Stylebook tool from xml.apache.org and the JDK 1.2.2 java and javadoc
+      tools. Stylebook (which uses Xalan and Xerces) and the required document definition files, stylesheets, and resources
+      are stored in xml-site-style.tar.gz, and are unzipped when you run the make files as described below. If the JDK 1.2.2 bin
+      and lib directories are not on your class path, you can edit the make.include file in the Xalan root directory so the make
+      file can find the JDK 1.2.2 java and javadoc tools. You can also include java and javadoc arguments on the make file
+      command line. See the make.include file for the details.</p>
+     <p>To generate the Xalan HTML User's Guide, run the Xalan make file in the Xalan xdocs directory:<br/><br/>
+     <code>make makesbook</code></p>
+     <p>To generate Xalan API documentation, set up the make file to use the Javadoc tool in the Java JDK 1.2.2 bin 
+     directory.</p>
+     <p>Do the following:</p>
+       <ol>
+         <li>Put the Java JDK 1.2.2 bin directory on your path (in front of any JDK 1.1.x bin 
+         directory that appears on the path).<br/><br/></li>
+         <li>In the Xalan docs directory, run the Xalan make file as follows:<br/><br/>
+         <code>make makejavadoc</code><br/><br/></li>
+      </ol>
+      <p>If you want to rebuild the documentation without using the GNU build environment, keep the following in
+       mind:</p>
+       <ul>
+       <li>Unzip xml-site-style.tar.gz into the xdocs directory (the operation creates a number of subdirectories).
+       <br/><br/></li>
+       <li>Be sure stylebook-1.0-b2.jar, xalanjdoc.jar, xalan.jar, bsf.jar, bsfengines.jar, and xerces.jar are on the class
+       path.<br/><br/></li>
+       <li>To build doc in a build/docs subdirectory, run StyleBook from the xdocs directory as follows:<br/><br/>
+       <code>java org.apache.stylebook.StyleBook "targetDirectory=../build/docs/" sources/xalanLocal.xml style</code>
+       <br/><br/></li>
+       <li>To build the HTML source files that javadoc needs for top-level and package-level documentation, run
+        StyleBook from the xdocs directory as follows:<br/><br/>
+        <code>java org.apache.stylebook.StyleBook "loaderConfig=sbk:/style/loaderjdoc.xml" targetDirectory=../src sources/javadocPackages.xml style</code><br/><br/></li>
+        <li>Before you run javadoc, make sure the following directory structure exists under the Xalan root
+         directory: build/docs/apidocs.<br/><br/></li>
+       <li>To build the API documentation, run the JDK 1.2.2 javadoc tool from the xdocs directory:<br/><br/>
+<code>-doclet xalanjdoc.Standard -public -overview ../src/javadocOverview.html -sourcepath ../src -group XSLT_Packages "org.apache.xalan.xslt*" -group XPath_Packages "org.apache.xalan.xpath*" org.apache.xalan.xpath org.apache.xalan.xpath.xdom org.apache.xalan.xpath.dtm org.apache.xalan.xpath.xml org.apache.xalan.xslt org.apache.xalan.xslt.trace org.apache.xalan.xslt.client org.apache.xalan.xslt.extensions -windowtitle Xalan -d ../build/docs/apidocs
+</code></li>
+</ul>
+  </s3>    
+ </s2><anchor name="contact"/>
+ <s2 title="Getting in Touch">
+  <p>Your feedback is more than welcome. Offers of help are even more so! Perhaps you would like to contribute to the ongoing development, testing, or documentation of &xslt4j;?</p> 
+<p>Please email your comments, questions, suggestions, bug reports, and offers to help to <human-resource-ref idref="xalandev"/>.</p>
+ </s2>
+</s1>

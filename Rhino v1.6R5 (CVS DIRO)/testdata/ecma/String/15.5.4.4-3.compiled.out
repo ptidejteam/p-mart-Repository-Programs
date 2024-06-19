@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.4-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.4-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.5.4.4-3 String.prototype.charAt
+var foo = new MyObject('hello');  = h PASSED!
+var foo = new MyObject('hello');  = e PASSED!
+var foo = new MyObject('hello');  = l PASSED!
+var foo = new MyObject('hello');  = l PASSED!
+var foo = new MyObject('hello');  = o PASSED!
+var foo = new MyObject('hello');  =  PASSED!
+var foo = new MyObject('hello');  =  PASSED!
+var boo = new MyObject(true);  = t PASSED!
+var boo = new MyObject(true);  = r PASSED!
+var boo = new MyObject(true);  = u PASSED!
+var boo = new MyObject(true);  = e PASSED!
+var noo = new MyObject(Math.PI);  = 3 PASSED!
+var noo = new MyObject(Math.PI);  = . PASSED!
+var noo = new MyObject(Math.PI);  = 1 PASSED!
+var noo = new MyObject(Math.PI);  = 4 PASSED!
+var noo = new MyObject(Math.PI);  = 1 PASSED!
+var noo = new MyObject(Math.PI);  = 5 PASSED!
+var noo = new MyObject(Math.PI);  = 9 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.4-3.compiled.arff] ...

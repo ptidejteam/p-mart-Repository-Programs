@@ -1,0 +1,78 @@
+/* =====================================================
+ * JCommon : a free, general purpose, Java class library
+ * =====================================================
+ *
+ * Project Info:  http://www.object-refinery.com/jcommon/index.html
+ * Project Lead:  David Gilbert (david.gilbert@object-refinery.com);
+ *
+ * (C) Copyright 2000-2003, by Simba Management Limited and Contributors.
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this
+ * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * ------------------------
+ * PaletteChooserPanel.java
+ * ------------------------
+ * (C) Copyright 2002, 2003, by David M. O'Donnell.
+ *
+ * Original Author:  David M. O'Donnell;
+ * Contributor(s):   David Gilbert (for Simba Management Limited);
+ *
+ * $Id: PaletteChooserPanel.java,v 1.1 2007/10/10 20:00:12 vauchers Exp $
+ *
+ * Changes
+ * -------
+ * 27-Jan-2003 : Added standard header (DG);
+ *
+ */
+
+package com.jrefinery.chart.ui;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+
+/**
+ * A component for choosing a palette from a list of available palettes.
+ * 
+ * @author David M. O'Donnell.
+ */
+public class PaletteChooserPanel extends JPanel {
+
+    /** A combo for selecting the stroke. */
+    private JComboBox selector;
+
+    /**
+     * Constructor.
+     * 
+     * @param current  the current palette sample.
+     * @param available  an array of 'available' palette samples.
+     */
+    public PaletteChooserPanel(PaletteSample current, PaletteSample[] available) {
+        setLayout(new BorderLayout());
+        selector = new JComboBox(available);
+        selector.setSelectedItem(current);
+        selector.setRenderer(new PaletteSample(new RainbowPalette()));
+        add(selector);
+    }
+
+    /**
+     * Returns the selected palette.
+     * 
+     * @return The selected palette.
+     */
+    public ColorPalette getSelectedPalette() {
+        PaletteSample sample = (PaletteSample) selector.getSelectedItem();
+        return sample.getPalette();
+    }
+}

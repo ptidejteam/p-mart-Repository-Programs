@@ -1,0 +1,22 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 360 ms]
+15.8.1 Value Properties of the Math Object
+Math.E = 2.718281828459045 PASSED!
+typeof Math.E = number PASSED!
+Math.LN10 = 2.302585092994046 PASSED!
+typeof Math.LN10 = number PASSED!
+Math.LN2 = 0.6931471805599453 PASSED!
+typeof Math.LN2 = number PASSED!
+Math.LOG2E = 1.4426950408889634 PASSED!
+typeof Math.LOG2E = number PASSED!
+Math.LOG10E = 0.4342944819032518 PASSED!
+typeof Math.LOG10E = number PASSED!
+Math.PI = 3.141592653589793 PASSED!
+typeof Math.PI = number PASSED!
+Math.SQRT1_2 = 0.7071067811865476 PASSED!
+typeof Math.SQRT1_2 = number PASSED!
+Math.SQRT2 = 1.4142135623730951 PASSED!
+typeof Math.SQRT2 = number PASSED!
+var MATHPROPS='';for( p in Math ){ MATHPROPS +=p; };MATHPROPS =  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.1.compiled.arff] ...

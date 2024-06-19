@@ -1,0 +1,5 @@
+Computer1,FullAccess
+Computer2Folder2,ReadWrite
+Server1MainFolder,Read
+Server2WWWFolder,ExecuteRead
+ClrPrinter,Print

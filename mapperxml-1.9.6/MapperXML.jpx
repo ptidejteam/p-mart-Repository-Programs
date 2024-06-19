@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--JBuilder XML Project-->
+<project>
+  <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ApplicationRunner" />
+  <property category="runtime.0" name="application.class" value="com.taursys.tools.CodeGen" />
+  <property category="runtime.0" name="jsprunner.docbase" value="." />
+  <property category="runtime.0" name="jsprunner.jspfile" value="../../../usr/local/jbuilder4/bin" />
+  <property category="sys" name="AuthorLabel" value="@author" />
+  <property category="sys" name="BackupPath" value="bak" />
+  <property category="sys" name="CheckStable" value="1" />
+  <property category="sys" name="Company" value="Taurus Systems" />
+  <property category="sys" name="CompanyLabel" value="Company:" />
+  <property category="sys" name="Copyright" value="Copyright (c) 2002" />
+  <property category="sys" name="CopyrightLabel" value="Copyright:" />
+  <property category="sys" name="DefaultPackage" value="com.taursys.model" />
+  <property category="sys" name="Description" value="Presentation Framework for Web and GUI Applicaitons" />
+  <property category="sys" name="DescriptionLabel" value="Description:" />
+  <property category="sys" name="DocPath" value="doc" />
+  <property category="sys" name="ExcludeClassEnabled" value="0" />
+  <property category="sys" name="JDK" value="java J2RE 1.3.0 IBM build cx130-20000815" />
+  <property category="sys" name="JbxEventListener0" value="java.beans.PropertyChangeListener" />
+  <property category="sys" name="JbxEventListener1" value="com.taursys.swing.EnableListener" />
+  <property category="sys" name="JbxEventListener2" value="com.taursys.swing.EnableListener" />
+  <property category="sys" name="JbxEventListener3" value="java.beans.PropertyChangeListener" />
+  <property category="sys" name="JbxPropertyEditor0" value="com.taursys.xml.TextModelEditor" />
+  <property category="sys" name="JbxPropertyEditor1" value="com.taursys.datasource.FormatterEditor" />
+  <property category="sys" name="JbxPropertyEditor2" value="com.taursys.beans.editors.FormatEditor" />
+  <property category="sys" name="JbxPropertyEditor3" value="com.taursys.swing.HAlignEditor" />
+  <property category="sys" name="LastTag" value="0" />
+  <property category="sys" name="Libraries" value="JUnit 3.7;Velocity 1.2;Servlet 2.2 (Tomcat 4);Xerces 1.4.4" />
+  <property category="sys" name="MakeStable" value="0" />
+  <property category="sys" name="OutPath" value="classes" />
+  <property category="sys" name="ServletContentType" value="HTML" />
+  <property category="sys" name="SourcePath" value="src" />
+  <property category="sys" name="Title" value="Mapper" />
+  <property category="sys" name="TitleLabel" value="Title:" />
+  <property category="sys" name="Version" value="2.0" />
+  <property category="sys" name="VersionLabel" value="@version" />
+  <property category="sys" name="WorkingDirectory" value="." />
+  <property category="sys" name="max.package.levels" value="2" />
+  <property category="sys" name="palette.bean.chooser.beans" value="com.taursys.webcomponents.XMLInputComponent;mapperxml.XMLProxy;com.taursys.xml.Field;com.taursys.tools.jb.wizard.JEditableComboBox;com.taursys.swing.MDocument;com.taursys.model.VOValueHolder;com.taursys.swing.MTextField;javax.swing.table.TableColumn;com.taursys.swing.MTableModel;com.taursys.swing.MTable;com.taursys.model.VOListValueHolder;com.taursys.swing.MTableColumn;com.taursys.swing.MComboBox;com.taursys.swing.MButton;com.taursys.swing.MTextArea;" />
+  <property category="sys" name="uidesign.size.com.taursys.swing.TestDialog" value="520,383" />
+  <property category="sys" name="uidesign.size.com.taursys.swing.test.TestFrame" value="600,463" />
+  <property category="sys" name="uidesign.size.com.taursys.swing.test.TestFrameParentChild" value="624,455" />
+  <property category="sys" name="uidesign.size.com.taursys.swing.test.TestMTable" value="500,480" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.ClassInfoPanel" value="525,368" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.MainFrame_AboutBox" value="460,150" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.SettingsDialog" value="446,305" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.ValueHolderInfoPanel" value="442,300" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.WizardDialog" value="508,500" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.jb.designer.ContainerDesignPanel" value="549,475" />
+  <property category="sys" name="uidesign.size.com.taursys.tools.jb.wizard.ClassInfoPage" value="544,406" />
+  <property category="sys" name="warn.auto.packages" value="false" />
+  <node type="Folder" name="bin">
+    <file path="bin/codegen" />
+    <file path="bin/codegen.bat" />
+    <file path="bin/lcp.bat" />
+  </node>
+  <node type="Folder" name="releases">
+    <file path="doc/releases/releas1.9.1.txt" />
+    <file path="doc/releases/releas1.9.2.txt" />
+    <file path="doc/releases/releas1.9.3.txt" />
+    <file path="doc/releases/releas1.9.4.txt" />
+    <file path="doc/releases/releas1.9.5.txt" />
+    <file path="doc/releases/releas1.9.6.txt" />
+    <file path="doc/releases/releas1.9.7.txt" />
+  </node>
+  <node type="Folder" name="resources">
+    <file path="src/com/taursys/html/test/TestPage1.html" />
+  </node>
+  <node type="Folder" name="templates">
+    <file path="src/com/taursys/tools/templates/Class.template" />
+    <file path="src/com/taursys/tools/templates/SimpleServletApp.template" />
+    <file path="src/com/taursys/tools/templates/SimpleServletForm.template" />
+    <file path="src/com/taursys/tools/templates/ValueObject.template" />
+  </node>
+  <node type="AntRunner" name="Ant Buildfile">
+    <property category="AntNode" name="buildFile" value="build.xml" />
+    <property category="AntNode" name="buildTarget.current" value="release" />
+    <property category="sys" name="cmdLine" value="" />
+    <property category="sys" name="saveOnAnt" value="false" />
+    <property category="sys" name="withDesc" value="false" />
+    <file path="build.xml" />
+  </node>
+  <file path="src/com/taursys/model/AbstractListValueHolder.java" />
+  <file path="src/com/taursys/model/ObjectListValueHolder.java" />
+</project>
+

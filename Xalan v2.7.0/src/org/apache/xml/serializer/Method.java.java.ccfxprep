@@ -1,0 +1,15 @@
+25.e.4cf	+0	(def_block
+25.e.4cf	+5	r_class
+25.14.4d5	+6	id|Method
+26.1.4dd	+1	(brace
+2a.d.545	+0	(def_block
+2a.d.545	+6	id|Method
+2a.13.54b	+0	c_func
+2a.13.54b	+1	(paren
+2a.14.54c	+1	)paren
+2a.16.54e	+1	(brace
+2c.5.55f	+1	)brace
+2c.6.560	+0	)def_block
+4a.1.8aa	+1	)brace
+4a.2.8ab	+0	)def_block
+4b.1.8ad	+0	eof

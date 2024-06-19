@@ -1,0 +1,103 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE s1 SYSTEM "sbk:/style/dtd/document.dtd">
+
+<s1 title="Schema">
+	<s2 title="Disclaimer">
+		<p>This package contains an implementation of the W3C XML 
+		Schema language. This implementation is experimental. The 
+		<jump href="http://www.w3.org/XML/Group/Schemas.html">XML Schema</jump> 
+		language is still in working draft stage: you 
+		should not consider this implementation complete or correct. 
+		The limitations of this implementation are detailed below. 
+		Please read this document before using this package.</p>
+	</s2>
+	<s2 title="Introduction">
+		<p>This package contains an implementation of a subset of the 
+		W3C XML Schema Language as specified in the 17 December 1999
+        Working Drafts for <jump
+        href="http://www.w3.org/TR/xmlschema-1/">Structures</jump> and
+        <jump
+        href="http://www.w3.org/TR/xmlschema-2/">Datatypes</jump>. The
+        parsers contained in this package are able to read and
+        validate XML documents with the grammar specified in either
+        DTD or XML Schema format.  There is no functionality for
+        accessing typed data.</p> 
+		<p>We are making this package available in order to get 
+		feedback on the features in the XML Schema language 
+		design and on representing an XML document&apos;s grammar 
+		as part of the document&apos;s DOM tree. We intend to update 
+		this package until it implements all of the functionality 
+		of the then current XML Schema Working Draft. If you are 
+		interested in a particular unimplemented feature, we welcome 
+		your feedback on the &javaparsername; mailing list.</p>
+	</s2>
+	<s2 title="Limitations">
+		<p>The XML Schema implementation in this package is a 
+		subset of the features defined in the 17 December 1999 
+		XML Schema Working Drafts.</p>
+	</s2>
+	<s2 title="Structure Limitations">
+		<ul>
+			<li>elements, types, groups and attributeGroups
+			share the same namespace</li>
+			<li>All types, elements, groups and attributeGroups 
+			must be declared before they are used.</li>
+			<li>On types the following are unsupported:</li>
+				<ul>
+                    <li><code>final</code>, <code>abstract</code>,
+                    <code>exact</code>, <code>nullable</code>.</li>
+					<li>nested <code>element</code> declarations</li>
+				</ul>
+            <li>Only the <code>&lt;any/&gt;</code> wildcard is supported</li>
+            <li>Type derivation (section 3.6) is not supported</li>
+            <li>Unique, key and key reference constraints (section
+            3.7) are not supported.</li>
+			<li>None of the mechanisms in section 4, are supported.</li>
+		</ul>
+	</s2>
+	<s2 title="Datatype Limitations">
+		<ul>
+			<li>Datatype checking conforms to underlying Java types, not 
+			necessarily to schema rules:</li>
+		</ul>
+		<table>
+			<tr><th>Schema type</th><th>Java type</th></tr>
+			<tr><td>boolean</td><td>Boolean</td></tr>
+			<tr><td>integer</td><td>Integer</td></tr>
+			<tr><td>decimal</td><td>BigDecimal</td></tr>
+			<tr><td>float</td><td>float</td></tr>
+			<tr><td>double</td><td>double</td></tr>
+		</table>
+		<ul>
+			<li>The NMTOKEN, NMTOKENS, Name, NCName, ID, IDREF,
+			ENTITY, ENTITIES, NOTATION are only supported on attributes. At
+			the moment they cannot be applied to element content.</li>
+			<li>The recurringInstant, date, time, and language datatypes are not supported.</li>
+			<li>Datatype qualifiers on attributes are not supported.</li>
+	    </ul>
+	</s2>
+	<s2 title="Other Limitations">
+		<p>The schema is specified by the first xmlns attribute on the root 
+		element of the document. There must be an attribute declaration for 
+		this xmlns attribute. </p>
+	</s2>
+	<s2 title="Usage">
+		<p>In this release, schema validation has been integrated with the 
+		regular SAXParser and DOMParser classes. No special classes are 
+		required to parse documents that use a schema.</p>
+		<p>Documents that use XML Schema grammars specify the location of the
+		grammar using an xmlns attribute attached to the root / top-level element 
+		in the document. Here is an example: </p>
+<source>&lt;document xmlns="document.xsd"&gt;
+...
+&lt;/document&gt;</source>
+		<p>Another requirement is that the XML Schema document's grammar must 
+		have a &lt;!DOCTYPE ...&gt; line specifying the DTD for XML Schema grammar. 
+		The DOCTYPE must specify the following system identifier:<br/></p>
+<source>http://www.w3.org/TR/1999/WD-xmlschema-1-19991217/structures.dtd</source>
+		<p>Also, there must be an attribute declaration for the xmlns attribute 
+		used to find the schema (document in the example above).</p>
+		<p>Review the sample file, "data/personal.xsd" for an example of an XML 
+		Schema grammar.</p>
+	</s2>
+</s1>

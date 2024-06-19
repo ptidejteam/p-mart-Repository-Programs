@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <title>Mapper - A Presentation Framework</title>
+  <link href="common/style.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff" style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="common/leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%">
+        <div class="content">
+        <h2>Requirements</h2>
+        <ul>
+          <li>Java VM 1.4</li>
+          <li>Html/Xml parser: JTidy, Xerces or JAXP</li>
+          <li>For CodeGen tool: Velocity (with dependencies)</li>
+          <li>NOTE: The full distribution of Mapper includes JTidy, Xerces, and Velocity. 
+          They can be found in the lib directory.</li>
+        </ul>
+
+        <h2>General Installation</h2>
+        <ul>
+          <li>Download mapperxml-x.x.x.zip and unzip into a directory such as:
+            /usr/local</li>
+          <li>Include mapperxml.jar in your project classpath</li>
+        </ul>
+
+        <h2>Deployment</h2>
+        <ul>
+          <li>Include mapperxml.jar in your deployment WAR file as a
+          library</li>
+          <li>You may also need to include an xml parser (JTidy, Xerces, JAXP)</li>
+        </ul>
+
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff" style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="common/footer.shtml" -->
+</div>
+</body>
+</html>

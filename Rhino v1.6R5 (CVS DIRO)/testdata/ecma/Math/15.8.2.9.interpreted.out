@@ -1,0 +1,30 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.9.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.9.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.8.2.9 Math.floor(x)
+Math.floor.length = 1 PASSED!
+Math.floor() = NaN PASSED!
+Math.floor(void 0) = NaN PASSED!
+Math.floor(null) = 0 PASSED!
+Math.floor(true) = 1 PASSED!
+Math.floor(false) = 0 PASSED!
+Math.floor('1.1') = 1 PASSED!
+Math.floor('-1.1') = -2 PASSED!
+Math.floor('0.1') = 0 PASSED!
+Math.floor('-0.1') = -1 PASSED!
+Math.floor(NaN) = NaN PASSED!
+Math.floor(NaN)==-Math.ceil(-NaN) = false PASSED!
+Math.floor(0) = 0 PASSED!
+Math.floor(0)==-Math.ceil(-0) = true PASSED!
+Math.floor(-0) = 0 PASSED!
+Infinity/Math.floor(-0) = -Infinity PASSED!
+Math.floor(-0)==-Math.ceil(0) = true PASSED!
+Math.floor(Infinity) = Infinity PASSED!
+Math.floor(Infinity)==-Math.ceil(-Infinity) = true PASSED!
+Math.floor(-Infinity) = -Infinity PASSED!
+Math.floor(-Infinity)==-Math.ceil(Infinity) = true PASSED!
+Math.floor(0.0000001) = 0 PASSED!
+Math.floor(0.0000001)==-Math.ceil(0.0000001) = true PASSED!
+Math.floor(-0.0000001) = -1 PASSED!
+Math.floor(0.0000001)==-Math.ceil(0.0000001) = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.9.interpreted.arff] ...

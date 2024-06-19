@@ -1,0 +1,15 @@
+1a.e.31e	+0	(def_block
+1a.e.31e	+5	r_class
+1a.14.324	+9	id|Constants
+1a.1e.32e	+1	(brace
+1b.b.33a	+0	(def_block
+1b.b.33a	+9	id|Constants
+1b.14.343	+0	c_func
+1b.14.343	+1	(paren
+1b.15.344	+1	)paren
+1b.17.346	+1	(brace
+1b.18.347	+1	)brace
+1b.19.348	+0	)def_block
+2e.1.718	+1	)brace
+2e.2.719	+0	)def_block
+2f.1.71a	+0	eof

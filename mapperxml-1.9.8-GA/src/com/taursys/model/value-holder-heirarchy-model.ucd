@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" id="pegasustaursyscommartyMapperXML5" metadata="nsuml-1.4" initialized="true" showWireOptions="1">
+  <children xsi:type="editmodel:ClassEditModel" location="24,513" size="222,29" id="pegasustaursyscommartyMapperXML1301" runTimeClassModel="pegasustaursyscommartyMapperXML1302;pegasustaursyscommartyMapperXML1308;pegasustaursyscommartyMapperXML1304">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="169,54"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.0" target="//@children.3/@sourceConnections.0" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,25"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="406,121" size="182,42" stereotype="interface" targetConnections="//@children.5/@sourceConnections.0 //@children.9/@sourceConnections.1 //@children.4/@sourceConnections.0" id="pegasustaursyscommartyMapperXML832" runTimeClassModel="pegasustaursyscommartyMapperXML871;pegasustaursyscommartyMapperXML877;pegasustaursyscommartyMapperXML865;pegasustaursyscommartyMapperXML836;pegasustaursyscommartyMapperXML847;pegasustaursyscommartyMapperXML885;pegasustaursyscommartyMapperXML880;pegasustaursyscommartyMapperXML840;pegasustaursyscommartyMapperXML834;pegasustaursyscommartyMapperXML862;pegasustaursyscommartyMapperXML874;pegasustaursyscommartyMapperXML852;pegasustaursyscommartyMapperXML845;pegasustaursyscommartyMapperXML842;pegasustaursyscommartyMapperXML849;pegasustaursyscommartyMapperXML882;pegasustaursyscommartyMapperXML838;pegasustaursyscommartyMapperXML868;pegasustaursyscommartyMapperXML857;pegasustaursyscommartyMapperXML854">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="83,360"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1394" connectionRouterKind="Manhattan" source="//@children.1" target="//@children.6" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="91,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="59,21"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="25,230" size="159,29" targetConnections="//@children.13/@sourceConnections.0 //@children.12/@sourceConnections.0" id="pegasustaursyscommartyMapperXML615" runTimeClassModel="pegasustaursyscommartyMapperXML638;pegasustaursyscommartyMapperXML677;pegasustaursyscommartyMapperXML617;pegasustaursyscommartyMapperXML659;pegasustaursyscommartyMapperXML647;pegasustaursyscommartyMapperXML628;pegasustaursyscommartyMapperXML625;pegasustaursyscommartyMapperXML621;pegasustaursyscommartyMapperXML671;pegasustaursyscommartyMapperXML635;pegasustaursyscommartyMapperXML657;pegasustaursyscommartyMapperXML654;pegasustaursyscommartyMapperXML632;pegasustaursyscommartyMapperXML662;pegasustaursyscommartyMapperXML664;pegasustaursyscommartyMapperXML642;pegasustaursyscommartyMapperXML619;pegasustaursyscommartyMapperXML623;pegasustaursyscommartyMapperXML616;pegasustaursyscommartyMapperXML680;pegasustaursyscommartyMapperXML667">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="155,252"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.2" target="//@children.9/@sourceConnections.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="420,412" size="193,29" targetConnections="//@children.8/@sourceConnections.0" id="pegasustaursyscommartyMapperXML1040" runTimeClassModel="pegasustaursyscommartyMapperXML1152;pegasustaursyscommartyMapperXML1171;pegasustaursyscommartyMapperXML1163;pegasustaursyscommartyMapperXML1092;pegasustaursyscommartyMapperXML1189;pegasustaursyscommartyMapperXML1041;pegasustaursyscommartyMapperXML1138;pegasustaursyscommartyMapperXML1186;pegasustaursyscommartyMapperXML1059;pegasustaursyscommartyMapperXML1202;pegasustaursyscommartyMapperXML1053;pegasustaursyscommartyMapperXML1168;pegasustaursyscommartyMapperXML1106;pegasustaursyscommartyMapperXML1045;pegasustaursyscommartyMapperXML1199;pegasustaursyscommartyMapperXML1086;pegasustaursyscommartyMapperXML1113;pegasustaursyscommartyMapperXML1182;pegasustaursyscommartyMapperXML1096;pegasustaursyscommartyMapperXML1074;pegasustaursyscommartyMapperXML1157;pegasustaursyscommartyMapperXML1047;pegasustaursyscommartyMapperXML1131;pegasustaursyscommartyMapperXML1178;pegasustaursyscommartyMapperXML1061;pegasustaursyscommartyMapperXML1078;pegasustaursyscommartyMapperXML1050;pegasustaursyscommartyMapperXML1195;pegasustaursyscommartyMapperXML1067;pegasustaursyscommartyMapperXML1133;pegasustaursyscommartyMapperXML1065;pegasustaursyscommartyMapperXML1147;pegasustaursyscommartyMapperXML1141;pegasustaursyscommartyMapperXML1102;pegasustaursyscommartyMapperXML1124;pegasustaursyscommartyMapperXML1070;pegasustaursyscommartyMapperXML1063;pegasustaursyscommartyMapperXML1080;pegasustaursyscommartyMapperXML1175;pegasustaursyscommartyMapperXML1116;pegasustaursyscommartyMapperXML1043;pegasustaursyscommartyMapperXML1166;pegasustaursyscommartyMapperXML1057;pegasustaursyscommartyMapperXML1076;pegasustaursyscommartyMapperXML1154;pegasustaursyscommartyMapperXML1143;pegasustaursyscommartyMapperXML1129;pegasustaursyscommartyMapperXML1149;pegasustaursyscommartyMapperXML1192;pegasustaursyscommartyMapperXML1127;pegasustaursyscommartyMapperXML1160;pegasustaursyscommartyMapperXML1119;pegasustaursyscommartyMapperXML1122;pegasustaursyscommartyMapperXML1072">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="168,774"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.0/@sourceConnections.0" id="pegasustaursyscommartyMapperXML1507" connectionRouterKind="GeneralizationManhattan" source="//@children.3" target="//@children.4" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="96,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="116,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1510" connectionRouterKind="Manhattan" source="//@children.3" target="//@children.5" targetEnd="//@children.3/@sourceConnections.1/@children.1" sourceEnd="//@children.3/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="124,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,42" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="271,284" size="233,29" targetConnections="//@children.3/@sourceConnections.0" id="pegasustaursyscommartyMapperXML892" runTimeClassModel="pegasustaursyscommartyMapperXML951;pegasustaursyscommartyMapperXML995;pegasustaursyscommartyMapperXML909;pegasustaursyscommartyMapperXML938;pegasustaursyscommartyMapperXML897;pegasustaursyscommartyMapperXML949;pegasustaursyscommartyMapperXML907;pegasustaursyscommartyMapperXML935;pegasustaursyscommartyMapperXML930;pegasustaursyscommartyMapperXML1001;pegasustaursyscommartyMapperXML959;pegasustaursyscommartyMapperXML927;pegasustaursyscommartyMapperXML941;pegasustaursyscommartyMapperXML974;pegasustaursyscommartyMapperXML963;pegasustaursyscommartyMapperXML932;pegasustaursyscommartyMapperXML998;pegasustaursyscommartyMapperXML992;pegasustaursyscommartyMapperXML969;pegasustaursyscommartyMapperXML895;pegasustaursyscommartyMapperXML979;pegasustaursyscommartyMapperXML903;pegasustaursyscommartyMapperXML954;pegasustaursyscommartyMapperXML900;pegasustaursyscommartyMapperXML893;pegasustaursyscommartyMapperXML961;pegasustaursyscommartyMapperXML976;pegasustaursyscommartyMapperXML894;pegasustaursyscommartyMapperXML984;pegasustaursyscommartyMapperXML917;pegasustaursyscommartyMapperXML946;pegasustaursyscommartyMapperXML956;pegasustaursyscommartyMapperXML912;pegasustaursyscommartyMapperXML967;pegasustaursyscommartyMapperXML989;pegasustaursyscommartyMapperXML943;pegasustaursyscommartyMapperXML965;pegasustaursyscommartyMapperXML981;pegasustaursyscommartyMapperXML921;pegasustaursyscommartyMapperXML1004;pegasustaursyscommartyMapperXML1007;pegasustaursyscommartyMapperXML972;pegasustaursyscommartyMapperXML899">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="178,648"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manhattan" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="196,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,42" anchorKind="FixedAtEdge"/>
+      <bendpoints secondRelativeDimension="-120,89" firstRelativeDimension="1,-43"/>
+      <bendpoints secondRelativeDimension="-62,89" firstRelativeDimension="59,-43"/>
+      <bendpoints secondRelativeDimension="0,89" firstRelativeDimension="121,-43"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="530,266" size="142,42" stereotype="interface" targetConnections="//@children.3/@sourceConnections.1 //@children.8/@sourceConnections.1" id="pegasustaursyscommartyMapperXML1347" runTimeClassModel="pegasustaursyscommartyMapperXML1365;pegasustaursyscommartyMapperXML1359;pegasustaursyscommartyMapperXML1378;pegasustaursyscommartyMapperXML1369;pegasustaursyscommartyMapperXML1382;pegasustaursyscommartyMapperXML1353;pegasustaursyscommartyMapperXML1385;pegasustaursyscommartyMapperXML1367;pegasustaursyscommartyMapperXML1374;pegasustaursyscommartyMapperXML1376;pegasustaursyscommartyMapperXML1372;pegasustaursyscommartyMapperXML1349;pegasustaursyscommartyMapperXML1380">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="168,234"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1508" connectionRouterKind="Manhattan" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="91,21"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" location="320,11" size="119,42" stereotype="interface" targetConnections="//@children.1/@sourceConnections.0 //@children.11/@sourceConnections.0" id="pegasustaursyscommartyMapperXML386" runTimeClassModel="pegasustaursyscommartyMapperXML419;pegasustaursyscommartyMapperXML388;pegasustaursyscommartyMapperXML399;pegasustaursyscommartyMapperXML414;pegasustaursyscommartyMapperXML403;pegasustaursyscommartyMapperXML409;pegasustaursyscommartyMapperXML394;pegasustaursyscommartyMapperXML412">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="145,144"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="305,517" size="182,29" id="pegasustaursyscommartyMapperXML1243" runTimeClassModel="pegasustaursyscommartyMapperXML1252;pegasustaursyscommartyMapperXML1249;pegasustaursyscommartyMapperXML1246;pegasustaursyscommartyMapperXML1244">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="139,72"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.7" target="//@children.8/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="91,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="516,516" size="161,29" id="pegasustaursyscommartyMapperXML1263" runTimeClassModel="pegasustaursyscommartyMapperXML1279;pegasustaursyscommartyMapperXML1272;pegasustaursyscommartyMapperXML1266;pegasustaursyscommartyMapperXML1264;pegasustaursyscommartyMapperXML1275;pegasustaursyscommartyMapperXML1277;pegasustaursyscommartyMapperXML1282;pegasustaursyscommartyMapperXML1269">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="133,144"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.7/@sourceConnections.0" id="pegasustaursyscommartyMapperXML1569" connectionRouterKind="GeneralizationManhattan" source="//@children.8" target="//@children.3" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="96,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1572" connectionRouterKind="Manual" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.1/@children.1" sourceEnd="//@children.8/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="121,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,42" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="195,230" size="192,29" id="pegasustaursyscommartyMapperXML504" runTimeClassModel="pegasustaursyscommartyMapperXML576;pegasustaursyscommartyMapperXML548;pegasustaursyscommartyMapperXML565;pegasustaursyscommartyMapperXML587;pegasustaursyscommartyMapperXML595;pegasustaursyscommartyMapperXML505;pegasustaursyscommartyMapperXML573;pegasustaursyscommartyMapperXML512;pegasustaursyscommartyMapperXML530;pegasustaursyscommartyMapperXML581;pegasustaursyscommartyMapperXML592;pegasustaursyscommartyMapperXML570;pegasustaursyscommartyMapperXML508;pegasustaursyscommartyMapperXML527;pegasustaursyscommartyMapperXML540;pegasustaursyscommartyMapperXML558;pegasustaursyscommartyMapperXML537;pegasustaursyscommartyMapperXML584;pegasustaursyscommartyMapperXML562;pegasustaursyscommartyMapperXML546;pegasustaursyscommartyMapperXML520;pegasustaursyscommartyMapperXML542;pegasustaursyscommartyMapperXML553;pegasustaursyscommartyMapperXML523;pegasustaursyscommartyMapperXML510;pegasustaursyscommartyMapperXML544;pegasustaursyscommartyMapperXML516;pegasustaursyscommartyMapperXML533;pegasustaursyscommartyMapperXML555;pegasustaursyscommartyMapperXML551;pegasustaursyscommartyMapperXML590">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="149,522"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.2/@sourceConnections.0" id="pegasustaursyscommartyMapperXML1393" connectionRouterKind="GeneralizationManhattan" source="//@children.9" target="//@children.11" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="86,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1396" connectionRouterKind="Manhattan" source="//@children.9" target="//@children.1" targetEnd="//@children.9/@sourceConnections.1/@children.1" sourceEnd="//@children.9/@sourceConnections.1/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="136,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="33,42" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="228,451" size="201,29" id="pegasustaursyscommartyMapperXML1318" runTimeClassModel="pegasustaursyscommartyMapperXML1330;pegasustaursyscommartyMapperXML1321;pegasustaursyscommartyMapperXML1327;pegasustaursyscommartyMapperXML1319;pegasustaursyscommartyMapperXML1324;pegasustaursyscommartyMapperXML1334;pegasustaursyscommartyMapperXML1332">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="153,126"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manual" source="//@children.10" target="//@children.3/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="100,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="116,129" size="170,29" targetConnections="//@children.9/@sourceConnections.0" id="pegasustaursyscommartyMapperXML427" runTimeClassModel="pegasustaursyscommartyMapperXML450;pegasustaursyscommartyMapperXML432;pegasustaursyscommartyMapperXML472;pegasustaursyscommartyMapperXML446;pegasustaursyscommartyMapperXML429;pegasustaursyscommartyMapperXML435;pegasustaursyscommartyMapperXML465;pegasustaursyscommartyMapperXML428;pegasustaursyscommartyMapperXML462;pegasustaursyscommartyMapperXML467;pegasustaursyscommartyMapperXML456;pegasustaursyscommartyMapperXML478;pegasustaursyscommartyMapperXML438;pegasustaursyscommartyMapperXML433;pegasustaursyscommartyMapperXML441;pegasustaursyscommartyMapperXML470;pegasustaursyscommartyMapperXML475">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="145,180"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" connectionRouterKind="Manhattan" source="//@children.11" target="//@children.6" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="32,42" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="192,345" size="138,29" id="pegasustaursyscommartyMapperXML693" runTimeClassModel="pegasustaursyscommartyMapperXML764;pegasustaursyscommartyMapperXML699;pegasustaursyscommartyMapperXML710;pegasustaursyscommartyMapperXML713;pegasustaursyscommartyMapperXML760;pegasustaursyscommartyMapperXML703;pegasustaursyscommartyMapperXML732;pegasustaursyscommartyMapperXML729;pegasustaursyscommartyMapperXML744;pegasustaursyscommartyMapperXML723;pegasustaursyscommartyMapperXML734;pegasustaursyscommartyMapperXML697;pegasustaursyscommartyMapperXML701;pegasustaursyscommartyMapperXML749;pegasustaursyscommartyMapperXML738;pegasustaursyscommartyMapperXML716;pegasustaursyscommartyMapperXML706;pegasustaursyscommartyMapperXML727;pegasustaursyscommartyMapperXML694;pegasustaursyscommartyMapperXML756;pegasustaursyscommartyMapperXML720">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1663" connectionRouterKind="Manhattan" source="//@children.12" target="//@children.2" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="60,29" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,14"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="12,344" size="163,29" id="pegasustaursyscommartyMapperXML802" runTimeClassModel="pegasustaursyscommartyMapperXML1696;pegasustaursyscommartyMapperXML808;pegasustaursyscommartyMapperXML805;pegasustaursyscommartyMapperXML812;pegasustaursyscommartyMapperXML803">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="pegasustaursyscommartyMapperXML1689" connectionRouterKind="Manhattan" source="//@children.13" target="//@children.2" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,29" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural"/>
+  </children>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showInterfaceStereotype="true" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

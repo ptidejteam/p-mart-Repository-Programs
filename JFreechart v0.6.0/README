@@ -1,0 +1,70 @@
+#############################
+# JFREECHART: Version 0.6.0 #
+#############################
+
+27 November 2001
+Written by David Gilbert (david.gilbert@jrefinery.com) and others.
+(C)opyright, 2000, 2001 Simba Management Limited and others.
+
+1.  INTRODUCTION
+JFreeChart is an open-source Java class library for producing charts.
+It runs on the Java 2 Platform (JDK1.2.2 or later) and uses the Java
+2D API for drawing.
+
+JFreeChart is licensed, free of charge, under the terms of the GNU
+Lesser General Public Licence (LGPL).  A copy of the licence is
+included in the download.
+
+Please note that JFreeChart is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  Please refer refer to the licence for details.
+
+2.  LATEST VERSION
+The latest version of this class library can be obtained from:
+
+    http://www.jrefinery.com/jfreechart
+
+If you have an comments, suggestions or bugs to report, please post a
+message in the JFreeChart discussion forum.
+
+3.  DEPENDENCIES
+JFreeChart requires JDK 1.2 or later.  In addition, it uses classes
+from the JCommon class library (also available from
+www.jrefinery.com), version 0.5.1 or later.  The JCommon jar file is
+included in the JFreeChart download, but you may want to download
+JCommon separately to obtain the full source code (also under the GNU
+Lesser General Public Licence).
+
+4. THE DEMO APPLICATION
+There is a demonstration application included with JFreeChart.  To run
+it you need the two files jfreechart.jar and jcommon.jar.  Using JDK
+1.2.2 (or later) you can start the demo by running the class:
+
+    com.jrefinery.chart.demo.JFreeChartDemo.
+
+For example, on Linux, the following command line will run the demo
+application:
+
+java -classpath demo.jar:jfreechart.jar com.jrefinery.chart.demo.JFreeChartDemo
+
+Depending on your system configuration and the current working
+directory, you may need to specify paths in the above command line.
+
+5.  WHAT's NEW
+A list of changes (starting at version 0.6.0):
+
+0.6.0 : (27-Nov-2001) New plots including scatter plot, stacked bar
+        charts and 3D bar charts.  Improved pie chart.  Data
+        interfaces and classes moved to the JCommon class library.
+        New properties to control spacing on bar charts.  New
+        auto-tick mechanism.  JFreeChartPanel now incorporates
+        buffering, and popup menu.  Javadocs revised.  Fixed numerous
+        bugs from version 0.5.6.  Demo application updated.
+
+
+
+
+
+
+
+

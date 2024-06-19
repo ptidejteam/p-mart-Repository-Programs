@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\extensions\15.5.4.4-4.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\extensions\shell.js -f mozilla\js\tests\ecma\extensions\15.5.4.4-4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.4.4-4 String.prototype.charAt
+x = false; x.__proto.charAt = String.prototype.charAt; x.charAt(0) = f PASSED!
+x = false; x.__proto.charAt = String.prototype.charAt; x.charAt(1) = a PASSED!
+x = false; x.__proto.charAt = String.prototype.charAt; x.charAt(2) = l PASSED!
+x = false; x.__proto.charAt = String.prototype.charAt; x.charAt(3) = s PASSED!
+x = false; x.__proto.charAt = String.prototype.charAt; x.charAt(4) = e PASSED!
+x = true; x.__proto.charAt = String.prototype.charAt; x.charAt(0) = t PASSED!
+x = true; x.__proto.charAt = String.prototype.charAt; x.charAt(1) = r PASSED!
+x = true; x.__proto.charAt = String.prototype.charAt; x.charAt(2) = u PASSED!
+x = true; x.__proto.charAt = String.prototype.charAt; x.charAt(3) = e PASSED!
+x = NaN; x.__proto.charAt = String.prototype.charAt; x.charAt(0) = N PASSED!
+x = NaN; x.__proto.charAt = String.prototype.charAt; x.charAt(1) = a PASSED!
+x = NaN; x.__proto.charAt = String.prototype.charAt; x.charAt(2) = N PASSED!
+x = 123; x.__proto.charAt = String.prototype.charAt; x.charAt(0) = 1 PASSED!
+x = 123; x.__proto.charAt = String.prototype.charAt; x.charAt(1) = 2 PASSED!
+x = 123; x.__proto.charAt = String.prototype.charAt; x.charAt(2) = 3 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\extensions\15.5.4.4-4.interpreted.arff] ...

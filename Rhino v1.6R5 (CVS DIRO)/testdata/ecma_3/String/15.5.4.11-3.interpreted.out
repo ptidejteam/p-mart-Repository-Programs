@@ -1,0 +1,18 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\String\15.5.4.11-3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\String\shell.js -f mozilla\js\tests\ecma_3\String\15.5.4.11-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 189898
+STATUS: Regression test for bug 189898
+PASSED! Section 1 of test -
+PASSED! Section 2 of test -
+PASSED! Section 3 of test -
+PASSED! Section 4 of test -
+PASSED! Section 5 of test -
+PASSED! Section 6 of test -
+PASSED! Section 7 of test -
+PASSED! Section 8 of test -
+PASSED! Section 9 of test -
+PASSED! Section 10 of test -
+PASSED! Section 11 of test -
+PASSED! Section 12 of test -
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\String\15.5.4.11-3.interpreted.arff] ...

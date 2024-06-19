@@ -1,0 +1,116 @@
+MapperXML
+Version 1.9.8-pre1 (PRE-RELEASE)
+Release Notes:
+
+=============================================================================
+                       R E L E A S E   N O T E S
+=============================================================================
+
+Quick Highlights
+================================================================
+
+Important Changes
+================================================================
+
+New Features:
+================================================================
+o	Form now has built in DocumentBuilder. Simply set the documentURI
+	property and when Form.initForm() is invoked, Document will be
+	parsed.
+	
+	There are currently 3 builders for Documents:
+		TidyDocumentAdapterBuilder
+		XercesDocumentAdapterBuilder
+		JAXPDocumentAdapterBuilder
+	DocumentAdapterBuilderFactory will try to determine appropriate 
+	builder in the following order:
+		System property: com.taursys.dom.DocumentAdapterBuilderFactory
+			set to desired DocumentAdapterBuilderFactory.
+		If class org.w3c.tidy.Tidy can be found, uses 
+			TidyDocumentAdapterBuilderFactory
+		If class org.apache.xerces.parsers.DOMParser can be found, uses
+			XercesDocumentAdapterBuilderFactory
+		If class javax.xml.parsers.DocumentBuilder can be found, uses
+			JAXPDocumentAdapterBuilderFactory
+		else throws DocumentAdapterBuilderException
+	If you do not want to use built in behavior, do not set the
+	documentURI property, or override Form.initForm() method.
+
+o	Created new Attribute component which is now integral to all Element 
+	type components. Created new Element interface which is implemented by 
+	all DOM type peer components (formerly DocumentComponents).
+	Attributes can be easily created and added to Elements. They can also
+	be bound to the Element's ValueHolder.
+
+o CodeGen tool now accepts project file name as argument at startup
+	
+Public API Interface Changes/Deprecations:
+================================================================
+o	Form.setDocument method now throws DocumentAdapterBuilderException
+o Added removeAttribute method to DocumentAdapter interface
+
+Internal API Interface Changes/Deprecations:
+================================================================
+o	Removed deprecated dispatchers and related calls
+o	Form(ServletForm) should detect which DOM version is in
+	class loader and use appropriate DocumentAdaptor.
+
+Bux Fixes:
+================================================================
+o	Issue with custom components when used in multi-row input.
+	Dispatchers in children of custom component were using their
+	own index instead of the grand-parent template's dispatcher
+	which was iterating the index. This resulted in the children
+	always retrieving the first value of multi-row input.
+	SOLUTION: Refactored Dispatchers and DispatchingContiners
+	to add notion of parentDispatcher.
+o Fixed problem in component factory. When initForm is called 
+	more than once for a SubForm, it wipes out functionality. 
+	Normally, initForm should only be called once, but multiple
+	calls should not cause problems.
+	SOLUTION: Fixed bug in ComponentFactory when moving existing
+	components, tried to remove existing component from
+	rootContainer instead of actual parent container.
+o Problem in HTMLComponentFactory - problem when nesting multiple
+  level templates (ie parent-child-grandchild). Structure
+  became corrupt.
+	SOLUTION: Fixed bug in ComponentFactory when moving existing
+	components, tried to remove existing component from
+	rootContainer instead of actual parent container.
+o Problem in HTMLComponentFactory. It was creating and binding
+  components with well formed id's (but without a value holder
+  with a matching alias) to the last value holder in the given
+  array.
+o HTMLComponentFactory is sometimes creating components as 
+  Template if they are nested in a Template. This was caused
+  by ComponentFactory.getSuggestedComponents altering the
+  original suggestion list for a tag, rather than altering
+  a working copy of the suggestion list. For example, once
+  a span tag had an id containing TEMPLATE_NODE, subsequent
+  span tags all had Template.class as their top suggestion.
+
+
+
+Other Changes:
+================================================================
+o	Added toString methods of components to provide	diagnostic 
+	information for: ValueHolders, Models, XML Components,
+	HTML Components.
+o	Cleanup imports
+o Added more HTML tags the HTMLComponent factory. Default components
+	defined for all HTML 4.01 tags. See javadoc for
+	com.taursys.html.HTMLComponentFactory for a full list of
+	defined tags. Any tags not in the list will default to a
+	com.taursys.xml.DocumentElement.
+o	Refactored DOM_2_20001113_DocumentAdapter to extend
+	DOM_1_20000929_DocumentAdapter.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none
+

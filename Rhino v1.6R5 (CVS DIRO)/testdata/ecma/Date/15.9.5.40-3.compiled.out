@@ -1,0 +1,62 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.40-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.40-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.9.5.36-1 Date.prototype.setFullYear(year [, mon [, date ]] )
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getTime() = 63072000000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.valueOf() = 63072000000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCFullYear() = 1972 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCMonth() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCDate() = 1 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCDay() = 6 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCHours() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getUTCMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getFullYear() = 1971 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getMonth() = 11 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getDate() = 31 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getDay() = 5 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getHours() = 19 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.getMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.toString=Object.prototype.toString;TDATE = new Date(0);(TDATE).setFullYear(1971);TDATE.toString() = [object Date] PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getTime() = 34214400000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.valueOf() = 34214400000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCFullYear() = 1971 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCMonth() = 1 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCDate() = 1 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCDay() = 1 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCHours() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getUTCMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getFullYear() = 1971 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getMonth() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getDate() = 31 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getDay() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getHours() = 19 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.getMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.toString=Object.prototype.toString;TDATE = new Date(0);(TDATE).setFullYear(1971,0);TDATE.toString() = [object Date] PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getTime() = 31622400000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.valueOf() = 31622400000 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCFullYear() = 1971 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCMonth() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCDate() = 2 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCDay() = 6 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCHours() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getUTCMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getFullYear() = 1971 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getMonth() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getDate() = 1 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getDay() = 5 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getHours() = 19 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getMinutes() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getSeconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.getMilliseconds() = 0 PASSED!
+TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.toString=Object.prototype.toString;TDATE = new Date(0);(TDATE).setFullYear(1971,0,1);TDATE.toString() = [object Date] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.40-3.compiled.arff] ...

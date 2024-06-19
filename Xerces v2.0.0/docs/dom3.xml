@@ -1,0 +1,97 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE s1 SYSTEM "./dtd/document.dtd">
+<s1 title="Document Object Model Level 3 Implementation">
+<s2 title="Disclaimer">
+<p>
+The &ParserNameLong; &ParserVersion;  contains a partial implementation of the W3C Document Object Model 
+Level 3.  This implementation is experimental.  The DOM Level 3 specification is 
+still in working draft stage: you should not consider this implementation complete or correct.  
+The limitations of this implementation are detailed below. 
+Please, read this document before using <code>org.apache.xerces.dom3</code> package.  
+</p>
+</s2> 
+<s2 title="Introduction">
+<p>
+The &ParserNameLong; &ParserVersion; contains an implementation of a subset of the W3C DOM Level 3 as 
+specified in <jump
+href="http://www.w3.org/TR/2001/WD-DOM-Level-3-Core-20010913/">Core</jump>, <jump
+href="http://www.w3.org/TR/2001/WD-DOM-Level-3-ASLS-20011025/abstract-schemas.html">Abstract 
+Schemas</jump> and <jump
+href='http://www.w3.org/TR/2001/WD-DOM-Level-3-ASLS-20011025/load-save.html'>Load 
+and Save</jump>.  
+</p>
+<note>DOM Level 3 interfaces are located in org.apache.xerces.dom3 package</note>
+</s2>
+
+<s2 title='Implementation of DOM Level 3 Core'>
+<note>
+To be able to use DOM Level 3 Core functionality, you will need to cast to Xerces implementation (e.i. DocumentImpl, NodeImpl).
+</note>
+<ul>
+    <li>
+        <code>DOMImplementationRegistry</code> (see <code>DOMImplementationSource</code>)
+    </li>
+
+     <li>
+        <code>Document</code>: set/getEncoding, set/getVersion, set/getStandalone, adoptNode.
+    </li>
+    <li>
+        <code>Node</code>: isSameNode
+    </li>
+    <li>
+        <code>Node</code>: getInterface
+    </li>
+    <li>
+        <code>Node</code>: set/getUserData
+    </li>
+    
+    <li>
+        <code>Node</code>: isEqualNode()
+    </li>
+    <li>
+        <code>DOMErrorHandler</code>, <code>DOMError</code>, <code>DOMLocator</code>
+    </li>
+     <li>
+        <code>Entity</code>: set/getEncoding, set/getVersion
+    </li>
+</ul>
+</s2> 
+
+<s2 title='Implementation of DOM Level 3 Load and Save'>
+<ul>
+    <li>
+        <code>DOMBuilder</code>: does not provide implementation of parseWithContext() and <code>DOMBuilderFilter</code>.
+    </li>
+    <li>
+        <code>DOMWriter</code>: supports all required features and setting <code>format-pretty-print</code> feature to true.
+        <code>DOMWriter</code> fixes namespaces during serialization.
+    </li>
+    <li>
+        <code>DOMInputSource</code>
+    </li>
+    <li>
+        <code>DocumentLS</code>
+    </li>
+    <li>
+        <code>DOMImplementationLS</code>
+    </li>
+</ul>
+
+</s2> <s2 title='Implementation of DOM Level 3 Abstract Schemas'>
+<note>Xerces does not provide implementation for editing schemas (AS-EDIT) nor we provide implementation
+for "Document-editing"</note>
+
+<ul>
+    <li>
+        <code>DOMImplementationAS</code>
+    </li>
+    <li>
+        <code>DOMASBuilder</code> supports parsing of XML Schemas and setting the <code>ASModel</code> on the parser.
+    </li>
+</ul>
+<note>
+<code>DOMASBuilder</code> does not support parsing of DTDs. 
+The parser provides only partial implementation for <code>ASModel</code>. 
+For more information on how to parse schemas and set those on the parser instance, see <code>dom.ASBuilder</code> sample.
+</note>
+</s2></s1>

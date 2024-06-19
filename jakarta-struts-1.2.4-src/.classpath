@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="example"/>
+	<classpathentry kind="src" path="examples"/>
+	<classpathentry kind="src" path="share"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="tiles-documentation"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/antlr.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/commons-validator.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/jsp-api-2.0.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/servlet-api-5.5.15.jar"/>
+	<classpathentry kind="lib" path="/jakarta-struts-1.2.4-lib/servlet.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

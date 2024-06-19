@@ -1,0 +1,36 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.14-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.14-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.5.4.8-1 String.prototype.split
+String.prototype.split.length = 2 PASSED!
+delete String.prototype.split.length = false PASSED!
+delete String.prototype.split.length; String.prototype.split.length = 2 PASSED!
+var s = new String('this is a string object'); typeof s.split() = object PASSED!
+var s = new String('this is a string object'); Array.prototype.getClass = Object.prototype.toString; (s.split()).getClass() = [object Array] PASSED!
+var s = new String('this is a string object'); s.split().length = 1 PASSED!
+var s = new String('this is a string object'); s.split()[0] = this is a string object PASSED!
+var obj = new Object(); obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = new Object(); obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = new Object(); obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = new Object(); obj.split = String.prototype.split; obj.split()[0] = [object Object] PASSED!
+var obj = new Function(); obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = new Function(); obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = new Function(); obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = new Function(); obj.split = String.prototype.split; obj.toString = Object.prototype.toString; obj.split()[0] = [object Function] PASSED!
+var obj = new Number(NaN); obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = new Number(Infinity); obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = new Number(-1234567890); obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = new Number(-1e21); obj.split = String.prototype.split; obj.split()[0] = -1e+21 PASSED!
+var obj = Math; obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = Math; obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = Math; obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = Math; obj.split = String.prototype.split; obj.split()[0] = [object Math] PASSED!
+var obj = new Array(1,2,3,4,5); obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = new Array(1,2,3,4,5); obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = new Array(1,2,3,4,5); obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = new Array(1,2,3,4,5); obj.split = String.prototype.split; obj.split()[0] = 1,2,3,4,5 PASSED!
+var obj = new Boolean(); obj.split = String.prototype.split; typeof obj.split() = object PASSED!
+var obj = new Boolean(); obj.split = String.prototype.split; Array.prototype.getClass = Object.prototype.toString; obj.getClass() = [object Array] PASSED!
+var obj = new Boolean(); obj.split = String.prototype.split; obj.split().length = 1 PASSED!
+var obj = new Boolean(); obj.split = String.prototype.split; obj.split()[0] = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.14-1.compiled.arff] ...

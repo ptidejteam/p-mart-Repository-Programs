@@ -1,0 +1,8 @@
+org.apache.xalan.xpath
+org.apache.xalan.xpath.dtm
+org.apache.xalan.xpath.xdom
+org.apache.xalan.xpath.xml
+org.apache.xalan.xslt
+org.apache.xalan.xslt.client
+org.apache.xalan.xslt.extensions
+org.apache.xalan.xslt.trace

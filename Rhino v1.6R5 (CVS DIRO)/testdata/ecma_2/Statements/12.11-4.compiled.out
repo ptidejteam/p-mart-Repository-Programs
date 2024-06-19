@@ -1,0 +1,25 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.11-4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.11-4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+switch-003 The switch statement
+BUGNUMBER: 315988
+switch-003 The switch statement
+switch with no breaks:  input is 0 = ZERO PASSED!
+switch with no breaks:  input is null = NULL PASSED!
+switch with no breaks:  input is undefined = UNDEFINED PASSED!
+switch with no breaks:  input is false = FALSE PASSED!
+switch with no breaks:  input is false = false PASSED!
+switch with no breaks:  input is 0 = 0 PASSED!
+switch with no breaks:  input is true = TRUE PASSED!
+switch with no breaks:  input is 1 = 1 PASSED!
+switch with no breaks:  input is 1 = ONE PASSED!
+switch with no breaks:  input is true = true PASSED!
+switch with no breaks:  input is a = a PASSED!
+switch with no breaks:  input is A = A PASSED!
+switch with no breaks:  input is b = b PASSED!
+switch with no breaks:  input is B = B PASSED!
+switch with no breaks:  input is true = default PASSED!
+switch with no breaks:  input is false = default PASSED!
+switch with no breaks:  input is A = default PASSED!
+switch with no breaks:  input is 0 = default PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.11-4.compiled.arff] ...

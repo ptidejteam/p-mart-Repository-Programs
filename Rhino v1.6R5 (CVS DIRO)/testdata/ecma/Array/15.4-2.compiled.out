@@ -1,0 +1,14 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.4-2 Array Objects
+var arr=new Array();  arr[Math.pow(2,16)] = 'hi'; arr.length = 65537 PASSED!
+var arr=new Array();  arr[Math.pow(2,30)-2] = 'hi'; arr.length = 1073741823 PASSED!
+var arr=new Array();  arr[Math.pow(2,30)-1] = 'hi'; arr.length = 1073741824 PASSED!
+var arr=new Array();  arr[Math.pow(2,30)] = 'hi'; arr.length = 1073741825 PASSED!
+var arr=new Array();  arr[Math.pow(2,31)-2] = 'hi'; arr.length = 2147483647 PASSED!
+var arr=new Array();  arr[Math.pow(2,31)-1] = 'hi'; arr.length = 2147483648 PASSED!
+var arr=new Array();  arr[Math.pow(2,31)] = 'hi'; arr.length = 2147483649 PASSED!
+var arr = new Array(0,1,2,3,4,5); arr.length = 2; String(arr) = 0,1 PASSED!
+var arr = new Array(0,1); arr.length = 3; String(arr) = 0,1, PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4-2.compiled.arff] ...

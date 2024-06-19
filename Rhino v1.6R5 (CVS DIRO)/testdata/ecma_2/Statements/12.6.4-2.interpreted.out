@@ -1,0 +1,115 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.6.4-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.6.4-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 422 ms]
+forin-002 The for...in  statement
+forin-002 The for...in  statement
+with loop in a for...in loop.  ([object global])[inRhino] == eval ( inRhino ) = true PASSED!
+with loop in a for...in loop.  ([object global])[inSection] == eval ( inSection ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECTION] == eval ( SECTION ) = true PASSED!
+with loop in a for...in loop.  ([object global])[exitFunc] == eval ( exitFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[callStack] == eval ( callStack ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsInit] == eval ( optionsInit ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsReset] == eval ( optionsReset ) = true PASSED!
+with loop in a for...in loop.  ([object global])[expectExitCode] == eval ( expectExitCode ) = true PASSED!
+with loop in a for...in loop.  ([object global])[STATUS] == eval ( STATUS ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TZ_DIFF] == eval ( TZ_DIFF ) = true PASSED!
+with loop in a for...in loop.  ([object global])[completed] == eval ( completed ) = true PASSED!
+with loop in a for...in loop.  ([object global])[stopTest] == eval ( stopTest ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getTimeZoneDiff] == eval ( getTimeZoneDiff ) = true PASSED!
+with loop in a for...in loop.  ([object global])[GLOBAL] == eval ( GLOBAL ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeHeaderToLog] == eval ( writeHeaderToLog ) = true PASSED!
+with loop in a for...in loop.  ([object global])[printStatus] == eval ( printStatus ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TestCase] == eval ( TestCase ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getFailedCases] == eval ( getFailedCases ) = true PASSED!
+with loop in a for...in loop.  ([object global])[DEBUG] == eval ( DEBUG ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TITLE] == eval ( TITLE ) = true PASSED!
+with loop in a for...in loop.  ([object global])[reportFailure] == eval ( reportFailure ) = true PASSED!
+with loop in a for...in loop.  ([object global])[FAILED] == eval ( FAILED ) = true PASSED!
+with loop in a for...in loop.  ([object global])[tc] == eval ( tc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[currentFunc] == eval ( currentFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[VERSION] == eval ( VERSION ) = true PASSED!
+with loop in a for...in loop.  ([object global])[test] == eval ( test ) = true PASSED!
+with loop in a for...in loop.  ([object global])[BUGNUMBER] == eval ( BUGNUMBER ) = true PASSED!
+with loop in a for...in loop.  ([object global])[reportCompare] == eval ( reportCompare ) = true PASSED!
+with loop in a for...in loop.  ([object global])[VERBOSE] == eval ( VERBOSE ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsPush] == eval ( optionsPush ) = true PASSED!
+with loop in a for...in loop.  ([object global])[testcases] == eval ( testcases ) = true PASSED!
+with loop in a for...in loop.  ([object global])[startTest] == eval ( startTest ) = true PASSED!
+with loop in a for...in loop.  ([object global])[compareSource] == eval ( compareSource ) = true PASSED!
+with loop in a for...in loop.  ([object global])[printBugNumber] == eval ( printBugNumber ) = true PASSED!
+with loop in a for...in loop.  ([object global])[BigO] == eval ( BigO ) = true PASSED!
+with loop in a for...in loop.  ([object global])[Enumerate] == eval ( Enumerate ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeTestCaseResult] == eval ( writeTestCaseResult ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECT_PREFIX] == eval ( SECT_PREFIX ) = true PASSED!
+with loop in a for...in loop.  ([object global])[AddTestCase] == eval ( AddTestCase ) = true PASSED!
+with loop in a for...in loop.  ([object global])[PASSED] == eval ( PASSED ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeFormattedResult] == eval ( writeFormattedResult ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECT_SUFFIX] == eval ( SECT_SUFFIX ) = true PASSED!
+with loop in a for...in loop.  ([object global])[MyObject] == eval ( MyObject ) = true PASSED!
+with loop in a for...in loop.  ([object global])[ForIn_1] == eval ( ForIn_1 ) = true PASSED!
+with loop in a for...in loop.  ([object global])[ForIn_2] == eval ( ForIn_2 ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsPop] == eval ( optionsPop ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsClear] == eval ( optionsClear ) = true PASSED!
+with loop in a for...in loop.  ([object global])[enterFunc] == eval ( enterFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getTestCaseResult] == eval ( getTestCaseResult ) = true PASSED!
+with loop in a for...in loop.  ([object global])[inRhino] == eval ( inRhino ) = true PASSED!
+with loop in a for...in loop.  ([object global])[inSection] == eval ( inSection ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECTION] == eval ( SECTION ) = true PASSED!
+with loop in a for...in loop.  ([object global])[exitFunc] == eval ( exitFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[callStack] == eval ( callStack ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsInit] == eval ( optionsInit ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsReset] == eval ( optionsReset ) = true PASSED!
+with loop in a for...in loop.  ([object global])[expectExitCode] == eval ( expectExitCode ) = true PASSED!
+with loop in a for...in loop.  ([object global])[STATUS] == eval ( STATUS ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TZ_DIFF] == eval ( TZ_DIFF ) = true PASSED!
+with loop in a for...in loop.  ([object global])[completed] == eval ( completed ) = true PASSED!
+with loop in a for...in loop.  ([object global])[stopTest] == eval ( stopTest ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getTimeZoneDiff] == eval ( getTimeZoneDiff ) = true PASSED!
+with loop in a for...in loop.  ([object global])[GLOBAL] == eval ( GLOBAL ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeHeaderToLog] == eval ( writeHeaderToLog ) = true PASSED!
+with loop in a for...in loop.  ([object global])[printStatus] == eval ( printStatus ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TestCase] == eval ( TestCase ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getFailedCases] == eval ( getFailedCases ) = true PASSED!
+with loop in a for...in loop.  ([object global])[DEBUG] == eval ( DEBUG ) = true PASSED!
+with loop in a for...in loop.  ([object global])[TITLE] == eval ( TITLE ) = true PASSED!
+with loop in a for...in loop.  ([object global])[reportFailure] == eval ( reportFailure ) = true PASSED!
+with loop in a for...in loop.  ([object global])[property] == eval ( property ) = true PASSED!
+with loop in a for...in loop.  ([object global])[FAILED] == eval ( FAILED ) = true PASSED!
+with loop in a for...in loop.  ([object global])[tc] == eval ( tc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[currentFunc] == eval ( currentFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[VERSION] == eval ( VERSION ) = true PASSED!
+with loop in a for...in loop.  ([object global])[test] == eval ( test ) = true PASSED!
+with loop in a for...in loop.  ([object global])[BUGNUMBER] == eval ( BUGNUMBER ) = true PASSED!
+with loop in a for...in loop.  ([object global])[reportCompare] == eval ( reportCompare ) = true PASSED!
+with loop in a for...in loop.  ([object global])[VERBOSE] == eval ( VERBOSE ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsPush] == eval ( optionsPush ) = true PASSED!
+with loop in a for...in loop.  ([object global])[testcases] == eval ( testcases ) = true PASSED!
+with loop in a for...in loop.  ([object global])[startTest] == eval ( startTest ) = true PASSED!
+with loop in a for...in loop.  ([object global])[compareSource] == eval ( compareSource ) = true PASSED!
+with loop in a for...in loop.  ([object global])[printBugNumber] == eval ( printBugNumber ) = true PASSED!
+with loop in a for...in loop.  ([object global])[BigO] == eval ( BigO ) = true PASSED!
+with loop in a for...in loop.  ([object global])[Enumerate] == eval ( Enumerate ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeTestCaseResult] == eval ( writeTestCaseResult ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECT_PREFIX] == eval ( SECT_PREFIX ) = true PASSED!
+with loop in a for...in loop.  ([object global])[AddTestCase] == eval ( AddTestCase ) = true PASSED!
+with loop in a for...in loop.  ([object global])[PASSED] == eval ( PASSED ) = true PASSED!
+with loop in a for...in loop.  ([object global])[writeFormattedResult] == eval ( writeFormattedResult ) = true PASSED!
+with loop in a for...in loop.  ([object global])[SECT_SUFFIX] == eval ( SECT_SUFFIX ) = true PASSED!
+with loop in a for...in loop.  ([object global])[MyObject] == eval ( MyObject ) = true PASSED!
+with loop in a for...in loop.  ([object global])[ForIn_1] == eval ( ForIn_1 ) = true PASSED!
+with loop in a for...in loop.  ([object global])[ForIn_2] == eval ( ForIn_2 ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsPop] == eval ( optionsPop ) = true PASSED!
+with loop in a for...in loop.  ([object global])[optionsClear] == eval ( optionsClear ) = true PASSED!
+with loop in a for...in loop.  ([object global])[enterFunc] == eval ( enterFunc ) = true PASSED!
+with loop in a for...in loop.  ([object global])[getTestCaseResult] == eval ( getTestCaseResult ) = true PASSED!
+with loop in a for...in loop.  (true)[toNumber] == eval ( toNumber ) = true PASSED!
+with loop in a for...in loop.  (true)[toBoolean] == eval ( toBoolean ) = true PASSED!
+with loop in a for...in loop.  (true)[toString] == eval ( toString ) = true PASSED!
+with loop in a for...in loop.  (true)[value] == eval ( value ) = true PASSED!
+with loop in a for...in loop.  (true)[valueOf] == eval ( valueOf ) = true PASSED!
+with loop in a for...in loop.  (true)[toNumber] == eval ( toNumber ) = true PASSED!
+with loop in a for...in loop.  (true)[toBoolean] == eval ( toBoolean ) = true PASSED!
+with loop in a for...in loop.  (true)[toString] == eval ( toString ) = true PASSED!
+with loop in a for...in loop.  (true)[value] == eval ( value ) = true PASSED!
+with loop in a for...in loop.  (true)[valueOf] == eval ( valueOf ) = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.6.4-2.interpreted.arff] ...

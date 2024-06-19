@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+
+<!-- ======================================================================= -->
+<!-- Ant own build file                                                      -->
+<!-- ======================================================================= -->
+
+<project name="Ant" default="main" basedir=".">
+
+  <!-- Give user a chance to override without editing this file 
+       (and without typing -D each time it compiles it) -->
+  <property file="${user.home}/.ant.properties" />
+
+  <property name="Name" value="Ant"/>
+  <property name="name" value="ant"/>
+  <property name="version" value="1.2"/>
+
+  <property name="ant.home" value="."/>
+  <property name="src.bin.dir" value="src/bin"/>
+  <property name="src.etc.dir" value="src/etc"/>
+  <property name="src.dir" value="src/main"/>
+  <property name="src.tests.dir" value="src/testcases"/>
+  <property name="docs.dir" value="docs"/>
+  <property name="build.dir" value="../build/ant"/>
+  <property name="lib.dir" value="${build.dir}/lib"/>
+  <property name="bin.dir" value="${build.dir}/bin"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <property name="build.javadocs" value="${build.dir}/javadocs"/>
+  <property name="build.tests" value="${build.dir}/testcases"/>
+  <property name="ant.dist.dir" value="../dist/ant"/>
+
+  <path id="classpath">
+  </path>
+  <property name="packages" value="org.apache.tools.*"/>
+  <property name="manifest" value="src/etc/manifest"/>
+
+  <property name="build.compiler" value="classic"/>
+  <property name="build.compiler.emacs" value="on"/>
+
+  <!-- =================================================================== -->
+  <!-- Define a global set of patterns that can be referenced by           -->
+  <!-- its id attribute                                                    -->
+  <!-- =================================================================== -->
+  <patternset id="chmod.patterns">
+    <include name="**/ant" />
+    <include name="**/antRun" />
+    <include name="**/bootstrap.sh" />
+  </patternset>
+
+  <!-- =================================================================== -->
+  <!-- Check to see what optional dependencies are available               -->
+  <!-- =================================================================== -->
+  <target name="check_for_optional_packages">
+    <available property="jdk1.2+" classname="java.lang.ThreadLocal" />
+    <available property="jdk1.3+" classname="java.lang.StrictMath" />
+    <available property="bsf.present" classname="com.ibm.bsf.BSFManager" />
+    <available property="netrexx.present" classname="netrexx.lang.Rexx" />
+    <available property="xslp.present" 
+               classname="com.kvisco.xsl.XSLProcessor" />
+    <available property="xalan.present" 
+               classname="org.apache.xalan.xslt.XSLTProcessorFactory" />
+    <available property="ejb.ejbc.present" classname="weblogic.ejbc" />
+    <available property="ejb.DDCreator.present" classname="weblogic.ejb.utils.DDCreator" />
+    <available property="ejb.wls.present" classname="weblogic.Server" />
+    <available property="junit.present" classname="junit.framework.TestCase" />
+    <available property="ftp.present" classname="com.oroinc.net.ftp.FTPClient" />
+    <available property="starteam.present" classname="com.starbase.util.Platform" />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare">
+    <mkdir dir="${build.dir}"/>
+    <tstamp />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the source code                                            -->
+  <!-- =================================================================== -->
+  <target name="compile" depends="prepare,check_for_optional_packages">
+    <mkdir dir="${build.classes}"/>
+
+    <javac srcdir="${src.dir}"
+           destdir="${build.classes}"
+           debug="on"
+           deprecation="off"
+           optimize="on" >
+      <classpath refid="classpath" />
+
+      <exclude name="**/Script.java" unless="bsf.present" />
+      <exclude name="**/NetRexxC.java" unless="netrexx.present" />
+      <exclude name="**/XslpLiaison.java" unless="xslp.present" />
+      <exclude name="**/XalanLiaison.java" unless="xalan.present" />
+      <exclude name="**/Ejbc*.java" unless="ejb.ejbc.present" />
+      <exclude name="**/DDCreator*.java" unless="ejb.DDCreator.present" />
+      <exclude name="**/WLRun.java" unless="ejb.wls.present" />
+      <exclude name="**/WLStop.java" unless="ejb.wls.present" />
+      <exclude name="**/EjbJar.java" unless="jdk1.2+" />
+      <exclude name="**/*DeploymentTool.java" unless="jdk1.2+" />
+      <exclude name="**/junit/*" unless="junit.present" />
+      <exclude name="**/FTP*.java" unless="ftp.present" />
+      <exclude name="**/AntStarTeam*.java" unless="starteam.present" />
+    </javac>
+ 
+    <copy todir="${build.classes}">
+      <fileset dir="${src.dir}">
+        <include name="**/*.properties" />
+      </fileset>
+    </copy>
+
+    <filter token="VERSION" value="${version}" />
+    <filter token="DATE" value="${TODAY}" />
+    <filter token="TIME" value="${TSTAMP}" />
+    <copy    todir="${build.classes}" 
+             overwrite="true"
+             filtering="on">
+      <fileset dir="${src.dir}">
+        <include name="**/version.txt" />
+        <include name="**/defaultManifest.mf" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the jar archive                                             -->
+  <!-- =================================================================== -->
+  <target name="jar" depends="compile">
+    <mkdir dir="${lib.dir}"/>
+    <jar jarfile="${lib.dir}/${name}.jar"
+         basedir="${build.classes}"
+         includes="org/**"
+         manifest="${manifest}"
+    />
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the binary structure                                        -->
+  <!-- =================================================================== -->
+  <target name="main" depends="jar" description="Creates the binary structure">
+     <mkdir dir="${bin.dir}"/>
+     <copy todir="${bin.dir}">
+       <fileset dir="${src.bin.dir}"/>
+     </copy>
+     <chmod perm="+x">
+       <fileset dir="${bin.dir}">
+         <patternset refid="chmod.patterns"/>
+       </fileset>
+     </chmod>
+     <fixcrlf srcdir="${bin.dir}" includes="ant,antRun" cr="remove"/>
+     <fixcrlf srcdir="${bin.dir}" includes="*.bat" cr="add"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the API documentation                                       -->
+  <!-- =================================================================== -->
+  <target name="javadocs" depends="prepare" description="Creates the API documentation">
+    <mkdir dir="${build.javadocs}"/>
+    <javadoc packagenames="${packages}"
+             sourcepath="${basedir}/${src.dir}"
+             destdir="${build.javadocs}"
+             author="true"
+             version="true"
+             windowtitle="${Name} API"
+             doctitle="${Name}"
+             bottom="Copyright &#169; 2000 Apache Software Foundation. All Rights Reserved.">
+    </javadoc>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the distribution                                            -->
+  <!-- =================================================================== -->
+  <target name="dist" depends="main,jar,javadocs" description="Creates the distribution">
+     <mkdir dir="${ant.dist.dir}"/>
+     <mkdir dir="${ant.dist.dir}/bin"/>
+     <mkdir dir="${ant.dist.dir}/lib"/>
+     <mkdir dir="${ant.dist.dir}/docs"/>
+     <mkdir dir="${ant.dist.dir}/docs/api"/>
+     <mkdir dir="${ant.dist.dir}/src"/>
+
+     <copy todir="${ant.dist.dir}/src">
+       <fileset dir="${src.dir}"/>
+     </copy>
+     <copy todir="${ant.dist.dir}/lib">
+       <fileset dir="${lib.dir}"/>
+     </copy>
+
+     <copy file="build.xml" tofile="${ant.dist.dir}/lib/build.xml"/>
+     <copy todir="${ant.dist.dir}/bin">
+       <fileset dir="src/bin"/>
+     </copy>
+     <copy todir="${ant.dist.dir}/docs">
+       <fileset dir="${docs.dir}"/>
+     </copy>
+     <copy todir="${ant.dist.dir}/docs/api">
+       <fileset dir="${build.javadocs}"/>
+     </copy>
+
+     <fixcrlf srcdir="${ant.dist.dir}/bin" includes="ant,antRun" cr="remove"/>
+     <fixcrlf srcdir="${ant.dist.dir}/bin" includes="*.bat" cr="add"/>
+     <chmod perm="+x">
+       <fileset dir="${ant.dist.dir}/bin">
+         <patternset refid="chmod.patterns"/>
+       </fileset>
+     </chmod>
+
+     <copy file="README" tofile="${ant.dist.dir}/README"/>
+     <copy file="WHATSNEW" tofile="${ant.dist.dir}/WHATSNEW"/>
+     <copy file="TODO" tofile="${ant.dist.dir}/TODO"/>
+     <copy file="LICENSE" tofile="${ant.dist.dir}/LICENSE"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Packages the distribution with ZIP                                  -->
+  <!-- =================================================================== -->
+  <target name="dist-zip" depends="dist">
+    <zip zipfile="${Name}-${version}.zip" basedir="${ant.dist.dir}" includes="**"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Packages the distribution with TAR-GZIP                             -->
+  <!-- =================================================================== -->
+  <target name="dist-tgz" depends="dist">
+    <tar tarfile="${Name}-${version}.tar" basedir="${ant.dist.dir}" includes="**"/>
+    <gzip zipfile="${Name}-${version}.tar.gz" src="${Name}-${version}.tar"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Installs the ant.jar library and binary files into ant.home         -->
+  <!-- =================================================================== -->
+  <target name="bootstrap" depends="main" description="Installs the ant.jar library and binary files into ant.home">
+    <echo message="copying bootstrapped files into bin and lib"/>
+    <copy todir="lib">
+      <fileset dir="${lib.dir}"/>
+    </copy>
+    <copy todir="bin">
+      <fileset dir="${bin.dir}"/>
+    </copy>
+  </target>     
+
+  <target name="install" depends="dist" if="ant.install">
+    <echo message="installing full copy of ant into ${ant.install}"/>
+    <mkdir dir="${ant.install}"/>
+    <copy todir="${ant.install}">
+      <fileset dir="${ant.dist.dir}"/>
+    </copy>
+    <chmod perm="+x">
+      <fileset dir="${ant.install}/bin">
+        <patternset refid="chmod.patterns"/>
+      </fileset>
+    </chmod>
+  </target>     
+
+  <target name="fullinstall" depends="install"/>
+  
+  <target name="mininstall" depends="main" if="ant.install">
+    <echo message="copy minimal ant installation into ${ant.install}"/>
+    <mkdir dir="${ant.install}"/>
+    <copy todir="${ant.install}/lib">
+      <fileset dir="${lib.dir}"/>
+    </copy>
+    <copy todir="${ant.install}/bin">
+      <fileset dir="${bin.dir}"/>
+    </copy>
+    <chmod perm="+x">
+      <fileset dir="${ant.install}/bin">
+        <patternset refid="chmod.patterns"/>
+      </fileset>
+    </chmod>
+  </target>     
+
+  <!-- =================================================================== -->
+  <!-- Cleans up generated stuff                                           -->
+  <!-- =================================================================== -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete dir="${ant.dist.dir}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Total cleanup                                                       -->
+  <!-- =================================================================== -->
+  <target name="total-clean" depends="clean">
+    <delete dir="${bin.dir}"/>
+    <delete file="${lib.dir}/${name}.jar"/>
+    <delete file="${Name}-${version}.zip"/>
+    <delete file="${Name}-${version}.tar"/>
+    <delete file="${Name}-${version}.tar.gz"/>
+  </target>
+
+  <!-- in progress ! (may not work) -->
+
+  <target name="get.snapshot">
+    <get src="http://jakarta.apache.org/build/tmp/ant/ant.src.zip" dest="ant-src.zip" />
+    <unzip src="ant-src.zip" dest="." />
+  </target>
+
+  <target name="make.snapshot">
+    <cvs cvsRoot=":pserver:anoncvs@jakarta.apache.org:/home/cvspublic"
+         package="jakarta-ant"
+         dest="."  />
+    <zip zipfile="/www/jakarta.apache.org/builds/tmp/ant/ant.src.zip" basedir="." includes="jakarta-ant/**"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compile testcases                                                   -->
+  <!-- =================================================================== -->
+  <target name="compiletests" depends="jar" if="junit.present">
+    <mkdir dir="${build.tests}"/>
+
+    <javac srcdir="${src.tests.dir}"
+           destdir="${build.tests}"
+           debug="on"
+           deprecation="off" >
+      <classpath>
+        <pathelement location="${lib.dir}/${name}.jar" />
+        <path refid="classpath" />
+      </classpath>
+    </javac>
+   </target>
+
+  <!-- =================================================================== -->
+  <!-- Run testcase                                                        -->
+  <!-- =================================================================== -->
+  <target name="runtests" depends="compiletests" if="junit.present">
+    <junit printsummary="no" haltonfailure="yes">
+      <classpath>
+        <pathelement location="${lib.dir}/${name}.jar" />
+        <pathelement location="${build.tests}" />
+        <path refid="classpath" />
+        <pathelement path="${java.class.path}" />
+      </classpath>
+
+      <formatter type="plain" usefile="false" />
+
+      <batchtest>
+        <fileset dir="${src.tests.dir}">
+          <include name="**/*Test*" />
+          <!-- abstract class, not a testcase -->
+          <exclude name="org/apache/tools/ant/taskdefs/TaskdefsTest.java" />
+
+          <!-- these depend on order -->
+          <exclude name="org/apache/tools/ant/taskdefs/GUnzipTest.java" />
+          <exclude name="org/apache/tools/ant/taskdefs/GzipTest.java" />
+        </fileset>
+      </batchtest>
+
+      <test name="org.apache.tools.ant.taskdefs.GzipTest" />
+      <test name="org.apache.tools.ant.taskdefs.GUnzipTest" />
+    </junit>
+
+    <!-- clean up again -->
+    <delete dir="src/etc/testcases/taskdefs/taskdefs.tmp" />
+    <delete dir="src/etc/testcases/taskdefs.tmp" />
+  </target>
+
+  <target name="run.single.test" if="testcase" depends="compiletests">
+    <junit printsummary="no" haltonfailure="yes">
+      <classpath>
+        <pathelement location="${lib.dir}/${name}.jar" />
+        <pathelement location="${build.tests}" />
+        <path refid="classpath" />
+        <pathelement path="${java.class.path}" />
+      </classpath>
+
+      <formatter type="plain" usefile="false" />
+
+      <test name="${testcase}" />
+    </junit>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Targets to build distributions, probaly not that useful for         -->
+  <!-- anybody but the people doing Ant releases.                          -->
+  <!-- =================================================================== -->
+
+  <property name="JAXP_HOME" value="/usr/local/java/lib/jaxp1.0.1" />
+  <property name="ant.srcdist.dir" value="../dist/jakarta-ant-src"/>
+
+  <target name="srcbuild">
+     <mkdir dir="${ant.srcdist.dir}" />
+     <mkdir dir="${ant.srcdist.dir}/lib" />
+
+     <copy todir="${ant.srcdist.dir}">
+       <fileset dir=".">
+         <exclude name="bin/**" />
+         <exclude name="lib/**" />
+       </fileset>
+     </copy>
+
+     <fixcrlf srcdir="${ant.srcdist.dir}" includes="ant,antRun,bootstrap.sh" cr="remove"/>
+     <fixcrlf srcdir="${ant.srcdist.dir}" includes="*.bat" cr="add"/>
+     <chmod perm="+x">
+       <fileset dir="${ant.srcdist.dir}">
+         <patternset refid="chmod.patterns"/>
+       </fileset>
+     </chmod>
+
+     <copy todir="${ant.srcdist.dir}/lib">
+       <fileset dir="${JAXP_HOME}">
+         <include name="**/*.jar" />
+       </fileset>
+     </copy>
+  </target>
+  
+  <target name="src.zip" depends="srcbuild">
+    <zip zipfile="${ant.srcdist.dir}/../jakarta-ant-src.zip" 
+         basedir="${ant.srcdist.dir}" />
+  </target>
+
+  <target name="src.tgz" depends="srcbuild">
+    <property name="src.tar" 
+              value="${ant.srcdist.dir}/../jakarta-ant-src.tar" />
+    <tar tarfile="${src.tar}" basedir="${ant.srcdist.dir}" />
+    <gzip src="${src.tar}" zipfile="${src.tar}.gz" />
+    <delete file="${src.tar}" />
+  </target>
+
+  <target name="srcdist" description="Creates the source distribution"
+          depends="src.zip,src.tgz" />
+
+  <property name="ant.bindist.dir" value="../dist/jakarta-ant-bin"/>
+
+  <target name="binbuild" depends="compile">
+
+    <!-- ugly hack to build a binary distribution without optional tasks -->
+    <delete>
+      <fileset dir="${build.classes}">
+        <include name="**/Script.java" />
+        <include name="**/NetRexxC.java" />
+        <include name="**/XslpLiaison.java" />
+        <include name="**/XalanLiaison.java" />
+        <include name="**/Ejbc*.java" />
+        <include name="**/DDCreator*.java" />
+        <include name="**/WLRun.java" />
+        <include name="**/WLStop.java" />
+        <include name="**/junit/*" />
+        <include name="**/FTP*.java" />
+        <include name="**/AntStarTeam*.java" />
+      </fileset>
+    </delete>
+
+    <mkdir dir="${ant.bindist.dir}"/>
+    <mkdir dir="${ant.bindist.dir}/bin"/>
+    <mkdir dir="${ant.bindist.dir}/src"/>
+    <mkdir dir="${ant.bindist.dir}/etc"/>
+    <mkdir dir="${ant.bindist.dir}/lib"/>
+    <mkdir dir="${ant.bindist.dir}/docs/api"/>
+
+    <jar jarfile="${ant.bindist.dir}/lib/${name}.jar"
+         basedir="${build.classes}"
+         includes="org/**"
+         manifest="${manifest}"
+    />
+
+    <copy todir="${ant.bindist.dir}/docs">
+      <fileset dir="${docs.dir}"/>
+    </copy>
+    <javadoc packagenames="${packages}"
+             sourcepath="${basedir}/${src.dir}"
+             destdir="${ant.bindist.dir}/docs/api"
+             author="true"
+             version="true"
+             windowtitle="${Name} API"
+             doctitle="${Name}"
+             bottom="Copyright &#169; 2000 Apache Software Foundation. All Rights Reserved.">
+    </javadoc>
+
+    <copy todir="${ant.bindist.dir}/src">
+      <fileset dir="${src.dir}"/>
+    </copy>
+
+    <copy todir="${ant.bindist.dir}/etc">
+      <fileset dir="${src.etc.dir}">
+        <exclude name="testcases/**" />
+      </fileset>
+    </copy>
+
+    <copy todir="${ant.bindist.dir}/bin">
+      <fileset dir="${src.bin.dir}"/>
+    </copy>
+    <fixcrlf srcdir="${ant.bindist.dir}/bin" includes="ant,antRun" cr="remove"/>
+    <fixcrlf srcdir="${ant.bindist.dir}/bin" includes="*.bat" cr="add"/>
+    <chmod perm="+x">
+      <fileset dir="${ant.bindist.dir}/bin">
+        <patternset refid="chmod.patterns"/>
+      </fileset>
+    </chmod>
+
+    <copy file="build.xml" tofile="${ant.bindist.dir}/lib/build.xml"/>
+
+    <copy file="README" tofile="${ant.bindist.dir}/README"/>
+    <copy file="WHATSNEW" tofile="${ant.bindist.dir}/WHATSNEW"/>
+    <copy file="TODO" tofile="${ant.bindist.dir}/TODO"/>
+    <copy file="LICENSE" tofile="${ant.bindist.dir}/LICENSE"/>
+
+    <copy todir="${ant.bindist.dir}/lib">
+      <fileset dir="${JAXP_HOME}">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="bin.zip" depends="binbuild">
+    <zip zipfile="${ant.bindist.dir}/../jakarta-ant-bin.zip" 
+         basedir="${ant.bindist.dir}" />
+  </target>
+
+  <target name="bin.tgz" depends="binbuild">
+    <property name="bin.tar" 
+              value="${ant.bindist.dir}/../jakarta-ant-bin.tar" />
+    <tar tarfile="${bin.tar}" basedir="${ant.bindist.dir}" />
+    <gzip src="${bin.tar}" zipfile="${bin.tar}.gz" />
+    <delete file="${bin.tar}" />
+  </target>
+
+  <target name="bindist" description="Creates the binary distribution"
+          depends="bin.zip,bin.tgz" />
+
+  <property name="contributed.tasks" value="../build/ant.contrib" />
+  <property name="optional" value="../dist/optional.jar" />
+
+  <target name="optional.jar" depends="compile"
+          description="Creates a JAR of the optional tasks">
+    <mkdir dir="${contributed.tasks}" />
+    <copy todir="${contributed.tasks}">
+      <fileset dir="${build.classes}">
+        <include name="**/optional/**" />
+      </fileset>
+    </copy>
+    <jar jarfile="${optional}"
+         basedir="${contributed.tasks}"
+         manifest="${manifest}"
+    />
+  </target>
+
+  <target name="release.dist" depends="srcdist,bindist,optional.jar"
+          description="Creates all five files for a release build" />
+
+</project>
+

@@ -1,0 +1,94 @@
+MapperXML
+Version 1.9.4
+Release Notes:
+
+Quick Highlights
+================================================================
+o   Added new Responder subcomponent to ServletForm to customize
+    response during runtime.
+o   Added new properties to control ServletForm behavior.
+o   Added new Components: CheckboxField and HTMLCheckbox.
+o   Added default value to Parameters, Fields and Triggers.
+    This allows controls to respond to case where data is NOT
+    present in request.
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+o   The xmlWriter (AbstractWriter) property of the ServletForm
+    has been deprecated.  The writer is now an optional
+    subcomponent of a DocumentAdapter (if needed by the specific
+    DocumentAdapter).  These was deprecated to support the new
+    Responder subcomponent.
+
+Internal API Interface Changes/Deprecations:
+================================================================
+o   The DocumentAdapter has two new methods defined:
+    write(OutputStream) and write(Writer).  These were added to
+    support the new Responder subcomponent.
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+o   A new Responder subcomponent has been added to the ServletForm.
+    Implementations of this subcomponent will provide an easy way
+    to change the response behavior of a ServletForm during runtime.
+    There are a number of implementations of the Responder subcomponent:
+        HTMLResponder - renders and sends HTML Document as response (default)
+        ClientRedirectResponder -  redirects the client to a URL as the response.
+        ErrorResponder - sends status code and optional message as response.
+        NoResponseResponder - responds by doing nothing.
+        StreamResponder - responds by sending its input stream to the
+            response output stream.
+o   Added new properties to control ServletForm behavior.  The
+    enableInput flag indicates whether or not to process input.
+    If this flag is set, the run method will invoke the
+    dispatchInput method to process input parameters for
+    components. Disable input if you are processing a request
+    where no input parameters are expected. This will avoid any
+    input being set by default values (or behavior of HTMLCheckbox).
+        The enableActions flag indicates whether or not to
+    process actions. If this flag is set, the run method will
+    invoke the dispatchActions method to process action
+    parameters for trigger components.  Disable actions if you
+    are processing a request where no action parameters are
+    expected.  This will avoid any actions being triggered
+    by default values.
+o   Added new Components CheckboxField and HTMLCheckbox.  The
+    CheckboxField is a two state control: selected/unselected.
+    You can define the values to be associated with each state.
+    The HTMLCheckbox includes special behavior to cope with the
+    fact that only the checked(selected) state is transmitted
+    in the request - the unchecked(unselected) state is not
+    transmitted and therefore must be assumed.
+o   Added default behavior to Parameter component (inherited by
+    all subclasses including Fields).  A new property defaultValue
+    has been added.  If this property is set (not null), and the
+    expected parameter is NOT in the request, then the component
+    will behave as if the defaultValue was received in the request.
+o   Added default behavior to Trigger component (inherited by
+    all subclasses including Button).  A new property defaultTrigger
+    has been added.  If this property is true, and the expected
+    parameter is NOT in the request, then the component will
+    behave as if its text value was received in the request and
+    will fire.
+
+Other Changes:
+================================================================
+o   Changed initializer for text property of Trigger.  Was
+    initialized as blank String, now is null.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none

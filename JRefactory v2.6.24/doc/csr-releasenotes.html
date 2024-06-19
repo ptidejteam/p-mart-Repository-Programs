@@ -1,0 +1,460 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+  <TITLE>Software::JRefactory - Release Notes</TITLE>
+</HEAD>
+<BODY>
+
+<TABLE BORDER="0">
+  <TR>
+    <TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+      <IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+      <A HREF="chrissoft.html">Software</A> <BR>
+      <UL>
+        <LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+        <LI> JRefactory<BR>
+        <LI> <A HREF="csprint.html">Printing</A> <BR>
+        <LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+        <LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+        <LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+        <LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+        <LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+        <LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+      </UL>
+      <A HREF="chrisdown.html"><B>Download</B></A> <BR>
+      <B><A HREF="authors.html">Contributors</A></B> <BR>
+    </TD>
+
+    <TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+      <P><A HREF="csr-thirdparty.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+    </TD>
+
+    <TD ALIGN="CENTER">
+      <H2 ALIGN="CENTER">Software::JRefactory - Release Notes</H2>
+    </TD>
+
+    <TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+      <P ALIGN="RIGHT"><A HREF="csprint.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page" BORDER="2"></A>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD COLSPAN="3">
+      <UL>
+        <LI>
+          <B>Version 2.2</B>
+          <UL>
+            <LI>
+              Fixed some bugs with the repackage refactoring
+              <BR>
+              These are associated with not noticing the class because
+              it was only used in an allocation expression.
+            <LI>
+              A second bug where the entire package path is
+              used to specify a type has also been fixed.
+          </UL>
+
+        <LI>
+          <B>Version 2.4</B>
+          <UL>
+            <LI>
+              The GUI has been improved.
+            <LI>
+              Selection of the current class if it is not
+              already been selected
+            <LI>
+              Alphabetized list of packages to move the current class to
+            <LI>
+              Anything related to renaming a class.
+          </UL>
+
+        <LI>
+          <B>Version 2.4.10</B>
+          <UL>
+            <LI>
+              The system is now able to load classes with static initializers.
+              <BR>
+              These show up as methods named ***Initializer*** in the class
+              diagrams.
+          </UL>
+
+        <LI>
+          <B>Version 2.4.18</B>
+          <UL>
+            <LI>
+              Added the "add abstract parent class"
+              and the "add child class"
+            <LI>
+              Added additional functional tests for Rename class,
+              because of bugs found with renaming a class that didn't
+              include a factory method.
+          </UL>
+
+        <LI>
+          <B>Version 2.4.21</B>
+          <UL>
+            <LI>
+              Added "remove class"
+            <LI>
+              More unit tests for "add abstract parent class"
+          </UL>
+
+        <LI>
+          <B>Version 2.4.24</B>
+          <UL>
+            <LI>
+              "push up field" and "push down field"
+            <LI>
+              Fixed a parser error where the class has a dynamic initializer
+          </UL>
+
+        <LI>
+          <B>Version 2.4.31</B>
+          <UL>
+            <LI>
+              Added JBuilder support
+            <LI>
+              Fixed a bug with repackaging where the input to the method
+              was a constructor for a type
+          </UL>
+
+        <LI>
+          <B>Version 2.4.42</B>
+          <UL>
+            <LI>
+              Added push up method
+            <LI>
+              Improved the movement of the scroll bars in the UML diagram
+            <LI>
+              (JBuilder only) now only loads the information to draw the
+              UML diagrams when the user first asks for this feature.
+              <BR>
+              Therefore it will not slow down the speed at which JBuilder
+              loads.  However, if you had a UML diagram open when you exited
+              JBuilder, the refactory will load the required information as
+              JBuilder starts - and will make JBuilder seem to load much
+              more slowly.
+          </UL>
+
+        <LI>
+          <B>Version 2.5.0</B>
+          <UL>
+            <LI>
+              Added "push up abstract method" and "push down method".
+            <LI>
+              Fixed bugs related to renaming classes that are exceptions and
+              renaming classes that are only referenced inside a anonymous
+              class
+            <LI>
+              Added zooming
+            <LI>
+              Added moving multiple classes as a group
+          </UL>
+
+        <LI>
+          <B>Version 2.5.33</B>
+          <UL>
+            <LI>
+              Added "extract method" and "move method"
+          </UL>
+
+        <LI>
+          <B>Version 2.5.38</B>
+          <UL>
+            <LI>
+              Added the Extract Interface refactoring
+            <LI>
+              Provides a key and a navigation pane for the command line
+              interface and the JBuilder interface
+          </UL>
+
+        <LI>
+          <B>Version 2.6.0</B>
+          <UL>
+            <LI>
+              Fixed Comodification Error when repainting the UML diagrams
+              <!--  Joi  -->
+            <LI>
+              Hide undo stack file missing error
+              <!-- DYuan@qtera.com -->
+            <LI>
+              Added rename parameter refactoring
+            <LI>
+              When performing the extract method refactoring, if there are
+              zero or one parameters to the extracted method, don't provide
+              the list and the up and down arrows.
+              <!-- Joi -->
+            <LI>
+              Keep extract method in the inner class
+            <LI>
+              Keep the method static when the method is extracted
+            <LI>
+              Keep the method synchronized when the method is extracted
+            <LI>
+              If the extracted method contained the local variable declaration,
+              then add the local variable declaration into the place where the
+              method was extracted.
+            <LI>
+              Improvements to the extract method GUI.
+          </UL>
+
+        <LI>
+          <B>Version 2.6.8</B>
+          <UL>
+            <LI>
+              Extract Method Signature keeps up with typing
+              <!--  Matt Mower -->
+            <LI>
+              Change from circles to letters for protection
+            <LI>
+              Change the size of the sticky points
+            <LI>
+              Block summary load from entering CVS directories
+              <!-- triero@summerwalk.com (Robert Triebwasser) -->
+            <LI>
+              Backup files named bk?
+              <!--  Matt Mower -->
+          </UL>
+
+        <LI>
+          <B>Version 2.6.12</B>
+          <UL>
+            <LI>
+              Visual Cafe to work again
+              <!-- norbert.ebel@epfl.ch (Norbert Ebel), jessec@qbeo.com, Michael S. Suddith (michael.s.suddith@lmco.com) -->
+            <LI>
+              New function "Rename field"
+              <!--  Dan (bdan@rieska.oulu.fi)  -->
+            <LI>
+              Fixed Extract Method problem
+              <BR>
+              If there was only used for a field access, the object was not
+              included in the parameter list.
+              <!-- do@lanl.gov -->
+            <LI>
+              Load chinese characters
+              <!-- legendlee@gxlu.com.cn -->
+            <LI>
+              Pretty printer loads multiple files or directories
+              from the command line
+            <LI>
+              Fixed bug in JavadocTokenizer (out of bounds exception)
+            <LI>
+              Added more space in the metrics table
+          </UL>
+
+        <LI>
+          <B>Version 2.6.13</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Ability to add javadoc comments with "throws"
+              instead of "exception".
+              <BR>
+              Enable this feature by changing the setting in pretty.settings
+              from:
+              <BLOCKQUOTE><TT>
+              <B>exception.tag.name=</B>@exception
+              </TT></BLOCKQUOTE>
+              to:
+              <BLOCKQUOTE><TT>
+              <B>exception.tag.name=</B>@throws
+              </TT></BLOCKQUOTE>
+              <!--  Ragnar (ragnar.westad@eto.ericsson.se) -->
+          </UL>
+
+        <LI>
+          <B>Version 2.6.14</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Don't comment anonymous classes.
+              <BR>
+              This is now the default behavior.
+              <!-- bryan.young@nisc.cc, m.brockhage@syborg.de -->
+            <LI>
+              (Pretty Printer) Don't comment inner classes
+              <BR>
+              Enable this feature by changing the setting in pretty.settings
+              from:
+              <BLOCKQUOTE><TT>
+              <B>document.nested.classes=</B>true
+              </TT></BLOCKQUOTE>
+              to:
+              <BLOCKQUOTE><TT>
+              <B>document.nested.classes=</B>false
+              </TT></BLOCKQUOTE>
+          </UL>
+
+        <LI>
+          <B>Version 2.6.15</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Sort the main method to the top of a class.
+              <BR>
+              To enable this feature, you need to adjust the sort
+              criteria based on type to include the code "Main".
+              For instance, the default behaviour sorts the type
+              first - so that the fields appear at the top of the
+              file, the constructors come next, and then the methods.
+              This is specified by:
+              <BLOCKQUOTE><TT>
+                <B>sort.1=</B>Type(Field, Constructor, Method, NestedClass, NestedInterface, Initializer)
+              </TT></BLOCKQUOTE>
+              To force the main method to appear in a certain position, insert
+              "Main" in the correct location. For instance after the field
+              but before the constructors, insert it like so:
+              <BLOCKQUOTE><TT>
+                <B>sort.1=</B>Type(Field, Main, Constructor, Method, NestedClass, NestedInterface, Initializer)
+              </TT></BLOCKQUOTE>
+              <!-- Tiemco (tiemco.de.jong@evermind.com), m.brockhage@syborg.de -->
+            <LI>
+              (Pretty Printer) Fixed bug in the sorting routine that didn't
+              properly order setters, getters, and other methods.
+            <LI>
+              Put JRefactory in SourceForge's CVS (with SSH)
+          </UL>
+
+        <LI>
+          <B>Version 2.6.16</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Local variables defined in the constructor
+              should not be indented according to the field variables
+          </UL>
+
+        <LI>
+          <B>Version 2.6.17</B>
+          <UL>
+            <LI>
+              (Refactorings) Make "rename parameter" work for the constructor
+              <!--  anders.persson@telelogic.com -->
+            <LI>
+              (Refactorings) Control the extract method dialog box size
+            <LI>
+              (Refactorings) Fixed bug that made the parameters in the
+              extract method dialog vanish suddenly
+              <!--  Matt Mower -->
+            <LI>
+              (Refactorings) "Extract interface" goes to a strange directory
+          </UL>
+
+        <LI>
+          <B>Version 2.6.18</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Fields and local variables with arrays should
+              be indented properly with DFS_ALWAYS (dynamic field spacing)
+          </UL>
+
+
+        <LI>
+          <B>Version 2.6.19</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Allow the user to specify that fields
+                 with initializers maintain their current order
+              <BR>To enable this feature, find all the settings
+                 named "sort.#" in pretty.settings
+                 and change sort.1 to sort.2,
+                 sort.2 to sort.3, etc.  Then add:<BR>
+                 <TT>sort.1=FieldInitializers()</TT>
+
+            <LI>
+              (Pretty Printer) Added an emacs block style which looks
+                 like pascal block style but has the { and } indented
+                 by 2 extra spaces
+          </UL>
+
+
+
+        <LI>
+          <B>Version 2.6.20</B>
+          <UL>
+            <LI>
+              (Pretty Printer) Add a footer
+              <BR>To enable this feature, add a set of lines
+                 called footer.# to the pretty.settings file
+
+            <LI>
+              (Pretty Printer) Improved the emacs style
+
+            <LI>
+              (Refactoring) Fixed a bug with extracting a method
+          </UL>
+
+        <LI>
+          <B>Version 2.6.21</B>
+          <UL>
+            <LI>
+              (Other) Centered the dialog boxes on the frame
+
+            <LI>
+              (Refactoring) Improved the ExtractMethodDialog box so that it
+                would not resize and dance
+
+            <LI>
+              (Command Line) Allow the system to launch an editor when
+                using JRefactory's UML diagrams in a command line mode
+              <BR>
+              To enable this feature, edit the source.editor setting
+              in the uml.settings file.  $FILE specifies the file to
+              edit and $LINE specifies the line number to jump to.
+          </UL>
+
+        <LI>
+          <B>Version 2.6.22</B>
+          <UL>
+              <LI>  (PrettyPrinter) When the javadoc can fit on a single line,
+              		it is allowed to stay on a single line
+			      <!-- Thomas Calivera (calivera@telocity.com), (fries@lionbioscience.com) -->
+			      <BR> To enable this function you need to edit the pretty.settings
+			      file and add allow.singleline.javadoc=true
+			    <LI>  (UML Diagrams) New UML Class Diagram should have OK/Cancel buttons and be resizeable
+			      <!-- William.R.Zwicky@erdc.usace.army.mil, Tiemco.de.Jong@EverMind.com (Tiemco de Jong),
+			      		westad@systek.no  -->
+              <LI>  (PrettyPrinter) Default values in pretty.settings match
+                  Sun's Java Coding standards
+		  </UL>
+
+          <B>Version 2.6.23</B>
+          <UL>
+              <LI>  (PrettyPrinter) Fixed an interaction between force.block=false and
+   			else.start.line=false
+              <LI>  (PrettyPrinter) Fixed a infinite loop pretty printing files with /* */
+              <LI>  (PrettyPrinter) Variable indented with the block
+          </UL>
+
+          <B>Version 2.6.24</B>
+          <UL>
+              <LI>  (Ant Task) Added an Ant task and a CVS util
+              <LI>  (IDE) Reloaded the JBuilder project after refactoring
+              <LI>  (IDE) Close files before performing a refactoring that removes, renames, or moves a class
+              <LI>  (IDE) Added a filter mechanism to limit the names of packages
+					displayed in the package selection list box.  This is infrastructure
+					only and does not change the current behavior.
+              <LI>  (IDE) Save the files to disk in JBuilder before performing
+		            the refactoring.
+		      <LI>  (IDE) Restore the displaying of the accellerator keys to the menu
+		      <LI>  (Refactoring) Correctly identify thrown exception that is
+		            caught inside the extracted method as a variable that does not need
+		            to be a parameter
+		      <LI>  (Pretty Printer)  Fixed a bug with else.start.line that was introduced
+		            in 2.6.23
+          </UL>
+      </UL>
+    </TD>
+  </TR>
+
+  <TR>
+    <TD WIDTH="35"><A HREF="csr-thirdparty.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+    <TD ALIGN="CENTER">
+      <P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: June 6, 2000</FONT>
+    </TD>
+    <TD WIDTH="35" ALIGN="RIGHT">
+      <P ALIGN="RIGHT"><A HREF="csprint.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+    </TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>

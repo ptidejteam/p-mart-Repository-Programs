@@ -1,0 +1,641 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/util/classList.html" TARGET="packageFrame">org.apache.poi.util</A>: LittleEndian, BufferUnderrunException');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/util/classList.html" TARGET="packageFrame">org.apache.poi.util</A>: LittleEndian, BufferUnderrunException';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">/* ====================================================================
+<a name=2 class="linenum">2    </a> * The Apache Software License, Version 1.1
+<a name=3 class="linenum">3    </a> *
+<a name=4 class="linenum">4    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=5 class="linenum">5    </a> * reserved.
+<a name=6 class="linenum">6    </a> *
+<a name=7 class="linenum">7    </a> * Redistribution and use in source and binary forms, with or without
+<a name=8 class="linenum">8    </a> * modification, are permitted provided that the following conditions
+<a name=9 class="linenum">9    </a> * are met:
+<a name=10 class="linenum">10   </a> *
+<a name=11 class="linenum">11   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=12 class="linenum">12   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=13 class="linenum">13   </a> *
+<a name=14 class="linenum">14   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=15 class="linenum">15   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=16 class="linenum">16   </a> *    the documentation and/or other materials provided with the
+<a name=17 class="linenum">17   </a> *    distribution.
+<a name=18 class="linenum">18   </a> *
+<a name=19 class="linenum">19   </a> * 3. The end-user documentation included with the redistribution,
+<a name=20 class="linenum">20   </a> *    if any, must include the following acknowledgment:
+<a name=21 class="linenum">21   </a> *       "This product includes software developed by the
+<a name=22 class="linenum">22   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=23 class="linenum">23   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=24 class="linenum">24   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=25 class="linenum">25   </a> *
+<a name=26 class="linenum">26   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=27 class="linenum">27   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=28 class="linenum">28   </a> *    derived from this software without prior written permission. For
+<a name=29 class="linenum">29   </a> *    written permission, please contact apache@apache.org.
+<a name=30 class="linenum">30   </a> *
+<a name=31 class="linenum">31   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=32 class="linenum">32   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=33 class="linenum">33   </a> *    prior written permission of the Apache Software Foundation.
+<a name=34 class="linenum">34   </a> *
+<a name=35 class="linenum">35   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=36 class="linenum">36   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=37 class="linenum">37   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=38 class="linenum">38   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=39 class="linenum">39   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=40 class="linenum">40   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=41 class="linenum">41   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=42 class="linenum">42   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=43 class="linenum">43   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=44 class="linenum">44   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=45 class="linenum">45   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=46 class="linenum">46   </a> * SUCH DAMAGE.
+<a name=47 class="linenum">47   </a> * ====================================================================
+<a name=48 class="linenum">48   </a> *
+<a name=49 class="linenum">49   </a> * This software consists of voluntary contributions made by many
+<a name=50 class="linenum">50   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=51 class="linenum">51   </a> * information on the Apache Software Foundation, please see
+<a name=52 class="linenum">52   </a> * &lt;http://www.apache.org/&gt;.
+<a name=53 class="linenum">53   </a> */</span>
+<a name=54 class="linenum">54   </a>
+<a name=55 class="linenum">55   </a>package org.apache.poi.util;
+<a name=56 class="linenum">56   </a>
+<a name=57 class="linenum">57   </a>import java.io.IOException;
+<a name=58 class="linenum">58   </a>import java.io.InputStream;
+<a name=59 class="linenum">59   </a>import java.util.Arrays;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a><span class="comment">/**
+<a name=62 class="linenum">62   </a> * a utility class for handling little-endian numbers, which the 80x86
+<a name=63 class="linenum">63   </a> * world is replete with. The methods are all static, and input/output
+<a name=64 class="linenum">64   </a> * is from/to byte arrays, or from InputStreams.
+<a name=65 class="linenum">65   </a> *
+<a name=66 class="linenum">66   </a> * @author Marc Johnson (mjohnson at apache dot org)
+<a name=67 class="linenum">67   </a> * @author Andrew Oliver (acoliver at apache dot org)
+<a name=68 class="linenum">68   </a> *
+<a name=69 class="linenum">69   </a> */</span>
+<a name=70 class="linenum">70   </a>
+<a name=71 class="linenum">71   </a>public class <a class="classDef" name=LittleEndian href=LittleEndian_java_ref.html#LittleEndian>LittleEndian</a>
+<a name=72 class="linenum">72   </a>        implements <a class="classRef" href=LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>
+<a name=73 class="linenum">73   </a>{
+<a name=74 class="linenum">74   </a>
+<a name=75 class="linenum">75   </a>    <span class="comment">// all methods are static, so an accessible constructor makes no</span>
+<a name=76 class="linenum">76   </a>    <span class="comment">// sense</span>
+<a name=77 class="linenum">77   </a>    private <a class="methodDef" name=LittleEndian.LittleEndian() href=LittleEndian_java_ref.html#LittleEndian.LittleEndian()>LittleEndian</a>()
+<a name=78 class="linenum">78   </a>    {
+<a name=79 class="linenum">79   </a>    }
+<a name=80 class="linenum">80   </a>
+<a name=81 class="linenum">81   </a>    <span class="comment">/**
+<a name=82 class="linenum">82   </a>     * get a short value from a byte array
+<a name=83 class="linenum">83   </a>     *
+<a name=84 class="linenum">84   </a>     * @param data the byte array
+<a name=85 class="linenum">85   </a>     * @param offset a starting offset into the byte array
+<a name=86 class="linenum">86   </a>     *
+<a name=87 class="linenum">87   </a>     * @return the short (16-bit) value
+<a name=88 class="linenum">88   </a>     *
+<a name=89 class="linenum">89   </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=90 class="linenum">90   </a>     */</span>
+<a name=91 class="linenum">91   </a>
+<a name=92 class="linenum">92   </a>    public static short <a class="methodDef" name=LittleEndian.getShort(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getShort(byte,int)>getShort</a>(final byte[] data, final int offset)
+<a name=93 class="linenum">93   </a>    {
+<a name=94 class="linenum">94   </a>        return (short) <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getShort.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getShort.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=95 class="linenum">95   </a>    }
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>    <span class="comment">/**
+<a name=98 class="linenum">98   </a>     * get a short array from a byte array.
+<a name=99 class="linenum">99   </a>     */</span>
+<a name=100 class="linenum">100  </a>    public static short[] <a class="methodDef" name=LittleEndian.getSimpleShortArray(byte,int,int) href=LittleEndian_java_ref.html#LittleEndian.getSimpleShortArray(byte,int,int)>getSimpleShortArray</a>(final byte[] data, final int offset, final int size)
+<a name=101 class="linenum">101  </a>    {
+<a name=102 class="linenum">102  </a>        short[] results = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#short>short</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.size>size</a>];
+<a name=103 class="linenum">103  </a>        for (int i = 0; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.i>i</a> &lt; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.size>size</a>; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.i>i</a>++)
+<a name=104 class="linenum">104  </a>        {
+<a name=105 class="linenum">105  </a>            <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.results>results</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.i>i</a>] = <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.offset>offset</a> + 2 + (<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.i>i</a> * 2));
+<a name=106 class="linenum">106  </a>        }
+<a name=107 class="linenum">107  </a>        return <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray.results>results</a>;
+<a name=108 class="linenum">108  </a>    }
+<a name=109 class="linenum">109  </a>    <span class="comment">/**
+<a name=110 class="linenum">110  </a>     * get a short array from a byte array.  The short array is assumed
+<a name=111 class="linenum">111  </a>     * to start with a word describing the length of the array.
+<a name=112 class="linenum">112  </a>     */</span>
+<a name=113 class="linenum">113  </a>    public static short[] <a class="methodDef" name=LittleEndian.getShortArray(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getShortArray(byte,int)>getShortArray</a>(final byte[] data, final int offset)
+<a name=114 class="linenum">114  </a>    {
+<a name=115 class="linenum">115  </a>        int size = (short) <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getShortArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getShortArray.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=116 class="linenum">116  </a>        short[] results = <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getSimpleShortArray(byte,int,int)>getSimpleShortArray</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getShortArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getShortArray.offset>offset</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getShortArray.size>size</a>);
+<a name=117 class="linenum">117  </a>        return <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.getShortArray.results>results</a>;
+<a name=118 class="linenum">118  </a>    }
+<a name=119 class="linenum">119  </a>
+<a name=120 class="linenum">120  </a>    <span class="comment">/**
+<a name=121 class="linenum">121  </a>     * get a short value from the beginning of a byte array
+<a name=122 class="linenum">122  </a>     *
+<a name=123 class="linenum">123  </a>     * @param data the byte array
+<a name=124 class="linenum">124  </a>     *
+<a name=125 class="linenum">125  </a>     * @return the short (16-bit) value
+<a name=126 class="linenum">126  </a>     *
+<a name=127 class="linenum">127  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=128 class="linenum">128  </a>     */</span>
+<a name=129 class="linenum">129  </a>
+<a name=130 class="linenum">130  </a>    public static short <a class="methodDef" name=LittleEndian.getShort(byte) href=LittleEndian_java_ref.html#LittleEndian.getShort(byte)>getShort</a>(final byte[] data)
+<a name=131 class="linenum">131  </a>    {
+<a name=132 class="linenum">132  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getShort.data>data</a>, 0);
+<a name=133 class="linenum">133  </a>    }
+<a name=134 class="linenum">134  </a>
+<a name=135 class="linenum">135  </a>    <span class="comment">/**
+<a name=136 class="linenum">136  </a>     * get an int value from a byte array
+<a name=137 class="linenum">137  </a>     *
+<a name=138 class="linenum">138  </a>     * @param data the byte array
+<a name=139 class="linenum">139  </a>     * @param offset a starting offset into the byte array
+<a name=140 class="linenum">140  </a>     *
+<a name=141 class="linenum">141  </a>     * @return the int (32-bit) value
+<a name=142 class="linenum">142  </a>     *
+<a name=143 class="linenum">143  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=144 class="linenum">144  </a>     */</span>
+<a name=145 class="linenum">145  </a>
+<a name=146 class="linenum">146  </a>    public static int <a class="methodDef" name=LittleEndian.getInt(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getInt(byte,int)>getInt</a>(final byte[] data, final int offset)
+<a name=147 class="linenum">147  </a>    {
+<a name=148 class="linenum">148  </a>        return (int) <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getInt.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getInt.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a>);
+<a name=149 class="linenum">149  </a>    }
+<a name=150 class="linenum">150  </a>
+<a name=151 class="linenum">151  </a>    <span class="comment">/**
+<a name=152 class="linenum">152  </a>     * get an int value from the beginning of a byte array
+<a name=153 class="linenum">153  </a>     *
+<a name=154 class="linenum">154  </a>     * @param data the byte array
+<a name=155 class="linenum">155  </a>     *
+<a name=156 class="linenum">156  </a>     * @return the int (32-bit) value
+<a name=157 class="linenum">157  </a>     *
+<a name=158 class="linenum">158  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=159 class="linenum">159  </a>     */</span>
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>    public static int <a class="methodDef" name=LittleEndian.getInt(byte) href=LittleEndian_java_ref.html#LittleEndian.getInt(byte)>getInt</a>(final byte[] data)
+<a name=162 class="linenum">162  </a>    {
+<a name=163 class="linenum">163  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getInt(byte,int)>getInt</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getInt.data>data</a>, 0);
+<a name=164 class="linenum">164  </a>    }
+<a name=165 class="linenum">165  </a>
+<a name=166 class="linenum">166  </a>    <span class="comment">/**
+<a name=167 class="linenum">167  </a>     * get a long value from a byte array
+<a name=168 class="linenum">168  </a>     *
+<a name=169 class="linenum">169  </a>     * @param data the byte array
+<a name=170 class="linenum">170  </a>     * @param offset a starting offset into the byte array
+<a name=171 class="linenum">171  </a>     *
+<a name=172 class="linenum">172  </a>     * @return the long (64-bit) value
+<a name=173 class="linenum">173  </a>     *
+<a name=174 class="linenum">174  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=175 class="linenum">175  </a>     */</span>
+<a name=176 class="linenum">176  </a>
+<a name=177 class="linenum">177  </a>    public static long <a class="methodDef" name=LittleEndian.getLong(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getLong(byte,int)>getLong</a>(final byte[] data, final int offset)
+<a name=178 class="linenum">178  </a>    {
+<a name=179 class="linenum">179  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getLong.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getLong.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.LONG_SIZE>LONG_SIZE</a>);
+<a name=180 class="linenum">180  </a>    }
+<a name=181 class="linenum">181  </a>
+<a name=182 class="linenum">182  </a>    <span class="comment">/**
+<a name=183 class="linenum">183  </a>     * get a long value from the beginning of a byte array
+<a name=184 class="linenum">184  </a>     *
+<a name=185 class="linenum">185  </a>     * @param data the byte array
+<a name=186 class="linenum">186  </a>     *
+<a name=187 class="linenum">187  </a>     * @return the long (64-bit) value
+<a name=188 class="linenum">188  </a>     *
+<a name=189 class="linenum">189  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=190 class="linenum">190  </a>     */</span>
+<a name=191 class="linenum">191  </a>
+<a name=192 class="linenum">192  </a>    public static long <a class="methodDef" name=LittleEndian.getLong(byte) href=LittleEndian_java_ref.html#LittleEndian.getLong(byte)>getLong</a>(final byte[] data)
+<a name=193 class="linenum">193  </a>    {
+<a name=194 class="linenum">194  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getLong(byte,int)>getLong</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getLong.data>data</a>, 0);
+<a name=195 class="linenum">195  </a>    }
+<a name=196 class="linenum">196  </a>
+<a name=197 class="linenum">197  </a>    <span class="comment">/**
+<a name=198 class="linenum">198  </a>     * get a double value from a byte array, reads it in little endian format
+<a name=199 class="linenum">199  </a>     * then converts the resulting revolting IEEE 754 (curse them) floating
+<a name=200 class="linenum">200  </a>     * point number to a happy java double
+<a name=201 class="linenum">201  </a>     *
+<a name=202 class="linenum">202  </a>     * @param data the byte array
+<a name=203 class="linenum">203  </a>     * @param offset a starting offset into the byte array
+<a name=204 class="linenum">204  </a>     *
+<a name=205 class="linenum">205  </a>     * @return the double (64-bit) value
+<a name=206 class="linenum">206  </a>     *
+<a name=207 class="linenum">207  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=208 class="linenum">208  </a>     */</span>
+<a name=209 class="linenum">209  </a>
+<a name=210 class="linenum">210  </a>    public static double <a class="methodDef" name=LittleEndian.getDouble(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getDouble(byte,int)>getDouble</a>(final byte[] data, final int offset)
+<a name=211 class="linenum">211  </a>    {
+<a name=212 class="linenum">212  </a>        return Double.longBitsToDouble(<a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getDouble.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getDouble.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.DOUBLE_SIZE>DOUBLE_SIZE</a>));
+<a name=213 class="linenum">213  </a>    }
+<a name=214 class="linenum">214  </a>
+<a name=215 class="linenum">215  </a>    <span class="comment">/**
+<a name=216 class="linenum">216  </a>     * get a double value from the beginning of a byte array
+<a name=217 class="linenum">217  </a>     *
+<a name=218 class="linenum">218  </a>     * @param data the byte array
+<a name=219 class="linenum">219  </a>     *
+<a name=220 class="linenum">220  </a>     * @return the double (64-bit) value
+<a name=221 class="linenum">221  </a>     *
+<a name=222 class="linenum">222  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=223 class="linenum">223  </a>     */</span>
+<a name=224 class="linenum">224  </a>
+<a name=225 class="linenum">225  </a>    public static double <a class="methodDef" name=LittleEndian.getDouble(byte) href=LittleEndian_java_ref.html#LittleEndian.getDouble(byte)>getDouble</a>(final byte[] data)
+<a name=226 class="linenum">226  </a>    {
+<a name=227 class="linenum">227  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getDouble.data>data</a>, 0);
+<a name=228 class="linenum">228  </a>    }
+<a name=229 class="linenum">229  </a>
+<a name=230 class="linenum">230  </a>    <span class="comment">/**
+<a name=231 class="linenum">231  </a>     * put a short value into a byte array
+<a name=232 class="linenum">232  </a>     *
+<a name=233 class="linenum">233  </a>     * @param data the byte array
+<a name=234 class="linenum">234  </a>     * @param offset a starting offset into the byte array
+<a name=235 class="linenum">235  </a>     * @param value the short (16-bit) value
+<a name=236 class="linenum">236  </a>     *
+<a name=237 class="linenum">237  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=238 class="linenum">238  </a>     */</span>
+<a name=239 class="linenum">239  </a>    public static void <a class="methodDef" name=LittleEndian.putShort(byte,int,short) href=LittleEndian_java_ref.html#LittleEndian.putShort(byte,int,short)>putShort</a>(final byte[] data, final int offset,
+<a name=240 class="linenum">240  </a>                                final short value)
+<a name=241 class="linenum">241  </a>    {
+<a name=242 class="linenum">242  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putShort.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShort.offset>offset</a>, <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.putShort.value>value</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=243 class="linenum">243  </a>    }
+<a name=244 class="linenum">244  </a>
+<a name=245 class="linenum">245  </a>    <span class="comment">/**
+<a name=246 class="linenum">246  </a>     * put an unsigned short value into a byte array
+<a name=247 class="linenum">247  </a>     *
+<a name=248 class="linenum">248  </a>     * @param data the byte array
+<a name=249 class="linenum">249  </a>     * @param offset a starting offset into the byte array
+<a name=250 class="linenum">250  </a>     * @param value the short (16-bit) value
+<a name=251 class="linenum">251  </a>     *
+<a name=252 class="linenum">252  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=253 class="linenum">253  </a>     */</span>
+<a name=254 class="linenum">254  </a>    public static void <a class="methodDef" name=LittleEndian.putUShort(byte,int,int) href=LittleEndian_java_ref.html#LittleEndian.putUShort(byte,int,int)>putUShort</a>(final byte[] data, final int offset,
+<a name=255 class="linenum">255  </a>                                final int value)
+<a name=256 class="linenum">256  </a>    {
+<a name=257 class="linenum">257  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putUShort.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putUShort.offset>offset</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putUShort.value>value</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=258 class="linenum">258  </a>    }
+<a name=259 class="linenum">259  </a>
+<a name=260 class="linenum">260  </a>    <span class="comment">/**
+<a name=261 class="linenum">261  </a>     * put a array of shorts into a byte array
+<a name=262 class="linenum">262  </a>     *
+<a name=263 class="linenum">263  </a>     * @param data the byte array
+<a name=264 class="linenum">264  </a>     * @param offset a starting offset into the byte array
+<a name=265 class="linenum">265  </a>     * @param value the short array
+<a name=266 class="linenum">266  </a>     *
+<a name=267 class="linenum">267  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=268 class="linenum">268  </a>     */</span>
+<a name=269 class="linenum">269  </a>    public static void <a class="methodDef" name=LittleEndian.putShortArray(byte,int,short) href=LittleEndian_java_ref.html#LittleEndian.putShortArray(byte,int,short)>putShortArray</a>(final byte[] data, final int offset, final short[] value)
+<a name=270 class="linenum">270  </a>    {
+<a name=271 class="linenum">271  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putShortArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.offset>offset</a>, <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.putShortArray.value>value</a>.length, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=272 class="linenum">272  </a>        for (int i = 0; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.i>i</a> &lt; <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.putShortArray.value>value</a>.length; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.i>i</a>++)
+<a name=273 class="linenum">273  </a>        {
+<a name=274 class="linenum">274  </a>            <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putShortArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.offset>offset</a> + 2 + (<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.i>i</a> * 2), <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.putShortArray.value>value</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putShortArray.i>i</a>], <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=275 class="linenum">275  </a>        }
+<a name=276 class="linenum">276  </a>    }
+<a name=277 class="linenum">277  </a>
+<a name=278 class="linenum">278  </a>    <span class="comment">/**
+<a name=279 class="linenum">279  </a>     * put a short value into beginning of a byte array
+<a name=280 class="linenum">280  </a>     *
+<a name=281 class="linenum">281  </a>     * @param data the byte array
+<a name=282 class="linenum">282  </a>     * @param value the short (16-bit) value
+<a name=283 class="linenum">283  </a>     *
+<a name=284 class="linenum">284  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=285 class="linenum">285  </a>     */</span>
+<a name=286 class="linenum">286  </a>
+<a name=287 class="linenum">287  </a>    public static void <a class="methodDef" name=LittleEndian.putShort(byte,short) href=LittleEndian_java_ref.html#LittleEndian.putShort(byte,short)>putShort</a>(final byte[] data, final short value)
+<a name=288 class="linenum">288  </a>    {
+<a name=289 class="linenum">289  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putShort.data>data</a>, 0, <a class="varRef" title="short" href=LittleEndian_java.html#LittleEndian.putShort.value>value</a>);
+<a name=290 class="linenum">290  </a>    }
+<a name=291 class="linenum">291  </a>
+<a name=292 class="linenum">292  </a>    <span class="comment">/**
+<a name=293 class="linenum">293  </a>     * put an int value into a byte array
+<a name=294 class="linenum">294  </a>     *
+<a name=295 class="linenum">295  </a>     * @param data the byte array
+<a name=296 class="linenum">296  </a>     * @param offset a starting offset into the byte array
+<a name=297 class="linenum">297  </a>     * @param value the int (32-bit) value
+<a name=298 class="linenum">298  </a>     *
+<a name=299 class="linenum">299  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=300 class="linenum">300  </a>     */</span>
+<a name=301 class="linenum">301  </a>
+<a name=302 class="linenum">302  </a>    public static void <a class="methodDef" name=LittleEndian.putInt(byte,int,int) href=LittleEndian_java_ref.html#LittleEndian.putInt(byte,int,int)>putInt</a>(final byte[] data, final int offset,
+<a name=303 class="linenum">303  </a>                              final int value)
+<a name=304 class="linenum">304  </a>    {
+<a name=305 class="linenum">305  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putInt.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putInt.offset>offset</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putInt.value>value</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a>);
+<a name=306 class="linenum">306  </a>    }
+<a name=307 class="linenum">307  </a>
+<a name=308 class="linenum">308  </a>    <span class="comment">/**
+<a name=309 class="linenum">309  </a>     * put an int value into beginning of a byte array
+<a name=310 class="linenum">310  </a>     *
+<a name=311 class="linenum">311  </a>     * @param data the byte array
+<a name=312 class="linenum">312  </a>     * @param value the int (32-bit) value
+<a name=313 class="linenum">313  </a>     *
+<a name=314 class="linenum">314  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=315 class="linenum">315  </a>     */</span>
+<a name=316 class="linenum">316  </a>
+<a name=317 class="linenum">317  </a>    public static void <a class="methodDef" name=LittleEndian.putInt(byte,int) href=LittleEndian_java_ref.html#LittleEndian.putInt(byte,int)>putInt</a>(final byte[] data, final int value)
+<a name=318 class="linenum">318  </a>    {
+<a name=319 class="linenum">319  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putInt(byte,int,int)>putInt</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putInt.data>data</a>, 0, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putInt.value>value</a>);
+<a name=320 class="linenum">320  </a>    }
+<a name=321 class="linenum">321  </a>
+<a name=322 class="linenum">322  </a>    <span class="comment">/**
+<a name=323 class="linenum">323  </a>     * put a long value into a byte array
+<a name=324 class="linenum">324  </a>     *
+<a name=325 class="linenum">325  </a>     * @param data the byte array
+<a name=326 class="linenum">326  </a>     * @param offset a starting offset into the byte array
+<a name=327 class="linenum">327  </a>     * @param value the long (64-bit) value
+<a name=328 class="linenum">328  </a>     *
+<a name=329 class="linenum">329  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=330 class="linenum">330  </a>     */</span>
+<a name=331 class="linenum">331  </a>
+<a name=332 class="linenum">332  </a>    public static void <a class="methodDef" name=LittleEndian.putLong(byte,int,long) href=LittleEndian_java_ref.html#LittleEndian.putLong(byte,int,long)>putLong</a>(final byte[] data, final int offset,
+<a name=333 class="linenum">333  </a>                               final long value)
+<a name=334 class="linenum">334  </a>    {
+<a name=335 class="linenum">335  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putLong.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putLong.offset>offset</a>, <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.putLong.value>value</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.LONG_SIZE>LONG_SIZE</a>);
+<a name=336 class="linenum">336  </a>    }
+<a name=337 class="linenum">337  </a>
+<a name=338 class="linenum">338  </a>    <span class="comment">/**
+<a name=339 class="linenum">339  </a>     * put a long value into beginning of a byte array
+<a name=340 class="linenum">340  </a>     *
+<a name=341 class="linenum">341  </a>     * @param data the byte array
+<a name=342 class="linenum">342  </a>     * @param value the long (64-bit) value
+<a name=343 class="linenum">343  </a>     *
+<a name=344 class="linenum">344  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=345 class="linenum">345  </a>     */</span>
+<a name=346 class="linenum">346  </a>
+<a name=347 class="linenum">347  </a>    public static void <a class="methodDef" name=LittleEndian.putLong(byte,long) href=LittleEndian_java_ref.html#LittleEndian.putLong(byte,long)>putLong</a>(final byte[] data, final long value)
+<a name=348 class="linenum">348  </a>    {
+<a name=349 class="linenum">349  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putLong(byte,int,long)>putLong</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putLong.data>data</a>, 0, <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.putLong.value>value</a>);
+<a name=350 class="linenum">350  </a>    }
+<a name=351 class="linenum">351  </a>
+<a name=352 class="linenum">352  </a>    <span class="comment">/**
+<a name=353 class="linenum">353  </a>     * put a double value into a byte array
+<a name=354 class="linenum">354  </a>     *
+<a name=355 class="linenum">355  </a>     * @param data the byte array
+<a name=356 class="linenum">356  </a>     * @param offset a starting offset into the byte array
+<a name=357 class="linenum">357  </a>     * @param value the double (64-bit) value
+<a name=358 class="linenum">358  </a>     *
+<a name=359 class="linenum">359  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=360 class="linenum">360  </a>     */</span>
+<a name=361 class="linenum">361  </a>
+<a name=362 class="linenum">362  </a>    public static void <a class="methodDef" name=LittleEndian.putDouble(byte,int,double) href=LittleEndian_java_ref.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(final byte[] data, final int offset,
+<a name=363 class="linenum">363  </a>                                 final double value)
+<a name=364 class="linenum">364  </a>    {
+<a name=365 class="linenum">365  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putDouble.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putDouble.offset>offset</a>, Double.doubleToLongBits(<a class="varRef" title="double" href=LittleEndian_java.html#LittleEndian.putDouble.value>value</a>), <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.DOUBLE_SIZE>DOUBLE_SIZE</a>);
+<a name=366 class="linenum">366  </a>    }
+<a name=367 class="linenum">367  </a>
+<a name=368 class="linenum">368  </a>    <span class="comment">/**
+<a name=369 class="linenum">369  </a>     * put a double value into beginning of a byte array
+<a name=370 class="linenum">370  </a>     *
+<a name=371 class="linenum">371  </a>     * @param data the byte array
+<a name=372 class="linenum">372  </a>     * @param value the double (64-bit) value
+<a name=373 class="linenum">373  </a>     *
+<a name=374 class="linenum">374  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=375 class="linenum">375  </a>     */</span>
+<a name=376 class="linenum">376  </a>
+<a name=377 class="linenum">377  </a>    public static void <a class="methodDef" name=LittleEndian.putDouble(byte,double) href=LittleEndian_java_ref.html#LittleEndian.putDouble(byte,double)>putDouble</a>(final byte[] data, final double value)
+<a name=378 class="linenum">378  </a>    {
+<a name=379 class="linenum">379  </a>        <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putDouble.data>data</a>, 0, <a class="varRef" title="double" href=LittleEndian_java.html#LittleEndian.putDouble.value>value</a>);
+<a name=380 class="linenum">380  </a>    }
+<a name=381 class="linenum">381  </a>
+<a name=382 class="linenum">382  </a>    <span class="comment">/**
+<a name=383 class="linenum">383  </a>     * Exception to handle buffer underruns
+<a name=384 class="linenum">384  </a>     *
+<a name=385 class="linenum">385  </a>     * @author Marc Johnson (mjohnson at apache dot org)
+<a name=386 class="linenum">386  </a>     */</span>
+<a name=387 class="linenum">387  </a>
+<a name=388 class="linenum">388  </a>    public static class <a class="classDef" name=LittleEndian.BufferUnderrunException href=LittleEndian_java_ref.html#LittleEndian.BufferUnderrunException>BufferUnderrunException</a>
+<a name=389 class="linenum">389  </a>            extends <a class="classRef" href=null#IOException>IOException</a>
+<a name=390 class="linenum">390  </a>    {
+<a name=391 class="linenum">391  </a>
+<a name=392 class="linenum">392  </a>        <span class="comment">/**
+<a name=393 class="linenum">393  </a>         * simple constructor
+<a name=394 class="linenum">394  </a>         */</span>
+<a name=395 class="linenum">395  </a>
+<a name=396 class="linenum">396  </a>        <a class="methodDef" name=LittleEndian.BufferUnderrunException.BufferUnderrunException() href=LittleEndian_java_ref.html#LittleEndian.BufferUnderrunException.BufferUnderrunException()>BufferUnderrunException</a>()
+<a name=397 class="linenum">397  </a>        {
+<a name=398 class="linenum">398  </a>            super("buffer underrun");
+<a name=399 class="linenum">399  </a>        }
+<a name=400 class="linenum">400  </a>    }
+<a name=401 class="linenum">401  </a>
+<a name=402 class="linenum">402  </a>    <span class="comment">/**
+<a name=403 class="linenum">403  </a>     * get a short value from an InputStream
+<a name=404 class="linenum">404  </a>     *
+<a name=405 class="linenum">405  </a>     * @param stream the InputStream from which the short is to be
+<a name=406 class="linenum">406  </a>     *               read
+<a name=407 class="linenum">407  </a>     *
+<a name=408 class="linenum">408  </a>     * @return the short (16-bit) value
+<a name=409 class="linenum">409  </a>     *
+<a name=410 class="linenum">410  </a>     * @exception IOException will be propagated back to the caller
+<a name=411 class="linenum">411  </a>     * @exception BufferUnderrunException if the stream cannot provide
+<a name=412 class="linenum">412  </a>     *            enough bytes
+<a name=413 class="linenum">413  </a>     */</span>
+<a name=414 class="linenum">414  </a>
+<a name=415 class="linenum">415  </a>    public static short <a class="methodDef" name=LittleEndian.readShort(InputStream) href=LittleEndian_java_ref.html#LittleEndian.readShort(InputStream)>readShort</a>(final InputStream stream)
+<a name=416 class="linenum">416  </a>            throws IOException, <a class="classRef" href=LittleEndian_java.html#LittleEndian.BufferUnderrunException>BufferUnderrunException</a>
+<a name=417 class="linenum">417  </a>    {
+<a name=418 class="linenum">418  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getShort(byte)>getShort</a>(<a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.readFromStream(InputStream,int)>readFromStream</a>(<a class="varRef" title="InputStream" href=LittleEndian_java.html#LittleEndian.readShort.stream>stream</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>));
+<a name=419 class="linenum">419  </a>    }
+<a name=420 class="linenum">420  </a>
+<a name=421 class="linenum">421  </a>    <span class="comment">/**
+<a name=422 class="linenum">422  </a>     * get an int value from an InputStream
+<a name=423 class="linenum">423  </a>     *
+<a name=424 class="linenum">424  </a>     * @param stream the InputStream from which the int is to be read
+<a name=425 class="linenum">425  </a>     *
+<a name=426 class="linenum">426  </a>     * @return the int (32-bit) value
+<a name=427 class="linenum">427  </a>     *
+<a name=428 class="linenum">428  </a>     * @exception IOException will be propagated back to the caller
+<a name=429 class="linenum">429  </a>     * @exception BufferUnderrunException if the stream cannot provide
+<a name=430 class="linenum">430  </a>     *            enough bytes
+<a name=431 class="linenum">431  </a>     */</span>
+<a name=432 class="linenum">432  </a>
+<a name=433 class="linenum">433  </a>    public static int <a class="methodDef" name=LittleEndian.readInt(InputStream) href=LittleEndian_java_ref.html#LittleEndian.readInt(InputStream)>readInt</a>(final InputStream stream)
+<a name=434 class="linenum">434  </a>            throws IOException, <a class="classRef" href=LittleEndian_java.html#LittleEndian.BufferUnderrunException>BufferUnderrunException</a>
+<a name=435 class="linenum">435  </a>    {
+<a name=436 class="linenum">436  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getInt(byte)>getInt</a>(<a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.readFromStream(InputStream,int)>readFromStream</a>(<a class="varRef" title="InputStream" href=LittleEndian_java.html#LittleEndian.readInt.stream>stream</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a>));
+<a name=437 class="linenum">437  </a>    }
+<a name=438 class="linenum">438  </a>
+<a name=439 class="linenum">439  </a>    <span class="comment">/**
+<a name=440 class="linenum">440  </a>     * get a long value from an InputStream
+<a name=441 class="linenum">441  </a>     *
+<a name=442 class="linenum">442  </a>     * @param stream the InputStream from which the long is to be read
+<a name=443 class="linenum">443  </a>     *
+<a name=444 class="linenum">444  </a>     * @return the long (64-bit) value
+<a name=445 class="linenum">445  </a>     *
+<a name=446 class="linenum">446  </a>     * @exception IOException will be propagated back to the caller
+<a name=447 class="linenum">447  </a>     * @exception BufferUnderrunException if the stream cannot provide
+<a name=448 class="linenum">448  </a>     *            enough bytes
+<a name=449 class="linenum">449  </a>     */</span>
+<a name=450 class="linenum">450  </a>
+<a name=451 class="linenum">451  </a>    public static long <a class="methodDef" name=LittleEndian.readLong(InputStream) href=LittleEndian_java_ref.html#LittleEndian.readLong(InputStream)>readLong</a>(final InputStream stream)
+<a name=452 class="linenum">452  </a>            throws IOException, <a class="classRef" href=LittleEndian_java.html#LittleEndian.BufferUnderrunException>BufferUnderrunException</a>
+<a name=453 class="linenum">453  </a>    {
+<a name=454 class="linenum">454  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getLong(byte)>getLong</a>(<a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.readFromStream(InputStream,int)>readFromStream</a>(<a class="varRef" title="InputStream" href=LittleEndian_java.html#LittleEndian.readLong.stream>stream</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.LONG_SIZE>LONG_SIZE</a>));
+<a name=455 class="linenum">455  </a>    }
+<a name=456 class="linenum">456  </a>
+<a name=457 class="linenum">457  </a>    private static final byte[] <a class="varDef" name=LittleEndian._short_buffer href=LittleEndian_java_ref.html#LittleEndian._short_buffer>_short_buffer</a> = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>];
+<a name=458 class="linenum">458  </a>    private static final byte[] <a class="varDef" name=LittleEndian._int_buffer href=LittleEndian_java_ref.html#LittleEndian._int_buffer>_int_buffer</a> = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a>];
+<a name=459 class="linenum">459  </a>    private static final byte[] <a class="varDef" name=LittleEndian._long_buffer href=LittleEndian_java_ref.html#LittleEndian._long_buffer>_long_buffer</a> = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.LONG_SIZE>LONG_SIZE</a>];
+<a name=460 class="linenum">460  </a>
+<a name=461 class="linenum">461  </a>    <span class="comment">/**
+<a name=462 class="linenum">462  </a>     * Read the appropriate number of bytes from the stream and return
+<a name=463 class="linenum">463  </a>     * them to the caller.
+<a name=464 class="linenum">464  </a>     * &lt;p&gt;
+<a name=465 class="linenum">465  </a>     * It should be noted that, in an attempt to improve system
+<a name=466 class="linenum">466  </a>     * performance and to prevent a transient explosion of discarded
+<a name=467 class="linenum">467  </a>     * byte arrays to be garbage collected, static byte arrays are
+<a name=468 class="linenum">468  </a>     * employed for the standard cases of reading a short, an int, or
+<a name=469 class="linenum">469  </a>     * a long.
+<a name=470 class="linenum">470  </a>     * &lt;p&gt;
+<a name=471 class="linenum">471  </a>     * &lt;b&gt;THIS INTRODUCES A RISK FOR THREADED OPERATIONS!&lt;/b&gt;
+<a name=472 class="linenum">472  </a>     * &lt;p&gt;
+<a name=473 class="linenum">473  </a>     * However, for the purposes of the POI project, this risk is
+<a name=474 class="linenum">474  </a>     * deemed negligible. It is, however, so noted.
+<a name=475 class="linenum">475  </a>     *
+<a name=476 class="linenum">476  </a>     * @param stream the InputStream we're reading from
+<a name=477 class="linenum">477  </a>     * @param size the number of bytes to read; in 99.99% of cases,
+<a name=478 class="linenum">478  </a>     *             this will be SHORT_SIZE, INT_SIZE, or LONG_SIZE --
+<a name=479 class="linenum">479  </a>     *             but it doesn't have to be.
+<a name=480 class="linenum">480  </a>     *
+<a name=481 class="linenum">481  </a>     * @return the byte array containing the required number of
+<a name=482 class="linenum">482  </a>     *         bytes. The array will contain all zero's on end of
+<a name=483 class="linenum">483  </a>     *         stream
+<a name=484 class="linenum">484  </a>     *
+<a name=485 class="linenum">485  </a>     * @exception IOException will be propagated back to the caller
+<a name=486 class="linenum">486  </a>     * @exception BufferUnderrunException if the stream cannot provide
+<a name=487 class="linenum">487  </a>     *            enough bytes
+<a name=488 class="linenum">488  </a>     */</span>
+<a name=489 class="linenum">489  </a>
+<a name=490 class="linenum">490  </a>    public static byte[] <a class="methodDef" name=LittleEndian.readFromStream(InputStream,int) href=LittleEndian_java_ref.html#LittleEndian.readFromStream(InputStream,int)>readFromStream</a>(final InputStream stream,
+<a name=491 class="linenum">491  </a>                                        final int size)
+<a name=492 class="linenum">492  </a>            throws IOException, <a class="classRef" href=LittleEndian_java.html#LittleEndian.BufferUnderrunException>BufferUnderrunException</a>
+<a name=493 class="linenum">493  </a>    {
+<a name=494 class="linenum">494  </a>        byte[] buffer = null;
+<a name=495 class="linenum">495  </a>
+<a name=496 class="linenum">496  </a>        switch (<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.readFromStream.size>size</a>)
+<a name=497 class="linenum">497  </a>        {
+<a name=498 class="linenum">498  </a>
+<a name=499 class="linenum">499  </a>            case <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>:
+<a name=500 class="linenum">500  </a>                <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a> = <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian._short_buffer>_short_buffer</a>;
+<a name=501 class="linenum">501  </a>                break;
+<a name=502 class="linenum">502  </a>
+<a name=503 class="linenum">503  </a>            case <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.INT_SIZE>INT_SIZE</a>:
+<a name=504 class="linenum">504  </a>                <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a> = <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian._int_buffer>_int_buffer</a>;
+<a name=505 class="linenum">505  </a>                break;
+<a name=506 class="linenum">506  </a>
+<a name=507 class="linenum">507  </a>            case <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.LONG_SIZE>LONG_SIZE</a>:
+<a name=508 class="linenum">508  </a>                <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a> = <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian._long_buffer>_long_buffer</a>;
+<a name=509 class="linenum">509  </a>                break;
+<a name=510 class="linenum">510  </a>
+<a name=511 class="linenum">511  </a>            default :
+<a name=512 class="linenum">512  </a>                <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a> = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.readFromStream.size>size</a>];
+<a name=513 class="linenum">513  </a>                break;
+<a name=514 class="linenum">514  </a>        }
+<a name=515 class="linenum">515  </a>        int count = <a class="varRef" title="InputStream" href=LittleEndian_java.html#LittleEndian.readFromStream.stream>stream</a>.read(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a>);
+<a name=516 class="linenum">516  </a>
+<a name=517 class="linenum">517  </a>        if (<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.readFromStream.count>count</a> == -1)
+<a name=518 class="linenum">518  </a>        {
+<a name=519 class="linenum">519  </a>
+<a name=520 class="linenum">520  </a>            <span class="comment">// return a zero-filled buffer</span>
+<a name=521 class="linenum">521  </a>            Arrays.fill(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a>, (byte) 0);
+<a name=522 class="linenum">522  </a>        } else if (<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.readFromStream.count>count</a> != <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.readFromStream.size>size</a>)
+<a name=523 class="linenum">523  </a>        {
+<a name=524 class="linenum">524  </a>            throw new <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.BufferUnderrunException.BufferUnderrunException()>BufferUnderrunException</a>();
+<a name=525 class="linenum">525  </a>        }
+<a name=526 class="linenum">526  </a>        return <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.readFromStream.buffer>buffer</a>;
+<a name=527 class="linenum">527  </a>    }
+<a name=528 class="linenum">528  </a>
+<a name=529 class="linenum">529  </a>    private static long <a class="methodDef" name=LittleEndian.getNumber(byte,int,int) href=LittleEndian_java_ref.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(final byte[] data, final int offset,
+<a name=530 class="linenum">530  </a>                                  final int size)
+<a name=531 class="linenum">531  </a>    {
+<a name=532 class="linenum">532  </a>        long result = 0;
+<a name=533 class="linenum">533  </a>
+<a name=534 class="linenum">534  </a>        for (int j = <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.offset>offset</a> + <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.size>size</a> - 1; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.j>j</a> &gt;= <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.offset>offset</a>; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.j>j</a>--)
+<a name=535 class="linenum">535  </a>        {
+<a name=536 class="linenum">536  </a>            <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.getNumber.result>result</a> &lt;&lt;= 8;
+<a name=537 class="linenum">537  </a>            <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.getNumber.result>result</a> |= 0xff & <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getNumber.data>data</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getNumber.j>j</a>];
+<a name=538 class="linenum">538  </a>        }
+<a name=539 class="linenum">539  </a>        return <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.getNumber.result>result</a>;
+<a name=540 class="linenum">540  </a>    }
+<a name=541 class="linenum">541  </a>
+<a name=542 class="linenum">542  </a>    private static void <a class="methodDef" name=LittleEndian.putNumber(byte,int,long,int) href=LittleEndian_java_ref.html#LittleEndian.putNumber(byte,int,long,int)>putNumber</a>(final byte[] data, final int offset,
+<a name=543 class="linenum">543  </a>                                  final long value, final int size)
+<a name=544 class="linenum">544  </a>    {
+<a name=545 class="linenum">545  </a>        int limit = <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.size>size</a> + <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.offset>offset</a>;
+<a name=546 class="linenum">546  </a>        long v = <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.putNumber.value>value</a>;
+<a name=547 class="linenum">547  </a>
+<a name=548 class="linenum">548  </a>        for (int j = <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.offset>offset</a>; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.j>j</a> &lt; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.limit>limit</a>; <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.j>j</a>++)
+<a name=549 class="linenum">549  </a>        {
+<a name=550 class="linenum">550  </a>            <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.putNumber.data>data</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.putNumber.j>j</a>] = (byte) (<a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.putNumber.v>v</a> & 0xFF);
+<a name=551 class="linenum">551  </a>            <a class="varRef" title="long" href=LittleEndian_java.html#LittleEndian.putNumber.v>v</a> &gt;&gt;= 8;
+<a name=552 class="linenum">552  </a>        }
+<a name=553 class="linenum">553  </a>    }
+<a name=554 class="linenum">554  </a>
+<a name=555 class="linenum">555  </a>    <span class="comment">/**
+<a name=556 class="linenum">556  </a>     * Convert an 'unsigned' byte to an integer.  ie, don't carry across the sign.
+<a name=557 class="linenum">557  </a>     */</span>
+<a name=558 class="linenum">558  </a>    public static int <a class="methodDef" name=LittleEndian.ubyteToInt(byte) href=LittleEndian_java_ref.html#LittleEndian.ubyteToInt(byte)>ubyteToInt</a>(byte b)
+<a name=559 class="linenum">559  </a>    {
+<a name=560 class="linenum">560  </a>        return ((<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.ubyteToInt.b>b</a> & 0x80) == 0 ? (int) <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.ubyteToInt.b>b</a> : (int) (<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.ubyteToInt.b>b</a> & (byte) 0x7f) + 0x80);
+<a name=561 class="linenum">561  </a>    }
+<a name=562 class="linenum">562  </a>
+<a name=563 class="linenum">563  </a>    <span class="comment">/**
+<a name=564 class="linenum">564  </a>     * get the unsigned value of a byte.
+<a name=565 class="linenum">565  </a>     *
+<a name=566 class="linenum">566  </a>     * @param data the byte array.
+<a name=567 class="linenum">567  </a>     * @param offset a starting offset into the byte array.
+<a name=568 class="linenum">568  </a>     *
+<a name=569 class="linenum">569  </a>     * @return the unsigned value of the byte as a 32 bit integer
+<a name=570 class="linenum">570  </a>     *
+<a name=571 class="linenum">571  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=572 class="linenum">572  </a>     */</span>
+<a name=573 class="linenum">573  </a>    public static int <a class="methodDef" name=LittleEndian.getUnsignedByte(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getUnsignedByte(byte,int)>getUnsignedByte</a>(final byte[] data, final int offset)
+<a name=574 class="linenum">574  </a>    {
+<a name=575 class="linenum">575  </a>        return (int) <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getUnsignedByte.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getUnsignedByte.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.BYTE_SIZE>BYTE_SIZE</a>);
+<a name=576 class="linenum">576  </a>    }
+<a name=577 class="linenum">577  </a>
+<a name=578 class="linenum">578  </a>    <span class="comment">/**
+<a name=579 class="linenum">579  </a>     * get the unsigned value of a byte.
+<a name=580 class="linenum">580  </a>     *
+<a name=581 class="linenum">581  </a>     * @param data the byte array
+<a name=582 class="linenum">582  </a>     *
+<a name=583 class="linenum">583  </a>     * @return the unsigned value of the byte as a 32 bit integer
+<a name=584 class="linenum">584  </a>     *
+<a name=585 class="linenum">585  </a>     * @exception ArrayIndexOutOfBoundsException may be thrown
+<a name=586 class="linenum">586  </a>     */</span>
+<a name=587 class="linenum">587  </a>    public static int <a class="methodDef" name=LittleEndian.getUnsignedByte(byte) href=LittleEndian_java_ref.html#LittleEndian.getUnsignedByte(byte)>getUnsignedByte</a>(final byte[] data)
+<a name=588 class="linenum">588  </a>    {
+<a name=589 class="linenum">589  </a>        return <a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getUnsignedByte(byte,int)>getUnsignedByte</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getUnsignedByte.data>data</a>, 0);
+<a name=590 class="linenum">590  </a>    }
+<a name=591 class="linenum">591  </a>    <span class="comment">/**
+<a name=592 class="linenum">592  </a>     * Copy a portion of a byte array
+<a name=593 class="linenum">593  </a>     *
+<a name=594 class="linenum">594  </a>     * @param data the original byte array
+<a name=595 class="linenum">595  </a>     * @param offset Where to start copying from.
+<a name=596 class="linenum">596  </a>     * @param size Number of bytes to copy.
+<a name=597 class="linenum">597  </a>     *
+<a name=598 class="linenum">598  </a>     * @throws IndexOutOfBoundsException - if copying would cause access of data
+<a name=599 class="linenum">599  </a>     *                                     outside array bounds.
+<a name=600 class="linenum">600  </a>     */</span>
+<a name=601 class="linenum">601  </a>    public static byte[] <a class="methodDef" name=LittleEndian.getByteArray(byte,int,int) href=LittleEndian_java_ref.html#LittleEndian.getByteArray(byte,int,int)>getByteArray</a>(final byte[] data, int offset, int size)
+<a name=602 class="linenum">602  </a>    {
+<a name=603 class="linenum">603  </a>        byte[] copy = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getByteArray.size>size</a>];
+<a name=604 class="linenum">604  </a>        System.arraycopy(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getByteArray.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getByteArray.offset>offset</a>, <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getByteArray.copy>copy</a>, 0, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getByteArray.size>size</a>);
+<a name=605 class="linenum">605  </a>
+<a name=606 class="linenum">606  </a>        return <a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getByteArray.copy>copy</a>;
+<a name=607 class="linenum">607  </a>    }
+<a name=608 class="linenum">608  </a>
+<a name=609 class="linenum">609  </a>    <span class="comment">/**
+<a name=610 class="linenum">610  </a>     * Retrieves and unsigned short.  This is converted UP to a int
+<a name=611 class="linenum">611  </a>     * so it can fit.
+<a name=612 class="linenum">612  </a>     *
+<a name=613 class="linenum">613  </a>     * @param data      The data to read
+<a name=614 class="linenum">614  </a>     * @param offset    The offset to read the short from
+<a name=615 class="linenum">615  </a>     * @return An integer representation of the short.
+<a name=616 class="linenum">616  </a>     */</span>
+<a name=617 class="linenum">617  </a>    public static int <a class="methodDef" name=LittleEndian.getUShort(byte,int) href=LittleEndian_java_ref.html#LittleEndian.getUShort(byte,int)>getUShort</a>( byte[] data, int offset )
+<a name=618 class="linenum">618  </a>    {
+<a name=619 class="linenum">619  </a>        return (int)<a class="methodRef" title="LittleEndian" href=LittleEndian_java.html#LittleEndian.getNumber(byte,int,int)>getNumber</a>(<a class="varRef" title="byte" href=LittleEndian_java.html#LittleEndian.getUShort.data>data</a>, <a class="varRef" title="int" href=LittleEndian_java.html#LittleEndian.getUShort.offset>offset</a>, <a class="varRef" title="int" href=LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>);
+<a name=620 class="linenum">620  </a>    }
+<a name=621 class="linenum">621  </a>
+<a name=622 class="linenum">622  </a>}
+<a name=623 class="linenum">623  </a></pre>

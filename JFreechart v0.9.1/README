@@ -1,0 +1,218 @@
+#############################
+# JFREECHART: Version 0.9.1 #
+#############################
+
+14 June 2002
+
+Written by David Gilbert (david.gilbert@object-refinery.com) and others.
+(C)opyright 2000-2002, by Simba Management Limited and Contributors.
+
+-----------------
+1.  INTRODUCTION
+-----------------
+JFreeChart is a free Java class library for producing charts.
+It runs on the Java 2 Platform (JDK1.3 or later) and uses the Java
+2D API for drawing.
+
+JFreeChart is licensed under the terms of the GNU Lesser General
+Public Licence (LGPL).  A copy of the licence is
+included in the download.
+
+Please note that JFreeChart is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  Please refer refer to the licence for details.
+
+-------------------
+2.  LATEST VERSION
+-------------------
+The latest version of this class library can be obtained from:
+
+    http://www.object-refinery.com/jfreechart/index.html
+
+If you have an comments, suggestions or bugs to report, please post a
+message in the JFreeChart forum.
+
+------------------
+3.  DOCUMENTATION
+------------------
+You can download installation instructions
+(jfreechart-0.9.1-install.pdf) from the JFreeChart home
+page or the project page on SourceForge.
+
+We also raise money for the JFreeChart project by selling
+documentation (electronic copies in PDF format).  Please consider
+supporting this initiative so that we can continue to develop free
+software - refer to the JFreeChart home page for details.
+
+-----------------
+4.  DEPENDENCIES
+-----------------
+JFreeChart requires JDK 1.3 or later.  In addition, it uses classes
+from the JCommon class library (also available from
+http://www.object-refinery.com/), version 0.6.2 or later.  The JCommon
+jar file is included in the JFreeChart download, but you may want to
+download JCommon separately to obtain the full source code (also under
+the GNU Lesser General Public Licence).
+
+The servlet code requires jar files from the Batik and Xerces projects
+(http://xml.apache.org/).
+
+JFreeChart now includes some tests based on the JUnit framework.  The
+JUnit runtime jar file is included in the download.  JUnit is
+open-source, you can download the latest version from:
+
+http://www.junit.org
+
+------------------------
+5. THE DEMO APPLICATION
+------------------------
+There is a demonstration application included with JFreeChart.  To run
+it you need the files jcommon-0.6.2.jar, jfreechart-0.9.1.jar and
+jfreechart-0.9.1-demo.jar.
+
+Using JDK 1.3 (or later) you can start the demo by running the class:
+
+    com.jrefinery.chart.demo.JFreeChartDemo.
+
+For example, on Linux, the following command line will run the demo
+application:
+
+java -classpath jcommon-0.6.2.jar:jfreechart-0.9.1.jar:jfreechart-0.9.1-demo.jar com.jrefinery.chart.demo.JFreeChartDemo
+
+Depending on your system configuration and the current working
+directory, you may need to specify paths in the above command line.  
+
+If you are using Windows, please note that the entries on the class
+path should be separated with a semi-colon rather than a colon.
+
+There are now several other demonstration applications included in the
+download:
+
+com.jrefinery.chart.demo.AreaChartDemo
+com.jrefinery.chart.demo.AreaChartForCategoryDataDemo
+com.jrefinery.chart.demo.CombinedXYPlotDemo
+com.jrefinery.chart.demo.DynamicDataDemo
+com.jrefinery.chart.demo.GanttDemo
+com.jrefinery.chart.demo.HorizontalBar3DDemo
+com.jrefinery.chart.demo.HorizontalBarChartDemo
+com.jrefinery.chart.demo.LineChartDemo1
+com.jrefinery.chart.demo.LineChartDemo2
+com.jrefinery.chart.demo.MeterPlotDemo
+com.jrefinery.chart.demo.OverlaidXYPlotDemo
+com.jrefinery.chart.demo.PriceVolumeDemo
+com.jrefinery.chart.demo.SymbolicXYPlotDemo
+com.jrefinery.chart.demo.SymbolicYPlotDemo
+
+You can run these applications in the same way as the JFreeChartDemo
+class described above.
+
+---------------
+6.  WHAT's NEW
+---------------
+A list of changes in recent versions:
+
+0.9.1 : (14-Jun-2002) Bug fixes and Javadoc updates.
+        - fixed auto range calculation for category plots;
+        - fixed event notification for XYPlot;
+        - fixed auto axis range for Gantt charts;
+        - check for null popup menu in ChartPanel.mouseDragged;
+        - new checks for null info in renderers;
+        - range markers now drawn only if in visible axis range;
+ 
+0.9.0 : (7-Jun-2002) New plots including an area chart, a horizontal
+        3D bar chart, a Gantt chart and a thermometer chart.
+        Combination plots have been reworked to provide a
+        simpler framework, and extends to allow category plots to be
+        combined. There is now a facility to add a ChartMouseListener
+        to the ChartPanel (formerly JFreeChartPanel).  An interactive
+        zooming feature (experimental at this point) is now available
+        for XYPlots.  A new Polish translation has been added. Several
+        fixes have been applied to the default tool tip generators.  A
+        workaround has been added to fix the alignment between time
+        series charts and the date axis.  There are some improvements
+        to the VerticalLogarithmicAxis class, and now a corresponding
+        HorizontalLogarithmicAxis class.  Additional demonstration
+        applications have been added.  Fixed the popup menu bug.
+
+0.8.1 : (5-Apr-2002) Localised resource bundles for French, German and
+        Spanish languages (thanks to Anthony Boulestreau, Thomas Meier
+        and Hans-Jurgen Greiner for the translations).  An area XY
+        plot and meter chart contributed by Hari.  Symbol charts
+        contributed by Anthony Boulestreau. An improved
+        CandleStickRenderer class from Sylvain Vieujot.  Updated
+        servlet code from Bryan Scott.  XYItemRenderers now have a
+        change listener mechanism and therefore do not have to be
+        immutable.  Additional demonstration applications for
+        individual chart types. Minor bug fixes. 
+
+0.8.0 : (22-Mar-2002) All the category plots are now controlled
+        through the one class (CategoryPlot) with plug-in renderers.
+        Added a ResourceBundle for user interface items that require
+        localisation. Added a logarithmic axis class contributed by
+        Mike Duffy and some new JDBC and servlet code contributed by
+        Bryan Scott.  Updated the JCommon class library to improve
+        handling of time periods in different time zones.
+
+0.7.4 : (6-Mar-2002) Bug fixes in the JCommon Class Library. Various
+        Javadoc comment updates.  Some minor changes to the
+        code. Added new domain name (http://www.object-refinery.com) 
+        in the source headers.
+
+0.7.3 : (14-Feb-2002) Bug fixes.
+
+0.7.2 : (8-Feb-2002) Integrated the WindPlot code from Achilleus
+        Mantzios. Added an optional background image for the
+        JFreeChart class, and another optional background image for
+        the Plot class.  Added alpha-transparency for the plot
+        foreground and background.  Added new pie chart label types
+        that show values.  Fixed a bug with the legend that results in
+        a loop at small chart sizes. Added some tooltip methods that
+        were missing from the previous version. Changed the Insets
+        class on chart titles to a new Spacer class that will allow
+        for relative or absolute insets (the plan is to eventually
+        replace all Insets in the JFreeChart classes).  Fixed a bug in
+        the setAutoRangeIncludesZero method of the NumberAxis class.
+        Added the instructions that were missing from the copies of
+        the GNU Lesser General Public Licence included with JFreeChart.
+
+0.7.1 : (25-Jan-2002) Added tooltips, crosshairs and zooming
+        functions, thanks to Jonathan Nash and Hans-Jurgen Greiner
+        for contributing the code that these features are based on.
+        Moved the combination charts into the package
+        com.jrefinery.chart.combination, made a number of other small
+        API changes and fixed some bugs.  Removed the Javadoc HTML
+        from the download to save space (you can regenerate it from
+        the source code if you need it).
+
+0.7.0 : (11-Dec-2001) New combination plots developed by Bill
+        Kelemen.  Added Wolfgang Irler's servlet demo to the standard
+        download.  The About window in the demo application now
+        includes a list of developers that have contributed to the
+        project.
+
+0.6.0 : (27-Nov-2001) New plots including scatter plot, stacked bar
+        charts and 3D bar charts.  Improved pie chart.  Data
+        interfaces and classes moved to the JCommon class library.
+        New properties to control spacing on bar charts.  New
+        auto-tick mechanism.  JFreeChartPanel now incorporates
+        buffering, and popup menu.  Javadocs revised.  Fixed numerous
+        bugs from version 0.5.6.  Demo application updated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

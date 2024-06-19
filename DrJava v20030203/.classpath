@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/ant.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/compilers.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/dynamicjava.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/gj-util.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/GJv6.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/junit.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/platform.jar"/>
+	<classpathentry kind="lib" path="src/edu/rice/cs/lib/tools_1.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

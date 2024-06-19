@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Statements\12.11-6.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Statements\shell.js -f mozilla\js\tests\ecma_3\Statements\12.11-6.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 302439
+STATUS: spandep fu should skip unused JSOP_TABLESWITCH jump table entries
+PASSED! spandep fu should skip unused JSOP_TABLESWITCH jump table entries
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Statements\12.11-6.interpreted.arff] ...

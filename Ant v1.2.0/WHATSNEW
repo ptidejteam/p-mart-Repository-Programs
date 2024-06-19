@@ -1,0 +1,117 @@
+Changes from Ant 1.1 to Ant 1.2
+
+Changes that could break older environments:
+--------------------------------------------
+
+* Semantics of <property> has changed again in the hope to be more
+intuitive. ${} expansion now happens at runtime and <property> tags
+living inside of targets only take effect if they are visited at
+runtime.
+
+As a side effect of this change, task's attributes get set at runtime
+not at parser time as well, which might change the results of
+<script>s or other custom tasks that reference other tasks by their id
+attribute.
+
+* copying of support files in <javac> has been removed - as well as
+the filtering attribute.
+
+* the <expand> and <keysubst> tasks have been removed.
+
+* the ignore and items attributes of directory based tasks have been removed.
+
+* the command line switches _not_ starting with - have been removed.
+
+* Path and EnumeratedAttribute have been moved from
+org.apache.tools.ant to org.apache.tools.ant.types.
+
+* the class attributes of <available>, <java>, <rmic> and <taskdef>
+have been removed.
+
+* the src attribute of <chmod> has been removed.
+
+* <patch> and <javadoc> have lost some of their attributes.
+
+* <java> and <cvs> have lost some undocumented attributes.
+
+* the Unix antRun script would search for command.sh in the directory
+it changed to and invoke this instead of command if present. This
+behavior has been dropped.
+
+* <ejbjar> task syntax has been changed significantly
+
+* <exec> is no longer implemented by org.apache.tool.ant.taskdefs.Exec. 
+Custom tasks that rely on Project.createTask("exec") to return an
+instance of this class are going to fail.
+
+* nested <include> and <exclude> elements expect the value of their
+name attribute to be a single pattern, they don't accept multiple
+patterns anymore. Split them into multiple elements of the same type.
+
+* <delete dir="somedir" /> will now delete the directory itself as
+well as all included files. If you just want to clean out the
+directory and keep the empty one, use a nested fileset.
+
+Other changes:
+--------------
+
+* New tasks: antstructure, cab, execon, fail, ftp, genkey, jlink,
+junit, sql, javacc, jjtree, starteam, war, unwar, uptodate,
+native2ascii, copy, move, mparse.
+
+* copydir, copyfile, deltree and rename are now deprecated. They
+should be replaced with the new copy, delete and move tasks.
+
+* <java> uses a ClassLoader of its own in no-fork mode if a classpath is
+specified.
+
+* <style> will create the necessary target directories and reprocess
+all files if the stylesheet changes.
+
+* New data types fileset and patternset - expected to get a broader use.
+They, as well as PATH like structures, can now be defined on a global
+level and later be referenced by their id attribute.
+
+* You can specify environment variables to <exec>.
+
+* <get> can check whether a remote file is actually newer than a local
+copy before it starts a download (HTTP only).
+
+* Added a -logger option to allow the class which performs logging to be 
+specified on the command line.
+
+* Added a -emacs option to tell the logger to leave out taskname adornments
+on log output.
+
+* <chmod> works on all files in parallel and supports multiple filesets.
+
+* <replace> can now use tokens and/or values that cross line boundaries.
+
+* build.compiler supports now jvc as well.
+
+* project specific help can now be obtained with the -projecthelp option.
+
+* Added a -debug option to make -verbose less verbose (and more useful)
+
+* Ant will now search for a file named build.xml in the parent directory
+and above (towards the root of the filesystem) if you didn't specify
+-buildfile and there is no build.xml in the current directory.
+
+* <echo> can now write to a file and accepts nested text.
+
+Fixed bugs:
+-----------
+
+* <chmod> didn't work when used as a directory based task.
+
+* Path, Available, Property didn't resolve relative filenames with
+respect to the Project's basedir.
+
+* Project didn't interpret the basedir attribute correctly in all
+cases.
+
+* Nested <src> in <javac> caused NullPointerException.
+
+* Corrupt Zip- and Jar-files ar now deleted if the task fails.
+
+* many more fixes we've forgotten to document here ...

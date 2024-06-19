@@ -1,0 +1,418 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: StyleRecord');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: StyleRecord';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.hssf.record;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import org.apache.poi.util.LittleEndian;
+<a name=59 class="linenum">59   </a>import org.apache.poi.util.StringUtil;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a><span class="comment">/**
+<a name=62 class="linenum">62   </a> * Title:        Style Record&lt;P&gt;
+<a name=63 class="linenum">63   </a> * Description:  Describes a builtin to the gui or user defined style&lt;P&gt;
+<a name=64 class="linenum">64   </a> * REFERENCE:  PG 390 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)&lt;P&gt;
+<a name=65 class="linenum">65   </a> * @author Andrew C. Oliver (acoliver at apache dot org)
+<a name=66 class="linenum">66   </a> * @version 2.0-pre
+<a name=67 class="linenum">67   </a> */</span>
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a>public class <a class="classDef" name=StyleRecord href=StyleRecord_java_ref.html#StyleRecord>StyleRecord</a>
+<a name=70 class="linenum">70   </a>    extends <a class="classRef" href=Record_java.html#Record>Record</a>
+<a name=71 class="linenum">71   </a>{
+<a name=72 class="linenum">72   </a>    public final static short <a class="varDef" name=StyleRecord.sid href=StyleRecord_java_ref.html#StyleRecord.sid>sid</a>                = 0x293;
+<a name=73 class="linenum">73   </a>    public final static short <a class="varDef" name=StyleRecord.STYLE_USER_DEFINED href=StyleRecord_java_ref.html#StyleRecord.STYLE_USER_DEFINED>STYLE_USER_DEFINED</a> = 0;
+<a name=74 class="linenum">74   </a>    public final static short <a class="varDef" name=StyleRecord.STYLE_BUILT_IN href=StyleRecord_java_ref.html#StyleRecord.STYLE_BUILT_IN>STYLE_BUILT_IN</a>     = 1;
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>    <span class="comment">// shared by both user defined and builtin styles</span>
+<a name=77 class="linenum">77   </a>    private short             <a class="varDef" name=StyleRecord.field_1_xf_index href=StyleRecord_java_ref.html#StyleRecord.field_1_xf_index>field_1_xf_index</a>;   <span class="comment">// TODO: bitfield candidate</span>
+<a name=78 class="linenum">78   </a>
+<a name=79 class="linenum">79   </a>    <span class="comment">// only for built in styles</span>
+<a name=80 class="linenum">80   </a>    private byte              <a class="varDef" name=StyleRecord.field_2_builtin_style href=StyleRecord_java_ref.html#StyleRecord.field_2_builtin_style>field_2_builtin_style</a>;
+<a name=81 class="linenum">81   </a>    private byte              <a class="varDef" name=StyleRecord.field_3_outline_style_level href=StyleRecord_java_ref.html#StyleRecord.field_3_outline_style_level>field_3_outline_style_level</a>;
+<a name=82 class="linenum">82   </a>
+<a name=83 class="linenum">83   </a>    <span class="comment">// only for user defined styles</span>
+<a name=84 class="linenum">84   </a>    private byte              <a class="varDef" name=StyleRecord.field_2_name_length href=StyleRecord_java_ref.html#StyleRecord.field_2_name_length>field_2_name_length</a>;
+<a name=85 class="linenum">85   </a>    private String            <a class="varDef" name=StyleRecord.field_3_name href=StyleRecord_java_ref.html#StyleRecord.field_3_name>field_3_name</a>;
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>    public <a class="methodDef" name=StyleRecord.StyleRecord() href=StyleRecord_java_ref.html#StyleRecord.StyleRecord()>StyleRecord</a>()
+<a name=88 class="linenum">88   </a>    {
+<a name=89 class="linenum">89   </a>    }
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    <span class="comment">/**
+<a name=92 class="linenum">92   </a>     * Constructs a Style record and sets its fields appropriately.
+<a name=93 class="linenum">93   </a>     *
+<a name=94 class="linenum">94   </a>     * @param id     id must be 0x293 or an exception will be throw upon validation
+<a name=95 class="linenum">95   </a>     * @param size  the size of the data area of the record
+<a name=96 class="linenum">96   </a>     * @param data  data of the record (should not contain sid/len)
+<a name=97 class="linenum">97   </a>     */</span>
+<a name=98 class="linenum">98   </a>
+<a name=99 class="linenum">99   </a>    public <a class="methodDef" name=StyleRecord.StyleRecord(short,short,byte) href=StyleRecord_java_ref.html#StyleRecord.StyleRecord(short,short,byte)>StyleRecord</a>(short id, short size, byte [] data)
+<a name=100 class="linenum">100  </a>    {
+<a name=101 class="linenum">101  </a>        super(<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.StyleRecord.id>id</a>, <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.StyleRecord.size>size</a>, <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.StyleRecord.data>data</a>);
+<a name=102 class="linenum">102  </a>    }
+<a name=103 class="linenum">103  </a>
+<a name=104 class="linenum">104  </a>    <span class="comment">/**
+<a name=105 class="linenum">105  </a>     * Constructs a Style record and sets its fields appropriately.
+<a name=106 class="linenum">106  </a>     *
+<a name=107 class="linenum">107  </a>     * @param id     id must be 0x293 or an exception will be throw upon validation
+<a name=108 class="linenum">108  </a>     * @param size  the size of the data area of the record
+<a name=109 class="linenum">109  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=110 class="linenum">110  </a>     * @param offset
+<a name=111 class="linenum">111  </a>     */</span>
+<a name=112 class="linenum">112  </a>
+<a name=113 class="linenum">113  </a>    public <a class="methodDef" name=StyleRecord.StyleRecord(short,short,byte,int) href=StyleRecord_java_ref.html#StyleRecord.StyleRecord(short,short,byte,int)>StyleRecord</a>(short id, short size, byte [] data, int offset)
+<a name=114 class="linenum">114  </a>    {
+<a name=115 class="linenum">115  </a>        super(<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.StyleRecord.id>id</a>, <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.StyleRecord.size>size</a>, <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.StyleRecord.data>data</a>, <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.StyleRecord.offset>offset</a>);
+<a name=116 class="linenum">116  </a>    }
+<a name=117 class="linenum">117  </a>
+<a name=118 class="linenum">118  </a>    protected void <a class="methodDef" name=StyleRecord.validateSid(short) href=StyleRecord_java_ref.html#StyleRecord.validateSid(short)>validateSid</a>(short id)
+<a name=119 class="linenum">119  </a>    {
+<a name=120 class="linenum">120  </a>        if (<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.validateSid.id>id</a> != <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.sid>sid</a>)
+<a name=121 class="linenum">121  </a>        {
+<a name=122 class="linenum">122  </a>            throw new RecordFormatException("NOT A STYLE RECORD");
+<a name=123 class="linenum">123  </a>        }
+<a name=124 class="linenum">124  </a>    }
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>    protected void <a class="methodDef" name=StyleRecord.fillFields(byte,short,int) href=StyleRecord_java_ref.html#StyleRecord.fillFields(byte,short,int)>fillFields</a>(byte [] data, short size, int offset)
+<a name=127 class="linenum">127  </a>    {
+<a name=128 class="linenum">128  </a>        <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a> = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.fillFields.data>data</a>, 0 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.fillFields.offset>offset</a>);
+<a name=129 class="linenum">129  </a>        if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == 1)
+<a name=130 class="linenum">130  </a>        {
+<a name=131 class="linenum">131  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_builtin_style>field_2_builtin_style</a>       = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.fillFields.data>data</a>[ 2 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.fillFields.offset>offset</a> ];
+<a name=132 class="linenum">132  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_3_outline_style_level>field_3_outline_style_level</a> = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.fillFields.data>data</a>[ 3 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.fillFields.offset>offset</a> ];
+<a name=133 class="linenum">133  </a>        }
+<a name=134 class="linenum">134  </a>        else if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == 0)
+<a name=135 class="linenum">135  </a>        {
+<a name=136 class="linenum">136  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_name_length>field_2_name_length</a> = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.fillFields.data>data</a>[ 2 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.fillFields.offset>offset</a> ];
+<a name=137 class="linenum">137  </a>            <a class="varRef" title="String" href=StyleRecord_java.html#StyleRecord.field_3_name>field_3_name</a>        = new String(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.fillFields.data>data</a>, 3 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.fillFields.offset>offset</a>,
+<a name=138 class="linenum">138  </a>                                             <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.ubyteToInt(byte)>ubyteToInt</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_name_length>field_2_name_length</a>));
+<a name=139 class="linenum">139  </a>        }
+<a name=140 class="linenum">140  </a>
+<a name=141 class="linenum">141  </a>        <span class="comment">// todo sanity check exception to make sure we're one or the other</span>
+<a name=142 class="linenum">142  </a>    }
+<a name=143 class="linenum">143  </a>
+<a name=144 class="linenum">144  </a>    <span class="comment">/**
+<a name=145 class="linenum">145  </a>     * set the entire index field (including the type) (see bit setters that reference this method)
+<a name=146 class="linenum">146  </a>     *  @param index  bitmask
+<a name=147 class="linenum">147  </a>     */</span>
+<a name=148 class="linenum">148  </a>
+<a name=149 class="linenum">149  </a>    public void <a class="methodDef" name=StyleRecord.setIndex(short) href=StyleRecord_java_ref.html#StyleRecord.setIndex(short)>setIndex</a>(short index)
+<a name=150 class="linenum">150  </a>    {
+<a name=151 class="linenum">151  </a>        field_1_xf_index = <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.setIndex.index>index</a>;
+<a name=152 class="linenum">152  </a>    }
+<a name=153 class="linenum">153  </a>
+<a name=154 class="linenum">154  </a>    <span class="comment">// bitfields for field 1</span>
+<a name=155 class="linenum">155  </a>
+<a name=156 class="linenum">156  </a>    <span class="comment">/**
+<a name=157 class="linenum">157  </a>     * set the type of the style (builtin or user-defined)
+<a name=158 class="linenum">158  </a>     * @see #STYLE_USER_DEFINED
+<a name=159 class="linenum">159  </a>     * @see #STYLE_BUILT_IN
+<a name=160 class="linenum">160  </a>     * @param type of style (userdefined/builtin)
+<a name=161 class="linenum">161  </a>     * @see #setIndex(short)
+<a name=162 class="linenum">162  </a>     */</span>
+<a name=163 class="linenum">163  </a>
+<a name=164 class="linenum">164  </a>    public void <a class="methodDef" name=StyleRecord.setType(short) href=StyleRecord_java_ref.html#StyleRecord.setType(short)>setType</a>(short type)
+<a name=165 class="linenum">165  </a>    {
+<a name=166 class="linenum">166  </a>        <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a> = <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.setField(int,int,int,int)>setField</a>(<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a>, <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.setType.type>type</a>, 0x8000, 15);
+<a name=167 class="linenum">167  </a>    }
+<a name=168 class="linenum">168  </a>
+<a name=169 class="linenum">169  </a>    <span class="comment">/**
+<a name=170 class="linenum">170  </a>     * set the actual index of the style extended format record
+<a name=171 class="linenum">171  </a>     * @see #setIndex(short)
+<a name=172 class="linenum">172  </a>     * @param index of the xf record
+<a name=173 class="linenum">173  </a>     */</span>
+<a name=174 class="linenum">174  </a>
+<a name=175 class="linenum">175  </a>    public void <a class="methodDef" name=StyleRecord.setXFIndex(short) href=StyleRecord_java_ref.html#StyleRecord.setXFIndex(short)>setXFIndex</a>(short index)
+<a name=176 class="linenum">176  </a>    {
+<a name=177 class="linenum">177  </a>        <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a> = <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.setField(int,int,int,int)>setField</a>(<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a>, <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.setXFIndex.index>index</a>, 0x1FFF, 0);
+<a name=178 class="linenum">178  </a>    }
+<a name=179 class="linenum">179  </a>
+<a name=180 class="linenum">180  </a>    <span class="comment">// end bitfields</span>
+<a name=181 class="linenum">181  </a>    <span class="comment">// only for user defined records</span>
+<a name=182 class="linenum">182  </a>
+<a name=183 class="linenum">183  </a>    <span class="comment">/**
+<a name=184 class="linenum">184  </a>     * if this is a user defined record set the length of the style name
+<a name=185 class="linenum">185  </a>     * @param length of the style's name
+<a name=186 class="linenum">186  </a>     * @see #setName(String)
+<a name=187 class="linenum">187  </a>     */</span>
+<a name=188 class="linenum">188  </a>
+<a name=189 class="linenum">189  </a>    public void <a class="methodDef" name=StyleRecord.setNameLength(byte) href=StyleRecord_java_ref.html#StyleRecord.setNameLength(byte)>setNameLength</a>(byte length)
+<a name=190 class="linenum">190  </a>    {
+<a name=191 class="linenum">191  </a>        <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_name_length>field_2_name_length</a> = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.setNameLength.length>length</a>;
+<a name=192 class="linenum">192  </a>    }
+<a name=193 class="linenum">193  </a>
+<a name=194 class="linenum">194  </a>    <span class="comment">/**
+<a name=195 class="linenum">195  </a>     * set the style's name
+<a name=196 class="linenum">196  </a>     * @param name of the style
+<a name=197 class="linenum">197  </a>     * @see #setNameLength(byte)
+<a name=198 class="linenum">198  </a>     */</span>
+<a name=199 class="linenum">199  </a>
+<a name=200 class="linenum">200  </a>    public void <a class="methodDef" name=StyleRecord.setName(String) href=StyleRecord_java_ref.html#StyleRecord.setName(String)>setName</a>(String name)
+<a name=201 class="linenum">201  </a>    {
+<a name=202 class="linenum">202  </a>        <a class="varRef" title="String" href=StyleRecord_java.html#StyleRecord.field_3_name>field_3_name</a> = <a class="varRef" title="String" href=StyleRecord_java.html#StyleRecord.setName.name>name</a>;
+<a name=203 class="linenum">203  </a>    }
+<a name=204 class="linenum">204  </a>
+<a name=205 class="linenum">205  </a>    <span class="comment">// end user defined</span>
+<a name=206 class="linenum">206  </a>    <span class="comment">// only for buildin records</span>
+<a name=207 class="linenum">207  </a>
+<a name=208 class="linenum">208  </a>    <span class="comment">/**
+<a name=209 class="linenum">209  </a>     * if this is a builtin style set teh number of the built in style
+<a name=210 class="linenum">210  </a>     * @param  builtin style number (0-7)
+<a name=211 class="linenum">211  </a>     *
+<a name=212 class="linenum">212  </a>     */</span>
+<a name=213 class="linenum">213  </a>
+<a name=214 class="linenum">214  </a>    public void <a class="methodDef" name=StyleRecord.setBuiltin(byte) href=StyleRecord_java_ref.html#StyleRecord.setBuiltin(byte)>setBuiltin</a>(byte builtin)
+<a name=215 class="linenum">215  </a>    {
+<a name=216 class="linenum">216  </a>        field_2_builtin_style = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.setBuiltin.builtin>builtin</a>;
+<a name=217 class="linenum">217  </a>    }
+<a name=218 class="linenum">218  </a>
+<a name=219 class="linenum">219  </a>    <span class="comment">/**
+<a name=220 class="linenum">220  </a>     * set the row or column level of the style (if builtin 1||2)
+<a name=221 class="linenum">221  </a>     */</span>
+<a name=222 class="linenum">222  </a>
+<a name=223 class="linenum">223  </a>    public void <a class="methodDef" name=StyleRecord.setOutlineStyleLevel(byte) href=StyleRecord_java_ref.html#StyleRecord.setOutlineStyleLevel(byte)>setOutlineStyleLevel</a>(byte level)
+<a name=224 class="linenum">224  </a>    {
+<a name=225 class="linenum">225  </a>        field_3_outline_style_level = <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.setOutlineStyleLevel.level>level</a>;
+<a name=226 class="linenum">226  </a>    }
+<a name=227 class="linenum">227  </a>
+<a name=228 class="linenum">228  </a>    <span class="comment">// end builtin records</span>
+<a name=229 class="linenum">229  </a>    <span class="comment">// field 1</span>
+<a name=230 class="linenum">230  </a>
+<a name=231 class="linenum">231  </a>    <span class="comment">/**
+<a name=232 class="linenum">232  </a>     * get the entire index field (including the type) (see bit getters that reference this method)
+<a name=233 class="linenum">233  </a>     *  @return bitmask
+<a name=234 class="linenum">234  </a>     */</span>
+<a name=235 class="linenum">235  </a>
+<a name=236 class="linenum">236  </a>    public short <a class="methodDef" name=StyleRecord.getIndex() href=StyleRecord_java_ref.html#StyleRecord.getIndex()>getIndex</a>()
+<a name=237 class="linenum">237  </a>    {
+<a name=238 class="linenum">238  </a>        return <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a>;
+<a name=239 class="linenum">239  </a>    }
+<a name=240 class="linenum">240  </a>
+<a name=241 class="linenum">241  </a>    <span class="comment">// bitfields for field 1</span>
+<a name=242 class="linenum">242  </a>
+<a name=243 class="linenum">243  </a>    <span class="comment">/**
+<a name=244 class="linenum">244  </a>     * get the type of the style (builtin or user-defined)
+<a name=245 class="linenum">245  </a>     * @see #STYLE_USER_DEFINED
+<a name=246 class="linenum">246  </a>     * @see #STYLE_BUILT_IN
+<a name=247 class="linenum">247  </a>     * @return type of style (userdefined/builtin)
+<a name=248 class="linenum">248  </a>     * @see #getIndex()
+<a name=249 class="linenum">249  </a>     */</span>
+<a name=250 class="linenum">250  </a>
+<a name=251 class="linenum">251  </a>    public short <a class="methodDef" name=StyleRecord.getType() href=StyleRecord_java_ref.html#StyleRecord.getType()>getType</a>()
+<a name=252 class="linenum">252  </a>    {
+<a name=253 class="linenum">253  </a>        return ( short ) ((<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a> & 0x8000) &gt;&gt; 15);
+<a name=254 class="linenum">254  </a>    }
+<a name=255 class="linenum">255  </a>
+<a name=256 class="linenum">256  </a>    <span class="comment">/**
+<a name=257 class="linenum">257  </a>     * get the actual index of the style extended format record
+<a name=258 class="linenum">258  </a>     * @see #getIndex()
+<a name=259 class="linenum">259  </a>     * @return index of the xf record
+<a name=260 class="linenum">260  </a>     */</span>
+<a name=261 class="linenum">261  </a>
+<a name=262 class="linenum">262  </a>    public short <a class="methodDef" name=StyleRecord.getXFIndex() href=StyleRecord_java_ref.html#StyleRecord.getXFIndex()>getXFIndex</a>()
+<a name=263 class="linenum">263  </a>    {
+<a name=264 class="linenum">264  </a>        return ( short ) (<a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.field_1_xf_index>field_1_xf_index</a> & 0x1FFF);
+<a name=265 class="linenum">265  </a>    }
+<a name=266 class="linenum">266  </a>
+<a name=267 class="linenum">267  </a>    <span class="comment">// end bitfields</span>
+<a name=268 class="linenum">268  </a>    <span class="comment">// only for user defined records</span>
+<a name=269 class="linenum">269  </a>
+<a name=270 class="linenum">270  </a>    <span class="comment">/**
+<a name=271 class="linenum">271  </a>     * if this is a user defined record get the length of the style name
+<a name=272 class="linenum">272  </a>     * @return length of the style's name
+<a name=273 class="linenum">273  </a>     * @see #getName()
+<a name=274 class="linenum">274  </a>     */</span>
+<a name=275 class="linenum">275  </a>
+<a name=276 class="linenum">276  </a>    public byte <a class="methodDef" name=StyleRecord.getNameLength() href=StyleRecord_java_ref.html#StyleRecord.getNameLength()>getNameLength</a>()
+<a name=277 class="linenum">277  </a>    {
+<a name=278 class="linenum">278  </a>        return <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_name_length>field_2_name_length</a>;
+<a name=279 class="linenum">279  </a>    }
+<a name=280 class="linenum">280  </a>
+<a name=281 class="linenum">281  </a>    <span class="comment">/**
+<a name=282 class="linenum">282  </a>     * get the style's name
+<a name=283 class="linenum">283  </a>     * @return name of the style
+<a name=284 class="linenum">284  </a>     * @see #getNameLength()
+<a name=285 class="linenum">285  </a>     */</span>
+<a name=286 class="linenum">286  </a>
+<a name=287 class="linenum">287  </a>    public String <a class="methodDef" name=StyleRecord.getName() href=StyleRecord_java_ref.html#StyleRecord.getName()>getName</a>()
+<a name=288 class="linenum">288  </a>    {
+<a name=289 class="linenum">289  </a>        return <a class="varRef" title="String" href=StyleRecord_java.html#StyleRecord.field_3_name>field_3_name</a>;
+<a name=290 class="linenum">290  </a>    }
+<a name=291 class="linenum">291  </a>
+<a name=292 class="linenum">292  </a>    <span class="comment">// end user defined</span>
+<a name=293 class="linenum">293  </a>    <span class="comment">// only for buildin records</span>
+<a name=294 class="linenum">294  </a>
+<a name=295 class="linenum">295  </a>    <span class="comment">/**
+<a name=296 class="linenum">296  </a>     * if this is a builtin style get the number of the built in style
+<a name=297 class="linenum">297  </a>     * @return  builtin style number (0-7)
+<a name=298 class="linenum">298  </a>     *
+<a name=299 class="linenum">299  </a>     */</span>
+<a name=300 class="linenum">300  </a>
+<a name=301 class="linenum">301  </a>    public byte <a class="methodDef" name=StyleRecord.getBuiltin() href=StyleRecord_java_ref.html#StyleRecord.getBuiltin()>getBuiltin</a>()
+<a name=302 class="linenum">302  </a>    {
+<a name=303 class="linenum">303  </a>        return <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_2_builtin_style>field_2_builtin_style</a>;
+<a name=304 class="linenum">304  </a>    }
+<a name=305 class="linenum">305  </a>
+<a name=306 class="linenum">306  </a>    <span class="comment">/**
+<a name=307 class="linenum">307  </a>     * get the row or column level of the style (if builtin 1||2)
+<a name=308 class="linenum">308  </a>     */</span>
+<a name=309 class="linenum">309  </a>
+<a name=310 class="linenum">310  </a>    public byte <a class="methodDef" name=StyleRecord.getOutlineStyleLevel() href=StyleRecord_java_ref.html#StyleRecord.getOutlineStyleLevel()>getOutlineStyleLevel</a>()
+<a name=311 class="linenum">311  </a>    {
+<a name=312 class="linenum">312  </a>        return <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.field_3_outline_style_level>field_3_outline_style_level</a>;
+<a name=313 class="linenum">313  </a>    }
+<a name=314 class="linenum">314  </a>
+<a name=315 class="linenum">315  </a>    <span class="comment">// end builtin records</span>
+<a name=316 class="linenum">316  </a>    public String <a class="methodDef" name=StyleRecord.toString() href=StyleRecord_java_ref.html#StyleRecord.toString()>toString</a>()
+<a name=317 class="linenum">317  </a>    {
+<a name=318 class="linenum">318  </a>        StringBuffer buffer = new StringBuffer();
+<a name=319 class="linenum">319  </a>
+<a name=320 class="linenum">320  </a>        <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("[STYLE]\n");
+<a name=321 class="linenum">321  </a>        <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("    .xf_index_raw    = ")
+<a name=322 class="linenum">322  </a>            .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getIndex()>getIndex</a>())).append("\n");
+<a name=323 class="linenum">323  </a>        <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("        .type        = ")
+<a name=324 class="linenum">324  </a>            .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>())).append("\n");
+<a name=325 class="linenum">325  </a>        <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("        .xf_index    = ")
+<a name=326 class="linenum">326  </a>            .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getXFIndex()>getXFIndex</a>())).append("\n");
+<a name=327 class="linenum">327  </a>        if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.STYLE_BUILT_IN>STYLE_BUILT_IN</a>)
+<a name=328 class="linenum">328  </a>        {
+<a name=329 class="linenum">329  </a>            <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("    .builtin_style   = ")
+<a name=330 class="linenum">330  </a>                .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getBuiltin()>getBuiltin</a>())).append("\n");
+<a name=331 class="linenum">331  </a>            <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("    .outline_level   = ")
+<a name=332 class="linenum">332  </a>                .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getOutlineStyleLevel()>getOutlineStyleLevel</a>()))
+<a name=333 class="linenum">333  </a>                .append("\n");
+<a name=334 class="linenum">334  </a>        }
+<a name=335 class="linenum">335  </a>        else if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.STYLE_USER_DEFINED>STYLE_USER_DEFINED</a>)
+<a name=336 class="linenum">336  </a>        {
+<a name=337 class="linenum">337  </a>            <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("    .name_length     = ")
+<a name=338 class="linenum">338  </a>                .append(Integer.toHexString(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getNameLength()>getNameLength</a>())).append("\n");
+<a name=339 class="linenum">339  </a>            <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("    .name            = ").append(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getName()>getName</a>())
+<a name=340 class="linenum">340  </a>                .append("\n");
+<a name=341 class="linenum">341  </a>        }
+<a name=342 class="linenum">342  </a>        <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.append("[/STYLE]\n");
+<a name=343 class="linenum">343  </a>        return <a class="varRef" title="StringBuffer" href=StyleRecord_java.html#StyleRecord.toString.buffer>buffer</a>.toString();
+<a name=344 class="linenum">344  </a>    }
+<a name=345 class="linenum">345  </a>
+<a name=346 class="linenum">346  </a>    private short <a class="methodDef" name=StyleRecord.setField(int,int,int,int) href=StyleRecord_java_ref.html#StyleRecord.setField(int,int,int,int)>setField</a>(int fieldValue, int new_value, int mask,
+<a name=347 class="linenum">347  </a>                           int shiftLeft)
+<a name=348 class="linenum">348  </a>    {
+<a name=349 class="linenum">349  </a>        return ( short ) ((<a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.setField.fieldValue>fieldValue</a> & ~<a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.setField.mask>mask</a>)
+<a name=350 class="linenum">350  </a>                          | ((<a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.setField.new_value>new_value</a> &lt;&lt; <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.setField.shiftLeft>shiftLeft</a>) & <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.setField.mask>mask</a>));
+<a name=351 class="linenum">351  </a>    }
+<a name=352 class="linenum">352  </a>
+<a name=353 class="linenum">353  </a>    public int <a class="methodDef" name=StyleRecord.serialize(int,byte) href=StyleRecord_java_ref.html#StyleRecord.serialize(int,byte)>serialize</a>(int offset, byte [] data)
+<a name=354 class="linenum">354  </a>    {
+<a name=355 class="linenum">355  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>, 0 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.sid>sid</a>);
+<a name=356 class="linenum">356  </a>        if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.STYLE_BUILT_IN>STYLE_BUILT_IN</a>)
+<a name=357 class="linenum">357  </a>        {
+<a name=358 class="linenum">358  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>, 2 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a>,
+<a name=359 class="linenum">359  </a>                                  (( short ) 0x04));   <span class="comment">// 4 bytes (8 total)</span>
+<a name=360 class="linenum">360  </a>        }
+<a name=361 class="linenum">361  </a>        else
+<a name=362 class="linenum">362  </a>        {
+<a name=363 class="linenum">363  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>, 2 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a>,
+<a name=364 class="linenum">364  </a>                                  (( short ) (0x03 + <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getNameLength()>getNameLength</a>())));
+<a name=365 class="linenum">365  </a>        }
+<a name=366 class="linenum">366  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>, 4 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a>, <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getIndex()>getIndex</a>());
+<a name=367 class="linenum">367  </a>        if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.STYLE_BUILT_IN>STYLE_BUILT_IN</a>)
+<a name=368 class="linenum">368  </a>        {
+<a name=369 class="linenum">369  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>[ 6 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a> ] = <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getBuiltin()>getBuiltin</a>();
+<a name=370 class="linenum">370  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>[ 7 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a> ] = <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getOutlineStyleLevel()>getOutlineStyleLevel</a>();
+<a name=371 class="linenum">371  </a>        }
+<a name=372 class="linenum">372  </a>        else
+<a name=373 class="linenum">373  </a>        {
+<a name=374 class="linenum">374  </a>            <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>[ 6 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a> ] = <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getNameLength()>getNameLength</a>();
+<a name=375 class="linenum">375  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\StringUtil_java.html#StringUtil>StringUtil</a>.<a class="methodRef" title="StringUtil" href=..\..\..\..\..\org\apache\poi\util\StringUtil_java.html#StringUtil.putCompressedUnicode(String,byte,int)>putCompressedUnicode</a>(<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getName()>getName</a>(), <a class="varRef" title="byte" href=StyleRecord_java.html#StyleRecord.serialize.data>data</a>, 7 + <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.serialize.offset>offset</a>);
+<a name=376 class="linenum">376  </a>        }
+<a name=377 class="linenum">377  </a>        return <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getRecordSize()>getRecordSize</a>();
+<a name=378 class="linenum">378  </a>    }
+<a name=379 class="linenum">379  </a>
+<a name=380 class="linenum">380  </a>    public int <a class="methodDef" name=StyleRecord.getRecordSize() href=StyleRecord_java_ref.html#StyleRecord.getRecordSize()>getRecordSize</a>()
+<a name=381 class="linenum">381  </a>    {
+<a name=382 class="linenum">382  </a>        int retval;
+<a name=383 class="linenum">383  </a>
+<a name=384 class="linenum">384  </a>        if (<a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getType()>getType</a>() == <a class="varRef" title="short" href=StyleRecord_java.html#StyleRecord.STYLE_BUILT_IN>STYLE_BUILT_IN</a>)
+<a name=385 class="linenum">385  </a>        {
+<a name=386 class="linenum">386  </a>            <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.getRecordSize.retval>retval</a> = 8;
+<a name=387 class="linenum">387  </a>        }
+<a name=388 class="linenum">388  </a>        else
+<a name=389 class="linenum">389  </a>        {
+<a name=390 class="linenum">390  </a>            <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.getRecordSize.retval>retval</a> = 7 + <a class="methodRef" title="StyleRecord" href=StyleRecord_java.html#StyleRecord.getNameLength()>getNameLength</a>();
+<a name=391 class="linenum">391  </a>        }
+<a name=392 class="linenum">392  </a>        return <a class="varRef" title="int" href=StyleRecord_java.html#StyleRecord.getRecordSize.retval>retval</a>;
+<a name=393 class="linenum">393  </a>    }
+<a name=394 class="linenum">394  </a>
+<a name=395 class="linenum">395  </a>    public short <a class="methodDef" name=StyleRecord.getSid() href=StyleRecord_java_ref.html#StyleRecord.getSid()>getSid</a>()
+<a name=396 class="linenum">396  </a>    {
+<a name=397 class="linenum">397  </a>        return this.sid;
+<a name=398 class="linenum">398  </a>    }
+<a name=399 class="linenum">399  </a>}
+<a name=400 class="linenum">400  </a></pre>

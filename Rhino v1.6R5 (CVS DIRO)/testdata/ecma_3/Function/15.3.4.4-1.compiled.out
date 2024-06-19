@@ -1,0 +1,16 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Function\15.3.4.4-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Function\shell.js -f mozilla\js\tests\ecma_3\Function\15.3.4.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 145791
+STATUS: Testing ECMA conformance of Function.prototype.call
+PASSED! Section 1 of test -
+PASSED! Section 2 of test -
+PASSED! Section 3 of test -
+PASSED! Section 4 of test -
+PASSED! Section 5 of test -
+PASSED! Section 6 of test -
+PASSED! Section 7 of test -
+PASSED! Section 8 of test -
+PASSED! Section 9 of test -
+PASSED! Section 10 of test -
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Function\15.3.4.4-1.compiled.arff] ...

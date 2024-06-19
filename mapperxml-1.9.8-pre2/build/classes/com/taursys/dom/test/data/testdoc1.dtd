@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT dataset (person)>
+
+<!ELEMENT firstname (#PCDATA)>
+
+<!ELEMENT lastname (#PCDATA)>
+
+<!ELEMENT middleinitial (#PCDATA)>
+
+<!ELEMENT address (#PCDATA)>
+
+<!ELEMENT person (lastname,firstname,middleinitial,address)>
+<!ATTLIST person identity NMTOKEN #REQUIRED>
+

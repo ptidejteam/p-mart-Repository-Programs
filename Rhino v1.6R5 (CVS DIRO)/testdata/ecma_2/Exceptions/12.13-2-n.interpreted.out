@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\12.13-2-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\12.13-2-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+exception-011 undefined
+exception-011 Don't Crash throwing undefined
+Undefined throw test.
+js: "mozilla\js\tests\ecma_2\Exceptions\12.13-2-n.js#53(eval)", line 1: exception from uncaught JavaScript throw: undefined
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\12.13-2-n.interpreted.arff] ...

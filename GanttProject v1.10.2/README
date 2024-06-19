@@ -1,0 +1,75 @@
+
+ ======================================================
+ = Planner of projects  - Java  (GanttProject 1.10)   =
+ = http://ganttproject.sourceforge.net                =
+ ======================================================
+
+ 1. DESCRIPTION
+ ==============
+ This software is developed in java durind our the studies à University of
+ Marne-la-Vallée (France). The Version 1.3 was given to teacher.
+
+ It is used to plan a project by divid it in sub-tasks
+ Each task has a date of beginning, one duration, some depends, and notes.
+
+ The software has dialog box to edit properties of task (date, duration, 
+ advencement aso)
+
+ The software could save the project on a file and reload it after.
+
+ The software has also a graphic interface with differents levels of granularity
+ (week, month or year)
+ 
+ You can export the project in html web pages or pdf document using customisation as
+ XSL transformation. The chart could also export into png or jpg image.
+ 
+ GanttProject supports working with project plans, that are stored on web servers. 
+ If such a server supports WebDAV, you can even save/publish a project plan to it. 
+ Of course you must have write permissions for this, so you may have to enter a 
+ username and a password for your server. Then you could work at distance by using 
+ internet connection and share a common project plan with your team.
+ If you want to know more about WebDAV see: http://www.webdav.org/
+
+
+ 2. INSTALLATION / EXECUTION
+ ===========================
+
+ This software needs Java (J2SE JRE >=1.4).
+ You can download Java for free at:
+ http://java.sun.com/getjava/
+ 
+ Under Windows : Use the automatic installer. It creates some shortcuts 
+ 				 on the desktop and in the start menu
+ Under Linux   : sh ganttproject.sh
+
+
+ 3. ABOUT
+ ==========
+ Alexandre THOMAS - alexthomas@ganttproject.org
+ ganttproject.sourceforge.net
+ 2003
+ See also authors to see the contributors :-)
+ 
+ 
+ 4. THEMES
+ =========
+ You can customize your html/pdf exportation with xsl transformation.
+ Put the differents themes on themes/2pdf directory and unzip the file for pdf exportation.
+ Put the differents themes on themes/2html directory and unzip the files for html exportation
+ 
+ 
+ 5. HOW TO BUILD THE SOURCES
+ ===========================
+ If you get the source from the archive file or from the CVS by pserver, 
+ it's the same way to compile GanttProject.
+ You have to install ant (http://ant.apache.org) on you computer and configure it
+ Then just type "ant" to built the ganttproject-version.jar.
+ Try "ant -projecthelp" to see all parameters for the compilation.
+ 
+ 
+ 6. ACKNOWLEDGEMENT
+ ==================
+ This product includes software developed by the
+ Apache Software Foundation <http://www.apache.org/>.
+ These parts are subject to the Apache Software License.
+ 

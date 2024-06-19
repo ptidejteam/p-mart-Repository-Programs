@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <author>David Dixon-Peugh</author>
+    <title>What does 'PMD' mean?</title>
+  </properties>
+
+  <body>
+  <section name="What does it mean?">
+<p>
+Here on the PMD project, we've been trying to find the
+meaning of the letters PMD.  Because frankly, we don't
+really know.  (We just think the letters sound good
+together.)
+</p>
+
+<p>
+However, in the spirit of the Computing Industry, we
+have come up with several "backronyms" to explain it.
+<table>
+  <th>PMD</th>
+  <tr><td>Pretty Much Done</td></tr>
+  <tr><td>Project Mess Detector</td></tr>
+  <tr><td>Project Monitoring Directives</td></tr>
+  <tr><td>Protein Mutant Database</td></tr>
+  <tr><td>Project Meets Deadline</td></tr>
+  <tr><td>Programming Mistake Detector</td></tr>
+  <tr><td>Pounds Mistakes Dead</td></tr>
+  <tr><td>PMD Meaning Discovery</td></tr>
+</table>
+</p>
+</section>
+</body>
+</document>

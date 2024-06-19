@@ -1,0 +1,6 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.3.1-4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.3.1-4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.3.1-4 Properties of the String Constructor
+delete( String.prototype );String.prototype =  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.3.1-4.compiled.arff] ...

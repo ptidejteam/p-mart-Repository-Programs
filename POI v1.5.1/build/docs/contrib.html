@@ -1,0 +1,495 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Contribution to POI</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>About</h4>
+<ul>
+<li>
+<a href="index.html">Index</a>
+</li>
+<li>
+<a href="historyandfuture.html">History and Future</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/builds/jakarta-poi/">Download</a>
+</li>
+<li>
+<a href="plan/POI10Vision.html">1.0 Vision</a>
+</li>
+<li>
+<a href="plan/POI20Vision.html">2.0 Vision</a>
+</li>
+<li>
+<a href="who.html">Who we are</a>
+</li>
+<li>
+<a href="changes.html">Changes</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Sub-Projects</h4>
+<ul>
+<li>
+<a href="overview.html">Overview</a>
+</li>
+<li>
+<a href="poifs/index.html">POIFS</a>
+</li>
+<li>
+<a href="hssf/index.html">HSSF</a>
+</li>
+<li>
+<a href="hdf/index.html">HDF</a>
+</li>
+<li>
+<a href="hpsf/index.html">HPSF</a>
+</li>
+<li>
+<a href="utils/index.html">POI-Utils</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>References</h4>
+<ul>
+<li>
+<a href="http://jakarta.apache.org/poi/javadocs/">Javadocs</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/test/">Test Results</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/metrics/jdepend-report.html">Metrics</a>
+</li>
+<li>
+<a href="inthenews.html">In The News</a>
+</li>
+<li>
+<a href="livesites.html">Live Sites</a>
+</li>
+<li>
+<a href="http://sc.openoffice.org/excelfileformat.pdf">XLS spec [PDF]</a>
+</li>
+<li>
+<a href="http://xml.apache.org/cocoon/">Apache Cocoon</a>
+</li>
+<li>
+<a href="resolutions/index.html">Resolutions</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Get Involved</h4>
+<ul>
+<li>
+<a href="contrib.html">Contributing</a>
+</li>
+<li>
+<a href="branching.html">Branching</a>
+</li>
+<li>
+<a href="http://nagoya.apache.org/bugzilla/buglist.cgi?product=POI">Bug Database</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/cvsindex.html">CVS</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/mail.html">Mail Lists</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>Contribution to POI</h1>
+</div>
+<div id="contents">
+ 
+
+ 
+
+ 
+<h2>Introduction</h2>
+<div class="section">
+
+  
+<p>
+   The POI Project is an <a href="http://www.opensource.org/">Open Source</a>
+   volunteer project released under a very open license.
+   This means there are many ways to contribute to the project - either
+   with direct participation (coding, documenting, answering questions,
+   proposing ideas, reporting bugs, suggesting bug fixes, etc. ...) or by resource
+   donations (money, time, publicity, hardware, software, conference
+   presentations, speeches, etc. ...).
+  </p>
+  
+<p>
+   To begin with, we suggest you subscribe to the
+   <a href="mail-lists.html">POI mailing lists</a>
+   (follow the link for information on how to subscribe and to access the mail
+   list archives). Listen in for a while, to hear how others make contributions.
+  </p>
+
+  
+<p>You can get your local working copy of the
+   <a href="http://jakarta.apache.org/site/cvsindex.html">latest and
+   greatest code</a> (which you find in the jakarta-poi module in
+   the CVS code repository.   Review the <a href="todo.html">todo</a> list and choose a task
+   (or perhaps you have noticed something that needs patching). Make the changes, do the testing, 
+   generate a patch, and post to the dev mailing list. (Do not worry - the process is easy and
+   explained below.)
+  </p>
+
+  
+<p>
+   Document writers are usually the most wanted people so if
+   you like to help but you're not familiar with the innermost technical details, don't worry:
+   we have work for you!  And we'll be very available to you for any questions!
+  </p>
+
+ 
+</div>
+
+ 
+<h2>Help Wanted Here</h2>
+<div class="section">
+  
+<p>
+   The rest of this document is mainly about
+   contributing new or improved code and/or documentation, but we would also be glad to have
+   extra help in any of the following areas:
+  </p>
+  
+<blockquote>
+<ul>
+   
+<li>Answering questions on the <span class="fixed">users</span> mailing list - there is often a problem of
+    having too many questioners and not enough experts to respond to all the questions.</li>
+   
+<li>Testing POI (especially its less-frequently-used features) on various configurations
+    and reporting back.</li>
+   
+<li>Debugging - producing reproducible test cases and/or finding causes of bugs. Some known bugs are informally listed on
+    <a href="todo.html">To Do</a>, and some are recorded in Bugzilla
+    (see <a href="#procedure">explanation below</a>).</li>
+   
+<li>Specifying/analyzing/designing new features - and beyond. (If you wish to get involved
+    with this, please join the <span class="fixed">general POI mailing list</span>
+    , install and try out POI
+    and read some of the <a href="mail-lists.html">mail archives</a>.
+    You should have a strong "fluency" in Java and a basic understanding of
+    the POI architecture - don't just say "it should have XYZ" without reading anything first -
+    because chances are, someone's already thought of that feature!)</li>
+   
+<li>Packaging easy-to-install packages (such as RPMs) for the myriad of possible configurations out
+    there. (The project does not maintain anything but the basic <span class="fixed">.zip</span> and
+    <span class="fixed">.tar.gz</span> packages, but anyone is welcome to build their own specific packages and
+    announce them on the <span class="fixed">general POI list</span>)</li>
+   
+<li>... and there is just one other thing - don't forget to tell everyone who asks, how great POI is! ;-)
+    The more people that know about and start to use POI, the larger the pool of
+    potential contributors there will be.
+    </li>
+  
+</ul>
+</blockquote>
+ 
+ 
+</div>
+
+ 
+<a name="cvshowto">
+<!--anchor--></a>
+ 
+<h2>CVS Usage Precis</h2>
+<div class="section">
+  
+<p>An overview of how to use CVS to participate in POI development.
+   Do not be afraid - you cannot accidently destroy the actual code repository,
+   because you are working with a local copy as an anonymous user.
+   You do not have the system permissions to change anything. You can only 
+   update your local repository and compare your revisions with the real
+   repository.
+  </p>
+
+  
+<p>
+   (Further general CVS usage information is at
+   <a href="http://www.cvshome.org/">www.cvshome.org</a> and your local
+   <span class="fixed">info cvs</span> pages or <span class="fixed">man cvs</span> pages or user
+   documentation.) 
+  </p>
+
+  
+<p>
+   Let us lead by example. We will show you how to establish your local
+   repository, how to keep it up-to-date, and how to generate the differences
+   to create a patch. (The commands are for Linux.)
+  </p>
+ 
+</div>
+ 
+<a name="ssh">
+<!--anchor--></a>
+ 
+<h2>CVS Committer with Secure Shell access</h2>
+<div class="section">
+  
+<p>After a developer has consistently provided contributions (code,
+   documentation and discussion), then the rest of the dev community
+   may vote to grant this developer commit access to CVS.
+  </p>
+
+  
+<p>You will need secure access to the repository to be able to commit
+   patches. Here are some resources that help to get your machine configured
+   to use the repository over SSH.
+  </p>
+
+  
+<blockquote>
+<ul>
+   
+<li>
+<a href="http://cvsbook.red-bean.com/">The CVS Book</a>
+</li>
+   
+<li>
+<a href="http://www.cvshome.org/">www.cvshome.org</a>
+</li>
+   
+<li>
+<a href="https://sourceforge.net/cvs/?group_id=32701"></a>
+    - See the bottom of the page for links to tips for UNIX and Windows.
+    Even if you are on UNIX, the Windows page will also help.</li>
+  
+</ul>
+</blockquote>
+ 
+</div>
+
+ 
+<a name="procedure">
+<!--anchor--></a>
+ 
+<h2>Procedure for Raising Development Issues</h2>
+<div class="section">
+  
+<p>
+   There are two methods for discussing development and submitting patches.
+   So that everyone can be productive, it is important to know which method
+   is appropriate for a certain situation and how to go about it without
+   confusion. This section explains when to use the 
+   <span class="fixed">developer</span> <a href="mail-lists.html">mailing list</a>
+   and the bug database.
+  </p>
+
+  
+<p>
+   Research your topic thoroughly before beginning to discuss a new
+   development issue. Search and browse through the email archives - your
+   issue may have been discussed before. Prepare your post clearly and
+   concisely.
+  </p>
+
+  
+<p>
+   Most issues will be discovered, resolved, and then patched quickly
+   via the <span class="fixed">developer</span> mailing list. Larger issues, and ones that
+   are not yet fully understood or are hard to solve, are destined for
+   Bugzilla.
+  </p>
+
+  
+<p>
+   Experienced developers use Bugzilla directly, as they are very sure
+   when they have found a bug and when not. However, less experienced users
+   should first discuss it on the user or developer mailing list (as
+   appropriate). Impatient people frequently enter everything into Bugzilla
+   without caring if it is a bug in POI or their own
+   installation/configuration mistake - please, do not do this.
+  </p>
+
+  
+<p>
+   As a rule-of-thumb, discuss an issue on the <span class="fixed">developers</span>
+   mailing list first to work out any details.
+   After it is confirmed to be worthwhile, and you are clear about it,
+   then submit the bug description or patch via Bug Tracking.
+  </p>
+
+  
+<p>
+   If you do not get any answer on your first attempt, post
+   your issue again until you get a reply. (But, please, not every hour - allow a few
+   days for the list to deal with it.) Do not be impatient - remember that
+   the whole world is busy, not just you. Bear in mind that other countries
+   will have holidays at different times to your country and that they are
+   in different time zones. You might also consider re-writing your initial
+   posting - perhaps it was not clear enough
+   and the readers' eyes glazed over.
+  </p>
+ 
+</div>
+
+ 
+<a name="tips">
+<!--anchor--></a>
+ 
+<h2>Contribution Notes and Tips</h2>
+<div class="section">
+  
+<p>
+   This is a collection of tips for contributing to the project in a manner
+   that is productive for all parties.
+  </p>
+
+  
+<blockquote>
+<ul>
+   
+<li>
+    Every contribution is worthwhile. Even if the ensuing discussion
+    proves it to be off-beam, then it may jog ideas for other people.
+   </li>
+   
+<li>
+    Use sensible and concise email subject headings. Search engines, and
+    humans trying to browse a voluminous list, will respond favorably to a
+    descriptive title.
+   </li>
+   
+<li>Start new threads with new Subjects for new topics, rather than
+    re-using the previous Subject line.
+   </li>
+   
+<li>Keep each topic focussed. If some new topic arises, start a new
+    discussion. This leaves the original topic to continue un-cluttered.
+   </li>
+   
+<li>Whenever you decide to start a new topic, then start with a fresh
+    new email message window. Do not use the "Reply to" button,
+    because threaded mail-readers get confused (they use the 
+    <span class="fixed">In-reply-to</span> header). Otherwise, your new topic will get
+    lost in the previous thread and go un-answered.
+   </li>
+   
+<li>
+    Prepend your email subject line with a marker when that is appropriate,
+    e.g. <span class="fixed">[Patch]</span>, <span class="fixed">[Proposal]</span>, 
+    <span class="fixed">[RT]</span> (Random Thought, these quickly blossom into research
+    topics :-), <span class="fixed">[STATUS]</span> (development status of a certain
+    feature).
+   </li>
+   
+<li>
+    When making changes to XML documentation, or any XML document for that
+    matter, use a 
+    <a href="http://www.oasis-open.org/cover/">validating parser</a>
+    (one that is tried and true is
+    <a href="http://www.jclark.com/sp/">SP/nsgmls</a>).
+    This procedure will detect errors without having to go through the whole
+    <span class="fixed">build docs</span> process to find them. Do not expect POI
+    or the build system to detect the validation errors for you - they can
+    do it, but that is not their purpose. (Anyway, nsgmls validation error
+    messages are more informative.).  Andy wishes it to be known he uses 
+    <a href="http://www.sourceforge.net/projects/jedit">jEdit</a>.  For
+    his XML editing.  (That is when he's not hacking it in 'vi' the true editor
+    and light of the text editing world!).
+   </li>
+   
+<li>
+    Remember that most people are participating in development on a
+    volunteer basis and in their "spare time". These enthusiasts will attempt
+    to respond to issues. It may take a little while to get your answers.
+   </li>
+   
+<li>
+    Research your topic thoroughly before beginning to discuss a new
+    development issue. Search and browse through the email archives - your
+    issue may have been discussed before. Do not just perceive a problem and
+    then rush out with a question - instead, delve.
+   </li>
+   
+<li>
+    Try to at least offer a partial solution and not just a problem statement.
+   </li>
+   
+<li>
+    Take the time to clearly explain your issue and write a concise email
+    message. Less confusion facilitates fast and complete resolution.
+   </li>
+   
+<li>
+    Do not bother to send an email reply that simply says "thanks".
+    When the issue is resolved, that is the finish - end of thread.
+    Reduce clutter.
+   </li>
+   
+<li>
+    You would usually do any development work against the HEAD branch of CVS.
+   </li>
+   
+<li>
+    When sending a patch, you usually do not need to worry about which CVS
+    branch it should be applied to. The maintainers of the repository will
+    decide.
+   </li>
+   
+<li>
+    If an issue starts to get bogged down in list discussion, then it may
+    be appropriate to go into private off-list discussion with a few interested
+    other people. Spare the list from the gory details. Report a summary back
+    to the list to finalize the thread.
+   </li>
+   
+<li>
+    Become familiar with the mailing lists. As you browse and search, you will
+    see the way other people do things. Follow the leading examples.
+   </li>
+  
+</ul>
+</blockquote>
+ 
+</div>
+
+
+
+<div id="authors">by&nbsp;Robin Green,&nbsp;Stefano Mazzocchi,&nbsp;Nicola Ken Barozzi,&nbsp;Marc Johnson,&nbsp;Andrew C. Oliver</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

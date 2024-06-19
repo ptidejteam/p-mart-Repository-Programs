@@ -1,0 +1,24 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.4-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.4-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+9.4-1 ToInteger
+td = new Date(Number.NaN); td.valueOf() = NaN PASSED!
+td = new Date(Infinity); td.valueOf() = NaN PASSED!
+td = new Date(-Infinity); td.valueOf() = NaN PASSED!
+td = new Date(-0); td.valueOf() = 0 PASSED!
+td = new Date(0); td.valueOf() = 0 PASSED!
+td = new Date(3.14159); td.valueOf() = 3 PASSED!
+td = new Date(Math.PI); td.valueOf() = 3 PASSED!
+td = new Date(-Math.PI);td.valueOf() = -3 PASSED!
+td = new Date(3.14159e2); td.valueOf() = 314 PASSED!
+td = new Date(.692147e1); td.valueOf() = 6 PASSED!
+td = new Date(-.692147e1);td.valueOf() = -6 PASSED!
+td = new Date(true); td.valueOf() = 1 PASSED!
+td = new Date(false); td.valueOf() = 0 PASSED!
+td = new Date(new Number(Math.PI)); td.valueOf() = 3 PASSED!
+td = new Date(new Number(Math.PI)); td.valueOf() = 3 PASSED!
+td = new Date(8.64e15); td.valueOf() = 8640000000000000 PASSED!
+td = new Date(-8.64e15); td.valueOf() = -8640000000000000 PASSED!
+td = new Date(8.64e-15); td.valueOf() = 0 PASSED!
+td = new Date(-8.64e-15); td.valueOf() = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.4-2.compiled.arff] ...

@@ -1,0 +1,7 @@
+com.oreilly.servlet
+org.apache.tools.ant
+org.apache.tools.ant.taskdefs
+org.apache.tools.ant.taskdefs.optional
+org.apache.tools.ant.taskdefs.optional.ejb
+org.apache.tools.ant.taskdefs.optional.vss
+org.apache.tools.tar

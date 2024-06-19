@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<document>
+<properties>
+<author email="husted@apache.org">Ted Husted</author>
+<author email="cutting@apache.org">Doug Cutting</author>
+<title>Who We Are - Jakarta Lucene</title>
+</properties>
+<body>
+
+<section name="Who We Are">
+<p>Lucene is maintained by a team of volunteer developers.</p>
+</section>
+
+<section name="Committers">
+<ul>
+<li><b><a href="http://www.nutch.org/blog/cutting.html">Doug Cutting</a></b> (cutting at apache.org)
+
+<p>Lucene was originally written in Doug's spare time during late 1997
+and early 1998.  Doug had previously written search engines at Xerox's
+Palo Alto Research Center (PARC), Apple, and Excite@Home, and authored
+several information retrieval <a
+href="http://lucene.sourceforge.net/publications.html">papers and
+patents</a>.</p>
+
+<p>Currently Doug splits his time between Lucene and <a
+href="http://www.nutch.org/">Nutch</a>, and is also available for
+limited contract work.</p>
+
+</li>
+<li><b><a href="http://www.jroller.com/page/otis">Otis Gospodnetic</a></b> (otis at apache.org)</li>
+<li><b>Brian Goetz</b> (briangoetz at apache.org)</li>
+<li><b>Scott Ganyo</b> (scottganyo at apache.org)</li>
+<li><b>Eugene Gluzberg</b> (drag0n at apache.org)</li>
+<li><b>Matt Tucker</b> (mtucker at apache.org)</li>
+<li><b>Cory Hubert</b> (clhubert at apache.org)</li>
+<li><b>Dave Kor</b> (davekor at apache.org)</li>
+<li><b>Jon Stevens</b> (jon at latchkey.com)</li>
+<li><b>Tal Dayan</b> (zapta at apache.org)</li>
+<li><b>Andrew C. Oliver</b> (acoliver at apache dot org)</li>
+<li><b>Peter Carlson</b> (carlson at apache.org)</li>
+<li><b>Erik Hatcher</b> (ehatcher at apache.org)</li>
+<li><b>Dmitry Serebrennikov</b> (dmitrys at apache.org)</li>
+<li><b>Christoph Goller</b> (goller at apache.org)</li>
+<li><b>Tim Jones</b> (tjones at apache.org)</li>
+</ul>
+</section>
+
+<section name="Other Contributors">
+<ul>
+<li>Josh Bloch</li>
+<li>Ted Husted</li>
+</ul>
+</section>
+
+</body>
+</document>

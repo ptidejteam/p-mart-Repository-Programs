@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.10.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.10.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 77391
+15.8.2.10 Math.log(x)
+Math.log.length = 1 PASSED!
+Math.log() = NaN PASSED!
+Math.log(void 0) = NaN PASSED!
+Math.log(null) = -Infinity PASSED!
+Math.log(true) = 0 PASSED!
+Math.log(false) = -Infinity PASSED!
+Math.log('0') = -Infinity PASSED!
+Math.log('1') = 0 PASSED!
+Math.log('Infinity') = Infinity PASSED!
+Math.log(NaN) = NaN PASSED!
+Math.log(-0.0000001) = NaN PASSED!
+Math.log(-1) = NaN PASSED!
+Math.log(0) = -Infinity PASSED!
+Math.log(-0) = -Infinity PASSED!
+Math.log(1) = 0 PASSED!
+Math.log(Infinity) = Infinity PASSED!
+Math.log(-Infinity) = NaN PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.10.interpreted.arff] ...

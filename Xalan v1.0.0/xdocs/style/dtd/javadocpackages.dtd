@@ -1,0 +1,22 @@
+<?xml encoding='US-ASCII'?>
+
+<!-- JAVADOC PACKAGES DTD -->
+
+<!-- import the external source-specific dtd -->
+<!ENTITY % externalEntity SYSTEM "sbk:/sources/entities.ent">
+%externalEntity;
+
+<!ELEMENT javadocPackages (resources?| home| package)+>
+<!ATTLIST javadocPackages source  CDATA #REQUIRED
+                          target  CDATA #IMPLIED>
+
+<!ELEMENT resources EMPTY>
+<!ATTLIST resources source CDATA #REQUIRED>
+
+<!ELEMENT home EMPTY>
+<!ATTLIST home           source  CDATA #REQUIRED
+                         target  CDATA #REQUIRED>
+
+<!ELEMENT package EMPTY>
+<!ATTLIST package         source  CDATA #REQUIRED
+                          target  CDATA #REQUIRED>

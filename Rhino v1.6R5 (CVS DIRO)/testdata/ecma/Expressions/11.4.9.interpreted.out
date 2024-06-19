@@ -1,0 +1,34 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.4.9.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.4.9.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+11.4.9 Logical NOT operator (!)
+!(null) = true PASSED!
+!(var x) = true PASSED!
+!(void 0) = true PASSED!
+!(false) = true PASSED!
+!(true) = false PASSED!
+!() = true PASSED!
+!(0) = true PASSED!
+!(-0) = true PASSED!
+!(NaN) = true PASSED!
+!(Infinity) = false PASSED!
+!(-Infinity) = false PASSED!
+!(Math.PI) = false PASSED!
+!(1) = false PASSED!
+!(-1) = false PASSED!
+!('') = true PASSED!
+!('	') = false PASSED!
+!('0') = false PASSED!
+!('string') = false PASSED!
+!(new String('')) = false PASSED!
+!(new String('string')) = false PASSED!
+!(new String()) = false PASSED!
+!(new Boolean(true)) = false PASSED!
+!(new Boolean(false)) = false PASSED!
+!(new Array()) = false PASSED!
+!(new Array(1,2,3) = false PASSED!
+!(new Number()) = false PASSED!
+!(new Number(0)) = false PASSED!
+!(new Number(NaN)) = false PASSED!
+!(new Number(Infinity)) = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.4.9.interpreted.arff] ...

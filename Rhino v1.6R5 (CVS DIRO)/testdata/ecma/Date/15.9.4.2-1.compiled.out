@@ -1,0 +1,9 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.4.2-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.4.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: http://bugzilla.mozilla.org/show_bug.cgi?id=4088
+new Date('1/1/1999 12:30 AM').toString() = Fri Jan 01 1999 00:30:00 GMT-0500 (EST) PASSED!
+new Date('1/1/1999 12:30 PM').toString() = Fri Jan 01 1999 12:30:00 GMT-0500 (EST) PASSED!
+new Date('1/1/1999 13:30 AM') = Invalid Date PASSED!
+new Date('1/1/1999 13:30 PM') = Invalid Date PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.4.2-1.compiled.arff] ...

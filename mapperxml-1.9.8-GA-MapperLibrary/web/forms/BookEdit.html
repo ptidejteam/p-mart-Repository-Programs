@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Library System - Book Maintenance Form - Version: @build.tag@</title>
+  <link rel="stylesheet" type="text/css" href="../style/common.css" />
+</head>
+<body>
+<form method="post" action="BookEdit.html">
+  <table border="1" width="50%" summary="Library System - Book Maintenance Form">
+    <caption>Library System - Book Maintenance Form</caption>
+    <tbody>
+      <tr>
+        <td>Catalog No:</td>
+        <td width="70%">
+          <span id="Book__catalogNo__1">0000</span>
+          <input type="hidden" size="10" maxlength="10" name="catalogNo" id="Book__catalogNo__2"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Title:</td>
+        <td>
+          <input type="text" size="50" maxlength="50" name="title" id="Book__title"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Keywords:</td>
+        <td>
+          <input type="text" size="30" maxlength="30" name="keywords" id="Book__keywords"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Date Added:</td>
+        <td>
+          <input type="text" size="20" name="dateAdded" id="Book__dateAdded__DATE:MM/dd/yyyy"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Cost:</td>
+        <td>
+          <input type="text" size="20" name="cost" id="Book__cost__NUMBER:###,##0.00"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <select name="locationId" id="locationId">
+            <option selected="selected">Option 0</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Save" name="action" id="saveButton"/>
+          <input type="reset" value="Reset"/>
+        </td>
+        <td>
+          <span id="msg">Error message goes here</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<p><a href="MainMenu.html">Main Menu</a></p>
+</body>
+</html>

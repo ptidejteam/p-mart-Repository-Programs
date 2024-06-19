@@ -1,0 +1,44 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.8.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.8.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+9.8.1 ToString applied to the Number type
+Number.NaN = NaN PASSED!
+0 = 0 PASSED!
+-0 = 0 PASSED!
+Number.POSITIVE_INFINITY = Infinity PASSED!
+Number.NEGATIVE_INFINITY = -Infinity PASSED!
+-1 = -1 PASSED!
+1 = 1 PASSED!
+10 = 10 PASSED!
+100 = 100 PASSED!
+1000 = 1000 PASSED!
+10000 = 10000 PASSED!
+10000000000 = 10000000000 PASSED!
+10000000000000000000 = 10000000000000000000 PASSED!
+100000000000000000000 = 100000000000000000000 PASSED!
+12345 = 12345 PASSED!
+1234567890 = 1234567890 PASSED!
+-1 = -1 PASSED!
+-10 = -10 PASSED!
+-100 = -100 PASSED!
+-1000 = -1000 PASSED!
+-1000000000 = -1000000000 PASSED!
+-1000000000000000 = -1000000000000000 PASSED!
+-100000000000000000000 = -100000000000000000000 PASSED!
+-1000000000000000000000 = -1e+21 PASSED!
+-12345 = -12345 PASSED!
+-1234567890 = -1234567890 PASSED!
+1.0000001 = 1.0000001 PASSED!
+1000000000000000000000 = 1e+21 PASSED!
+10000000000000000000000 = 1e+22 PASSED!
+1.2345 = 1.2345 PASSED!
+1.234567890 = 1.23456789 PASSED!
+.12345 = 0.12345 PASSED!
+.012345 = 0.012345 PASSED!
+.0012345 = 0.0012345 PASSED!
+.00012345 = 0.00012345 PASSED!
+.000012345 = 0.000012345 PASSED!
+.0000012345 = 0.0000012345 PASSED!
+.00000012345 = 1.2345e-7 PASSED!
+-1e21 = -1e+21 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.8.1.compiled.arff] ...

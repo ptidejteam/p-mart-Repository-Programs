@@ -1,0 +1,78 @@
+<html><head><title>
+${xgump.project.name} : DirectoryProperty</title></head><body bgcolor="#ffffff" text="#000000" vlink="#330000" alink="#330044" link="#0000aa">
+<h2 class="thisclassname">DirectoryProperty</h2>
+<table width=100% cellspacing=0 cellpadding=0>
+<tr><td width=32% valign=top>
+<table border="1"  width=100% cellpadding=0 cellspacing=3><tr><td bgcolor=#4261ff><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.poifs.property. <a href=../../../../../org/apache/poi/poifs/property/uml-Parent.html>Parent</a>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/poifs/property/Parent.html#getChildren()>getChildren</a>() :java.util.Iterator<br>
++<a href=../../../../../org/apache/poi/poifs/property/Parent.html#addChild(org.apache.poi.poifs.property.Property)>addChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Property.html>org.apache.poi.poifs.property.Property</a> property) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Parent.html#setPreviousChild(org.apache.poi.poifs.property.Child)>setPreviousChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a> child) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Parent.html#setNextChild(org.apache.poi.poifs.property.Child)>setNextChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a> child) :void<br>
+</td></tr></table></td></tr>
+<tr><td bgcolor=#ff4b42><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.poifs.property. <a href=../../../../../org/apache/poi/poifs/property/uml-Property.html>Property</a>
+</td></tr><tr><td>
+<u>#<a href=../../../../../org/apache/poi/poifs/property/Property.html#_NO_INDEX>_NO_INDEX</a> :int</u><br>
+<u>#<a href=../../../../../org/apache/poi/poifs/property/Property.html#_NODE_BLACK>_NODE_BLACK</a> :byte</u><br>
+<u>#<a href=../../../../../org/apache/poi/poifs/property/Property.html#_NODE_RED>_NODE_RED</a> :byte</u><br>
+</td></tr><tr><td>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#Property()>Property</a>()<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#Property(int,byte[],int)>Property</a>(int index, byte[] array, int offset)<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#writeData(java.io.OutputStream)>writeData</a>(java.io.OutputStream stream) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#setStartBlock(int)>setStartBlock</a>(int startBlock) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getStartBlock()>getStartBlock</a>() :int<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getSize()>getSize</a>() :int<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#shouldUseSmallBlocks()>shouldUseSmallBlocks</a>() :boolean<br>
+<u>+<a href=../../../../../org/apache/poi/poifs/property/Property.html#isSmall(int)>isSmall</a>(int length) :boolean</u><br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getName()>getName</a>() :java.lang.String<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#isDirectory()>isDirectory</a>() :boolean<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setName(java.lang.String)>setName</a>(java.lang.String name) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setPropertyType(byte)>setPropertyType</a>(byte propertyType) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setNodeColor(byte)>setNodeColor</a>(byte nodeColor) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setChildProperty(int)>setChildProperty</a>(int child) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#getChildIndex()>getChildIndex</a>() :int<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setSize(int)>setSize</a>(int size) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#setIndex(int)>setIndex</a>(int index) :void<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#getIndex()>getIndex</a>() :int<br>
+#<a href=../../../../../org/apache/poi/poifs/property/Property.html#preWrite()>preWrite</a>() :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getNextChild()>getNextChild</a>() :<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a><br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getPreviousChild()>getPreviousChild</a>() :<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a><br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#setNextChild(org.apache.poi.poifs.property.Child)>setNextChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a> child) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#setPreviousChild(org.apache.poi.poifs.property.Child)>setPreviousChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Child.html>org.apache.poi.poifs.property.Child</a> child) :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getViewableArray()>getViewableArray</a>() :java.lang.Object<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getViewableIterator()>getViewableIterator</a>() :java.util.Iterator<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#preferArray()>preferArray</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/poifs/property/Property.html#getShortDescription()>getShortDescription</a>() :java.lang.String<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width=12 align=center valign=top>
+<img src=../../../../../images/ext.gif>
+</td><td width=32% valign=top align=center>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#fff742><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.poifs.property. <a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html>DirectoryProperty</a>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#DirectoryProperty(java.lang.String)>DirectoryProperty</a>(java.lang.String name)<br>
+#<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#DirectoryProperty(int,byte[],int)>DirectoryProperty</a>(int index, byte[] array, int offset)<br>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#changeName(org.apache.poi.poifs.property.Property,org.apache.poi.poifs.property.Property)>changeName</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Property.html>org.apache.poi.poifs.property.Property</a> property, java.lang.String newName) :boolean<br>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#deleteChild(org.apache.poi.poifs.property.Property)>deleteChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Property.html>org.apache.poi.poifs.property.Property</a> property) :boolean<br>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#isDirectory()>isDirectory</a>() :boolean<br>
+#<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#preWrite()>preWrite</a>() :void<br>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#getChildren()>getChildren</a>() :java.util.Iterator<br>
++<a href=../../../../../org/apache/poi/poifs/property/DirectoryProperty.html#addChild(org.apache.poi.poifs.property.Property)>addChild</a>(<a href=../../../../../org/apache/poi/poifs/property/uml-Property.html>org.apache.poi.poifs.property.Property</a> property) :void<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width="12" align="center" valign="top">
+<img src=../../../../../images/ext.gif
+</td>
+<td width=32% valign=top>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#fff742><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.poifs.property. <a href=../../../../../org/apache/poi/poifs/property/uml-RootProperty.html>RootProperty</a>
+</td></tr><tr><td>
+#<a href=../../../../../org/apache/poi/poifs/property/RootProperty.html#RootProperty(int,byte[],int)>RootProperty</a>(int index, byte[] array, int offset)<br>
++<a href=../../../../../org/apache/poi/poifs/property/RootProperty.html#setSize(int)>setSize</a>(int size) :void<br>
+</td></tr></table></td></tr>
+</table>
+</td></tr>
+</table></body></html>

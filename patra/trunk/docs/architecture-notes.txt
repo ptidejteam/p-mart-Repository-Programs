@@ -1,0 +1,34 @@
+Architectural things whorth remembering/mentioning
+==================================================
+
+* Usage of holder objects that thows JavaBean ChangeEvents iso. global variable.
+  A holder is kind of a variable, but it can throw events that notify about the content changes.
+  Examples are the general StringHolder and also the more specific DatabaseHolder.
+
+* A variant to the same theme is a holder that also is a proxy. It is kind of a Proxy-Holder. It acts as a proxy object,
+  the GUI objects that are interested in the events listen  to this proxy. The underlying implementation instance can change,
+  it is a bit like the holder. The name of this pattern is Proxy? Strategy?
+
+* Plain POJO model for inner logic that has nothing todo with GUI. Event throwing wrapper (decorator) that follows the
+  JavaBean event model. Adapter wrapper that converts this JavaBean model into a TreeModel or a ListModel.
+  The example is of course the very successfull  PwsDatabase - ChangeViewDatabase - TableViewDatabase/TreeViewDatabase.
+  You can use the PwsDatabase without any GUI in another db, this is not tied to any "technology code". Using the wrappers,
+  you can make this datastructure visible in a Swing application. Using other adapters it should be possible to
+  visualize it into other GUI's (Server faces?).
+
+* Non gui functionality is in the generator, db, codec packages. The other models, adaptors, etc. are in the gui subpackage.
+
+* Preferences worden allemaal als strings opgeslagen. Kunnen nadien wel geconverteerd worden, maar prefs zijn readable strings.
+
+
+PWS File format
+===============
+
+* Default-uid is not handled by me. I could not reproduce the use of it using other
+  password safe implementations. There must be something wrong in the spec or outdated.
+  I removed all references to the default UID form the GUI. Some parts in the codecs still
+  reference this bizarre twist, I left the code in there because some day someone might
+  turn op with an example of it and then I can quickly react to this.
+
+* I first thought that UUID's were necessary in the 2.0 format. This is not the case. So in order
+  to convert from the 1.0 to 2.0 format no UUID's have to be generated.

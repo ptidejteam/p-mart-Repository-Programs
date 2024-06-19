@@ -1,0 +1,9 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\String\15.5.4.14.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\String\shell.js -f mozilla\js\tests\ecma_3\String\15.5.4.14.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+BUGNUMBER: 287630
+STATUS: 15.5.4.14 - String.prototype.split(/()/)
+FAILED!: 15.5.4.14 - String.prototype.split(/()/)
+FAILED!: Expected value 'a', Actual value 'a,'
+FAILED!: 
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\String\15.5.4.14.interpreted.arff] ...

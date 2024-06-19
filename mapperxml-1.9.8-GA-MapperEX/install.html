@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" />
+		<title>Installing and Running MapperXML Examples</title>
+	</head>
+	<body>
+		<h1>Notes for Running MapperXML Examples</h1>
+		<p>These notes are designed for testing with any web application (war) 
+			server. The examples include an Ant build script. To run these 
+			examples you need the following components installed and 
+			configured:</p>
+		<ul>
+			<li>Java VM 1.4+</li>
+			<li>Web Application Server (Tomcat 4+, JBoss, etc)</li>
+			<li>Ant (optional - needed to run build.xml script)</li>
+		</ul>
+    
+    <h2>Running Pre-Built Example</h2>
+    <p>The following are the quick directions to deploy and run the pre-built examples:</p>
+    
+    <ul>
+      <li>Copy the file mapperex.war to your application server's
+          deployment directory (or use it's deployment tool). For
+          JBoss or Tomcat the location is:
+    <pre>
+               [jboss-install-dir]/server/default/deploy
+               -- or --
+               [tomcat-install-dir]/webapps
+    </pre>
+          </li>
+      <li>Start Tomcat or JBoss</li>
+      <li>Browse to http://localhost:8080/mapperex</li>
+    </ul>
+
+    <h2>Building and Running Example</h2>
+    <p>The following are the quick directions to build and run the examples:</p>
+    
+    <ul>
+      <li>Create a ".build.properties" file in the root of the project</li>
+      <li>Add a property setting in the file: 
+    <pre>
+    deploy.dir=[jboss-install-dir]/server/default/deploy
+               -- or --
+               [tomcat-install-dir]/webapps
+    </pre>
+          where the deploy.dir is the path to your application server's
+          deployment directory.
+          </li>
+      <li>Run the Ant target "deploy" in build.xml</li>
+      <li>Start Tomcat or JBoss</li>
+      <li>Browse to http://localhost:8080/mapperlibrary</li>
+    </ul>
+	</body>
+</html>

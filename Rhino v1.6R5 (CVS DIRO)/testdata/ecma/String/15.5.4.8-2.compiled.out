@@ -1,0 +1,111 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.8-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.8-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.5.4.7-2 String.protoype.lastIndexOf
+String.prototype.lastIndexOf.length = 1 PASSED!
+delete String.prototype.lastIndexOf.length = false PASSED!
+delete String.prototype.lastIndexOf.length; String.prototype.lastIndexOf.length = 1 PASSED!
+var s = new String(''); s.lastIndexOf('', 0) = 0 PASSED!
+var s = new String(''); s.lastIndexOf('') = 0 PASSED!
+var s = new String('hello'); s.lastIndexOf('', 0) = 0 PASSED!
+var s = new String('hello'); s.lastIndexOf('') = 5 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll') = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 0) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 1) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 2) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 3) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 4) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 5) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 6) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 1.5) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', 2.5) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', -1) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', -1.5) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', -Infinity) = -1 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', Infinity) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', NaN) = 2 PASSED!
+var s = new String('hello'); s.lastIndexOf('ll', -0) = -1 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 0) = -1 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 1) = -1 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 2) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 3) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 4) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 5) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 6) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 7) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 8) = 2 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 9) = 9 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 10) = 9 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 11) = 9 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 12) = 9 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 13) = 9 PASSED!
+var o = new Object(); o.lastIndexOf = String.prototype.lastIndexOf; o.lastIndexOf('b', 14) = 9 PASSED!
+var b = new Boolean(); b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('l', 0) = -1 PASSED!
+var b = new Boolean(); b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('l', 1) = -1 PASSED!
+var b = new Boolean(); b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('l', 2) = 2 PASSED!
+var b = new Boolean(); b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('l', 3) = 2 PASSED!
+var b = new Boolean(); b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('l', 4) = 2 PASSED!
+var b = new Boolean(); b.toString = Object.prototype.toString; b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('o', 0) = -1 PASSED!
+var b = new Boolean(); b.toString = Object.prototype.toString; b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('o', 1) = 1 PASSED!
+var b = new Boolean(); b.toString = Object.prototype.toString; b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('o', 2) = 1 PASSED!
+var b = new Boolean(); b.toString = Object.prototype.toString; b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('o', 3) = 1 PASSED!
+var b = new Boolean(); b.toString = Object.prototype.toString; b.lastIndexOf = String.prototype.lastIndexOf; b.lastIndexOf('o', 4) = 1 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 0 ) = -1 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 1 ) = -1 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 2 ) = -1 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 3 ) = 3 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 4 ) = 3 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 5 ) = 5 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 6 ) = 5 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 7 ) = 5 PASSED!
+var n = new Number(Infinity); n.lastIndexOf = String.prototype.lastIndexOf; n.lastIndexOf( 'i', 8 ) = 5 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 0 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 1 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 2 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 3 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 4 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 5 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 6 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 7 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 8 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 9 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 10 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 11 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 12 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 13 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 14 ) = -1 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 15 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 16 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 17 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 18 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 19 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 20 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 21 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 22 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 23 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 24 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 25 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 26 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 27 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 28 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 29 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 30 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 31 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 32 ) = 15 PASSED!
+var a = new Array( 'abc','def','ghi','jkl','mno','pqr','stu','vwx','yz' ); a.lastIndexOf = String.prototype.lastIndexOf; a.lastIndexOf( ',mno,p', 33 ) = 15 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 0) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 1) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 2) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 3) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 4) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 5) = -1 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 6) = 6 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 7) = 6 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 8) = 6 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 9) = 6 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 10) = 10 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 11) = 10 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 12) = 10 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 13) = 10 PASSED!
+var m = Math; m.lastIndexOf = String.prototype.lastIndexOf; m.lastIndexOf('t', 14) = 10 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.8-2.compiled.arff] ...

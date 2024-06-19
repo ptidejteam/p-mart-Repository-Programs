@@ -1,0 +1,24 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.8.2.3 Math.asin()
+Math.asin() = NaN PASSED!
+Math.asin(void 0) = NaN PASSED!
+Math.asin(null) = 0 PASSED!
+Math.asin(NaN) = NaN PASSED!
+Math.asin('string') = NaN PASSED!
+Math.asin('0') = 0 PASSED!
+Math.asin('1') = 1.5707963267948966 PASSED!
+Math.asin('-1') = -1.5707963267948966 PASSED!
+Math.asin(Math.SQRT1_2+'') = 0.7853981633974484 PASSED!
+Math.asin(-Math.SQRT1_2+'') = -0.7853981633974484 PASSED!
+Math.asin(1.000001) = NaN PASSED!
+Math.asin(-1.000001) = NaN PASSED!
+Math.asin(0) = 0 PASSED!
+Math.asin(-0) = 0 PASSED!
+Infinity/Math.asin(-0) = -Infinity PASSED!
+Math.asin(1) = 1.5707963267948966 PASSED!
+Math.asin(-1) = -1.5707963267948966 PASSED!
+Math.asin(Math.SQRT1_2)) = 0.7853981633974484 PASSED!
+Math.asin(-Math.SQRT1_2)) = -0.7853981633974484 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.3.compiled.arff] ...

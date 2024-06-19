@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Controversial Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+			    @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.org"></meta></head><body class="composite"><div id="banner"><a href="http://pmd.sourceforge.net/" id="organizationLogo"><img alt="Project Ultra*Log @ DARPA" src="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"></img></a><a href="http://pmd.sourceforge.net/" id="projectLogo"><img alt="PMD" src="../images/pmd_logo_small.jpg"></img></a><div class="clear"><hr></hr></div></div><div id="breadcrumbs"><div class="xright">
+        
+        <a href="http://sourceforge.net/projects/pmd">SourceForge.net Project Page</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://sourceforge.net">Hosted by SourceForge</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.ultralog.net/">Ultra*Log</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.darpa.mil/">DARPA</a>
+      </div><div class="clear"><hr></hr></div></div><div id="leftColumn"><div id="navcolumn"><div id="menuOverview"><h5>Overview</h5><ul><li class="none"><a href="../installing.html">Installation</a></li><li class="none"><a href="../running.html">Command line usage</a></li><li class="none"><a href="../ant-task.html">Ant task usage</a></li><li class="none"><a href="../integrations.html">IDE plugin usage</a></li><li class="none"><a href="../news.html">PMD in the press</a></li><li class="none"><a href="../bestpractices.html">Best practices</a></li><li class="none"><a href="../cpd.html">Finding copied and pasted code</a></li><li class="none"><a href="../similar-projects.html">Similar projects</a></li><li class="none"><a href="../credits.html">Credits</a></li><li class="none"><a href="../license.html">License</a></li><li class="none"><a href="../meaning.html">What does 'PMD' mean?</a></li></ul></div><div id="menuCustomizing_PMD"><h5>Customizing PMD</h5><ul><li class="none"><a href="../compiling.html">Compiling PMD</a></li><li class="none"><a href="../howtowritearule.html">How to write a rule</a></li><li class="none"><a href="../howtomakearuleset.html">How to make a rule set</a></li><li class="none"><a href="../howitworks.html">How it works</a></li></ul></div><div id="menuFor_example"><h5>For example</h5><ul><li class="none"><a href="../scoreboard.html">Run PMD on a Sourceforge project</a></li></ul></div><div id="menuRule_Sets"><h5>Rule Sets</h5><ul><li class="none"><a href="../rules/basic.html">Basic</a></li><li class="none"><a href="../rules/naming.html">Naming</a></li><li class="none"><a href="../rules/unusedcode.html">Unused Code</a></li><li class="none"><a href="../rules/design.html">Design</a></li><li class="none"><a href="../rules/imports.html">Import Statements</a></li><li class="none"><a href="../rules/junit.html">JUnit Tests</a></li><li class="none"><a href="../rules/strings.html">Strings</a></li><li class="none"><a href="../rules/braces.html">Braces</a></li><li class="none"><a href="../rules/codesize.html">Code Size</a></li><li class="none"><a href="../rules/javabeans.html">Javabeans</a></li><li class="none"><a href="../rules/finalizers.html">Finalizers</a></li><li class="none"><a href="../rules/coupling.html">Coupling</a></li><li class="none"><a href="../rules/strictexception.html">Strict Exceptions</a></li><li class="none"><strong><a href="../rules/controversial.html">Controversial</a></strong></li></ul></div><div id="menuProject_Documentation"><h5>Project Documentation</h5><ul><li class="none"><a href="../index.html">About PMD</a></li><li class="collapsed"><a href="../project-info.html">Project Info</a></li><li class="collapsed"><a href="../maven-reports.html">Project Reports</a></li><li class="none"><a href="http://maven.apache.org/development-process.html">Development Process</a></li></ul></div><a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy"><img alt="Built by Maven" src="../images/logos/maven-button-1.png"></img></a></div></div><div id="bodyColumn"><div class="contentBox"><div class="section"><h2><a name="Controversial_Rules">Controversial Rules</a></h2><p>
+The Controversial Ruleset contains rules that, for whatever reason, are considered controversial.  They
+are separated out here to allow people to include as they see fit via custom rulesets.  This ruleset was
+initially created in response to discussions over UnnecessaryConstructorRule which Tom likes but
+most people really dislike :-)
+  </p><div class="subsection"><h3><a name="UnnecessaryConstructorRule">UnnecessaryConstructorRule</a></h3><p>
+  Unnecessary constructor detects when a constructor is not necessary; i.e., when there's only one constructor,
+  it's public, has an empty body, and takes no arguments.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+//UnmodifiedClassDeclaration
+/ClassBody[count(ClassBodyDeclaration/ConstructorDeclaration)=1]
+/ClassBodyDeclaration/ConstructorDeclaration
+[@Public='true']
+[not(FormalParameters/*)]
+[not(BlockStatement)]
+[not(NameList)]
+[count(ExplicitConstructorInvocation/Arguments/ArgumentList/Expression)=0]
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+   public Foo() {}
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="NullAssignment">NullAssignment</a></h3><p>
+ Assigning a "null" to a variable (outside of its declaration) is usually in
+ bad form.  Some times, the assignment is an indication that the programmer doesn't
+ completely understand what is going on in the code.  NOTE: This sort of assignment
+ may in rare cases be useful to encourage garbage collection.  If that's what you're using
+ it for, by all means, disregard this rule :-)
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+ public class Foo {
+   public void bar() {
+     Object x = null; // This is OK.
+     x = new Object();
+     // Big, complex piece of code here.
+     x = null; // This is BAD.
+     // Big, complex piece of code here.
+   }
+ }
+
+ 
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="OnlyOneReturn">OnlyOneReturn</a></h3><p>
+     A method should have only one exit point, and that should be the last statement in the method.
+     </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+ public class OneReturnOnly1 {
+  public void foo(int x) {
+   if (x &amp;gt; 0) {
+    return "hey";   // oops, multiple exit points!
+   }
+   return "hi";
+  }
+ }
+ 
+     
+		</pre></div>
+  </div><div class="subsection"><h3><a name="UnusedModifier">UnusedModifier</a></h3><p>
+     Fields in interfaces are automatically public static final, and
+     methods are public abstract.
+     Classes or interfaces nested in an interface are automatically public
+     and static (all nested interfaces are automatically static).
+     For historical reasons, modifiers which are implied by the context
+     are accepted by the compiler, but are superfluous.
+     </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+    //UnmodifiedInterfaceDeclaration//MethodDeclaration[@Public = 'true' or @Abstract = 'true']
+|   //UnmodifiedInterfaceDeclaration//FieldDeclaration[@Public = 'true' or @Static = 'true' or @Final = 'true']
+|   //UnmodifiedInterfaceDeclaration//NestedClassDeclaration[@Public = 'true' or @Static = 'true']
+|   //UnmodifiedInterfaceDeclaration//NestedInterfaceDeclaration[@Public = 'true' or @Static = 'true']
+|   //UnmodifiedClassDeclaration//NestedInterfaceDeclaration[@Static = 'true']
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+    public interface Foo {
+     public abstract void bar(); // both abstract and public are ignored by the compiler
+     public static final int X = 0; // public, static, and final all ignored
+     public static class Bar {} // public, static ignored
+     public static interface Baz {} // ditto
+    }
+    public class Bar {
+     public static interface Baz {} // static ignored
+    }
+ 
+     
+		</pre></div>
+  </div><div class="subsection"><h3><a name="AssignmentInOperandRule">AssignmentInOperandRule</a></h3><p>
+  Avoid assigments in operands; this can make code more complicated and harder to read.
+  </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+//*[name()='WhileStatement' or name()='IfStatement'][Expression//AssignmentOperator]
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+   public void bar() {
+int x = 2;
+if ((x = getX()) == 3) {
+ System.out.println("3!");
+}
+   }
+   private int getX() {
+return 3;
+   }
+  }
+
+  
+  
+		</pre></div>
+  </div><div class="subsection"><h3><a name="AtLeastOneConstructor">AtLeastOneConstructor</a></h3><p>
+  Each class should declare at least one constructor.
+  </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+   // no constructor!  not good!
+  }
+  
+  
+		</pre></div>
+  </div><div class="subsection"><h3><a name="DontImportSunRule">DontImportSunRule</a></h3><p>
+          Avoid importing anything from the 'sun.*' packages.  These packages are not portable and are likely to change.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+   //ImportDeclaration
+   [starts-with(Name/@Image, 'sun.')]
+   [not(starts-with(Name/@Image, 'sun.misc.Signal'))]
+
+
+               </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+   import sun.misc.foo;
+   public class Foo {}
+
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="SuspiciousOctalEscapeRule">SuspiciousOctalEscapeRule</a></h3><p>
+      A suspicious octal escape sequence was found inside a String literal.
+      The Java language specification (section 3.10.6) says an octal
+      escape sequence inside a literal String shall consist of a backslash
+      followed by:
+
+           OctalDigit | OctalDigit OctalDigit | ZeroToThree OctalDigit OctalDigit
+
+      Any octal escape sequence followed by non-octal digits can be confusing,
+      e.g. "\038" is interpreted as the octal escape sequence "\03" followed by
+      the literal character "8".
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+ public class Foo {
+    public void foo() {
+       // interpreted as octal 12, followed by character '8'
+       System.out.println("suspicious: \128");
+    }
+ }
+
+      
+		</pre></div>
+  </div></div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2004, Project Ultra*Log @ DARPA</div><div class="clear"><hr></hr></div></div></body></html>

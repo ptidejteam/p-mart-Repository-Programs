@@ -1,0 +1,4 @@
+Drag the side handles to change the width of the text block.
+Static Structure
+Test State 1
+Test State 2

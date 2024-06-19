@@ -1,0 +1,1 @@
+s = org.apache.poi.hssf.usermodel.HSSFSimpleShape@6a2f81

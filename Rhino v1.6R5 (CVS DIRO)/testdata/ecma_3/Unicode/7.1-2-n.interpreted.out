@@ -1,0 +1,9 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Unicode\7.1-2-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Unicode\shell.js -f mozilla\js\tests\ecma_3\Unicode\7.1-2-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+STATUS: Unicode Characters 1C-1F negative test.
+BUGNUMBER: 23612
+js: "mozilla\js\tests\ecma_3\Unicode\7.1-2-n.js#50(eval)", line 1: uncaught JavaScript runtime exception: SyntaxError: illegal character
+js: 'no'+' error'
+js: ....^
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Unicode\7.1-2-n.interpreted.arff] ...

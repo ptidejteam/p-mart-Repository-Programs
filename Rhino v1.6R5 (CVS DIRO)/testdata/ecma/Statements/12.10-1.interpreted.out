@@ -1,0 +1,12 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Statements\12.10-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Statements\shell.js -f mozilla\js\tests\ecma\Statements\12.10-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+12.10-1 The with statement
+with( new Number() ) { this +'' } = [object global] PASSED!
+var MYOB = new WithObject(true); with (MYOB) { parseInt() } = true PASSED!
+var MYOB = new WithObject(false); with (MYOB) { NaN } = false PASSED!
+var MYOB = new WithObject(NaN); with (MYOB) { Infinity } = NaN PASSED!
+var MYOB = new WithObject(false); with (MYOB) { }; Infinity = Infinity PASSED!
+var MYOB = new WithObject(0); with (MYOB) { delete Infinity; Infinity } = Infinity PASSED!
+var MYOB = new WithObject(0); while (true) { with (MYOB) { Infinity; break; } } Infinity = Infinity PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Statements\12.10-1.interpreted.arff] ...

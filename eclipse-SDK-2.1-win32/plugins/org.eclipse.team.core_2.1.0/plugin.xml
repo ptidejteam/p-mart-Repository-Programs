@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File written by PDE 1.0 -->
+<plugin
+   id="org.eclipse.team.core"
+   name="%pluginName"
+   version="2.1.0"
+   provider-name="%providerName"
+   class="org.eclipse.team.internal.core.TeamPlugin">
+<requires>
+   <import plugin="org.eclipse.core.resources"/>
+   <import plugin="org.eclipse.core.runtime"/>
+</requires>
+
+<runtime>
+   <library name="team.jar">
+      <export name="*"/>
+      <packages prefixes="org.eclipse.team.core, org.eclipse.team.internal.core"/>
+   </library>
+</runtime>
+
+<extension-point id="fileTypes" name="%FileTypesRegistry" schema="schema/fileTypes.exsd"/>
+<extension-point id="ignore" name="%GlobalIgnoreRegistry" schema="schema/ignore.exsd"/>
+<extension-point id="projectSets" name="%TeamProjectSets" schema="schema/projectSets.exsd"/>
+<extension-point id="repository" name="%Repository" schema="schema/repository.exsd"/>
+<extension-point id="targets" name="%Targets"/>
+
+<!-- Define common known file types -->
+     
+<extension point="org.eclipse.team.core.fileTypes">
+  <fileTypes extension="txt" type="text"/>
+  <fileTypes extension="properties" type="text"/>
+  <fileTypes extension="xml" type="text"/>
+  <fileTypes extension="xsl" type="text"/>
+  <fileTypes extension="html" type="text"/>
+  <fileTypes extension="htm" type="text"/>
+  <fileTypes extension="jpg" type="binary"/>
+  <fileTypes extension="jpeg" type="binary"/>
+  <fileTypes extension="gif" type="binary"/>
+  <fileTypes extension="png" type="binary"/>
+  <fileTypes extension="ico" type="binary"/>
+  <fileTypes extension="bmp" type="binary"/>
+  <fileTypes extension="tif" type="binary"/>
+  <fileTypes extension="tiff" type="binary"/>
+  <fileTypes extension="doc" type="binary"/>
+  <fileTypes extension="xls" type="binary"/>
+  <fileTypes extension="pdf" type="binary"/>
+  <fileTypes extension="ppt" type="binary"/>
+  <fileTypes extension="zip" type="binary"/>
+  <fileTypes extension="exe" type="binary"/>
+  <fileTypes extension="dll" type="binary"/>
+  <fileTypes extension="so" type="binary"/>
+  <fileTypes extension="project" type="text"/>
+  <fileTypes extension="options" type="text"/>
+  <fileTypes extension="emsd" type="text"/>
+  <fileTypes extension="mxsd" type="text"/>
+</extension>
+
+<extension point="org.eclipse.core.resources.fileModificationValidator" id="FileValidator">
+	<fileModificationValidator class="org.eclipse.team.internal.core.FileModificationValidatorManager"/>
+</extension>
+
+<extension point="org.eclipse.core.resources.moveDeleteHook" id="MoveDeleteHook">
+	<moveDeleteHook class="org.eclipse.team.internal.core.MoveDeleteManager"/>
+</extension>
+
+<extension point="org.eclipse.core.resources.teamHook" id="TeamHook">
+	<teamHook class="org.eclipse.team.internal.core.TeamHookDispatcher"/>
+</extension>
+
+
+</plugin>

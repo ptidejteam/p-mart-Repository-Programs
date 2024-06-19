@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+  name="%pluginName"
+  id="org.apache.xerces"
+  version="4.0.7"  
+  provider-name="%providerName">
+  
+  <!-- This is an IBM maintenance branch of xerces 2.0.0  -->
+
+	<runtime>
+		<library name="xmlParserAPIs.jar">
+			<export name="*"/>
+			<packages prefixes="javax.xml,org.w3c.dom,org.xml.sax"/>
+		</library>
+		<library name="xercesImpl.jar">
+			<export name="*"/>
+			<packages prefixes="org.apache,org.w3c.dom"/>
+		</library>
+	</runtime>
+
+</plugin>

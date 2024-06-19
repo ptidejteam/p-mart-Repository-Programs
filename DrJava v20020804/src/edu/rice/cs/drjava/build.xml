@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [
+  <!ENTITY build-common SYSTEM "file:../build-common.xml">
+]>
+
+<!--
+  $Id: build.xml,v 1.1 2005/03/03 19:29:46 toeivesb Exp $
+-->
+<project name="drjava" default="test">
+  <!-- srcroot is the base directory of the source, 4 packages back -->
+  <property name="srcroot" value="${basedir}/../../../.." />
+
+  <!-- built is where the compiled classes go -->
+  <property name="built" value="${srcroot}/../built/" />
+
+  <!-- dist is where the packaged jars go -->
+  <property name="dist" value="${srcroot}/../dist/" />
+
+  <!-- projpath is the path from srcroot to the root directory of this project
+  -->
+  <property name="projpath" value="edu/rice/cs/${ant.project.name}" />
+
+  <!-- put a jar in this directory after each commit -->
+  <property name="jars_dir" value="/home/javaplt/public_html/drjava/builds" />
+
+  <!-- put new javadoc in this directory after each commit -->
+  <property name="public_javadoc_dir" value="/home/javaplt/public_html/javadoc/${ant.project.name}" />
+
+  <!-- put javadoc in this directory if generating private javadoc -->
+  <property name="private_javadoc_dir" value="${srcroot}/../javadoc/${ant.project.name}" />
+
+  <!-- put documentation html in this directory -->
+  <property name="doc_dir" value="${built}/edu/rice/cs/drjava/docs" />
+
+  <property name="osxtag" value="drjava-osx" />
+  <property name="osxdir" value="${srcroot}/../" />
+  <property name="jarfile" value="${srcroot}/../drjava.jar" />
+  <property name="manifest" value="manifest" />
+
+
+  <!-- Sets a flag indicating that code dealing with new features since the 
+    last stable release should be enabled and testable.
+    Takes effect only after a clean compile -->
+  <target name="development">
+    <filter token="DEVELOPMENT" value = "true" />
+    <copy file="CodeStatus.orig"
+          tofile="CodeStatus.java"
+          overwrite="yes"
+          filtering="yes" />
+  </target>
+
+  <!-- Sets a flag indicating that code dealing with new features since the 
+    last stable release should not be enabled or testable.
+    Takes effect only after a clean compile -->
+  <target name="stable">
+    <filter token="DEVELOPMENT" value = "false" />
+    <copy file="CodeStatus.orig"
+          tofile="CodeStatus.java"
+          overwrite="yes"
+          filtering="yes" />
+  </target>
+
+
+  <!-- include standard build file parts -->
+  &build-common;
+
+  <!-- generate jar and javadoc
+       Requires version-tag to be set (via command line -Dversion-tag=)
+       For example, to release drjava-20020101-0000, you'd type:
+
+       ant -Dversion-tag=drjava-20020101-0000 release
+  -->
+  <target name="release" if="version-tag" depends="update,compile">
+    <delete dir="${dist}/${version-tag}" />
+    <mkdir dir="${dist}/${version-tag}" />
+
+    <!-- generate javadoc for the committed version! -->
+    <antcall target="generate_javadoc">
+      <param name="javadoc_dir" value="${dist}/${version-tag}/javadoc" />
+      <param name="javadoc_title" value="${version-tag}" />
+    </antcall>
+
+    <zip zipfile="${dist}/${version-tag}-javadoc.zip">
+      <fileset dir="${dist}">
+        <include name="${version-tag}/javadoc/**" />
+      </fileset>
+    </zip>
+
+    <delete dir="${dist}/${version-tag}/javadoc" />
+
+    <cvs dest="${dist}/${version-tag}"
+         tag="HEAD"
+         quiet="yes"
+         package="src/edu/rice/cs/drjava"
+         command="export -N" />
+
+    <cvs dest="${dist}/${version-tag}"
+         tag="HEAD"
+         quiet="yes"
+         package="src/edu/rice/cs/util"
+         command="export -N" />
+
+    <cvs dest="${dist}/${version-tag}"
+         tag="HEAD"
+         quiet="yes"
+         package="src/edu/rice/cs/lib"
+         command="export -N" />
+
+    <zip zipfile="${dist}/${version-tag}-src.zip">
+      <fileset dir="${dist}">
+        <include name="${version-tag}/src/**" />
+      </fileset>
+    </zip>
+
+    <delete dir="${dist}/${version-tag}" />
+
+    <antcall target="docs" />
+
+    <antcall target="osxapp">
+      <param name="osxdir" value="${dist}" />
+      <param name="osxtag" value="${version-tag}-osx" />
+    </antcall>
+
+    <antcall target="jar">
+      <param name="jarfile" value="${dist}/${version-tag}.jar" />
+    </antcall>
+  </target>
+
+  <target name="compile" depends="do-compile">
+    <rmic base="${built}"
+          classname="edu.rice.cs.drjava.model.repl.newjvm.InterpreterJVM" />
+
+    <rmic base="${built}"
+          classname="edu.rice.cs.drjava.model.repl.newjvm.MainJVM" />
+
+    <copy todir="${built}">
+      <fileset dir="${srcroot}">
+        <!-- include the GPL -->
+        <include name="edu/rice/cs/LICENSE" />
+
+        <!-- include graphics -->
+        <include name="${projpath}/**/LICENSE" />
+        <include name="${projpath}/**/*.gif" />
+      </fileset>
+    </copy>
+
+  </target>
+
+  <target name="osxapp" depends="jar">
+    <mkdir dir="${osxdir}/${osxtag}/DrJava.app" />
+    <copy todir="${osxdir}/${osxtag}/DrJava.app/">
+      <fileset dir="${basedir}/packaging/DrJava.app" 
+        excludes="Contents/Resources/Java/DrJava.jar-goes-here" />
+    </copy>
+
+    <copy file="${jarfile}" tofile="${osxdir}/${osxtag}/DrJava.app/Contents/Resources/Java/DrJava.jar" />
+    
+    <tar tarfile="${osxdir}/${osxtag}.tar">
+      <tarfileset dir="${osxdir}/">
+        <include name="${osxtag}/**/*" />
+        <exclude name="${osxtag}/DrJava.app/Contents/MacOS/DrJava" />
+      </tarfileset>
+      <tarfileset dir="${osxdir}/" mode="755">
+        <include name="${osxtag}/DrJava.app/Contents/MacOS/DrJava" />
+      </tarfileset>
+    </tar>
+    <gzip src="${osxdir}/${osxtag}.tar"
+      zipfile="${osxdir}/${osxtag}.tar.gz" />
+
+    <delete dir="${osxdir}/${osxtag}" />
+    <delete file="${osxdir}/${osxtag}.tar" />
+  </target>
+
+  <!-- Makes a jar with dependencies. No tests are included. -->
+  <target name="jar">
+    <!-- copy external dependencies -->
+    <zip zipfile="${jarfile}">
+      <zipfileset src="${lib_dir}/gj-util.jar" />
+      <zipfileset src="${lib_dir}/dynamicjava.jar" />
+      <zipfileset src="${lib_dir}/junit.jar" />
+    </zip>
+
+    <jar jarfile="${jarfile}" manifest="${manifest}" update="true" >
+      <fileset dir="${built}" excludes="**/*Test.class">
+        <include name="${projpath}/**" />
+        <include name="edu/rice/cs/util/**" />
+
+        <!-- include the GPL -->
+        <include name="edu/rice/cs/LICENSE" />
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- Run the program! -->
+  <target name="run" depends="compile">
+    <java fork="true" classname="edu.rice.cs.drjava.DrJava">
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+
+  <!-- Check if docbook2html is available -->
+  <target name="docbook-present">
+    <property environment="env"/>
+    <available file="docbook2html" property="docbook.present">
+      <filepath>
+        <pathelement path="${env.PATH}" />
+      </filepath>
+    </available>
+  </target>
+
+  <!-- Create documentation html -->
+  <target name="docs" depends="userdocs" unless="docbook.present">
+    <echo message="Could not find docbook2html.  Not generating docs." />
+  </target>
+
+  <!-- Create the user documentation -->
+  <target name="userdocs" depends="docbook-present" if="docbook.present">
+    <delete dir="${doc_dir}/user/" />
+    <mkdir dir="${doc_dir}/user/" />
+    <echo message="Creating documentation HTML..." />
+    <apply executable="docbook2html" failonerror="yes" type="file">
+      <arg value="-o"/>
+      <arg value="${doc_dir}/user/"/>
+      <fileset dir="${srcroot}/${projpath}/docs/user">
+        <include name="userdoc.docbook" />
+      </fileset>
+    </apply>
+  </target>
+
+  <!-- Allow a commit of just the docs, without testing -->
+  <target name="commit-docs">
+    <echo message="Committing the documentation." />
+    <cvs command="commit docs" />
+  </target>
+
+</project>

@@ -1,0 +1,21 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Date\15.9.5.4.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Date\shell.js -f mozilla\js\tests\ecma_3\Date\15.9.5.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.9.5.4 Date.prototype.toTimeString()
+typeof (now.toTimeString()) = string PASSED!
+Date.prototype.toTimeString.length = 0 PASSED!
+(Wed Dec 31 1969 19:00:00 GMT-0500 (EST)).toTimeString() = 19:00:00 GMT-0500 (EST) PASSED!
+(Wed Dec 31 1969 14:00:00 GMT-0500 (EST)).toTimeString() = 14:00:00 GMT-0500 (EST) PASSED!
+(Sun Dec 31 1899 19:00:00 GMT-0500 (EST)).toTimeString() = 19:00:00 GMT-0500 (EST) PASSED!
+(Mon Jan 01 1900 00:00:00 GMT-0500 (EST)).toTimeString() = 00:00:00 GMT-0500 (EST) PASSED!
+(Fri Dec 31 1999 19:00:00 GMT-0500 (EST)).toTimeString() = 19:00:00 GMT-0500 (EST) PASSED!
+(Sat Jan 01 2000 00:00:00 GMT-0500 (EST)).toTimeString() = 00:00:00 GMT-0500 (EST) PASSED!
+(Mon Feb 28 2000 19:00:00 GMT-0500 (EST)).toTimeString() = 19:00:00 GMT-0500 (EST) PASSED!
+(Mon Feb 28 2000 18:59:59 GMT-0500 (EST)).toTimeString() = 18:59:59 GMT-0500 (EST) PASSED!
+(Tue Feb 29 2000 00:00:00 GMT-0500 (EST)).toTimeString() = 00:00:00 GMT-0500 (EST) PASSED!
+(Tue Jul 10 2007 13:30:49 GMT-0400 (EDT)).toTimeString() = 13:30:49 GMT-0400 (EDT) PASSED!
+(Tue Jul 10 2007 18:30:49 GMT-0400 (EDT)).toTimeString() = 18:30:49 GMT-0400 (EDT) PASSED!
+(Fri Dec 31 2004 19:00:00 GMT-0500 (EST)).toTimeString() = 19:00:00 GMT-0500 (EST) PASSED!
+(Fri Dec 31 2004 18:59:59 GMT-0500 (EST)).toTimeString() = 18:59:59 GMT-0500 (EST) PASSED!
+(Sat Jan 01 2005 00:00:00 GMT-0500 (EST)).toTimeString() = 00:00:00 GMT-0500 (EST) PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Date\15.9.5.4.interpreted.arff] ...

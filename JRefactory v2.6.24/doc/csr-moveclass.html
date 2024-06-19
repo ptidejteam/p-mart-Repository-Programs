@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JRefactory  -  Repackage or Move Class</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csrefactory.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory  -  Repackage or Move Class
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-renameclass.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H4>Moving a class between packages</H4>
+			<P>This feature is the first refactoring that has been implemented. It allows you to move a file from one package
+			to another. The file is changed, plus all of the import statements in it are updated. Further, the program guesses
+			the root directory of your source tree, and updates all import statements in all java files that reference the
+			object.</P>
+
+			<P>To move a single class to another package, press the right mouse
+			button over the class to be moved.  Select move class from the menu.
+			Enter the name of the destination package.</P>
+
+			<P>To move multiple classes to the same package, click the left mouse
+			button on the first class to move.  While holding the control button
+			click on each of the other classes to move.  On any one of the selected
+			classes, press the right mouse button.  Select the move class option
+			from the menu.  Enter the name of the destination package in the
+			dialog box.  Note that you can use the dropdown list of packages if
+			you are moving the class to an existing package.</P>
+
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csrefactory.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: June 6, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-renameclass.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

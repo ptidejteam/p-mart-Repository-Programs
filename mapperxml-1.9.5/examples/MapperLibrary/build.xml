@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MapperEX.jpx" default="compile" basedir=".">
+  <!--Classpath-->
+  <path id="project.class.path">
+    <!-- Xerces Library -->
+    <pathelement path="/usr/local/xerces-1_4_4/xerces.jar" />
+    <!-- Java Servlet Library (javax.servlet.*) -->
+    <pathelement path="/usr/local/jakarta-tomcat-3.3.1/lib/common/servlet.jar" />
+    <!-- MapperXML Library (point to where you have installed mapperxml.jar -->
+    <pathelement path="/usr/local/jbuilder4/lib/ext/mapperxml.jar" />
+    <!-- Oracle 1.2 Library -->
+    <pathelement path="/usr/local/jdbc/lib/classes12.zip" />
+  </path>
+
+  <!--Initialization-->
+  <target name="init">
+    <property name="docPath" value="rootdir" />
+    <property name="outputPath" value="classes" />
+    <property name="sourcePath" value="src" />
+    <property name="metaPath" value="src/metadata" />
+    <!-- MapperXML Library (point to where you have installed mapperxml.jar -->
+    <property name="mapperPath" value="/usr/local/jbuilder4/lib/ext" />
+    <property name="xercesPath" value="/usr/local/xerces-1_4_4/" />
+    <property name="deployPath" value="/usr/local/jakarta-tomcat-3.3.1/webapps" />
+    <property name="jarFile" value="mapperlibrary.jar" />
+    <property name="warFile" value="mapperlibrary.war" />
+    <property name="zipFile" value="mapperlibrary.zip" />
+    <property name="releasePath" value="MapperLibrary" />
+  </target>
+
+  <!--Cleanup previous builds-->
+  <target name="clean" depends="init">
+    <delete dir="${outputPath}" />
+  </target>
+
+  <!--Prepare for compilation-->
+  <target name="prepare" depends="clean">
+    <mkdir dir="${outputPath}" />
+  </target>
+
+  <!--Compile project-->
+  <target name="compile" depends="prepare">
+    <javac srcdir="${sourcePath}" destDir="${outputPath}"
+        debug="on" classpathref="project.class.path" />
+    <copy todir="${outputPath}">
+      <fileset dir="${sourcePath}">
+        <include name="com/**/*.html"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Build WAR file for web deployment -->
+  <target name="war" depends="compile" description="Build WAR file for web deployment">
+    <war warfile="${warFile}" webxml="${metaPath}/web.xml">
+      <classes dir="${outputPath}">
+        <include name="com/**/*.class"/>
+        <include name="com/**/*.html"/>
+      </classes>
+<!--  Uncomment the following if you want to include required libraries
+      in the distribution rather than in the webserver's common directory
+      <lib dir="${mapperPath}">
+        <include name="mapperxml.jar"/>
+      </lib>
+      <lib dir="${xercesPath}">
+        <include name="xerces.jar"/>
+      </lib>
+-->
+    </war>
+  </target>
+
+  <!-- Release -->
+  <target name="release" depends="init" description="Make a release package">
+    <zip zipfile="${zipFile}">
+      <zipfileset dir="." includes="MapperLibrary.jpx" prefix="${releasePath}"/>
+      <zipfileset dir="." includes="project.mpj" prefix="${releasePath}"/>
+      <zipfileset dir="." includes="build.xml" prefix="${releasePath}"/>
+      <zipfileset dir="src" prefix="${releasePath}/src"/>
+    </zip>
+  </target>
+
+  <!-- Deploy Application -->
+  <target name="deploy" depends="war">
+    <copy file="${warFile}" todir="${deployPath}" />
+  </target>
+
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="whiteboard/" kind="src" path="src"/>
+	<classpathentry kind="lib" path="tools/ant.jar"/>
+	<classpathentry kind="lib" path="tools/style-apachexml.jar"/>
+	<classpathentry kind="lib" path="tools/stylebook-1.0-b2.jar"/>
+	<classpathentry kind="lib" path="tools/xalan.jar"/>
+	<classpathentry kind="lib" path="tools/xerces.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

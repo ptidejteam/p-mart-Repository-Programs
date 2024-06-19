@@ -1,0 +1,28 @@
+body	{ font-family:Arial,Helvetica,sans-serif; font-size:12pt; }
+
+p	{ font-family:Arial,Helvetica,sans-serif; 
+	  font-size:12pt; }
+
+b	{ font-family:Arial,Helvetica,sans-serif; 
+	  font-size:12pt; 
+	  color:#000000; }
+
+pre	{ font-family:Courier New,Courier; 
+	  font-size:12pt; }
+
+tt	{ font-family:Courier New,Courier,monospaced; 
+	  font-size:12pt; }
+
+li,ul,ol,div,td,th,address,blockquote,nobr
+	{ font-family:Arial,Helvetica,sans-serif; 
+	  font-size:12pt; }
+
+.header{font-family:Arial,Helvetica,sans-serif; 
+        font-size:14pt; 
+        font-weight:bold; 
+        color:#000000;  }
+
+a:link    { color:#4949af; text-decoration:underline; }
+a:visited { color:#9999cc; text-decoration:underline; }
+a:active  { color:#000000; text-decoration:underline; }
+

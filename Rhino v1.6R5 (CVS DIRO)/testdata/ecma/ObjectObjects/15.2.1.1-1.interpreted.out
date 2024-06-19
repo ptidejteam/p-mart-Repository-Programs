@@ -1,0 +1,54 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ObjectObjects\15.2.1.1-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ObjectObjects\shell.js -f mozilla\js\tests\ecma\ObjectObjects\15.2.1.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.2.1.1 Object( value )
+Object(null).valueOf() = [object Object] PASSED!
+typeof Object(null) = object PASSED!
+Object(void 0).valueOf() = [object Object] PASSED!
+typeof Object(void 0) = object PASSED!
+Object(true).valueOf() = true PASSED!
+typeof Object(true) = object PASSED!
+var MYOB = Object(true); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Boolean] PASSED!
+Object(false).valueOf() = false PASSED!
+typeof Object(false) = object PASSED!
+var MYOB = Object(false); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Boolean] PASSED!
+Object(0).valueOf() = 0 PASSED!
+typeof Object(0) = object PASSED!
+var MYOB = Object(0); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(-0).valueOf() = 0 PASSED!
+typeof Object(-0) = object PASSED!
+var MYOB = Object(-0); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(1).valueOf() = 1 PASSED!
+typeof Object(1) = object PASSED!
+var MYOB = Object(1); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(-1).valueOf() = -1 PASSED!
+typeof Object(-1) = object PASSED!
+var MYOB = Object(-1); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(Number.MAX_VALUE).valueOf() = 1.7976931348623157e+308 PASSED!
+typeof Object(Number.MAX_VALUE) = object PASSED!
+var MYOB = Object(Number.MAX_VALUE); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(Number.MIN_VALUE).valueOf() = 5e-324 PASSED!
+typeof Object(Number.MIN_VALUE) = object PASSED!
+var MYOB = Object(Number.MIN_VALUE); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(Number.POSITIVE_INFINITY).valueOf() = Infinity PASSED!
+typeof Object(Number.POSITIVE_INFINITY) = object PASSED!
+var MYOB = Object(Number.POSITIVE_INFINITY); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(Number.NEGATIVE_INFINITY).valueOf() = -Infinity PASSED!
+typeof Object(Number.NEGATIVE_INFINITY) = object PASSED!
+var MYOB = Object(Number.NEGATIVE_INFINITY); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object(Number.NaN).valueOf() = NaN PASSED!
+typeof Object(Number.NaN) = object PASSED!
+var MYOB = Object(Number.NaN); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+Object('a string').valueOf() = a string PASSED!
+typeof Object('a string') = object PASSED!
+var MYOB = Object('a string'); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object String] PASSED!
+Object('').valueOf() =  PASSED!
+typeof Object('') = object PASSED!
+var MYOB = Object(''); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object String] PASSED!
+Object('\r\t\b\n\v\f').valueOf() = 	
+ PASSED!
+typeof Object('\r\t\b\n\v\f') = object PASSED!
+var MYOB = Object('\r\t\b\n\v\f'); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object String] PASSED!
+Object( '\'\"\' ).valueOf() = '"\ PASSED!
+typeof Object( '\'\"\' ) = object PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ObjectObjects\15.2.1.1-1.interpreted.arff] ...

@@ -1,0 +1,57 @@
+/*
+ * ExportPDFPopup.java
+ * Copyright 2002 (C) B. K. Oxley (binkley) <binkley@bigfoot.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * Created on February 14th, 2002.
+ */
+
+package pcgen.gui;
+
+import javax.swing.JTabbedPane;
+import pcgen.util.PropertyFactory;
+
+/**
+ * Export PDF popup dialog.  The real work goes on in the panel.
+ *
+ * @author B. K. Oxley (binkley) <a href="mailto:binkley@bigfoot.com">&lt;binkley@bigfoot.com&gt;</a>
+ * @version    $Revision: 1.1 $
+ */
+final class ExportPDFPopup extends PCGenPopup
+{
+	private MainPrint mainPrint = null;
+	private JTabbedPane baseTabbedPanel = null;
+
+	ExportPDFPopup(JTabbedPane aPanel)
+	{
+		super(PropertyFactory.getString("in_exportPCParty"));
+		mainPrint = new MainPrint(this, MainPrint.EXPORT_MODE);
+		setPanel(mainPrint);
+		baseTabbedPanel = aPanel;
+		pack();
+		setVisible(true);
+	}
+
+	public void setCurrentPCSelectionByTab()
+	{
+		if (mainPrint != null)
+		{
+			mainPrint.setCurrentPCSelection(baseTabbedPanel.getSelectedIndex());
+			pack();
+			setVisible(true);
+		}
+	}
+}

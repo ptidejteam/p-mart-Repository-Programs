@@ -1,0 +1,10 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.12-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.12-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+label-002 Labeled statements
+label-002 Labeled statements
+yoohoo: for ( property in object ) { result += object[property]; } break yoohoo } = true PASSED!
+yoohoo: for ( property in object ) { result += object[property]; } break yoohoo } = true PASSED!
+yoohoo: for ( property in object ) { result += object[property]; break yoohoo }} = true PASSED!
+yoohoo: for ( property in object ) { result += object[property]; break yoohoo }} = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.12-2.interpreted.arff] ...

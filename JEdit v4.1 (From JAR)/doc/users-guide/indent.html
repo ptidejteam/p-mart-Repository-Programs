@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Tabbing and Indentation</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="source-edit.html" title="Chapter 5. Editing Source Code"><link rel="previous" href="modes.html" title="Edit Modes"><link rel="next" href="commenting.html" title="Commenting Out Code"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tabbing and Indentation</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="modes.html">Prev</a> </td><th width="60%" align="center">Chapter 5. Editing Source Code</th><td width="20%" align="right"> <a accesskey="n" href="commenting.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="indent"></a>Tabbing and Indentation</h2></div></div><p>
+   jEdit makes a distinction between the <i>tab width</i>,
+   which is is used when displaying hard tab characters, and the <i>indent
+   width</i>, which is used when a level of indent is to be added or
+   removed, for example by mode-specific auto indent routines. Both can be
+   changed in one of several ways:
+  </p><div class="itemizedlist"><ul type="disc"><li><p>On a global or mode-specific basis in the
+   <b>Editing</b> pane
+   of the the <b>Utilities</b>&gt;<b>Global
+   Options</b> dialog box.
+   </p></li><li><p>In the current buffer
+   for the duration of the editing session in the
+   <b>Utilities</b>&gt;<b>Buffer Options</b>
+   dialog box.</p></li><li><p>In the current buffer
+   for future editing sessions by placing the
+   following in one of the first or last 10 lines of the buffer, where
+   <i><tt>n</tt></i> is the desired tab width, and
+   <i><tt>m</tt></i> is the desired indent width:
+   </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen">:tabSize=<i><tt>n</tt></i>:indentSize=<i><tt>m</tt></i>:</pre></td></tr></table></li></ul></div><p>
+   <b>Edit</b>&gt;<b>Indent</b>&gt;<b>Shift
+   Indent Left</b>
+   (shortcut: <b>Shift</b>-<b>Tab</b>
+   or <b>Alt</b>-<b>Left</b>)
+   adds one level of indent to each selected line, or the current line
+   if there is no selection.
+  </p><p>
+   <b>Edit</b>&gt;<b>Indent</b>&gt;<b>Shift
+   Indent Right</b>
+   (shortcut: <b>Alt</b>-<b>Right</b>)
+   removes one level of indent from each selected line, or the current line
+   if there is no selection. Pressing <b>Tab</b> while a multi-line
+   selection is active has the same effect.
+  </p><p>
+   <b>Edit</b>&gt;<b>Indent</b>&gt;<b>Remove
+   Trailing Whitespace</b>
+   (shortcut: <b>Control</b>-<b>E</b>
+   <b>R</b>) removes all whitespace from the end of each selected line, or
+   the current line if there is no selection.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="soft-tabs"></a>Soft Tabs</h3></div></div><p>
+    Files containing hard tab characters may look less than ideal if
+    the default tab size is changed, so some people prefer using
+    multiple space characters instead of hard tabs to indent code.
+   </p><p>
+    This feature is known as <i>soft tabs</i>.
+    Soft tabs can be enabled or disabled in one of several ways:
+   </p><div class="itemizedlist"><ul type="disc"><li><p>On a global or mode-specific basis in the
+    <b>Editing</b> pane of the
+    <b>Utilities</b>&gt;<b>Global
+    Options</b> dialog box.</p></li><li><p>In the current buffer for
+    the duration of the editing session in the
+    <b>Utilities</b>&gt;<b>Buffer Options</b>
+    dialog box.</p></li><li><p>In the current buffer for
+    future editing sessions by placing the following in one of the first
+    or last 10 lines of the buffer, where <i><tt>flag</tt></i> is either
+    &#8220;true&#8221; or &#8220;false&#8221;:
+    </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen">:noTabs=<i><tt>flag</tt></i>:</pre></td></tr></table></li></ul></div><p>
+    Changing the soft tabs setting has no effect on existing tab characters;
+    it only affects subsequently-inserted tabs.
+   </p><p>
+    <b>Edit</b>&gt;<b>Source</b>&gt;<b>Spaces
+    to Tabs</b>
+    converts soft tabs to hard tabs in the current selection, or the entire
+    buffer if nothing is selected.
+   </p><p>
+    <b>Edit</b>&gt;<b>Source</b>&gt;<b>Tabs
+     to Spaces</b>
+    converts hard tabs to soft tabs in the current selection, or the entire
+    buffer if nothing is selected.
+   </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="autoindent"></a>Automatic Indent</h3></div></div><p>
+    The auto indent feature inserts the appropriate number of tabs or
+    spaces at the beginning of a line by looking at program structure.
+   </p><p>
+    In the default configuration, pressing <b>Enter</b>
+    will create a new line with the appropriate amount of
+    indent automatically, and pressing
+    <b>Tab</b> at the beginning of, or inside the leading
+    whitespace of a line will insert the appropriate amount of
+    indentation. Pressing it again will insert a tab character.
+   </p><p>
+    The behavior of the <b>Enter</b> and <b>Tab</b> keys can
+    be configured in the <b>Shortcuts</b> pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog. box, just as with any other key. The <b>Enter</b> key can be bound
+    to one of the following, or indeed any other command or macro:
+   </p><div class="itemizedlist"><ul type="disc"><li><p><b>Insert Newline</b>.</p></li><li><p><b>Insert Newline and Indent</b>, which
+    is the default.</p></li></ul></div><p>
+    The <b>Tab</b> can be bound to one of the following, or again,
+    any other command or macro:
+   </p><div class="itemizedlist"><ul type="disc"><li><p><b>Insert Tab</b>.</p></li><li><p><b>Insert Tab or Indent</b>, which is
+    the default.</p></li><li><p><b>Indent Selected Lines</b>.</p></li></ul></div><p>
+    See <a href="global-opts.html" title="The Global Options Dialog Box">the section called &#8220;The Global Options Dialog Box&#8221;</a> for details.
+   </p><p>
+    Auto indent behavior is mode-specific. In most edit modes,
+    the indent of the previous line is simply copied over.
+    However, in C-like languages (C, C++, Java, JavaScript), curly
+    brackets and language statements are taken into account and indent
+    is added and removed as necessary.
+   </p><p>
+    <b>Edit</b>&gt;<b>Source</b>&gt;<b>Indent
+    Selected Lines</b>
+    (shortcut: <b>Control</b>-<b>I</b>)
+    indents all selected lines, or the current line if there is no
+    selection.
+   </p><p>
+    To insert a literal tab or newline without performing
+    indentation, prefix the tab or newline with
+    <b>Control</b>-<b>E</b>
+    <b>V</b>. For example,
+    to create a new line without any indentation, type
+    <b>Control</b>-<b>E</b>
+    <b>V</b> <b>Enter</b>.
+   </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="modes.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="source-edit.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="commenting.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Edit Modes </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Commenting Out Code</td></tr></table></div></body></html>

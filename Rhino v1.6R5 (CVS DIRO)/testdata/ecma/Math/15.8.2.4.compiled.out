@@ -1,0 +1,24 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 453 ms]
+BUGNUMBER: 77391
+15.8.2.4 Math.atan()
+Math.atan.length = 1 PASSED!
+Math.atan() = NaN PASSED!
+Math.atan(void 0) = NaN PASSED!
+Math.atan(null) = 0 PASSED!
+Math.atan(NaN) = NaN PASSED!
+Math.atan('a string') = NaN PASSED!
+Math.atan('0') = 0 PASSED!
+Math.atan('1') = 0.7853981633974483 PASSED!
+Math.atan('-1') = -0.7853981633974483 PASSED!
+Math.atan('Infinity) = 1.5707963267948966 PASSED!
+Math.atan('-Infinity) = -1.5707963267948966 PASSED!
+Math.atan(0) = 0 PASSED!
+Math.atan(-0) = 0 PASSED!
+Infinity/Math.atan(-0) = -Infinity PASSED!
+Math.atan(Infinity) = 1.5707963267948966 PASSED!
+Math.atan(-Infinity) = -1.5707963267948966 PASSED!
+Math.atan(1) = 0.7853981633974483 PASSED!
+Math.atan(-1) = -0.7853981633974483 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.4.compiled.arff] ...

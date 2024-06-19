@@ -1,0 +1,12 @@
+
+Test no. 2 - Test Excel's Data validation mechanism
+    Create sheet for Data Validation's number types ... done !
+    Create sheet for 'List' Data Validation type ... done !
+    Create sheet for 'Date' and 'Time' Data Validation types ... done !
+    Create sheet for 'Text length' Data Validation type... done !
+    Create sheet for 'Custom' Data Validation type ... done !
+
+    Everything it's ok since we've got so far -:) !
+    In order to complete the test , it remains for you to open the file 
+    and see if there are four sheets , as described !
+        File was saved in "c:\DOCUME~1\yegor\LOCALS~1\Temp\\TestDataValidation.xls"

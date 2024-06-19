@@ -1,0 +1,36 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.17.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.17.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.8.2.17 Math.sqrt(x)
+Math.sqrt.length = 1 PASSED!
+Math.sqrt() = NaN PASSED!
+Math.sqrt(void 0) = NaN PASSED!
+Math.sqrt(null) = 0 PASSED!
+Math.sqrt(true) = 1 PASSED!
+Math.sqrt(false) = 0 PASSED!
+Math.sqrt('225') = 15 PASSED!
+Math.sqrt(NaN) = NaN PASSED!
+Math.sqrt(-Infinity) = NaN PASSED!
+Math.sqrt(-1) = NaN PASSED!
+Math.sqrt(-0.5) = NaN PASSED!
+Math.sqrt(0) = 0 PASSED!
+Math.sqrt(-0) = 0 PASSED!
+Infinity/Math.sqrt(-0) = -Infinity PASSED!
+Math.sqrt(Infinity) = Infinity PASSED!
+Math.sqrt(1) = 1 PASSED!
+Math.sqrt(2) = 1.4142135623730951 PASSED!
+Math.sqrt(0.5) = 0.7071067811865476 PASSED!
+Math.sqrt(4) = 2 PASSED!
+Math.sqrt(9) = 3 PASSED!
+Math.sqrt(16) = 4 PASSED!
+Math.sqrt(25) = 5 PASSED!
+Math.sqrt(36) = 6 PASSED!
+Math.sqrt(49) = 7 PASSED!
+Math.sqrt(64) = 8 PASSED!
+Math.sqrt(256) = 16 PASSED!
+Math.sqrt(10000) = 100 PASSED!
+Math.sqrt(65536) = 256 PASSED!
+Math.sqrt(0.09) = 0.3 PASSED!
+Math.sqrt(0.01) = 0.1 PASSED!
+Math.sqrt(0.00000001) = 0.0001 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.17.interpreted.arff] ...

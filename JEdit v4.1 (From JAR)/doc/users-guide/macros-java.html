@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Java Code Macros</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="macro-index.html" title="Appendix F. Macros Included With jEdit"><link rel="previous" href="macros-files.html" title="File Management Macros"><link rel="next" href="macros-properties.html" title="Macros for Listing Properties"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Java Code Macros</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="macros-files.html">Prev</a> </td><th width="60%" align="center">Appendix F. Macros Included With jEdit</th><td width="20%" align="right"> <a accesskey="n" href="macros-properties.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="macros-java"></a>Java Code Macros</h2></div></div><p>
+    These macros handle text formatting and generation tasks that are
+    particularly useful in writing Java code.
+</p><div class="itemizedlist"><ul type="disc"><li><p><tt>Get_Class_Name.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Inserts a Java class name based upon the buffer's file name.
+    </p></div></li><li><p><tt>Get_Package_Name.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Inserts a plausible Java package name for the current buffer.
+    </p></div><p>
+        The macro compares the buffer's path name with the elements of the
+        classpath being used by the jEdit session.  An error message will be
+        displayed if no suitable package name is found. This macro will not
+        work if jEdit is being run as a JAR file without specifying a
+        classpath; in that case the classpath seen by the macro consists
+        solely of the JAR file.
+    </p></li><li><p><tt>Make_Get_and_Set_Methods.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Creates <tt>getXXX()</tt> or <tt>setXXX()</tt>
+        methods that can be pasted into the buffer text.
+    </p></div><p>
+        This macro presents a dialog that will &#8220;grab&#8221; the names
+        of instance variables from the caret line of the current buffer
+        and paste a corresponding <tt>getXXX()</tt> or
+        <tt>setXXX()</tt> method to one of two text areas in the
+        dialog.  The text can be edited in the dialog and then pasted into the
+        current buffer using the <b>Insert...</b> buttons.  If
+        the caret is set to a line containing something other than an instance
+        variable, the text grabbing routine is likely to generate nonsense.
+    </p><p>
+        As explained in the notes accompanying the source code, the macro
+        uses a global variable which can be set to configure the macro to work
+        with either Java or C++ code.  When set for use with C++ code,
+        the macro will also write (in commented text) definitions of
+        <tt>getXXX()</tt> or <tt>setXXX()</tt>
+        suitable for inclusion in a header file.
+    </p></li><li><p><tt>Preview_Javadoc_of_Buffer.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+     Creates and displays javadoc for current buffer.
+   </p></div><p>
+      The macro includes configuration variables for using
+      different doclets for generating javadocs and for generating
+      javadocs of the package of which the current buffer is a part.
+      Details for use are included in the note accompanying the macro's
+      source code.
+   </p></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="macros-files.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="macro-index.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="macros-properties.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">File Management Macros </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Macros for Listing Properties</td></tr></table></div></body></html>

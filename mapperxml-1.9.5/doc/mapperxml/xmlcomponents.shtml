@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: General XML Components</title>
+  <link href="common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="common/leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%"><h1>5. General XML Components</h1>
+
+        <h2>5.1 Heirarchy</h2>
+
+        <h2>5.2 Parameter</h2>
+
+        <h2>5.3 TextField</h2>
+
+        <h2>5.4 SelectField</h2>
+
+        <h2>5.5 CheckboxField</h2>
+
+        <h2>5.6 Trigger</h2>
+
+        <h2>5.7 Button</h2>
+
+        <h2>5.8 Template</h2>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="common/footer.shtml" -->
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.4-4.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.4-4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.5.4.4-4 String.prototype.charAt
+x = new Array(1,2,3); x.charAt = String.prototype.charAt; x.charAt(0) = 1 PASSED!
+x = new Array(1,2,3); x.charAt = String.prototype.charAt; x.charAt(1) = , PASSED!
+x = new Array(1,2,3); x.charAt = String.prototype.charAt; x.charAt(2) = 2 PASSED!
+x = new Array(1,2,3); x.charAt = String.prototype.charAt; x.charAt(3) = , PASSED!
+x = new Array(1,2,3); x.charAt = String.prototype.charAt; x.charAt(4) = 3 PASSED!
+x = new Array(); x.charAt = String.prototype.charAt; x.charAt(0) =  PASSED!
+x = new Number(123); x.charAt = String.prototype.charAt; x.charAt(0) = 1 PASSED!
+x = new Number(123); x.charAt = String.prototype.charAt; x.charAt(1) = 2 PASSED!
+x = new Number(123); x.charAt = String.prototype.charAt; x.charAt(2) = 3 PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(0) = [ PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(1) = o PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(2) = b PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(3) = j PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(4) = e PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(5) = c PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(6) = t PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(7) =   PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(8) = O PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(9) = b PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(10) = j PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(11) = e PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(12) = c PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(13) = t PASSED!
+x = new Object(); x.charAt = String.prototype.charAt; x.charAt(14) = ] PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(0) = [ PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(1) = o PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(2) = b PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(3) = j PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(4) = e PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(5) = c PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(6) = t PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(7) =   PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(8) = F PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(9) = u PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(10) = n PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(11) = c PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(12) = t PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(13) = i PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(14) = o PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(15) = n PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(16) = ] PASSED!
+x = new Function(); x.toString = Object.prototype.toString; x.charAt = String.prototype.charAt; x.charAt(17) =  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.4-4.interpreted.arff] ...

@@ -1,0 +1,26 @@
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+
+InputStream: Document content looks like HTML 4.01
+no warnings or errors were found
+
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+line 7 column 9 - Warning: img lacks "alt" attribute
+
+InputStream: Document content looks like HTML 4.01 Transitional
+1 warnings/errors were found!
+
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+
+InputStream: Document content looks like HTML 4.01
+no warnings or errors were found
+
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+line 7 column 9 - Warning: img lacks "alt" attribute
+
+InputStream: Document content looks like HTML 4.01 Transitional
+1 warnings/errors were found!
+

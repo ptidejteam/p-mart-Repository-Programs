@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>MapperXML Example: The ResponsePage</title>
+  </head>
+  <body>
+    <h1>MapperXML Example: The ResponsePage</h1>
+    <form method="post" action="ResponsePage.sf">
+      <input type="radio" name="response" value="html"/>
+        Send HTML Document as response (default)<br/>
+      <input type="radio" name="response" value="redirect"/>
+        Send Client redirect as response (goes to index page)<br/>
+      <input type="radio" name="response" value="error"/>
+        Send error status code as response (sends 403 forbidden)<br/>
+      <input type="radio" name="response" value="none"/>
+        Send nothing as response (nothing send back)<br/>
+      <input type="radio" name="response" value="stream"/>
+        Send stream as response (Mapper.gif)<br/>
+      <br/><br/>
+      <input type="submit"/>
+    </form>
+    <br/><br/><p><a href="/">Back to Mapper Examples</a></p>
+  </body>
+</html>

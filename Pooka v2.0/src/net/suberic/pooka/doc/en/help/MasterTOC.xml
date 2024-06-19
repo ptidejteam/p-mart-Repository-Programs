@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ISO-8859-1'  ?>
+<!DOCTYPE toc
+  PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN"
+         "http://java.sun.com/products/javahelp/toc_1_0.dtd">
+<toc version="1.0">
+  <tocitem text="Pooka Help">
+    <tocitem text="Introduction" target="pooka.intro"/>
+    <tocitem text="Copyright Information" target="gpl"/>
+    <tocitem text="Getting Started" target="pooka.starting"/>
+    <tocitem text="Configuring Your Email Account" target="pooka.configuring"/>
+    <tocitem text="Reading Your Mail" target="reading.intro"/>
+    <tocitem text="Composing New Mail" target="composing.intro"/>
+    <tocitem text="Searches" target="search.intro"/>
+    <tocitem text="Address Books" target="addressBook.intro"/>
+    <tocitem text="Encryption" target="encryption.intro"/>
+    <tocitem text="Configuration Options" target="options">
+      <tocitem text="Preferences" target="options.preferences">
+        <tocitem text="UI" target="options.preferences.ui"/>
+        <tocitem text="Reply" target="options.preferences.reply"/>
+        <tocitem text="Startup" target="options.preferences.startup"/>
+        <tocitem text="Signature" target="options.preferences.signature"/>
+        <tocitem text="HTML" target="options.preferences.html"/>
+        <tocitem text="Files" target="options.preferences.files"/>
+      </tocitem>
+      <tocitem text="Mailbox" target="options.store">
+        <tocitem text="Configuration" target="options.store.configuration"/>
+        <tocitem text="Connection" target="options.store.connection"/>
+        <tocitem text="Store Type" target="options.store.protocol">
+          <tocitem text="IMAP" target="options.store.protocol.imap"/>
+          <tocitem text="POP3" target="options.store.protocol.pop3"/>
+          <tocitem text="mbox" target="options.store.protocol.mbox"/>
+        </tocitem>
+      </tocitem>
+      <tocitem text="User" target="options.user">
+        <tocitem text="Email Info" target="options.us.email"/>
+        <tocitem text="Configuration" target="options.user.config"/>
+        <tocitem text="New Message UI" target="options.user.nmui"/>
+      </tocitem>
+      <tocitem text="Outgoing Server" target="options.outgoing">
+        <tocitem text="SMTP" target="options.outgoing.smtp"/>
+        <tocitem text="Connection" target="options.outgoing.connection"/>
+      </tocitem>
+      <tocitem text="Network Connection" target="options.connection"/>
+      <tocitem text="Address Book" target="options.addressBook">
+        <tocitem text="Configuration" target="options.addressBook.configuration"/>
+        <tocitem text="Addresses" target="options.addressBook.addresses"/>
+      </tocitem>
+      <tocitem text="Theme" target="options.theme"/>
+      <tocitem text="Folder" target="options.folder">
+        <tocitem text="Configuration" target="options.folder.configuration"/>
+        <tocitem text="Display" target="options.folder.display"/>
+        <tocitem text="Filters" target="options.folder.filters"/>
+        <tocitem text="Message Text UI" target="options.folder.mtui"/>
+      </tocitem>
+    </tocitem>
+    <tocitem text="Key Bindings" target="keybindings"/>
+  </tocitem>
+</toc>

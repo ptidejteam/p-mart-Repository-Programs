@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <jnlp spec="1.0+"
+        codebase="${BASE_URL}/lib"
+        href="bouncy.jnlp">
+    <information>
+       <title>BouncyCastle S/MIME provider</title>
+       <vendor>BouncyCastle.org</vendor>
+       <offline-allowed/>
+    </information>
+    <security>
+      <all-permissions/>
+    </security>
+    <resources>
+        <jar href="bcprov.jar"/>
+        <jar href="bcmail.jar"/>
+        <jar href="bcpg.jar"/>
+    </resources>
+    <component-desc/>
+  </jnlp>

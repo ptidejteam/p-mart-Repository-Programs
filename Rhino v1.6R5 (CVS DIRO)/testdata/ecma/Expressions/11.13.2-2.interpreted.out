@@ -1,0 +1,36 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.13.2-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.13.2-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+11.13.2-2 Compound Assignment: /=
+VAR1 = NaN; VAR2=1; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = NaN; VAR2=1; VAR1 /= VAR2; VAR1 = NaN PASSED!
+VAR1 = NaN; VAR2=0; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = NaN; VAR2=0; VAR1 /= VAR2; VAR1 = NaN PASSED!
+VAR1 = 0; VAR2=NaN; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = 0; VAR2=NaN; VAR1 /= VAR2; VAR1 = NaN PASSED!
+VAR1 = 0; VAR2=1; VAR1 /= VAR2 = 0 PASSED!
+VAR1 = 0; VAR2=1; VAR1 /= VAR2;VAR1 = 0 PASSED!
+VAR1 = 0xFF; VAR2 = 0xA, VAR1 /= VAR2 = 25.5 PASSED!
+VAR1 = 0; VAR2= Infinity; VAR1 /= VAR2 = 0 PASSED!
+VAR1 = -0; VAR2= Infinity; VAR1 /= VAR2 = 0 PASSED!
+VAR1 = -0; VAR2= -Infinity; VAR1 /= VAR2 = 0 PASSED!
+VAR1 = 0; VAR2= -Infinity; VAR1 /= VAR2 = 0 PASSED!
+VAR1 = 0; VAR2= Infinity; VAR2 /= VAR1 = Infinity PASSED!
+VAR1 = -0; VAR2= Infinity; VAR2 /= VAR1 = -Infinity PASSED!
+VAR1 = -0; VAR2= -Infinity; VAR2 /= VAR1 = Infinity PASSED!
+VAR1 = 0; VAR2= -Infinity; VAR2 /= VAR1 = -Infinity PASSED!
+VAR1 = Infinity; VAR2= Infinity; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = Infinity; VAR2= -Infinity; VAR1 /= VAR2 = NaN PASSED!
+VAR1 =-Infinity; VAR2= Infinity; VAR1 /= VAR2 = NaN PASSED!
+VAR1 =-Infinity; VAR2=-Infinity; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = 0; VAR2= 0; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = 0; VAR2= -0; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = -0; VAR2= 0; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = -0; VAR2= -0; VAR1 /= VAR2 = NaN PASSED!
+VAR1 = 1; VAR2= 0; VAR1 /= VAR2 = Infinity PASSED!
+VAR1 = 1; VAR2= -0; VAR1 /= VAR2 = -Infinity PASSED!
+VAR1 = -1; VAR2= 0; VAR1 /= VAR2 = -Infinity PASSED!
+VAR1 = -1; VAR2= -0; VAR1 /= VAR2 = Infinity PASSED!
+VAR1 = 1000; VAR2 = '10', VAR1 /= VAR2; VAR1 = 100 PASSED!
+VAR1 = '1000'; VAR2 = 10, VAR1 /= VAR2; VAR1 = 100 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.13.2-2.interpreted.arff] ...

@@ -1,0 +1,12 @@
+[PropertyInfo]
+birthdate,java.util.Date,false,false, , ,true,<default>
+deductions,Collection,false,false, , ,true,<default>
+firstName,String,false,false, , ,true,<default>
+lastName,String,false,false, , ,true,<default>
+personId,long,false,false, , ,true,<default>
+favoriteColor,String,false,false,favoriteColor,favoriteColor,true,<default>
+[IconNames]
+
+
+
+

@@ -1,0 +1,163 @@
+###########################################################
+# Makefile for the XPath engine.
+#
+# See ../Makefile for important environment notes
+#
+###########################################################
+
+# Include common targets and variables
+include ../make.include
+
+SINCE_FILE       = sincexpath.last
+
+# Define our directory structure
+PROJDIR = org$(PATHSEP)apache$(PATHSEP)xalan
+XPATHDIR = $(PROJDIR)$(PATHSEP)xpath
+XMLLIAISONDIR = $(PROJDIR)$(PATHSEP)xpath$(PATHSEP)xml
+XSLT4JDIR = $(PROJDIR)$(PATHSEP)xslt
+CLIENTDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)client
+EXTENSIONSDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)extensions
+TRACEDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)trace
+RESDIR = $(PROJDIR)$(PATHSEP)xpath$(PATHSEP)res
+DTMDIR = $(PROJDIR)$(PATHSEP)xpath$(PATHSEP)dtm
+SUBDIRS = 
+
+# List of all files to compile for this module
+SRCS = \
+	$(XPATHDIR)$(PATHSEP)DataProviderAssociation.java \
+	$(XPATHDIR)$(PATHSEP)Dispatcher.java \
+	$(XPATHDIR)$(PATHSEP)DispatcherFactory.java \
+	$(XPATHDIR)$(PATHSEP)ExtensionFunctionHandler.java \
+	$(XPATHDIR)$(PATHSEP)FoundIndex.java \
+	$(XPATHDIR)$(PATHSEP)FuncBoolean.java \
+	$(XPATHDIR)$(PATHSEP)FuncCeiling.java \
+	$(XPATHDIR)$(PATHSEP)FuncConcat.java \
+	$(XPATHDIR)$(PATHSEP)FuncContains.java \
+	$(XPATHDIR)$(PATHSEP)FuncCount.java \
+	$(XPATHDIR)$(PATHSEP)FuncCurrent.java \
+	$(XPATHDIR)$(PATHSEP)FuncDoc.java \
+	$(XPATHDIR)$(PATHSEP)FuncDoclocation.java \
+	$(XPATHDIR)$(PATHSEP)FuncExtElementAvailable.java \
+	$(XPATHDIR)$(PATHSEP)FuncExtFunctionAvailable.java \
+	$(XPATHDIR)$(PATHSEP)FuncFalse.java \
+	$(XPATHDIR)$(PATHSEP)FuncFloor.java \
+	$(XPATHDIR)$(PATHSEP)FuncGenerateId.java \
+	$(XPATHDIR)$(PATHSEP)FuncId.java \
+	$(XPATHDIR)$(PATHSEP)FuncKey.java \
+	$(XPATHDIR)$(PATHSEP)FuncLang.java \
+	$(XPATHDIR)$(PATHSEP)FuncLast.java \
+	$(XPATHDIR)$(PATHSEP)FuncLoader.java \
+	$(XPATHDIR)$(PATHSEP)FuncLocalPart.java \
+	$(XPATHDIR)$(PATHSEP)FuncNamespace.java \
+	$(XPATHDIR)$(PATHSEP)FuncNormalizeSpace.java \
+	$(XPATHDIR)$(PATHSEP)FuncNot.java \
+	$(XPATHDIR)$(PATHSEP)FuncNumber.java \
+	$(XPATHDIR)$(PATHSEP)FuncPosition.java \
+	$(XPATHDIR)$(PATHSEP)FuncQname.java \
+	$(XPATHDIR)$(PATHSEP)FuncRound.java \
+	$(XPATHDIR)$(PATHSEP)FuncStartsWith.java \
+	$(XPATHDIR)$(PATHSEP)FuncString.java \
+	$(XPATHDIR)$(PATHSEP)FuncStringLength.java \
+	$(XPATHDIR)$(PATHSEP)FuncSubstring.java \
+    $(XPATHDIR)$(PATHSEP)FuncSubstringAfter.java \
+    $(XPATHDIR)$(PATHSEP)FuncSubstringBefore.java \
+    $(XPATHDIR)$(PATHSEP)FuncSum.java \
+    $(XPATHDIR)$(PATHSEP)FuncSystemProperty.java \
+    $(XPATHDIR)$(PATHSEP)Function.java \
+    $(XPATHDIR)$(PATHSEP)FuncTranslate.java \
+    $(XPATHDIR)$(PATHSEP)FuncTrue.java \
+    $(XPATHDIR)$(PATHSEP)FuncUnparsedEntityURI.java \
+    $(XPATHDIR)$(PATHSEP)KeyDeclaration.java \
+    $(XPATHDIR)$(PATHSEP)MutableNodeList.java \
+    $(XPATHDIR)$(PATHSEP)MutableNodeListImpl.java \
+    $(XPATHDIR)$(PATHSEP)EmptyNodeListImpl.java \
+    $(XPATHDIR)$(PATHSEP)NodeListImpl.java \
+    $(XPATHDIR)$(PATHSEP)NodeCallback.java \
+    $(XPATHDIR)$(PATHSEP)Process.java \
+    $(XPATHDIR)$(PATHSEP)SimpleNodeLocator.java \
+    $(XPATHDIR)$(PATHSEP)XBoolean.java \
+    $(XPATHDIR)$(PATHSEP)XBooleanStatic.java \
+    $(XPATHDIR)$(PATHSEP)XLocator.java \
+    $(XPATHDIR)$(PATHSEP)XNodeSet.java \
+    $(XPATHDIR)$(PATHSEP)XNull.java \
+    $(XPATHDIR)$(PATHSEP)XNumber.java \
+    $(XPATHDIR)$(PATHSEP)XObject.java \
+    $(XPATHDIR)$(PATHSEP)XPath.java \
+    $(XPATHDIR)$(PATHSEP)XPathEnvSupport.java \
+    $(XPATHDIR)$(PATHSEP)XPathException.java \
+    $(XPATHDIR)$(PATHSEP)XPathFactory.java \
+    $(XPATHDIR)$(PATHSEP)XPathProcessor.java \
+    $(XPATHDIR)$(PATHSEP)XPathProcessorException.java \
+    $(XPATHDIR)$(PATHSEP)XPathProcessorImpl.java \
+    $(XPATHDIR)$(PATHSEP)XPathSupport.java \
+    $(XPATHDIR)$(PATHSEP)XPathSupportDefault.java \
+    $(XPATHDIR)$(PATHSEP)XRTreeFrag.java \
+    $(XPATHDIR)$(PATHSEP)XSLTJavaClassEngine.java \
+    $(XPATHDIR)$(PATHSEP)XString.java \
+	$(RESDIR)$(PATHSEP)XPATHErrorResources.java \
+    $(RESDIR)$(PATHSEP)XPATHErrorResources_en.java \
+	$(XPATHDIR)$(PATHSEP)xdom$(PATHSEP)XercesLiaison.java \
+	$(DTMDIR)$(PATHSEP)ChunkedIntArray.java \
+	$(DTMDIR)$(PATHSEP)DTM.java \
+	$(DTMDIR)$(PATHSEP)DTMException.java \
+	$(DTMDIR)$(PATHSEP)DTMLiaison.java \
+	$(DTMDIR)$(PATHSEP)DTMNodeLocator.java \
+	$(DTMDIR)$(PATHSEP)DTMNodeVector.java \
+	$(DTMDIR)$(PATHSEP)DTMProxy.java \
+	$(DTMDIR)$(PATHSEP)DTMProxyMap.java \
+	$(DTMDIR)$(PATHSEP)IntMap.java \
+	$(DTMDIR)$(PATHSEP)IntToObjectMap.java
+	
+	
+SRCS2 = \
+	$(XMLLIAISONDIR)$(PATHSEP)AttList.java \
+  $(XMLLIAISONDIR)$(PATHSEP)MutableAttrListImpl.java \
+	$(XMLLIAISONDIR)$(PATHSEP)DefaultErrorHandler.java \
+	$(XMLLIAISONDIR)$(PATHSEP)FormatterToDOM.java \
+	$(XMLLIAISONDIR)$(PATHSEP)FormatterToXML.java \
+	$(XMLLIAISONDIR)$(PATHSEP)FormatterToHTML.java \
+	$(XMLLIAISONDIR)$(PATHSEP)FormatterToText.java \
+  $(XMLLIAISONDIR)$(PATHSEP)Trie.java \
+  $(XMLLIAISONDIR)$(PATHSEP)NameSpace.java \
+  $(XMLLIAISONDIR)$(PATHSEP)NSInfo.java \
+  $(XMLLIAISONDIR)$(PATHSEP)PrefixResolver.java \
+  $(XMLLIAISONDIR)$(PATHSEP)PrefixResolverDefault.java \
+  $(XMLLIAISONDIR)$(PATHSEP)QName.java \
+  $(XMLLIAISONDIR)$(PATHSEP)TreeWalker.java \
+  $(XMLLIAISONDIR)$(PATHSEP)WrongParserException.java \
+  $(XMLLIAISONDIR)$(PATHSEP)XMLParserLiaison.java \
+  $(XMLLIAISONDIR)$(PATHSEP)XMLParserLiaisonDefault.java \
+  $(XMLLIAISONDIR)$(PATHSEP)XSLMessages.java \
+  $(XMLLIAISONDIR)$(PATHSEP)XSLResourceBundle.java \
+  $(XMLLIAISONDIR)$(PATHSEP)ProblemListener.java \
+  $(XMLLIAISONDIR)$(PATHSEP)StringToStringTable.java \
+  $(XMLLIAISONDIR)$(PATHSEP)StringToStringTableVector.java \
+  $(XMLLIAISONDIR)$(PATHSEP)StringKey.java \
+  $(XMLLIAISONDIR)$(PATHSEP)BoolStack.java \
+  $(XMLLIAISONDIR)$(PATHSEP)IntStack.java \
+  $(XMLLIAISONDIR)$(PATHSEP)IntVector.java \
+  $(XMLLIAISONDIR)$(PATHSEP)ElemDesc.java \
+  $(XMLLIAISONDIR)$(PATHSEP)StringVector.java \
+  $(XMLLIAISONDIR)$(PATHSEP)NodeVector.java \
+  $(XMLLIAISONDIR)$(PATHSEP)RawCharacterHandler.java \
+  $(XMLLIAISONDIR)$(PATHSEP)ProblemListenerDefault.java
+
+OBJS = $(SRCS:%.java=classes/%.class)
+
+all: sincelast sincelast2 makesubdirs
+
+# Note double-colon targets are treated specially
+clean::
+	$(RM) $(CLASS_DIR)/$(XPATHDIR)/*.class \
+	$(CLASS_DIR)/$(XPATHDIR)/xml4j2dom/*.class \
+	$(CLASS_DIR)/$(XMLLIAISONDIR)/*.class \
+	$(CLASS_DIR)/$(RESDIR)/*.class \
+	$(SINCE_FILE) sincexpath2.last
+
+include ../make.include2
+
+sincelast2: sincexpath2.last
+sincexpath2.last: $(SRCS2)
+	-mkdir $(CLASSESDIR)
+	$(JAVAC) $(JAVACFLAGS) -classpath "$(EXTRA_CLASSPATH)" $?
+	touch sincexpath2.last

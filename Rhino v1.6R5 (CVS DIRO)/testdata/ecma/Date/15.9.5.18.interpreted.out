@@ -1,0 +1,49 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.18.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.18.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.9.5.14 Date.prototype.getHours()
+(new Date(1184093699750)).getHours() = 14 PASSED!
+(new Date(1184097299750)).getHours() = 15 PASSED!
+(new Date(1184100899750)).getHours() = 16 PASSED!
+(new Date(1184104499750)).getHours() = 17 PASSED!
+(new Date(1184108099750)).getHours() = 18 PASSED!
+(new Date(1184111699750)).getHours() = 19 PASSED!
+(new Date(-62167215600000)).getHours() = 20 PASSED!
+(new Date(-62167212000000)).getHours() = 21 PASSED!
+(new Date(-62167208400000)).getHours() = 22 PASSED!
+(new Date(-62167204800000)).getHours() = 23 PASSED!
+(new Date(-62167201200000)).getHours() = 0 PASSED!
+(new Date(-62167197600000)).getHours() = 1 PASSED!
+(new Date(3600000)).getHours() = 20 PASSED!
+(new Date(7200000)).getHours() = 21 PASSED!
+(new Date(10800000)).getHours() = 22 PASSED!
+(new Date(14400000)).getHours() = 23 PASSED!
+(new Date(18000000)).getHours() = 0 PASSED!
+(new Date(21600000)).getHours() = 1 PASSED!
+(new Date(-2208985200000)).getHours() = 20 PASSED!
+(new Date(-2208981600000)).getHours() = 21 PASSED!
+(new Date(-2208978000000)).getHours() = 22 PASSED!
+(new Date(-2208974400000)).getHours() = 23 PASSED!
+(new Date(-2208970800000)).getHours() = 0 PASSED!
+(new Date(-2208967200000)).getHours() = 1 PASSED!
+(new Date(946688400000)).getHours() = 20 PASSED!
+(new Date(946692000000)).getHours() = 21 PASSED!
+(new Date(946695600000)).getHours() = 22 PASSED!
+(new Date(946699200000)).getHours() = 23 PASSED!
+(new Date(946702800000)).getHours() = 0 PASSED!
+(new Date(946706400000)).getHours() = 1 PASSED!
+(new Date(951786000000)).getHours() = 20 PASSED!
+(new Date(951789600000)).getHours() = 21 PASSED!
+(new Date(951793200000)).getHours() = 22 PASSED!
+(new Date(951796800000)).getHours() = 23 PASSED!
+(new Date(951800400000)).getHours() = 0 PASSED!
+(new Date(951804000000)).getHours() = 1 PASSED!
+(new Date(1104541200000)).getHours() = 20 PASSED!
+(new Date(1104544800000)).getHours() = 21 PASSED!
+(new Date(1104548400000)).getHours() = 22 PASSED!
+(new Date(1104552000000)).getHours() = 23 PASSED!
+(new Date(1104555600000)).getHours() = 0 PASSED!
+(new Date(1104559200000)).getHours() = 1 PASSED!
+(new Date(NaN)).getHours() = NaN PASSED!
+Date.prototype.getHours.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.18.interpreted.arff] ...

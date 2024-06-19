@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt_3.1.0.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.core_3.1.2.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug_3.1.1/jdi.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug_3.1.1/jdimodel.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug.ui_3.1.2.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit_3.1.1/junitsupport.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit.runtime_3.1.0/junitruntime.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.launching_3.1.0.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.ui_3.1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

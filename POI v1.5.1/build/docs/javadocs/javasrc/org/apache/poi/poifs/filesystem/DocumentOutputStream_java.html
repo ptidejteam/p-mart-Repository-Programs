@@ -1,0 +1,233 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/poifs/filesystem/classList.html" TARGET="packageFrame">org.apache.poi.poifs.filesystem</A>: DocumentOutputStream');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/poifs/filesystem/classList.html" TARGET="packageFrame">org.apache.poi.poifs.filesystem</A>: DocumentOutputStream';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.poifs.filesystem;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import java.io.*;
+<a name=59 class="linenum">59   </a>
+<a name=60 class="linenum">60   </a>import java.util.*;
+<a name=61 class="linenum">61   </a>
+<a name=62 class="linenum">62   </a><span class="comment">/**
+<a name=63 class="linenum">63   </a> * This class provides a wrapper over an OutputStream so that Document
+<a name=64 class="linenum">64   </a> * writers can't accidently go over their size limits
+<a name=65 class="linenum">65   </a> *
+<a name=66 class="linenum">66   </a> * @author Marc Johnson (mjohnson at apache dot org)
+<a name=67 class="linenum">67   </a> */</span>
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a>public class <a class="classDef" name=DocumentOutputStream href=DocumentOutputStream_java_ref.html#DocumentOutputStream>DocumentOutputStream</a>
+<a name=70 class="linenum">70   </a>    extends <a class="classRef" href=null#OutputStream>OutputStream</a>
+<a name=71 class="linenum">71   </a>{
+<a name=72 class="linenum">72   </a>    private OutputStream <a class="varDef" name=DocumentOutputStream.stream href=DocumentOutputStream_java_ref.html#DocumentOutputStream.stream>stream</a>;
+<a name=73 class="linenum">73   </a>    private int          <a class="varDef" name=DocumentOutputStream.limit href=DocumentOutputStream_java_ref.html#DocumentOutputStream.limit>limit</a>;
+<a name=74 class="linenum">74   </a>    private int          <a class="varDef" name=DocumentOutputStream.written href=DocumentOutputStream_java_ref.html#DocumentOutputStream.written>written</a>;
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>    <span class="comment">/**
+<a name=77 class="linenum">77   </a>     * Create a DocumentOutputStream
+<a name=78 class="linenum">78   </a>     *
+<a name=79 class="linenum">79   </a>     * @param stream the OutputStream to which the data is actually
+<a name=80 class="linenum">80   </a>     *               read
+<a name=81 class="linenum">81   </a>     * @param limit the maximum number of bytes that can be written
+<a name=82 class="linenum">82   </a>     */</span>
+<a name=83 class="linenum">83   </a>
+<a name=84 class="linenum">84   </a>    <a class="methodDef" name=DocumentOutputStream.DocumentOutputStream(OutputStream,int) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.DocumentOutputStream(OutputStream,int)>DocumentOutputStream</a>(final OutputStream stream, final int limit)
+<a name=85 class="linenum">85   </a>    {
+<a name=86 class="linenum">86   </a>        this.stream  = <a class="varRef" title="OutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.DocumentOutputStream.stream>stream</a>;
+<a name=87 class="linenum">87   </a>        this.limit   = <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.DocumentOutputStream.limit>limit</a>;
+<a name=88 class="linenum">88   </a>        this.written = 0;
+<a name=89 class="linenum">89   </a>    }
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    <span class="comment">/**
+<a name=92 class="linenum">92   </a>     * Writes the specified byte to this output stream. The general
+<a name=93 class="linenum">93   </a>     * contract for write is that one byte is written to the output
+<a name=94 class="linenum">94   </a>     * stream. The byte to be written is the eight low-order bits of
+<a name=95 class="linenum">95   </a>     * the argument b. The 24 high-order bits of b are ignored.
+<a name=96 class="linenum">96   </a>     *
+<a name=97 class="linenum">97   </a>     * @param b the byte.
+<a name=98 class="linenum">98   </a>     * @exception IOException if an I/O error occurs. In particular,
+<a name=99 class="linenum">99   </a>     *                        an IOException may be thrown if the
+<a name=100 class="linenum">100  </a>     *                        output stream has been closed, or if the
+<a name=101 class="linenum">101  </a>     *                        writer tries to write too much data.
+<a name=102 class="linenum">102  </a>     */</span>
+<a name=103 class="linenum">103  </a>
+<a name=104 class="linenum">104  </a>    public void <a class="methodDef" name=DocumentOutputStream.write(int) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.write(int)>write</a>(final int b)
+<a name=105 class="linenum">105  </a>        throws IOException
+<a name=106 class="linenum">106  </a>    {
+<a name=107 class="linenum">107  </a>        <a class="methodRef" title="DocumentOutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.limitCheck(int)>limitCheck</a>(1);
+<a name=108 class="linenum">108  </a>        <a class="varRef" title="OutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.stream>stream</a>.write(<a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.write.b>b</a>);
+<a name=109 class="linenum">109  </a>    }
+<a name=110 class="linenum">110  </a>
+<a name=111 class="linenum">111  </a>    <span class="comment">/**
+<a name=112 class="linenum">112  </a>     * Writes b.length bytes from the specified byte array
+<a name=113 class="linenum">113  </a>     * to this output stream.
+<a name=114 class="linenum">114  </a>     *
+<a name=115 class="linenum">115  </a>     * @param b the data.
+<a name=116 class="linenum">116  </a>     * @exception IOException if an I/O error occurs.
+<a name=117 class="linenum">117  </a>     */</span>
+<a name=118 class="linenum">118  </a>
+<a name=119 class="linenum">119  </a>    public void <a class="methodDef" name=DocumentOutputStream.write(byte) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.write(byte)>write</a>(final byte b[])
+<a name=120 class="linenum">120  </a>        throws IOException
+<a name=121 class="linenum">121  </a>    {
+<a name=122 class="linenum">122  </a>        <a class="methodRef" title="DocumentOutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.write(byte,int,int)>write</a>(<a class="varRef" title="byte" href=DocumentOutputStream_java.html#DocumentOutputStream.write.b>b</a>, 0, <a class="varRef" title="byte" href=DocumentOutputStream_java.html#DocumentOutputStream.write.b>b</a>.length);
+<a name=123 class="linenum">123  </a>    }
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    <span class="comment">/**
+<a name=126 class="linenum">126  </a>     * Writes len bytes from the specified byte array starting at
+<a name=127 class="linenum">127  </a>     * offset off to this output stream.  The general contract for
+<a name=128 class="linenum">128  </a>     * write(b, off, len) is that some of the bytes in the array b are
+<a name=129 class="linenum">129  </a>     * written to the output stream in order; element b[off] is the
+<a name=130 class="linenum">130  </a>     * first byte written and b[off+len-1] is the last byte written by
+<a name=131 class="linenum">131  </a>     * this operation.&lt;p&gt;
+<a name=132 class="linenum">132  </a>     * If b is null, a NullPointerException is thrown.&lt;p&gt;
+<a name=133 class="linenum">133  </a>     * If off is negative, or len is negative, or off+len is greater
+<a name=134 class="linenum">134  </a>     * than the length of the array b, then an
+<a name=135 class="linenum">135  </a>     * IndexOutOfBoundsException is thrown.
+<a name=136 class="linenum">136  </a>     *
+<a name=137 class="linenum">137  </a>     * @param b the data.
+<a name=138 class="linenum">138  </a>     * @param off the start offset in the data.
+<a name=139 class="linenum">139  </a>     * @param len the number of bytes to write.
+<a name=140 class="linenum">140  </a>     * @exception IOException if an I/O error occurs. In particular,
+<a name=141 class="linenum">141  </a>     *                        an IOException&lt;/code&gt; is thrown if the
+<a name=142 class="linenum">142  </a>     *                        output stream is closed or if the writer
+<a name=143 class="linenum">143  </a>     *                        tries to write too many bytes.
+<a name=144 class="linenum">144  </a>     */</span>
+<a name=145 class="linenum">145  </a>
+<a name=146 class="linenum">146  </a>    public void <a class="methodDef" name=DocumentOutputStream.write(byte,int,int) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.write(byte,int,int)>write</a>(final byte b[], final int off, final int len)
+<a name=147 class="linenum">147  </a>        throws IOException
+<a name=148 class="linenum">148  </a>    {
+<a name=149 class="linenum">149  </a>        <a class="methodRef" title="DocumentOutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.limitCheck(int)>limitCheck</a>(<a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.write.len>len</a>);
+<a name=150 class="linenum">150  </a>        <a class="varRef" title="OutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.stream>stream</a>.write(<a class="varRef" title="byte" href=DocumentOutputStream_java.html#DocumentOutputStream.write.b>b</a>, <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.write.off>off</a>, <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.write.len>len</a>);
+<a name=151 class="linenum">151  </a>    }
+<a name=152 class="linenum">152  </a>
+<a name=153 class="linenum">153  </a>    <span class="comment">/**
+<a name=154 class="linenum">154  </a>     * Flushes this output stream and forces any buffered output bytes
+<a name=155 class="linenum">155  </a>     * to be written out.
+<a name=156 class="linenum">156  </a>     *
+<a name=157 class="linenum">157  </a>     * @exception IOException if an I/O error occurs.
+<a name=158 class="linenum">158  </a>     */</span>
+<a name=159 class="linenum">159  </a>
+<a name=160 class="linenum">160  </a>    public void <a class="methodDef" name=DocumentOutputStream.flush() href=DocumentOutputStream_java_ref.html#DocumentOutputStream.flush()>flush</a>()
+<a name=161 class="linenum">161  </a>        throws IOException
+<a name=162 class="linenum">162  </a>    {
+<a name=163 class="linenum">163  </a>        <a class="varRef" title="OutputStream" href=DocumentOutputStream_java.html#DocumentOutputStream.stream>stream</a>.flush();
+<a name=164 class="linenum">164  </a>    }
+<a name=165 class="linenum">165  </a>
+<a name=166 class="linenum">166  </a>    <span class="comment">/**
+<a name=167 class="linenum">167  </a>     * Closes this output stream and releases any system resources
+<a name=168 class="linenum">168  </a>     * associated with this stream. The general contract of close is
+<a name=169 class="linenum">169  </a>     * that it closes the output stream. A closed stream cannot
+<a name=170 class="linenum">170  </a>     * perform output operations and cannot be reopened.
+<a name=171 class="linenum">171  </a>     *
+<a name=172 class="linenum">172  </a>     * @exception IOException if an I/O error occurs.
+<a name=173 class="linenum">173  </a>     */</span>
+<a name=174 class="linenum">174  </a>
+<a name=175 class="linenum">175  </a>    public void <a class="methodDef" name=DocumentOutputStream.close() href=DocumentOutputStream_java_ref.html#DocumentOutputStream.close()>close</a>()
+<a name=176 class="linenum">176  </a>        throws IOException
+<a name=177 class="linenum">177  </a>    {
+<a name=178 class="linenum">178  </a>
+<a name=179 class="linenum">179  </a>        <span class="comment">// ignore this call</span>
+<a name=180 class="linenum">180  </a>    }
+<a name=181 class="linenum">181  </a>
+<a name=182 class="linenum">182  </a>    <span class="comment">/**
+<a name=183 class="linenum">183  </a>     * write the rest of the document's data (fill in at the end)
+<a name=184 class="linenum">184  </a>     *
+<a name=185 class="linenum">185  </a>     * @param totalLimit the actual number of bytes the corresponding
+<a name=186 class="linenum">186  </a>     *                   document must fill
+<a name=187 class="linenum">187  </a>     * @param fill the byte to fill remaining space with
+<a name=188 class="linenum">188  </a>     *
+<a name=189 class="linenum">189  </a>     * @exception IOException on I/O error
+<a name=190 class="linenum">190  </a>     */</span>
+<a name=191 class="linenum">191  </a>
+<a name=192 class="linenum">192  </a>    void <a class="methodDef" name=DocumentOutputStream.writeFiller(int,byte) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.writeFiller(int,byte)>writeFiller</a>(final int totalLimit, final byte fill)
+<a name=193 class="linenum">193  </a>        throws IOException
+<a name=194 class="linenum">194  </a>    {
+<a name=195 class="linenum">195  </a>        if (<a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.writeFiller.totalLimit>totalLimit</a> &gt; written)
+<a name=196 class="linenum">196  </a>        {
+<a name=197 class="linenum">197  </a>            byte[] filler = new <a class="classRef" href=..\..\..\..\..\~NO NAME~\null#byte>byte</a>[ <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.writeFiller.totalLimit>totalLimit</a> - written ];
+<a name=198 class="linenum">198  </a>
+<a name=199 class="linenum">199  </a>            Arrays.fill(<a class="varRef" title="byte" href=DocumentOutputStream_java.html#~NO NAME~.filler>filler</a>, <a class="varRef" title="byte" href=DocumentOutputStream_java.html#DocumentOutputStream.writeFiller.fill>fill</a>);
+<a name=200 class="linenum">200  </a>            <a class="varRef" title="OutputStream" href=POIFSDocument_java.html#POIFSDocument.BigBlockStore.writeBlocks.stream>stream</a>.write(<a class="varRef" title="byte" href=DocumentOutputStream_java.html#~NO NAME~.filler>filler</a>);
+<a name=201 class="linenum">201  </a>        }
+<a name=202 class="linenum">202  </a>    }
+<a name=203 class="linenum">203  </a>
+<a name=204 class="linenum">204  </a>    private void <a class="methodDef" name=DocumentOutputStream.limitCheck(int) href=DocumentOutputStream_java_ref.html#DocumentOutputStream.limitCheck(int)>limitCheck</a>(final int toBeWritten)
+<a name=205 class="linenum">205  </a>        throws IOException
+<a name=206 class="linenum">206  </a>    {
+<a name=207 class="linenum">207  </a>        if ((<a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.written>written</a> + <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.limitCheck.toBeWritten>toBeWritten</a>) &gt; <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.limit>limit</a>)
+<a name=208 class="linenum">208  </a>        {
+<a name=209 class="linenum">209  </a>            throw new IOException("tried to write too much data");
+<a name=210 class="linenum">210  </a>        }
+<a name=211 class="linenum">211  </a>        <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.written>written</a> += <a class="varRef" title="int" href=DocumentOutputStream_java.html#DocumentOutputStream.limitCheck.toBeWritten>toBeWritten</a>;
+<a name=212 class="linenum">212  </a>    }
+<a name=213 class="linenum">213  </a>}   <span class="comment">// end public class DocumentOutputStream</span>
+<a name=214 class="linenum">214  </a>
+<a name=215 class="linenum">215  </a></pre>

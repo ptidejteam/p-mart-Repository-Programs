@@ -1,0 +1,132 @@
+MapperXML
+Version 1.9.7
+Release Notes:
+
+=============================================================================
+                       R E L E A S E   N O T E S
+=============================================================================
+
+Quick Highlights
+================================================================
+o   Nesting of ServletForms is now supported.
+o   Templates can now process multi-item input and triggers.
+o   Easy sorting of VOListValueHolders using VOComparator.
+o   SelectField and HTMLSelectField can supress the null value
+
+Important Changes
+================================================================
+o   Event Listener interface changes - see Public API Interface
+    Changes/Deprecations.
+
+New Features:
+================================================================
+o   Nesting of ServletForms is now supported. A ServletForm can
+    contain other ServletForms as components. The nested ServletForm
+    can process input and provide content to a section of the
+    master ServletForm's document. This can be used for such things
+    as common areas on the form (menus, headers, footers) which
+    can be either static or dynamic.
+o   Templates can now process input and events for multiple items.
+    You can use the Template to output multiple fields (one for
+    each item) and then to store the response input for each item.
+    The items must appear in the same order for input and output.
+o   VOListValueHolders can now be easily sorted by attaching a
+    VOComparator. The VOComparator can specify one or more
+    value object properties to sort by and can also specify
+    different ascending/descending for each of the properties.
+o   SelectField and HTMLSelect field can now supress the null display
+    value from appearing in the list of options. If supressed,
+    these components will also reject an attempt to setText to the
+    null or the nullDisplay value will cause a NotInListException.
+    This new feature can be enabled by setting the nullAllowed
+    property to false.
+
+Public API Interface Changes/Deprecations:
+================================================================
+o   The following event listener interfaces have been modified
+    by adding a "throws Exception" to the interface method:
+
+      InputListener.inputReceived(InputEvent e) throws Exception
+      ParameterListener.inputReceived(ParameterEvent e) throws Exception
+      RenderListener.render(RenderEvent e) throws RenderException
+      RecycleListener.recycle(RecycleEvent e) throws RecycleException
+
+    If you have used these listeners, you must change the signature
+    to throw an Exception. Below is an example of the required
+    change:
+
+    Before Change: =========
+    this.addInputListener(new com.taursys.xml.event.InputListener() {
+      public void inputReceived(InputEvent e) {
+        this_inputReceived(e);
+      }
+    });
+
+    After Change: =========
+    this.addInputListener(new com.taursys.xml.event.InputListener() {
+      public void inputReceived(InputEvent e) throws Exception {
+        this_inputReceived(e);
+      }
+    });
+
+
+Internal API Interface Changes/Deprecations:
+================================================================
+o   Refactored Events and added Map property - removed setters.
+    Map property is set when dispatching to Containers. It
+    contains all parameters and values.
+o   Refactored all Dispatchers and created new general purpose
+    Dispatchers: ParameterDispatcher, InputDispatcher and
+    TriggerDispatcher.
+o   Created new DispatchingContainer which has its own Dispatchers
+    for all events. It can serve as top or intermediate level
+    Container.
+o   Created new Form superclass and new form level events. Form
+    supports new Dispatchers, and provides a formContext which
+    can access resources and values.
+o   ServletForm now extends Form instead of just Container.
+o   ServletForm now uses generic XxxDispatchers instead of
+    specialized ServletXxxDispatchers.
+o   ServletForm has createParameterMap method to support the new
+    Dispatchers.
+o   Deprecated ServletParameterDispatcher, ServletInputDispatcher,
+    ServletTriggerDispatcher.
+o   DocumentElement now extends DispatchingContainer so it will
+    also process and dispatch ParameterEvents, InputEvents, and
+    TriggerEvents.
+o   Refactored access to Dispatchers to now use generic method
+    in Container - getDispatcher(String eventType). Deprecated
+    old direct access methods. This new approach will allow the
+    easy addition of different types of Dispatchers.
+o   Refactored notification registration process. Moved
+    implementation of the add/removeNotify methods into Component.
+    Also added add/removeEventType so that subclasses can easily
+    register to be notified of any type of event. This approach
+    will allow easier addition of new types of Events.
+
+
+Bux Fixes:
+================================================================
+o   AbstractCollectionValueHolder: Fixed NullPointerException
+    generated by invocation of most methods when the internal
+    Collection is null. Changed the setCollection method to store
+    an Collections.EMPTY_LIST whenever a null value is given.
+
+
+Other Changes:
+================================================================
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+o   Problem in HTMLComponentFactory - when it is called more than once
+    with SubFormNewsPage, it wipes out functionality - probably
+    multiple components for same section? Normally, it should only
+    be called once, but it should not cause problems if called
+    more than once.
+o   Problem in HTMLComponentFactory - problem when nesting multiple
+    level templates (ie parent-child-grandchild)

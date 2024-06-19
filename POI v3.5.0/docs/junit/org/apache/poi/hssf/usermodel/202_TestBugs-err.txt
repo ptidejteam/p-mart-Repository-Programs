@@ -1,0 +1,3 @@
+Warning, header block comes after data blocks in POIFS block listing
+Warning, incorrectly terminated empty data blocks in POIFS block listing (should end at -2, ended at 0)
+

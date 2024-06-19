@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<program>
+<name version="20040326">DrJava</name>
+<designPattern name="Proxy">
+         	<microArchitectures>
+                 	<microArchitecture number="439">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.compiler.CompilerRegistry</entity></client>
+                             		</clients>
+                             		
+                                        <proxy rolekind="Class"><entity>drjava.model.compiler.CompilerProxy</entity></proxy>
+					<subject rolekind="AbstractClass"><entity>drjava.model.compiler.CompilerInterface</entity></subject>
+					<realSubject rolekind="AbstractClass"><entity>drjava.model.compiler.CompilerInterface</entity></realSubject>
+					
+       				 </actors>
+    				<comments>
+     CompilerProxy appelle le subject CompilerInterface par la methode compile.C'est pour cela qu'on pense que le Subject et le RealSubject sont les memes. 
+	 Les acteurs n'ont pas changer de la premiere version il y a eu seulement changement dans le nombre de classes que le proxy controle qui ont augmente.
+   				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+		
+		
+
+<designPattern name="Command">
+         	<microArchitectures>
+                 	<microArchitecture number="440">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.repl.History</entity></client>
+                             		</clients>
+                             		<commands>
+                                  		<command roleKind="AbstractClass"><entity>drjava.model.FileOpenSelector</entity></command>
+										<command roleKind="AbstractClass"><entity>drjava.model.FileSaveSelector</entity></command>
+                             		</commands>
+     								<concreteCommands>
+                                  		<concreteCommand roleKind="Class"><entity>drjava.model.CancelingSelector</entity></concreteCommand>
+										<concreteCommand roleKind="Class"><entity>drjava.model.FileSelector</entity></concreteCommand>
+										<concreteCommand roleKind="Class"><entity>drjava.model.WarningFileSelector</entity></concreteCommand>
+										<concreteCommand roleKind="Class"><entity>drjava.model.TrivialFSS</entity></concreteCommand>
+                             		</concreteCommands>
+     								<invokers>
+                                  		<invoker roleKind="Class"><entity>drjava.model.DefaultGlobalModel</entity></invoker>
+										<invoker roleKind="Class"><entity>drjava.model.GlobalModelIOTest</entity></invoker>
+										<invoker roleKind="Class"><entity>drjava.model.repl.InteractionsModelTest</entity></invoker>
+										<invoker roleKind="Class"><entity>drjava.ui.MainFrameTest</entity></invoker>
+										<invoker roleKind="Class"><entity>drjava.ui.RecentFileManager</entity></invoker>
+										<invoker roleKind="Class"><entity></entity>drjava.DrJava</invoker>
+                             		</invokers>
+     								<receivers>
+                                  		<receiver roleKind="Class"><entity>java.io.File</entity></receiver>
+                             		</receivers>
+       				 </actors>
+    				<comments>
+   				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>
+
+
+
+
+
+
+
+	
+<designPattern name="abstractFactory" >
+	<microArchitectures>
+   		<microArchitecture number="441">
+    	<actors>
+     		<clients>
+      			<client roleKind="Class">
+       				<entity> drjava.ui.ErrorCaretListener</entity>
+      			</client>
+     		</clients>
+	 
+     		<abstractFactories>
+      			<abstractFactory roleKind="AbstractClass">
+       				<entity>drjava.ui.ErrorPanel</entity>
+      			</abstractFactory>
+     		</abstractFactories>
+
+     		<concreteFactories>
+      			<concreteFactory roleKind="Class">
+       				<entity>drjava.ui.JavadocErrorPanel </entity>
+      			</concreteFactory>
+	
+				<concreteFactory roleKind="Class">
+       				<entity> drjava.ui.CompilerErrorPanel </entity>
+     			 </concreteFactory>
+			</concreteFactories>
+			
+			<abstractProducts>
+				<abstractProduct roleKind="AbstractClass">
+       				<entity>drjava.ui.ErrorListPane</entity>
+      			</abstractProduct>
+			</abstractProducts>
+			
+    		 <concreteProducts>
+      			<concreteProduct roleKind="Class">
+       				<entity>drjava.ui.CompilerErrorListPane</entity>
+      			</concreteProduct>
+
+	 			<concreteProduct roleKind="Class">
+       				<entity>drjava.ui.JavadocErrorListPane</entity>
+      			</concreteProduct>
+			</concreteProducts>
+    	</actors>
+    	<comments>
+        </comments>
+   		</microArchitecture>
+	</microArchitectures>
+</designPattern>
+
+
+
+ <designPattern name="factoryMethod">
+          <microArchitectures>
+                 <microArchitecture number="442">
+                       <actors>
+                           <clients>
+                                <client roleKind="Class"><entity>drjava.platform.Mac13FactoryTest</entity></client>
+								<!-- il faut chercher le reste des clients -->
+                           </clients>
+                           <products>
+                                <product roleKind="Class"><entity>drjava.platform.DefaultPlatform</entity></product>
+								<product roleKind="Class"><entity>drjava.platform.MacPlatform</entity></product>
+								<product roleKind="Class"><entity>drjava.platform.Mac14Platform</entity></product>
+								<product roleKind="Class"><entity>drjava.platform.WindowsPlatform</entity></product>
+                           </products>
+   
+     						 <concreteProducts>
+                                <concreteProduct roleKind="AbstractClass"><entity>drjava.platform.PlatformSupport</entity></concreteProduct>
+                           </concreteProducts>
+   
+      						<creators>
+                                <creator roleKind="Class|AbstractClass"><entity></entity></creator>
+                           </creators>
+
+      						<concreteCreators>
+                                <concreteCreator roleKind="Class"><entity>drjava.platform.PlatformFactory</entity></concreteCreator>
+                           </concreteCreators>
+    				</actors>
+   					 <comments>
+					  il n'y a pas de creators
+        			</comments>
+                 </microArchitecture>
+          </microArchitectures>
+   </designPattern>
+
+
+
+
+
+<designPattern name="Iterator"> 
+           <microArchitectures> 
+                   <microArchitecture number="443"> 
+                           <actors> 
+                                <clients> 
+                                     <client roleKind="Class"><entity>util.swing.FindReplaceMachine</entity></client> 
+                                </clients> 
+
+                                <iterators> 
+                                     <iterator rolekind="AbstractClass"><entity>util.swing.DocumentIterator</entity></iterator> 
+                                </iterators> 
+           						<concreteIterators> 
+                                     <concreteIterator rolekind="Class"><entity>drjava.model.DefaultGlobalModel</entity></concreteIterator> 
+                                </concreteIterators> 
+           						<aggregates> 
+                                     <aggregate rolekind="Class"><entity>util.swing.AFindReplaceMachineState</entity></aggregate> 
+                                </aggregates> 
+           						<concreteAggregates> 
+                                     <concreteAggregate rolekind="Class"><entity>util.swing.FindAnyOccurrenceState</entity></concreteAggregate> 
+									 <concreteAggregate rolekind="Class"><entity>util.swing.FindReplaceMachine</entity></concreteAggregate>
+                                </concreteAggregates> 
+             				</actors> 
+         					<comments> 
+							La classe Document est passee en parametre dans les classes concreteAggregate. Cette maniere de faire n'est pas dans le livre.
+       					 	</comments> 
+                  </microArchitecture> 
+           </microArchitectures> 
+     </designPattern> 
+
+
+	 
+	 <designPattern name="Strategy">
+         	<microArchitectures>
+                 	<microArchitecture number="444">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class|AbstractClass"><entity></entity></client>
+                             		</clients>
+                             		<contexts>
+                                  		<context roleKind="Class"><entity>drjava.config.VectorOption</entity></context>
+									</contexts>
+									<strategies>
+                             			<strategy roleKind="AbstractClass"><entity>drjava.config.FormatStrategy</entity></strategy>
+										<strategy roleKind="AbstractClass"><entity>drjava.config.ParseStrategy</entity></strategy>
+									</strategies>
+									<concreteStrategies>
+                             			<concreteStrategy roleKind="Class"><entity>drjava.config.VectorOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.KeyStrokeOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.StringOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.BooleanOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.ColorOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.FileOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.IntegerOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.NonNegativeIntegerOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.FontOption</entity></concreteStrategy>
+										<concreteStrategy roleKind="Class"><entity>drjava.config.ForcedChoiceOption</entity></concreteStrategy>
+                             		</concreteStrategies>
+     						</actors>
+    						<comments>
+     						Il n'y a pas de client
+   							</comments>
+               		</microArchitecture>
+          	</microArchitectures>
+   </designPattern>			
+
+
+
+<designPattern name="Adapter">
+         	<microArchitectures>
+                 	<microArchitecture number="445">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="AbstractClass"><entity>util.text.GlobalModelTestCase</entity></client>
+                             		</clients>
+                             		
+									<targets>
+                                        <target roleKind="AbstractClass"><entity>util.text.DocumentAdapter</entity></target>
+									</targets>
+									
+									<adaptees>
+                             			<adaptee roleKind="Class"><entity>util.text.DocumentEditCondition</entity></adaptee>
+									</adaptees>
+									<adapters>
+                             			<adapter roleKind="Class"><entity>util.text.SwingDocumentAdapter</entity></adapter>
+					                </adapters>             		
+       				 		</actors>
+    						<comments>
+     
+   							</comments>
+               		</microArchitecture>
+           	</microArchitectures>
+</designPattern>
+
+
+<designPattern name="State">
+         	<microArchitectures>
+                 	<microArchitecture number="446">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class|AbstractClass"><entity></entity></client>
+                             		</clients>
+                             		<contexts>
+                                  		<context roleKind="Class"><entity>util.swing.FindReplaceMachine</entity></context>
+									</contexts>
+									<states>
+                             			<state roleKind="AbstractClass"><entity>util.swing.AFindReplaceMachineState</entity></state>
+                             		</states>
+     								<concreteStateSubClasses>
+                                  		<concreteStateSubClasse roleKind="Class"><entity>util.swing.MatchWholeWordState</entity></concreteStateSubClasse>
+										<concreteStateSubClasse roleKind="Class"><entity>util.swing.FindAnyOccurenceState</entity></concreteStateSubClasse>
+                             		</concreteStateSubClasses>                          	
+       				 			</actors>
+    							<comments>
+     							Il n'y a pas de client.
+   								</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+		
+	<designPattern name="Command">
+         	<microArchitectures>
+                 	<microArchitecture number="447">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.definitions.DefinitionsDocument</entity></client>
+                             		</clients>
+                             		<commands>
+                                  		<command roleKind="AbstractClass"><entity>javax.swing.undo.AbstractUndoableEdit</entity></command>
+										
+                             		</commands>
+     								<concreteCommands>
+                                  		<concreteCommand roleKind="Class"><entity>drjava.model.definitions.CommandUndoableEdit</entity></concreteCommand>
+                             		</concreteCommands>
+     								<invokers>
+                                  		<invoker roleKind="Class"><entity>drjava.model.definitions.DefinitionsDocument</entity></invoker>
+                             		</invokers>
+     								<receivers>
+                                  		<receiver roleKind="AbstractClass"><entity>java.lang.Runnable</entity></receiver>
+                             		</receivers>
+       				 </actors>
+    				<comments>
+     				DefinitionsDocument joue le role de Invoker et de client .
+   				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		
+		<designPattern name="Interpreter">
+         	<microArchitectures>
+                 	<microArchitecture number="448">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.repl.SimpleInteractionsModel</entity></client>
+                             		</clients>
+                             		<abstractExpressions>
+                                  		<abstractExpression roleKind="AbstractClass"><entity>drjava.model.repl.Interpreter</entity></abstractExpression>
+                             		</abstractExpressions>
+     					<terminalExpressions>
+                                  		<terminalExpression roleKind="Class"><entity>InterpreterExtension</entity></terminalExpression>
+                             		</terminalExpressions>
+     					<nonterminalExpressions>
+                                  		<nonterminalExpression roleKind="Class"><entity>drjava.model.repl.DynamicJavaAdapter</entity></nonterminalExpression>
+                             		</nonterminalExpressions>
+     					<contexts>
+                                  		<context roleKind="Class"><entity>java.lang.String</entity></context>
+                             		</contexts>
+       				 </actors>
+    				<comments>
+     
+   				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>
+
+		<designPattern name="Memento">
+         	<microArchitectures>
+                 	<microArchitecture number="449">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class|AbstractClass"><entity></entity></client>
+                             		</clients>
+                             		<mementos>
+                                  		<memento roleKind="Class"><entity>drjava.model.definitions.reducedmodel.HighlightStatus</entity></memento>
+                             		</mementos>
+     								<originators>
+                                  		<originator roleKind="Class"><entity>drjava.model.definitions.DefinitionsDocument</entity></originator>
+                             		</originators>
+     								<caretakers>
+                                  	<caretaker roleKind="Class"><entity>drjava.model.definitions.DefinitionsDocument</entity></caretaker>
+                             		</caretakers>
+       				 </actors>
+    				<comments>
+     						DefinitionsDocument joue le role de caretaker et de originator. En effet c'est un blob qui regroupe beaucoup de classes et de methodes.
+							Client non precise.
+					</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>
+
+		
+		
+		
+		
+		<designPattern name="Visitor">
+         	<microArchitectures>
+                 	<microArchitecture number="450">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.repl.DynamicJavaAdapter.InterpreterExtension</entity></client>
+                             		</clients>
+									<visitors>
+                             			<visitor roleKind="AbstractClass"><entity>koala.dynamicjava.tree.visitor.Visitor</entity></visitor>
+                             		</visitors>
+									<concreteVisitors>
+                             			<concreteVisitor roleKind="Class"><entity>drjava.model.repl.TypeCheckerExtension</entity></concreteVisitor>
+										<concreteVisitor roleKind="Class"><entity>drjava.model.repl.EvaluationVisitorExtension</entity></concreteVisitor>
+										<concreteVisitor roleKind="Class"><entity>drjava.model.repl.NameVisitorExtension</entity></concreteVisitor>
+									</concreteVisitors>
+									<elements>
+                             			<element roleKind="AbstractClass"><entity>koala.dynamicjava.tree.Node</entity></element>
+                             		</elements>
+									<concreteElements>
+                             			<concreteElement roleKind="Class"><entity>koala.dynamicjava.tree.ConstructorDeclaration</entity></concreteElement>
+										<concreteElement roleKind="Class"><entity>koala.dynamicjava.tree.ArrayInitializer</entity></concreteElement>
+										<concreteElement roleKind="Class"><entity>koala.dynamicjava.tree.CompileTimeQualifiedName</entity></concreteElement>
+										<concreteElement roleKind="Class"><entity>koala.dynamicjava.tree.BitAndExpression</entity></concreteElement>
+										<concreteElement roleKind="Class"><entity>koala.dynamicjava.tree.AddExpression</entity></concreteElement>
+									</concreteElements>
+									<objectStructures>
+										<objectStructure roleKind="AbstractClass"><entity>koala.dynamicjava.parser.wrapper.SourceCodeParser</entity></objectStructure>
+                             		</objectStructures>
+                             
+     							</actors>
+    							<comments>
+     							Ce patron de conception est interessant car il utilise des classes qui se trouvent dans d'autres packages qui n'ont pas ete cree par l'equipes de 
+								DrJava. A travers la classe DynamicJavaAdapter des liens entre des classes qui n'ont rien en commun est possible notament celles de DrJava avec Koala.
+								Il y a beaucoup plus de concreteElements environ une vingtaine.
+   								</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>		
+
+<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="451">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.platform.DefaultPlatform</entity></singleton>
+					
+					</singletons>
+
+				</actors>
+    				<comments>
+      				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		 
+   <designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="452">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.platform.MacPlatform</entity></singleton>
+					
+					</singletons>
+
+				</actors>
+    				<comments>
+      				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		   <designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="453">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.platform.Mac14Platform</entity></singleton>
+					
+					</singletons>
+
+				</actors>
+    				<comments>
+      				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		
+		
+ <designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="454">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.platform.WindowsPlatform</entity></singleton>
+					
+					</singletons>
+
+				</actors>
+    				<comments>
+      				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		
+		
+ <designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="455">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.platform.PlatformFactory</entity></singleton>
+					
+					</singletons>
+
+				</actors>
+    				<comments>
+      				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>			
+		
+		
+
+
+
+
+
+
+
+<designPattern name="Iterator"> 
+           <microArchitectures> 
+                   <microArchitecture number="456"> 
+                           <actors> 
+                                <clients> 
+                                     <client roleKind="Class"><entity>drjava.model.definitions.reducedmodel.ReducedModelComment</entity></client> 
+                                </clients> 
+
+                                <iterators> 
+                                     <iterator rolekind="Class|AbstractClass"><entity></entity></iterator> 
+                                </iterators> 
+           <concreteIterators> 
+                                     <concreteIterator rolekind="Class"><entity>drjava.model.definitions.reducedmodel.Iterator</entity></concreteIterator> 
+                                </concreteIterators> 
+           <aggregates> 
+                                     <aggregate rolekind="Class"><entity>drjava.model.definitions.reducedmodel.ModelList</entity></aggregate> 
+                                </aggregates> 
+           <concreteAggregates> 
+                                     <concreteAggregate rolekind="Class"><entity>drjava.model.definitions.reducedmodel.TokenList</entity></concreteAggregate> 
+                                </concreteAggregates> 
+             </actors> 
+         <comments> 
+      Nous avons pas l'iterator, mais nous avons la classe ReducedModelComment qui cree un Iterator a travers la classe TokenList (ConcreteAgregate)
+        </comments> 
+                  </microArchitecture> 
+              </microArchitectures> 
+     </designPattern> 
+	 
+	 
+	 
+	 
+<designPattern name="Adapter">
+         	<microArchitectures>
+                 	<microArchitecture number="457">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity>drjava.model.repl.JavaInterpreterTest</entity></client>
+                             		</clients>
+                             		
+                                        <target roleKind="AbstractClass"><entity>drjava.model.repl.JavaInterpreter</entity></target>
+					
+                             		<adaptee roleKind="Class"><entity>drjava.model.repl.InterpreterExtension</entity></adaptee>
+					
+                             		<adapter roleKind="Class"><entity>drjava.model.repl.DynamicJavaAdapter</entity></adapter>
+					                             		
+       				 </actors>
+    				<comments>
+     
+   				</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>
+
+	 
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="458">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.definition.indent.Identer</entity></singleton>
+									</singletons>
+									</actors>
+    								<comments>
+      								</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="459">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.javacFromClasspath</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="460">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.GJv6FromClasspath</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+	
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="461">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.GJv6Compiler</entity></singleton>
+									</singletons>
+
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="462">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.JSR14FromSetLocation</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="463">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.JavacFromSetLocation</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="464">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.CompilerRegistry</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+
+
+	<designPattern name="Singleton">
+         	<microArchitectures>
+                 	<microArchitecture number="465">
+                        	 <actors>
+                             		<clients>
+                                  		<client roleKind="Class"><entity></entity></client>
+                             		</clients>
+                             		<singletons>
+                                        <singleton rolekind="Class"><entity>drjava.model.compiler.JavacFromToolsJar</entity></singleton>
+									</singletons>
+							</actors>
+    						<comments>
+      						Nous pensons que nous avons un singleton par la presence de la classe static et des commentaires laisser par les programmeurs disant que c'est un singleton.
+   							</comments>
+               		</microArchitecture>
+            	</microArchitectures>
+    	</designPattern>	
+		
+		
+</program>
+

@@ -1,0 +1,130 @@
+/* ======================================
+ * JFreeChart : a free Java chart library
+ * ======================================
+ *
+ * Project Info:  http://www.jfree.org/jfreechart/index.html
+ * Project Lead:  David Gilbert (david.gilbert@object-refinery.com);
+ *
+ * (C) Copyright 2000-2003, by Object Refinery Limited and Contributors.
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this
+ * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * -------------------------
+ * StackedBarChartDemo1.java
+ * -------------------------
+ * (C) Copyright 2002, 2003, by Object Refinery Limited and Contributors.
+ *
+ * Original Author:  David Gilbert (for Object Refinery Limited);
+ * Contributor(s):   -;
+ *
+ * $Id: StackedBarChartDemo1.java,v 1.1 2007/10/10 19:21:51 vauchers Exp $
+ *
+ * Changes
+ * -------
+ * 06-Nov-2002 : Version 1 (DG);
+ * 13-May-2003 : Renamed StackedVerticalBarChartDemo --> StackedBarChartDemo1 (DG);
+ *
+ */
+
+package org.jfree.chart.demo;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.CategoryDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+
+/**
+ * A simple demonstration application showing how to create a stacked bar chart
+ * using data from a {@link CategoryDataset}.
+ *
+ * @author David Gilbert
+ */
+public class StackedBarChartDemo1 extends ApplicationFrame {
+
+    /**
+     * Creates a new demo.
+     *
+     * @param title  the frame title.
+     */
+    public StackedBarChartDemo1(String title) {
+
+        super(title);
+        CategoryDataset dataset = createDataset();
+        JFreeChart chart = createChart(dataset);
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        setContentPane(chartPanel);
+
+    }
+    
+    /**
+     * Creates a sample dataset.
+     * 
+     * @return a sample dataset.
+     */
+    private CategoryDataset createDataset() {
+        return DemoDatasetFactory.createCategoryDataset();
+    }
+    
+    /**
+     * Creates a sample chart.
+     * 
+     * @param dataset  the dataset for the chart.
+     * 
+     * @return a sample chart.
+     */
+    private JFreeChart createChart(CategoryDataset dataset) {
+
+        JFreeChart chart = ChartFactory.createStackedBarChart(
+            "Stacked Bar Chart Demo 1",  // chart title
+            "Category",                  // domain axis label
+            "Value",                     // range axis label
+            dataset,                     // data
+            PlotOrientation.VERTICAL,    // the plot orientation
+            true,                        // legend
+            true,                        // tooltips
+            false                        // urls
+        );
+        return chart;
+        
+    }
+
+    // ****************************************************************************
+    // * COMMERCIAL SUPPORT / JFREECHART DEVELOPER GUIDE                          *
+    // * Please note that commercial support and documentation is available from: *
+    // *                                                                          *
+    // * http://www.object-refinery.com/jfreechart/support.html                   *
+    // *                                                                          *
+    // * This is not only a great service for developers, but is a VERY IMPORTANT *
+    // * source of funding for the JFreeChart project.  Please support us so that *
+    // * we can continue developing free software.                                *
+    // ****************************************************************************
+
+    /**
+     * Starting point for the demonstration application.
+     *
+     * @param args  ignored.
+     */
+    public static void main(String[] args) {
+
+        StackedBarChartDemo1 demo = new StackedBarChartDemo1("Stacked Bar Chart Demo 1");
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+
+    }
+
+}

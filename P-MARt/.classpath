@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="/POM"/>
+	<classpathentry kind="src" path="/PADL"/>
+	<classpathentry kind="src" path="/CPL"/>
+	<classpathentry kind="lib" path="XMLFormatter v1.0.jar"/>
+	<classpathentry kind="src" path="/PADL Creator ClassFile"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

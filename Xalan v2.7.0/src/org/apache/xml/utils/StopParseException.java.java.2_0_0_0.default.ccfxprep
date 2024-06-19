@@ -1,0 +1,21 @@
+1c.8.40f	+0	(def_block
+1c.8.40f	+5	r_class
+1c.e.415	+12	id|StopParseException
+1d.1.44a	+1	(brace
+22.3.4c6	+0	(def_block
+22.3.4c6	+12	id|StopParseException
+22.15.4d8	+0	c_func
+22.15.4d8	+1	(paren
+22.16.4d9	+1	)paren
+23.3.4de	+1	(brace
+24.5.4e5	+5	id|super
+24.a.4ea	+0	c_func
+24.a.4ea	+1	(paren
+24.b.4eb	+26	l_string|&quot;Stylesheet PIs found, stop the parse&quot;
+24.31.511	+1	)paren
+24.32.512	+1	suffix:semicolon
+25.3.517	+1	)brace
+25.4.518	+0	)def_block
+26.1.51a	+1	)brace
+26.2.51b	+0	)def_block
+27.1.51d	+0	eof

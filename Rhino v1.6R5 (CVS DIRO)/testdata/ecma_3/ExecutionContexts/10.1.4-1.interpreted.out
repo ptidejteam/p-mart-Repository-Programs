@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\ExecutionContexts\10.1.4-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\ExecutionContexts\shell.js -f mozilla\js\tests\ecma_3\ExecutionContexts\10.1.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 437 ms]
+BUGNUMBER: (none)
+STATUS: 10.1.4.1 Entering An Execution Context
+PASSED! 10.1.4.1 Entering An Execution Context
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\ExecutionContexts\10.1.4-1.interpreted.arff] ...

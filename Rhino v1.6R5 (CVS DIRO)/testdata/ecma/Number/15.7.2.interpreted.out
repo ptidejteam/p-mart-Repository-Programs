@@ -1,0 +1,60 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Number\15.7.2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Number\shell.js -f mozilla\js\tests\ecma\Number\15.7.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.7.2 The Number Constructor
+(new Number()).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number()) = object PASSED!
+(new Number()).valueOf() = 0 PASSED!
+NUMB = new Number();NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(0)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(0)) = object PASSED!
+(new Number(0)).valueOf() = 0 PASSED!
+NUMB = new Number(0);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(1)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(1)) = object PASSED!
+(new Number(1)).valueOf() = 1 PASSED!
+NUMB = new Number(1);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(-1)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(-1)) = object PASSED!
+(new Number(-1)).valueOf() = -1 PASSED!
+NUMB = new Number(-1);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(Number.NaN)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(Number.NaN)) = object PASSED!
+(new Number(Number.NaN)).valueOf() = NaN PASSED!
+NUMB = new Number(Number.NaN);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number('string')).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number('string')) = object PASSED!
+(new Number('string')).valueOf() = NaN PASSED!
+NUMB = new Number('string');NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(new String())).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(new String())) = object PASSED!
+(new Number(new String())).valueOf() = 0 PASSED!
+NUMB = new Number(new String());NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number('')).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number('')) = object PASSED!
+(new Number('')).valueOf() = 0 PASSED!
+NUMB = new Number('');NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(Number.POSITIVE_INFINITY)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(Number.POSITIVE_INFINITY)) = object PASSED!
+(new Number(Number.POSITIVE_INFINITY)).valueOf() = Infinity PASSED!
+NUMB = new Number(Number.POSITIVE_INFINITY);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number(Number.NEGATIVE_INFINITY)).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number(Number.NEGATIVE_INFINITY)) = object PASSED!
+(new Number(Number.NEGATIVE_INFINITY)).valueOf() = -Infinity PASSED!
+NUMB = new Number(Number.NEGATIVE_INFINITY);NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+(new Number()).constructor = function Number() { [native code for Number.Number, arity=1] }
+ PASSED!
+typeof (new Number()) = object PASSED!
+(new Number()).valueOf() = 0 PASSED!
+NUMB = new Number();NUMB.toString=Object.prototype.toString;NUMB.toString() = [object Number] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Number\15.7.2.interpreted.arff] ...

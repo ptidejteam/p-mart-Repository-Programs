@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>The Global Options Dialog Box</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="customizing.html" title="Chapter 6. Customizing jEdit"><link rel="previous" href="buffer-local.html" title="Buffer-Local Properties"><link rel="next" href="settings-directory.html" title="The jEdit Settings Directory"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The Global Options Dialog Box</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="buffer-local.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Customizing jEdit</th><td width="20%" align="right"> <a accesskey="n" href="settings-directory.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="global-opts"></a>The Global Options Dialog Box</h2></div></div><p>
+   <b>Utilities</b>&gt;<b>Global Options</b>
+   displays the global options dialog box. The dialog box is divided into
+   several panes, each pane containing a set of related options. Use the list
+   on the left of the dialog box to switch between panes. Only panes
+   created by jEdit are described here; some plugins add their own option
+   panes, and information about them can be found in the documentation
+   for the plugins in question.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899625"></a>The Abbreviations Pane</h3></div></div><p>
+   The <b>Abbreviations</b> option pane can be used to enable or
+   disable automatic abbreviation expansion, and to edit currently defined
+   abbreviations.
+  </p><p>
+   The combo box labeled &#8220;Abbrev set&#8221; selects the
+   abbreviation set to edit. The first entry, &#8220;global&#8221;, contains
+   abbreviations available in all edit modes. The subsequent
+   entries correspond to each mode's local set of abbreviations.
+  </p><p>
+   To change an abbreviation or its expansion, either double-click the appropriate
+   table entry, or click a table entry and then click the
+   <b>Edit</b> button. This will display a dialog box for
+   modifying the abbreviation.
+  </p><p>
+   The <b>Add</b> button displays a dialog box where you can
+   define a new abbreviation. The <b>Remove</b> button removes
+   the currently selected abbreviation from the list.
+  </p><p>
+   See <a href="abbrevs.html#positional-params" title="Positional Parameters">the section called &#8220;Positional Parameters&#8221;</a> for information about positional
+   parameters in abbreviations.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899706"></a>The Appearance Pane</h3></div></div><p>
+   The <b>Appearance</b> pane can be used to change the
+   appearance of user interface controls such as buttons, labels and menus.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899725"></a>The Context Menu Pane</h3></div></div><p>
+   The <b>Context Menu</b> option pane edits the text
+   area's right-click context menu.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899745"></a>The Docking Pane</h3></div></div><p>
+   The <b>Docking</b> option pane specifies which
+   dockable windows should be floating, and which should be docked in the view.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899763"></a>The Editing Pane</h3></div></div><p>
+   The <b>Editing</b> option pane contains settings such
+   as the tab size, syntax highlighting and soft tabs on a global or
+   mode-specific basis.
+  </p><p>
+   When changing mode-specific settings,
+   the <b>File name glob</b> and <b>First line
+   glob</b> text fields let you specify a glob pattern that names and
+   first lines of buffers will be matched against to determine the edit mode.
+   See <a href="globs.html" title="Appendix D. Glob Patterns">Appendix D</a> for information about glob patterns.
+  </p><p>
+   This option pane does not change XML mode definition files on disk; it
+   merely writes values to the user properties file which override those set
+   in mode files. To find out how to edit mode files directly, see
+   <a href="writing-modes-part.html" title="Part II. Writing Edit Modes">Part II</a>.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899823"></a>The General Pane</h3></div></div><p>
+   The <b>General</b> pane contains various
+   miscellaneous settings, such as the number of recent files to remember,
+   if the buffer list should be sorted, and so on.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899842"></a>The Gutter Pane</h3></div></div><p>
+   The <b>Gutter</b> option pane contains settings to
+   customize the appearance of the gutter.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899860"></a>The Loading and Saving Pane</h3></div></div><p>
+   The <b>Loading and Saving</b> option pane contains settings
+   such as the autosave frequency, backup settings, file encoding,
+   and so on.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899879"></a>The Printing Pane</h3></div></div><p>
+   The <b>Printing</b> option pane contains settings to
+   control the appearance of printed output.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899897"></a>The Proxy Servers Pane</h3></div></div><p>
+   The <b>Proxy Servers</b> option pane lets you specify HTTP
+   and SOCKS proxy servers to use when jEdit makes network connections (for
+   example, when the plugin manager downloads plugins).
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899917"></a>The Shortcuts Pane</h3></div></div><p>
+   The <b>Shortcuts</b> option pane associates keyboard shortcuts with commands. Each command can have up to two shortcuts
+   associated with it.
+  </p><p>
+   The combo box at the top of the option pane selects the command set
+   to edit. Command sets include the set of all built-in commands, the commands of each plugin, and the set of macros.
+  </p><p>
+   To change a shortcut, click the appropriate table entry and press the
+   keys you want associated with that command in the resulting dialog box.
+   The dialog box will warn you if the shortcut is already assigned.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899952"></a>The Status Bar Pane</h3></div></div><p>
+   The <b>Status Bar</b> option pane contains settings to customize the
+   status bar, or disable it completely.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899970"></a>The Syntax Highlighting Pane</h3></div></div><p>
+   The <b>Syntax Highlighting</b> pane can be used to
+   customize the fonts and colors for syntax highlighting.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2899989"></a>The Text Area Pane</h3></div></div><p>
+   The <b>Text Area</b> pane contains settings to customize
+   the appearance of the text area.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2900007"></a>The Tool Bar Pane</h3></div></div><p>
+   The <b>Tool Bar</b> option pane lets you edit the tool bar,
+   or disable it completely.
+  </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2900025"></a>The File System Browser Panes</h3></div></div><p>
+   The <b>File System Browser</b> group
+   contains two option panes, <b>General</b> and
+   <b>Colors</b>. The former contains various file system
+   browser settings. The latter configures glob patterns used for
+   coloring the file list. See <a href="vfs-browser.html" title="The File System Browser">the section called &#8220;The File System Browser&#8221;</a>
+   for more information.
+  </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="buffer-local.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="customizing.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="settings-directory.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Buffer-Local Properties </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The jEdit Settings Directory</td></tr></table></div></body></html>

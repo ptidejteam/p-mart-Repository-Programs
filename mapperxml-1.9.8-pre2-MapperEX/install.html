@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" />
+		<title>Installing and Running MapperXML Examples</title>
+	</head>
+	<body>
+		<h1>Notes for Running MapperXML Examples</h1>
+		<p>These notes are designed for testing with any web application (war) 
+			server. The examples include an Ant build script. To run these 
+			examples you need the following components installed and 
+			configured:</p>
+		<ul>
+			<li>Java VM 1.4</li>
+			<li>Web Application Server (Tomcat 4+, JBoss, etc)</li>
+			<li>Ant (optional - needed to run build.xml script)</li>
+		</ul>
+		<p>The following are the quick directions to install the examples:</p>
+		<h2>Tomcat</h2>
+		<ul>
+			<li>Copy mapperex.war to [tomcat-install-dir]/webapps</li>
+			<li>Start Tomcat</li>
+			<li>Browse to http://localhost:8080/mapperex</li>
+		</ul>
+		<h2>JBoss</h2>
+		<ul>
+			<li>Copy mapperex.war to 
+				[jboss-install-dir]/server/default/deploy</li>
+			<li>Start JBoss</li>
+			<li>Browse to http://localhost:8080/mapperex</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,547 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hpsf/classList.html" TARGET="packageFrame">org.apache.poi.hpsf</A>: PropertySet');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hpsf/classList.html" TARGET="packageFrame">org.apache.poi.hpsf</A>: PropertySet';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">/* ====================================================================
+<a name=2 class="linenum">2    </a> * The Apache Software License, Version 1.1
+<a name=3 class="linenum">3    </a> *
+<a name=4 class="linenum">4    </a> * Copyright (c) 2000 The Apache Software Foundation.  All rights
+<a name=5 class="linenum">5    </a> * reserved.
+<a name=6 class="linenum">6    </a> *
+<a name=7 class="linenum">7    </a> * Redistribution and use in source and binary forms, with or without
+<a name=8 class="linenum">8    </a> * modification, are permitted provided that the following conditions
+<a name=9 class="linenum">9    </a> * are met:
+<a name=10 class="linenum">10   </a> *
+<a name=11 class="linenum">11   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=12 class="linenum">12   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=13 class="linenum">13   </a> *
+<a name=14 class="linenum">14   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=15 class="linenum">15   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=16 class="linenum">16   </a> *    the documentation and/or other materials provided with the
+<a name=17 class="linenum">17   </a> *    distribution.
+<a name=18 class="linenum">18   </a> *
+<a name=19 class="linenum">19   </a> * 3. The end-user documentation included with the redistribution,
+<a name=20 class="linenum">20   </a> *    if any, must include the following acknowledgment:
+<a name=21 class="linenum">21   </a> *       "This product includes software developed by the
+<a name=22 class="linenum">22   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=23 class="linenum">23   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=24 class="linenum">24   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=25 class="linenum">25   </a> *
+<a name=26 class="linenum">26   </a> * 4. The names "Apache" and "Apache Software Foundation" must
+<a name=27 class="linenum">27   </a> *    not be used to endorse or promote products derived from this
+<a name=28 class="linenum">28   </a> *    software without prior written permission. For written
+<a name=29 class="linenum">29   </a> *    permission, please contact apache@apache.org.
+<a name=30 class="linenum">30   </a> *
+<a name=31 class="linenum">31   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=32 class="linenum">32   </a> *    nor may "Apache" appear in their name, without prior written
+<a name=33 class="linenum">33   </a> *    permission of the Apache Software Foundation.
+<a name=34 class="linenum">34   </a> *
+<a name=35 class="linenum">35   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=36 class="linenum">36   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=37 class="linenum">37   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=38 class="linenum">38   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=39 class="linenum">39   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=40 class="linenum">40   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=41 class="linenum">41   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=42 class="linenum">42   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=43 class="linenum">43   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=44 class="linenum">44   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=45 class="linenum">45   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=46 class="linenum">46   </a> * SUCH DAMAGE.
+<a name=47 class="linenum">47   </a> * ====================================================================
+<a name=48 class="linenum">48   </a> *
+<a name=49 class="linenum">49   </a> * This software consists of voluntary contributions made by many
+<a name=50 class="linenum">50   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=51 class="linenum">51   </a> * information on the Apache Software Foundation, please see
+<a name=52 class="linenum">52   </a> * &lt;http://www.apache.org/&gt;.
+<a name=53 class="linenum">53   </a> *
+<a name=54 class="linenum">54   </a> * Portions of this software are based upon public domain software
+<a name=55 class="linenum">55   </a> * originally written at the National Center for Supercomputing Applications,
+<a name=56 class="linenum">56   </a> * University of Illinois, Urbana-Champaign.
+<a name=57 class="linenum">57   </a> */</span>
+<a name=58 class="linenum">58   </a>
+<a name=59 class="linenum">59   </a>package org.apache.poi.hpsf;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a>import java.io.*;
+<a name=62 class="linenum">62   </a>import java.util.*;
+<a name=63 class="linenum">63   </a>import org.apache.poi.hpsf.littleendian.*;
+<a name=64 class="linenum">64   </a>import org.apache.poi.hpsf.wellknown.*;
+<a name=65 class="linenum">65   </a>import org.apache.poi.poifs.filesystem.*;
+<a name=66 class="linenum">66   </a>
+<a name=67 class="linenum">67   </a><span class="comment">/**
+<a name=68 class="linenum">68   </a> * &lt;p&gt;Represents a property set in the Horrible Property Set Format
+<a name=69 class="linenum">69   </a> * (HPSF). These are usually metadata of a Microsoft Office
+<a name=70 class="linenum">70   </a> * document.&lt;/p&gt;
+<a name=71 class="linenum">71   </a> *
+<a name=72 class="linenum">72   </a> * &lt;p&gt;An application that wants to access these metadata should create
+<a name=73 class="linenum">73   </a> * an instance of this class or one of its subclasses by calling the
+<a name=74 class="linenum">74   </a> * factory method {@link PropertySetFactory#create} and then retrieve
+<a name=75 class="linenum">75   </a> * the information its needs by calling appropriate methods.&lt;/p&gt;
+<a name=76 class="linenum">76   </a> *
+<a name=77 class="linenum">77   </a> * &lt;p&gt;{@link PropertySetFactory#create} does its work by calling one
+<a name=78 class="linenum">78   </a> * of the constructors {@link PropertySet#PropertySet(InputStream)} or
+<a name=79 class="linenum">79   </a> * {@link PropertySet#PropertySet(byte[])}. If the constructor's
+<a name=80 class="linenum">80   </a> * argument is not in the Horrible Property Set Format, i.e. not a
+<a name=81 class="linenum">81   </a> * property set stream, or if any other error occurs, an appropriate
+<a name=82 class="linenum">82   </a> * exception is thrown.&lt;/p&gt;
+<a name=83 class="linenum">83   </a> *
+<a name=84 class="linenum">84   </a> * &lt;p&gt;A {@link PropertySet} has a list of {@link Section}s, and each
+<a name=85 class="linenum">85   </a> * {@link Section} has a {@link Property} array. Use {@link
+<a name=86 class="linenum">86   </a> * #getSections} to retrieve the {@link Section}s, then call {@link
+<a name=87 class="linenum">87   </a> * Section#getProperties} for each {@link Section} to get hold of the
+<a name=88 class="linenum">88   </a> * {@link Property} arrays.&lt;/p&gt;
+<a name=89 class="linenum">89   </a> *
+<a name=90 class="linenum">90   </a> * Since the vast majority of {@link PropertySet}s contains only a
+<a name=91 class="linenum">91   </a> * single {@link Section}, the convenience method {@link
+<a name=92 class="linenum">92   </a> * #getProperties} returns the properties of a {@link PropertySet}'s
+<a name=93 class="linenum">93   </a> * {@link Section} (throwing a {@link NoSingleSectionException} if the
+<a name=94 class="linenum">94   </a> * {@link PropertySet} contains more (or less) than exactly one {@link
+<a name=95 class="linenum">95   </a> * Section}).
+<a name=96 class="linenum">96   </a> *
+<a name=97 class="linenum">97   </a> * @author Rainer Klute (klute@rainer-klute.de)
+<a name=98 class="linenum">98   </a> * @version $Id: PropertySet.java,v 1.1 2002/02/14 04:00:59 mjohnson Exp $
+<a name=99 class="linenum">99   </a> * @since 2002-02-09
+<a name=100 class="linenum">100  </a> */</span>
+<a name=101 class="linenum">101  </a>public class <a class="classDef" name=PropertySet href=PropertySet_java_ref.html#PropertySet>PropertySet</a>
+<a name=102 class="linenum">102  </a>{
+<a name=103 class="linenum">103  </a>    static final byte[] <a class="varDef" name=PropertySet.BYTE_ORDER_ASSERTION href=PropertySet_java_ref.html#PropertySet.BYTE_ORDER_ASSERTION>BYTE_ORDER_ASSERTION</a> =
+<a name=104 class="linenum">104  </a>        new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[] {(byte) 0xFF, (byte) 0xFE};
+<a name=105 class="linenum">105  </a>    static final byte[] <a class="varDef" name=PropertySet.FORMAT_ASSERTION href=PropertySet_java_ref.html#PropertySet.FORMAT_ASSERTION>FORMAT_ASSERTION</a> =
+<a name=106 class="linenum">106  </a>        new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[] {(byte) 0x00, (byte) 0x00};
+<a name=107 class="linenum">107  </a>
+<a name=108 class="linenum">108  </a>
+<a name=109 class="linenum">109  </a>
+<a name=110 class="linenum">110  </a>    private Word <a class="varDef" name=PropertySet.byteOrder href=PropertySet_java_ref.html#PropertySet.byteOrder>byteOrder</a>; <span class="comment">// Must equal BYTE_ORDER_ASSERTION</span>
+<a name=111 class="linenum">111  </a>
+<a name=112 class="linenum">112  </a>    <span class="comment">/**
+<a name=113 class="linenum">113  </a>     * &lt;p&gt;Returns the property set stream's low-level "byte order"
+<a name=114 class="linenum">114  </a>     * field. It is always &lt;tt&gt;0xFFFE&lt;/tt&gt;.&lt;/p&gt;
+<a name=115 class="linenum">115  </a>     */</span>
+<a name=116 class="linenum">116  </a>    public <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a> <a class="methodDef" name=PropertySet.getByteOrder() href=PropertySet_java_ref.html#PropertySet.getByteOrder()>getByteOrder</a>()
+<a name=117 class="linenum">117  </a>    {
+<a name=118 class="linenum">118  </a>        return <a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.byteOrder>byteOrder</a>;
+<a name=119 class="linenum">119  </a>    }
+<a name=120 class="linenum">120  </a>
+<a name=121 class="linenum">121  </a>
+<a name=122 class="linenum">122  </a>
+<a name=123 class="linenum">123  </a>    private Word <a class="varDef" name=PropertySet.format href=PropertySet_java_ref.html#PropertySet.format>format</a>;    <span class="comment">// Must equal FORMAT_ASSERTION</span>
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    <span class="comment">/**
+<a name=126 class="linenum">126  </a>     * &lt;p&gt;Returns the property set stream's low-level "format"
+<a name=127 class="linenum">127  </a>     * field. It is always &lt;tt&gt;0x0000&lt;/tt&gt;.&lt;/p&gt;
+<a name=128 class="linenum">128  </a>     */</span>
+<a name=129 class="linenum">129  </a>    public <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a> <a class="methodDef" name=PropertySet.getFormat() href=PropertySet_java_ref.html#PropertySet.getFormat()>getFormat</a>()
+<a name=130 class="linenum">130  </a>    {
+<a name=131 class="linenum">131  </a>        return <a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.format>format</a>;
+<a name=132 class="linenum">132  </a>    }
+<a name=133 class="linenum">133  </a>
+<a name=134 class="linenum">134  </a>
+<a name=135 class="linenum">135  </a>
+<a name=136 class="linenum">136  </a>    private <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a> <a class="varDef" name=PropertySet.osVersion href=PropertySet_java_ref.html#PropertySet.osVersion>osVersion</a>;
+<a name=137 class="linenum">137  </a>
+<a name=138 class="linenum">138  </a>    <span class="comment">/**
+<a name=139 class="linenum">139  </a>     * &lt;p&gt;Returns the property set stream's low-level "OS version"
+<a name=140 class="linenum">140  </a>     * field.&lt;/p&gt;
+<a name=141 class="linenum">141  </a>     */</span>
+<a name=142 class="linenum">142  </a>    public <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a> <a class="methodDef" name=PropertySet.getOSVersion() href=PropertySet_java_ref.html#PropertySet.getOSVersion()>getOSVersion</a>()
+<a name=143 class="linenum">143  </a>    {
+<a name=144 class="linenum">144  </a>        return <a class="varRef" title="DWord" href=PropertySet_java.html#PropertySet.osVersion>osVersion</a>;
+<a name=145 class="linenum">145  </a>    }
+<a name=146 class="linenum">146  </a>
+<a name=147 class="linenum">147  </a>
+<a name=148 class="linenum">148  </a>
+<a name=149 class="linenum">149  </a>    private <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID>ClassID</a> <a class="varDef" name=PropertySet.classID href=PropertySet_java_ref.html#PropertySet.classID>classID</a>;
+<a name=150 class="linenum">150  </a>
+<a name=151 class="linenum">151  </a>    <span class="comment">/**
+<a name=152 class="linenum">152  </a>     * &lt;p&gt;Returns the property set stream's low-level "class ID"
+<a name=153 class="linenum">153  </a>     * field.&lt;/p&gt;
+<a name=154 class="linenum">154  </a>     */</span>
+<a name=155 class="linenum">155  </a>    public <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID>ClassID</a> <a class="methodDef" name=PropertySet.getClassID() href=PropertySet_java_ref.html#PropertySet.getClassID()>getClassID</a>()
+<a name=156 class="linenum">156  </a>    {
+<a name=157 class="linenum">157  </a>        return <a class="varRef" title="ClassID" href=PropertySet_java.html#PropertySet.classID>classID</a>;
+<a name=158 class="linenum">158  </a>    }
+<a name=159 class="linenum">159  </a>
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>    private int <a class="varDef" name=PropertySet.sectionCount href=PropertySet_java_ref.html#PropertySet.sectionCount>sectionCount</a>;
+<a name=163 class="linenum">163  </a>
+<a name=164 class="linenum">164  </a>    <span class="comment">/**
+<a name=165 class="linenum">165  </a>     * &lt;p&gt;Returns the number of {@link Section}s in the property
+<a name=166 class="linenum">166  </a>     * set.&lt;/p&gt;
+<a name=167 class="linenum">167  </a>     */</span>
+<a name=168 class="linenum">168  </a>    public int <a class="methodDef" name=PropertySet.getSectionCount() href=PropertySet_java_ref.html#PropertySet.getSectionCount()>getSectionCount</a>()
+<a name=169 class="linenum">169  </a>    {
+<a name=170 class="linenum">170  </a>        return <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.sectionCount>sectionCount</a>;
+<a name=171 class="linenum">171  </a>    }
+<a name=172 class="linenum">172  </a>
+<a name=173 class="linenum">173  </a>
+<a name=174 class="linenum">174  </a>
+<a name=175 class="linenum">175  </a>    private List <a class="varDef" name=PropertySet.sections href=PropertySet_java_ref.html#PropertySet.sections>sections</a>;
+<a name=176 class="linenum">176  </a>
+<a name=177 class="linenum">177  </a>    <span class="comment">/**
+<a name=178 class="linenum">178  </a>     * &lt;p&gt;Returns the {@link Section}s in the property set.&lt;/p&gt;
+<a name=179 class="linenum">179  </a>     */</span>
+<a name=180 class="linenum">180  </a>    public List <a class="methodDef" name=PropertySet.getSections() href=PropertySet_java_ref.html#PropertySet.getSections()>getSections</a>()
+<a name=181 class="linenum">181  </a>    {
+<a name=182 class="linenum">182  </a>        return <a class="varRef" title="List" href=PropertySet_java.html#PropertySet.sections>sections</a>;
+<a name=183 class="linenum">183  </a>    }
+<a name=184 class="linenum">184  </a>
+<a name=185 class="linenum">185  </a>
+<a name=186 class="linenum">186  </a>
+<a name=187 class="linenum">187  </a>    <span class="comment">/**
+<a name=188 class="linenum">188  </a>     * &lt;p&gt;Creates an empty (uninitialized) {@link PropertySet}.&lt;/p&gt;
+<a name=189 class="linenum">189  </a>     *
+<a name=190 class="linenum">190  </a>     * &lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; For the time being this
+<a name=191 class="linenum">191  </a>     * constructor is protected since it is used for internal purposes
+<a name=192 class="linenum">192  </a>     * only, but expect it to become public once the property set
+<a name=193 class="linenum">193  </a>     * writing functionality is implemented.&lt;/p&gt;
+<a name=194 class="linenum">194  </a>     */</span>
+<a name=195 class="linenum">195  </a>    protected <a class="methodDef" name=PropertySet.PropertySet() href=PropertySet_java_ref.html#PropertySet.PropertySet()>PropertySet</a>()
+<a name=196 class="linenum">196  </a>    {}
+<a name=197 class="linenum">197  </a>
+<a name=198 class="linenum">198  </a>
+<a name=199 class="linenum">199  </a>
+<a name=200 class="linenum">200  </a>    <span class="comment">/**
+<a name=201 class="linenum">201  </a>     * &lt;p&gt;Creates a {@link PropertySet} instance from an {@link
+<a name=202 class="linenum">202  </a>     *  InputStream} in the Horrible Property Set Format.&lt;/p&gt;
+<a name=203 class="linenum">203  </a>     *
+<a name=204 class="linenum">204  </a>     * &lt;p&gt;The constructor reads the first few bytes from the stream
+<a name=205 class="linenum">205  </a>     * and determines whether it is really a property set stream. If
+<a name=206 class="linenum">206  </a>     * it is, it parses the rest of the stream. If it is not, it
+<a name=207 class="linenum">207  </a>     * resets the stream to its beginning in order to let other
+<a name=208 class="linenum">208  </a>     * components mess around with the data and throws an
+<a name=209 class="linenum">209  </a>     * exception.&lt;/p&gt;
+<a name=210 class="linenum">210  </a>     *
+<a name=211 class="linenum">211  </a>     * @throws NoPropertySetStreamException if the stream is not a
+<a name=212 class="linenum">212  </a>     * property set stream.
+<a name=213 class="linenum">213  </a>     *
+<a name=214 class="linenum">214  </a>     * @throws MarkUnsupportedException if the stream does not support
+<a name=215 class="linenum">215  </a>     * the {@link InputStream#markSupported} method.
+<a name=216 class="linenum">216  </a>     *
+<a name=217 class="linenum">217  </a>     * @throws IOException if the {@link InputStream} cannot not be
+<a name=218 class="linenum">218  </a>     * accessed as needed.
+<a name=219 class="linenum">219  </a>     */</span>
+<a name=220 class="linenum">220  </a>    public <a class="methodDef" name=PropertySet.PropertySet(InputStream) href=PropertySet_java_ref.html#PropertySet.PropertySet(InputStream)>PropertySet</a>(final InputStream stream)
+<a name=221 class="linenum">221  </a>        throws <a class="classRef" href=NoPropertySetStreamException_java.html#NoPropertySetStreamException>NoPropertySetStreamException</a>, MarkUnsupportedException,
+<a name=222 class="linenum">222  </a>               IOException
+<a name=223 class="linenum">223  </a>    {
+<a name=224 class="linenum">224  </a>        if (isPropertySetStream(<a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>))
+<a name=225 class="linenum">225  </a>        {
+<a name=226 class="linenum">226  </a>            final int avail = <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>.available();
+<a name=227 class="linenum">227  </a>            final byte[] buffer = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=PropertySet_java.html#~NO NAME~.avail>avail</a>];
+<a name=228 class="linenum">228  </a>            <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>.read(<a class="varRef" title="byte" href=PropertySet_java.html#~NO NAME~.buffer>buffer</a>, 0, <a class="varRef" title="byte" href=PropertySet_java.html#~NO NAME~.buffer>buffer</a>.length);
+<a name=229 class="linenum">229  </a>            init(<a class="varRef" title="byte" href=PropertySet_java.html#~NO NAME~.buffer>buffer</a>, 0, <a class="varRef" title="byte" href=PropertySet_java.html#~NO NAME~.buffer>buffer</a>.length);
+<a name=230 class="linenum">230  </a>        }
+<a name=231 class="linenum">231  </a>        else
+<a name=232 class="linenum">232  </a>            throw new <a class="methodRef" title="NoPropertySetStreamException" href=NoPropertySetStreamException_java.html#NoPropertySetStreamException.NoPropertySetStreamException()>NoPropertySetStreamException</a>();
+<a name=233 class="linenum">233  </a>    }
+<a name=234 class="linenum">234  </a>
+<a name=235 class="linenum">235  </a>
+<a name=236 class="linenum">236  </a>
+<a name=237 class="linenum">237  </a>    <span class="comment">/**
+<a name=238 class="linenum">238  </a>     * &lt;p&gt;Creates a {@link PropertySet} instance from a byte array
+<a name=239 class="linenum">239  </a>     * that represents a stream in the Horrible Property Set
+<a name=240 class="linenum">240  </a>     * Format.&lt;/p&gt;
+<a name=241 class="linenum">241  </a>     *
+<a name=242 class="linenum">242  </a>     * @param stream The byte array holding the stream data.
+<a name=243 class="linenum">243  </a>     *
+<a name=244 class="linenum">244  </a>     * @param offset The offset in &lt;var&gt;stream&lt;/var&gt; where the stream
+<a name=245 class="linenum">245  </a>     * data begin. If the stream data begin with the first byte in the
+<a name=246 class="linenum">246  </a>     * array, the &lt;var&gt;offset&lt;/var&gt; is 0.
+<a name=247 class="linenum">247  </a>     *
+<a name=248 class="linenum">248  </a>     * @param length The length of the stream data.
+<a name=249 class="linenum">249  </a>     *
+<a name=250 class="linenum">250  </a>     * @throws NoPropertySetStreamException if the byte array is not a
+<a name=251 class="linenum">251  </a>     * property set stream.
+<a name=252 class="linenum">252  </a>     */</span>
+<a name=253 class="linenum">253  </a>    public <a class="methodDef" name=PropertySet.PropertySet(byte,int,int) href=PropertySet_java_ref.html#PropertySet.PropertySet(byte,int,int)>PropertySet</a>(final byte[] stream, final int offset, final int length)
+<a name=254 class="linenum">254  </a>        throws <a class="classRef" href=NoPropertySetStreamException_java.html#NoPropertySetStreamException>NoPropertySetStreamException</a>
+<a name=255 class="linenum">255  </a>    {
+<a name=256 class="linenum">256  </a>        if (<a class="methodRef" title="PropertySet" href=PropertySet_java.html#PropertySet.isPropertySetStream(byte,int,int)>isPropertySetStream</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.PropertySet.offset>offset</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.PropertySet.length>length</a>))
+<a name=257 class="linenum">257  </a>            <a class="methodRef" title="PropertySet" href=PropertySet_java.html#PropertySet.init(byte,int,int)>init</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.PropertySet.offset>offset</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.PropertySet.length>length</a>);
+<a name=258 class="linenum">258  </a>        else
+<a name=259 class="linenum">259  </a>            throw new <a class="methodRef" title="NoPropertySetStreamException" href=NoPropertySetStreamException_java.html#NoPropertySetStreamException.NoPropertySetStreamException()>NoPropertySetStreamException</a>();
+<a name=260 class="linenum">260  </a>    }
+<a name=261 class="linenum">261  </a>
+<a name=262 class="linenum">262  </a>
+<a name=263 class="linenum">263  </a>
+<a name=264 class="linenum">264  </a>    <span class="comment">/**
+<a name=265 class="linenum">265  </a>     * &lt;p&gt;Creates a {@link PropertySet} instance from a byte array
+<a name=266 class="linenum">266  </a>     * that represents a stream in the Horrible Property Set
+<a name=267 class="linenum">267  </a>     * Format.&lt;/p&gt;
+<a name=268 class="linenum">268  </a>     *
+<a name=269 class="linenum">269  </a>     * @param stream The byte array holding the stream data. The
+<a name=270 class="linenum">270  </a>     * complete byte array contents is the stream data.
+<a name=271 class="linenum">271  </a>     *
+<a name=272 class="linenum">272  </a>     * @throws NoPropertySetStreamException if the byte array is not a
+<a name=273 class="linenum">273  </a>     * property set stream.
+<a name=274 class="linenum">274  </a>     */</span>
+<a name=275 class="linenum">275  </a>    public <a class="methodDef" name=PropertySet.PropertySet(byte) href=PropertySet_java_ref.html#PropertySet.PropertySet(byte)>PropertySet</a>(final byte[] stream)
+<a name=276 class="linenum">276  </a>        throws <a class="classRef" href=NoPropertySetStreamException_java.html#NoPropertySetStreamException>NoPropertySetStreamException</a>
+<a name=277 class="linenum">277  </a>    {
+<a name=278 class="linenum">278  </a>        this(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>, 0, <a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.PropertySet.stream>stream</a>.length);
+<a name=279 class="linenum">279  </a>    }
+<a name=280 class="linenum">280  </a>
+<a name=281 class="linenum">281  </a>
+<a name=282 class="linenum">282  </a>
+<a name=283 class="linenum">283  </a>    <span class="comment">/**
+<a name=284 class="linenum">284  </a>     * &lt;p&gt;Checks whether an {@link InputStream} is in the Horrible
+<a name=285 class="linenum">285  </a>     * Property Set Format.&lt;/p&gt;
+<a name=286 class="linenum">286  </a>     *
+<a name=287 class="linenum">287  </a>     * @param stream The {@link InputStream} to check. In order to
+<a name=288 class="linenum">288  </a>     * perform the check, the method reads the first bytes from the
+<a name=289 class="linenum">289  </a>     * stream. After reading, the stream is reset to the position it
+<a name=290 class="linenum">290  </a>     * had before reading. The {@link InputStream} must support the
+<a name=291 class="linenum">291  </a>     * {@link InputStream#mark} method.
+<a name=292 class="linenum">292  </a>     *
+<a name=293 class="linenum">293  </a>     * @return &lt;code&gt;true&lt;/code&gt; if the stream is a property set
+<a name=294 class="linenum">294  </a>     * stream, else &lt;code&gt;false&lt;/code&gt;.
+<a name=295 class="linenum">295  </a>     *
+<a name=296 class="linenum">296  </a>     * @throws MarkUnsupportedException if the {@link InputStream}
+<a name=297 class="linenum">297  </a>     * does not support the {@link InputStream#mark} method.
+<a name=298 class="linenum">298  </a>     */</span>
+<a name=299 class="linenum">299  </a>    public static boolean <a class="methodDef" name=PropertySet.isPropertySetStream(InputStream) href=PropertySet_java_ref.html#PropertySet.isPropertySetStream(InputStream)>isPropertySetStream</a>(final InputStream stream)
+<a name=300 class="linenum">300  </a>        throws <a class="classRef" href=MarkUnsupportedException_java.html#MarkUnsupportedException>MarkUnsupportedException</a>, IOException
+<a name=301 class="linenum">301  </a>    {
+<a name=302 class="linenum">302  </a>        <span class="comment">/* Read at most this many bytes. */</span>
+<a name=303 class="linenum">303  </a>        final int BUFFER_SIZE = 50;
+<a name=304 class="linenum">304  </a>
+<a name=305 class="linenum">305  </a>        <span class="comment">/* Mark the current position in the stream so that we can
+<a name=306 class="linenum">306  </a>         * reset to this position if the stream does not contain a
+<a name=307 class="linenum">307  </a>         * property set. */</span>
+<a name=308 class="linenum">308  </a>        if (!<a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.markSupported())
+<a name=309 class="linenum">309  </a>            throw new <a class="methodRef" title="MarkUnsupportedException" href=MarkUnsupportedException_java.html#MarkUnsupportedException.MarkUnsupportedException(String)>MarkUnsupportedException</a>(<a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.getClass().getName());
+<a name=310 class="linenum">310  </a>        <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.mark(<a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.BUFFER_SIZE>BUFFER_SIZE</a>);
+<a name=311 class="linenum">311  </a>
+<a name=312 class="linenum">312  </a>        <span class="comment">/* Read a couple of bytes from the stream. */</span>
+<a name=313 class="linenum">313  </a>        final byte[] buffer = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.BUFFER_SIZE>BUFFER_SIZE</a>];
+<a name=314 class="linenum">314  </a>        final int bytes =
+<a name=315 class="linenum">315  </a>            <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.read(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.buffer>buffer</a>, 0,
+<a name=316 class="linenum">316  </a>                        Math.min(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.buffer>buffer</a>.length, <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.available()));
+<a name=317 class="linenum">317  </a>        final boolean isPropertySetStream =
+<a name=318 class="linenum">318  </a>            <a class="methodRef" title="PropertySet" href=PropertySet_java.html#PropertySet.isPropertySetStream(byte,int,int)>isPropertySetStream</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.buffer>buffer</a>, 0, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.bytes>bytes</a>);
+<a name=319 class="linenum">319  </a>        <a class="varRef" title="InputStream" href=PropertySet_java.html#PropertySet.isPropertySetStream.stream>stream</a>.reset();
+<a name=320 class="linenum">320  </a>        return <a class="varRef" title="boolean" href=PropertySet_java.html#PropertySet.isPropertySetStream.isPropertySetStream>isPropertySetStream</a>;
+<a name=321 class="linenum">321  </a>    }
+<a name=322 class="linenum">322  </a>
+<a name=323 class="linenum">323  </a>
+<a name=324 class="linenum">324  </a>
+<a name=325 class="linenum">325  </a>    <span class="comment">/**
+<a name=326 class="linenum">326  </a>     * &lt;p&gt;Checks whether a byte array is in the Horrible Property Set
+<a name=327 class="linenum">327  </a>     * Format.&lt;/p&gt;
+<a name=328 class="linenum">328  </a>     *
+<a name=329 class="linenum">329  </a>     * @param src The byte array to check.
+<a name=330 class="linenum">330  </a>     *
+<a name=331 class="linenum">331  </a>     * @param offset The offset in the byte array.
+<a name=332 class="linenum">332  </a>     *
+<a name=333 class="linenum">333  </a>     * @param length The significant number of bytes in the byte
+<a name=334 class="linenum">334  </a>     * array. Only this number of bytes will be checked.
+<a name=335 class="linenum">335  </a>     *
+<a name=336 class="linenum">336  </a>     * @return &lt;code&gt;true&lt;/code&gt; if the byte array is a property set
+<a name=337 class="linenum">337  </a>     * stream, &lt;code&gt;false&lt;/code&gt; if not.
+<a name=338 class="linenum">338  </a>     */</span>
+<a name=339 class="linenum">339  </a>    public static boolean <a class="methodDef" name=PropertySet.isPropertySetStream(byte,int,int) href=PropertySet_java_ref.html#PropertySet.isPropertySetStream(byte,int,int)>isPropertySetStream</a>(final byte[] src, int offset,
+<a name=340 class="linenum">340  </a>                                              final int length)
+<a name=341 class="linenum">341  </a>    {
+<a name=342 class="linenum">342  </a>        <span class="comment">/* Read the header fields of the stream. They must always be
+<a name=343 class="linenum">343  </a>         * there. */</span>
+<a name=344 class="linenum">344  </a>        final Word byteOrder = new <a class="methodRef" title="Word" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.Word(byte,int)>Word</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a>);
+<a name=345 class="linenum">345  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.LENGTH>LENGTH</a>;
+<a name=346 class="linenum">346  </a>        if (!<a class="classRef" href=Util_java.html#Util>Util</a>.<a class="methodRef" title="Util" href=Util_java.html#Util.equal(byte,byte)>equal</a>(<a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.isPropertySetStream.byteOrder>byteOrder</a>.getBytes(), <a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.BYTE_ORDER_ASSERTION>BYTE_ORDER_ASSERTION</a>))
+<a name=347 class="linenum">347  </a>            return false;
+<a name=348 class="linenum">348  </a>        final Word format = new <a class="methodRef" title="Word" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.Word(byte,int)>Word</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a>);
+<a name=349 class="linenum">349  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.LENGTH>LENGTH</a>;
+<a name=350 class="linenum">350  </a>        if (!<a class="classRef" href=Util_java.html#Util>Util</a>.<a class="methodRef" title="Util" href=Util_java.html#Util.equal(byte,byte)>equal</a>(<a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.isPropertySetStream.format>format</a>.getBytes(), <a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.FORMAT_ASSERTION>FORMAT_ASSERTION</a>))
+<a name=351 class="linenum">351  </a>            return false;
+<a name=352 class="linenum">352  </a>        final DWord osVersion = new <a class="methodRef" title="DWord" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.DWord(byte,int)>DWord</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a>);
+<a name=353 class="linenum">353  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.LENGTH>LENGTH</a>;
+<a name=354 class="linenum">354  </a>        final ClassID classID = new <a class="methodRef" title="ClassID" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID.ClassID(byte,int)>ClassID</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a>);
+<a name=355 class="linenum">355  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID>ClassID</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID.LENGTH>LENGTH</a>;
+<a name=356 class="linenum">356  </a>        final DWord sectionCount = new <a class="methodRef" title="DWord" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.DWord(byte,int)>DWord</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.isPropertySetStream.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a>);
+<a name=357 class="linenum">357  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.isPropertySetStream.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.LENGTH>LENGTH</a>;
+<a name=358 class="linenum">358  </a>        if (<a class="varRef" title="DWord" href=PropertySet_java.html#PropertySet.isPropertySetStream.sectionCount>sectionCount</a>.intValue() &lt; 1)
+<a name=359 class="linenum">359  </a>            return false;
+<a name=360 class="linenum">360  </a>        return true;
+<a name=361 class="linenum">361  </a>    }
+<a name=362 class="linenum">362  </a>
+<a name=363 class="linenum">363  </a>
+<a name=364 class="linenum">364  </a>
+<a name=365 class="linenum">365  </a>    <span class="comment">/**
+<a name=366 class="linenum">366  </a>     * &lt;p&gt;Initializes this {@link PropertySet} instance from a byte
+<a name=367 class="linenum">367  </a>     * array. The method assumes that it has been checked already that
+<a name=368 class="linenum">368  </a>     * the byte array indeed represents a property set stream. It does
+<a name=369 class="linenum">369  </a>     * no more checks on its own.&lt;/p&gt;
+<a name=370 class="linenum">370  </a>     */</span>
+<a name=371 class="linenum">371  </a>    private void <a class="methodDef" name=PropertySet.init(byte,int,int) href=PropertySet_java_ref.html#PropertySet.init(byte,int,int)>init</a>(final byte[] src, int offset, final int length)
+<a name=372 class="linenum">372  </a>    {
+<a name=373 class="linenum">373  </a>        <span class="comment">/* Read the stream's header fields. */</span>
+<a name=374 class="linenum">374  </a>        <a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.byteOrder>byteOrder</a> = new <a class="methodRef" title="Word" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.Word(byte,int)>Word</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>);
+<a name=375 class="linenum">375  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.LENGTH>LENGTH</a>;
+<a name=376 class="linenum">376  </a>        <a class="varRef" title="Word" href=PropertySet_java.html#PropertySet.format>format</a> = new <a class="methodRef" title="Word" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.Word(byte,int)>Word</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>);
+<a name=377 class="linenum">377  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word>Word</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\Word_java.html#Word.LENGTH>LENGTH</a>;
+<a name=378 class="linenum">378  </a>        <a class="varRef" title="DWord" href=PropertySet_java.html#PropertySet.osVersion>osVersion</a> = new <a class="methodRef" title="DWord" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.DWord(byte,int)>DWord</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>);
+<a name=379 class="linenum">379  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.LENGTH>LENGTH</a>;
+<a name=380 class="linenum">380  </a>        <a class="varRef" title="ClassID" href=PropertySet_java.html#PropertySet.classID>classID</a> = new <a class="methodRef" title="ClassID" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID.ClassID(byte,int)>ClassID</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>);
+<a name=381 class="linenum">381  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID>ClassID</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID.LENGTH>LENGTH</a>;
+<a name=382 class="linenum">382  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.sectionCount>sectionCount</a> = new <a class="methodRef" title="DWord" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.DWord(byte,int)>DWord</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>).intValue();
+<a name=383 class="linenum">383  </a>        <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.LENGTH>LENGTH</a>;
+<a name=384 class="linenum">384  </a>        
+<a name=385 class="linenum">385  </a>        <span class="comment">/* Read the sections, which are following the header. They
+<a name=386 class="linenum">386  </a>         * start with an array of section descriptions. Each one
+<a name=387 class="linenum">387  </a>         * consists of a format ID telling what the section contains
+<a name=388 class="linenum">388  </a>         * and an offset telling how many bytes from the start of the
+<a name=389 class="linenum">389  </a>         * stream the section begins. */</span>
+<a name=390 class="linenum">390  </a>        <span class="comment">/* Most property sets have only one section. The Document
+<a name=391 class="linenum">391  </a>         * Summary Information stream has 2. Everything else is a rare
+<a name=392 class="linenum">392  </a>         * exception and is no longer fostered by Microsoft. */</span>
+<a name=393 class="linenum">393  </a>        <a class="varRef" title="List" href=PropertySet_java.html#PropertySet.sections>sections</a> = new ArrayList(2);
+<a name=394 class="linenum">394  </a>
+<a name=395 class="linenum">395  </a>        <span class="comment">/* Loop over the section descriptor array. Each descriptor
+<a name=396 class="linenum">396  </a>         * consists of a ClassID and a DWord, and we have to increment
+<a name=397 class="linenum">397  </a>         * "offset" accordingly. */</span>
+<a name=398 class="linenum">398  </a>        for (int i = 0; <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.i>i</a> &lt; <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.sectionCount>sectionCount</a>; <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.i>i</a>++)
+<a name=399 class="linenum">399  </a>        {
+<a name=400 class="linenum">400  </a>            final <a class="classRef" href=Section_java.html#Section>Section</a> s = new <a class="methodRef" title="Section" href=Section_java.html#Section.Section(byte,int)>Section</a>(<a class="varRef" title="byte" href=PropertySet_java.html#PropertySet.init.src>src</a>, <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a>);
+<a name=401 class="linenum">401  </a>            <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.init.offset>offset</a> += <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID>ClassID</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\ClassID_java.html#ClassID.LENGTH>LENGTH</a> + <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord>DWord</a>.<a class="varRef" title="int" href=..\..\..\..\org\apache\poi\hpsf\littleendian\DWord_java.html#DWord.LENGTH>LENGTH</a>;
+<a name=402 class="linenum">402  </a>            <a class="varRef" title="List" href=PropertySet_java.html#PropertySet.sections>sections</a>.add(<a class="varRef" title="Section" href=PropertySet_java.html#~NO NAME~.s>s</a>);
+<a name=403 class="linenum">403  </a>        }
+<a name=404 class="linenum">404  </a>    }
+<a name=405 class="linenum">405  </a>
+<a name=406 class="linenum">406  </a>
+<a name=407 class="linenum">407  </a>
+<a name=408 class="linenum">408  </a>    <span class="comment">/**
+<a name=409 class="linenum">409  </a>     * &lt;p&gt;Checks whether this {@link PropertySet} represents a Summary
+<a name=410 class="linenum">410  </a>     * Information.&lt;/p&gt;
+<a name=411 class="linenum">411  </a>     */</span>
+<a name=412 class="linenum">412  </a>    public boolean <a class="methodDef" name=PropertySet.isSummaryInformation() href=PropertySet_java_ref.html#PropertySet.isSummaryInformation()>isSummaryInformation</a>()
+<a name=413 class="linenum">413  </a>    {
+<a name=414 class="linenum">414  </a>        return <a class="classRef" href=Util_java.html#Util>Util</a>.<a class="methodRef" title="Util" href=Util_java.html#Util.equal(byte,byte)>equal</a>(((<a class="classRef" href=Section_java.html#Section>Section</a>) <a class="varRef" title="List" href=PropertySet_java.html#PropertySet.sections>sections</a>.get(0)).getFormatID().getBytes(),
+<a name=415 class="linenum">415  </a>                          <a class="classRef" href=..\..\..\..\org\apache\poi\hpsf\wellknown\SectionIDMap_java.html#SectionIDMap>SectionIDMap</a>.<a class="varRef" title="byte" href=..\..\..\..\org\apache\poi\hpsf\wellknown\SectionIDMap_java.html#SectionIDMap.SUMMARY_INFORMATION_ID>SUMMARY_INFORMATION_ID</a>);
+<a name=416 class="linenum">416  </a>    }
+<a name=417 class="linenum">417  </a>
+<a name=418 class="linenum">418  </a>
+<a name=419 class="linenum">419  </a>
+<a name=420 class="linenum">420  </a>    <span class="comment">/**
+<a name=421 class="linenum">421  </a>     * &lt;p&gt;Checks whether this {@link PropertySet} is a Document
+<a name=422 class="linenum">422  </a>     * Summary Information.&lt;/p&gt;
+<a name=423 class="linenum">423  </a>     */</span>
+<a name=424 class="linenum">424  </a>    public boolean <a class="methodDef" name=PropertySet.isDocumentSummaryInformation() href=PropertySet_java_ref.html#PropertySet.isDocumentSummaryInformation()>isDocumentSummaryInformation</a>()
+<a name=425 class="linenum">425  </a>    {
+<a name=426 class="linenum">426  </a>        return <a class="classRef" href=Util_java.html#Util>Util</a>.<a class="methodRef" title="Util" href=Util_java.html#Util.equal(byte,byte)>equal</a>(((<a class="classRef" href=Section_java.html#Section>Section</a>) sections.get(0)).getFormatID().getBytes(),
+<a name=427 class="linenum">427  </a>                          SectionIDMap.DOCUMENT_SUMMARY_INFORMATION_ID);
+<a name=428 class="linenum">428  </a>    }
+<a name=429 class="linenum">429  </a>
+<a name=430 class="linenum">430  </a>
+<a name=431 class="linenum">431  </a>
+<a name=432 class="linenum">432  </a>    <span class="comment">/**
+<a name=433 class="linenum">433  </a>     * &lt;p&gt;Convenience method returning the {@link Property} array
+<a name=434 class="linenum">434  </a>     * contained in this property set. It is a shortcut for getting
+<a name=435 class="linenum">435  </a>     * the {@link PropertySet}'s {@link Section}s list and then
+<a name=436 class="linenum">436  </a>     * getting the {@link Property} array from the first {@link
+<a name=437 class="linenum">437  </a>     * Section}. However, it can only be used if the {@link
+<a name=438 class="linenum">438  </a>     * PropertySet} contains exactly one {@link Section}, so check
+<a name=439 class="linenum">439  </a>     * {@link #getSectionCount} first!&lt;/p&gt;
+<a name=440 class="linenum">440  </a>     *
+<a name=441 class="linenum">441  </a>     * @return The properties of the only {@link Section} of this
+<a name=442 class="linenum">442  </a>     * {@link PropertySet}.
+<a name=443 class="linenum">443  </a>     *
+<a name=444 class="linenum">444  </a>     * @throws NoSingleSectionException if the {@link PropertySet} has
+<a name=445 class="linenum">445  </a>     * more or less than one {@link Section}.
+<a name=446 class="linenum">446  </a>     */</span>
+<a name=447 class="linenum">447  </a>    public <a class="classRef" href=Property_java.html#Property>Property</a>[] <a class="methodDef" name=PropertySet.getProperties() href=PropertySet_java_ref.html#PropertySet.getProperties()>getProperties</a>()
+<a name=448 class="linenum">448  </a>        throws <a class="classRef" href=NoSingleSectionException_java.html#NoSingleSectionException>NoSingleSectionException</a>
+<a name=449 class="linenum">449  </a>    {
+<a name=450 class="linenum">450  </a>        return <a class="methodRef" title="PropertySet" href=PropertySet_java.html#PropertySet.getSingleSection()>getSingleSection</a>().<a class="methodRef" title="Section" href=Section_java.html#Section.getProperties()>getProperties</a>();
+<a name=451 class="linenum">451  </a>    }
+<a name=452 class="linenum">452  </a>
+<a name=453 class="linenum">453  </a>
+<a name=454 class="linenum">454  </a>
+<a name=455 class="linenum">455  </a>    <span class="comment">/**
+<a name=456 class="linenum">456  </a>     * &lt;p&gt;Convenience method returning the value of the property with
+<a name=457 class="linenum">457  </a>     * the specified ID. If the property is not available,
+<a name=458 class="linenum">458  </a>     * &lt;code&gt;null&lt;/code&gt; is returned and a subsequent call to {@link
+<a name=459 class="linenum">459  </a>     * #wasNull} will return &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+<a name=460 class="linenum">460  </a>     *
+<a name=461 class="linenum">461  </a>     * @throws NoSingleSectionException if the {@link PropertySet} has
+<a name=462 class="linenum">462  </a>     * more or less than one {@link Section}.
+<a name=463 class="linenum">463  </a>     */</span>
+<a name=464 class="linenum">464  </a>    protected Object <a class="methodDef" name=PropertySet.getProperty(int) href=PropertySet_java_ref.html#PropertySet.getProperty(int)>getProperty</a>(final int id)
+<a name=465 class="linenum">465  </a>        throws <a class="classRef" href=NoSingleSectionException_java.html#NoSingleSectionException>NoSingleSectionException</a>
+<a name=466 class="linenum">466  </a>    {
+<a name=467 class="linenum">467  </a>        return <a class="methodRef" title="SpecialPropertySet" href=SpecialPropertySet_java.html#SpecialPropertySet.getSingleSection()>getSingleSection</a>().getProperty(<a class="varRef" title="int" href=PropertySet_java.html#PropertySet.getProperty.id>id</a>);
+<a name=468 class="linenum">468  </a>    }
+<a name=469 class="linenum">469  </a>
+<a name=470 class="linenum">470  </a>
+<a name=471 class="linenum">471  </a>
+<a name=472 class="linenum">472  </a>    <span class="comment">/**
+<a name=473 class="linenum">473  </a>     * &lt;p&gt;Convenience method returning the value of the numeric
+<a name=474 class="linenum">474  </a>     * property with the specified ID. If the property is not
+<a name=475 class="linenum">475  </a>     * available, 0 is returned. A subsequent call to {@link #wasNull}
+<a name=476 class="linenum">476  </a>     * will return &lt;code&gt;true&lt;/code&gt; to let the caller distinguish
+<a name=477 class="linenum">477  </a>     * that case from a real property value of 0.&lt;/p&gt;
+<a name=478 class="linenum">478  </a>     *
+<a name=479 class="linenum">479  </a>     * @throws NoSingleSectionException if the {@link PropertySet} has
+<a name=480 class="linenum">480  </a>     * more or less than one {@link Section}.
+<a name=481 class="linenum">481  </a>     */</span>
+<a name=482 class="linenum">482  </a>    protected int <a class="methodDef" name=PropertySet.getPropertyIntValue(int) href=PropertySet_java_ref.html#PropertySet.getPropertyIntValue(int)>getPropertyIntValue</a>(final int id)
+<a name=483 class="linenum">483  </a>        throws <a class="classRef" href=NoSingleSectionException_java.html#NoSingleSectionException>NoSingleSectionException</a>
+<a name=484 class="linenum">484  </a>    {
+<a name=485 class="linenum">485  </a>        return <a class="methodRef" title="SpecialPropertySet" href=SpecialPropertySet_java.html#SpecialPropertySet.getSingleSection()>getSingleSection</a>().getPropertyIntValue(<a class="varRef" title="int" href=PropertySet_java.html#PropertySet.getPropertyIntValue.id>id</a>);
+<a name=486 class="linenum">486  </a>    }
+<a name=487 class="linenum">487  </a>
+<a name=488 class="linenum">488  </a>
+<a name=489 class="linenum">489  </a>
+<a name=490 class="linenum">490  </a>    <span class="comment">/**
+<a name=491 class="linenum">491  </a>     * &lt;p&gt;Checks whether the property which the last call to {@link
+<a name=492 class="linenum">492  </a>     * #getPropertyIntValue} or {@link #getProperty} tried to access
+<a name=493 class="linenum">493  </a>     * was available or not. This information might be important for
+<a name=494 class="linenum">494  </a>     * callers of {@link #getPropertyIntValue} since the latter
+<a name=495 class="linenum">495  </a>     * returns 0 if the property does not exist. Using {@link
+<a name=496 class="linenum">496  </a>     * #wasNull}, the caller can distiguish this case from a
+<a name=497 class="linenum">497  </a>     * property's real value of 0.&lt;/p&gt;
+<a name=498 class="linenum">498  </a>     *
+<a name=499 class="linenum">499  </a>     * @return &lt;code&gt;true&lt;/code&gt; if the last call to {@link
+<a name=500 class="linenum">500  </a>     * #getPropertyIntValue} or {@link #getProperty} tried to access a
+<a name=501 class="linenum">501  </a>     * property that was not available, else &lt;code&gt;false&lt;/code&gt;.
+<a name=502 class="linenum">502  </a>     *
+<a name=503 class="linenum">503  </a>     * @throws NoSingleSectionException if the {@link PropertySet} has
+<a name=504 class="linenum">504  </a>     * more than one {@link Section}.
+<a name=505 class="linenum">505  </a>     */</span>
+<a name=506 class="linenum">506  </a>    public boolean <a class="methodDef" name=PropertySet.wasNull() href=PropertySet_java_ref.html#PropertySet.wasNull()>wasNull</a>() throws <a class="classRef" href=NoSingleSectionException_java.html#NoSingleSectionException>NoSingleSectionException</a>
+<a name=507 class="linenum">507  </a>    {
+<a name=508 class="linenum">508  </a>        return <a class="methodRef" title="PropertySet" href=PropertySet_java.html#PropertySet.getSingleSection()>getSingleSection</a>().<a class="methodRef" title="Section" href=Section_java.html#Section.wasNull()>wasNull</a>();
+<a name=509 class="linenum">509  </a>    }
+<a name=510 class="linenum">510  </a>
+<a name=511 class="linenum">511  </a>
+<a name=512 class="linenum">512  </a>
+<a name=513 class="linenum">513  </a>    <span class="comment">/**
+<a name=514 class="linenum">514  </a>     * &lt;p&gt;If the {@link PropertySet} has only a single section this
+<a name=515 class="linenum">515  </a>     * method returns it.&lt;/p&gt;
+<a name=516 class="linenum">516  </a>     *
+<a name=517 class="linenum">517  </a>     * @throws NoSingleSectionException if the {@link PropertySet} has
+<a name=518 class="linenum">518  </a>     * more or less than exactly one {@link Section}.
+<a name=519 class="linenum">519  </a>     */</span>
+<a name=520 class="linenum">520  </a>    public <a class="classRef" href=Section_java.html#Section>Section</a> <a class="methodDef" name=PropertySet.getSingleSection() href=PropertySet_java_ref.html#PropertySet.getSingleSection()>getSingleSection</a>()
+<a name=521 class="linenum">521  </a>    {
+<a name=522 class="linenum">522  </a>        if (<a class="varRef" title="int" href=PropertySet_java.html#PropertySet.sectionCount>sectionCount</a> != 1)
+<a name=523 class="linenum">523  </a>            throw new <a class="methodRef" title="NoSingleSectionException" href=NoSingleSectionException_java.html#NoSingleSectionException.NoSingleSectionException(String)>NoSingleSectionException</a>
+<a name=524 class="linenum">524  </a>                ("Property set contains " + <a class="varRef" title="int" href=PropertySet_java.html#PropertySet.sectionCount>sectionCount</a> + " sections.");
+<a name=525 class="linenum">525  </a>        return ((<a class="classRef" href=Section_java.html#Section>Section</a>) <a class="varRef" title="List" href=PropertySet_java.html#PropertySet.sections>sections</a>.get(0));
+<a name=526 class="linenum">526  </a>    }
+<a name=527 class="linenum">527  </a>
+<a name=528 class="linenum">528  </a>}
+<a name=529 class="linenum">529  </a></pre>

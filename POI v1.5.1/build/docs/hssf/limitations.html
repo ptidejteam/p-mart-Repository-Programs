@@ -1,0 +1,157 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Limitations</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>Navigation</h4>
+<ul>
+<li>
+<a href="../index.html">Main</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>HSSF</h4>
+<ul>
+<li>
+<a href="quick-guide.html">Quick Guide</a>
+</li>
+<li>
+<a href="how-to.html">HOWTO</a>
+</li>
+<li>
+<a href="use-case.html">Use Case</a>
+</li>
+<li>
+<a href="diagrams.html">Pictorial Docs</a>
+</li>
+<li>
+<a href="alternatives.html">Alternatives</a>
+</li>
+<li>
+<a href="limitations.html">Limitations</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Contributer's Guide</h4>
+<ul>
+<li>
+<a href="hacking-hssf.html">Hacking HSSF</a>
+</li>
+<li>
+<a href="record-generator.html">Record Generator</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>Limitations</h1>
+</div>
+<div id="contents">
+    
+    
+        
+<h2>Version 1.5 limitations</h2>
+<div class="section">
+            
+<p>
+                The intent of this document is to outline some of the known limitations of the
+                POI HSSF API's.  It is not intended to be complete list of every bug or missing
+                feature of HSSF, rather it's purpose is to provide a broad feel for some of the
+                functionality that is missing or broken.
+            </p>
+            
+<blockquote>
+<ul>
+                
+<li>
+                    Charts<br>
+<br>
+                    You can not currently create charts.  This is planned for the 2.0 release.  You can
+                    however create a chart in Excel, modify the chart data values using HSSF and write
+                    a new spreadsheet out.  This is possible because POI attempts to keep existing records
+                    intact as far as possible.<br>
+<br>
+                
+</li>
+                
+<li>
+                    Rich Text<br>
+<br>
+                    HSSF does not support rich text cells.  Rich text cells are
+                    cells that have multiple fonts and styles in the once cell.  Any attempt to read
+                    a spreadsheet that has rich text cells will throw an exception.  This feature may
+                    be supported in the future but it is not currently planned.  Patches are welcome.<br>
+<br>
+                
+</li>
+                
+<li>
+                    Outlines<br>
+<br>
+                    It is not yet possible to create outlines.  Reading a spreadsheet with outlines
+                    may work correctly but has not been tested.  Write support for outlines may
+                    be added in the future but it is not currently planned.  Patches are welcome.<br>
+<br>
+                
+</li>
+                
+<li>
+                    Macros<br>
+<br>
+                    Macros can not be created.  The are currently no plans to support macros.  Reading
+                    workbooks containing macros is supported but attempting to write those workbooks
+                    will fail.  This is because macros are stored as extra file sytems within the
+                    compound document, and these are not currently kept when the file is rewritten.<br>
+<br>
+                
+</li>
+                
+<li>
+                    Pivot Tables<br>
+<br>
+                    Generating pivot tables is not supported.  Reading spreadsheets containing pivot tables
+                    has not been tested.
+                </li>
+            
+</ul>
+</blockquote>
+        
+</div>
+    
+
+<div id="authors">by&nbsp;Glen Stampoultzis</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

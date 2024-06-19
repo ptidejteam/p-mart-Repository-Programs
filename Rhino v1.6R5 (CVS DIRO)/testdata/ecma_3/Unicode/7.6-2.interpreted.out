@@ -1,0 +1,13 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Unicode\7.6-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Unicode\shell.js -f mozilla\js\tests\ecma_3\Unicode\7.6-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 422 ms]
+STATUS: Escapes in identifiers test.
+BUGNUMBER: 23608
+BUGNUMBER: 23607
+PASSED! Escaped ASCII Identifier test.
+PASSED! Escaped ASCII Identifier test
+PASSED! Escaped non-ASCII Identifier test
+PASSED! Escaped non-ASCII Identifier test
+PASSED! Escaped keyword Identifier test
+PASSED! Escaped keyword Identifier test
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Unicode\7.6-2.interpreted.arff] ...

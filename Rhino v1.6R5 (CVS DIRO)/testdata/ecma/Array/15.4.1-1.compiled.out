@@ -1,0 +1,13 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.1-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.4.1.1 Array Constructor Called as a Function
+typeof Array(1,2) = object PASSED!
+(Array(1,2)).toString = function toString() { [native code for Array.toString, arity=0] }
+ PASSED!
+var arr = Array(1,2,3); arr.toString = Object.prototype.toString; arr.toString() = [object Array] PASSED!
+(Array(1,2)).length = 2 PASSED!
+var arr = (Array(1,2)); arr[0] = 1 PASSED!
+var arr = (Array(1,2)); arr[1] = 2 PASSED!
+var arr = (Array(1,2)); String(arr) = 1,2 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.1-1.compiled.arff] ...

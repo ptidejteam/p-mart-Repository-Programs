@@ -1,0 +1,10 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Exceptions\15.11.1.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Exceptions\shell.js -f mozilla\js\tests\ecma_3\Exceptions\15.11.1.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 
+STATUS: Ensuring normal function call of Error (ECMA-262 Ed.3 15.11.1.1)
+PASSED! Section 1 of test -
+PASSED! Section 2 of test -
+PASSED! Section 3 of test -
+PASSED! Section 4 of test -
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Exceptions\15.11.1.1.compiled.arff] ...

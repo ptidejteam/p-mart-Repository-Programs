@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Library System - New Book Form</title>
+</head>
+<body>
+<form method="post" action="BookAdd.sf">
+  <table border="1" width="50%" summary="Library System - New Book Form">
+    <caption>Library System - New Book Form</caption>
+    <tbody>
+      <tr>
+        <td>Catalog No:</td>
+        <td width="70%">
+          <input type="text" size="10" maxlength="10" name="catalogNo" id="Book__catalogNo"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Title:</td>
+        <td>
+          <input type="text" size="50" maxlength="50" name="title" id="Book__title"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Keywords:</td>
+        <td>
+          <input type="text" size="30" maxlength="30" name="keywords" id="Book__keywords"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Date Added:</td>
+        <td>
+          <input type="text" size="20" name="dateAdded" id="Book__dateAdded" value="DATE:MM/dd/yyyy"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Cost:</td>
+        <td>
+          <input type="text" size="20" name="cost" id="Book__cost"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <select name="locationId" id="Book__locationId">
+            <option selected="selected">Location 0</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Save" name="action" id="saveButton"/></td>
+        <td>
+          <span id="errorMessage">Error message goes here</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<p><a href="MainMenu.sf">Main Menu</a></p>
+</body>
+</html>

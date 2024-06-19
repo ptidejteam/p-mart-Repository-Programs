@@ -1,0 +1,88 @@
+MapperXML
+To Do Items
+
+MapperXML Ideas Under Consideration
+===============================================================
+o   Add master context to ServletApp which it will pass on to ServletForms.
+o   Consider creation of an option list descriptor for use by ComponentFactory
+    to use for binding HTMLSelect components.
+o	New ComponentFactory which will read an XML component manifest
+	for list of components and properties.
+o   Modify ServletFormFactory for cache control of forms (min, max)
+o	Modify ServletFormFactory and add management control to allow
+	flushing/modification at runtime.
+o   Research if the classloader can be set in the init method of
+    ServletApp. Research other alternatives.
+o	XMLComponents which can generate client-side Javascript and can
+	be sensitive to browser types and user preferences.
+
+MapperXML Modifications
+===============================================================
+o	Cleanup imports
+o   Deprecate get/setList and replace with get/setListValueHolder in
+    SelectModel, DefaultSelectModel, SelectField & HTMLSelect
+o	Add Log4J & Java 1.4 LoggerAdapters. default: Log4J, Java, SimpleLogger
+o   Increase diagnostic info for NotInListException
+o   Component factory needs support for more html items like <p>,<b>,etc
+o   Refactor Dispatcher's to use base class methods
+o   Review/refactor renderers to use properties set in AbstractRenderer
+o   All TextFields: if data conversion error occurs, (in DataTypes),
+    need better Exception (maybe ModelParseException?)
+o   Harden code to eliminate/reduce null pointer exceptions when
+    developer does not set all properties or invoke initialize
+    methods properly. Use Debug.WARN messages instead with
+    specific cause/recommendations.
+o   Add behavior to remaining components for recycle - clear/reset
+    values.
+o	Consider adding property 'renderAlways' so that a control can be 
+	set to only render a part of a document once (drop-down, 
+	sale-items, etc).
+o   Modify HTMLCheckbox. Add boolean property - only process input
+    during POST.
+o   Modify HTMLComponentFactory to preset selectedValue and
+    unselectedValue properties from HTML document for HTMLCheckbox
+
+MapperXML New Features
+===============================================================
+o   Create Unit Test for self-test of ServletForms. Develop unit testing
+    methodology and write how-to.
+    
+    Self test goals:
+    	verify id's
+    	document valid
+
+MapperGUI Ideas Under Consideration
+===============================================================
+o	Add components for SWT
+
+MapperGUI Modifications
+===============================================================
+o	Cleanup imports
+o   MTextField: add get/setValue() method
+o	Refactor MTable and MTableColumn for less order specific
+	property setting
+o   Add undo and/or cancel to MapperGUI components
+
+MapperGUI New Features
+===============================================================
+o   New MCheckBox component
+
+Example Items
+===============================================================
+o   Example for Default actions with Triggers and Buttons
+
+Documentation Items
+===============================================================
+o   Complete Developer's Guide for MapperXML
+o   Complete JavaDoc for SelectField/Model changes
+o	Project structure and development strategy and roles.
+
+Fixes TODO
+================================================================
+o   Fix problem in component factory - when it is called more than once
+    with SubFormNewsPage, it wipes out functionality - probably
+    multiple components for same section? Normally, it should only
+    be called once, but it should not cause problems if called
+    more than once.
+o   Problem in HTMLComponentFactory - problem when nesting multiple
+    level templates (ie parent-child-grandchild)

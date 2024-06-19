@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/avalon-framework-cvs-20020806.jar"/>
+	<classpathentry kind="lib" path="lib/batik.jar"/>
+	<classpathentry kind="lib" path="lib/CharacterSheet.jar"/>
+	<classpathentry kind="lib" path="lib/clover.jar"/>
+	<classpathentry kind="lib" path="lib/DiceBag.jar"/>
+	<classpathentry kind="lib" path="lib/djep-2.24.jar"/>
+	<classpathentry kind="lib" path="lib/DoomsdayBook.jar"/>
+	<classpathentry kind="lib" path="lib/emma_ant.jar"/>
+	<classpathentry kind="lib" path="lib/emma.jar"/>
+	<classpathentry kind="lib" path="lib/Encounter.jar"/>
+	<classpathentry kind="lib" path="lib/Experience.jar"/>
+	<classpathentry kind="lib" path="lib/fop.jar"/>
+	<classpathentry kind="lib" path="lib/Initiative.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jep-2.24.jar"/>
+	<classpathentry kind="lib" path="lib/kunststoff.jar"/>
+	<classpathentry kind="lib" path="lib/MRJ141Stubs.jar"/>
+	<classpathentry kind="lib" path="lib/Network.jar"/>
+	<classpathentry kind="lib" path="lib/Notes.jar"/>
+	<classpathentry kind="lib" path="lib/Overland.jar"/>
+	<classpathentry kind="lib" path="lib/pcgen.jar"/>
+	<classpathentry kind="lib" path="lib/PCGTracker.jar"/>
+	<classpathentry kind="lib" path="lib/RngPack-1.1a.jar"/>
+	<classpathentry kind="lib" path="lib/skinlf.jar"/>
+	<classpathentry kind="lib" path="lib/xalan-2.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl-2.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/xmlunit1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

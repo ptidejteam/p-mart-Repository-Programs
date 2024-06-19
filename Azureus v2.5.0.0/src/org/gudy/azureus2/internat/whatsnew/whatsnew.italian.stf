@@ -1,0 +1,119 @@
+$ 
+$    Benvenuti in Azureus 2.5.0.0
+$ 
+
++1. Cosa c'è di nuovo in Azureus 2.5.0.0
+
+!1.1 Send to a friend
+  A wizard to simplify sending a link to content to a friend or to embed in a web page (e.g. a blog).
+
+!1.2 Auto upload speed
+  This feature controls your upload speed based on the latency of your internet connection as gauged by pinging other members of the Distributed Database.
+
+!1.3 Other new features
+  OSX: Open .torrent files into Azureus via Finder/Desktop/etc.
+  'Do not download' files handled more consistently with respect to download completion.
+  Renaming of a download directories.
+  Moving of data files on torrent removal from Azureus.
+  Signed updates and plugins for improved security.
+  Interface improvements - more information: date added, idle times, new info view, file piece view; more per-torrent options.
+  Debug information generator.
+  More in the changelog.
+  
+  Don't forget to check the plugins - http://azureus.sourceforge.net/plugin_list.php
+     New remote control plugin - AzSMRC
+     
+!1.4 Bug fixes and performance improvements
+ Notable fixes:
+    LAN Peer Finder retains peers more effectively; explicit LAN peer identification.
+    Reduced CPU usage when connected to large numbers of peers.
+    
+    Full ChangeLog http://azureus.sourceforge.net/changelog.php?version=2.5.0.0
+    
++2. Cosa c'è di nuovo in Azureus 2.4.0.0
+
+!2.1 Encrypted/Obfuscated Data Transfer
+ Support for encrypting the data between Azureus and other compatible clients is included. This both provides a level of protection of data and can help with ISPs that block or restrict peer-to-peer traffic.
+  
+!2.2 High Speed LAN Transfers
+ Multiple copies of Azureus running on the same local network support high speed direct connections.
+
+!2.3 Improved Download Algorithm
+ The algorithm used to determine which pieces of a download to request from which peers has been rewritten to improve its behaviour and performance.
+
+!2.4 Webseed Support
+ Basic webseed support is included. Webseeds will only be used when a download's availability is less than 1.0.
+
+!2.5 Other
+
+ Various user interface improvements.
+ Performance improvements.
+ Bug fixes.
+ 
+    Nota: il nuovo file eseguibile .exe per Windows potrebbe richiedere l'accesso ad Internet per il file "Azureus.exe" nel tuo firewall.
+    
+    Il changeLog completo all'indirizzo http://azureus.sourceforge.net/changelog.php?version=2.4.0.0
+
+    Collegati all'indirizzo http://azureus.sourceforge.net/changelog.php?version=2.3.0.6, 2.3.0.4, 2.3.0.2 per i cambiamenti precedenti.
+    
++3. Cosa c'è di nuovo in Azureus 2.3.0.0
+
+!3.1 Database Distribuiti 
+ Ora Azureus ha un database distribuito, decentralizzato che può essere usato per tracciare torrent decentralizzati. This permette sia i torrent "senza tracker" che il mantenimento degli swarms quando il tracker si rende non disponibile o quando il torrent è rimosso dal tracker stesso.
+ Esso usa il protocollo UDP, se hai un firewall/router, sarà necessario che tu apra/inoltri la porta UDP nello stesso modo fatto per il TCP per scaricare.
+ 
+*3.1.1 Magnet Links
+ Per i torrent che hanno un tracker decentralizzato, Azureus può esportare un "Magnet Link". Questo è nella forma "magnet:?xt=urn:btih:..." e può essere usato per scaricare il torrent dal database distribuito attraverso il menu "apri->url".
+ http://azureus.aelitis.com/wiki/index.php/Magnet_link
+ 
+!3.2 Protocollo migliorato
+ Azureus ora supporta un protocollo migliorato di scambio messaggi nel client, concepito per consentire ai plugin di usare la connessione creata da Azureus per aggiungere funzionalità al programma. Gli sviluppatori di altri client possono vedere le specifiche per questo protocollo all'indirizzo http://azureus.aelitis.com/wiki/index.php/AzureusMessagingProtocol . Gli sviluppatori di plugin possono controllare i javadocs del plugin per vedere come usarlo.
+ Per esempio, i plugin JPC and Chat fanno uso di questa estensione.
+
+!3.3 JPC
+ Joltid Peer Cache (JPC) è ora integrata in Azureus. Per gli utenti dei il cui ISP lo supporta, JPC potrebbe consentire download più veloci, aiutando nel contempo l'ISP a ridurre i costi per la larghezza di banda usata. Il plugin JPC non mostra al tuo ISP cosa stai scaricando, e l'ISP non può utilizzarlo per spiarti. Il plugin JPC può essere disabilitato dal menu Strumenti > Opzioni > Plugins > JPC.
+  
+!3.4 Plugin Implementati
+ Il Database Distribuito e il Protocollo migliorato ci consente di sviluppare alcuni nuovi plugin. Non vogliamo installarli automaticamente per te, ma raccomandiamo tutti gli utenti che potrebbero essere interessati di installarli usando il menu Plugins > Installation Wizard.
+ 
+*3.4.1 Chat
+ Questo plugin creerà un canale di discussione per ogni torrent che stai scaricando. Ogni canale è indipendente, e sarai libero di discutere di ciò che vorrai all'interno del canale. Questo plugin utilizza il protocollo migliorato. Gli sviluppatori di altri clients che vogliono implementare questa funzionalità nei loro client possono collegarsi al sito: http://azureus.aelitis.com/wiki/index.php/ChatPlugin per dare un'occhiata all'algoritmo utilizzato
+ Puoi inoltre creare/partecipare ad un canale arbitrario scrivendo il suo nome all'interno del plugin. Questo avrà l'effetto di creare un torrent "virtuale", con nessun seed, in modo da consentire agli utenti di creare una connessione per chattare. I torrent "virtuali" utilizzeranno il Database Distribuitocome loro tracker. In questo modo, mentre puoi usare il plugin Chat senza il Database distribuito, non potrai invece usare i canali visrtuali senza Database Distribuito.
+ 
+*3.4.2 Ratings & Commenti
+ Questo plugin consentirà sia di vedere i ratings & commenti degli altri utenti, che di valutare e commentare un torrent (click con il tasto destro sul torrent in "Miei Torrents" scegli "ratings & comments". Questo plugin usa il database Distribuito, quindi c'è bisogno che questo sia attivo perchè funzioni.
+ 
+
++4. Notifiche Upgrade
+
+!4.1 Java 5.0
+ Azureus è scritto in Java e richiede il Java runtime. Raccomandiamo Java 5.0 (anche conosciuto come 1.5) perchè ha migliori performance e affidabilità - aggiornalo se necessario.
+ Troverai torrent per aggiornare Java qui: http://azureus.sourceforge.net/download.php
+ Scarica quello per il tuo sistema, chiudi Azureus, lancia il file scaricato, quindi ricarica Azureus.
+ Gli utenti WinXP dovrano andare in Strumenti > Configurazione > Interfaccia > Visualizza, e riattivare l'opzione "Attiva stile XP".
+ 
+!4.2 NOD32
+ NOD32 (http://www.nod32.com/) è un antivirus che è risaputo avere problemi con Azureus, causando un utilizzo del 100% della CPU.
+ Guarda http://azureus.aelitis.com/wiki/index.php/LikelyNetworkDisconnectReconnect
+ 
+
++5. Problemi comuni
+
+!5.1 "errore" NAT
+ NAT significa "Network Address Translation". Il test NAT in Azureus ti dice se è possibile o meno per altre persone su Internet connettersi a te. Otterrai migliori velocità se risulti tale.
+ Per favore non contattateci per problemi NAT, poichè ci sono molte risorse disponibili su Internet. Controlla prima:
+ - http://azureus.aelitis.com/wiki/index.php/PortForwarding
+ - http://www.portforward.com
+ 
+
+!5.2 Crash di Azureus
+ Se Azureus si blocca, la ragione più comune è un problema con uno dei componenti della tua rete (card, drivers, SO). Raccomandiamo caldamente di aggiornare tutti i componenti legati alla rete. Se questo non aiuta, allora la ragione probabilmente è che il tuo sistema non può reggere così connessioni con così tanti peer.
+ Abbassa il numero di connessioni in Azureus (Strumenti > Opzioni > Trasferimenti > Maximum numero di connessioni per torrent / globali), prova un valore basso come 30 all'inizio.
+
+!5.3 Supporto
+ Prima di contattare il gruppo di supporto, controlla l'aiuto online agli indirizzi:
+ - Sito ufficiale: http://azureus.sourceforge.net/
+ - Wiki ufficiale: http://azureus.aelitis.com/wiki/
+ - Canale IRC ufficiale: #azureus-users on irc.freenode.net
+ - Forum SF ufficiale: http://sourceforge.net/forum/?group_id=84122
+ - SE (e solo SE) non puoi risolvere il tuo problema dopo aver provato TUTTI questi metodi, puoi contattarci all'indirizzo azureus@gmail.com

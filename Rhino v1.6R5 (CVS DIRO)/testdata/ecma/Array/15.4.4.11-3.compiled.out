@@ -1,0 +1,61 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.4.11-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.4.11-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.4.4.5-3 Array.prototype.sort(comparefn)
+testarr1[0] = Mon Dec 30 1269 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[1] = Sun Feb 01 1750 16:36:54 GMT-0500 (EST) PASSED!
+testarr1[2] = Mon Dec 31 1759 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[3] = Thu Dec 31 1829 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[4] = Sun Jan 01 1899 00:00:00 GMT-0500 (EST) PASSED!
+testarr1[5] = Sun Dec 31 1899 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[6] = Wed Dec 31 1969 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[7] = Fri Dec 31 1999 00:00:00 GMT-0500 (EST) PASSED!
+testarr1[8] = Fri Dec 31 1999 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[9] = Sat Jan 01 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr1[10] = Tue Feb 29 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr1[11] = Sun Dec 30 2029 19:00:00 GMT-0500 (EST) PASSED!
+testarr1[12] = Sun Mar 30 2064 05:20:12 GMT-0500 (EST) PASSED!
+testarr1[13] = Tue Dec 28 2269 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[0] = Mon Dec 30 1269 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[1] = Sun Feb 01 1750 16:36:54 GMT-0500 (EST) PASSED!
+testarr2[2] = Mon Dec 31 1759 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[3] = Thu Dec 31 1829 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[4] = Sun Jan 01 1899 00:00:00 GMT-0500 (EST) PASSED!
+testarr2[5] = Sun Dec 31 1899 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[6] = Wed Dec 31 1969 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[7] = Fri Dec 31 1999 00:00:00 GMT-0500 (EST) PASSED!
+testarr2[8] = Fri Dec 31 1999 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[9] = Sat Jan 01 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr2[10] = Tue Feb 29 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr2[11] = Sun Dec 30 2029 19:00:00 GMT-0500 (EST) PASSED!
+testarr2[12] = Sun Mar 30 2064 05:20:12 GMT-0500 (EST) PASSED!
+testarr2[13] = Tue Dec 28 2269 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[0] = Mon Dec 30 1269 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[1] = Sun Feb 01 1750 16:36:54 GMT-0500 (EST) PASSED!
+testarr3[2] = Mon Dec 31 1759 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[3] = Thu Dec 31 1829 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[4] = Sun Jan 01 1899 00:00:00 GMT-0500 (EST) PASSED!
+testarr3[5] = Sun Dec 31 1899 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[6] = Wed Dec 31 1969 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[7] = Fri Dec 31 1999 00:00:00 GMT-0500 (EST) PASSED!
+testarr3[8] = Fri Dec 31 1999 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[9] = Sat Jan 01 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr3[10] = Tue Feb 29 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr3[11] = Sun Dec 30 2029 19:00:00 GMT-0500 (EST) PASSED!
+testarr3[12] = Sun Mar 30 2064 05:20:12 GMT-0500 (EST) PASSED!
+testarr3[13] = Tue Dec 28 2269 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[0] = Fri Dec 31 1999 00:00:00 GMT-0500 (EST) PASSED!
+testarr4[1] = Fri Dec 31 1999 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[2] = Mon Dec 30 1269 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[3] = Mon Dec 31 1759 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[4] = Sat Jan 01 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr4[5] = Sun Dec 30 2029 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[6] = Sun Dec 31 1899 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[7] = Sun Feb 01 1750 16:36:54 GMT-0500 (EST) PASSED!
+testarr4[8] = Sun Jan 01 1899 00:00:00 GMT-0500 (EST) PASSED!
+testarr4[9] = Sun Mar 30 2064 05:20:12 GMT-0500 (EST) PASSED!
+testarr4[10] = Thu Dec 31 1829 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[11] = Tue Dec 28 2269 19:00:00 GMT-0500 (EST) PASSED!
+testarr4[12] = Tue Feb 29 2000 00:00:00 GMT-0500 (EST) PASSED!
+testarr4[13] = Wed Dec 31 1969 19:00:00 GMT-0500 (EST) PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.4.11-3.compiled.arff] ...

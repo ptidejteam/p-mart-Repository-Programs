@@ -1,0 +1,391 @@
+<project name="Pooka" default="usage" basedir=".">
+	<property name="builddir" value="Build" />
+	<property name="classes_dir" value="${builddir}/classes" />
+	<property name="webstart_build" value="${builddir}/webstart" />
+	<property name="webstart_source" value="webstart" />
+	<property name="sourcedir" value="src" />
+	<property name="imagesdir" value="${builddir}/images" />
+	<property name="helpdir" value="${builddir}/help" />
+	<property name="distdir" value="Dist" />
+	<property name="docdir" value="Docs" />
+	<property name="importdir" value="Imported" />
+	<property name="iconsdir" value="org" />
+
+	<property file="override.properties" />
+	<property file="build.properties" />
+
+	<!-- Define classpath for building.  Note this isn't used for running  -->
+	<!-- Pooka.  So dynamicaly loaded classes aren't listed here. -->
+	<path id="pooka.compile.path">
+		<fileset dir="${importdir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<property name="pooka.compile.path" refid="pooka.compile.path" />
+
+	<!-- libaries that will get included in the distribution -->
+	<property name="kunststoff_lib" value="${importdir}/kunststoff.jar" />
+	<property name="localproviders_lib" value="${importdir}/localproviders.jar" />
+	<property name="mail_dist_lib" value="${importdir}/mail.jar" />
+	<property name="javahelp_dist_lib" value="${importdir}/jh.jar" />
+	<property name="icons_dist_lib" value="${importdir}/linspire_clear.jar" />
+	<property name="crypto_lib" value="${importdir}/javamail-crypto.jar" />
+	<!--property name="crypto_combined_lib" value="${importdir}/cryptoproviders.jar"/>
+  <property name="cryptix_message_api_lib" value="${importdir}/cryptix-message-api.jar"/>
+  <property name="cryptix_pki_api_lib" value="${importdir}/cryptix-pki-api.jar"/-->
+	<property name="htmlparser_lib" value="${importdir}/htmlparser.jar" />
+	<property name="tablelayout_lib" value="${importdir}/TableLayout.jar" />
+
+	<target name="usage">
+		<echo message="Supported targets are:" />
+		<echo message="" />
+		<echo message="  clean      - remove any generated files" />
+		<echo message="  compile    - compile the sources" />
+		<echo message="  docs       - generate the javadoc" />
+		<echo message="  dist       - basic distribution" />
+		<echo message="  dist-full  - full distribution, includes everything but crypto libraries" />
+		<echo message="  all        - full distribution, docs and source code" />
+		<echo message="  dist-crypto- full distribution, includes everything" />
+	</target>
+
+	<!-- initialization/cleaning tasks. -->
+	<target name="clean">
+		<delete dir="${distdir}" />
+		<delete dir="${builddir}" />
+		<delete dir="${docdir}" />
+	</target>
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${builddir}" />
+		<mkdir dir="${classes_dir}" />
+		<mkdir dir="${distdir}" />
+		<mkdir dir="${docdir}" />
+	</target>
+
+	<target name="clean-images">
+		<delete dir="${imagesdir}" />
+	</target>
+
+	<target name="init-images">
+		<mkdir dir="${imagesdir}" />
+	</target>
+
+	<target name="clean-help">
+		<delete dir="${helpdir}" />
+	</target>
+
+	<target name="init-help">
+		<mkdir dir="${helpdir}" />
+	</target>
+
+	<!-- javadocs -->
+	<target name="docs" depends="init">
+		<javadoc sourcepath="${sourcedir}" destdir="${docdir}" windowtitle="Pooka Documentation" classpath="${pooka.compile.path}" packagenames="net.suberic.*" />
+	</target>
+
+	<!-- adds the current version tag to the About.html file.  -->
+	<target name="version-tag" depends="compile">
+		<copy file="${sourcedir}/net/suberic/pooka/doc/en/About.html" todir="${classes_dir}/net/suberic/pooka/doc/en/" />
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<replace file="${classes_dir}/net/suberic/pooka/doc/en/About.html" token="VERSION_ID" value="version 2.0 snapshot build ${today}" />
+	</target>
+
+
+	<!-- compile tasks.  -->
+	<target name="compile" depends="init">
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<javac srcdir="${sourcedir}" destdir="${classes_dir}" classpath="${pooka.compile.path}" debug="true" deprecation="on" />
+		<copy todir="${classes_dir}/net/suberic/pooka">
+			<fileset dir="${sourcedir}/net/suberic/pooka">
+				<include name="Pookarc" />
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/pooka/conf">
+			<fileset dir="${sourcedir}/net/suberic/pooka/conf">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/pooka/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/pooka/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/util/gui/propedit/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/propedit/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/util/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/org/javalobby/icons/20x20png">
+			<fileset dir="${iconsdir}/javalobby/icons/20x20png">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy file="${sourcedir}/net/suberic/pooka/COPYING" todir="${classes_dir}/net/suberic/pooka/" />
+		<copy todir="${classes_dir}/net/suberic/pooka/doc">
+			<fileset dir="${sourcedir}/net/suberic/pooka/doc" />
+		</copy>
+		<replace file="${classes_dir}/net/suberic/pooka/doc/en/About.html" token="VERSION_ID" value="version 2.0 snapshot build ${today}" />
+	</target>
+
+	<target name="compile-dep" depends="init">
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<javac srcdir="${sourcedir}" destdir="${classes_dir}" classpath="${pooka.compile.path}" debug="true" deprecation="on" />
+		<copy todir="${classes_dir}/net/suberic/pooka">
+			<fileset dir="${sourcedir}/net/suberic/pooka">
+				<include name="Pookarc" />
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/pooka/conf">
+			<fileset dir="${sourcedir}/net/suberic/pooka/conf">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/pooka/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/pooka/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/util/gui/propedit/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/propedit/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/util/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/org/javalobby/icons/20x20png">
+			<fileset dir="${iconsdir}/javalobby/icons/20x20png">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy file="${sourcedir}/net/suberic/pooka/COPYING" todir="${classes_dir}/net/suberic/pooka/" />
+		<copy todir="${classes_dir}/net/suberic/pooka/doc">
+			<fileset dir="${sourcedir}/net/suberic/pooka/doc" />
+		</copy>
+		<replace file="${classes_dir}/net/suberic/pooka/doc/en/About.html" token="VERSION_ID" value="version 2.0 snapshot build ${today}" />
+	</target>
+
+	<!-- basic dist file -->
+
+	<target name="dist" depends="version-tag">
+		<jar jarfile="${distdir}/pooka.jar" basedir="${classes_dir}" manifest="${importdir}/pooka.manifest" />
+		<copy todir="${distdir}">
+			<fileset dir="${importdir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- full distribution file.  includes everything but crypto libraries. -->
+	<target name="dist-full" depends="version-tag">
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<jar jarfile="${distdir}/pooka_${today}.jar" basedir="${classes_dir}" manifest="${importdir}/pooka_full.manifest">
+			<zipfileset src="${javahelp_dist_lib}" excludes="META-INF/SUN_MICR.*" />
+			<zipfileset src="${mail_dist_lib}" excludes="META-INF/SUN_MICR.*" />
+			<zipfileset src="${localproviders_lib}" />
+			<zipfileset src="${kunststoff_lib}" />
+			<zipfileset src="${crypto_lib}" />
+			<zipfileset src="${icons_dist_lib}" />
+			<zipfileset src="${htmlparser_lib}" />
+			<zipfileset src="${tablelayout_lib}" />
+		</jar>
+		<!--signjar jar="${distdir}/pooka_${today}.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}"  keystore="${pooka.keystore.file}"/-->
+	</target>
+
+	<!-- builds basic distribution files -->
+	<target name="all" depends="compile,dist-full,docs">
+		<jar jarfile="${distdir}/pooka_javadoc_${today}.jar" basedir="${docdir}" />
+		<jar jarfile="${distdir}/pooka_src_${today}.jar" basedir="${sourcedir}" includes="net/**" />
+	</target>
+
+	<!-- distribution with crypto files.  -->
+	<target name="dist-crypto" depends="version-tag">
+		<mkdir dir="${distdir}/cryptodist" />
+		<mkdir dir="${distdir}/cryptodist/pooka" />
+		<mkdir dir="${distdir}/cryptodist/pooka/lib" />
+
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<jar jarfile="${distdir}/cryptodist/pooka/pooka.jar" basedir="${classes_dir}" manifest="${importdir}/pooka_crypto.manifest">
+			<zipfileset src="${javahelp_dist_lib}" excludes="META-INF/SUN_MICR.*" />
+			<zipfileset src="${mail_dist_lib}" excludes="META-INF/SUN_MICR.*" />
+			<zipfileset src="${htmlparser_lib}" />
+			<zipfileset src="${localproviders_lib}" />
+			<zipfileset src="${kunststoff_lib}" />
+			<zipfileset src="${crypto_lib}" />
+			<zipfileset src="${icons_dist_lib}" />
+			<zipfileset src="${htmlparser_lib}" />
+			<zipfileset src="${tablelayout_lib}" />
+		</jar>
+		<!--signjar jar="${distdir}/cryptodist/pooka/pooka.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}"  keystore="${pooka.keystore.file}"/-->
+
+		<copy todir="${distdir}/cryptodist/pooka/lib">
+			<fileset dir="${importdir}">
+				<include name="bcmail.jar" />
+				<include name="bcprov.jar" />
+				<include name="bcpg.jar" />
+				<include name="javamail-crypto-bouncycastle-smime.jar" />
+				<include name="javamail-crypto-bouncycastle-openpgp.jar" />
+			</fileset>
+		</copy>
+
+		<zip zipfile="${distdir}/pooka_crypto_${today}.zip" basedir="${distdir}/cryptodist" />
+
+	</target>
+
+	<!-- Webstart distributions -->
+	<target name="dist-jnlp-noFile" depends="compile-jnlp">
+		<copy file="${sourcedir}/net/suberic/pooka/Pookarc.noFile" tofile="${classes_dir}/net/suberic/pooka/Pookarc" overwrite="yes" />
+		<jar jarfile="${distdir}/pooka_noFile.jar" basedir="${classes_dir}" manifest="${importdir}/pooka.manifest">
+		</jar>
+	</target>
+
+	<target name="dist-jnlp" depends="compile-jnlp">
+		<jar jarfile="${distdir}/pooka.jar" basedir="${classes_dir}" manifest="${importdir}/pooka.manifest">
+		</jar>
+	</target>
+
+	<target name="compile-jnlp" depends="clean,init">
+		<javac srcdir="${sourcedir}" destdir="${classes_dir}" classpath="${pooka.compile.path}" debug="true" />
+		<copy todir="${classes_dir}/net/suberic/pooka">
+			<fileset dir="${sourcedir}/net/suberic/pooka">
+				<include name="Pookarc" />
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${classes_dir}/net/suberic/pooka/conf">
+			<fileset dir="${sourcedir}/net/suberic/pooka/conf">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy file="${sourcedir}/net/suberic/pooka/COPYING" todir="${classes_dir}/net/suberic/pooka/" />
+		<copy file="${sourcedir}/net/suberic/pooka/doc/en/About.html" todir="${classes_dir}/net/suberic/pooka/doc/en/" />
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<replace file="${classes_dir}/net/suberic/pooka/doc/en/About.html" token="VERSION_ID" value="version 2.0 snapshot build ${today}" />
+	</target>
+
+	<target name="images-jnlp" depends="clean-images,init-images">
+		<copy todir="${imagesdir}/net/suberic/pooka/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/pooka/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${imagesdir}/net/suberic/util/gui/propedit/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/propedit/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${imagesdir}/net/suberic/util/gui/images">
+			<fileset dir="${sourcedir}/net/suberic/util/gui/images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${imagesdir}/org/javalobby/icons/20x20png">
+			<fileset dir="${iconsdir}/javalobby/icons/20x20png">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<jar jarfile="${distdir}/pooka_images.jar" basedir="${imagesdir}" />
+
+	</target>
+
+	<target name="help-jnlp" depends="clean-help,init-help">
+		<copy todir="${helpdir}/net/suberic/pooka/doc">
+			<fileset dir="${sourcedir}/net/suberic/pooka/doc" excludes="${sourcedir}/net/suberic/pooka/doc/en/About.html" />
+		</copy>
+		<tstamp>
+			<format property="today" pattern="yyMMdd" locale="en" />
+		</tstamp>
+		<jar jarfile="${distdir}/pooka_help.jar" basedir="${helpdir}" />
+	</target>
+
+	<target name="jnlp" depends="dist-jnlp,images-jnlp,help-jnlp" />
+
+	<target name="sign" depends="jnlp">
+		<signjar jar="${distdir}/pooka.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${distdir}/pooka_help.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${distdir}/pooka_images.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+	</target>
+
+
+	<property name="webstart_url" value="${pooka.webstart.url}" />
+
+	<target name="jnlp-deploy" depends="sign">
+		<mkdir dir="${webstart_build}" />
+		<!-- copy jar files in jars directory -->
+		<mkdir dir="${webstart_build}/jars" />
+		<copy todir="${webstart_build}/jars">
+			<fileset dir="${distdir}">
+				<include name="pooka.jar" />
+				<include name="pooka_help.jar" />
+				<include name="pooka_images.jar" />
+			</fileset>
+		</copy>
+
+		<!-- copy jar files in libs directory -->
+		<mkdir dir="${webstart_build}/lib" />
+		<copy todir="${webstart_build}/lib">
+			<fileset dir="${importdir}">
+				<include name="bcmail.jar" />
+				<include name="bcprov.jar" />
+				<include name="bcpg.jar" />
+				<!--include name="cryptix*.jar"/-->
+				<include name="htmlparser.jar" />
+				<include name="javamail-crypto*.jar" />
+				<include name="javamaildir.jar" />
+				<include name="jh.jar" />
+				<include name="kunststoff.jar" />
+				<include name="linspire_clear.jar" />
+				<include name="mail.jar" />
+				<include name="mbox.jar" />
+			</fileset>
+		</copy>
+
+		<!-- sign jar files that need signing. -->
+		<signjar jar="${webstart_build}/lib/linspire_clear.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/mbox.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/htmlparser.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/javamaildir.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/kunststoff.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/javamail-crypto.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/javamail-crypto-bouncycastle-openpgp.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+		<signjar jar="${webstart_build}/lib/javamail-crypto-bouncycastle-smime.jar" alias="${pooka.keystore.alias}" storepass="${pooka.keystore.password}" keystore="${pooka.keystore.file}" />
+
+		<!-- copy over main jnlp file -->
+		<copy file="${webstart_source}/pooka.jnlp" todir="${webstart_build}" />
+
+		<replace file="${webstart_build}/pooka.jnlp" token="${BASE_URL}" value="${webstart_url}" />
+		<!-- copy over library jnlp files -->
+		<copy todir="${webstart_build}/lib">
+			<fileset dir="${webstart_source}/lib">
+				<include name="*.jnlp" />
+			</fileset>
+		</copy>
+
+		<replace file="${webstart_build}/lib/bouncy.jnlp" token="${BASE_URL}" value="${webstart_url}" />
+		<replace file="${webstart_build}/lib/jaf.jnlp" token="${BASE_URL}" value="${webstart_url}" />
+		<replace file="${webstart_build}/lib/javahelp.jnlp" token="${BASE_URL}" value="${webstart_url}" />
+		<replace file="${webstart_build}/lib/javamail.jnlp" token="${BASE_URL}" value="${webstart_url}" />
+	</target>
+</project>

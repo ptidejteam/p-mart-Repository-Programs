@@ -1,0 +1,3 @@
+Open c:\DOCUME~1\yegor\LOCALS~1\Temp\poifiles\bug27272_12143251933.xls in Excel
+Open c:\DOCUME~1\yegor\LOCALS~1\Temp\poifiles\bug27272_2-1777741361.xls in Excel
+

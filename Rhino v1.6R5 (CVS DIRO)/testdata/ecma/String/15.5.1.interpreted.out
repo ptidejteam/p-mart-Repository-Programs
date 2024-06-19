@@ -1,0 +1,54 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.1 The String Constructor Called as a Function
+String('string primitive') = string primitive PASSED!
+String(void 0) = undefined PASSED!
+String(null) = null PASSED!
+String(true) = true PASSED!
+String(false) = false PASSED!
+String(Boolean(true)) = true PASSED!
+String(Boolean(false)) = false PASSED!
+String(Boolean()) = false PASSED!
+String(new Array()) =  PASSED!
+String(new Array(1,2,3)) = 1,2,3 PASSED!
+String( Number.NaN ) = NaN PASSED!
+String( 0 ) = 0 PASSED!
+String( -0 ) = 0 PASSED!
+String( Number.POSITIVE_INFINITY ) = Infinity PASSED!
+String( Number.NEGATIVE_INFINITY ) = -Infinity PASSED!
+String( -1 ) = -1 PASSED!
+String( 1 ) = 1 PASSED!
+String( 10 ) = 10 PASSED!
+String( 100 ) = 100 PASSED!
+String( 1000 ) = 1000 PASSED!
+String( 10000 ) = 10000 PASSED!
+String( 10000000000 ) = 10000000000 PASSED!
+String( 10000000000000000000 ) = 10000000000000000000 PASSED!
+String( 100000000000000000000 ) = 100000000000000000000 PASSED!
+String( 12345 ) = 12345 PASSED!
+String( 1234567890 ) = 1234567890 PASSED!
+String( -1 ) = -1 PASSED!
+String( -10 ) = -10 PASSED!
+String( -100 ) = -100 PASSED!
+String( -1000 ) = -1000 PASSED!
+String( -1000000000 ) = -1000000000 PASSED!
+String( -1000000000000000 ) = -1000000000000000 PASSED!
+String( -100000000000000000000 ) = -100000000000000000000 PASSED!
+String( -1000000000000000000000 ) = -1e+21 PASSED!
+String( -12345 ) = -12345 PASSED!
+String( -1234567890 ) = -1234567890 PASSED!
+String( 1.0000001 ) = 1.0000001 PASSED!
+String( 1000000000000000000000 ) = 1e+21 PASSED!
+String( 10000000000000000000000 ) = 1e+22 PASSED!
+String( 1.2345 ) = 1.2345 PASSED!
+String( 1.234567890 ) = 1.23456789 PASSED!
+String( .12345 ) = 0.12345 PASSED!
+String( .012345 ) = 0.012345 PASSED!
+String( .0012345 ) = 0.0012345 PASSED!
+String( .00012345 ) = 0.00012345 PASSED!
+String( .000012345 ) = 0.000012345 PASSED!
+String( .0000012345 ) = 0.0000012345 PASSED!
+String( .00000012345 ) = 1.2345e-7 PASSED!
+String() =  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.1.interpreted.arff] ...

@@ -1,0 +1,55 @@
+MapperXML
+Version 1.9.6 (FUTURE - NOT YET RELEASED)
+Release Notes:
+
+To Do
+===============================================================
+o   Modify ServletFormFactory for cache control (min, max)
+o   See if the classloader can be set in the init method of
+    ServletApp.
+o   Pass context to ServletForm
+o   Create SubDoc component
+o   Finish Component Factory
+o   Add autocreate method to use component factory
+o   Modify XMLWriter to write empty tags with "/" at end of
+    first tag.
+o   Modify or subclass XMLWriter to better support HTML.
+o   Example for Default actions with Triggers and Buttons
+
+Fixes TODO
+================================================================
+o   Sometimes, HttpMultiPartServletRequest appears to append a
+    carridge return onto end of binary file (015 octal). Not sure
+    if this is a parsing problem or a browser problem.
+
+Quick Highlights
+================================================================
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+
+Other Changes:
+================================================================
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none

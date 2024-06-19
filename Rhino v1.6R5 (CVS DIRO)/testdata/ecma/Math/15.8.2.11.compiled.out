@@ -1,0 +1,33 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.11.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.11.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 76439
+15.8.2.11 Math.max(x, y)
+Math.max.length = 2 PASSED!
+Math.max() = -Infinity PASSED!
+Math.max(void 0, 1) = NaN PASSED!
+Math.max(void 0, void 0) = NaN PASSED!
+Math.max(null, 1) = 1 PASSED!
+Math.max(-1, null) = 0 PASSED!
+Math.max(true, false) = 1 PASSED!
+Math.max('-99','99') = 99 PASSED!
+Math.max(NaN, Infinity) = NaN PASSED!
+Math.max(NaN, 0) = NaN PASSED!
+Math.max('a string', 0) = NaN PASSED!
+Math.max(NaN, 1) = NaN PASSED!
+Math.max('a string',Infinity) = NaN PASSED!
+Math.max(Infinity, NaN) = NaN PASSED!
+Math.max(NaN, NaN) = NaN PASSED!
+Math.max(0,NaN) = NaN PASSED!
+Math.max(1, NaN) = NaN PASSED!
+Math.max(0,0) = 0 PASSED!
+Math.max(0,-0) = 0 PASSED!
+Math.max(-0,0) = 0 PASSED!
+Math.max(-0,-0) = 0 PASSED!
+Infinity/Math.max(-0,-0) = -Infinity PASSED!
+Math.max(Infinity, Number.MAX_VALUE) = Infinity PASSED!
+Math.max(Infinity, Infinity) = Infinity PASSED!
+Math.max(-Infinity,-Infinity) = -Infinity PASSED!
+Math.max(1,.99999999999999) = 1 PASSED!
+Math.max(-1,-.99999999999999) = -0.99999999999999 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.11.compiled.arff] ...

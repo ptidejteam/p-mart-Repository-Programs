@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.pde"
+      label="%featureName"
+      version="2.1.0"
+      image="eclipse_update_120.jpg"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <license url="%licenseURL">
+     %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.jdt" version="2.1.0" match="compatible"/>
+      <import plugin="org.eclipse.platform" version="2.1.0" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.pde"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.build"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.core"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.runtime"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.ui"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.doc.user"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+   <plugin
+         id="org.eclipse.pde.source"
+         download-size="0"
+         install-size="0"
+         version="2.1.0">
+   </plugin>
+
+</feature>

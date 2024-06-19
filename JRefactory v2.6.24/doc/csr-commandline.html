@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Refactory - Command Line Interface</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csr-output.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory - Command Line Interface
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-elixir.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H4>Command Line</H4>
+
+			<P>The refactoring tool can be run from the command
+			line.  Here is the syntax to launch it.</P>
+
+			<P>
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE><TT>java Refactory &lt;dir&gt;</TT></PRE>
+					</TD>
+					<TD>The program will search &lt;dir&gt; and all children for .java files. When it finds them, it creates a frame for
+						each package. The frames display UML notation for the classes in the package.</TD>
+				</TR>
+			</TABLE>
+</P>
+			<P>In addition to the main program, you can perform
+			a pair of type level refactorings individually.</P>
+
+			<P>
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD><TT>java Repackage<BR>
+						[-dir &lt;dir&gt;]<BR>
+						[-help] <BR>
+						[-package &lt;packagename&gt; | -nopackage]<BR>
+						(&lt;file.java&gt;)*</TT></TD>
+
+					<TD>In the directory specified by &lt;dir&gt; it
+					    will load all files specified by &lt;file.java&gt;
+					    and move them to the package. The package must be
+					    fully qualified if the -package flag is used.
+					    -nopackage moves the file to the top level.
+					</TD>
+				</TR>
+				<TR>
+					<TD><TT>java MoveClass<BR>
+						[-dir &lt;dir&gt;]<BR>
+						[-help] <BR>
+						-from &lt;oldClassName&gt; <BR>
+						-to &lt;newClassName&gt;</TT></TD>
+
+					<TD>In the directory specified by &lt;dir&gt; it looks
+					   for a file that is named oldClassName.java.  Then
+					   it changes the name of the type oldClassName to
+					   newClassName and propagates the changes through
+					   the other types loaded.
+					</TD>
+				</TR>
+			</TABLE>
+
+<BR>
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csr-output.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: June 6, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-elixir.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.8-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.8-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.9.5.3-2 Date.prototype.valueOf
+(new Date(1184088664265).valueOf() = 1184088664265 PASSED!
+(new Date(1184088664266).valueOf() = 1184088664266 PASSED!
+(new Date(1184088664264).valueOf() = 1184088664264 PASSED!
+(new Date(1184106664265).valueOf() = 1184106664265 PASSED!
+(new Date(1184070664265).valueOf() = 1184070664265 PASSED!
+(new Date(0).valueOf() = 0 PASSED!
+(new Date(1).valueOf() = 1 PASSED!
+(new Date(-1).valueOf() = -1 PASSED!
+(new Date(18000000).valueOf() = 18000000 PASSED!
+(new Date(-18000000).valueOf() = -18000000 PASSED!
+(new Date(-2208988800000).valueOf() = -2208988800000 PASSED!
+(new Date(-2208988799999).valueOf() = -2208988799999 PASSED!
+(new Date(-2208988800001).valueOf() = -2208988800001 PASSED!
+(new Date(-2208970800000).valueOf() = -2208970800000 PASSED!
+(new Date(-2209006800000).valueOf() = -2209006800000 PASSED!
+(new Date(946684800000).valueOf() = 946684800000 PASSED!
+(new Date(946684800001).valueOf() = 946684800001 PASSED!
+(new Date(946684799999).valueOf() = 946684799999 PASSED!
+(new Date(946702800000).valueOf() = 946702800000 PASSED!
+(new Date(946666800000).valueOf() = 946666800000 PASSED!
+(new Date(951782400000).valueOf() = 951782400000 PASSED!
+(new Date(951782400001).valueOf() = 951782400001 PASSED!
+(new Date(951782399999).valueOf() = 951782399999 PASSED!
+(new Date(951800400000).valueOf() = 951800400000 PASSED!
+(new Date(951764400000).valueOf() = 951764400000 PASSED!
+(new Date(1104537600000).valueOf() = 1104537600000 PASSED!
+(new Date(1104537600001).valueOf() = 1104537600001 PASSED!
+(new Date(1104537599999).valueOf() = 1104537599999 PASSED!
+(new Date(1104555600000).valueOf() = 1104555600000 PASSED!
+(new Date(1104519600000).valueOf() = 1104519600000 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.8-2.compiled.arff] ...

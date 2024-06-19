@@ -1,0 +1,64 @@
+<html><head><title>
+${xgump.project.name} : IndexRecord</title></head><body bgcolor="#ffffff" text="#000000" vlink="#330000" alink="#330044" link="#0000aa">
+<h2 class="thisclassname">IndexRecord</h2>
+<table width=100% cellspacing=0 cellpadding=0>
+<tr><td width=32% valign=top>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#ff4b42><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.hssf.record. <a href=../../../../../org/apache/poi/hssf/record/uml-Record.html>Record</a>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#sid>sid</a> :short<br>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record()>Record</a>()<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record(short,short,short)>Record</a>(short id, short size, byte[] data)<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record(short,short,byte[],short)>Record</a>(short id, short size, byte[] data, int offset)<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#validateSid(short)>validateSid</a>(short id) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#fillFields(byte[],byte[])>fillFields</a>(byte[] data, short size) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#fillFields(byte[],short,byte[])>fillFields</a>(byte[] data, short size, int offset) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#serialize()>serialize</a>() :byte[]<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#serialize(int,int)>serialize</a>(int offset, byte[] data) :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#getRecordSize()>getRecordSize</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#isValue()>isValue</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#isInValueSection()>isInValueSection</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#toString()>toString</a>() :java.lang.String<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#processContinueRecord(byte[])>processContinueRecord</a>(byte[] record) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#getSid()>getSid</a>() :short<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width=12 align=center valign=top>
+<img src=../../../../../images/ext.gif>
+</td><td width=32% valign=top align=center>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#fff742><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.hssf.record. <a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html>IndexRecord</a>
+</td></tr><tr><td>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#sid>sid</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#DBCELL_CAPACITY>DBCELL_CAPACITY</a> :int</u><br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#field_1_zero>field_1_zero</a> :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#field_2_first_row>field_2_first_row</a> :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#field_3_last_row_add1>field_3_last_row_add1</a> :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#field_4_zero>field_4_zero</a> :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#field_5_dbcells>field_5_dbcells</a> :<a href=../../../../../org/apache/poi/util/uml-IntList.html>org.apache.poi.util.IntList</a><br>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#IndexRecord()>IndexRecord</a>()<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#IndexRecord(short,short,short)>IndexRecord</a>(short id, short size, byte[] data)<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#IndexRecord(short,short,byte[],short)>IndexRecord</a>(short id, short size, byte[] data, int offset)<br>
+#<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#validateSid(short)>validateSid</a>(short id) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#fillFields(byte[],short,byte[])>fillFields</a>(byte[] data, short size, int offset) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#setFirstRow(int)>setFirstRow</a>(int row) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#setLastRowAdd1(int)>setLastRowAdd1</a>(int row) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#addDbcell(int)>addDbcell</a>(int cell) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#setDbcell(int,int)>setDbcell</a>(int cell, int value) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getFirstRow()>getFirstRow</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getLastRowAdd1()>getLastRowAdd1</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getNumDbcells()>getNumDbcells</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getDbcellAt(int)>getDbcellAt</a>(int cellnum) :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#toString()>toString</a>() :java.lang.String<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#serialize(int,int)>serialize</a>(int offset, byte[] data) :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getRecordSize()>getRecordSize</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/IndexRecord.html#getSid()>getSid</a>() :short<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width="12" align="center" valign="top">
+</td>
+<td width=32% valign=top>
+</td></tr>
+</table></body></html>

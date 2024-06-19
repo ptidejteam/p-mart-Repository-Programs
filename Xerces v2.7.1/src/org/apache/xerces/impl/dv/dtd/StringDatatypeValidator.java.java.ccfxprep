@@ -1,0 +1,15 @@
+26.8.5a8	+0	(def_block
+26.8.5a8	+5	r_class
+26.e.5ae	+17	id|StringDatatypeValidator
+26.43.5e3	+1	(brace
+29.c.61e	+0	(def_block
+29.c.61e	+17	id|StringDatatypeValidator
+29.23.635	+0	c_func
+29.23.635	+1	(paren
+29.24.636	+1	)paren
+29.26.638	+1	(brace
+2a.5.63e	+1	)brace
+2a.6.63f	+0	)def_block
+39.1.867	+1	)brace
+39.2.868	+0	)def_block
+3a.1.869	+0	eof

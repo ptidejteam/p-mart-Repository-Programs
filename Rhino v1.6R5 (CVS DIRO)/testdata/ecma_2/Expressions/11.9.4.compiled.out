@@ -1,0 +1,13 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Expressions\11.9.4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Expressions\shell.js -f mozilla\js\tests\ecma_2\Expressions\11.9.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+StrictEquality-001 - 11.9.6 The strict equality operator ( === )
+StrictEquality-001 - 11.9.6 The strict equality operator ( === )
+true === true = false PASSED!
+false === false = false PASSED!
+ ===  = false PASSED!
+hi === hi = false PASSED!
+NaN === NaN = false PASSED!
+NaN === 0 = false PASSED!
+0 === NaN = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Expressions\11.9.4.compiled.arff] ...

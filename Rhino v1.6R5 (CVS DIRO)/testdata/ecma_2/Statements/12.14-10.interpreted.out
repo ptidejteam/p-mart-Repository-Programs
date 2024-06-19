@@ -1,0 +1,10 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.14-10.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.14-10.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+try-010 The try statement: try in a tryblock
+try-010 The try statement: try in a tryblock
+No Exceptions Thrown = 43 PASSED!
+Throw Exception in Outer Try = 48 PASSED!
+Throw Exception in Inner Try = 45 PASSED!
+Throw Exception in Both Trys = 48 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.14-10.interpreted.arff] ...

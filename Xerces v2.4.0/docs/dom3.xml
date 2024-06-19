@@ -1,0 +1,251 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE s1 SYSTEM "./dtd/document.dtd">
+<s1 title="Document Object Model Level 3 Implementation">
+	<s2 title="Disclaimer">
+		<p>
+
+			The &ParserNameLong; &ParserVersion; contains a partial
+			implementation of the W3C Document Object Model Level 3.
+		</p>
+		<p>
+			The
+			<jump href="http://www.w3.org/DOM/DOMTR#DOML3">DOM Level 3</jump>
+			specification is at the stage of
+			<strong>Working Draft</strong>, which represents work in progress and thus may be
+			updated, replaced, or obsoleted by other documents at any
+			time.
+
+
+			This implementation is experimental: it should not be
+			considered as complete or correct.
+		</p>
+	</s2>
+	<s2 title="Introduction">
+		<p>
+			The &ParserNameLong; &ParserVersion; contains an implementation of 
+			the Document Object Model Level 3 <jump href="http://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/">Core</jump> 
+			and Document Object Model Level 3 <jump href="http://www.w3.org/TR/2003/WD-DOM-Level-3-LS-20030226/">Load and Save</jump> Working drafts.
+			To learn how to program with the DOM Level 3 see <jump href="samples-dom.html#DOM3">dom.DOM3</jump> sample.
+		</p>
+		<p>
+			The DOM Level 3 methods for which implementation is not provided throw
+			<code>DOMException NOT_SUPPORTED_ERR</code> exception.
+		</p>
+
+		<note>
+			To find out how to access
+			<em>DOM Level 3 functionality</em>, please refer to the
+			<link idref='faq-dom'>FAQ</link>
+			.
+		</note>
+	</s2>
+
+	<s2 title='Implementation of DOM Level 3 Core'>
+		<p>All of the DOM Level 3 Core functionality is implemented, including:</p>
+
+		<ul>
+			<li>
+				<strong>DOMImplementationRegistry</strong>
+				<jump href="http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20030226/core.html#Bootstrap">Bootstrapping</jump>
+				-- lets an application find an implementation, based on the specific features it requires.
+			</li>
+
+			<li>
+				<strong>DOMConfiguration</strong> 
+				-- using configuration users can set different parameters for the Document.
+			</li>
+			<li>
+				<strong>Element</strong> setIdAttribute, setIdAttributeNS, setIdAttributeNode
+				-- allows to set an <code>ID</code> attribute for the current element.
+			</li>
+			<li>
+				<strong>TypeInfo</strong> 
+				-- exposes type information in the DOM tree.
+			</li>
+			<li>
+			 	<strong>Node</strong> <jump href="http://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#Node3-compareDocumentPosition">compareDocumentPosition</jump>
+			 	-- compares a node with this node with regard to their position in the tree and according to the document order.
+
+			</li>
+			<li>
+				<em>DOMError</em>, <em>DOMErrorHandler</em>, <em>DOMLocator</em>, <em>UserDataHandler</em> 
+				-- users can register error and user data handlers.
+			</li>
+		</ul>
+
+		<p>
+			The
+			<code>parameters</code>
+			supported are:
+		</p>
+		<ul>
+			<li>
+				<strong>error-handler</strong>
+				[
+				<em>DOMErrorHandler</em>
+				]
+			</li>
+			<li>
+				<strong>entity-resolver</strong>
+				[
+				<em>DOMEntityResolver</em>
+				]
+			</li>
+			<li>
+				<strong>schema-type</strong>
+				[
+				<em>String</em>
+				]
+			</li>
+			<li>
+				<strong>schema-location</strong>
+				[
+				<em>String</em>
+				]
+			</li>
+			<li>
+				<strong>canonical-form</strong>
+				[
+				<em>false</em>
+				]
+			</li>
+			<li>
+				<strong>cdata-sections</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>comments</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>entities</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>infoset</strong>
+				[
+				<em>false</em>
+				]
+			</li>
+			<li>
+				<strong>namespace-declarations</strong>
+				[
+				<em>true</em>
+				]
+			</li>
+			<li>
+				<strong>normalize-characters</strong>
+				[
+				<em>false</em>
+				]
+			</li>
+			<li>
+				<strong>split-cdata-sections</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>validate-if-schema</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>whitespace-in-element-content</strong>
+				[
+				<em>true</em>
+				]
+			</li>
+			<li>
+				<strong>datatype-normalization</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>discard-default-content</strong>
+				[
+				<em>true/false</em>
+				] -- the removal of default content depends on
+				<code>isSpecified</code>
+				flag.
+			</li>
+			<li>
+				<strong>validate</strong>
+				[
+				<em>true/false</em>
+				] -- revalidation is supported only against XML Schemas. For more information, please refer to
+				<link idref='faq-dom'>How to revalidate DOM in memory?</link>
+				.
+			</li>
+			<li>
+				<strong>validate-if-schema</strong>
+				[
+				<em>true/false</em>
+				]
+			</li>
+			<li>
+				<strong>psvi</strong>
+				[
+				<em>true/false</em>
+				] -- setting the value of this parameter to true will include 
+				PSVI information in the DOM tree. 
+				To access the information, cast dom.Element to org.apache.xerces.xni.psvi.ElementPSVI and dom.Attr to org.apache.xerces.xni.psvi.AttributePSVI.
+			</li>
+
+		</ul>
+	</s2>
+
+	<s2 title='Implementation of DOM Level 3 Load and Save'>
+		<p>Most of the functionality is implemented. Here is the list of limitations:</p>
+		<ul>
+
+    		<li>
+    			<strong>DOMBuilder</strong> <jump href="http://www.w3.org/TR/2003/WD-DOM-Level-3-LS-20030226/load-save.html#LS-DOMBuilder-parseWithContext">
+    			parserWithContext</jump>
+    			 -- not supported.
+	    	</li>
+			<li><strong>DOMImplementationLS</strong> <jump href="http://www.w3.org/TR/2003/WD-DOM-Level-3-LS-20030226/load-save.html#LS-DOMIMplementationLS-MODE_SYNC">
+			MODE_ASYNCHRONOUS</jump> 
+				-- not supported.
+			</li>
+		</ul>
+
+	</s2>
+	<!--
+	<s2 title='Implementation of DOM Level 3 Abstract Schemas'>
+		<p>
+			The implementation of Abstract Schemas is
+			<strong>deprecated</strong>
+			. The funtionality will be removed in the future releases of Xerces.
+		</p>
+
+		<ul>
+			<li>
+				<code>DOMImplementationAS</code>
+			</li>
+			<li>
+				<code>DOMASBuilder</code>
+				supports parsing of XML Schemas and setting the
+				<code>ASModel</code>
+				on the parser.
+			</li>
+		</ul>
+		<note>
+			<code>DOMASBuilder</code>
+			does not support parsing of DTDs. The parser provides only partial implementation for
+			<code>ASModel</code>
+			. For more information on how to parse schemas and set those on the parser instance, see
+			<code>dom.ASBuilder</code>
+			sample.
+		</note>
+	</s2>
+	-->
+</s1>

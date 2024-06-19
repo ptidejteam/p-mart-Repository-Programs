@@ -1,0 +1,24 @@
+REASON_OFFSET values for ChainedExceptions
+
+Messages for ChainedExceptions are uniquely numbered from an offset.
+The offset is the sum of their parents in the heirarchy.
+
+java.lang.Exception
+	com.taursys.util.ChainedException [0]
+		com.taursys.model.ModelException [+1000]
+			com.taursys.model.ModelParseException [+300]
+			com.taursys.model.ModelPropertyAccessorException [+100]
+				com.taursys.model.ModelInvocationTargetException [+10]
+			com.taursys.model.SelectModelException [+200]
+				com.taursys.model.NotInListException [+10]
+			com.taursys.model.UnknownStateValueException [+400]
+		com.taursys.xml.event.RecycleException [+3000]
+		com.taursys.xml.event.RenderException [+2000]
+		
+	com.taursys.servlet.MultiPartRequestContentException
+	com.taursys.servlet.MultiPartRequestSizeException
+	java.lang.RuntimeException
+		com.taursys.util.UnsupportedDataTypeException
+	com.taursys.servlet.ServletFormNotFoundException
+    com.taursys.util.UnsupportedConversionException
+

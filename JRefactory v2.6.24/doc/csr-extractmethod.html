@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JRefactory - Extract Method</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csr-movemethod.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory - Extract Method
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-renameparam.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H4>Extract Method</H4>
+
+			<P>You select a portion of a method in your
+			software.  You select from the menu the extract
+			method command (or press Control+Shift+E in
+			JBuilder).  The system prompts you to enter
+			the name of the method.  A new method is created in
+			the class that contains as a body the portion that
+			you selected.  The software attempts to identify the
+			parameters needed to call the method.  A parameter
+			list is created.  All places in the current source file
+			where an
+			identical parse tree is found, it is replaced with
+			an invocation to the extracted method.</P>
+
+			<P>You can re-order the parameters and select
+			the return type from a drop down list.</P>
+
+			<P>I'm interested in knowing whether you think that
+			the return type should be automatically selected
+			based on it's use.  Let me know if you think this
+			is required.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csr-movemethod.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: February 22, 2001</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-renameparam.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

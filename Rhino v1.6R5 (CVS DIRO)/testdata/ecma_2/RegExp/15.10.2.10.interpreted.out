@@ -1,0 +1,33 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\RegExp\15.10.2.10.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\RegExp\shell.js -f mozilla\js\tests\ecma_2\RegExp\15.10.2.10.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+RegExp/hex-001 RegExp patterns that contain HexicdecimalEscapeSequences
+new RegExp('\x41').exec(A).length = 1 PASSED!
+new RegExp('\x41').exec(A).index = 0 PASSED!
+new RegExp('\x41').exec(A).input = A PASSED!
+new RegExp('\x41').exec(A)[0] = A PASSED!
+new RegExp('\x412').exec(A2).length = 1 PASSED!
+new RegExp('\x412').exec(A2).index = 0 PASSED!
+new RegExp('\x412').exec(A2).input = A2 PASSED!
+new RegExp('\x412').exec(A2)[0] = A2 PASSED!
+new RegExp('\x1g').exec(x1g).length = 1 PASSED!
+new RegExp('\x1g').exec(x1g).index = 0 PASSED!
+new RegExp('\x1g').exec(x1g).input = x1g PASSED!
+new RegExp('\x1g').exec(x1g)[0] = x1g PASSED!
+new RegExp('A').exec(\x41).length = 1 PASSED!
+new RegExp('A').exec(\x41).index = 0 PASSED!
+new RegExp('A').exec(\x41).input = A PASSED!
+new RegExp('A').exec(\x41)[0] = A PASSED!
+new RegExp('A').exec(\x412).length = 1 PASSED!
+new RegExp('A').exec(\x412).index = 0 PASSED!
+new RegExp('A').exec(\x412).input = A2 PASSED!
+new RegExp('A').exec(\x412)[0] = A PASSED!
+new RegExp('^x').exec(x412).length = 1 PASSED!
+new RegExp('^x').exec(x412).index = 0 PASSED!
+new RegExp('^x').exec(x412).input = x412 PASSED!
+new RegExp('^x').exec(x412)[0] = x PASSED!
+new RegExp('A').exec(A2).length = 1 PASSED!
+new RegExp('A').exec(A2).index = 0 PASSED!
+new RegExp('A').exec(A2).input = A2 PASSED!
+new RegExp('A').exec(A2)[0] = A PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\RegExp\15.10.2.10.interpreted.arff] ...

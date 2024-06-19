@@ -1,0 +1,15 @@
+ECMA v3 is missing section 15.9.1.7 and has two sections named 15.9.1.9.  Therefore,
+I renamed the first duplicate to the name of the missing section:
+
+	15.9.1.7  Daylight Saving Time Adjustment (was 15.9.1.9)
+
+This doesn't affect affect any test cases.
+
+ECMA v3 is missing section 15.9.5.32 and has two sections named 15.9.5.36.  I renamed
+the first duplicate to the name of the missing section:
+
+	15.9.5.32  setUTCHours (was 15.9.5.36)
+
+This required renaming the following test cases:
+
+	15.9.5.33.js -> 15.9.5.32.js

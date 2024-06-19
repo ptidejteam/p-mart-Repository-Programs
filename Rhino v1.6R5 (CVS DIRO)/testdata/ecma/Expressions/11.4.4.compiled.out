@@ -1,0 +1,57 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.4.4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.4.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+11.4.4 Prefix increment operator
+var MYVAR; ++MYVAR = NaN PASSED!
+var MYVAR= void 0; ++MYVAR = NaN PASSED!
+var MYVAR=null; ++MYVAR = 1 PASSED!
+var MYVAR=true; ++MYVAR = 2 PASSED!
+var MYVAR=false; ++MYVAR = 1 PASSED!
+var MYVAR=Number.POSITIVE_INFINITY;++MYVAR = Infinity PASSED!
+var MYVAR=Number.NEGATIVE_INFINITY;++MYVAR = -Infinity PASSED!
+var MYVAR=Number.NaN;++MYVAR = NaN PASSED!
+var MYVAR=Number.POSITIVE_INFINITY;++MYVAR;MYVAR = Infinity PASSED!
+var MYVAR=Number.NEGATIVE_INFINITY;++MYVAR;MYVAR = -Infinity PASSED!
+var MYVAR=Number.NaN;++MYVAR;MYVAR = NaN PASSED!
+var MYVAR=0;++MYVAR = 1 PASSED!
+var MYVAR=0.2345;++MYVAR = 1.2345 PASSED!
+var MYVAR=-0.2345;++MYVAR = 0.7655000000000001 PASSED!
+var MYVAR=0;++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=0.2345;++MYVAR;MYVAR = 1.2345 PASSED!
+var MYVAR=-0.2345;++MYVAR;MYVAR = 0.7655000000000001 PASSED!
+var MYVAR=0;++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=0;++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=0;++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=true;++MYVAR = 2 PASSED!
+var MYVAR=false;++MYVAR = 1 PASSED!
+var MYVAR=true;++MYVAR;MYVAR = 2 PASSED!
+var MYVAR=false;++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=new Boolean(true);++MYVAR = 2 PASSED!
+var MYVAR=new Boolean(false);++MYVAR = 1 PASSED!
+var MYVAR=new Boolean(true);++MYVAR;MYVAR = 2 PASSED!
+var MYVAR=new Boolean(false);++MYVAR;MYVAR = 1 PASSED!
+var MYVAR='string';++MYVAR = NaN PASSED!
+var MYVAR='12345';++MYVAR = 12346 PASSED!
+var MYVAR='-12345';++MYVAR = -12344 PASSED!
+var MYVAR='0Xf';++MYVAR = 16 PASSED!
+var MYVAR='077';++MYVAR = 78 PASSED!
+var MYVAR=''; ++MYVAR = 1 PASSED!
+var MYVAR='string';++MYVAR;MYVAR = NaN PASSED!
+var MYVAR='12345';++MYVAR;MYVAR = 12346 PASSED!
+var MYVAR='-12345';++MYVAR;MYVAR = -12344 PASSED!
+var MYVAR='0xf';++MYVAR;MYVAR = 16 PASSED!
+var MYVAR='077';++MYVAR;MYVAR = 78 PASSED!
+var MYVAR='';++MYVAR;MYVAR = 1 PASSED!
+var MYVAR=new String('string');++MYVAR = NaN PASSED!
+var MYVAR=new String('12345');++MYVAR = 12346 PASSED!
+var MYVAR=new String('-12345');++MYVAR = -12344 PASSED!
+var MYVAR=new String('0Xf');++MYVAR = 16 PASSED!
+var MYVAR=new String('077');++MYVAR = 78 PASSED!
+var MYVAR=new String(''); ++MYVAR = 1 PASSED!
+var MYVAR=new String('string');++MYVAR;MYVAR = NaN PASSED!
+var MYVAR=new String('12345');++MYVAR;MYVAR = 12346 PASSED!
+var MYVAR=new String('-12345');++MYVAR;MYVAR = -12344 PASSED!
+var MYVAR=new String('0xf');++MYVAR;MYVAR = 16 PASSED!
+var MYVAR=new String('077');++MYVAR;MYVAR = 78 PASSED!
+var MYVAR=new String('');++MYVAR;MYVAR = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.4.4.compiled.arff] ...

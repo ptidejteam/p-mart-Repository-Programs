@@ -1,0 +1,253 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hpsf/wellknown/classList.html" TARGET="packageFrame">org.apache.poi.hpsf.wellknown</A>: PropertyIDMap');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hpsf/wellknown/classList.html" TARGET="packageFrame">org.apache.poi.hpsf.wellknown</A>: PropertyIDMap';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">/* ====================================================================
+<a name=2 class="linenum">2    </a> * The Apache Software License, Version 1.1
+<a name=3 class="linenum">3    </a> *
+<a name=4 class="linenum">4    </a> * Copyright (c) 2000 The Apache Software Foundation.  All rights
+<a name=5 class="linenum">5    </a> * reserved.
+<a name=6 class="linenum">6    </a> *
+<a name=7 class="linenum">7    </a> * Redistribution and use in source and binary forms, with or without
+<a name=8 class="linenum">8    </a> * modification, are permitted provided that the following conditions
+<a name=9 class="linenum">9    </a> * are met:
+<a name=10 class="linenum">10   </a> *
+<a name=11 class="linenum">11   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=12 class="linenum">12   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=13 class="linenum">13   </a> *
+<a name=14 class="linenum">14   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=15 class="linenum">15   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=16 class="linenum">16   </a> *    the documentation and/or other materials provided with the
+<a name=17 class="linenum">17   </a> *    distribution.
+<a name=18 class="linenum">18   </a> *
+<a name=19 class="linenum">19   </a> * 3. The end-user documentation included with the redistribution,
+<a name=20 class="linenum">20   </a> *    if any, must include the following acknowledgment:
+<a name=21 class="linenum">21   </a> *       "This product includes software developed by the
+<a name=22 class="linenum">22   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=23 class="linenum">23   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=24 class="linenum">24   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=25 class="linenum">25   </a> *
+<a name=26 class="linenum">26   </a> * 4. The names "Apache" and "Apache Software Foundation" must
+<a name=27 class="linenum">27   </a> *    not be used to endorse or promote products derived from this
+<a name=28 class="linenum">28   </a> *    software without prior written permission. For written
+<a name=29 class="linenum">29   </a> *    permission, please contact apache@apache.org.
+<a name=30 class="linenum">30   </a> *
+<a name=31 class="linenum">31   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=32 class="linenum">32   </a> *    nor may "Apache" appear in their name, without prior written
+<a name=33 class="linenum">33   </a> *    permission of the Apache Software Foundation.
+<a name=34 class="linenum">34   </a> *
+<a name=35 class="linenum">35   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=36 class="linenum">36   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=37 class="linenum">37   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=38 class="linenum">38   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=39 class="linenum">39   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=40 class="linenum">40   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=41 class="linenum">41   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=42 class="linenum">42   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=43 class="linenum">43   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=44 class="linenum">44   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=45 class="linenum">45   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=46 class="linenum">46   </a> * SUCH DAMAGE.
+<a name=47 class="linenum">47   </a> * ====================================================================
+<a name=48 class="linenum">48   </a> *
+<a name=49 class="linenum">49   </a> * This software consists of voluntary contributions made by many
+<a name=50 class="linenum">50   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=51 class="linenum">51   </a> * information on the Apache Software Foundation, please see
+<a name=52 class="linenum">52   </a> * &lt;http://www.apache.org/&gt;.
+<a name=53 class="linenum">53   </a> *
+<a name=54 class="linenum">54   </a> * Portions of this software are based upon public domain software
+<a name=55 class="linenum">55   </a> * originally written at the National Center for Supercomputing Applications,
+<a name=56 class="linenum">56   </a> * University of Illinois, Urbana-Champaign.
+<a name=57 class="linenum">57   </a> */</span>
+<a name=58 class="linenum">58   </a>
+<a name=59 class="linenum">59   </a>package org.apache.poi.hpsf.wellknown;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a>import java.util.*;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a><span class="comment">/**
+<a name=64 class="linenum">64   </a> * &lt;p&gt;This is a dictionary mapping property IDs to property ID
+<a name=65 class="linenum">65   </a> * strings.&lt;/p&gt;
+<a name=66 class="linenum">66   </a> *
+<a name=67 class="linenum">67   </a> * &lt;p&gt;The methods {@link #getSummaryInformationProperties} and {@link
+<a name=68 class="linenum">68   </a> * #getDocumentSummaryInformationProperties} return singleton {@link
+<a name=69 class="linenum">69   </a> * PropertyIDMap}s. An application that wants to extend these maps
+<a name=70 class="linenum">70   </a> * should treat them as unmodifiable, copy them and modifiy the
+<a name=71 class="linenum">71   </a> * copies.&lt;/p&gt;
+<a name=72 class="linenum">72   </a> *
+<a name=73 class="linenum">73   </a> * &lt;p&gt;&lt;strong&gt;FIXME:&lt;/strong&gt; Make the singletons
+<a name=74 class="linenum">74   </a> * unmodifiable. However, since this requires use a {@link HashMap}
+<a name=75 class="linenum">75   </a> * delegate instead of extending {@link HashMap} and would require a
+<a name=76 class="linenum">76   </a> * lot of stupid typing, I won't do it for the time being.&lt;/p&gt;
+<a name=77 class="linenum">77   </a> *
+<a name=78 class="linenum">78   </a> * @author Rainer Klute (klute@rainer-klute.de)
+<a name=79 class="linenum">79   </a> * @version $Id: PropertyIDMap.java,v 1.1 2002/02/14 04:00:59 mjohnson Exp $
+<a name=80 class="linenum">80   </a> * @since 2002-02-09
+<a name=81 class="linenum">81   </a> */</span>
+<a name=82 class="linenum">82   </a>public class <a class="classDef" name=PropertyIDMap href=PropertyIDMap_java_ref.html#PropertyIDMap>PropertyIDMap</a> extends <a class="classRef" href=null#HashMap>HashMap</a>
+<a name=83 class="linenum">83   </a>{
+<a name=84 class="linenum">84   </a>
+<a name=85 class="linenum">85   </a>    <span class="comment">/* The following definitions are for the Summary Information. */</span>
+<a name=86 class="linenum">86   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_TITLE href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_TITLE>PID_TITLE</a> = 2;
+<a name=87 class="linenum">87   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_SUBJECT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_SUBJECT>PID_SUBJECT</a> = 3;
+<a name=88 class="linenum">88   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_AUTHOR href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_AUTHOR>PID_AUTHOR</a> = 4;
+<a name=89 class="linenum">89   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_KEYWORDS href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_KEYWORDS>PID_KEYWORDS</a> = 5;
+<a name=90 class="linenum">90   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_COMMENTS href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_COMMENTS>PID_COMMENTS</a> = 6;
+<a name=91 class="linenum">91   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_TEMPLATE href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_TEMPLATE>PID_TEMPLATE</a> = 7;
+<a name=92 class="linenum">92   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_LASTAUTHOR href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_LASTAUTHOR>PID_LASTAUTHOR</a> = 8;
+<a name=93 class="linenum">93   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_REVNUMBER href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_REVNUMBER>PID_REVNUMBER</a> = 9;
+<a name=94 class="linenum">94   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_EDITTIME href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_EDITTIME>PID_EDITTIME</a> = 10;
+<a name=95 class="linenum">95   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_LASTPRINTED href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_LASTPRINTED>PID_LASTPRINTED</a> = 11;
+<a name=96 class="linenum">96   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_CREATE_DTM href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_CREATE_DTM>PID_CREATE_DTM</a> = 12;
+<a name=97 class="linenum">97   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_LASTSAVE_DTM href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_LASTSAVE_DTM>PID_LASTSAVE_DTM</a> = 13;
+<a name=98 class="linenum">98   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_PAGECOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_PAGECOUNT>PID_PAGECOUNT</a> = 14;
+<a name=99 class="linenum">99   </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_WORDCOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_WORDCOUNT>PID_WORDCOUNT</a> = 15;
+<a name=100 class="linenum">100  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_CHARCOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_CHARCOUNT>PID_CHARCOUNT</a> = 16;
+<a name=101 class="linenum">101  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_THUMBNAIL href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_THUMBNAIL>PID_THUMBNAIL</a> = 17;
+<a name=102 class="linenum">102  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_APPNAME href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_APPNAME>PID_APPNAME</a> = 18;
+<a name=103 class="linenum">103  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_SECURITY href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_SECURITY>PID_SECURITY</a> = 19;
+<a name=104 class="linenum">104  </a>
+<a name=105 class="linenum">105  </a>    <span class="comment">/* The following definitions are for the Document Summary Information. */</span>
+<a name=106 class="linenum">106  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_CATEGORY href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_CATEGORY>PID_CATEGORY</a> = 2;
+<a name=107 class="linenum">107  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_PRESFORMAT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_PRESFORMAT>PID_PRESFORMAT</a> = 3;
+<a name=108 class="linenum">108  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_BYTECOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_BYTECOUNT>PID_BYTECOUNT</a> = 4;
+<a name=109 class="linenum">109  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_LINECOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_LINECOUNT>PID_LINECOUNT</a> = 5;
+<a name=110 class="linenum">110  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_PARCOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_PARCOUNT>PID_PARCOUNT</a> = 6;
+<a name=111 class="linenum">111  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_SLIDECOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_SLIDECOUNT>PID_SLIDECOUNT</a> = 7;
+<a name=112 class="linenum">112  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_NOTECOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_NOTECOUNT>PID_NOTECOUNT</a> = 8;
+<a name=113 class="linenum">113  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_HIDDENCOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_HIDDENCOUNT>PID_HIDDENCOUNT</a> = 9;
+<a name=114 class="linenum">114  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_MMCLIPCOUNT href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_MMCLIPCOUNT>PID_MMCLIPCOUNT</a> = 10;
+<a name=115 class="linenum">115  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_SCALE href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_SCALE>PID_SCALE</a> = 11;
+<a name=116 class="linenum">116  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_HEADINGPAIR href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_HEADINGPAIR>PID_HEADINGPAIR</a> = 12;
+<a name=117 class="linenum">117  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_DOCPARTS href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_DOCPARTS>PID_DOCPARTS</a> = 13;
+<a name=118 class="linenum">118  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_MANAGER href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_MANAGER>PID_MANAGER</a> = 14;
+<a name=119 class="linenum">119  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_COMPANY href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_COMPANY>PID_COMPANY</a> = 15;
+<a name=120 class="linenum">120  </a>    public static final int <a class="varDef" name=PropertyIDMap.PID_LINKSDIRTY href=PropertyIDMap_java_ref.html#PropertyIDMap.PID_LINKSDIRTY>PID_LINKSDIRTY</a> = 16;
+<a name=121 class="linenum">121  </a>
+<a name=122 class="linenum">122  </a>    private static <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> <a class="varDef" name=PropertyIDMap.summaryInformationProperties href=PropertyIDMap_java_ref.html#PropertyIDMap.summaryInformationProperties>summaryInformationProperties</a>;
+<a name=123 class="linenum">123  </a>    private static <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> <a class="varDef" name=PropertyIDMap.documentSummaryInformationProperties href=PropertyIDMap_java_ref.html#PropertyIDMap.documentSummaryInformationProperties>documentSummaryInformationProperties</a>;
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>
+<a name=127 class="linenum">127  </a>    public <a class="methodDef" name=PropertyIDMap.PropertyIDMap(int,float) href=PropertyIDMap_java_ref.html#PropertyIDMap.PropertyIDMap(int,float)>PropertyIDMap</a>(int initialCapacity, float loadFactor)
+<a name=128 class="linenum">128  </a>    {
+<a name=129 class="linenum">129  </a>	super(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PropertyIDMap.initialCapacity>initialCapacity</a>, <a class="varRef" title="float" href=PropertyIDMap_java.html#PropertyIDMap.PropertyIDMap.loadFactor>loadFactor</a>);
+<a name=130 class="linenum">130  </a>    }
+<a name=131 class="linenum">131  </a>
+<a name=132 class="linenum">132  </a>
+<a name=133 class="linenum">133  </a>
+<a name=134 class="linenum">134  </a>    <span class="comment">/**
+<a name=135 class="linenum">135  </a>     * &lt;p&gt;Puts a ID string for an ID into the {@link
+<a name=136 class="linenum">136  </a>     * PropertyIDMap}.&lt;/p&gt;
+<a name=137 class="linenum">137  </a>     *
+<a name=138 class="linenum">138  </a>     * @param id The ID.
+<a name=139 class="linenum">139  </a>     *
+<a name=140 class="linenum">140  </a>     * @param idString The ID string.
+<a name=141 class="linenum">141  </a>     */</span>
+<a name=142 class="linenum">142  </a>    public Object <a class="methodDef" name=PropertyIDMap.put(int,String) href=PropertyIDMap_java_ref.html#PropertyIDMap.put(int,String)>put</a>(int id, String idString)
+<a name=143 class="linenum">143  </a>    {
+<a name=144 class="linenum">144  </a>	return <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(new Integer(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.put.id>id</a>), <a class="varRef" title="String" href=PropertyIDMap_java.html#PropertyIDMap.put.idString>idString</a>);
+<a name=145 class="linenum">145  </a>    }
+<a name=146 class="linenum">146  </a>
+<a name=147 class="linenum">147  </a>
+<a name=148 class="linenum">148  </a>
+<a name=149 class="linenum">149  </a>    <span class="comment">/**
+<a name=150 class="linenum">150  </a>     * &lt;p&gt;Gets the ID string for an ID from the {@link
+<a name=151 class="linenum">151  </a>     * PropertyIDMap}.&lt;/p&gt;
+<a name=152 class="linenum">152  </a>     *
+<a name=153 class="linenum">153  </a>     * @param id The ID.
+<a name=154 class="linenum">154  </a>     */</span>
+<a name=155 class="linenum">155  </a>    public Object <a class="methodDef" name=PropertyIDMap.get(int) href=PropertyIDMap_java_ref.html#PropertyIDMap.get(int)>get</a>(int id)
+<a name=156 class="linenum">156  </a>    {
+<a name=157 class="linenum">157  </a>	return <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.get(int)>get</a>(new Integer(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.get.id>id</a>));
+<a name=158 class="linenum">158  </a>    }
+<a name=159 class="linenum">159  </a>
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>    <span class="comment">/**
+<a name=163 class="linenum">163  </a>     * &lt;p&gt;Returns the Summary Information properties singleton.&lt;/p&gt;
+<a name=164 class="linenum">164  </a>     */</span>
+<a name=165 class="linenum">165  </a>    public static <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> <a class="methodDef" name=PropertyIDMap.getSummaryInformationProperties() href=PropertyIDMap_java_ref.html#PropertyIDMap.getSummaryInformationProperties()>getSummaryInformationProperties</a>()
+<a name=166 class="linenum">166  </a>    {
+<a name=167 class="linenum">167  </a>	if (<a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.summaryInformationProperties>summaryInformationProperties</a> == null)
+<a name=168 class="linenum">168  </a>	{
+<a name=169 class="linenum">169  </a>	    <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> m = new <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.PropertyIDMap(int,float)>PropertyIDMap</a>(17, (float) 1.0);
+<a name=170 class="linenum">170  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_TITLE>PID_TITLE</a>, "PID_TITLE");
+<a name=171 class="linenum">171  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_SUBJECT>PID_SUBJECT</a>, "PID_SUBJECT");
+<a name=172 class="linenum">172  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_AUTHOR>PID_AUTHOR</a>, "PID_AUTHOR");
+<a name=173 class="linenum">173  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_KEYWORDS>PID_KEYWORDS</a>, "PID_KEYWORDS");
+<a name=174 class="linenum">174  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_COMMENTS>PID_COMMENTS</a>, "PID_COMMENTS");
+<a name=175 class="linenum">175  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_TEMPLATE>PID_TEMPLATE</a>, "PID_TEMPLATE");
+<a name=176 class="linenum">176  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_LASTAUTHOR>PID_LASTAUTHOR</a>, "PID_LASTAUTHOR");
+<a name=177 class="linenum">177  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_REVNUMBER>PID_REVNUMBER</a>, "PID_REVNUMBER");
+<a name=178 class="linenum">178  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_EDITTIME>PID_EDITTIME</a>, "PID_EDITTIME");
+<a name=179 class="linenum">179  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_LASTPRINTED>PID_LASTPRINTED</a>, "PID_LASTPRINTED");
+<a name=180 class="linenum">180  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_CREATE_DTM>PID_CREATE_DTM</a>, "PID_CREATE_DTM");
+<a name=181 class="linenum">181  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_LASTSAVE_DTM>PID_LASTSAVE_DTM</a>, "PID_LASTSAVE_DTM");
+<a name=182 class="linenum">182  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_PAGECOUNT>PID_PAGECOUNT</a>, "PID_PAGECOUNT");
+<a name=183 class="linenum">183  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_WORDCOUNT>PID_WORDCOUNT</a>, "PID_WORDCOUNT");
+<a name=184 class="linenum">184  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_CHARCOUNT>PID_CHARCOUNT</a>, "PID_CHARCOUNT");
+<a name=185 class="linenum">185  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_THUMBNAIL>PID_THUMBNAIL</a>, "PID_THUMBNAIL");
+<a name=186 class="linenum">186  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_APPNAME>PID_APPNAME</a>, "PID_APPNAME");
+<a name=187 class="linenum">187  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_SECURITY>PID_SECURITY</a>, "PID_SECURITY");
+<a name=188 class="linenum">188  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.summaryInformationProperties>summaryInformationProperties</a> = <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>;
+<a name=189 class="linenum">189  </a>	}
+<a name=190 class="linenum">190  </a>	return <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.summaryInformationProperties>summaryInformationProperties</a>;
+<a name=191 class="linenum">191  </a>    }
+<a name=192 class="linenum">192  </a>
+<a name=193 class="linenum">193  </a>
+<a name=194 class="linenum">194  </a>
+<a name=195 class="linenum">195  </a>    <span class="comment">/**
+<a name=196 class="linenum">196  </a>     * &lt;p&gt;Returns the Summary Information properties singleton.&lt;/p&gt;
+<a name=197 class="linenum">197  </a>     */</span>
+<a name=198 class="linenum">198  </a>    public static <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> <a class="methodDef" name=PropertyIDMap.getDocumentSummaryInformationProperties() href=PropertyIDMap_java_ref.html#PropertyIDMap.getDocumentSummaryInformationProperties()>getDocumentSummaryInformationProperties</a>()
+<a name=199 class="linenum">199  </a>    {
+<a name=200 class="linenum">200  </a>	if (<a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.documentSummaryInformationProperties>documentSummaryInformationProperties</a> == null)
+<a name=201 class="linenum">201  </a>	{
+<a name=202 class="linenum">202  </a>	    <a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> m = new <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.PropertyIDMap(int,float)>PropertyIDMap</a>(17, (float) 1.0);
+<a name=203 class="linenum">203  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_CATEGORY>PID_CATEGORY</a>, "PID_CATEGORY");
+<a name=204 class="linenum">204  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_PRESFORMAT>PID_PRESFORMAT</a>, "PID_PRESFORMAT");
+<a name=205 class="linenum">205  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_BYTECOUNT>PID_BYTECOUNT</a>, "PID_BYTECOUNT");
+<a name=206 class="linenum">206  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_LINECOUNT>PID_LINECOUNT</a>, "PID_LINECOUNT");
+<a name=207 class="linenum">207  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_PARCOUNT>PID_PARCOUNT</a>, "PID_PARCOUNT");
+<a name=208 class="linenum">208  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_SLIDECOUNT>PID_SLIDECOUNT</a>, "PID_SLIDECOUNT");
+<a name=209 class="linenum">209  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_NOTECOUNT>PID_NOTECOUNT</a>, "PID_NOTECOUNT");
+<a name=210 class="linenum">210  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_HIDDENCOUNT>PID_HIDDENCOUNT</a>, "PID_HIDDENCOUNT");
+<a name=211 class="linenum">211  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_MMCLIPCOUNT>PID_MMCLIPCOUNT</a>, "PID_MMCLIPCOUNT");
+<a name=212 class="linenum">212  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_SCALE>PID_SCALE</a>, "PID_SCALE");
+<a name=213 class="linenum">213  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_HEADINGPAIR>PID_HEADINGPAIR</a>, "PID_HEADINGPAIR");
+<a name=214 class="linenum">214  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_DOCPARTS>PID_DOCPARTS</a>, "PID_DOCPARTS");
+<a name=215 class="linenum">215  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_MANAGER>PID_MANAGER</a>, "PID_MANAGER");
+<a name=216 class="linenum">216  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_COMPANY>PID_COMPANY</a>, "PID_COMPANY");
+<a name=217 class="linenum">217  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>.<a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.put(int,String)>put</a>(<a class="varRef" title="int" href=PropertyIDMap_java.html#PropertyIDMap.PID_LINKSDIRTY>PID_LINKSDIRTY</a>, "PID_LINKSDIRTY");
+<a name=218 class="linenum">218  </a>	    <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.documentSummaryInformationProperties>documentSummaryInformationProperties</a> = <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#~NO NAME~.m>m</a>;
+<a name=219 class="linenum">219  </a>	}
+<a name=220 class="linenum">220  </a>	return <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.documentSummaryInformationProperties>documentSummaryInformationProperties</a>;
+<a name=221 class="linenum">221  </a>
+<a name=222 class="linenum">222  </a>    }
+<a name=223 class="linenum">223  </a>
+<a name=224 class="linenum">224  </a>
+<a name=225 class="linenum">225  </a>
+<a name=226 class="linenum">226  </a>    public static void <a class="methodDef" name=PropertyIDMap.main(String) href=PropertyIDMap_java_ref.html#PropertyIDMap.main(String)>main</a>(String args[])
+<a name=227 class="linenum">227  </a>    {
+<a name=228 class="linenum">228  </a>	<a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> s1 = <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.getSummaryInformationProperties()>getSummaryInformationProperties</a>();
+<a name=229 class="linenum">229  </a>	<a class="classRef" href=PropertyIDMap_java.html#PropertyIDMap>PropertyIDMap</a> s2 = <a class="methodRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.getDocumentSummaryInformationProperties()>getDocumentSummaryInformationProperties</a>();
+<a name=230 class="linenum">230  </a>	System.out.println("s1: " + <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.main.s1>s1</a>);
+<a name=231 class="linenum">231  </a>	System.out.println("s2: " + <a class="varRef" title="PropertyIDMap" href=PropertyIDMap_java.html#PropertyIDMap.main.s2>s2</a>);
+<a name=232 class="linenum">232  </a>    }
+<a name=233 class="linenum">233  </a>
+<a name=234 class="linenum">234  </a>}
+<a name=235 class="linenum">235  </a></pre>

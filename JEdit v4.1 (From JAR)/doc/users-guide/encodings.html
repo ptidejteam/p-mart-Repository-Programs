@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Character Encodings</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="files.html" title="Chapter 3. Working With Files"><link rel="previous" href="line-separators.html" title="Line Separators"><link rel="next" href="vfs-browser.html" title="The File System Browser"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Character Encodings</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="line-separators.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Working With Files</th><td width="20%" align="right"> <a accesskey="n" href="vfs-browser.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="encodings"></a>Character Encodings</h2></div></div><p>
+   An encoding specifies a way of storing characters on disk.
+   jEdit can use any encoding supported by the Java platform.
+   The current buffer's encoding is shown in the status
+   bar.
+  </p><p>
+   The default encoding, used to load and save files for which no
+   other encoding is specified, can be set in the <b>Loading and
+   Saving</b> pane of the
+   <b>Utilities</b>&gt;<b>Global Options</b>
+   dialog box.
+  </p><p>
+   Unless you change the default encoding, jEdit will use your operating
+   system's native default; <tt>MacRoman</tt> on the MacOS,
+   <tt>Cp1252</tt> on Windows, and <tt>8859_1</tt> on
+   Unix.
+  </p><p>
+   To open a file stored using an encoding other than the default, select the
+   encoding from the
+   <b>Commands</b>&gt;<b>Encoding</b> menu of
+   the file system browser before opening the file.
+  </p><p>
+   The encoding to use when saving a specific buffer
+   can be set in the <b>Utilities</b>&gt;<b>Buffer
+   Options</b> dialog box.
+  </p><p>
+   If a file is opened
+   without an explicit encoding specified and it appears in the recent file list,
+   jEdit will use the encoding last used
+   when working with that file; otherwise the default encoding will be used.
+  </p><p>
+   Unfortunately, there
+   is no way to obtain a list of all supported encodings using the Java APIs,
+   so jEdit only lists a few of
+   the most common encodings; however, any other supported encoding name can be
+   typed in.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2879330"></a>Commonly Used Encodings</h3></div></div><p>
+    The most frequently-used character encoding is ASCII, or &#8220;American 
+    Standard Code for Information Interchange&#8221;. ASCII encodes Latin
+    letters used in English, in addition to numbers and a range of punctuation
+    characters.
+    The ASCII character set consists of 127 characters, and it is unsuitable
+    for anything but English text (and other file types which only use English
+    characters, like most program source). jEdit will load and save files as
+    ASCII if the <tt>ASCII</tt> encoding is used.
+   </p><p>
+    Because ASCII is unsuitable for international use, most operating
+    systems use an 8-bit extension of ASCII, with the first 127 characters
+    remaining the same, and the rest used to encode accents, umlauts, and
+    various less frequently used typographical marks. The three
+    major
+    operating systems all extend ASCII in a different way. Files written by
+    Macintosh programs can be read using the <tt>MacRoman</tt>
+    encoding; Windows text files are usually stored as
+    <tt>Cp1252</tt>. In the Unix world, the <tt>8859_1</tt>
+    character encoding has found widespread usage.
+   </p><p>
+    On Windows, various other encodings, which are known as <i>code
+    pages</i> and are identified by number, are used to
+    store non-English text. The corresponding Java encoding name is
+    <tt>Cp</tt> followed by the code page number.
+   </p><p>
+    Many common cross-platform international character sets are also supported;
+    <tt>KOI8_R</tt> for Russian text, <tt>Big5</tt> and
+    <tt>GBK</tt> for Chinese, and <tt>SJIS</tt> for
+    Japanese.
+   </p><p>
+    16-bit Unicode files are automatically detected as such when opened, regardless of
+    the encoding specified by the user. The closely-related
+    <tt>UTF8</tt> encoding, which uses variable-length characters, is
+    also supported, however UTF8 files are <span class="emphasis"><em>not</em></span> auto-detected.
+   </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="line-separators.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="files.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="vfs-browser.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Line Separators </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The File System Browser</td></tr></table></div></body></html>

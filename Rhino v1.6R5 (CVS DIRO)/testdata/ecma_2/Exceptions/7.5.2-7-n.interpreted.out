@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\7.5.2-7-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\7.5.2-7-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+lexical-030 Keywords
+lexical-030 Keywords
+var return = true (threw SyntaxError: missing variable name) = Passed PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\7.5.2-7-n.interpreted.arff] ...

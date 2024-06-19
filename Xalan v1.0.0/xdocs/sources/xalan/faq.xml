@@ -1,0 +1,163 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE faqs SYSTEM "sbk:/style/dtd/faqs.dtd">
+
+<faqs title="Frequently asked questions">
+
+  <faq title="Where do I go to learn about XSLT">  
+    <q>Where do I go to learn about XSLT?</q>
+    
+    <a><p>The definitive sources are the W3C XSLT and XPath recommendations: <resource-ref idref="XSLT"/> and 
+    <resource-ref idref="XPath"/>.</p>
+    <p>For general questions not specific to &xslt4j;, see Dave Pawson's <jump
+    href="http://freespace.virgin.net/b.pawson/xsl/index.html#top">XSL Frequently Asked Questions</jump>.</p>
+    <p>For a brief listing of tutorials, discussion forums, and other materials, see <link idref="overview"
+     anchor="uptospeed">Getting up to speed with XSLT</link>.</p></a>
+  </faq>
+
+  <faq title="Which version of Xerces should I be using?">  
+    <q>Which version of Xerces should I be using?</q>
+    
+    <a><p>The &xslt4j; release notes includes information about the Xerces release with which the &xslt4j; release has 
+    been coordinated and tested. See <link idref="readme" anchor="status">Status</link></p></a>
+  </faq>
+
+  <faq title="Are there any shortcuts for using a transformation result as input for another transformation?">
+  
+    <q>Are there any shortcuts for using a transformation result as input for another transformation?</q>
+    
+    <a><p>You can always get a transformation result from the <resource-ref idref="XSLTResultTargetDoc"/> object, 
+    and use it to set an <resource-ref idref="XSLTInputSourceDoc"/> object for another transformation, but yes, there is a
+    shortcut. Basically, you want to set up the XSLTResultTarget object
+     that receives the output from the first transformation (performed with the XML source, the first stylesheet, and the first
+     <resource-ref idref="XSLTProcessorDoc"/> object) to function as a SAX DocumentHandler in conjunction with a second
+      XSLTProcessor object that uses the second stylesheet and also functions as a DocumentHandler.</p> 
+    <p>To walk through a brief example, see <link idref="usagepatterns" anchor="sax">Generating and responding to 
+    SAX events</link></p>.</a>
+  </faq>
+
+  <faq title="Are the XSLTProcessor and StylesheetRoot (compiled stylesheet) objects thread-safe?">
+  
+    <q>Are the XSLTProcessor and StylesheetRoot (compiled stylesheet) objects thread-safe?</q>
+       
+    <a>
+    <p>The XSLTProcessor stores running state information, so it is not thread-safe. If you want to use the XSLTProcessor
+    to perform multiple transformations, create a new instance for each transformations or synchronize. If you want to
+    perform multiple serial transformations with a single XSLTProcessor object, call the XSLTProcessor reset() method between each
+    transformation.</p>
+    <p>StylesheetRoot objects, on the other hand, are thread-safe. A single StylesheetRoot object may be called concurrently
+    from multiple threads.</p>
+    <p>For more information, see the next question.</p></a>
+  </faq>
+  
+  <faq title="Why do XSLTProcessor and StylesheetRoot both have process() methods to perform transformations?">
+  
+    <q>Why do XSLTProcessor and StylesheetRoot both have process() methods to perform transformations?</q>
+    
+    <a><p>To perform a transformation, &xslt4j; uses XML input, an XSL stylesheet, and XSLTProcessor. In one scenario, you use
+    <resource-ref idref="XSLTInputSourceDoc"/> objects as containers for the XML input and the XSL stylesheet. To perform the
+    transformation, the <resource-ref idref="XSLTProcessorDoc"/> object "compiles" the stylesheet, producing a <resource-ref
+    idref="StylesheetRootDoc"/> object, but you the user have no direct interaction with the StylesheetRoot.</p>
+    <p>Example:</p>
+    <source>import org.apache.xalan.xslt.*;
+    ...
+    XSLTProcessor proc = XSLTProcessorFactory.getProcessor();
+    proc.process(new XSLTInputSource("foo.xml"), 
+                 new XSLTInputSource("foo.xsl"), 
+                 new XSLTResultTarget("foo.out");</source>
+    <p>Second scenario: you want to perform a number of transformations with the same stylesheet. To improve performance, you
+    compile the stylesheet once, and use the resulting <resource-ref idref="StylesheetRootDoc"/> object for each
+    transformation.</p>
+    <p>You can use the <jump href="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#process(org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTResultTarget)">
+     XSLTProcessor process()</jump> method with a compiled stylesheet. For an example, see <link idref="usagepatterns"
+    anchor="compiled">Compiling stylesheets</link>. But an XSLTProcessor object is not thread-safe and must be
+    reset between transformations. A StylesheetRoot object, on the other hand, is thread-safe and may even be used concurrently
+    (running in a servlet, for example) to perform multiple transformations, so it is more straightforward to use the
+    <jump href="apidocs/org/apache/xalan/xslt/StylesheetRoot.html#process(org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTResultTarget)">
+    StylesheetRoot process()</jump> method to perform the transformations.</p>
+      <p>Example:</p>
+      <source>import org.apache.xalan.xslt.*;
+      ...
+      // Pass in an array of XML input file names and an 
+      // "uncompiled" stylesheet file name.
+      public multiTransform(String[] xmlInputFiles, String xslFile)
+      {
+        XSLTProcessor proc = XSLTProcessor.Factory.getProcessor();
+        StylesheetRoot style = proc.ProcessStylesheet
+                                          (new XSLTInputSource(xslFile));
+        for (int i = 0; i &lt; xmlInputFiles.length; i++) 
+        {
+          style.process(new XSLTInputSource(xmlInputFiles[i],
+                        new XSLTResultTarget(xmlInputFiles[i] + ".out"));
+        }
+      }
+      ...</source>
+       </a>
+  </faq>
+  
+ 
+  <faq title="What can I do to speed up transformations?">
+  
+    <q>What can I do to speed up transformations?</q>
+    
+    <a><p>In the ongoing development of &xslt4j;, enhancing performance is the primary goal of the &xslt4j; team. 
+    Here are some preliminary
+    suggestions for you to keep in mind as you set up your applications:</p><ul>
+    <li>Use the default DTM liaison and XML parser unless you need to read or write a DOM. DOM is expensive in terms of memory,
+    and DOM and DOM2 do not include the interfaces required for optimal performance without the use of side
+    tables.<br/><br/></li>
+    <li>Set the XSLTProcessor to function as a SAX DocumentHandler, and respond to SAX events rather than waiting for
+     the entire transformation to be completed.<br/><br/></li>
+    <li>Use compiled stylesheets for multiple transformations.<br/><br/></li>     
+    <li>Set up your stylesheets to function efficiently.<br/><br/></li>
+       <ul>
+         <li>Don't use "//" (descendant axes) patterns near the root of a large document.<br/><br/></li>
+         <li>Use xsl:key elements and the key() function as an efficient way to retrieve node sets.<br/><br/></li>
+         <li>Where possible, use pattern matching rather than xsl:if or xsl:when statements.<br/><br/></li>
+         <li>xsl:for-each is fast because it does not require pattern matching.<br/><br/></li>
+         <li>Keep in mind that xsl:sort prevents incremental processing.<br/><br/></li>
+         <li>When you create variables, &lt;xsl:variable name="fooElem" select="foo"/&gt; is usually faster than
+         &gt;xsl:variable name="fooElem"&gt;&lt;xsl:value-of-select="foo"/&gt;&lt;/xsl:variable&gt;.<br/><br/></li>
+         <li>Be careful using the last() function.<br/><br/></li>
+         <li>The use of index predicates within match patterns can be expensive.<br/><br/></li>
+         <li>Decoding and encoding is expensive.<br/><br/></li>
+         <li>The serializer must check each character for escaping; 30% to 60% or processing time is typically spent in
+         the serializer.</li>
+       </ul>
+     <li>For the ultimate in server-side scalability, perform transform operations on the client. For an example, see 
+     <link idref="samples" anchor="appletxmltohtml">AppletXMLtoHTML</link>.</li>
+    </ul></a>
+  </faq>
+
+  <faq title="I'm getting a NoClassDefFound error. What has to be on the class path?">
+  
+    <q>I'm getting a NoClassDefFound error. What has to be on the class path?</q>
+    
+    <a><ol>
+    <li>xalan.jar xerces.jar must always be on the class path.<br/><br/></li>
+    <li>As a general rule, xerces.jar must be on the class path. If you have set up an extension of <resource-ref 
+    idref=" XMLParserLiaisonDefaultDoc"/> to work with another XML parser, all you need from xerces.jar are the serializers 
+    and the implementation of the SAX 2 interface.<br/><br/></li>
+    <li>To run the samples in the samples subdirectories, xalansamples.jar must be on the class path. To run the servlet (in
+    samples/servlet), the javax.servlet and javax.servlet.http packages must also be on the class path. Sun distributes these
+    packages in the JSWDK 1.0.1 servlet.jar file.<br/><br/></li>
+    <li>To run extensions (including the samples in samples/extensions), bsf.jar, and bsfengines.jar must be on the 
+    class path. To run extensions implemented in JavaScript, js.jar must also be on the class path. For information on what 
+    you need to run extensions implemented in other scripting languages, see <link idref="extensions"
+    anchor="supported-lang">Supported languages</link>.<br/><br/></li>            
+    </ol>
+    <p>For more information, see <link idref="getstarted" anchor="classpath">Setting up the system class path</link>.</p></a>
+   </faq>
+ 
+
+	<faq title="Stylesheet validation">
+		<q>How do I validate an XSL stylesheet?</q>
+		<a>
+      <p>An XSL stylesheet is an XML document, so it can have a DOCTYPE and be subject to validation, right? </p>
+      <p>The XSLT Recommendation includes a <jump href="http://www.w3.org/TR/xslt#dtd">DTD Fragment 
+      for XSL Stylesheets</jump> with some indications of what you need to do to create a complete DTD for a given
+      stylesheet. Keep in mind that stylesheets can include literal result elements and produce output that is not valid
+      XML.</p>
+      <p>You can use the xsl:stylesheet doctype defined in xsl-html40s.dtd for stylesheets that generate HTML.</p>
+		</a>
+	</faq> 
+</faqs>

@@ -1,0 +1,108 @@
+dnsjava can be used in several ways:
+
+Command line programs:
+
+- dig:
+	A clone of dig (as distributed with BIND)
+	dig @server [-x] name type [class] [-p port] [-k name/secret] [-t] [-i]
+		-x : reverse lookup, name must be a dotted quad
+		-k : use TSIG transaction security
+		-t : use TCP by default
+		-i : ignore truncation errors
+
+- update:
+	A dynamic update client with some extra functionality.  This can be
+	used either interactively or by specifying a file containing commands
+	to be executed.  Running 'help' lists all other commands.
+	update [file]
+	
+
+- jnamed:
+	A basic primary, non-caching, non-recursive server.  Not very good,
+	or useful at all, but it runs.  The config file specifies
+	"primary file", "cache file", and "key name data".
+	jnamed config_file
+
+DNS and DNS.utils packages:
+
+- See the Javadoc documentation in doc/ for details
+
+- All constants are defined in appropriate classes.  These include Type,
+	Dclass, Flags, Rcode, Opcode, Section, Credibility, and Security.
+	In many cases, there are functions to convert between numeric and
+	string representations (Type.string(value) and Type.value(string)).
+
+- High Level API:
+
+	A number of static methods in DNS.dns and DNS.Address that
+	provide cached DNS lookups.
+
+- Lower Level API
+
+	Name:
+		Names are normally represented by Name objects, which
+		can be created from Strings.
+
+	Record:
+		Each record type is represented by a subclass of Record.
+		Each class has accessor functions which extract the data.
+
+		To create new Records, each class defines a constructor that
+		takes all fields as parameters, and Record provides
+		Record.newRecord() to create records in a general way.
+
+	RRset:
+		A collection of records.  The important function is rrs().
+
+	Messages:
+		A Header and a collection of records comprising the message.
+
+	Resolver:
+		An interface implemented by SimpleResolver and ExtendedResolver.
+		SimpleResolver only communicates with one server, and does
+		no retries.  ExtendedResolver communicates with multiple
+		servers and sends retries if queries fail.
+
+		Resolver.send(message) is used to send/receive messages.
+
+		Resolver.sendAsync(message, ResolverListener) sends a message
+		whose answer will be delivered asynchronously.  The
+		ResolverListener interface defines:
+			receiveMessage(int id, Message m)
+		where 'id' is returned by sendAsync.
+
+		Resolver.sendAXFR(message) performs a zone transfer.
+
+		Resolver options can also be set:
+			Resolver.setPort(port)
+			Resolver.useTCP(flag)
+			Resolver.setTSIGKey(name, key)
+			Resolver.setTimeout(secs)
+			Resolver.setIgnoreTruncation(flag)
+		See the dig client for a sample use of the resolver.
+
+		SimpleResolver can be initialized by SimpleResolver() to use
+		a default server or SimpleResolver(String) to specify the
+		server.
+
+		ExtendedResolver can be initialized by ExtendedResolver() to
+		use default servers, or ExtendedResolver(String []) or
+		ExtendedResolver(resolver []) to specify servers or resolvers.
+
+		ExtendedResolver.addResolver(resolver) and
+		ExtendedResolver.deleteResolver(resolver) modify the set
+		of Resolvers used by an Extended Resolver.
+
+		ExtendedResolver.getResolvers() and
+		ExtendedResolver.getResolver(i) are used to obtain its
+		resolver(s).
+
+	Cache:
+		Records are added with:
+			addRecord(Record r, byte cred, Object src)
+		Records are looked up with:
+			lookupRecords(Name name, short type, byte minCred)
+		which returns a CacheResponse, or
+			findRecords(Name name, short type)
+			findAnyRecords(Name name, short type)
+		which return an array of RRsets.

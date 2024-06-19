@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.14-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.14-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 593 ms]
+11.14-1 Comma operator (,)
+true, false = false PASSED!
+VAR1=true, VAR2=false = false PASSED!
+VAR1=true, VAR2=false;VAR1 = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.14-1.interpreted.arff] ...

@@ -1,0 +1,22 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ExecutionContexts\10.1.3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ExecutionContexts\shell.js -f mozilla\js\tests\ecma\ExecutionContexts\10.1.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 20256
+10.1.3 Variable instantiation
+function t() { return "first" };function t() { return "second" };t()  = second PASSED!
+var t; function t(){}; typeof(t) = function PASSED!
+function t1(a,b) { return b; }; t1( 4 ); = undefined PASSED!
+function t1(a,b) { return a; }; t1(4); = 4 PASSED!
+function t1(a,b) { return a; }; t1(); = undefined PASSED!
+function t1(a,b) { return a; }; t1(1,2,4); = 1 PASSED!
+function t1(a,b) { return a; }; t1( false, true ); = false PASSED!
+function t1(a,b) { return b; }; t1( false, true ); = true PASSED!
+function t1(a,b) { return a+b; }; t1( 4, 2 ); = 6 PASSED!
+function t1(a,b) { return a+b; }; t1( 4 ); = NaN PASSED!
+function t() { return 'function' };var t = 'variable'; typeof(t) = string PASSED!
+function t1(a,b) { var a = b; return a; } t1(1,3); = 3 PASSED!
+function t2(a,b) { this.a = b;  } x  = new t2(1,3); x.a = 3 PASSED!
+function t2(a,b) { this.a = a;  } x  = new t2(1,3); x.a = 1 PASSED!
+function t2(a,b) { this.a = b; this.b = a; } x = new t2(1,3);x.a; = 3 PASSED!
+function t2(a,b) { this.a = b; this.b = a; }x = new t2(1,3);x.b; = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ExecutionContexts\10.1.3.interpreted.arff] ...

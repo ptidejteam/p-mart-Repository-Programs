@@ -1,0 +1,52 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ObjectObjects\15.2.2.1-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ObjectObjects\shell.js -f mozilla\js\tests\ecma\ObjectObjects\15.2.2.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.2.2.1 new Object( value )
+typeof new Object(null) = object PASSED!
+MYOB = new Object(null); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Object] PASSED!
+typeof new Object(void 0) = object PASSED!
+MYOB = new Object(new Object(void 0)); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Object] PASSED!
+typeof new Object('string') = object PASSED!
+MYOB = (new Object('string'); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object String] PASSED!
+(new Object('string').valueOf() = string PASSED!
+typeof new Object('') = object PASSED!
+MYOB = (new Object(''); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object String] PASSED!
+(new Object('').valueOf() =  PASSED!
+typeof new Object(Number.NaN) = object PASSED!
+MYOB = (new Object(Number.NaN); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+(new Object(Number.NaN).valueOf() = NaN PASSED!
+typeof new Object(0) = object PASSED!
+MYOB = (new Object(0); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+(new Object(0).valueOf() = 0 PASSED!
+typeof new Object(-0) = object PASSED!
+MYOB = (new Object(-0); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+(new Object(-0).valueOf() = 0 PASSED!
+typeof new Object(1) = object PASSED!
+MYOB = (new Object(1); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+(new Object(1).valueOf() = 1 PASSED!
+typeof new Object(-1) = object PASSED!
+MYOB = (new Object(-1); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Number] PASSED!
+(new Object(-1).valueOf() = -1 PASSED!
+typeof new Object(true) = object PASSED!
+MYOB = (new Object(true); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Boolean] PASSED!
+(new Object(true).valueOf() = true PASSED!
+typeof new Object(false) = object PASSED!
+MYOB = (new Object(false); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Boolean] PASSED!
+(new Object(false).valueOf() = false PASSED!
+typeof new Object(Boolean()) = object PASSED!
+MYOB = (new Object(Boolean()); MYOB.toString = Object.prototype.toString; MYOB.toString() = [object Boolean] PASSED!
+(new Object(Boolean()).valueOf() = false PASSED!
+myglobal = new Object( this ) = [object global] PASSED!
+myobject = new Object('my new object'); new Object(myobject) = [object Object] PASSED!
+myarray = new Array(); new Object(myarray) =  PASSED!
+myboolean = new Boolean(); new Object(myboolean) = false PASSED!
+mynumber = new Number(); new Object(mynumber) = 0 PASSED!
+mystring = new String9); new Object(mystring) =  PASSED!
+myobject = new Object(); new Object(mynobject) = [object Object] PASSED!
+myfunction = new Function(); new Object(myfunction) = 
+function anonymous(x) {
+    return x;
+}
+ PASSED!
+mymath = Math; new Object(mymath) = [object Math] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ObjectObjects\15.2.2.1-1.compiled.arff] ...

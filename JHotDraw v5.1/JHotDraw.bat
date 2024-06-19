@@ -1,0 +1,1 @@
+Java -classpath .\bin CH.ifa.draw.samples.javadraw.JavaDrawApp

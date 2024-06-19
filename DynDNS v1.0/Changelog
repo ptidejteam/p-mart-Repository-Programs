@@ -1,0 +1,246 @@
+6/18/1999
+	- 1.0 released.  Yay!
+	- documentation updates
+	- my birthday
+
+6/15/1999
+	- Restructured update's help
+	- Added 'assert serial' to update, fixes to query keyword
+	- Added Record.fromWire from a byte array
+	- Added LOC support
+
+6/14/1999
+	- Updates to multiline parser
+
+6/11/1999
+	- Added Message.newUpdate to simplify sending updates
+
+6/10/1999
+	- Zone file parser now handles $INCLUDE
+	- update now has a keyword 'zone', which sets the zone to be updated,
+	  if it's different than the origin
+	- added constants for DNAME, A6, KX
+	- added KX support, abstracted MX code to support KX also.
+
+6/9/1999
+	- update should handle timeouts
+	- AXFR parser should allow 1 record in the question section
+
+6/7/1999
+	- Zone file parser now handles $TTL, and complains about invalid
+	  directives.
+	- fixed a few parsing problems in update
+	- fixed null key parsing and key flags handling
+
+6/3/1999
+	- added author javadoc tags
+	- added javadoc comments to Master.  Again, not sure how I missed
+	  this before.
+
+5/25/1999
+	- 0.9.5 released
+	- fixed another null pointer in the cache
+
+5/23/1999
+	- added javadoc comments to utils/MyStringTokenizer.  Not sure how
+	  I missed this class before.
+	- minor cleanups to string parsing in update
+
+5/21/1999
+	- fixed comment processing in update
+	- fixed case bug in Section handling
+
+5/20/1999
+	- 0.9.4 released
+	- fixed the same round-robin bug, hopefully correctly this time
+
+5/17/1999
+	- 0.9.3 released
+
+5/16/1999
+	- fixed a round-robin bug
+
+5/14/1999
+	- 0.9.2 released
+	- Resolver routines now return Exceptions instead of null.
+
+5/13/1999
+	- split WorkerThread into WorkerThread and ResolveThread
+
+4/25/1999	
+	- moved files to org.xbill.DNS
+	- Cache round-robins RRsets before handing them out
+	- changed the way ExtendedResolver decides when to send queries
+	- various reflection changes
+
+4/21/1999	
+	- minor WorkerThread fixes
+
+4/19/1999	
+	- 0.9.1 released
+	- WorkerThreads should die after 15 minutes of idle time
+	- Address.getByName/getAllByName handle dotted quad IP addresses
+
+4/18/1999	
+	- 0.9 released
+	- Finished javadoc-ing classes in DNS.*
+	- Server should work now
+	- Zone/Cache response updates
+	- Zone/Cache accesses should be more thread-safe
+
+4/17/1999
+	- The Cache supports ANY queries
+	- More javadoc-ed classes in DNS.*
+	- implemented toWireCanonical for record types that need it
+	- Message.toString should print better output for update messages
+
+4/16/1999
+	- jnamed wasn't looking up non-ANY queries correctly in a zone
+	- SimpleResolver should use TCP if query length is longer than UDP
+		packet size
+	- More javadoc-ed classes in DNS.*
+	- MyStringTokenizer moved to DNS.utils
+
+4/15/1999
+	- More javadoc-ed classes in DNS.*
+	- Moved functions from DNS.IO to DNS.utils.base64 and DNS.Master
+	- Implemented search path for dns.getRecords functions
+	- 0.8.3 released
+	- Restrict number of WorkerThreads to 10
+	- ExtendedResolver timer code fixes
+	- ExtendedResolver race condition fix
+
+4/14/1999
+	- ExtendedResolver reentrancy fixes
+	- Names are marked as qualified/unqualified
+	- FindServer looks for search path from -Ddns.search1, etc.
+		and in /etc/resolv.conf
+
+4/13/1999
+	- 0.8.2 released
+	- More javadoc-ed classes in DNS.*
+	- The message ID stuff from 4/10 broke TSIG, so it's gone
+	- Changes to ExtendedResolver's handling of child Resolvers
+	- Too many threads were being created
+	- Threads should now have meaningful names
+
+4/12/1999
+	- NameSet shouldn't be using wildcards, since it's not correct for
+		a cache (a name could match a wildcard and return wildcard
+		data before the cache learned about data for the name)
+	- javadoc-ed DNS.utils.* and some of DNS.*
+	- ExtendedResolver allows specifying Resolvers to use
+	- SimpleResolver and ExtendedResolver share a thread pool
+	- ExtendedResolver and FindServer bugfixes
+	- Header bug that actually caused the 0.8.1 release fixed
+	- bugfix release 0.8.1 released
+	- Messages weren't being cloned properly
+	- Resolver didn't handle a query to nowhere correctly
+
+4/11/1999
+	- 0.8 released
+	- Resolver is now an interface, implemented by SimpleResolver
+		and ExtendedResolver.
+	- added ExtendedResolver, which sends multiple queries to multiple
+		resolvers.
+	- jnamed rejects non-queries
+
+4/10/1999
+	- added Message.newQuery() to make building queries easier
+	- Record.fromWire verifies that the record length is correct
+	- Resolver.sendAsync() now uses worker threads rather than
+		starting a new thread each time.
+	- Multiple servers can be found by setting the dns.server<n>
+		properties (or from /etc/resolv.conf).
+	- Message/Header doesn't generate the message id until the message
+		is sent or the id is queried for
+
+4/9/1999
+	- added setTimeout to Resolver
+
+4/8/1999
+	- fixed obscure md5 bug
+	- made Resolver(null) and Resolver() equivalent
+
+4/7/1999
+	- Added simple asynchronous interface to resolver
+
+4/6/1999
+	- CERT and SIG bug fixes
+
+4/5/1999
+	- data lookups should use class in addition to type
+	- CERT record bug fix
+
+4/4/1999
+	- 0.7 released
+	- DNS.dns uses Cache
+	- Added getAny* to DNS.dns
+	- Cache can return information indicating partial success on lookup
+
+4/3/1999
+	- Cache does negative caching
+	- Cache follows CNAMEs when looking for cached data
+
+4/2/1999
+	- dig now understands -x
+	- added DNS.Address, a clone of InetAddress
+	- Cache can now follow CNAME chains
+	- Cache now expires records based on TTL and doesn't cache records
+		with TTL = 0.
+
+4/1/1999
+	- Made Cache and Zone extend NameSet
+	- Created Master class to parse master files
+
+3/31/1999
+	- Added first cut at Cache
+	- Changes to RRset to make it more useful
+
+3/30/1999
+	- 0.6 released
+	- bug fixes to DataInputStream, jnamed
+	- jnamed now takes config file
+	- Added basic EDNS0 and TSIG support to jnamed
+	- Added basic EDNS0 support and IgnoreTruncation flag to Resolver
+	- jnamed can now return FORMERR
+
+3/29/1999
+	- 0.5 released
+	- update client: added "echo" and "log" keywords, "file" can now
+		specify "-" for standard input (at the end of a config file,
+		for example).
+	- added support for BIND TTL format
+	- switched from CountedDataOutputStream to DataByteOutputStream,
+		which extends ByteArrayOutputStream.  Same for Input.
+		Should help performance and allow more flexibility.
+	- minor server fix to authority section
+
+3/28/1999
+	- 0.4 released
+	- fixed compression bug where all pointers into rdata were 0
+	- server sends authority records (NS or SOA)
+	- server now loads glue data separately from zone data, adds
+		authority and additional data, and deals with truncation.
+	- fixed a few Zone bugs
+	- added signatures to RRset
+
+3/27/1999
+	- 0.3 released
+	- _res was set wrong, so the high level functions wouldn't work.
+	- Minor additions to CountedData(Input|Output)Stream
+	- Lots of DNSSEC stuff
+
+3/26/1999
+	- moved constants out of dns class into other classes
+
+3/25/1999
+	- 0.2 released
+	- conversion from base64 sometimes added extra zeroes.
+	- original record length was computed wrong, so tsigs didn't verify.
+	- master file parser didn't deal with ; delimited comments
+	- server now stores data in RRsets instead of individual RRs.
+	- various server bug fixes.  Still doesn't work too well.
+
+3/23/1999:
+	- 0.1 released

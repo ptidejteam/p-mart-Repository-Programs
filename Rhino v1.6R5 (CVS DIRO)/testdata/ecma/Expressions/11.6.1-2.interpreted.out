@@ -1,0 +1,18 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.6.1-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.6.1-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+11.6.1-2 The Addition operator ( + )
+var EXP_1 = 'string'; var EXP_2 = false; EXP_1 + EXP_2 = stringfalse PASSED!
+var EXP_1 = true; var EXP_2 = 'string'; EXP_1 + EXP_2 = truestring PASSED!
+var EXP_1 = new Boolean(true); var EXP_2 = new String('string'); EXP_1 + EXP_2 = truestring PASSED!
+var EXP_1 = new Object(true); var EXP_2 = new Object('string'); EXP_1 + EXP_2 = truestring PASSED!
+var EXP_1 = new Object(new String('string')); var EXP_2 = new Object(new Boolean(false)); EXP_1 + EXP_2 = stringfalse PASSED!
+var EXP_1 = new MyObject(true); var EXP_2 = new MyObject('string'); EXP_1 + EXP_2 = truestring PASSED!
+var EXP_1 = new MyObject(new String('string')); var EXP_2 = new MyObject(new Boolean(false)); EXP_1 + EXP_2 = [object Object][object Object] PASSED!
+var EXP_1 = 100; var EXP_2 = 'string'; EXP_1 + EXP_2 = 100string PASSED!
+var EXP_1 = new String('string'); var EXP_2 = new Number(-1); EXP_1 + EXP_2 = string-1 PASSED!
+var EXP_1 = new Object(100); var EXP_2 = new Object('string'); EXP_1 + EXP_2 = 100string PASSED!
+var EXP_1 = new Object(new String('string')); var EXP_2 = new Object(new Number(-1)); EXP_1 + EXP_2 = string-1 PASSED!
+var EXP_1 = new MyObject(100); var EXP_2 = new MyObject('string'); EXP_1 + EXP_2 = 100string PASSED!
+var EXP_1 = new MyObject(new String('string')); var EXP_2 = new MyObject(new Number(-1)); EXP_1 + EXP_2 = [object Object][object Object] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.6.1-2.interpreted.arff] ...

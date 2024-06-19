@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding="UTF-8"?>
+
+<!-- ==============================================================================================
+This DTD is the description of the XML document format used by the XSL to HTML transformation.
+Should be used as a reference for creating custom XSL stylesheets.
+=============================================================================================== -->
+
+<!-- Root element of the document -->
+<!ELEMENT ganttproject (title,links,project,chart,resources,tasks)>
+
+<!-- Title that will be assigned to the HTML page <title> tag -->
+<!ELEMENT title (#PCDATA)>
+
+<!--
+	Names for the links to project pages.
+	These are NAMES not urls - this names will be visible to the user
+-->
+<!ELEMENT links (home,chart,tasks,resources)>
+<!--
+	Prefix for generated html files.
+	Say, you put here "myProject", then your html files will be:
+		myProject.html
+		myProject-chart.html
+		myProject-resources.html
+		myProject-tasks.html
+-->
+<!ATTLIST links prefix CDATA #IMPLIED>
+
+<!-- Name for Home link. -->
+<!ELEMENT home (#PCDATA)>
+
+<!-- In Links - name for Chart link, in root - path to the png chart file -->
+<!ELEMENT chart (#PCDATA)>
+
+<!-- Project description fields: name, organization, description. -->
+<!ELEMENT project (name,organization,description)>
+
+<!-- Project name, Resource name -->
+<!ELEMENT name (#PCDATA)>
+<!-- Localized version of "Project Name" -->
+<!ATTLIST name title CDATA #IMPLIED>
+
+<!-- Organization name -->
+<!ELEMENT organization (#PCDATA)>
+<!-- Localized version of "Organization" -->
+<!ATTLIST organization title CDATA #IMPLIED>
+
+<!-- Description name -->
+<!ELEMENT description (#PCDATA)>
+<!-- Localized version of "Description" -->
+<!ATTLIST description title CDATA #IMPLIED>
+
+<!-- All resources for the project -->
+<!ELEMENT resources (#PCDATA|resource)*>
+<!-- Localized version of "Name" -->
+<!ATTLIST resources name CDATA #IMPLIED>
+<!-- Localized version of "Role" -->
+<!ATTLIST resources role CDATA #IMPLIED>
+<!-- Localized version of "Mail" -->
+<!ATTLIST resources mail CDATA #IMPLIED>
+<!-- Localized version of "Phone" -->
+<!ATTLIST resources phone CDATA #IMPLIED>
+
+<!-- One resource description - name, role, contact -->
+<!ELEMENT resource (name,role,mail,phone)>
+<!-- Role for the resource -->
+<!ELEMENT role (#PCDATA)>
+<!-- Mail to the resource -->
+<!ELEMENT mail (#PCDATA)>
+<!-- Phone to the resource -->
+<!ELEMENT phone (#PCDATA)>
+
+<!-- All task of the project -->
+<!ELEMENT tasks (#PCDATA|task)*>
+<!-- Lozalized versions for attributes -->
+<!ATTLIST tasks name CDATA #IMPLIED>
+<!ATTLIST tasks begin CDATA #IMPLIED>
+<!ATTLIST tasks end CDATA #IMPLIED>
+<!ATTLIST tasks milestone CDATA #IMPLIED>
+<!ATTLIST tasks progress CDATA #IMPLIED>
+<!ATTLIST tasks assigned-to CDATA #IMPLIED>
+<!ATTLIST tasks notes CDATA #IMPLIED>
+
+<!-- One task -->
+<!ELEMENT task (name,begin,end,milestone,progress,assigned-to,notes)>
+<!-- Task attributes -->
+<!ELEMENT begin (#PCDATA)>
+<!ELEMENT end (#PCDATA)>
+<!ELEMENT milestone (#PCDATA)>
+<!ELEMENT progress (#PCDATA)>
+<!ELEMENT assigned-to (#PCDATA)>
+<!ELEMENT notes (#PCDATA)>
+
+<!-- footer used for display ganttproject version number and date/time -->
+<!ELEMENT footer (version,date)>

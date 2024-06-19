@@ -1,0 +1,1042 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Mapper - A Presentation Framework</title>
+  <meta name="CREATED" content="20020420;13192700">
+  <meta name="CHANGEDBY" content="Marty Phelan">
+  <meta name="CHANGED" content="20020421;8001800">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="media/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"></td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%">
+        <div class="content">
+        <h1>Quick Usage Guide for MapperXML</h1>
+
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#Introduction">Introduction</a></li>
+          <li><a href="#Requiremen1">Requirements for MapperXML</a></li>
+          <li><a href="#Building">Building the Main Servlet</a></li>
+          <li><a href="#Building1">Building a ServletForm</a></li>
+          <li><a href="#Using">Using Components in the ServletForm</a>
+            <ul>
+              <li><a href="#Using1">Using a TextField Component</a></li>
+              <li><a href="#Using2">Using a Parameter Component</a></li>
+            </ul>
+          </li>
+          <li><a href="#Binding">Binding Components to ValueHolders</a>
+            <ul>
+              <li><a href="#Displaying">Displaying Values from a Value
+                Object</a></li>
+              <li><a href="#Storing">Storing Values in a Value Object</a></li>
+              <li><a href="#Displaying1">Displaying Multiple Values from a
+                Collection</a></li>
+            </ul>
+          </li>
+          <li><a href="#Specialize">Specialized Components for the
+            ServletForm</a>
+            <ul>
+              <li><a href="#Using3">Using a SelectField and HTMLSelect
+                Components</a></li>
+            </ul>
+          </li>
+          <li><a href="#Actions">Actions and Events in the ServletForm</a>
+            <ul>
+              <li><a href="#Using4">Using the Trigger Component</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2><a name="Introduction">Introduction</a></h2>
+
+        <p>The purpose of this guide is to provide a quick guide to using
+        MapperXML for the web.  This guide assumes you have an environment
+        already setup to run your servlets.  This guide does not cover web
+        deployment strategy since mapper does not have any special
+        requirements.</p>
+
+        <h2 id="Requiremen"><a name="Requiremen1">Requirements</a> for
+        MapperXML</h2>
+
+        <p>The following are the current requirements for MapperXML:</p>
+        <ul>
+          <li>Java VM 1.3 (not yet tested with 1.2 or 1.4)</li>
+          <li>MapperXML Version 1.9.1 or better</li>
+          <li>Servlet runner (eg TomCat, JBoss, WebSphere(tm),
+          iPlanet(tm))</li>
+          <li>An XML Parser (eg Xerces or JAXP) or a DOM builder (eg
+          XMLC)</li>
+        </ul>
+
+        <h2><a name="Building">Building the Main Servlet</a></h2>
+
+        <p>The main servlet is simply a mediator or dispatcher in the
+        MapperXML framework.  It is responsible for creating ServletForms as
+        needed and  dispatching requests to them. There are a variety of
+        implementations possible:</p>
+        <ul>
+          <li>Create a servlet which dispatches requests to a single
+            ServletForm</li>
+          <li>The servlet can act as a front controller which simply
+            dispatches requests to the specific MapperXML ServletForm</li>
+          <li>You can use the MapperXML ServletApp which dispatches, pools
+            and recycles ServletForms</li>
+        </ul>
+
+        <p>The following code example is the simplest approach (although not
+        best performance):</p>
+        <pre>  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    ServletForm form = new MyServletForm();
+    try {
+      form.doGet(request, response);
+    }
+    catch (Exception ex) {
+      throw new ServletException("Problem encountered: " + ex.getMessage(), ex);
+    }
+  }
+        </pre>
+
+        <p>The following example uses MapperXML's ServletApp.  The ServletApp
+        makes use of a ServletFormFactory which parses the URL to determine
+        which ServletForm to invoke, creates new ServletForms as needed, and
+        recycles and pools used ServletForm.</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletConfig;
+import com.taursys.servlet.ServletApp;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import com.taursys.debug.*;
+
+public class MainServlet extends ServletApp {
+
+  public void init(ServletConfig config) throws ServletException {
+    super.init(config);
+    getFactory().addPackage("/","com.taursys.examples.simpleweb");
+    getFactory().setDefaultFormName("com.taursys.examples.simpleweb.FirstPage");
+    // Set defaultClassLoader if mapperxml.jar is shared & not in your app's .war
+    getFactory().setDefaultClassLoader(getClass().getClassLoader());
+    // Set default logging
+    Debug.setLoggerAdapter(new SimpleLogger(Debug.DEBUG));
+  }
+
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // request.setAttribute("com.yourname.resourcename", yourSharedResource);
+    super.doGet(request, response);
+  }
+}
+        </pre>
+
+        <p>The remaining examples are based on using the above ServletApp.</p>
+
+        <h2><a name="Building1">Building a ServletForm</a></h2>
+
+        <p>The ServletForm in MapperXML corresponds to a single web page. The
+        html web page is built and maintained with conventional web authoring
+        tools.  There are no special tags in the html document. The only
+        requirements is that an identifier attribute be set on the html tags
+        that contain the portion of the form you wish to dynamically change.
+        By default, MapperXML uses the ID attribute to identify tags.  Below
+        is the html document which we will use in the following examples:</p>
+        <pre>&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;MapperXML Example: The FirstPage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;MapperXML Example: The FirstPage&lt;/h1&gt;
+  &lt;p&gt;The current time is: &lt;span id="currentTime"&gt;00:00:00&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;This page was originally created at: &lt;span id="createTime"&gt;00:00:00&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>In order to manipulate the above html document, the ServletForm
+        requires a in memory representation of it.  The ServletForm uses a
+        W3C Document Object Model (DOM) to accomplish this.  There are a
+        number of ways to construct a DOM for the html document.  There are
+        no restrictions on the method you choose.  Below are some
+        examples:</p>
+        <ul>
+          <li>Create the DOM by parsing the html document at runtime (eg
+            using Xerces or JAXP)</li>
+          <li>Create a Java class which will assemble the DOM (using a tool
+            like XMLC)</li>
+        </ul>
+
+        <p>In our example we will use the Xercex parser to create the DOM.
+        The ServletForm defines an initForm() method which you should
+        override. This method is only invoked once per instance.  This is a
+        good place to create the DOM:</p>
+        <pre>  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        FirstPage.class.getResourceAsStream("FirstPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+        </pre>
+
+        <p class="notes">Note: MapperXML uses a DocumentAdapter to hold and
+        manipulate the DOM Document.  The DocumentAdapter protects the
+        application from differences between the DOM versions.  The World
+        Wide Web Consortium's Java Language Binding for the DOM, has changed
+        the DOM's interface as new versions are released.  The different
+        versions have added and removed methods (normally a bad thing to do
+        in Java).  This created a challange to be able to design an
+        application that could work with any version.  Using an Adapter
+        pattern solved the problem.  There can be different implementations
+        of the DocumentAdapter interface that can work with the various
+        versions of the DOM.  The current version of MapperXML contains a
+        single, general purpose adapte,: DOM_1_20000929_DocumentAdapter,
+        which works with most DOM versions.</p>
+
+        <p>At this point you can run the application and it will display the
+        html page unchanged.  Now we can add code to dynamically change the
+        content.  There are two ways the change the content:</p>
+        <ul>
+          <li>Directly manipulate the DOM in code</li>
+          <li>Create MapperXML components and bind them to the DOM</li>
+        </ul>
+
+        <p>The following show an example of directly manipulating the DOM
+        through the MapperXML document. Add this code to the end of the
+        initForm method:</p>
+        <pre>    // Display the original time this form was created
+    getDocumentAdapter().setElementText("createTime", new Date().toString());
+        </pre>
+
+        <p>Now when you run the application, the original form creation time
+        will be displayed.</p>
+
+        <h2><a name="Using">Using Components in the ServletForm</a></h2>
+
+        <p>MapperXML has a number of components available which you can use
+        with your web application.  These components are very similar to GUI
+        components and behave much the same.  Below are the core
+        components:</p>
+        <ul>
+          <li>TextField - acts as a normal field.  It can receive input and
+            can render its value to the DOM.</li>
+          <li>Parameter - acts as an input only component.  it is notified of
+            input before other components and before the open() method is
+            invoked.</li>
+          <li>SelectField - acts like a JComboBox.  Like the TextField it can
+            receive input and can render its value to the DOM.</li>
+          <li>Trigger - acts like a JButton.  It is triggered when its
+            textValue is received.</li>
+          <li>Template - acts somewhat like a JTable.  It can display
+            multiple occurances of data items.  It can be used to fill an
+            html table.</li>
+        </ul>
+
+        <p>To use components in a ServletForm, you must do the following:</p>
+        <ul>
+          <li>Create the component (usually as an instance variable)</li>
+          <li>Set the component properties (set the 'id' property to bind it
+            to the DOM)</li>
+          <li>Add the component to a container (ServletForm itself or another
+            sub-container)</li>
+        </ul>
+
+        <h3><a name="Using1">Using a TextField Component</a></h3>
+
+        <p>A text field can be used to both input and display data.  Set the
+        'id' property to have it display its value in the DOM.  Set the
+        'parameter' property to have it receive input form the request. Below
+        is an example which sets the current time when the form is opened.</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.ServletForm;
+import com.taursys.xml.TextField;
+import com.taursys.util.DataTypes;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+import java.util.Date;
+
+public class FirstPage extends ServletForm {
+  TextField currentTime = new TextField(DataTypes.TYPE_DATE);
+
+  public FirstPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    currentTime.setParameter("mytime");
+    currentTime.setId("currentTime");
+    this.add(currentTime);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        FirstPage.class.getResourceAsStream("FirstPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+    getDocumentAdapter().setElementText("createTime", new Date().toString());
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    currentTime.setValue(new Date());
+  }
+}
+        </pre>
+
+        <p>With the above code, the current time will now appear on the form
+        each time it is invoked.  The value of the TextComponent is being set
+        each time the form is open.</p>
+
+        <p>To make this an input field, simply set the 'parameter' property.
+        For this example, we will allow the override of the current time
+        through an http query parameter called 'mytime'.  Modify the jbInit
+        method as follows:</p>
+        <pre>  private void jbInit() throws Exception {
+    currentTime.setId("currentTime");
+    currentTime.setParameter("mytime");
+    this.add(currentTime);
+  }
+        </pre>
+
+        <p>Now invoke the servlet form with an additional query parameter: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/FirstPage.sf?mytime=3/27/02+8:00+AM">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/FirstPage.sf?mytime=3/27/02+8:00+AM</a>.<br>
+        (You may need to modify the url and the time format for your
+        locale)</p>
+
+        <p class="notes">Note: You may have noticed that this url explicitly
+        invokes the FirstPage servlet for using the syntax: &lt;servlet
+        url&gt;/&lt;ServletFormName.sf&gt;.  This is a feature of the
+        ServletFormFactory in the ServletApp.</p>
+
+        <p>When you invoke the form with the 'mytime' query parameter, the
+        time that appears on the web page is what you passed - not the actual
+        current time.  Although the current time is still set in the openForm
+        method, the input value overwrites it.</p>
+
+        <p class="notes">Note: Input values are dispatched to TextFields
+        AFTER the openForm method.</p>
+
+        <h3><a name="Using2">Using a Parameter Component</a></h3>
+
+        <p>A Parameter is an input-only component.  It receives its values
+        before other components, just before the openForm method is invoked.
+        The Parameter is typically used to gather criteria information needed
+        for opening a form (example account number, social security number).
+        You need to set the 'parameter' property for the Parameter component
+        and add it to the container.  Below is an example of using a
+        Parameter:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: Using A Parameter&lt;/title&gt;
+    &lt;style&gt;&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: Using A Parameter&lt;/h1&gt;
+    &lt;form method="post" action="/servlet/com.taursys.examples.simpleweb.MainServlet/ParameterPage.sf"&gt;
+    &lt;input type="text" name="searchKey" value=""/&gt;&lt;br/&gt;
+    &lt;input type="submit" value="Submit Guess"/&gt;
+    &lt;/form&gt;
+    &lt;br/&gt;
+    &lt;p id="results"&gt;something to be said&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>Create a ServletForm using the Parameter component:</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.ServletForm;
+import com.taursys.xml.TextField;
+import com.taursys.xml.Parameter;
+import com.taursys.util.DataTypes;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+
+public class ParameterPage extends ServletForm {
+  Parameter searchKey = new Parameter();
+  TextField results = new TextField();
+
+  public ParameterPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    searchKey.setParameter("searchKey");
+    results.setId("results");
+    this.add(searchKey);
+    this.add(results);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        ParameterPage.class.getResourceAsStream("ParameterPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    // Set results based on SearchKey
+    if (searchKey.getText().length() != 0) {
+      if (searchKey.getText().equals("gold"))
+        results.setText("You win the prize!!");
+      else
+        results.setText("Try again. (hint: a yellow precious metal).");
+    } else {
+      results.setText("Try and guess the password.");
+    }
+  }
+}
+        </pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/ParameterPage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/ParameterPage.sf</a>.</p>
+
+        <h2><a name="Binding">Binding Components to Value Holders</a></h2>
+
+        <p>One of the features of the MapperXML framework is the ability to
+        bind components to ValueHolders.  The components in MapperXML all use
+        the Model-View-Controller pattern.  The models store their actual
+        value in a ValueHolder.  Components (actually their models) create
+        their own default ValueHolders:
+        VariantValueHolder(DataTypes.TYPE_STRING).  You can also create your
+        own ValueHolders and bind the components to these instead. The
+        following example will illustrate this capability.</p>
+
+        <h3><a name="Displaying">Displaying Values from a Value
+        Object</a></h3>
+
+        <p>For this example we will use a new ServletForm.  Below is the html
+        for the new form:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: Using A VOValueHolder&lt;/title&gt;
+    &lt;style&gt;&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: Using A VOValueHolder&lt;/h1&gt;
+    &lt;p&gt;Hello &lt;span id="firstName"&gt;John&lt;/span&gt; &lt;span id="lastName"&gt;Smith&lt;/span&gt;&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>Next create a ServletForm with two TextFields (firstName and
+        lastName) and a ValueHolder for the person:</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.ServletForm;
+import com.taursys.xml.TextField;
+import com.taursys.util.DataTypes;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+import com.taursys.model.VOValueHolder;
+
+public class VOValueHolderPage extends ServletForm {
+  TextField firstName = new TextField();
+  TextField lastName = new TextField();
+  VOValueHolder person = new VOValueHolder();
+
+  public VOValueHolderPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    firstName.setPropertyName("firstName");
+    firstName.setValueHolder(person);
+    firstName.setId("firstName");
+    lastName.setPropertyName("lastName");
+    lastName.setValueHolder(person);
+    lastName.setId("lastName");
+    this.add(firstName);
+    this.add(lastName);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        VOValueHolderPage.class.getResourceAsStream("VOValueHolderPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+}
+        </pre>
+
+        <p>Next override the openForm method to create the value object and
+        bind it to the person ValueHolder.</p>
+        <pre>  protected void openForm() throws java.lang.Exception {
+    Person personVO = new Person(1629, "Pulaski", "Katherine", null);
+    person.setValueObject(personVO);
+  }</pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/VOValueHolderPage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/VOValueHolderPage.sf</a>.</p>
+
+        <p>When the form displays, you will see ' Hello Katherine Pulaski' on
+        the form.  The value object can come from any data source (database,
+        J2EE).</p>
+
+        <p>The firstName and lastName components are both bound to the person
+        ValueHolder, but are bound to different properties of the Person
+        value object.  The 'propertyName' property is what specifies which
+        specific property a component is bound to.  The components determine
+        their data type based on the data type of the value object
+        property.</p>
+
+        <p class="notes">Note: The value object must not be null the first
+        time the components try to access their properties, otherwise you
+        will get the exception: "javax.servlet.ServletException: Unhandled
+        Exception in ServletForm: ModelException occurred during rendering.:
+        ValueObject and ValueObjectClass are both null.".  If your value
+        object might be null at runtime, set the 'valueObjectClass' property
+        of the ValueHolder: person.setValueObjectClass(Person.class)</p>
+
+        <h3><a name="Storing">Storing Values in a Value Object</a></h3>
+
+        <p>In addition to displaying values, MapperXML components can receive
+        input and store their values in ValueHolders.  This is accomplished
+        by simply building a ServletForm like the above example, and setting
+        the 'parameter' property as shown in an earlier example.  If a
+        component receives a parameter, it will store that value in the
+        ValueHolder.</p>
+
+        <p>The following example will illustrate this feature.  This example
+        will use an HTML form to send and receive the data.  The value object
+        will be stored in the session.  Below is the new HTML document:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: The InputPage&lt;/title&gt;
+    &lt;style&gt;&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: The InputPage&lt;/h1&gt;
+    &lt;form method="post" action="/servlet/com.taursys.examples.simpleweb.MainServlet/InputPage.sf"&gt;
+    &lt;input type="text" name="firstName" id="firstName" value="John"/&gt;&lt;br/&gt;
+    &lt;input type="text" name="lastName" id="lastName" value="Smith"/&gt;&lt;br/&gt;
+    &lt;input type="submit"/&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>Next build the ServletForm much the same as the first example,
+        except that you will also set the 'parameter' property for the
+        firstName and lastName components.</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.ServletForm;
+import com.taursys.html.HTMLInputText;
+import com.taursys.util.DataTypes;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+import com.taursys.model.VOValueHolder;
+
+public class InputPage extends ServletForm {
+  HTMLInputText firstName = new HTMLInputText();
+  HTMLInputText lastName = new HTMLInputText();
+  VOValueHolder person = new VOValueHolder();
+
+  public InputPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    firstName.setParameter("firstName");
+    firstName.setPropertyName("firstName");
+    firstName.setValueHolder(person);
+    firstName.setId("firstName");
+    lastName.setParameter("lastName");
+    lastName.setPropertyName("lastName");
+    lastName.setValueHolder(person);
+    lastName.setId("lastName");
+    this.add(firstName);
+    this.add(lastName);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        InputPage.class.getResourceAsStream("InputPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+}
+
+}</pre>
+
+        <p>Finally, override the openForm method to retrieve the value object
+        from the session.  If the object is not in the session (first time),
+        then create a new value object and store it.</p>
+        <pre>  protected void openForm() throws java.lang.Exception {
+    // Try to retrieve from session else create
+    Person personVO = (Person)getRequest().getSession().getAttribute("ThePerson");
+    if (personVO == null) {
+      // Create the value object and store
+      personVO = new Person(1629, "Pulaski", "Katherine", null);
+      getRequest().getSession().setAttribute("ThePerson", personVO);
+    }
+    // Bind value object to person ValueHolder
+    person.setValueObject(personVO);
+  }
+        </pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/InputPage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/InputPage.sf</a>.</p>
+
+        <p>When the form first displays, it shows Katherine Pulaski.  You can
+        edit the first and last name and press the submit button.  Now the
+        next time it displays, it will show your information (assumes your
+        browser supports cookies).</p>
+
+        <h3><a name="Displaying1">Displaying Multiple Values from a
+        Collection</a></h3>
+
+        <p>MapperXML provides two components which work together to support
+        displaying collections of data.  The first component is a
+        CollectionValueHolder which can hold a Java Collection of items.  The
+        second component is a Template which replicates and fills a portion
+        of the Document.  The Template component is bound to a section of the
+        DOM Document which contains the detail items to display.  A typical
+        example is one which binds a Template to a table row "&lt;tr&gt;".
+        The Template can be bound to any element which can contain other
+        elements.</p>
+
+        <p>The follwing example will illustrate this feature.  Below is the
+        HTML used for this example:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: A Template&lt;/title&gt;
+    &lt;style&gt;&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: A Template&lt;/h1&gt;
+    &lt;table border="1"&gt;
+      &lt;tr&gt;
+        &lt;td &gt;First Name&lt;/td&gt;
+        &lt;td &gt;Last Name&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr id="report"&gt;
+        &lt;td id="firstName"&gt;John&lt;/td&gt;
+        &lt;td id="lastName"&gt;Smith&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>The ServletForm will be similar to the previous examples.  The
+        notable difference is the fact that the data fields are contained
+        within the Template component instead of the ServleForm container.
+        The other difference is that we are using aa VOCollectionValueHolder
+        to hold multiple value objects. Below is the code for the
+        ServletForm:</p>
+        <pre>public class TemplatePage extends ServletForm {
+  TextField firstName = new TextField();
+  TextField lastName = new TextField();
+  Template report = new Template();
+  VOCollectionValueHolder people = new VOCollectionValueHolder();
+
+  public TemplatePage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    firstName.setPropertyName("firstName");
+    firstName.setValueHolder(people);
+    firstName.setId("firstName");
+    lastName.setPropertyName("lastName");
+    lastName.setValueHolder(people);
+    lastName.setId("lastName");
+    report.setId("report");
+    report.setCollectionValueHolder(people);
+    report.add(firstName);
+    report.add(lastName);
+    this.add(report);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    // Use Xerces to Parse document to a DOM and store as this form's document
+    // You can use any method you like to create the DOM
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        TemplatePage.class.getResourceAsStream("TemplatePage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    // Retrieve or create the value objects
+    ArrayList array = new ArrayList();
+    array.add(new Person(1629, "Picard", "Jean Luc", null));
+    array.add(new Person(2044, "Riker", "William", null));
+    array.add(new Person(1326, "Crusher", "Beverly", null));
+    people.setCollection(array);
+  }</pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/TemplatePage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/TemplatePage.sf</a>.</p>
+
+        <p>When the form displays, it creates a &lt;tr&gt; for each item in
+        the collection.</p>
+
+        <h2><a name="Specialize">Specialized Components for the
+        ServletForm</a></h2>
+
+        <p>MapperXML contains a number of specialized components for use with
+        ServletForms.  These are peer components to specialized HTML form
+        components.  Most of these components are simple subclasses of the
+        core components with specialized renderers.  The following are
+        examples for each of the specialized components.</p>
+
+        <h3><a name="Using3">Using a SelectField and HTMLSelect
+        Components</a></h3>
+
+        <p>The SelectField, like its Swing counterpart, is a compound
+        component.  It has part to hold a list of possible selections and a
+        part to hold the selected value.  The HTMLSelect component is a
+        specialized version of the SelectField which can render its value to
+        an HTML &lt;select&gt; control.  There are a number of ways these
+        components can be used.  In the following example, a color will be
+        selected from a list and stored in the Person's favoriteColor
+        property and it will be displayed on the form.  Below is the HTML:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: The SelectPage&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: The SelectPage&lt;/h1&gt;
+    &lt;form method="post" action="/servlet/com.taursys.examples.simpleweb.MainServlet/SelectPage.sf"&gt;
+    &lt;select name="color" id="color"&gt;
+      &lt;option&gt;X&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type="submit"/&gt;
+    &lt;br/&gt;
+    &lt;p&gt;You picked &lt;span id="selectedColor"&gt;black&lt;/span&gt;&lt;/p&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>The code is much like code in the prior examples.  Here is the
+        code for the example:</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.*;
+import com.taursys.util.DataTypes;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+import com.taursys.model.VOValueHolder;
+import com.taursys.model.ObjectArrayValueHolder;
+import com.taursys.xml.SelectField;
+import com.taursys.html.*;
+
+public class SelectPage extends ServletForm {
+  HTMLSelect color = new HTMLSelect();
+  SelectField selectedColor = new SelectField();
+  VOValueHolder person = new VOValueHolder();
+
+  public SelectPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    color.setParameter("color");
+    color.setId("color");
+    color.setValueHolder(person);
+    color.setPropertyName("favoriteColor");
+    color.setNullDisplay("--choose a color--");
+    selectedColor.setId("selectedColor");
+    // Link selectedColor to same model as color
+    selectedColor.setModel(color.getModel());
+    this.add(selectedColor);
+    this.add(color);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    // Use Xerces to Parse document to a DOM and store as this form's document
+    // You can use any method you like to create the DOM
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        InputPage.class.getResourceAsStream("SelectPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+    // Setup the list of Colors to choose from
+    String[] colors = {
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Indigo",
+      "Violet",
+      };
+    color.setList(new ObjectArrayValueHolder(colors));
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    // Try to retrieve from session else create
+    Person personVO = (Person)getRequest().getSession().getAttribute("ThePerson");
+    if (personVO == null) {
+      // Create the value object and store
+      personVO = new Person(1629, "Pulaski", "Katherine", null);
+      getRequest().getSession().setAttribute("ThePerson", personVO);
+    }
+    // Bind value object to person ValueHolder
+    person.setValueObject(personVO);
+  }
+}
+        </pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/SelectPage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/SelectPage.sf</a>.</p>
+
+        <p>Choose different colors and Submit the form.  This example also
+        demonstrates the following featured:</p>
+        <ul>
+          <li>how multiple components can share the same model</li>
+          <li>how to use a SelectField to display a lookup value</li>
+        </ul>
+
+        <h2><a name="Actions">Actions and Events in the ServletForm</a></h2>
+
+        <p>MapperXML components use an event driven model.  You can add
+        listeners to the components to provide custom response to events. The
+        entire response cycle for a ServletForm is event driven.  The cycle
+        begins when the ServletApp invokes the ServletForm's doGet method. By
+        default, the ServletForm's doGet method does the following:</p>
+        <ul>
+          <li>Initializes the form (if not already initialized) by invoking
+            the initForm method.  Normally you will override this method.</li>
+          <li>Dispatches request parameter values to Parameter components by
+            invoking the dispatchParameters method.  By default, this method
+            delegates the work to a Dispatcher subcomponent.</li>
+          <li>Opens the form by invoking the openForm method.  Normally you
+            would override this method.</li>
+          <li>Dispatches request input values to Field components by invoking
+            the dispatchInput method.  By default, this method delegates the
+            work to a Dispatcher subcomponent.</li>
+          <li>Dispatches request action values to Trigger components by
+            invoking the dispatchActions method.  By default, this method
+            delegates the work to a Dispatcher subcomponent.</li>
+          <li>Sends back the response by invoking the sendResponse method. By
+            default, this method invokes the renderDispatcher to tell all
+            components to render their values to the HTML document.  It then
+            sets the response type to text/html.  Finally it invokes an
+            XMLWriter to render the Document as XML/HTML.  You can override
+            this method to customize the repsonse.</li>
+          <li>Finally, it closes the form by invoking the closeForm method.
+            You can override this method to close any resources or do
+          cleanup.</li>
+          <li>If an Exception occurs during any of the above steps, the
+            handleException method is invoked.  You can override this method
+            to provide custom Exception handling.  By default, this method
+            simply re-throws the Exception and lets the ServletApp handle
+          it.</li>
+        </ul>
+
+        <h3><a name="Using4">Using the Trigger Component</a></h3>
+
+        <p>The Trigger component is similar to a Swing JButton.  It has two
+        core properties: the parameter name to listen for, and the triggering
+        text value.  You can add a TriggerListener to the Trigger component
+        to respond to trigger events.  The following example demonstrates the
+        use of the Trigger component.  Below is the HTML:</p>
+        <pre>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;MapperXML Example: The ActionPage&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;MapperXML Example: The ActionPage&lt;/h1&gt;
+    &lt;form method="post" action="/servlet/com.taursys.examples.simpleweb.MainServlet/ActionPage.sf"&gt;
+    &lt;p&gt;Last Name:
+    &lt;input type="text" name="lastName" id="lastName" value="John"/&gt;
+    &lt;/p&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" name="action" value="High"/&gt;
+    &lt;input type="submit" name="action" value="Low"/&gt;
+    &lt;br/&gt;
+    &lt;p&gt;The following happened: &lt;span id="happened"&gt;nothing&lt;/span&gt;&lt;/p&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <p>The following is the code for the example:</p>
+        <pre>package com.taursys.examples.simpleweb;
+
+import com.taursys.servlet.ServletForm;
+import org.xml.sax.InputSource;
+import org.apache.xerces.parsers.DOMParser;
+import com.taursys.html.HTMLInputText;
+import com.taursys.xml.Trigger;
+import com.taursys.xml.TextField;
+import com.taursys.xml.event.*;
+import com.taursys.model.ModelException;
+import com.taursys.debug.Debug;
+
+public class ActionPage extends ServletForm {
+  HTMLInputText lastName = new HTMLInputText();
+  Trigger button1 = new Trigger();
+  Trigger button2 = new Trigger();
+  TextField happened = new TextField();
+
+  public ActionPage() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    lastName.setParameter("lastName");
+    lastName.setId("lastName");
+    lastName.addInputListener(new com.taursys.xml.event.InputListener() {
+      public void inputReceived(InputEvent e) {
+        lastName_inputReceived(e);
+      }
+    });
+    button1.setParameter("action");
+    button1.setText("High");
+    button1.addTriggerListener(new com.taursys.xml.event.TriggerListener() {
+      public void actionPerformed(TriggerEvent e) throws Exception {
+        button1_actionPerformed(e);
+      }
+    });
+    button2.setParameter("action");
+    button2.setText("Low");
+    button2.addTriggerListener(new com.taursys.xml.event.TriggerListener() {
+      public void actionPerformed(TriggerEvent e) throws Exception {
+        button2_actionPerformed(e);
+      }
+    });
+    happened.setId("happened");
+    this.add(lastName);
+    this.add(button1);
+    this.add(button2);
+    this.add(happened);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+    // Use Xerces to Parse document to a DOM and store as this form's document
+    // You can use any method you like to create the DOM
+    DOMParser parser = new DOMParser();
+    InputSource is = new InputSource(
+        InputPage.class.getResourceAsStream("ActionPage.html"));
+    parser.parse(is);
+    this.setDocument(parser.getDocument());
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    happened.setText("absolutely nothing");
+  }
+
+  void button1_actionPerformed(TriggerEvent e) throws Exception {
+    happened.setText(happened.getText() + " - High button pressed");
+  }
+
+  void button2_actionPerformed(TriggerEvent e) throws Exception {
+    happened.setText(happened.getText() + " - Low button pressed");
+  }
+
+  void lastName_inputReceived(InputEvent e) {
+    try {
+      happened.setText("lastName submitted=" + lastName.getText());
+    } catch (ModelException ex) {
+      Debug.error("Error during inputReceived for lastName", ex);
+    }
+  }
+}
+        </pre>
+
+        <p>Invoke the form: <a
+        href="http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/ActionPage.sf">
+        http://localhost:8080/servlet/com.taursys.examples.simpleweb.MainServlet/ActionPage.sf</a>.</p>
+
+        <p>When you simply invoke the URL the response is "absolutely
+        nothing".  Press the two buttons and observe the response.  Also fill
+        in the name field.  Finally, try simply invoking the URL and add
+        "?lastName=Test".</p>
+        </div>
+
+        <p>(to be continued)</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="footer.shtml" -->
+</div>
+</body>
+</html>

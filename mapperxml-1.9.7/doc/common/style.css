@@ -1,0 +1,16 @@
+DIV.content { color: #000000; font-family: sans-serif; font-size: 10pt }
+DIV.content H1 { color: #000000; font-family: sans-serif; font-size: 14pt }
+DIV.content H2 { color: #000000; font-family: sans-serif; font-size: 12pt }
+DIV.content H3 { color: #000000; font-family: sans-serif; font-size: 10pt }
+DIV.content P.notes { font-style: oblique }
+DIV.related { color: #000000; font-family: sans-serif; font-size: 8pt }
+DIV.related H1 { color: #000000; font-family: sans-serif; font-size: 10pt }
+DIV.footer { color: #000000; font-family: sans-serif; font-size: 10pt; text-align: center }
+DIV.leftnav { color: #FFFFFF; line-height: 1.5; font-family: sans-serif; font-size: 10pt; font-weight: 600 }
+DIV.leftnav DIV.submenu { margin: 0px 0px 0px 10px }
+DIV.leftnav DIV.subsubmenu { margin: 0px 0px 0px 20px }
+DIV.leftnav A:link { color: #EDEDFF; text-decoration: none }
+DIV.leftnav A:visited { color: #D5C1FF; text-decoration: none }
+DIV.leftnav A:hover { color: #FFF6C1; text-decoration: none }
+DIV.leftnav A:active { color: #FFFFFF; text-decoration: none }
+

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Command Line Usage</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="starting.html" title="Chapter 1. Starting jEdit"><link rel="previous" href="starting-windows.html" title="Starting jEdit on Windows"><link rel="next" href="basics.html" title="Chapter 2. jEdit Basics"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Command Line Usage</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="starting-windows.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Starting jEdit</th><td width="20%" align="right"> <a accesskey="n" href="basics.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="cli-usage"></a>Command Line Usage</h2></div></div><p>
+   On operating systems that support a command line, jEdit can be passed
+   various arguments to control its behavior.
+  </p><p>
+   If you are using jEditLauncher
+   to start jEdit on Windows, only file names can be specified
+   on the command line; the parameters documented below must be set as described
+   in <a href="launcher-starting.html" title="Starting jEdit">the section called &#8220;Starting jEdit&#8221;</a>.
+  </p><p>
+   When opening files from the command line, a line number or marker to
+   position the caret on can be specified like so:
+  </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen"><tt>$ </tt><b><tt>jedit MyApplet.java +line:10</tt></b>
+<tt>$ </tt><b><tt>jedit thesis.tex +marker:c</tt></b></pre></td></tr></table><p>
+   A number of options can also be specified to control several obscure features.
+   They are listed in the following table.
+  </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><b><tt>-background</tt></b></td><td>Runs jEdit in background mode. In background mode,
+      the edit server will continue listening for
+      client connections even after all views are closed.
+      See <a href="starting.html" title="Chapter 1. Starting jEdit">Chapter 1</a>.</td></tr><tr><td><b><tt>-nogui</tt></b></td><td>Makes jEdit not open an initial view, and instead only open one
+      when the first client connects. Can only be used in combination with
+      the <b><tt>-background</tt></b> switch. You can use this switch to
+      &#8220;pre-load&#8221; jEdit when you log in to your computer, for
+      example.
+      </td></tr><tr><td><b><tt>-norestore</tt></b></td><td>Disables automatic restore of previously open files on
+      startup. This feature can also be set permanently in the
+      <b>Loading and Saving</b> pane of the
+      <b>Utilities</b>&gt;<b>Global Options</b>
+      dialog box; see <a href="global-opts.html" title="The Global Options Dialog Box">the section called &#8220;The Global Options Dialog Box&#8221;</a>.
+      </td></tr><tr><td><b><tt>-run=<i><tt>script</tt></i></tt></b></td><td>Runs the specified BeanShell script. There can only be one
+      of these parameters on the command line. See
+      <a href="scripts-command-line.html" title="Running Scripts from the Command
+Line">the section called &#8220;Running Scripts from the Command
+Line&#8221;</a> for details.</td></tr><tr><td><b><tt>-server</tt></b></td><td>Stores the server port info in the file named <tt>server</tt>
+      inside the settings directory.</td></tr><tr><td><b><tt>-server=<i><tt>name</tt></i></tt></b></td><td>Stores the server port info in the file named
+      <i><tt>name</tt></i>. File names for this
+      parameter are relative to the settings directory.</td></tr><tr><td><b><tt>-noserver</tt></b></td><td>Does not attempt to
+      connect to a running edit server, and does not start one either. For
+      information about the edit server, see <a href="starting.html" title="Chapter 1. Starting jEdit">Chapter 1</a>.</td></tr><tr><td><b><tt>-settings=<i><tt>dir</tt></i></tt></b></td><td>Loads and saves the user-specific settings in
+      the directory named <i><tt>dir</tt></i>, instead of the
+      default <tt><i><tt>user.home</tt></i>/.jedit</tt>.
+      The directory will be created automatically if it does not exist. Has no
+      effect when connecting to another instance via the edit server.</td></tr><tr><td><b><tt>-nosettings</tt></b></td><td>Starts jEdit without loading user-specific settings.
+      See <a href="settings-directory.html" title="The jEdit Settings Directory">the section called &#8220;The jEdit Settings Directory&#8221;</a>.</td></tr><tr><td><b><tt>-noplugins</tt></b></td><td>Causes jEdit to not load any plugins.
+      See <a href="using-plugins.html" title="Chapter 8. Installing and Using Plugins">Chapter 8</a>. Has no effect
+      when connecting to another instance via the edit server.</td></tr><tr><td><b><tt>-nostartupscripts</tt></b></td><td>Causes jEdit to not run any startup scripts.
+      See <a href="startup-scripts.html" title="Startup Scripts">the section called &#8220;Startup Scripts&#8221;</a>.
+      Has no effect
+      when connecting to another instance via the edit server.</td></tr><tr><td><b><tt>-usage</tt></b></td><td>Shows a brief command line usage message without starting
+      jEdit.
+      This message is also shown if an invalid switch was specified.</td></tr><tr><td><b><tt>-version</tt></b></td><td>Shows the version number without starting jEdit.</td></tr><tr><td><b><tt>- -</tt></b></td><td>Specifies the end of the command line switches. Further
+      parameters are treated as file names, even if they begin with
+      a dash. Can be used to open files whose names start with a
+      dash, and so on.</td></tr></tbody></table></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="starting-windows.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="starting.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="basics.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Starting jEdit on Windows </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 2. jEdit Basics</td></tr></table></div></body></html>

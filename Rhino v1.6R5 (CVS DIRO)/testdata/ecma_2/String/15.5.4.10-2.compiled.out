@@ -1,0 +1,37 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\String\15.5.4.10-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\String\shell.js -f mozilla\js\tests\ecma_2\String\15.5.4.10-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+String/match-002.js String.prototype.match( regexp )
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/).length = 3 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/).index = 14 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/).input = Boston, Mass. 02134 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/)[0] = 02134 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/)[1] = 02134 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/)[2] = undefined PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/g).length = 1 PASSED!
+( Boston, Mass. 02134 ).match(/([d]{5})([- ]?[d]{4})?$/g)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0).length = 3 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0).index = 11 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0).input = Boston, MA 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0)[1] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex =0)[2] = undefined PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16).length = 3 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16).index = 11 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16).input = Boston, MA 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16)[1] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 16)[2] = undefined PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11).length = 3 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11).index = 11 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11).input = Boston, MA 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11)[1] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 11)[2] = undefined PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111).length = 3 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111).index = 11 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111).input = Boston, MA 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111)[1] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([d]{5})([- ]?[d]{4})?$/; re.lastIndex = 111)[2] = undefined PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\String\15.5.4.10-2.compiled.arff] ...

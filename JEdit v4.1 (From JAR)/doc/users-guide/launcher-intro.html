@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Introduction</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="launcher-guide.html" title="Appendix G. jEditLauncher for Windows"><link rel="previous" href="launcher-guide.html" title="Appendix G. jEditLauncher for Windows"><link rel="next" href="launcher-starting.html" title="Starting jEdit"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Introduction</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="launcher-guide.html">Prev</a> </td><th width="60%" align="center">Appendix G. jEditLauncher for Windows</th><td width="20%" align="right"> <a accesskey="n" href="launcher-starting.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="launcher-intro"></a>Introduction</h2></div></div><p>
+    The jEditLauncher package is a set of
+    lightweight components for running jEdit under the Windows
+    group of operating systems. The package is designed to run
+    on Windows 95, Windows 98, Windows Me, Windows NT (versions 4.0 and
+    greater), Windows 2000 and Windows XP.
+  </p><p>
+    While jEdit does not make available a component-type interface, it does
+    contains an &#8220;EditServer&#8221; that listens on a socket for
+    requests to load scripts written in the BeanShell scripting
+    language. When the server activates, it writes
+    the server port number and a pseudo-random, numeric authorization key to
+    a text file. By default, the file is named <tt>server</tt>
+    and is located in the settings directory (see
+    <a href="settings-directory.html" title="The jEdit Settings Directory">the section called &#8220;The jEdit Settings Directory&#8221;</a>).
+  </p><p>
+    The jEditLauncher component locates and reads this file,
+    opens a socket and attempts to connect to the indicated port. If
+    successful, it transmits the appropriate BeanShell script to the server.
+    If unsuccessful, it attempts to start jEdit and repeats the socket
+    transmission once it can obtain the port and key information. The
+    component will abandon the effort to connect roughly twenty seconds after
+    it launches the application.
+  </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="launcher-guide.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="launcher-guide.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="launcher-starting.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Appendix G. jEditLauncher for Windows </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Starting jEdit</td></tr></table></div></body></html>

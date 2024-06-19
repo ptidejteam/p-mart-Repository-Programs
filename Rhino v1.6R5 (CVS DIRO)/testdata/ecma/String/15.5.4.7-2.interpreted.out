@@ -1,0 +1,238 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.7-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.7-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 105721
+15.5.4.6-2 String.protoype.indexOf
+function f() { return this; }; function g() { var h = f; return h(); }; g().toString() = [object global] PASSED!
+String.prototype.indexOf.length = 1 PASSED!
+String.prototype.indexOf.length = null; String.prototype.indexOf.length = 1 PASSED!
+delete String.prototype.indexOf.length = false PASSED!
+delete String.prototype.indexOf.length; String.prototype.indexOf.length = 1 PASSED!
+var s = new String(); s.indexOf() = -1 PASSED!
+TEST_STRING.indexOf( ¡ ) = 0 PASSED!
+TEST_STRING.indexOf( ¢ ) = 1 PASSED!
+TEST_STRING.indexOf( £ ) = 2 PASSED!
+TEST_STRING.indexOf( ¤ ) = 3 PASSED!
+TEST_STRING.indexOf( ¥ ) = 4 PASSED!
+TEST_STRING.indexOf( ¦ ) = 5 PASSED!
+TEST_STRING.indexOf( § ) = 6 PASSED!
+TEST_STRING.indexOf( ¨ ) = 7 PASSED!
+TEST_STRING.indexOf( © ) = 8 PASSED!
+TEST_STRING.indexOf( ª ) = 9 PASSED!
+TEST_STRING.indexOf( « ) = 10 PASSED!
+TEST_STRING.indexOf( ¬ ) = 11 PASSED!
+TEST_STRING.indexOf( ­ ) = 12 PASSED!
+TEST_STRING.indexOf( ® ) = 13 PASSED!
+TEST_STRING.indexOf( ¯ ) = 14 PASSED!
+TEST_STRING.indexOf( ° ) = 15 PASSED!
+TEST_STRING.indexOf( ± ) = 16 PASSED!
+TEST_STRING.indexOf( ² ) = 17 PASSED!
+TEST_STRING.indexOf( ³ ) = 18 PASSED!
+TEST_STRING.indexOf( ´ ) = 19 PASSED!
+TEST_STRING.indexOf( µ ) = 20 PASSED!
+TEST_STRING.indexOf( ¶ ) = 21 PASSED!
+TEST_STRING.indexOf( · ) = 22 PASSED!
+TEST_STRING.indexOf( ¸ ) = 23 PASSED!
+TEST_STRING.indexOf( ¹ ) = 24 PASSED!
+TEST_STRING.indexOf( º ) = 25 PASSED!
+TEST_STRING.indexOf( » ) = 26 PASSED!
+TEST_STRING.indexOf( ¼ ) = 27 PASSED!
+TEST_STRING.indexOf( ½ ) = 28 PASSED!
+TEST_STRING.indexOf( ¾ ) = 29 PASSED!
+TEST_STRING.indexOf( ¿ ) = 30 PASSED!
+TEST_STRING.indexOf( À ) = 31 PASSED!
+TEST_STRING.indexOf( Á ) = 32 PASSED!
+TEST_STRING.indexOf( Â ) = 33 PASSED!
+TEST_STRING.indexOf( Ã ) = 34 PASSED!
+TEST_STRING.indexOf( Ä ) = 35 PASSED!
+TEST_STRING.indexOf( Å ) = 36 PASSED!
+TEST_STRING.indexOf( Æ ) = 37 PASSED!
+TEST_STRING.indexOf( Ç ) = 38 PASSED!
+TEST_STRING.indexOf( È ) = 39 PASSED!
+TEST_STRING.indexOf( É ) = 40 PASSED!
+TEST_STRING.indexOf( Ê ) = 41 PASSED!
+TEST_STRING.indexOf( Ë ) = 42 PASSED!
+TEST_STRING.indexOf( Ì ) = 43 PASSED!
+TEST_STRING.indexOf( Í ) = 44 PASSED!
+TEST_STRING.indexOf( Î ) = 45 PASSED!
+TEST_STRING.indexOf( Ï ) = 46 PASSED!
+TEST_STRING.indexOf( Ð ) = 47 PASSED!
+TEST_STRING.indexOf( Ñ ) = 48 PASSED!
+TEST_STRING.indexOf( Ò ) = 49 PASSED!
+TEST_STRING.indexOf( Ó ) = 50 PASSED!
+TEST_STRING.indexOf( Ô ) = 51 PASSED!
+TEST_STRING.indexOf( Õ ) = 52 PASSED!
+TEST_STRING.indexOf( Ö ) = 53 PASSED!
+TEST_STRING.indexOf( × ) = 54 PASSED!
+TEST_STRING.indexOf( Ø ) = 55 PASSED!
+TEST_STRING.indexOf( Ù ) = 56 PASSED!
+TEST_STRING.indexOf( Ú ) = 57 PASSED!
+TEST_STRING.indexOf( Û ) = 58 PASSED!
+TEST_STRING.indexOf( Ü ) = 59 PASSED!
+TEST_STRING.indexOf( Ý ) = 60 PASSED!
+TEST_STRING.indexOf( Þ ) = 61 PASSED!
+TEST_STRING.indexOf( ß ) = 62 PASSED!
+TEST_STRING.indexOf( à ) = 63 PASSED!
+TEST_STRING.indexOf( á ) = 64 PASSED!
+TEST_STRING.indexOf( â ) = 65 PASSED!
+TEST_STRING.indexOf( ã ) = 66 PASSED!
+TEST_STRING.indexOf( ä ) = 67 PASSED!
+TEST_STRING.indexOf( å ) = 68 PASSED!
+TEST_STRING.indexOf( æ ) = 69 PASSED!
+TEST_STRING.indexOf( ç ) = 70 PASSED!
+TEST_STRING.indexOf( è ) = 71 PASSED!
+TEST_STRING.indexOf( é ) = 72 PASSED!
+TEST_STRING.indexOf( ê ) = 73 PASSED!
+TEST_STRING.indexOf( ë ) = 74 PASSED!
+TEST_STRING.indexOf( ì ) = 75 PASSED!
+TEST_STRING.indexOf( í ) = 76 PASSED!
+TEST_STRING.indexOf( î ) = 77 PASSED!
+TEST_STRING.indexOf( ï ) = 78 PASSED!
+TEST_STRING.indexOf( ð ) = 79 PASSED!
+TEST_STRING.indexOf( ñ ) = 80 PASSED!
+TEST_STRING.indexOf( ò ) = 81 PASSED!
+TEST_STRING.indexOf( ó ) = 82 PASSED!
+TEST_STRING.indexOf( ô ) = 83 PASSED!
+TEST_STRING.indexOf( õ ) = 84 PASSED!
+TEST_STRING.indexOf( ö ) = 85 PASSED!
+TEST_STRING.indexOf( ÷ ) = 86 PASSED!
+TEST_STRING.indexOf( ø ) = 87 PASSED!
+TEST_STRING.indexOf( ù ) = 88 PASSED!
+TEST_STRING.indexOf( ú ) = 89 PASSED!
+TEST_STRING.indexOf( û ) = 90 PASSED!
+TEST_STRING.indexOf( ü ) = 91 PASSED!
+TEST_STRING.indexOf( ý ) = 92 PASSED!
+TEST_STRING.indexOf( þ ) = 93 PASSED!
+TEST_STRING.indexOf( ÿ ) = 94 PASSED!
+TEST_STRING.indexOf( ¡, void 0 ) = 0 PASSED!
+TEST_STRING.indexOf( ¢, void 0 ) = 1 PASSED!
+TEST_STRING.indexOf( £, void 0 ) = 2 PASSED!
+TEST_STRING.indexOf( ¤, void 0 ) = 3 PASSED!
+TEST_STRING.indexOf( ¥, void 0 ) = 4 PASSED!
+TEST_STRING.indexOf( ¦, void 0 ) = 5 PASSED!
+TEST_STRING.indexOf( §, void 0 ) = 6 PASSED!
+TEST_STRING.indexOf( ¨, void 0 ) = 7 PASSED!
+TEST_STRING.indexOf( ©, void 0 ) = 8 PASSED!
+TEST_STRING.indexOf( ª, void 0 ) = 9 PASSED!
+TEST_STRING.indexOf( «, void 0 ) = 10 PASSED!
+TEST_STRING.indexOf( ¬, void 0 ) = 11 PASSED!
+TEST_STRING.indexOf( ­, void 0 ) = 12 PASSED!
+TEST_STRING.indexOf( ®, void 0 ) = 13 PASSED!
+TEST_STRING.indexOf( ¯, void 0 ) = 14 PASSED!
+TEST_STRING.indexOf( °, void 0 ) = 15 PASSED!
+TEST_STRING.indexOf( ±, void 0 ) = 16 PASSED!
+TEST_STRING.indexOf( ², void 0 ) = 17 PASSED!
+TEST_STRING.indexOf( ³, void 0 ) = 18 PASSED!
+TEST_STRING.indexOf( ´, void 0 ) = 19 PASSED!
+TEST_STRING.indexOf( µ, void 0 ) = 20 PASSED!
+TEST_STRING.indexOf( ¶, void 0 ) = 21 PASSED!
+TEST_STRING.indexOf( ·, void 0 ) = 22 PASSED!
+TEST_STRING.indexOf( ¸, void 0 ) = 23 PASSED!
+TEST_STRING.indexOf( ¹, void 0 ) = 24 PASSED!
+TEST_STRING.indexOf( º, void 0 ) = 25 PASSED!
+TEST_STRING.indexOf( », void 0 ) = 26 PASSED!
+TEST_STRING.indexOf( ¼, void 0 ) = 27 PASSED!
+TEST_STRING.indexOf( ½, void 0 ) = 28 PASSED!
+TEST_STRING.indexOf( ¾, void 0 ) = 29 PASSED!
+TEST_STRING.indexOf( ¿, void 0 ) = 30 PASSED!
+TEST_STRING.indexOf( À, void 0 ) = 31 PASSED!
+TEST_STRING.indexOf( Á, void 0 ) = 32 PASSED!
+TEST_STRING.indexOf( Â, void 0 ) = 33 PASSED!
+TEST_STRING.indexOf( Ã, void 0 ) = 34 PASSED!
+TEST_STRING.indexOf( Ä, void 0 ) = 35 PASSED!
+TEST_STRING.indexOf( Å, void 0 ) = 36 PASSED!
+TEST_STRING.indexOf( Æ, void 0 ) = 37 PASSED!
+TEST_STRING.indexOf( Ç, void 0 ) = 38 PASSED!
+TEST_STRING.indexOf( È, void 0 ) = 39 PASSED!
+TEST_STRING.indexOf( É, void 0 ) = 40 PASSED!
+TEST_STRING.indexOf( Ê, void 0 ) = 41 PASSED!
+TEST_STRING.indexOf( Ë, void 0 ) = 42 PASSED!
+TEST_STRING.indexOf( Ì, void 0 ) = 43 PASSED!
+TEST_STRING.indexOf( Í, void 0 ) = 44 PASSED!
+TEST_STRING.indexOf( Î, void 0 ) = 45 PASSED!
+TEST_STRING.indexOf( Ï, void 0 ) = 46 PASSED!
+TEST_STRING.indexOf( Ð, void 0 ) = 47 PASSED!
+TEST_STRING.indexOf( Ñ, void 0 ) = 48 PASSED!
+TEST_STRING.indexOf( Ò, void 0 ) = 49 PASSED!
+TEST_STRING.indexOf( Ó, void 0 ) = 50 PASSED!
+TEST_STRING.indexOf( Ô, void 0 ) = 51 PASSED!
+TEST_STRING.indexOf( Õ, void 0 ) = 52 PASSED!
+TEST_STRING.indexOf( Ö, void 0 ) = 53 PASSED!
+TEST_STRING.indexOf( ×, void 0 ) = 54 PASSED!
+TEST_STRING.indexOf( Ø, void 0 ) = 55 PASSED!
+TEST_STRING.indexOf( Ù, void 0 ) = 56 PASSED!
+TEST_STRING.indexOf( Ú, void 0 ) = 57 PASSED!
+TEST_STRING.indexOf( Û, void 0 ) = 58 PASSED!
+TEST_STRING.indexOf( Ü, void 0 ) = 59 PASSED!
+TEST_STRING.indexOf( Ý, void 0 ) = 60 PASSED!
+TEST_STRING.indexOf( Þ, void 0 ) = 61 PASSED!
+TEST_STRING.indexOf( ß, void 0 ) = 62 PASSED!
+TEST_STRING.indexOf( à, void 0 ) = 63 PASSED!
+TEST_STRING.indexOf( á, void 0 ) = 64 PASSED!
+TEST_STRING.indexOf( â, void 0 ) = 65 PASSED!
+TEST_STRING.indexOf( ã, void 0 ) = 66 PASSED!
+TEST_STRING.indexOf( ä, void 0 ) = 67 PASSED!
+TEST_STRING.indexOf( å, void 0 ) = 68 PASSED!
+TEST_STRING.indexOf( æ, void 0 ) = 69 PASSED!
+TEST_STRING.indexOf( ç, void 0 ) = 70 PASSED!
+TEST_STRING.indexOf( è, void 0 ) = 71 PASSED!
+TEST_STRING.indexOf( é, void 0 ) = 72 PASSED!
+TEST_STRING.indexOf( ê, void 0 ) = 73 PASSED!
+TEST_STRING.indexOf( ë, void 0 ) = 74 PASSED!
+TEST_STRING.indexOf( ì, void 0 ) = 75 PASSED!
+TEST_STRING.indexOf( í, void 0 ) = 76 PASSED!
+TEST_STRING.indexOf( î, void 0 ) = 77 PASSED!
+TEST_STRING.indexOf( ï, void 0 ) = 78 PASSED!
+TEST_STRING.indexOf( ð, void 0 ) = 79 PASSED!
+TEST_STRING.indexOf( ñ, void 0 ) = 80 PASSED!
+TEST_STRING.indexOf( ò, void 0 ) = 81 PASSED!
+TEST_STRING.indexOf( ó, void 0 ) = 82 PASSED!
+TEST_STRING.indexOf( ô, void 0 ) = 83 PASSED!
+TEST_STRING.indexOf( õ, void 0 ) = 84 PASSED!
+TEST_STRING.indexOf( ö, void 0 ) = 85 PASSED!
+TEST_STRING.indexOf( ÷, void 0 ) = 86 PASSED!
+TEST_STRING.indexOf( ø, void 0 ) = 87 PASSED!
+TEST_STRING.indexOf( ù, void 0 ) = 88 PASSED!
+TEST_STRING.indexOf( ú, void 0 ) = 89 PASSED!
+TEST_STRING.indexOf( û, void 0 ) = 90 PASSED!
+TEST_STRING.indexOf( ü, void 0 ) = 91 PASSED!
+TEST_STRING.indexOf( ý, void 0 ) = 92 PASSED!
+TEST_STRING.indexOf( þ, void 0 ) = 93 PASSED!
+TEST_STRING.indexOf( ÿ, void 0 ) = 94 PASSED!
+var foo = new MyObject('hello');foo.indexOf('h') = 0 PASSED!
+var foo = new MyObject('hello');foo.indexOf('e') = 1 PASSED!
+var foo = new MyObject('hello');foo.indexOf('l') = 2 PASSED!
+var foo = new MyObject('hello');foo.indexOf('l') = 2 PASSED!
+var foo = new MyObject('hello');foo.indexOf('o') = 4 PASSED!
+var foo = new MyObject('hello');foo.indexOf('X') = -1 PASSED!
+var foo = new MyObject('hello');foo.indexOf(5)  = -1 PASSED!
+var boo = new MyObject(true);boo.indexOf('t') = 0 PASSED!
+var boo = new MyObject(true);boo.indexOf('r') = 1 PASSED!
+var boo = new MyObject(true);boo.indexOf('u') = 2 PASSED!
+var boo = new MyObject(true);boo.indexOf('e') = 3 PASSED!
+var boo = new MyObject(true);boo.indexOf('true') = 0 PASSED!
+var boo = new MyObject(true);boo.indexOf('rue') = 1 PASSED!
+var boo = new MyObject(true);boo.indexOf('ue') = 2 PASSED!
+var boo = new MyObject(true);boo.indexOf('oy') = -1 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('3')  = 0 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('.')  = 1 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('1')  = 2 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('4')  = 3 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('1')  = 2 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('5')  = 5 PASSED!
+var noo = new MyObject(Math.PI); noo.indexOf('9')  = 6 PASSED!
+var arr = new Array('new','zoo','revue'); arr.indexOf = String.prototype.indexOf; arr.indexOf('new') = 0 PASSED!
+var arr = new Array('new','zoo','revue'); arr.indexOf = String.prototype.indexOf; arr.indexOf(',zoo,') = 3 PASSED!
+var obj = new Object(); obj.indexOf = String.prototype.indexOf; obj.indexOf('[object Object]') = 0 PASSED!
+var obj = new Object(); obj.indexOf = String.prototype.indexOf; obj.indexOf('bject') = 2 PASSED!
+var f = new Object( String.prototype.indexOf ); f('[object global]') = 0 PASSED!
+var f = new Function(); f.toString = Object.prototype.toString; f.indexOf = String.prototype.indexOf; f.indexOf('[object Function]') = 0 PASSED!
+var b = new Boolean(); b.indexOf = String.prototype.indexOf; b.indexOf('true') = -1 PASSED!
+var b = new Boolean(); b.indexOf = String.prototype.indexOf; b.indexOf('false', 1) = -1 PASSED!
+var b = new Boolean(); b.indexOf = String.prototype.indexOf; b.indexOf('false', 0) = 0 PASSED!
+var n = new Number(1e21); n.indexOf = String.prototype.indexOf; n.indexOf('e') = 1 PASSED!
+var n = new Number(-Infinity); n.indexOf = String.prototype.indexOf; n.indexOf('-') = 0 PASSED!
+var n = new Number(0xFF); n.indexOf = String.prototype.indexOf; n.indexOf('5') = 1 PASSED!
+var m = Math; m.indexOf = String.prototype.indexOf; m.indexOf( 'Math' ) = 8 PASSED!
+var d = new Date(0); d.indexOf = String.prototype.indexOf; d.getTimezoneOffset()>0 ? d.indexOf('31') : d.indexOf('01') = 8 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.7-2.interpreted.arff] ...

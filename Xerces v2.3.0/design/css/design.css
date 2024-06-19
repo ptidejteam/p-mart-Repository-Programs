@@ -1,0 +1,22 @@
+/* $Id: design.css,v 1.1 2006/02/02 01:35:34 vauchers Exp $ */
+.class { background: #DDDDFF }
+.class-title { font: bold }
+
+.interface { background: #FFDDDD }
+.interface-title { font: italic }
+
+.extends { }
+.implements { }
+
+.constants { }
+.constant-title { }
+
+.fields { }
+.field-title { }
+
+.constructors { }
+.constructor-title { text-decoration: underline }
+
+.methods { }
+.method-title { text-decoration: underline }
+.param-title { }

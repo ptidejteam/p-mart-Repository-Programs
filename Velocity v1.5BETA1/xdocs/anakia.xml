@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document>
+
+ <properties>
+  <title>Anakia</title>
+  <author email="jon@latchkey.com">Jon S. Stevens</author>
+ </properties>
+
+<body>
+
+<section name="Moved" href="Moved">
+
+<p>
+Anakia documentation has moved 
+<a href="docs/anakia.html">here</a>.
+</p>
+
+</section>
+</body>
+</document>

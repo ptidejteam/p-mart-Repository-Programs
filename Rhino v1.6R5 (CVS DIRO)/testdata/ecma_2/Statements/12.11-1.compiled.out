@@ -1,0 +1,18 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.11-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.11-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+switch-001 The switch statement
+BUGNUMBER: 315767
+switch-001 The switch statement
+switch with no breaks, case expressions are numbers.  input is 0 = 126 PASSED!
+switch with no breaks, case expressions are numbers.  input is 1 = 124 PASSED!
+switch with no breaks, case expressions are numbers.  input is 2 = 120 PASSED!
+switch with no breaks, case expressions are numbers.  input is 3 = 112 PASSED!
+switch with no breaks, case expressions are numbers.  input is 4 = 64 PASSED!
+switch with no breaks, case expressions are numbers.  input is 5 = 96 PASSED!
+switch with no breaks, case expressions are numbers.  input is true = 96 PASSED!
+switch with no breaks, case expressions are numbers.  input is false = 96 PASSED!
+switch with no breaks, case expressions are numbers.  input is null = 96 PASSED!
+switch with no breaks, case expressions are numbers.  input is undefined = 96 PASSED!
+switch with no breaks, case expressions are numbers.  input is 0 = 96 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.11-1.compiled.arff] ...

@@ -1,0 +1,23 @@
+<s3 title="Work done since the last Xalan version">
+  <p></p>
+</s3>
+<s3 title="Bugs Pended since the last Xalan version">
+  <p>The following bugs have been pended (we think they're fixed but haven't tested the fixes):</p>
+  <ul>
+    <li></li>
+  </ul>
+</s3>
+
+<s3 title="Bugs resolved since the last Xalan version">
+  <p>The bugs have been fixed and tested:</p>
+  <ul>
+    <li></li>
+  </ul>
+</s3>
+
+<s3 title="Bugs closed since the last Xalan version">
+  <p>We have determined that the following bug reports are not actual bugs:</p>
+  <ul>
+    <li></li>
+  </ul>
+</s3>

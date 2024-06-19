@@ -1,0 +1,246 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: EFHSSF, EFHSSFListener');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: EFHSSF, EFHSSFListener';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.hssf.dev;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import java.io.FileInputStream;
+<a name=59 class="linenum">59   </a>import java.io.FileOutputStream;
+<a name=60 class="linenum">60   </a>import java.io.InputStream;
+<a name=61 class="linenum">61   </a>import java.io.IOException;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a>import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+<a name=64 class="linenum">64   </a>import org.apache.poi.hssf.record.*;
+<a name=65 class="linenum">65   </a>import org.apache.poi.hssf.eventmodel.*;
+<a name=66 class="linenum">66   </a>import org.apache.poi.hssf.usermodel.*;
+<a name=67 class="linenum">67   </a>
+<a name=68 class="linenum">68   </a><span class="comment">/**
+<a name=69 class="linenum">69   </a> * Event Factory version of HSSF test class.
+<a name=70 class="linenum">70   </a> * @author  andy
+<a name=71 class="linenum">71   </a> */</span>
+<a name=72 class="linenum">72   </a>
+<a name=73 class="linenum">73   </a>public class <a class="classDef" name=EFHSSF href=EFHSSF_java_ref.html#EFHSSF>EFHSSF</a>
+<a name=74 class="linenum">74   </a>{
+<a name=75 class="linenum">75   </a>    String       <a class="varDef" name=EFHSSF.infile href=EFHSSF_java_ref.html#EFHSSF.infile>infile</a>;
+<a name=76 class="linenum">76   </a>    String       <a class="varDef" name=EFHSSF.outfile href=EFHSSF_java_ref.html#EFHSSF.outfile>outfile</a>;
+<a name=77 class="linenum">77   </a>    <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook>HSSFWorkbook</a> <a class="varDef" name=EFHSSF.workbook href=EFHSSF_java_ref.html#EFHSSF.workbook>workbook</a> = null;
+<a name=78 class="linenum">78   </a>    <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet>HSSFSheet</a>    <a class="varDef" name=EFHSSF.cursheet href=EFHSSF_java_ref.html#EFHSSF.cursheet>cursheet</a> = null;
+<a name=79 class="linenum">79   </a>
+<a name=80 class="linenum">80   </a>    <span class="comment">/** Creates a new instance of EFHSSF */</span>
+<a name=81 class="linenum">81   </a>
+<a name=82 class="linenum">82   </a>    public <a class="methodDef" name=EFHSSF.EFHSSF() href=EFHSSF_java_ref.html#EFHSSF.EFHSSF()>EFHSSF</a>()
+<a name=83 class="linenum">83   </a>    {
+<a name=84 class="linenum">84   </a>    }
+<a name=85 class="linenum">85   </a>
+<a name=86 class="linenum">86   </a>    public void <a class="methodDef" name=EFHSSF.setInputFile(String) href=EFHSSF_java_ref.html#EFHSSF.setInputFile(String)>setInputFile</a>(String infile)
+<a name=87 class="linenum">87   </a>    {
+<a name=88 class="linenum">88   </a>        this.infile = <a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.setInputFile.infile>infile</a>;
+<a name=89 class="linenum">89   </a>    }
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    public void <a class="methodDef" name=EFHSSF.setOutputFile(String) href=EFHSSF_java_ref.html#EFHSSF.setOutputFile(String)>setOutputFile</a>(String outfile)
+<a name=92 class="linenum">92   </a>    {
+<a name=93 class="linenum">93   </a>        this.outfile = <a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.setOutputFile.outfile>outfile</a>;
+<a name=94 class="linenum">94   </a>    }
+<a name=95 class="linenum">95   </a>
+<a name=96 class="linenum">96   </a>    public void <a class="methodDef" name=EFHSSF.run() href=EFHSSF_java_ref.html#EFHSSF.run()>run</a>()
+<a name=97 class="linenum">97   </a>        throws IOException
+<a name=98 class="linenum">98   </a>    {
+<a name=99 class="linenum">99   </a>        FileInputStream fin   = new FileInputStream(<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.infile>infile</a>);
+<a name=100 class="linenum">100  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem>POIFSFileSystem</a> poifs = new <a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.POIFSFileSystem(InputStream)>POIFSFileSystem</a>(<a class="varRef" title="FileInputStream" href=EFHSSF_java.html#EFHSSF.run.fin>fin</a>);
+<a name=101 class="linenum">101  </a>        InputStream     din   = <a class="varRef" title="POIFSFileSystem" href=EFHSSF_java.html#EFHSSF.run.poifs>poifs</a>.<a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.createDocumentInputStream(String)>createDocumentInputStream</a>("Workbook");
+<a name=102 class="linenum">102  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFRequest_java.html#HSSFRequest>HSSFRequest</a>     req   = new <a class="methodRef" title="HSSFRequest" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFRequest_java.html#HSSFRequest.HSSFRequest()>HSSFRequest</a>();
+<a name=103 class="linenum">103  </a>
+<a name=104 class="linenum">104  </a>        <a class="varRef" title="HSSFRequest" href=EFHSSF_java.html#EFHSSF.run.req>req</a>.<a class="methodRef" title="HSSFRequest" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFRequest_java.html#HSSFRequest.addListenerForAllRecords(HSSFListener)>addListenerForAllRecords</a>(new <a class="methodRef" title="EFHSSFListener" href=EFHSSF_java.html#EFHSSFListener.EFHSSFListener(EFHSSF)>EFHSSFListener</a>(this));
+<a name=105 class="linenum">105  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFEventFactory_java.html#HSSFEventFactory>HSSFEventFactory</a> factory = new <a class="methodRef" title="HSSFEventFactory" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFEventFactory_java.html#HSSFEventFactory.HSSFEventFactory()>HSSFEventFactory</a>();
+<a name=106 class="linenum">106  </a>
+<a name=107 class="linenum">107  </a>        <a class="varRef" title="HSSFEventFactory" href=EFHSSF_java.html#EFHSSF.run.factory>factory</a>.<a class="methodRef" title="HSSFEventFactory" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFEventFactory_java.html#HSSFEventFactory.processEvents(HSSFRequest,InputStream)>processEvents</a>(<a class="varRef" title="HSSFRequest" href=EFHSSF_java.html#EFHSSF.run.req>req</a>, <a class="varRef" title="InputStream" href=EFHSSF_java.html#EFHSSF.run.din>din</a>);
+<a name=108 class="linenum">108  </a>        <a class="varRef" title="FileInputStream" href=EFHSSF_java.html#EFHSSF.run.fin>fin</a>.close();
+<a name=109 class="linenum">109  </a>        <a class="varRef" title="InputStream" href=EFHSSF_java.html#EFHSSF.run.din>din</a>.close();
+<a name=110 class="linenum">110  </a>        FileOutputStream fout = new FileOutputStream(<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.outfile>outfile</a>);
+<a name=111 class="linenum">111  </a>
+<a name=112 class="linenum">112  </a>        <a class="varRef" title="HSSFWorkbook" href=EFHSSF_java.html#EFHSSF.workbook>workbook</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.write(OutputStream)>write</a>(<a class="varRef" title="FileOutputStream" href=EFHSSF_java.html#EFHSSF.run.fout>fout</a>);
+<a name=113 class="linenum">113  </a>        <a class="varRef" title="FileOutputStream" href=EFHSSF_java.html#EFHSSF.run.fout>fout</a>.close();
+<a name=114 class="linenum">114  </a>        System.out.println("done.");
+<a name=115 class="linenum">115  </a>    }
+<a name=116 class="linenum">116  </a>
+<a name=117 class="linenum">117  </a>    public void <a class="methodDef" name=EFHSSF.recordHandler(Record) href=EFHSSF_java_ref.html#EFHSSF.recordHandler(Record)>recordHandler</a>(<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record>Record</a> record)
+<a name=118 class="linenum">118  </a>    {
+<a name=119 class="linenum">119  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow>HSSFRow</a>  row      = null;
+<a name=120 class="linenum">120  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a> cell     = null;
+<a name=121 class="linenum">121  </a>        int      sheetnum = -1;
+<a name=122 class="linenum">122  </a>
+<a name=123 class="linenum">123  </a>        switch (<a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>.<a class="methodRef" title="Record" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record.getSid()>getSid</a>())
+<a name=124 class="linenum">124  </a>        {
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord>BOFRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord.sid>sid</a> :
+<a name=127 class="linenum">127  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord>BOFRecord</a> bof = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord>BOFRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=128 class="linenum">128  </a>
+<a name=129 class="linenum">129  </a>                if (<a class="varRef" title="BOFRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.bof>bof</a>.<a class="methodRef" title="BOFRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord.getType()>getType</a>() == <a class="varRef" title="BOFRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.bof>bof</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord.TYPE_WORKBOOK>TYPE_WORKBOOK</a>)
+<a name=130 class="linenum">130  </a>                {
+<a name=131 class="linenum">131  </a>                    workbook = new <a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.HSSFWorkbook()>HSSFWorkbook</a>();
+<a name=132 class="linenum">132  </a>                }
+<a name=133 class="linenum">133  </a>                else if (<a class="varRef" title="BOFRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.bof>bof</a>.<a class="methodRef" title="BOFRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord.getType()>getType</a>() == <a class="varRef" title="BOFRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.bof>bof</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\BOFRecord_java.html#BOFRecord.TYPE_WORKSHEET>TYPE_WORKSHEET</a>)
+<a name=134 class="linenum">134  </a>                {
+<a name=135 class="linenum">135  </a>                    <a class="varRef" title="int" href=EFHSSF_java.html#EFHSSF.recordHandler.sheetnum>sheetnum</a>++;
+<a name=136 class="linenum">136  </a>                    cursheet = workbook.getSheetAt(<a class="varRef" title="int" href=EFHSSF_java.html#EFHSSF.recordHandler.sheetnum>sheetnum</a>);
+<a name=137 class="linenum">137  </a>                }
+<a name=138 class="linenum">138  </a>                break;
+<a name=139 class="linenum">139  </a>
+<a name=140 class="linenum">140  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BoundSheetRecord_java.html#BoundSheetRecord>BoundSheetRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\BoundSheetRecord_java.html#BoundSheetRecord.sid>sid</a> :
+<a name=141 class="linenum">141  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BoundSheetRecord_java.html#BoundSheetRecord>BoundSheetRecord</a> bsr = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\BoundSheetRecord_java.html#BoundSheetRecord>BoundSheetRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=142 class="linenum">142  </a>
+<a name=143 class="linenum">143  </a>                workbook.createSheet(<a class="varRef" title="BoundSheetRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.bsr>bsr</a>.<a class="methodRef" title="BoundSheetRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\BoundSheetRecord_java.html#BoundSheetRecord.getSheetname()>getSheetname</a>());
+<a name=144 class="linenum">144  </a>                break;
+<a name=145 class="linenum">145  </a>
+<a name=146 class="linenum">146  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\RowRecord_java.html#RowRecord>RowRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\RowRecord_java.html#RowRecord.sid>sid</a> :
+<a name=147 class="linenum">147  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\RowRecord_java.html#RowRecord>RowRecord</a> rowrec = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\RowRecord_java.html#RowRecord>RowRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=148 class="linenum">148  </a>
+<a name=149 class="linenum">149  </a>                cursheet.createRow(<a class="varRef" title="RowRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.rowrec>rowrec</a>.<a class="methodRef" title="RowRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>());
+<a name=150 class="linenum">150  </a>                break;
+<a name=151 class="linenum">151  </a>
+<a name=152 class="linenum">152  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord>NumberRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord.sid>sid</a> :
+<a name=153 class="linenum">153  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord>NumberRecord</a> numrec = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord>NumberRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=154 class="linenum">154  </a>
+<a name=155 class="linenum">155  </a>                <a class="varRef" title="HSSFRow" href=EFHSSF_java.html#EFHSSF.recordHandler.row>row</a>  = cursheet.getRow(<a class="varRef" title="NumberRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.numrec>numrec</a>.<a class="methodRef" title="NumberRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord.getRow()>getRow</a>());
+<a name=156 class="linenum">156  </a>                <a class="varRef" title="HSSFCell" href=EFHSSF_java.html#EFHSSF.recordHandler.cell>cell</a> = <a class="varRef" title="HSSFRow" href=EFHSSF_java.html#EFHSSF.recordHandler.row>row</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.createCell(short,int)>createCell</a>(<a class="varRef" title="NumberRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.numrec>numrec</a>.<a class="methodRef" title="NumberRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord.getColumn()>getColumn</a>(),
+<a name=157 class="linenum">157  </a>                                      <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_NUMERIC>CELL_TYPE_NUMERIC</a>);
+<a name=158 class="linenum">158  </a>                <a class="varRef" title="HSSFCell" href=EFHSSF_java.html#EFHSSF.recordHandler.cell>cell</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellValue(double)>setCellValue</a>(<a class="varRef" title="NumberRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.numrec>numrec</a>.<a class="methodRef" title="NumberRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\NumberRecord_java.html#NumberRecord.getValue()>getValue</a>());
+<a name=159 class="linenum">159  </a>                break;
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord>SSTRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord.sid>sid</a> :
+<a name=162 class="linenum">162  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord>SSTRecord</a> sstrec = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord>SSTRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=163 class="linenum">163  </a>
+<a name=164 class="linenum">164  </a>                for (int k = 0; <a class="varRef" title="int" href=EFHSSF_java.html#EFHSSF.recordHandler.k>k</a> &lt; <a class="varRef" title="SSTRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.sstrec>sstrec</a>.<a class="methodRef" title="SSTRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord.getNumUniqueStrings()>getNumUniqueStrings</a>(); <a class="varRef" title="int" href=EFHSSF_java.html#EFHSSF.recordHandler.k>k</a>++)
+<a name=165 class="linenum">165  </a>                {
+<a name=166 class="linenum">166  </a>                    workbook.addSSTString(<a class="varRef" title="SSTRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.sstrec>sstrec</a>.<a class="methodRef" title="SSTRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\SSTRecord_java.html#SSTRecord.getString(int)>getString</a>(<a class="varRef" title="int" href=EFHSSF_java.html#EFHSSF.recordHandler.k>k</a>));
+<a name=167 class="linenum">167  </a>                }
+<a name=168 class="linenum">168  </a>                break;
+<a name=169 class="linenum">169  </a>
+<a name=170 class="linenum">170  </a>            case <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord>LabelSSTRecord</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord.sid>sid</a> :
+<a name=171 class="linenum">171  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord>LabelSSTRecord</a> lrec = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord>LabelSSTRecord</a> ) <a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSF.recordHandler.record>record</a>;
+<a name=172 class="linenum">172  </a>
+<a name=173 class="linenum">173  </a>                <a class="varRef" title="HSSFRow" href=EFHSSF_java.html#EFHSSF.recordHandler.row>row</a>  = cursheet.getRow(<a class="varRef" title="LabelSSTRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.lrec>lrec</a>.<a class="methodRef" title="LabelSSTRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord.getRow()>getRow</a>());
+<a name=174 class="linenum">174  </a>                <a class="varRef" title="HSSFCell" href=EFHSSF_java.html#EFHSSF.recordHandler.cell>cell</a> = <a class="varRef" title="HSSFRow" href=EFHSSF_java.html#EFHSSF.recordHandler.row>row</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.createCell(short,int)>createCell</a>(<a class="varRef" title="LabelSSTRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.lrec>lrec</a>.<a class="methodRef" title="LabelSSTRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord.getColumn()>getColumn</a>(),
+<a name=175 class="linenum">175  </a>                                      <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_STRING>CELL_TYPE_STRING</a>);
+<a name=176 class="linenum">176  </a>                <a class="varRef" title="HSSFCell" href=EFHSSF_java.html#EFHSSF.recordHandler.cell>cell</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellValue(double)>setCellValue</a>(workbook.getSSTString(<a class="varRef" title="LabelSSTRecord" href=EFHSSF_java.html#EFHSSF.recordHandler.lrec>lrec</a>.<a class="methodRef" title="LabelSSTRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\LabelSSTRecord_java.html#LabelSSTRecord.getSSTIndex()>getSSTIndex</a>()));
+<a name=177 class="linenum">177  </a>                break;
+<a name=178 class="linenum">178  </a>        }
+<a name=179 class="linenum">179  </a>    }
+<a name=180 class="linenum">180  </a>
+<a name=181 class="linenum">181  </a>    public static void <a class="methodDef" name=EFHSSF.main(String) href=EFHSSF_java_ref.html#EFHSSF.main(String)>main</a>(String [] args)
+<a name=182 class="linenum">182  </a>    {
+<a name=183 class="linenum">183  </a>        if ((<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.main.args>args</a>.length &lt; 2) || !<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.main.args>args</a>[ 0 ].equals("--help"))
+<a name=184 class="linenum">184  </a>        {
+<a name=185 class="linenum">185  </a>            try
+<a name=186 class="linenum">186  </a>            {
+<a name=187 class="linenum">187  </a>                <a class="classRef" href=EFHSSF_java.html#EFHSSF>EFHSSF</a> viewer = new <a class="methodRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSF.EFHSSF()>EFHSSF</a>();
+<a name=188 class="linenum">188  </a>
+<a name=189 class="linenum">189  </a>                <a class="varRef" title="EFHSSF" href=EFHSSF_java.html#~NO NAME~.viewer>viewer</a>.<a class="methodRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSF.setInputFile(String)>setInputFile</a>(<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.main.args>args</a>[ 0 ]);
+<a name=190 class="linenum">190  </a>                <a class="varRef" title="EFHSSF" href=EFHSSF_java.html#~NO NAME~.viewer>viewer</a>.<a class="methodRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSF.setOutputFile(String)>setOutputFile</a>(<a class="varRef" title="String" href=EFHSSF_java.html#EFHSSF.main.args>args</a>[ 1 ]);
+<a name=191 class="linenum">191  </a>                <a class="varRef" title="EFHSSF" href=EFHSSF_java.html#~NO NAME~.viewer>viewer</a>.<a class="methodRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSF.run()>run</a>();
+<a name=192 class="linenum">192  </a>            }
+<a name=193 class="linenum">193  </a>            catch (IOException e)
+<a name=194 class="linenum">194  </a>            {
+<a name=195 class="linenum">195  </a>                <a class="varRef" title="IOException" href=EFHSSF_java.html#~NO NAME~.e>e</a>.printStackTrace();
+<a name=196 class="linenum">196  </a>            }
+<a name=197 class="linenum">197  </a>        }
+<a name=198 class="linenum">198  </a>        else
+<a name=199 class="linenum">199  </a>        {
+<a name=200 class="linenum">200  </a>            System.out.println("EFHSSF");
+<a name=201 class="linenum">201  </a>            System.out.println(
+<a name=202 class="linenum">202  </a>                "General testbed for HSSFEventFactory based testing and "
+<a name=203 class="linenum">203  </a>                + "Code examples");
+<a name=204 class="linenum">204  </a>            System.out.println("Usage: java org.apache.poi.hssf.dev.EFHSSF "
+<a name=205 class="linenum">205  </a>                               + "file1 file2");
+<a name=206 class="linenum">206  </a>            System.out.println(
+<a name=207 class="linenum">207  </a>                "   --will rewrite the file reading with the event api");
+<a name=208 class="linenum">208  </a>            System.out.println("and writing with the standard API");
+<a name=209 class="linenum">209  </a>        }
+<a name=210 class="linenum">210  </a>    }
+<a name=211 class="linenum">211  </a>}
+<a name=212 class="linenum">212  </a>
+<a name=213 class="linenum">213  </a>class <a class="classDef" name=EFHSSFListener href=EFHSSF_java_ref.html#EFHSSFListener>EFHSSFListener</a>
+<a name=214 class="linenum">214  </a>    implements <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\eventmodel\HSSFListener_java.html#HSSFListener>HSSFListener</a>
+<a name=215 class="linenum">215  </a>{
+<a name=216 class="linenum">216  </a>    <a class="classRef" href=EFHSSF_java.html#EFHSSF>EFHSSF</a> <a class="varDef" name=EFHSSFListener.efhssf href=EFHSSF_java_ref.html#EFHSSFListener.efhssf>efhssf</a>;
+<a name=217 class="linenum">217  </a>
+<a name=218 class="linenum">218  </a>    public <a class="methodDef" name=EFHSSFListener.EFHSSFListener(EFHSSF) href=EFHSSF_java_ref.html#EFHSSFListener.EFHSSFListener(EFHSSF)>EFHSSFListener</a>(<a class="classRef" href=EFHSSF_java.html#EFHSSF>EFHSSF</a> efhssf)
+<a name=219 class="linenum">219  </a>    {
+<a name=220 class="linenum">220  </a>        this.efhssf = <a class="varRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSFListener.EFHSSFListener.efhssf>efhssf</a>;
+<a name=221 class="linenum">221  </a>    }
+<a name=222 class="linenum">222  </a>
+<a name=223 class="linenum">223  </a>    public void <a class="methodDef" name=EFHSSFListener.processRecord(Record) href=EFHSSF_java_ref.html#EFHSSFListener.processRecord(Record)>processRecord</a>(<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record>Record</a> record)
+<a name=224 class="linenum">224  </a>    {
+<a name=225 class="linenum">225  </a>        <a class="varRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSFListener.efhssf>efhssf</a>.<a class="methodRef" title="EFHSSF" href=EFHSSF_java.html#EFHSSF.recordHandler(Record)>recordHandler</a>(<a class="varRef" title="Record" href=EFHSSF_java.html#EFHSSFListener.processRecord.record>record</a>);
+<a name=226 class="linenum">226  </a>    }
+<a name=227 class="linenum">227  </a>}
+<a name=228 class="linenum">228  </a></pre>

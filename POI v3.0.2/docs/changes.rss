@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
+<rss version="0.91"><channel><title>POI Changes</title><link>http://poi.apache.org//changes.html</link><description>POI Changes</description><language>en-us</language><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44297 - IntPtg must operate with unsigned short. Reading signed short results in incorrect formula calculation</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44296 - Fix for reading slide background images</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44293 - Avoid swapping AreaPtgs from relative to absolute</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44292 - Correctly process the last paragraph in a word file</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44254 - Avoid some unread byte warnings, and properly understand DVALRecord</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Add another formula evaluation method, evaluateFormulaCell(cell), which will re-calculate the value for a formula, without affecting the formula itself.</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              41726 - Fix how we handle signed cell offsets in relative areas and references</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              44233 - Support for getting and setting a flag on the sheet, which tells excel to re-calculate all formulas on it at next reload</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44201 - Enable cloning of sheets with data validation rules</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44200 - Enable cloning of sheets with notes</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              43008 - Add a moveCell method to HSSFRow, and deprecate setCellNum(), which didn't update things properly</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              43058 - Support setting row grouping on files from CR IX, which lack GutsRecords</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              31795 - Support cloning of sheets with certain drawing objects on them</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              43902 - Don't consider merged regions when auto-sizing columns</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              42464 - Avoid "Expected ExpPtg to be converted from Shared to Non-Shared Formula" on large, formula heavy worksheets</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              42033 - Add support for named ranges with unicode names</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              34023 - When shifting rows, update formulas on that sheet to point to the new location of those rows</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support getting all the cells referenced by an AreaReference, not just the corner ones</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              43510 - Add support for named ranges in formulas, including non-contiguous named ranges</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              43937 - Add support for hiding and un-hiding sheets, and checking their current hidden status</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44167 - Fix for non-contiguous named ranges</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44070 - Fix for shifting comments when shifting rows</description></item></channel></rss>

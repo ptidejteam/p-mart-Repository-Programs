@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Object\8.6.2-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Object\shell.js -f mozilla\js\tests\ecma_3\Object\8.6.2-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: (none)
+STATUS: Testing the internal [[Class]] property of user-defined types
+PASSED! Current user-defined type is: new Cow()
+PASSED! Current user-defined type is: new Calf()
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Object\8.6.2-3.compiled.arff] ...

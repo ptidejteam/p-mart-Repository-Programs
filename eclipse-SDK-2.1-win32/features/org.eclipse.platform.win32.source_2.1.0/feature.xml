@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.platform.win32.source"
+      label="%featureName"
+      version="2.1.0"
+      image= "eclipse_update_120.jpg"
+      provider-name="%providerName"
+      os="win32"
+      ws="win32"
+      arch="x86">
+
+   <description>
+      %description
+   </description>
+
+   <license url="%licenseURL">
+     %license
+   </license>
+
+   <url>
+      <update
+         url="http://update.eclipse.org/updates"
+         label="%updateSiteName">
+      </update>
+   </url>
+
+  <includes id="org.eclipse.platform.source" version="2.1.0" match="equivalent" />
+
+  <requires>
+  	  <import plugin="org.eclipse.platform.source" version="2.1.0" match="compatible" />
+  </requires>
+  
+  <plugin id="org.eclipse.platform.win32.source" version="2.1.0"/>
+</feature>

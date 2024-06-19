@@ -1,0 +1,31 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.27-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.27-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.9.5.23-2 Date.prototype.setTime()
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(1184090206890) = 1184090206890 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(1184090206891.1) = 1184090206891 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(1184090206891) = 1184090206891 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(1184090206889) = 1184090206889 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(1184108206890) = 1184108206890 PASSED!
+( Tue Jul 10 2007 18:56:46 GMT-0400 (EDT) ).setTime(1184072206890) = 1184072206890 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(0) = 0 PASSED!
+( Wed Dec 31 1969 19:00:00 GMT-0500 (EST) ).setTime(1.1) = 1 PASSED!
+( Wed Dec 31 1969 19:00:00 GMT-0500 (EST) ).setTime(1) = 1 PASSED!
+( Wed Dec 31 1969 19:00:00 GMT-0500 (EST) ).setTime(-1) = -1 PASSED!
+( Wed Dec 31 1969 18:59:59 GMT-0500 (EST) ).setTime(18000000) = 18000000 PASSED!
+( Thu Jan 01 1970 00:00:00 GMT-0500 (EST) ).setTime(-18000000) = -18000000 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(-2208988800000) = -2208988800000 PASSED!
+( Sun Dec 31 1899 19:00:00 GMT-0500 (EST) ).setTime(-2208988799998.9) = -2208988799998 PASSED!
+( Sun Dec 31 1899 19:00:00 GMT-0500 (EST) ).setTime(-2208988799999) = -2208988799999 PASSED!
+( Sun Dec 31 1899 19:00:00 GMT-0500 (EST) ).setTime(-2208988800001) = -2208988800001 PASSED!
+( Sun Dec 31 1899 18:59:59 GMT-0500 (EST) ).setTime(-2208970800000) = -2208970800000 PASSED!
+( Mon Jan 01 1900 00:00:00 GMT-0500 (EST) ).setTime(-2209006800000) = -2209006800000 PASSED!
+( Tue Jul 10 2007 13:56:46 GMT-0400 (EDT) ).setTime(946684800000) = 946684800000 PASSED!
+( Fri Dec 31 1999 19:00:00 GMT-0500 (EST) ).setTime(946684800001.1) = 946684800001 PASSED!
+( Fri Dec 31 1999 19:00:00 GMT-0500 (EST) ).setTime(946684800001) = 946684800001 PASSED!
+( Fri Dec 31 1999 19:00:00 GMT-0500 (EST) ).setTime(946684799999) = 946684799999 PASSED!
+( Fri Dec 31 1999 18:59:59 GMT-0500 (EST) ).setTime(946702800000) = 946702800000 PASSED!
+( Sat Jan 01 2000 00:00:00 GMT-0500 (EST) ).setTime(946666800000) = 946666800000 PASSED!
+(new Date(NaN)).setTime() = NaN PASSED!
+Date.prototype.setTime.length = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.27-2.compiled.arff] ...

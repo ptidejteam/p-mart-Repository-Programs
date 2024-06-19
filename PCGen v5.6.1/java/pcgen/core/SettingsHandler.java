@@ -1,0 +1,3057 @@
+/*
+ * SettingsHandler.java
+ * Copyright 2001 (C) Jonas Karlsson
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * Created on July 10, 2002, 2:15 PM
+ *
+ * Current Ver: $Revision: 1.1 $
+ * Last Editor: $Author: vauchers $
+ * Last Edited: $Date: 2006/02/21 01:33:15 $
+ *
+ */
+package pcgen.core;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.SortedMap;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+import javax.swing.SwingConstants;
+import pcgen.core.utils.SortedProperties;
+import pcgen.core.utils.Utility;
+import pcgen.gui.GuiConstants;
+import pcgen.gui.PCGen_Frame1;
+import pcgen.gui.filter.FilterFactory;
+import pcgen.gui.filter.Filterable;
+import pcgen.gui.utils.GuiFacade;
+import pcgen.persistence.PersistenceLayerException;
+import pcgen.persistence.PersistenceManager;
+import pcgen.util.ComparableComparator;
+import pcgen.util.Logging;
+
+/**
+ * This class contains all settings-related code moved from Globals.java
+ *
+ * Should be cleaned up more.
+ *
+ * @author jujutsunerd
+ * @version $Revision: 1.1 $
+ **/
+
+public final class SettingsHandler
+{
+	private static int allStatsValue = 10;
+
+	private static boolean abilitiesShownAsTab = false;
+	private static boolean autoFeatsRefundable = false;
+	private static boolean useFeatBenefits = true;
+	private static boolean autogenExoticMaterial = false;
+	private static boolean autogenMagic = false;
+	private static boolean autogenMasterwork = false;
+	private static boolean autogenRacial = false;
+
+	private static boolean validateBonuses = false;
+
+	//
+	// For EqBuilder
+	//
+	private static int maxPotionSpellLevel = 3;
+	private static int maxWandSpellLevel = 4;
+	private static boolean allowMetamagicInCustomizer = false;
+	private static boolean spellMarketPriceAdjusted = false;
+
+	// Map of RuleCheck keys and their settings
+	private static Map ruleCheckMap = new HashMap();
+	/** That browserPath is set to null is intentional. */
+	private static String browserPath = null; //Intentional null
+	/**
+	 *  See @javax.swing.SwingConstants
+	 */
+	private static int chaTabPlacement = SwingConstants.TOP;
+	private static Dimension customizerDimension = null;
+	private static Point customizerLeftUpperCorner = null;
+	private static int customizerSplit1 = -1;
+	private static int customizerSplit2 = -1;
+	private static String dmNotes = "";
+	private static int excSkillCost = 0;
+	private static int featAutoColor = 0xB2B200;			// dark yellow
+	private static int featVirtualColor = 0xFF00FF;			// magenta
+	private static final Properties filterSettings = new Properties();
+	private static GameMode game = null;
+	private static boolean grimHPMode = false;
+	private static boolean grittyACMode = false;
+	private static boolean useWaitCursor = true;
+	private static boolean showD20InfoAtStart = true;
+	private static boolean loadURLs = false;
+	private static boolean showOGLOnLoad = true;
+	private static boolean hpMaxAtFirstLevel = true;
+	private static int hpRollMethod = Constants.HP_STANDARD;
+	private static int hpPct = 100;
+	private static boolean ignoreLevelCap = false;
+	private static boolean ignoreMonsterHDCap = false;
+	/**
+	 *  0==None, 1=Untrained, 2=all
+	 */
+	private static int includeSkills = 1;
+	private static int skillsTab_IncludeSkills = 1;
+	private static int intCrossClassSkillCost = 2;
+	private static boolean gearTab_IgnoreCost = false;
+	private static boolean gearTab_AllowDebt = false;
+	private static int gearTab_SellRate = 50;
+	private static int gearTab_BuyRate = 100;
+	private static boolean isROG = false;
+	private static Point leftUpperCorner = null;
+	private static boolean loadCampaignsAtStart = false;
+	private static boolean loadCampaignsWithPC = true;
+	private static int looknFeel = 1; // default to System L&F
+	private static boolean expertGUI = false; // default to System L&F
+	private static boolean optionAllowedInSources = true;
+	private static final SortedProperties options = new SortedProperties();
+	private static final Properties filepaths = new Properties();
+	private static final String fileLocation = System.getProperty("user.dir") + File.separator + "filepaths.ini";
+	private static File pcgenFilesDir = new File(System.getProperty("user.dir"));
+	private static File pccFilesLocation = null;
+	private static File pcgPath = new File(Globals.getDefaultPath());
+	private static File portraitsPath = new File(Globals.getDefaultPath());
+	private static File pcgenCustomDir = new File(Globals.getDefaultPath() + File.separator + "data" + File.separator + "customsources");
+	private static File pcgenDocsDir = null;
+	/**
+	 * Where to load the system lst files from.
+	 */
+	private static File pcgenSystemDir = new File(Globals.getDefaultPath() + File.separator + "system");
+	private static File pcgenThemePackDir = new File(Globals.getDefaultPath() + File.separator + "lib" + File.separator + "themes");
+	private static File pcgenOutputSheetDir = new File(Globals.getDefaultPath() + File.separator + "outputsheets");
+	private static File gmgenPluginDir = new File(Globals.getDefaultPath() + File.separator + "plugins");
+	private static int prereqQualifyColor = 0x000000;			// 0 = black, 0xFF0000 = red, 0xFFFFFF = white
+	private static int prereqFailColor = 0xFF0000;			// 0 = black, 0xFF0000 = red, 0xFFFFFF = white
+	private static boolean previewTabShown = false;
+	private static String purchaseMethodName = "";
+	private static int[] abilityScoreCost = null;
+	private static SortedMap pointBuyStatCosts = null;
+	private static List pointBuyMethods = null;
+/////////////////////////////////////////////////
+
+	private static boolean ranStartingWizard = false;
+	/**
+	 * Method:
+	 * 0: One random number
+	 * 1: 4d6 Drop Lowest.
+	 * 2: 3d6
+	 * 3: 5d6 Drop 2 Lowest
+	 * 4: 4d6 reroll 1's drop lowest
+	 * 5: 4d6 reroll 1's and 2's drop lowest
+	 * 6: 3d6 +5
+	 * 7: 5d6 Drop lowest and middle FR #458917
+	 * 8: All 10's.
+	 * 9: Purchase Mode
+	 */
+	private static int rollMethod = Constants.ROLLINGMETHOD_STANDARD;
+	private static String rollMethodExpression = "roll(4,6,[2,3,4])"; // standard
+	private static final String[] rollMethodExpressions = {
+		"0", // all 0s
+		"roll(4,6,[2,3,4])", // 4d6, drop lowest
+		"3d6", // 3d6
+		"roll(5,6,[3,4,5])", // 5d6, drop 2 lowest
+		"roll(4,5,[2,3,4])+3", // 4d6, reroll 1s, drop lowest (actually 4d5 drop lowest +3)
+		"roll(4,4,[2,3,4])+6", // 4d6, reroll 1s and 2s, drop lowest (actually 4d4 drop lowest +6)
+		"3d6+5", // 3d6+5
+		"roll(5,6,[2,4,5])", // 5d6, drop lowest and middle
+		"10", // all 10s
+		"", };
+	private static boolean saveCustomInLst = false;
+
+	private static String selectedCharacterHTMLOutputSheet = "";
+	private static String selectedCharacterPDFOutputSheet = "";
+	private static boolean saveOutputSheetWithPC = false;
+	private static boolean printSpellsWithPC = true;
+
+	private static String selectedPartyHTMLOutputSheet = "";
+	private static String selectedPartyPDFOutputSheet = "";
+
+	private static String selectedEqSetTemplate = "";
+	private static String selectedSpellSheet = "";
+
+	private static boolean showFeatDialogAtLevelUp = true;
+	private static boolean showHPDialogAtLevelUp = true;
+	private static boolean showStatDialogAtLevelUp = true;
+	private static boolean showToolBar = true;
+	private static boolean showWarningAtFirstLevelUp = true;
+	private static boolean skillIncrementBefore = true;
+	private static String skinLFThemePack = null;
+	private static boolean summaryTabShown = false;
+
+	private static int classTab_AvailableListMode = GuiConstants.INFOCLASS_VIEW_NAME;
+	private static int classTab_SelectedListMode = GuiConstants.INFOCLASS_VIEW_NAME;
+	private static int equipTab_AvailableListMode = GuiConstants.INFOEQUIPPING_VIEW_TYPE;
+	private static int equipTab_SelectedListMode = GuiConstants.INFOEQUIPPING_VIEW_NAME;
+	private static int featTab_AvailableListMode = GuiConstants.INFOFEATS_VIEW_TYPENAME;
+	private static int featTab_SelectedListMode = GuiConstants.INFOFEATS_VIEW_NAMEONLY;
+	private static int gearTab_AvailableListMode = GuiConstants.INFOINVENTORY_VIEW_TYPE_SUBTYPE_NAME;
+	private static int gearTab_SelectedListMode = GuiConstants.INFOINVENTORY_VIEW_NAME;
+	private static int raceTab_ListMode = GuiConstants.INFORACE_VIEW_NAME;
+	private static int skillsTab_AvailableListMode = GuiConstants.INFOSKILLS_VIEW_TYPE_NAME;
+	private static int skillsTab_SelectedListMode = GuiConstants.INFOSKILLS_VIEW_NAME;
+	private static int spellsTab_AvailableListMode = GuiConstants.INFOSPELLS_VIEW_CLASS;
+	private static int spellsTab_SelectedListMode = GuiConstants.INFOSPELLS_VIEW_CLASS;
+
+	private static int cleanupTempFiles = 0;
+
+	/**
+	 *  See @javax.swing.SwingConstants
+	 */
+	private static int tabPlacement = SwingConstants.BOTTOM;
+
+	private static final String tmpPath = System.getProperty("java.io.tmpdir");
+	private static final File tempPath = new File(getTmpPath());
+
+	private static boolean toolTipTextShown = true;
+	private static boolean useMonsterDefault = true;
+	private static boolean wantToLoadMasterworkAndMagic = false;
+
+	private static int nameDisplayStyle = Constants.DISPLAY_STYLE_NAME;
+	private static boolean weaponProfPrintout = Constants.PRINTOUT_WEAPONPROF;
+
+	private static String postExportCommand = "";
+
+	private static boolean hideMonsterClasses = false;
+
+	private static boolean guiUsesOutputName = false;
+	private static int singleChoicePreference = Constants.CHOOSER_SINGLECHOICEMETHOD_NONE;
+
+	private static int lastTipShown = -1;
+	private static boolean showTipOfTheDay = true;
+
+	private static boolean isGMGen = false;
+
+	public static File getPcgenDocsDir()
+	{
+		return pcgenDocsDir;
+	}
+
+	public static void setPcgenDocsDir(File argPcgenDocsDir)
+	{
+		pcgenDocsDir = argPcgenDocsDir;
+	}
+
+	/**
+	 * Opens the filepaths.ini file for reading
+	 **/
+	private static void readFilePaths()
+	{
+		FileInputStream in = null;
+		try
+		{
+			in = new FileInputStream(fileLocation);
+			getFilepathProp().load(in);
+		}
+		catch (IOException e)
+		{
+			// Not an error, this file may not exist yet
+			Logging.debugPrint("No filepaths.ini file found, will create one when exiting.");
+		}
+		finally
+		{
+			try
+			{
+				if (in != null)
+				{
+					in.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				//Not much to do about it...
+				Logging.errorPrint("Can't close filepaths.ini file", ex);
+			}
+		}
+	}
+
+	/**
+	 * Opens the filter.ini file for reading
+	 *
+	 * <br>author: Thomas Behr 10-03-02
+	 **/
+	private static void readFilterSettings()
+	{
+		// Globals.getFilterPath() will _always_ return a string
+		String filterLocation = Globals.getFilterPath();
+
+		FileInputStream in = null;
+		try
+		{
+			in = new FileInputStream(filterLocation);
+			getFilterSettings().load(in);
+		}
+		catch (IOException e)
+		{
+			// Not an error, this file may not exist yet
+			Logging.debugPrint("No filter settings file found, will create one when exiting.");
+		}
+		finally
+		{
+			try
+			{
+				if (in != null)
+				{
+					in.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				//Not much to do about it...
+				Logging.errorPrint("Can't close filter file", ex);
+			}
+		}
+	}
+
+	/**
+	 * Opens the options.ini
+	 */
+	public static void readOptionsProperties()
+	{
+		// read in the filepath.ini settings before anything else
+		readFilePaths();
+		// now get the Filter settings
+		readFilterSettings();
+
+		// Globals.getOptionsPath() will _always_ return a string
+		String optionsLocation = Globals.getOptionsPath();
+
+		FileInputStream in = null;
+
+		try
+		{
+			in = new FileInputStream(optionsLocation);
+			getOptions().load(in);
+		}
+		catch (IOException e)
+		{
+			// Not an error, this file may not exist yet
+
+			Logging.debugPrint("No options file found, will create one when exiting.");
+		}
+		finally
+		{
+			try
+			{
+				if (in != null)
+				{
+					in.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				//Not much to do about it...
+				Logging.errorPrint("Can't close options file", ex);
+			}
+		}
+	}
+
+	public static void readGUIOptionsProperties()
+	{
+		setNameDisplayStyle(getPCGenOption("nameDisplayStyle", Constants.DISPLAY_STYLE_NAME));
+
+		// Calling setToolTipTextShown doesn't update menu checkbox state
+		// toolTip state change, and menu checkbox state change are
+		// handled in gui code pcGenGUI.java just after returning
+		// from this method.
+		if (((Globals.javaVersionMajor >= 1) && (Globals.javaVersionMinor >= 4)) || (!System.getProperty("os.name").substring(0, 3).equalsIgnoreCase("MAC")))
+		//(! System.getProperty("os.name").substring(1,3).equalsIgnoreCase("LIN")))
+		{
+			setToolTipTextShown(getPCGenOption("toolTipTextShown", isToolTipTextShown()));
+			//System.out.println("Java Ver >= 1.4 || OS Name != MAC -- toolTip bug avoidance unnecessary");
+		}
+		else
+		{
+			setToolTipTextShown(getPCGenOption("toolTipTextShown", false));
+			//System.out.println("Java Ver < 1.4 && OS Name = MAC -- Defaulting toolTips OFF -- MAC/Java 1.3 Bug");
+		}
+		// Menu stuff
+		setOpenRecentPCs(getOpenRecentOption("openRecentPCs"));
+		setOpenRecentParties(getOpenRecentOption("openRecentParties"));
+	}
+
+	/**
+	 * Set most of this objects static properties from the loaded <code>options</code>.
+	 * Called by readOptionsProperties. Most of the static properties are
+	 * set as a side effect, with the main screen size being returned.
+	 * <p>
+	 * I am guessing that named object properties are faster to access
+	 * than using the <code>getProperty</code> method, and that this is
+	 * why settings are stored as static properties of <code>Global</code>,
+	 * but converted into a <code>Properties</code> object for
+	 * storage and retrieval.
+	 *
+	 * @return the default <code>Dimension</code> to set the screen size to
+	 */
+	private static boolean getPCGenOption(final String optionName, final boolean defaultValue)
+	{
+		final String option = getPCGenOption(optionName, defaultValue ? "true" : "false");
+		return "true".equalsIgnoreCase(option);
+	}
+
+	public static int getPCGenOption(final String optionName, final int defaultValue)
+	{
+		return Integer.decode(getPCGenOption(optionName, String.valueOf(defaultValue))).intValue();
+	}
+
+	private static Double getPCGenOption(final String optionName, final double defaultValue)
+	{
+		return new Double(getPCGenOption(optionName, Double.toString(defaultValue)));
+	}
+
+	public static String getPCGenOption(final String optionName, final String defaultValue)
+	{
+		return getOptions().getProperty("pcgen.options." + optionName, defaultValue);
+	}
+
+	/**
+	 * Set most of this objects static properties from the loaded <code>options</code>.
+	 * Called by readOptionsProperties. Most of the static properties are
+	 * set as a side effect, with the main screen size being returned.
+	 * <p>
+	 * I am guessing that named object properties are faster to access
+	 * than using the <code>getProperty</code> method, and that this is
+	 * why settings are stored as static properties of <code>Global</code>,
+	 * but converted into a <code>Properties</code> object for
+	 * storage and retrieval.
+	 *
+	 * @return the default <code>Dimension</code> to set the screen size to
+	 */
+	public static boolean getGMGenOption(final String optionName, final boolean defaultValue)
+	{
+		final String option = getGMGenOption(optionName, defaultValue ? "true" : "false");
+		return "true".equalsIgnoreCase(option);
+	}
+
+	public static int getGMGenOption(final String optionName, final int defaultValue)
+	{
+		return Integer.decode(getGMGenOption(optionName, String.valueOf(defaultValue))).intValue();
+	}
+
+	public static Double getGMGenOption(final String optionName, final double defaultValue)
+	{
+		return new Double(getGMGenOption(optionName, Double.toString(defaultValue)));
+	}
+
+	public static String getGMGenOption(final String optionName, final String defaultValue)
+	{
+		return getOptions().getProperty("gmgen.options." + optionName, defaultValue);
+	}
+
+	private static String[] getOpenRecentOption(final String optionName)
+	{
+		final String value = getPCGenOption(optionName, "");
+		if (value == null)
+		{
+			return new String[0];
+		}
+		final StringTokenizer tok = new StringTokenizer(value, "|");
+		final List strings = new ArrayList();
+
+		while (tok.hasMoreTokens())
+		{
+			strings.add(tok.nextToken());
+		}
+
+		return (String[]) strings.toArray(new String[0]);
+	}
+
+	public static Dimension getOptionsFromProperties()
+	{
+		Dimension d = new Dimension(0, 0);
+
+		final String tempBrowserPath = getPCGenOption("browserPath", "");
+		if (!"".equals(tempBrowserPath))
+		{
+			setBrowserPath(tempBrowserPath);
+		}
+		else
+		{
+			setBrowserPath(null);
+		}
+
+		PersistenceManager.setChosenCampaignSourcefiles(Utility.split(getOptions().getProperty("pcgen.files.chosenCampaignSourcefiles", ""), ','));
+
+		purchaseMethodName = getPCGenOption("purchaseMethodName", "");
+
+		setLeftUpperCorner(new Point(getPCGenOption("windowLeftUpperCorner.X", -1.0).intValue(), getPCGenOption("windowLeftUpperCorner.Y", -1.0).intValue()));
+		Double dw = getPCGenOption("windowWidth", 0.0);
+		Double dh = getPCGenOption("windowHeight", 0.0);
+		if (!Utility.doublesEqual(dw.doubleValue(), 0.0) && !Utility.doublesEqual(dh.doubleValue(), 0.0))
+		{
+			final int width = Integer.parseInt(dw.toString().substring(0, Math.min(dw.toString().length(), dw.toString().lastIndexOf("."))));
+			final int height = Integer.parseInt(dh.toString().substring(0, Math.min(dh.toString().length(), dh.toString().lastIndexOf("."))));
+			d = new Dimension(width, height);
+		}
+		setCustomizerLeftUpperCorner(new Point(getPCGenOption("customizer.windowLeftUpperCorner.X", -1.0).intValue(), getPCGenOption("customizer.windowLeftUpperCorner.Y", -1.0).intValue()));
+		dw = getPCGenOption("customizer.windowWidth", 0.0);
+		dh = getPCGenOption("customizer.windowHeight", 0.0);
+		if (!Utility.doublesEqual(dw.doubleValue(), 0.0) && !Utility.doublesEqual(dh.doubleValue(), 0.0))
+		{
+			setCustomizerDimension(new Dimension(dw.intValue(), dh.intValue()));
+		}
+
+		//
+		// Read in the buy/sell percentages for the gear tab
+		// If not in the .ini file and ignoreCost is set, then use 0%
+		// Otherwise set buy to 100% and sell to %50
+		//
+		int buyRate = getPCGenOption("GearTab.buyRate", -1);
+		int sellRate = getPCGenOption("GearTab.sellRate", -1);
+		if ((buyRate < 0) || (sellRate < 0))
+		{
+			if (getPCGenOption("GearTab.ignoreCost", false))
+			{
+				buyRate = 0;
+				sellRate = 0;
+			}
+			else
+			{
+				buyRate = 100;
+				sellRate = 50;
+			}
+		}
+		Globals.initCustColumnWidth(Utility.split(getOptions().getProperty("pcgen.options.custColumnWidth", ""), ','));
+
+		showD20InfoAtStart = getPCGenOption("showD20InfoAtStart", true);
+		loadURLs = getPCGenOption("loadURLs", false);
+		showOGLOnLoad = getPCGenOption("showOGLOnLoad", true);
+
+		Globals.setSourceDisplay(getPCGenOption("sourceDisplay", Constants.SOURCELONG));
+		Globals.setLanguage(getPCGenOption("language", "en"));
+		Globals.setCountry(getPCGenOption("country", "US"));
+
+		setAbilitiesShownAsATab(getPCGenOption("abilitiesShownAsTab", false));
+		setAllStatsValue(getPCGenOption("allStatsValue", 10));
+		setAutoFeatsRefundable(getPCGenOption("autoFeatsRefundable", false));
+		setUseFeatBenefits(getPCGenOption("useFeatBenefits", true));
+		setAutogenExoticMaterial(getPCGenOption("autoGenerateExoticMaterial", false));
+		setAutogenMagic(getPCGenOption("autoGenerateMagic", false));
+		setAutogenMasterwork(getPCGenOption("autoGenerateMasterwork", false));
+		setAutogenRacial(getPCGenOption("autoGenerateRacial", false));
+		setChaTabPlacement(getOptionTabPlacement("chaTabPlacement", SwingConstants.TOP));
+		setClassTab_AvailableListMode(getPCGenOption("ClassTab.availableListMode", GuiConstants.INFOCLASS_VIEW_NAME));
+		setClassTab_SelectedListMode(getPCGenOption("ClassTab.selectedListMode", GuiConstants.INFOCLASS_VIEW_NAME));
+		setCleanupTempFiles(getPCGenOption("cleanupTempFiles", 0));
+		setCustomizerSplit1(getPCGenOption("customizer.split1", -1));
+		setCustomizerSplit2(getPCGenOption("customizer.split2", -1));
+		setDmNotes(getPCGenOption("dmnotes", ""));
+		setEquipTab_AvailableListMode(getPCGenOption("EquipTab.availableListMode", GuiConstants.INFOEQUIPPING_VIEW_TYPE));
+		setEquipTab_SelectedListMode(getPCGenOption("EquipTab.selectedListMode", GuiConstants.INFOEQUIPPING_VIEW_NAME));
+		setExcSkillCost(getPCGenOption("excSkillCost", 0));
+		setExpertGUI(getPCGenOption("expertGUI", false));
+		setFeatAutoColor(getPCGenOption("featAutoColor", Color.yellow.darker().getRGB()));
+		setFeatTab_AvailableListMode(getPCGenOption("FeatTab.availableListMode", GuiConstants.INFOFEATS_VIEW_TYPENAME));
+		setFeatTab_SelectedListMode(getPCGenOption("FeatTab.selectedListMode", GuiConstants.INFOFEATS_VIEW_NAMEONLY));
+		setFeatVirtualColor(getPCGenOption("featVirtualColor", Color.magenta.getRGB()));
+		setGearTab_AllowDebt(getPCGenOption("GearTab.allowDebt", false));
+		setGearTab_AvailableListMode(getPCGenOption("GearTab.availableListMode", GuiConstants.INFOINVENTORY_VIEW_TYPE_SUBTYPE_NAME));
+		setGearTab_BuyRate(buyRate);
+		setGearTab_IgnoreCost(getPCGenOption("GearTab.ignoreCost", false));
+		setGearTab_SelectedListMode(getPCGenOption("GearTab.selectedListMode", GuiConstants.INFOINVENTORY_VIEW_NAME));
+		setGearTab_SellRate(sellRate);
+		setGrimHPMode(getPCGenOption("grimHPMode", false));
+		setGrittyACMode(getPCGenOption("grittyACMode", false));
+		setGUIUsesOutputName(getPCGenOption("GUIUsesOutputName", false));
+		setHideMonsterClasses(getPCGenOption("hideMonsterClasses", false));
+		setHPMaxAtFirstLevel(getPCGenOption("hpMaxAtFirstLevel", true));
+		setHPPct(getPCGenOption("hpPct", 100));
+		setHPRollMethod(getPCGenOption("hpRollMethod", Constants.HP_STANDARD));
+		setIgnoreMonsterHDCap(getPCGenOption("ignoreMonsterHDCap", false));
+		setIncludeSkills(getPCGenOption("includeSkills", 1));
+		setSkillsTab_IncludeSkills(getPCGenOption("skillsTab_IncludeSkills", getIncludeSkills()));
+		setIntCrossClassSkillCost(getPCGenOption("intCrossClassSkillCost", 2));
+		setLastTipShown(getPCGenOption("lastTipOfTheDayTipShown", -1));
+		setLoadCampaignsAtStart(getPCGenOption("loadCampaignsAtStart", false));
+		setLoadCampaignsWithPC(getPCGenOption("loadCampaignsWithPC", true));
+		setLookAndFeel(getPCGenOption("looknFeel", 0));
+		setMaxPotionSpellLevel(getPCGenOption("maxPotionSpellLevel", 3));
+		setMaxWandSpellLevel(getPCGenOption("maxWandSpellLevel", 4));
+		setMetamagicAllowedInEqBuilder(getPCGenOption("allowMetamagicInCustomizer", false));
+		setMonsterDefault(getPCGenOption("useMonsterDefault", false));
+		setOptionAllowedInSources(getPCGenOption("optionAllowedInSources", true));
+		setPccFilesLocation(new File(expandRelativePath(getPCGenOption("pccFilesLocation", System.getProperty("user.dir") + File.separator + "data"))));
+		setPcgenCustomDir(new File(expandRelativePath(getOptions().getProperty("pcgen.files.pcgenCustomDir", System.getProperty("user.dir") + File.separator + "data" + File.separator + "customsources"))));
+		setPcgenDocsDir(new File(expandRelativePath(getOptions().getProperty("pcgen.files.pcgenDocsDir", System.getProperty("user.dir") + File.separator + "docs"))));
+		setPcgenSystemDir(new File(expandRelativePath(getOptions().getProperty("pcgen.files.pcgenSystemDir", System.getProperty("user.dir") + File.separator + "system"))));
+		setPcgenThemePackDir(new File(expandRelativePath(getOptions().getProperty("pcgen.files.pcgenThemePackDir", System.getProperty("user.dir") + File.separator + "lib" + File.separator + "themes"))));
+		setPcgenOutputSheetDir(new File(expandRelativePath(getOptions().getProperty("pcgen.files.pcgenOutputSheetDir", System.getProperty("user.dir") + File.separator + "outputsheets"))));
+		setGmgenPluginDir(new File(expandRelativePath(getOptions().getProperty("gmgen.files.gmgenPluginDir", System.getProperty("user.dir") + File.separator + "plugins"))));
+		setPcgPath(new File(expandRelativePath(getOptions().getProperty("pcgen.files.characters", Globals.getDefaultPcgPath()))));
+		setPortraitsPath(new File(expandRelativePath(getOptions().getProperty("pcgen.files.portraits", Globals.getDefaultPath()))));
+		setPostExportCommand(getPCGenOption("postExportCommand", ""));
+		setPrereqFailColor(getPCGenOption("prereqFailColor", Color.red.getRGB()));
+		setPrereqQualifyColor(getPCGenOption("prereqQualifyColor", Color.black.getRGB()));
+		setPreviewTabShown(getPCGenOption("previewTabShown", true));
+		setRaceTab_ListMode(getPCGenOption("RaceTab.ListMode", GuiConstants.INFORACE_VIEW_NAME));
+		setRanStartingWizard(getPCGenOption("ranStartingWizard", false));
+		setROG(getPCGenOption("isROG", false));
+		setRollMethod(getPCGenOption("rollMethod", 0));
+		setRollMethodExpression(getPCGenOption("rollMethodExpression", "roll(4,6,[2,3,4])"));
+		setSaveCustomInLst(getPCGenOption("saveCustomInLst", false));
+		setSaveOutputSheetWithPC(getPCGenOption("saveOutputSheetWithPC", false));
+		setPrintSpellsWithPC(getPCGenOption("printSpellsWithPC", true));
+		setSelectedSpellSheet(expandRelativePath(getOptions().getProperty("pcgen.files.selectedSpellOutputSheet", "")));
+		setSelectedCharacterHTMLOutputSheet(expandRelativePath(getOptions().getProperty("pcgen.files.selectedCharacterHTMLOutputSheet", "")));
+		setSelectedCharacterPDFOutputSheet(expandRelativePath(getOptions().getProperty("pcgen.files.selectedCharacterPDFOutputSheet", "")));
+		setSelectedEqSetTemplate(expandRelativePath(getOptions().getProperty("pcgen.files.selectedEqSetTemplate", "")));
+		setSelectedPartyHTMLOutputSheet(expandRelativePath(getOptions().getProperty("pcgen.files.selectedPartyHTMLOutputSheet", "")));
+		setSelectedPartyPDFOutputSheet(expandRelativePath(getOptions().getProperty("pcgen.files.selectedPartyPDFOutputSheet", "")));
+		setShowFeatDialogAtLevelUp(getPCGenOption("showFeatDialogAtLevelUp", true));
+		setShowHPDialogAtLevelUp(getPCGenOption("showHPDialogAtLevelUp", true));
+		setShowStatDialogAtLevelUp(getPCGenOption("showStatDialogAtLevelUp", true));
+		setShowTipOfTheDay(getPCGenOption("showTipOfTheDay", true));
+		setShowToolBar(getPCGenOption("showToolBar", true));
+		setShowWarningAtFirstLevelUp(getPCGenOption("showWarningAtFirstLevelUp", true));
+		setSingleChoicePreference(getPCGenOption("ChooserSingleChoiceMethod", Constants.CHOOSER_SINGLECHOICEMETHOD_NONE));
+		setSkillsTab_AvailableListMode(getPCGenOption("SkillsTab.availableListMode", GuiConstants.INFOSKILLS_VIEW_TYPE_NAME));
+		setSkillsTab_SelectedListMode(getPCGenOption("SkillsTab.selectedListMode", GuiConstants.INFOSKILLS_VIEW_NAME));
+		setSkinLFThemePack(getPCGenOption("skinLFThemePack", ""));
+		setSpellMarketPriceAdjusted(getPCGenOption("spellMarketPriceAdjusted", false));
+		setSpellsTab_AvailableListMode(getPCGenOption("SpellsTab.availableListMode", GuiConstants.INFOSPELLS_VIEW_CLASS));
+		setSpellsTab_SelectedListMode(getPCGenOption("SpellsTab.selectedListMode", GuiConstants.INFOSPELLS_VIEW_CLASS));
+		setSummaryTabShown(getPCGenOption("summaryTabShown", true));
+		setTabPlacement(getOptionTabPlacement("tabPlacement", SwingConstants.BOTTOM));
+		setToolTipTextShown(getPCGenOption("toolTipTextShown", true));
+		setUseWaitCursor(getPCGenOption("useWaitCursor", true));
+		setWantToLoadMasterworkAndMagic(getPCGenOption("loadMasterworkAndMagicFromLst", false));
+		setWeaponProfPrintout(getPCGenOption("weaponProfPrintout", Constants.PRINTOUT_WEAPONPROF));
+
+		// Load up all the RuleCheck stuff from the options.ini file
+		// It's stored as:
+		//   pcgen.options.rulechecks=aKey:Y|bKey:N|cKey:Y
+		parseRuleChecksFromOptions(getPCGenOption("ruleChecks", ""));
+
+		try
+		{
+			PersistenceManager.initialize();
+		}
+		catch (PersistenceLayerException e)
+		{
+			GuiFacade.showMessageDialog(null, e.getMessage(), Constants.s_APPNAME, GuiFacade.INFORMATION_MESSAGE);
+		}
+		setGame(getPCGenOption("game", Constants.e3_MODE));
+
+		Globals.loadAttributeNames();
+
+		showNatWeaponTab = getPCGenOption("showNatWeaponTab", false);
+		validateBonuses = getPCGenOption("validateBonuses", false);
+
+		return d;
+	}
+
+	/*
+	 * If the path starts with an @ then it's a relative path
+	 */
+	private static String expandRelativePath(String path)
+	{
+		if(path.startsWith("@"))
+		{
+			path = System.getProperty("user.dir") + path.substring(1);
+		}
+		return path;
+	}
+
+	/*
+	 * setup relative paths
+	 */
+	private static String retractRelativePath(String path)
+	{
+		File userDir = new File(System.getProperty("user.dir"));
+		if(path.startsWith(userDir.getAbsolutePath()))
+		{
+			path = "@" + path.substring(userDir.getAbsolutePath().length());
+		}
+		return path;
+	}
+
+	/**
+	 * Opens the filter.ini file for writing
+	 *
+	 * <br>author: Thomas Behr 10-03-02
+	 */
+	private static void writeFilterSettings()
+	{
+		final String header = "# Emacs, this is -*- java-properties-generic -*- mode." + Constants.s_LINE_SEP + Constants.s_LINE_SEP + "# filter.ini -- filters set in pcgen" + Constants.s_LINE_SEP + "# Do not edit this file manually." + Constants.s_LINE_SEP;
+
+		// Globals.getFilterPath() will _always_ return a string
+		String filterLocation = Globals.getFilterPath();
+
+		FileOutputStream out = null;
+		try
+		{
+			out = new FileOutputStream(filterLocation);
+			getFilterSettings().store(out, header);
+		}
+		catch (IOException e)
+		{
+			Logging.errorPrint("Can't write filter settings", e);
+		}
+		finally
+		{
+			try
+			{
+				if (out != null)
+				{
+					out.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				//Not much to do about it...
+				Logging.errorPrint("Can't close filter file after writing", ex);
+			}
+		}
+
+		// remove old filter stuff!
+		for (Iterator it = getOptions().keySet().iterator(); it.hasNext();)
+		{
+			if (((String) it.next()).startsWith("pcgen.filters."))
+			{
+				it.remove();
+			}
+		}
+	}
+
+	/**
+	 * Opens (options.ini) for writing and calls {@link #setOptionsProperties}.
+	 */
+	public static void writeOptionsProperties()
+	{
+		writeFilePaths();
+		writeFilterSettings();
+
+		// Globals.getOptionsPath() will _always_ return a string
+		String optionsLocation = Globals.getOptionsPath();
+
+		final String header = "# Emacs, this is -*- java-properties-generic -*- mode." + Constants.s_LINE_SEP + "#" + Constants.s_LINE_SEP + "# options.ini -- options set in pcgen" + Constants.s_LINE_SEP + "# Do not edit this file manually." + Constants.s_LINE_SEP;
+
+		// Make sure all the Properties are set
+		setOptionsProperties();
+
+		FileOutputStream out = null;
+		try
+		{
+			out = new FileOutputStream(optionsLocation);
+			getOptions().mystore(out, header);
+		}
+		catch (IOException e)
+		{
+			Logging.errorPrint("Can't write options file", e);
+		}
+		finally
+		{
+			try
+			{
+				if (out != null)
+				{
+					out.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				// Not much to do about it...
+				Logging.errorPrint("Can't close options file after writing", ex);
+			}
+		}
+	}
+
+	/**
+	 * store the filter settings for a given Filterable
+	 *
+	 * <br>author: Thomas Behr 19-02-02
+	 *
+	 * @param filterable - the Filterable whose settings
+	 *              will be stored
+	 */
+	public static void storeFilterSettings(final Filterable filterable)
+	{
+		final String name = filterable.getName();
+
+		if (name == null)
+		{
+			return;
+		}
+
+		getFilterSettings().setProperty("pcgen.filters." + name + ".mode", Integer.toString(filterable.getFilterMode()));
+		getFilterSettings().setProperty("pcgen.filters." + name + ".available", FilterFactory.filterListToString(filterable.getAvailableFilters()));
+		getFilterSettings().setProperty("pcgen.filters." + name + ".selected", FilterFactory.filterListToString(filterable.getSelectedFilters()));
+		getFilterSettings().setProperty("pcgen.filters." + name + ".removed",
+		FilterFactory.filterListToString(filterable.getRemovedFilters()));
+	}
+
+	/**
+	 * Writes out filepaths.ini
+	 **/
+	public static void writeFilePaths()
+	{
+		final String header = "# Emacs, this is -*- java-properties-generic -*- mode." + Constants.s_LINE_SEP + "#" + Constants.s_LINE_SEP + "# filepaths.ini -- location of other .ini files set in pcgen" + Constants.s_LINE_SEP + "# Do not edit this file manually." + Constants.s_LINE_SEP;
+
+		String fType = getFilePaths();
+		if (!fType.equals("pcgen") && !fType.equals("user"))
+		{
+			if (getPcgenFilesDir() != null)
+			{
+				setFilePaths(getPcgenFilesDir().getAbsolutePath());
+			}
+		}
+		// if it's the users home directory, we need to make sure
+		// that the $HOME/.pcgen directory exists
+		if (fType.equals("user"))
+		{
+			String aLoc = System.getProperty("user.home") + File.separator + ".pcgen";
+			File aFile = new File(aLoc);
+			if (!aFile.exists())
+			{
+				// Directory doesn't exist, so create it
+				aFile.mkdir();
+				Logging.errorPrint(aLoc + " doesn't exist. Creating");
+			}
+			else if (!aFile.isDirectory())
+			{
+				GuiFacade.showMessageDialog(null, "ERROR: " + aLoc + " is not a Directory", Constants.s_APPNAME, GuiFacade.ERROR_MESSAGE);
+			}
+		}
+
+		FileOutputStream out = null;
+		try
+		{
+			out = new FileOutputStream(fileLocation);
+			getFilepathProp().store(out, header);
+		}
+		catch (IOException e)
+		{
+			Logging.errorPrint("Can't write filepaths.ini file", e);
+		}
+		finally
+		{
+			try
+			{
+				if (out != null)
+				{
+					out.close();
+				}
+			}
+			catch (IOException ex)
+			{
+				// Not much to do about it...
+				Logging.errorPrint("Can't close filepaths.ini file after writing", ex);
+			}
+		}
+	}
+
+	/**
+	 * retrieve filter settings
+	 *
+	 * <br>author: Thomas Behr 19-02-02
+	 *
+	 * @param optionName   the name of the property to retrieve
+	 */
+	public static String retrieveFilterSettings(final String optionName)
+	{
+		return getFilterSettings().getProperty("pcgen.filters." + optionName, getOptions().getProperty("pcgen.filters." + optionName, ""));
+	}
+
+	/**
+	 * Puts all properties into the <code>Properties</code> object,
+	 * (<code>options</code>). This is called by
+	 * <code>writeOptionsProperties</code>, which then saves the
+	 * <code>options</code> into a file.
+	 * <p>
+	 * I am guessing that named object properties are faster to access
+	 * than using the <code>getProperty</code> method, and that this is
+	 * why settings are stored as static properties of <code>Global</code>,
+	 * but converted into a <code>Properties</code> object for
+	 * storage and retrieval.
+	 */
+	private static void setPCGenOption(final String optionName, final boolean optionValue)
+	{
+		setPCGenOption(optionName, optionValue ? "true" : "false");
+	}
+
+	public static void setPCGenOption(final String optionName, final int optionValue)
+	{
+		setPCGenOption(optionName, String.valueOf(optionValue));
+	}
+
+	private static void setPCGenOption(final String optionName, final double optionValue)
+	{
+		setPCGenOption(optionName, String.valueOf(optionValue));
+	}
+
+	public static void setPCGenOption(final String optionName, final String optionValue)
+	{
+		getOptions().setProperty("pcgen.options." + optionName, optionValue);
+	}
+
+	/**
+	 * Puts all properties into the <code>Properties</code> object,
+	 * (<code>options</code>). This is called by
+	 * <code>writeOptionsProperties</code>, which then saves the
+	 * <code>options</code> into a file.
+	 * <p>
+	 * I am guessing that named object properties are faster to access
+	 * than using the <code>getProperty</code> method, and that this is
+	 * why settings are stored as static properties of <code>Global</code>,
+	 * but converted into a <code>Properties</code> object for
+	 * storage and retrieval.
+	 */
+	public static void setGMGenOption(final String optionName, final boolean optionValue)
+	{
+		setGMGenOption(optionName, optionValue ? "true" : "false");
+	}
+
+	public static void setGMGenOption(final String optionName, final int optionValue)
+	{
+		setGMGenOption(optionName, String.valueOf(optionValue));
+	}
+
+	public static void setGMGenOption(final String optionName, final double optionValue)
+	{
+		setGMGenOption(optionName, String.valueOf(optionValue));
+	}
+
+	public static void setGMGenOption(final String optionName, final String optionValue)
+	{
+		getOptions().setProperty("gmgen.options." + optionName, optionValue);
+	}
+
+	/**
+	 * Parse all the user selected RuleChecks out of the options.ini file
+	 * of the form:
+	 *  aKey|Y,bKey|N,cKey|Y
+	 **/
+	private static void parseRuleChecksFromOptions(String aString)
+	{
+		if (aString.length() <= 0)
+		{
+			return;
+		}
+		StringTokenizer aTok = new StringTokenizer(aString, ",");
+		while (aTok.hasMoreTokens())
+		{
+			String bs = aTok.nextToken();
+			StringTokenizer bTok = new StringTokenizer(bs, "|");
+			String aKey = bTok.nextToken();
+			String aVal = bTok.nextToken();
+			ruleCheckMap.put(aKey, aVal);
+		}
+	}
+
+	/**
+	 * Set's the RuleChecks in the options.ini file
+	 **/
+	private static void setRuleChecksInOptions(String optionName)
+	{
+		String value = "";
+		for (Iterator i = ruleCheckMap.keySet().iterator(); i.hasNext();)
+		{
+			String aKey = (String) i.next();
+			String aVal = (String) ruleCheckMap.get(aKey);
+			if (value.length() == 0)
+			{
+				value = aKey + "|" + aVal;
+			}
+			else
+			{
+				value += "," + aKey + "|" + aVal;
+			}
+		}
+		//setPCGenOption(optionName, value);
+		getOptions().setProperty("pcgen.options."+optionName, value);
+	}
+
+	/**
+	 * Checks to see if the user has set a value for this key
+	 **/
+	public static boolean hasRuleCheck(String aKey)
+	{
+		return ruleCheckMap.containsKey(aKey);
+	}
+
+	/**
+	 * Gets this PC's choice on a Rule
+	 * @return true or false
+	 **/
+	public static boolean getRuleCheck(String aKey)
+	{
+		if (ruleCheckMap.containsKey(aKey))
+		{
+			String aVal = (String) ruleCheckMap.get(aKey);
+			if (aVal.equals("Y"))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Set's the ruleCheckMap key to 'Y' or 'N'
+	 **/
+	public static void setRuleCheck(String aKey, boolean aBool)
+	{
+		String aVal = "N";
+		if (aBool)
+		{
+			aVal = "Y";
+		}
+		ruleCheckMap.put(aKey, aVal);
+	}
+
+	private static void setOpenRecentOption(final String optionName, final String[] strings)
+	{
+		String value = "";
+		if (strings.length > 0)
+		{
+			value += strings[0];
+
+			for (int i = 1; i < strings.length; ++i)
+			{
+				value += "|" + strings[i];
+			}
+		}
+
+		setPCGenOption(optionName, value);
+	}
+
+	public static void setOptionsProperties()
+	{
+		if (getPcgPath() != null)
+		{
+			getOptions().setProperty("pcgen.files.characters", retractRelativePath(getPcgPath().getAbsolutePath()));
+		}
+		else
+		{
+			// hasn't been set properly yet
+			getOptions().setProperty("pcgen.files.characters", retractRelativePath(Globals.getDefaultPath()));
+		}
+
+		getOptions().setProperty("pcgen.files.portraits", retractRelativePath(getPortraitsPath().getAbsolutePath()));
+		getOptions().setProperty("pcgen.files.selectedSpellOutputSheet", retractRelativePath(getSelectedSpellSheet()));
+		getOptions().setProperty("pcgen.files.selectedCharacterHTMLOutputSheet", retractRelativePath(getSelectedCharacterHTMLOutputSheet()));
+		getOptions().setProperty("pcgen.files.selectedCharacterPDFOutputSheet", retractRelativePath(getSelectedCharacterPDFOutputSheet()));
+		getOptions().setProperty("pcgen.files.selectedPartyHTMLOutputSheet", retractRelativePath(getSelectedPartyHTMLOutputSheet()));
+		getOptions().setProperty("pcgen.files.selectedPartyPDFOutputSheet", retractRelativePath(getSelectedPartyPDFOutputSheet()));
+		getOptions().setProperty("pcgen.files.selectedEqSetTemplate", retractRelativePath(getSelectedEqSetTemplate()));
+		getOptions().setProperty("pcgen.files.chosenCampaignSourcefiles", Utility.join(PersistenceManager.getChosenCampaignSourcefiles(), ','));
+
+		getOptions().setProperty("pcgen.options.custColumnWidth", Utility.join(Globals.getCustColumnWidth(), ','));
+
+		if (getPcgenCustomDir() != null)
+		{
+			getOptions().setProperty("pcgen.files.pcgenCustomDir", retractRelativePath(getPcgenCustomDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("pcgen.files.pcgenCustomDir", "");
+		}
+
+		if (getPcgenDocsDir() != null)
+		{
+			getOptions().setProperty("pcgen.files.pcgenDocsDir", retractRelativePath(getPcgenDocsDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("pcgen.files.pcgenDocsDir", "");
+		}
+
+		if (getPcgenSystemDir() != null)
+		{
+			getOptions().setProperty("pcgen.files.pcgenSystemDir", retractRelativePath(getPcgenSystemDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("pcgen.files.pcgenSystemDir", "");
+		}
+
+		if (getPcgenOutputSheetDir() != null)
+		{
+			getOptions().setProperty("pcgen.files.pcgenOutputSheetDir", retractRelativePath(getPcgenOutputSheetDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("pcgen.files.pcgenOutputSheetDir", "");
+		}
+
+		if (getGmgenPluginDir() != null)
+		{
+			getOptions().setProperty("gmgen.files.gmgenPluginDir", retractRelativePath(getGmgenPluginDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("gmgen.files.gmgenPluginDir", "");
+		}
+
+		if (getPcgenThemePackDir() != null)
+		{
+			getOptions().setProperty("pcgen.files.pcgenThemePackDir", retractRelativePath(getPcgenThemePackDir().getAbsolutePath()));
+		}
+		else
+		{
+			getOptions().setProperty("pcgen.files.pcgenThemePackDir", "");
+		}
+
+		if (getBrowserPath() != null)
+		{
+			setPCGenOption("browserPath", getBrowserPath());
+		}
+		else
+		{
+			setPCGenOption("browserPath", "");
+		}
+
+		if (Globals.getRootFrame() != null)
+		{
+			setOpenRecentOption("openRecentPCs", PCGen_Frame1.getInst().getOpenRecentPCs());
+			setOpenRecentOption("openRecentParties", PCGen_Frame1.getInst().getOpenRecentParties());
+		}
+
+		if (getGame() != null)
+		{
+			setPCGenOption("game", getGame().getName());
+		}
+		else
+		{
+			setPCGenOption("game", "");
+		}
+
+		try
+		{
+			setPCGenOption("skinLFThemePack", getSkinLFThemePack());
+		}
+		catch (NullPointerException e)
+		{
+			//TODO: Should this really be ignored???  XXX
+		}
+
+		if (getPccFilesLocation() != null)
+		{
+			setPCGenOption("pccFilesLocation", retractRelativePath(getPccFilesLocation().getAbsolutePath()));
+		}
+		else
+		{
+			setPCGenOption("pccFilesLocation", "");
+		}
+
+		if (getLeftUpperCorner() != null)
+		{
+			setPCGenOption("windowLeftUpperCorner.X", getLeftUpperCorner().getX());
+			setPCGenOption("windowLeftUpperCorner.Y", getLeftUpperCorner().getY());
+		}
+
+		if (Globals.getRootFrame() != null)
+		{
+			setPCGenOption("windowWidth", Globals.getRootFrame().getSize().getWidth());
+			setPCGenOption("windowHeight", Globals.getRootFrame().getSize().getHeight());
+		}
+
+		if (getCustomizerLeftUpperCorner() != null)
+		{
+			setPCGenOption("customizer.windowLeftUpperCorner.X", getCustomizerLeftUpperCorner().getX());
+			setPCGenOption("customizer.windowLeftUpperCorner.Y", getCustomizerLeftUpperCorner().getY());
+		}
+		if (getCustomizerDimension() != null)
+		{
+			setPCGenOption("customizer.windowWidth", getCustomizerDimension().getWidth());
+			setPCGenOption("customizer.windowHeight", getCustomizerDimension().getHeight());
+		}
+
+		final String paperName = Globals.getPaperInfo(Constants.PAPERINFO_NAME);
+
+		if (paperName != null)
+		{
+			setPCGenOption("paperName", paperName);
+		}
+
+		final String unitSetName = Globals.getUnitSet().getName();
+
+		if (unitSetName != null)
+		{
+			setPCGenOption("unitSetName", unitSetName);
+		}
+
+		setRuleChecksInOptions("ruleChecks");
+
+		setPCGenOption("abilitiesShownAsTab", isAbilitiesShownAsATab());
+		setPCGenOption("allowMetamagicInCustomizer", isMetamagicAllowedInEqBuilder());
+		setPCGenOption("allStatsValue", getAllStatsValue());
+		setPCGenOption("autoFeatsRefundable", isAutoFeatsRefundable());
+		setPCGenOption("useFeatBenefits", useFeatBenefits());
+		setPCGenOption("autoGenerateExoticMaterial", isAutogenExoticMaterial());
+		setPCGenOption("autoGenerateMagic", isAutogenMagic());
+		setPCGenOption("autoGenerateMasterwork", isAutogenMasterwork());
+		setPCGenOption("autoGenerateRacial", isAutogenRacial());
+		setPCGenOption("chaTabPlacement", convertTabPlacementToString(chaTabPlacement));
+		setPCGenOption("ChooserSingleChoiceMethod", getSingleChoicePreference());
+		setPCGenOption("ClassTab.availableListMode", getClassTab_AvailableListMode());
+		setPCGenOption("ClassTab.selectedListMode", getClassTab_SelectedListMode());
+		setPCGenOption("cleanupTempFiles", getCleanupTempFiles());
+		setPCGenOption("country", Globals.getCountry());
+		setPCGenOption("customizer.split1", getCustomizerSplit1());
+		setPCGenOption("customizer.split2", getCustomizerSplit2());
+		setPCGenOption("dmnotes", getDmNotes());
+		setPCGenOption("EquipTab.availableListMode", getEquipTab_AvailableListMode());
+		setPCGenOption("EquipTab.selectedListMode", getEquipTab_SelectedListMode());
+		setPCGenOption("excSkillCost", getExcSkillCost());
+		setPCGenOption("expertGUI", isExpertGUI());
+		setPCGenOption("featAutoColor", "0x" + Integer.toHexString(getFeatAutoColor()));
+		setPCGenOption("FeatTab.availableListMode", getFeatTab_AvailableListMode());
+		setPCGenOption("FeatTab.selectedListMode", getFeatTab_SelectedListMode());
+		setPCGenOption("featVirtualColor", "0x" + Integer.toHexString(getFeatVirtualColor()));
+		setPCGenOption("GearTab.allowDebt", getGearTab_AllowDebt());
+		setPCGenOption("GearTab.availableListMode", getGearTab_AvailableListMode());
+		setPCGenOption("GearTab.buyRate", getGearTab_BuyRate());
+		setPCGenOption("GearTab.ignoreCost", getGearTab_IgnoreCost());
+		setPCGenOption("GearTab.selectedListMode", getGearTab_SelectedListMode());
+		setPCGenOption("GearTab.sellRate", getGearTab_SellRate());
+		setPCGenOption("grimHPMode", isGrimHPMode());
+		setPCGenOption("grittyACMode", isGrittyACMode());
+		setPCGenOption("GUIUsesOutputName", guiUsesOutputName());
+		setPCGenOption("hideMonsterClasses", hideMonsterClasses());
+		setPCGenOption("hpMaxAtFirstLevel", isHPMaxAtFirstLevel());
+		setPCGenOption("hpPct", getHPPct());
+		setPCGenOption("hpRollMethod", getHPRollMethod());
+		setPCGenOption("ignoreMonsterHDCap", isIgnoreMonsterHDCap());
+		setPCGenOption("includeSkills", getIncludeSkills());
+		setPCGenOption("skillsTab_IncludeSkills", getSkillsTab_IncludeSkills());
+		setPCGenOption("intCrossClassSkillCost", getIntCrossClassSkillCost());
+		setPCGenOption("language", Globals.getLanguage());
+		setPCGenOption("lastTipOfTheDayTipShown", getLastTipShown());
+		setPCGenOption("loadCampaignsAtStart", isLoadCampaignsAtStart());
+		setPCGenOption("loadCampaignsWithPC", isLoadCampaignsWithPC());
+		setPCGenOption("loadMasterworkAndMagicFromLst", wantToLoadMasterworkAndMagic());
+		setPCGenOption("loadURLs", loadURLs);
+		setPCGenOption("looknFeel", getLookAndFeel());
+		setPCGenOption("maxPotionSpellLevel", getMaxPotionSpellLevel());
+		setPCGenOption("maxWandSpellLevel", getMaxWandSpellLevel());
+		setPCGenOption("nameDisplayStyle", getNameDisplayStyle());
+		setPCGenOption("optionAllowedInSources", isOptionAllowedInSources());
+		setPCGenOption("postExportCommand", SettingsHandler.getPostExportCommand());
+		setPCGenOption("prereqFailColor", "0x" + Integer.toHexString(getPrereqFailColor()));
+		setPCGenOption("prereqQualifyColor", "0x" + Integer.toHexString(getPrereqQualifyColor()));
+		setPCGenOption("previewTabShown", isPreviewTabShown());
+		setPCGenOption("purchaseMethodName", purchaseMethodName);
+		setPCGenOption("RaceTab.ListMode", getRaceTab_ListMode());
+		setPCGenOption("ranStartingWizard", ranStartingWizard);
+		setPCGenOption("rollMethod", getRollMethod());
+		setPCGenOption("rollMethodExpression", getRollMethodExpression());
+		setPCGenOption("saveCustomInLst", isSaveCustomInLst());
+		setPCGenOption("saveOutputSheetWithPC", getSaveOutputSheetWithPC());
+		setPCGenOption("printSpellsWithPC", getPrintSpellsWithPC());
+		setPCGenOption("showD20InfoAtStart", showD20InfoAtStart);
+		setPCGenOption("showFeatDialogAtLevelUp", getShowFeatDialogAtLevelUp());
+		setPCGenOption("showHPDialogAtLevelUp", getShowHPDialogAtLevelUp());
+		setPCGenOption("showNatWeaponTab", showNatWeaponTab);
+		setPCGenOption("showOGLOnLoad", showOGLOnLoad);
+		setPCGenOption("showStatDialogAtLevelUp", getShowStatDialogAtLevelUp());
+		setPCGenOption("showTipOfTheDay", getShowTipOfTheDay());
+		setPCGenOption("showToolBar", isShowToolBar());
+		setPCGenOption("showWarningAtFirstLevelUp", isShowWarningAtFirstLevelUp());
+		setPCGenOption("SkillsTab.availableListMode", getSkillsTab_AvailableListMode());
+		setPCGenOption("SkillsTab.selectedListMode", getSkillsTab_SelectedListMode());
+		setPCGenOption("sourceDisplay", Globals.getSourceDisplay());
+		setPCGenOption("spellMarketPriceAdjusted", isSpellMarketPriceAdjusted());
+		setPCGenOption("SpellsTab.availableListMode", getSpellsTab_AvailableListMode());
+		setPCGenOption("SpellsTab.selectedListMode", getSpellsTab_SelectedListMode());
+		setPCGenOption("summaryTabShown", isSummaryTabShown());
+		setPCGenOption("tabPlacement", convertTabPlacementToString(tabPlacement));
+		setPCGenOption("toolTipTextShown", isToolTipTextShown());
+		setPCGenOption("useMonsterDefault", isUseMonsterDefault());
+		setPCGenOption("useWaitCursor", getUseWaitCursor());
+		setPCGenOption("validateBonuses", validateBonuses);
+		setPCGenOption("weaponProfPrintout", SettingsHandler.getWeaponProfPrintout());
+
+	}
+
+	private static Properties getFilterSettings()
+	{
+		return filterSettings;
+	}
+
+	public static Properties getFilepathProp()
+	{
+		return filepaths;
+	}
+
+	public static boolean getFirstRun()
+	{
+		// if filepaths.ini doesn't exist that means this is
+		// the first time PCGen has been run
+
+		File aFile = new File(fileLocation);
+		if (!aFile.exists())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public static int getGearTab_AvailableListMode()
+	{
+		return gearTab_AvailableListMode;
+	}
+
+	public static void setGearTab_AvailableListMode(final int listMode)
+	{
+		gearTab_AvailableListMode = listMode;
+	}
+
+	public static int getGearTab_SelectedListMode()
+	{
+		return gearTab_SelectedListMode;
+	}
+
+	public static void setGearTab_SelectedListMode(final int listMode)
+	{
+		gearTab_SelectedListMode = listMode;
+	}
+
+	public static int getRaceTab_ListMode()
+	{
+		return raceTab_ListMode;
+	}
+
+	public static void setRaceTab_ListMode(final int listMode)
+	{
+		raceTab_ListMode = listMode;
+	}
+
+	public static int getClassTab_AvailableListMode()
+	{
+		return classTab_AvailableListMode;
+	}
+
+	public static void setClassTab_AvailableListMode(final int listMode)
+	{
+		classTab_AvailableListMode = listMode;
+	}
+
+	public static int getClassTab_SelectedListMode()
+	{
+		return classTab_SelectedListMode;
+	}
+
+	public static void setClassTab_SelectedListMode(final int listMode)
+	{
+		classTab_SelectedListMode = listMode;
+	}
+
+	public static int getSkillsTab_AvailableListMode()
+	{
+		return skillsTab_AvailableListMode;
+	}
+
+	public static void setSkillsTab_AvailableListMode(final int listMode)
+	{
+		skillsTab_AvailableListMode = listMode;
+	}
+
+	public static int getSkillsTab_SelectedListMode()
+	{
+		return skillsTab_SelectedListMode;
+	}
+
+	public static void setSkillsTab_SelectedListMode(final int listMode)
+	{
+		skillsTab_SelectedListMode = listMode;
+	}
+
+	public static int getFeatTab_AvailableListMode()
+	{
+		return featTab_AvailableListMode;
+	}
+
+	public static void setFeatTab_AvailableListMode(final int listMode)
+	{
+		featTab_AvailableListMode = listMode;
+	}
+
+	public static int getFeatTab_SelectedListMode()
+	{
+		return featTab_SelectedListMode;
+	}
+
+	public static void setFeatTab_SelectedListMode(final int listMode)
+	{
+		featTab_SelectedListMode = listMode;
+	}
+
+	public static int getSpellsTab_AvailableListMode()
+	{
+		return spellsTab_AvailableListMode;
+	}
+
+	public static void setSpellsTab_AvailableListMode(final int listMode)
+	{
+		spellsTab_AvailableListMode = listMode;
+	}
+
+	public static int getSpellsTab_SelectedListMode()
+	{
+		return spellsTab_SelectedListMode;
+	}
+
+	public static void setSpellsTab_SelectedListMode(final int listMode)
+	{
+		spellsTab_SelectedListMode = listMode;
+	}
+
+	public static int getEquipTab_AvailableListMode()
+	{
+		return equipTab_AvailableListMode;
+	}
+
+	public static void setEquipTab_AvailableListMode(final int listMode)
+	{
+		equipTab_AvailableListMode = listMode;
+	}
+
+	public static int getEquipTab_SelectedListMode()
+	{
+		return equipTab_SelectedListMode;
+	}
+
+	public static void setEquipTab_SelectedListMode(final int listMode)
+	{
+		equipTab_SelectedListMode = listMode;
+	}
+
+	private static boolean isGrimHPMode()
+	{
+		return grimHPMode;
+	}
+
+	private static void setGrimHPMode(final boolean argGrimHPMode)
+	{
+		grimHPMode = argGrimHPMode;
+	}
+
+	public static boolean getUseWaitCursor()
+	{
+		return useWaitCursor;
+	}
+
+	public static void setUseWaitCursor(final boolean b)
+	{
+		useWaitCursor = b;
+		PCGen_Frame1.useWaitCursor(b);
+	}
+
+	/**
+	 * Returns the path to the character files.
+	 *
+	 * @return    the <code>pcgPath</code> property
+	 */
+	public static File getPcgPath()
+	{
+		return pcgPath;
+	}
+
+	/**
+	 * Sets the path to the character files.
+	 *
+	 * @param  path  the <code>File</code> representing the path
+	 */
+	public static void setPcgPath(final File path)
+	{
+		pcgPath = path;
+	}
+
+	/**
+	 * Sets the path to the portrait files.
+	 *
+	 * @param  path  the <code>File</code> representing the path
+	 */
+	public static void setPortraitsPath(final File path)
+	{
+		portraitsPath = path;
+	}
+
+	public static File getPortraitsPath()
+	{
+		return portraitsPath;
+	}
+
+	/**
+	 * Returns the path to the temporary output location (for previews).
+	 *
+	 * @return    the <code>tempPath</code> property
+	 */
+	public static File getTempPath()
+	{
+		return tempPath;
+	}
+
+	/**
+	 * Returns the external browser path to use.
+	 *
+	 * @return    the <code>browserPath</code> property
+	 */
+	public static String getBrowserPath()
+	{
+		return browserPath;
+	}
+
+	/**
+	 * Sets the external browser path to use.
+	 *
+	 * @param  path  the <code>String</code> representing the path
+	 **/
+	public static void setBrowserPath(final String path)
+	{
+		browserPath = path;
+	}
+
+	/**
+	 * Returns the current HTML output sheet for a single character.
+	 *
+	 * @return    the <code>selectedCharacterPDFOutputSheet</code> property
+	 **/
+	public static String getSelectedCharacterHTMLOutputSheet()
+	{
+		if (getSaveOutputSheetWithPC() && (Globals.getCurrentPC() != null))
+		{
+			if (Globals.getCurrentPC().getSelectedCharacterHTMLOutputSheet().length() > 0)
+			{
+				return Globals.getCurrentPC().getSelectedCharacterHTMLOutputSheet();
+			}
+		}
+		return selectedCharacterHTMLOutputSheet;
+	}
+
+	public static String getHTMLOutputSheetPath()
+	{
+		if ("".equals(selectedCharacterHTMLOutputSheet))
+		{
+			return getPcgenOutputSheetDir().toString();
+		}
+		return new File(selectedCharacterHTMLOutputSheet).getParentFile().getAbsolutePath();
+	}
+
+	/**
+	 * Returns the current PDF output sheet for a single character.
+	 *
+	 * @return    the <code>selectedCharacterPDFOutputSheet</code> property
+	 */
+	public static String getSelectedCharacterPDFOutputSheet()
+	{
+		if (getSaveOutputSheetWithPC() && (Globals.getCurrentPC() != null))
+		{
+			if (Globals.getCurrentPC().getSelectedCharacterPDFOutputSheet().length() > 0)
+			{
+				return Globals.getCurrentPC().getSelectedCharacterPDFOutputSheet();
+			}
+		}
+		return selectedCharacterPDFOutputSheet;
+	}
+
+	public static String getPDFOutputSheetPath()
+	{
+		if ("".equals(selectedCharacterPDFOutputSheet))
+		{
+			return getPcgenOutputSheetDir().toString();
+		}
+		return new File(selectedCharacterPDFOutputSheet).getParentFile().getAbsolutePath();
+	}
+
+	/**
+	 * Returns the current party HTML template.
+	 *
+	 * @return    the <code>selectedPartyHTMLOutputSheet</code> property
+	 **/
+	public static String getSelectedPartyHTMLOutputSheet()
+	{
+		return selectedPartyHTMLOutputSheet;
+	}
+
+	/**
+	 * Returns the current party PDF template.
+	 *
+	 * @return    the <code>selectedPartyPDFOutputSheet</code> property
+	 **/
+	public static String getSelectedPartyPDFOutputSheet()
+	{
+		return selectedPartyPDFOutputSheet;
+	}
+
+	/**
+	 * Returns the current EquipSet template.
+	 *
+	 * @return    the <code>selectedEqSetTemplate</code> property
+	 **/
+	public static String getSelectedEqSetTemplate()
+	{
+		return selectedEqSetTemplate;
+	}
+
+	public static String getSelectedEqSetTemplateName()
+	{
+		if (selectedEqSetTemplate.length() > 0)
+		{
+			int i = selectedEqSetTemplate.lastIndexOf("\\");
+			return selectedEqSetTemplate.substring(i + 1);
+		}
+		return selectedEqSetTemplate;
+	}
+
+	/**
+	 * Returns the current spell output sheet
+	 *
+	 * @return    the <code>selectedSpellSheet</code> property
+	 **/
+	public static String getSelectedSpellSheet()
+	{
+		return selectedSpellSheet;
+	}
+
+	public static String getSelectedSpellSheetName()
+	{
+		if (selectedSpellSheet.length() > 0)
+		{
+			int i = selectedSpellSheet.lastIndexOf("\\");
+			return selectedSpellSheet.substring(i + 1);
+		}
+		return selectedSpellSheet;
+	}
+
+	/**
+	 * Sets the current HTML output sheet for a single character.
+	 *
+	 * @param  path  a string containing the path to the HTML output sheet
+	 */
+	public static void setSelectedCharacterHTMLOutputSheet(final String path)
+	{
+		if (getSaveOutputSheetWithPC() && (Globals.getCurrentPC() != null))
+		{
+			Globals.getCurrentPC().setSelectedCharacterHTMLOutputSheet(path);
+		}
+		selectedCharacterHTMLOutputSheet = path;
+	}
+
+	/**
+	 * Sets the current PDF output sheet for a single character.
+	 *
+	 * @param  path  a string containing the path to the PDF output sheet
+	 */
+	public static void setSelectedCharacterPDFOutputSheet(final String path)
+	{
+		if (getSaveOutputSheetWithPC() && (Globals.getCurrentPC() != null))
+		{
+			Globals.getCurrentPC().setSelectedCharacterPDFOutputSheet(path);
+		}
+		selectedCharacterPDFOutputSheet = path;
+	}
+
+	/**
+	 * Sets the current party HTML template.
+	 *
+	 * @param  path  a string containing the path to the template
+	 */
+	public static void setSelectedPartyHTMLOutputSheet(final String path)
+	{
+		selectedPartyHTMLOutputSheet = path;
+	}
+
+	/**
+	 * Sets the current party PDF template.
+	 *
+	 * @param  path  a string containing the path to the template
+	 **/
+	public static void setSelectedPartyPDFOutputSheet(final String path)
+	{
+		selectedPartyPDFOutputSheet = path;
+	}
+
+	/**
+	 * Sets the current EquipSet template.
+	 *
+	 * @param  path  a string containing the path to the template
+	 **/
+	public static void setSelectedEqSetTemplate(final String path)
+	{
+		selectedEqSetTemplate = path;
+	}
+
+	/**
+	 * Sets the current Spell output sheet
+	 *
+	 * @param  path  a string containing the path to the template
+	 **/
+	public static void setSelectedSpellSheet(final String path)
+	{
+		selectedSpellSheet = path;
+	}
+
+	/**
+	 * save the outputsheet location with the PC?
+	 **/
+	public static void setSaveOutputSheetWithPC(boolean arg)
+	{
+		saveOutputSheetWithPC = arg;
+	}
+
+	public static boolean getSaveOutputSheetWithPC()
+	{
+		return saveOutputSheetWithPC;
+	}
+
+	/**
+	 * Output spells on standard PC output sheet?
+	 **/
+	public static void setPrintSpellsWithPC(boolean arg)
+	{
+		printSpellsWithPC = arg;
+	}
+
+	public static boolean getPrintSpellsWithPC()
+	{
+		return printSpellsWithPC;
+	}
+
+	private static String getTmpPath()
+	{
+		return tmpPath;
+	}
+
+	public static SortedProperties getOptions()
+	{
+		return options;
+	}
+
+	private static boolean isShowToolBar()
+	{
+		return showToolBar;
+	}
+
+	private static void setShowToolBar(final boolean argShowToolBar)
+	{
+		showToolBar = argShowToolBar;
+	}
+
+	/**
+	 * What does this do???
+	 * @param ROG
+	 */
+	private static void setROG(final boolean ROG)
+	{
+		isROG = ROG;
+	}
+
+	/**
+	 * Where to load the data (lst) files from
+	 */
+	public static File getPccFilesLocation()
+	{
+		return pccFilesLocation;
+	}
+
+	/**
+	 * Where to load the data (lst) files from
+	 */
+	public static void setPccFilesLocation(final File argPccFilesLocation)
+	{
+		pccFilesLocation = argPccFilesLocation;
+	}
+
+	public static boolean isToolBarShown()
+	{
+		return isShowToolBar();
+	}
+
+	public static void setToolBarShown(final boolean showToolBar)
+	{
+		setShowToolBar(showToolBar);
+	}
+
+	public static boolean useFeatBenefits()
+	{
+		return useFeatBenefits;
+	}
+
+	public static void setUseFeatBenefits(final boolean arg)
+	{
+		useFeatBenefits = arg;
+	}
+
+	/**
+	 * Returns whether the feats dialog should be shown at level up.
+	 * @return true if the feats dialog should be shown at level up.
+	 */
+	public static boolean getShowFeatDialogAtLevelUp()
+	{
+		return showFeatDialogAtLevelUp;
+	}
+
+	/**
+	 * Sets whether the feats dialog should be shown at level up.
+	 * @param argShowFeatDialogAtLevelUp Should the feats dialog be shown at level up?
+	 */
+	public static void setShowFeatDialogAtLevelUp(final boolean argShowFeatDialogAtLevelUp)
+	{
+		showFeatDialogAtLevelUp = argShowFeatDialogAtLevelUp;
+	}
+
+	/**
+	 * Returns whether the hit point dialog should be shown at level up.
+	 * @return true if the hit point dialog should be shown at level up.
+	 */
+	public static boolean getShowHPDialogAtLevelUp()
+	{
+		return showHPDialogAtLevelUp;
+	}
+
+	/**
+	 * Sets whether the hit point dialog should be shown at level up.
+	 * @param argShowHPDialogAtLevelUp Should the hit point dialog be shown at level up?
+	 */
+	public static void setShowHPDialogAtLevelUp(final boolean argShowHPDialogAtLevelUp)
+	{
+		showHPDialogAtLevelUp = argShowHPDialogAtLevelUp;
+	}
+
+	/**
+	 * Returns whether the Stat dialog should be shown at level up.
+	 * @return true if the Stat dialog should be shown at level up.
+	 */
+	public static boolean getShowStatDialogAtLevelUp()
+	{
+		return showStatDialogAtLevelUp;
+	}
+
+	/**
+	 * Sets whether the Stat dialog should be shown at level up.
+	 * @param argShowStatDialogAtLevelUp Should the Stat dialog should be shown at level up?
+	 */
+	public static void setShowStatDialogAtLevelUp(final boolean argShowStatDialogAtLevelUp)
+	{
+		showStatDialogAtLevelUp = argShowStatDialogAtLevelUp;
+	}
+
+	/** Returns whether 'automatic' class-granted feats can be turned in for other feats
+	 *  @return true if 'automatic' class-granted feats can be turned in for other feats
+	 */
+	private static boolean isAutoFeatsRefundable()
+	{
+		return autoFeatsRefundable;
+	}
+
+	/** Sets whether 'automatic' class-granted feats can be turned in for other feats
+	 */
+	private static void setAutoFeatsRefundable(final boolean argAutoFeatsRefundable)
+	{
+		autoFeatsRefundable = argAutoFeatsRefundable;
+	}
+
+	public static int getAllStatsValue()
+	{
+		return allStatsValue;
+	}
+
+	public static void setAllStatsValue(final int argAllStatsValue)
+	{
+		allStatsValue = argAllStatsValue;
+	}
+
+	/**
+	 * I guess only ROG can document this?
+	 * @return
+	 */
+	public static boolean isROG()
+	{
+		return isROG;
+	}
+
+	public static File getPcgenCustomDir()
+	{
+		return pcgenCustomDir;
+	}
+
+	public static void setPcgenCustomDir(final File aFile)
+	{
+		pcgenCustomDir = aFile;
+	}
+
+	public static File getPcgenFilesDir()
+	{
+		return pcgenFilesDir;
+	}
+
+	public static void setPcgenFilesDir(final File aFile)
+	{
+		if (aFile != null)
+		{
+			pcgenFilesDir = aFile;
+		}
+	}
+
+	public static String getFilePaths()
+	{
+		return getFilepathProp().getProperty("pcgen.filepaths", "pcgen");
+	}
+
+	public static void setFilePaths(String aString)
+	{
+		getFilepathProp().setProperty("pcgen.filepaths", aString);
+	}
+
+	public static File getPcgenSystemDir()
+	{
+		return pcgenSystemDir;
+	}
+
+	public static void setPcgenSystemDir(final File aFile)
+	{
+		pcgenSystemDir = aFile;
+	}
+
+	public static File getPcgenThemePackDir()
+	{
+		return pcgenThemePackDir;
+	}
+
+	private static void setPcgenThemePackDir(final File aFile)
+	{
+		pcgenThemePackDir = aFile;
+	}
+
+	public static File getPcgenOutputSheetDir()
+	{
+		return pcgenOutputSheetDir;
+	}
+
+	public static void setPcgenOutputSheetDir(final File aFile)
+	{
+		pcgenOutputSheetDir = aFile;
+	}
+
+	public static File getGmgenPluginDir()
+	{
+		return gmgenPluginDir;
+	}
+
+	public static void setGmgenPluginDir(final File aFile)
+	{
+		gmgenPluginDir = aFile;
+	}
+
+	public static String getDmNotes()
+	{
+		return dmNotes;
+	}
+
+	public static void setDmNotes(final String argDmNotes)
+	{
+		dmNotes = argDmNotes;
+	}
+
+	public static Point getLeftUpperCorner()
+	{
+		return leftUpperCorner;
+	}
+
+	public static void setLeftUpperCorner(final Point argLeftUpperCorner)
+	{
+		leftUpperCorner = argLeftUpperCorner;
+	}
+
+	public static void setCustomizerLeftUpperCorner(final Point argLeftUpperCorner)
+	{
+		customizerLeftUpperCorner = argLeftUpperCorner;
+	}
+
+	public static Point getCustomizerLeftUpperCorner()
+	{
+		return customizerLeftUpperCorner;
+	}
+
+	public static void setCustomizerDimension(final Dimension d)
+	{
+		customizerDimension = d;
+	}
+
+	public static Dimension getCustomizerDimension()
+	{
+		return customizerDimension;
+	}
+
+	public static void setCustomizerSplit1(final int split)
+	{
+		customizerSplit1 = split;
+	}
+
+	public static void setCustomizerSplit2(final int split)
+	{
+		customizerSplit2 = split;
+	}
+
+	public static int getCustomizerSplit1()
+	{
+		return customizerSplit1;
+	}
+
+	public static int getCustomizerSplit2()
+	{
+		return customizerSplit2;
+	}
+
+	public static int getExcSkillCost()
+	{
+		return excSkillCost;
+	}
+
+	public static void setExcSkillCost(final int argExcSkillCost)
+	{
+		excSkillCost = argExcSkillCost;
+	}
+
+	public static int getIntCrossClassSkillCost()
+	{
+		return intCrossClassSkillCost;
+	}
+
+	public static void setIntCrossClassSkillCost(final int anInt)
+	{
+		intCrossClassSkillCost = anInt;
+	}
+
+	public static int getTabPlacement()
+	{
+		return tabPlacement;
+	}
+
+	public static void setTabPlacement(final int anInt)
+	{
+		tabPlacement = anInt;
+	}
+
+	public static void setIncludeSkills(final int anInt)
+	{
+		includeSkills = anInt;
+	}
+
+	public static void setSkillsTab_IncludeSkills(final int anInt)
+	{
+		skillsTab_IncludeSkills = anInt;
+	}
+
+	public static boolean showD20Info()
+	{
+		return showD20InfoAtStart;
+	}
+
+	public static void setShowD20Info(boolean aBool)
+	{
+		showD20InfoAtStart = aBool;
+	}
+
+	public static boolean isLoadURLs()
+	{
+		return loadURLs;
+	}
+
+	public static void setLoadURLs(boolean aBool)
+	{
+		loadURLs = aBool;
+	}
+
+	public static boolean showLicense()
+	{
+		return showOGLOnLoad;
+	}
+
+	public static void setShowLicense(final boolean arg)
+	{
+		showOGLOnLoad = arg;
+	}
+
+	public static boolean isMonsterDefault()
+	{
+		return useMonsterDefault;
+	}
+
+	public static void setMonsterDefault(final boolean aBool)
+	{
+		useMonsterDefault = aBool;
+	}
+
+	public static int getIncludeSkills()
+	{
+		return includeSkills;
+	}
+
+	public static int getSkillsTab_IncludeSkills()
+	{
+		return skillsTab_IncludeSkills;
+	}
+
+	public static GameMode getGame()
+	{
+		return game;
+	}
+
+	public static void setGame(String g)
+	{
+		final GameMode newMode = SystemCollections.getGameModeNamed(g);
+		if (newMode != null)
+		{
+			game = newMode;
+		}
+	}
+
+	private static boolean isGrittyACMode()
+	{
+		return grittyACMode;
+	}
+
+	private static void setGrittyACMode(final boolean aBool)
+	{
+		grittyACMode = aBool;
+	}
+
+	public static boolean isLoadCampaignsAtStart()
+	{
+		return loadCampaignsAtStart;
+	}
+
+	public static void setLoadCampaignsAtStart(final boolean aBool)
+	{
+		loadCampaignsAtStart = aBool;
+	}
+
+	public static boolean isLoadCampaignsWithPC()
+	{
+		return loadCampaignsWithPC;
+	}
+
+	public static void setLoadCampaignsWithPC(final boolean aBool)
+	{
+		loadCampaignsWithPC = aBool;
+	}
+
+	public static boolean isOptionAllowedInSources()
+	{
+		return optionAllowedInSources;
+	}
+
+	public static void setOptionAllowedInSources(final boolean aBool)
+	{
+		optionAllowedInSources = aBool;
+	}
+
+	public static boolean getSaveCustomEquipment()
+	{
+		return isSaveCustomInLst();
+	}
+
+	public static void setSaveCustomEquipment(final boolean aBool)
+	{
+		setSaveCustomInLst(aBool);
+	}
+
+	public static int getLookAndFeel()
+	{
+		return looknFeel;
+	}
+
+	public static void setLookAndFeel(final int argLookAndFeel)
+	{
+		looknFeel = argLookAndFeel;
+	}
+
+	public static boolean isExpertGUI()
+	{
+		return expertGUI;
+	}
+
+	public static void setExpertGUI(final boolean expertGUI)
+	{
+		SettingsHandler.expertGUI = expertGUI;
+	}
+
+	public static int getChaTabPlacement()
+	{
+		return chaTabPlacement;
+	}
+
+	public static void setChaTabPlacement(final int argChaTabPlacement)
+	{
+		chaTabPlacement = argChaTabPlacement;
+	}
+
+	private static boolean isUseMonsterDefault()
+	{
+		return useMonsterDefault;
+	}
+
+	private static boolean isSaveCustomInLst()
+	{
+		return saveCustomInLst;
+	}
+
+	private static void setSaveCustomInLst(final boolean aBool)
+	{
+		saveCustomInLst = aBool;
+	}
+
+	private static void setRollMethodExpression(final String aString)
+	{
+		rollMethodExpression = aString;
+	}
+
+	private static String[] getRollMethodExpressions()
+	{
+		return rollMethodExpressions;
+	}
+
+	static boolean isAutogenMasterwork()
+	{
+		return autogenMasterwork;
+	}
+
+	private static void setAutogenMasterwork(final boolean aBool)
+	{
+		autogenMasterwork = aBool;
+	}
+
+	static boolean isAutogenMagic()
+	{
+		return autogenMagic;
+	}
+
+	private static void setAutogenMagic(final boolean aBool)
+	{
+		autogenMagic = aBool;
+	}
+
+	static boolean isAutogenRacial()
+	{
+		return autogenRacial;
+	}
+
+	private static void setAutogenRacial(final boolean aBool)
+	{
+		autogenRacial = aBool;
+	}
+
+	static boolean isAutogenExoticMaterial()
+	{
+		return autogenExoticMaterial;
+	}
+
+	private static void setAutogenExoticMaterial(final boolean aBool)
+	{
+		autogenExoticMaterial = aBool;
+	}
+
+	public static boolean wantToLoadMasterworkAndMagic()
+	{
+		return wantToLoadMasterworkAndMagic;
+	}
+
+	public static void setWantToLoadMasterworkAndMagic(final boolean bFlag)
+	{
+		wantToLoadMasterworkAndMagic = bFlag;
+	}
+
+	public static int getMaxPotionSpellLevel()
+	{
+		return maxPotionSpellLevel;
+	}
+
+	public static void setMaxPotionSpellLevel(final int anInt)
+	{
+		maxPotionSpellLevel = anInt;
+	}
+
+	public static int getMaxWandSpellLevel()
+	{
+		return maxWandSpellLevel;
+	}
+
+	public static void setMaxWandSpellLevel(final int anInt)
+	{
+		maxWandSpellLevel = anInt;
+	}
+
+	public static boolean isMetamagicAllowedInEqBuilder()
+	{
+		return allowMetamagicInCustomizer;
+	}
+
+	public static void setMetamagicAllowedInEqBuilder(final boolean aBool)
+	{
+		allowMetamagicInCustomizer = aBool;
+	}
+
+	private static boolean isSpellMarketPriceAdjusted()
+	{
+		return spellMarketPriceAdjusted;
+	}
+
+	private static void setSpellMarketPriceAdjusted(final boolean aBool)
+	{
+		spellMarketPriceAdjusted = aBool;
+	}
+
+	public static int getFeatAutoColor()
+	{
+		return featAutoColor;
+	}
+
+	public static void setFeatAutoColor(final int newColor)
+	{
+		featAutoColor = newColor & 0x00FFFFFF;
+	}
+
+	public static int getFeatVirtualColor()
+	{
+		return featVirtualColor;
+	}
+
+	public static void setFeatVirtualColor(final int newColor)
+	{
+		featVirtualColor = newColor & 0x00FFFFFF;
+	}
+
+	public static boolean isHPMaxAtFirstLevel()
+	{
+		return hpMaxAtFirstLevel;
+	}
+
+	public static void setHPMaxAtFirstLevel(final boolean aBool)
+	{
+		hpMaxAtFirstLevel = aBool;
+	}
+
+	public static int getHPRollMethod()
+	{
+		return hpRollMethod;
+	}
+
+	public static void setHPRollMethod(final int aBool)
+	{
+		hpRollMethod = aBool;
+	}
+
+	public static void setHPPct(final int argHPPct)
+	{
+		hpPct = argHPPct;
+	}
+
+	public static int getHPPct()
+	{
+		return hpPct;
+	}
+
+	/**
+	 * Method:
+	 * 0: One random number
+	 * 1: 4d6 Drop Lowest.
+	 * 2: 3d6
+	 * 3: 5d6 Drop 2 Lowest
+	 * 4: 4d6 reroll 1's drop lowest
+	 * 5: 4d6 reroll 1's and 2's drop lowest
+	 * 6: 3d6 +5
+	 * 7: 5d6 Drop lowest and middle FR #458917
+	 * 8: All 10's
+	 */
+	public static int getRollMethod()
+	{
+		return rollMethod;
+	}
+
+	/**
+	 * Method:
+	 * 0: One random number
+	 * 1: 4d6 Drop Lowest.
+	 * 2: 3d6
+	 * 3: 5d6 Drop 2 Lowest
+	 * 4: 4d6 reroll 1's drop lowest
+	 * 5: 4d6 reroll 1's and 2's drop lowest
+	 * 6: 3d6 +5
+	 * 7: 5d6 Drop lowest and middle FR #458917
+	 * 8: All same #
+	 * 9: Purchase Mode
+	 */
+	public static void setRollMethod(final int argRollMethod)
+	{
+		rollMethod = argRollMethod;
+		if (argRollMethod != Constants.ROLLINGMETHOD_PURCHASE)
+		{
+			setPurchaseMethodName("");
+		}
+		setRollMethodExpression(getRollMethodExpression(rollMethod));
+	}
+
+	private static String getRollMethodExpression()
+	{
+		return rollMethodExpression;
+	}
+
+	public static String getRollMethodExpression(final int method)
+	{
+		return getRollMethodExpressions()[method];
+	}
+
+	public static String getSkinLFThemePack()
+	{
+		return skinLFThemePack;
+	}
+
+	public static void setSkinLFThemePack(final String argSkinLFThemePack)
+	{
+		skinLFThemePack = argSkinLFThemePack;
+	}
+
+	public static int getPrereqQualifyColor()
+	{
+		return prereqQualifyColor;
+	}
+
+	public static void setPrereqQualifyColor(final int newColor)
+	{
+		prereqQualifyColor = newColor & 0x00FFFFFF;
+	}
+
+	public static int getPrereqFailColor()
+	{
+		return prereqFailColor;
+	}
+
+	public static String getPrereqFailColorAsHtml()
+	{
+		final StringBuffer rString = new StringBuffer("<font color=");
+		if (getPrereqFailColor() != 0)
+		{
+			rString.append("\"#").append(Integer.toHexString(getPrereqFailColor())).append("\"");
+		}
+		else
+		{
+			rString.append("red");
+		}
+		rString.append('>');
+		return rString.toString();
+	}
+
+	public static void setPrereqFailColor(final int newColor)
+	{
+		prereqFailColor = newColor & 0x00FFFFFF;
+	}
+
+	public static boolean isToolTipTextShown()
+	{
+		return toolTipTextShown;
+	}
+
+	public static void setToolTipTextShown(final boolean showToolTipText)
+	{
+		toolTipTextShown = showToolTipText;
+		final PCGen_Frame1 frame = PCGen_Frame1.getInst();
+		// Guard against load order
+		if (frame != null)
+		{
+			PCGen_Frame1.forceUpdate_PlayerTabs();
+		}
+	}
+
+	private static boolean isSummaryTabShown()
+	{
+		return summaryTabShown;
+	}
+
+	private static void setSummaryTabShown(final boolean showSummaryTab)
+	{
+		summaryTabShown = showSummaryTab;
+	}
+
+	static boolean isPreviewTabShown()
+	{
+		return previewTabShown;
+	}
+
+	static void setPreviewTabShown(final boolean showPreviewTab)
+	{
+		previewTabShown = showPreviewTab;
+	}
+
+	public static boolean isAbilitiesShownAsATab()
+	{
+		return abilitiesShownAsTab;
+	}
+
+	public static void setAbilitiesShownAsATab(final boolean showAbilitiesAsTab)
+	{
+		abilitiesShownAsTab = showAbilitiesAsTab;
+	}
+
+	public static boolean getGearTab_IgnoreCost()
+	{
+		return gearTab_IgnoreCost;
+	}
+
+	public static void setGearTab_IgnoreCost(final boolean ignoreCost)
+	{
+		gearTab_IgnoreCost = ignoreCost;
+	}
+
+	public static boolean getGearTab_AllowDebt()
+	{
+		return gearTab_AllowDebt;
+	}
+
+	public static void setGearTab_AllowDebt(final boolean allowDebt)
+	{
+		gearTab_AllowDebt = allowDebt;
+	}
+
+	public static void setGearTab_BuyRate(final int argBuyRate)
+	{
+		gearTab_BuyRate = argBuyRate;
+	}
+
+	public static int getGearTab_BuyRate()
+	{
+		return gearTab_BuyRate;
+	}
+
+	public static void setGearTab_SellRate(final int argSellRate)
+	{
+		gearTab_SellRate = argSellRate;
+	}
+
+	public static int getGearTab_SellRate()
+	{
+		return gearTab_SellRate;
+	}
+
+	private static int getOptionTabPlacement(final String optionName, final int defaultValue)
+	{
+		final String aString = getPCGenOption(optionName, convertTabPlacementToString(defaultValue));
+		int iVal;
+		try
+		{
+			iVal = Integer.parseInt(aString);
+			switch (iVal)
+			{
+				case SwingConstants.TOP:
+				case SwingConstants.LEFT:
+				case SwingConstants.BOTTOM:
+				case SwingConstants.RIGHT:
+					break;
+				default:
+					iVal = defaultValue;
+					break;
+			}
+		}
+		catch (NumberFormatException exc)
+		{
+			if ("TOP".equals(aString))
+			{
+				iVal = SwingConstants.TOP;
+			}
+			else if ("LEFT".equals(aString))
+			{
+				iVal = SwingConstants.LEFT;
+			}
+			else if ("BOTTOM".equals(aString))
+			{
+				iVal = SwingConstants.BOTTOM;
+			}
+			else if ("RIGHT".equals(aString))
+			{
+				iVal = SwingConstants.RIGHT;
+			}
+			else
+			{
+				iVal = defaultValue;
+			}
+		}
+		return iVal;
+	}
+
+	private static String convertTabPlacementToString(final int placement)
+	{
+		switch (placement)
+		{
+			case SwingConstants.BOTTOM:
+				return "BOTTOM";
+			case SwingConstants.LEFT:
+				return "LEFT";
+			case SwingConstants.RIGHT:
+				return "RIGHT";
+			case SwingConstants.TOP:
+			default:
+				return "TOP";
+		}
+	}
+
+	public static boolean getAutogen(final int idx)
+	{
+		if (!wantToLoadMasterworkAndMagic())
+		{
+			switch (idx)
+			{
+				case Constants.AUTOGEN_RACIAL:
+					return isAutogenRacial();
+				case Constants.AUTOGEN_MASTERWORK:
+					return isAutogenMasterwork();
+				case Constants.AUTOGEN_MAGIC:
+					return isAutogenMagic();
+				case Constants.AUTOGEN_EXOTICMATERIAL:
+					return isAutogenExoticMaterial();
+				default:
+					break;
+			}
+		}
+		return false;
+	}
+
+	public static void setAutogen(final int idx, final boolean bFlag)
+	{
+		switch (idx)
+		{
+			case Constants.AUTOGEN_RACIAL:
+				setAutogenRacial(bFlag);
+				break;
+			case Constants.AUTOGEN_MASTERWORK:
+				setAutogenMasterwork(bFlag);
+				break;
+			case Constants.AUTOGEN_MAGIC:
+				setAutogenMagic(bFlag);
+				break;
+			case Constants.AUTOGEN_EXOTICMATERIAL:
+				setAutogenExoticMaterial(bFlag);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private static boolean isPurchaseStatModeAllowed()
+	{
+		if ((pointBuyStatCosts == null) || (pointBuyStatCosts.size() == 0))
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public static int[] getAbilityScoreCost()
+	{
+		if (!isPurchaseStatModeAllowed())
+		{
+			//better to return a Zero length array than null.
+			return null;
+		}
+		//
+		// Only build this list once
+		//
+		if (abilityScoreCost != null)
+		{
+			return abilityScoreCost;
+		}
+
+		abilityScoreCost = new int[getPurchaseScoreMax() - getPurchaseScoreMin() + 1];	// Should be 1 value for each stat in range
+
+
+		//
+		// Run through the keys. If there is a missing value, then use the previous point cost
+		//
+		int i = 0;
+		int lastStat = Integer.MIN_VALUE;
+		int lastCost = 0;
+		for (Iterator e = pointBuyStatCosts.keySet().iterator(); e.hasNext();)
+		{
+			final Integer statValue = (Integer) e.next();
+			if ((lastStat != Integer.MIN_VALUE) && (lastStat + 1 != statValue.intValue()))
+			{
+				for (int x = lastStat + 1; x < statValue.intValue(); ++x)
+				{
+					abilityScoreCost[i++] = lastCost;
+				}
+			}
+
+			final Integer statCost = (Integer) pointBuyStatCosts.get(statValue);
+			lastStat = statValue.intValue();
+			lastCost = statCost.intValue();
+			abilityScoreCost[i++] = lastCost;
+		}
+		return abilityScoreCost;
+	}
+
+	public static int getAbilityScoreCost(final int abilityScoreIndex)
+	{
+		final int[] asc = getAbilityScoreCost();
+		if (asc == null)
+		{
+			return 0;
+		}
+		return asc[abilityScoreIndex];
+	}
+
+	public static int getNameDisplayStyle()
+	{
+		return nameDisplayStyle;
+	}
+
+	public static void setNameDisplayStyle(final int style)
+	{
+		nameDisplayStyle = style;
+		final PCGen_Frame1 frame = PCGen_Frame1.getInst();
+		// Guard against load order
+		if (frame != null)
+		{
+			PCGen_Frame1.forceUpdate_PlayerTabs();
+		}
+	}
+
+	private static void setOpenRecentPCs(final String[] strings)
+	{
+		PCGen_Frame1.getInst().setOpenRecentPCs(strings);
+	}
+
+	private static void setOpenRecentParties(final String[] strings)
+	{
+		PCGen_Frame1.getInst().setOpenRecentParties(strings);
+	}
+
+	private static void setRanStartingWizard(boolean ran)
+	{
+		SettingsHandler.ranStartingWizard = ran;
+	}
+
+	/**
+	 * Clear purchase mode stat costs.
+	 */
+	public static void clearPointBuyStatCosts()
+	{
+		pointBuyStatCosts = null;
+		abilityScoreCost = null;
+	}
+
+	/**
+	 * Add a stat/cost pair to purchase mode stat costs.
+	 * @param statValue
+	 * @param cost
+	 */
+	public static void addPointBuyStatCost(final int statValue, final int cost)
+	{
+		if (pointBuyStatCosts == null)
+		{
+			// Sort NUMERICALLY, not alphabetically!
+			pointBuyStatCosts = new TreeMap(new ComparableComparator());
+		}
+
+		abilityScoreCost = null;
+		pointBuyStatCosts.put(new Integer(statValue), new Integer(cost));
+	}
+
+	/**
+	 * Get the lowest stat value in the purchase mode stat table.
+	 * @return
+	 */
+	public static int getPurchaseScoreMin()
+	{
+		if (pointBuyStatCosts == null)
+		{
+			return -1;
+		}
+		return ((Integer) pointBuyStatCosts.firstKey()).intValue();
+	}
+
+	/**
+	 * Get the highest stat value in the purchase mode stat table.
+	 * @return
+	 */
+	public static int getPurchaseScoreMax()
+	{
+		if (pointBuyStatCosts == null)
+		{
+			return -1;
+		}
+		return ((Integer) pointBuyStatCosts.lastKey()).intValue();
+	}
+
+	/**
+	 * Get the highest stat score that can be purchased free.
+	 * @return
+	 */
+	public static int getPurchaseModeBaseStatScore()
+	{
+		for (int i = 0, x = getPurchaseScoreMax() - getPurchaseScoreMin() + 1; i < x; ++i)
+		{
+			if (getAbilityScoreCost(i) == 0)
+			{
+				return getPurchaseScoreMin() + i;
+			}
+		}
+		return getPurchaseScoreMin() - 1;
+	}
+
+	/**
+	 * Add a purchase mode method.
+	 * @param methodName
+	 * @param points
+	 */
+	public static void addPurchaseModeMethod(final String methodName, final int points)
+	{
+		if (getPurchaseMethodByName(methodName) == null)
+		{
+			if (pointBuyMethods == null)
+			{
+				pointBuyMethods = new ArrayList();
+			}
+			final PointBuyMethod pmb = new PointBuyMethod(methodName, points);
+			pointBuyMethods.add(pmb);
+		}
+	}
+
+	/**
+	 * Get the number of user-defined purchase methods.
+	 * @return
+	 */
+	public static int getPurchaseMethodCount()
+	{
+		if (pointBuyMethods != null)
+		{
+			return pointBuyMethods.size();
+		}
+		return 0;
+	}
+
+	/**
+	 * Find a user-defined purchase method by name.
+	 * @param methodName
+	 * @return
+	 */
+	public static PointBuyMethod getPurchaseMethodByName(String methodName)
+	{
+		if (pointBuyMethods != null)
+		{
+			for (int idx = 0, x = pointBuyMethods.size(); idx < x; ++idx)
+			{
+				final PointBuyMethod pbm = (PointBuyMethod) pointBuyMethods.get(idx);
+				if (pbm.getMethodName().equalsIgnoreCase(methodName))
+				{
+					return pbm;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static void clearPurchaseModeMethods()
+	{
+		pointBuyMethods = null;
+	}
+
+	public static int getPurchaseModeMethodPool()
+	{
+		if (!isPurchaseStatMode())
+		{
+			return -1;
+		}
+		return getPurchaseMethodByName(purchaseMethodName).getPoints();
+	}
+
+	public static PointBuyMethod getPurhaseMethod(int idx)
+	{
+		if ((pointBuyMethods == null) || (idx > pointBuyMethods.size()))
+		{
+			return null;
+		}
+		return (PointBuyMethod) pointBuyMethods.get(idx);
+	}
+
+	public static void setPurchaseMethodName(String argMethodName)
+	{
+		if (argMethodName.length() != 0)
+		{
+			setRollMethod(Constants.ROLLINGMETHOD_PURCHASE);
+		}
+		purchaseMethodName = argMethodName;
+	}
+
+	public static String getPurchaseModeMethodName()
+	{
+		if (!isPurchaseStatMode())
+		{
+			return null;
+		}
+		return purchaseMethodName;
+	}
+
+	public static boolean isPurchaseStatMode()
+	{
+		//
+		// Can't have purchase mode if no costs specified
+		//
+		if ((pointBuyStatCosts == null) || (pointBuyStatCosts.size() == 0) || (getRollMethod() != Constants.ROLLINGMETHOD_PURCHASE) || (purchaseMethodName.length() == 0))
+		{
+			return false;
+		}
+		return getPurchaseMethodByName(purchaseMethodName) != null;
+	}
+
+	public static void setCleanupTempFiles(int argDoCleanup)
+	{
+		cleanupTempFiles = argDoCleanup;
+	}
+
+	public static int getCleanupTempFiles()
+	{
+		return cleanupTempFiles;
+	}
+
+	public static void setHideMonsterClasses(boolean argHideMonsterClasses)
+	{
+		hideMonsterClasses = argHideMonsterClasses;
+	}
+
+	public static boolean hideMonsterClasses()
+	{
+		return hideMonsterClasses;
+	}
+
+	public static void setGUIUsesOutputName(boolean argUseOutputName)
+	{
+		guiUsesOutputName = argUseOutputName;
+	}
+
+	public static boolean guiUsesOutputName()
+	{
+		return guiUsesOutputName;
+	}
+
+	public static void setSingleChoicePreference(int argPreference)
+	{
+		singleChoicePreference = argPreference;
+	}
+
+	public static int getSingleChoicePreference()
+	{
+		return singleChoicePreference;
+	}
+
+	public static void setWeaponProfPrintout(boolean argPreference)
+	{
+		weaponProfPrintout = argPreference;
+	}
+
+	public static boolean getWeaponProfPrintout()
+	{
+		return weaponProfPrintout;
+	}
+
+	public static void setShowTipOfTheDay(boolean argShowTipOfTheDay)
+	{
+		showTipOfTheDay = argShowTipOfTheDay;
+	}
+
+	public static boolean getShowTipOfTheDay()
+	{
+		return showTipOfTheDay;
+	}
+
+	public static int getLastTipShown()
+	{
+		return lastTipShown;
+	}
+
+	public static void setLastTipShown(final int argLastTipShown)
+	{
+		lastTipShown = argLastTipShown;
+	}
+
+	public static void setIgnoreMonsterHDCap(final boolean argIgoreCap)
+	{
+		ignoreMonsterHDCap = argIgoreCap;
+	}
+
+	public static boolean isIgnoreMonsterHDCap()
+	{
+		return ignoreMonsterHDCap;
+	}
+
+
+	//
+	// Hide this tab from general consumption, until I get it working.
+	// Then this routine can be removed and the tab will show always
+	//
+	private static boolean showNatWeaponTab = false;
+
+	public static boolean showNaturalWeaponTab()
+	{
+		return showNatWeaponTab;
+	}
+
+	public static void setPostExportCommand(String argPreference)
+	{
+		postExportCommand = argPreference;
+	}
+
+	public static String getPostExportCommand()
+	{
+		return postExportCommand;
+	}
+
+	public static boolean isGMGen()
+	{
+		return isGMGen;
+	}
+
+	/**
+	 * TODO: It's commented out in gmgen. Is it safe to remove?
+	 * @param GMGen
+	 */
+	public static void setIsGMGen(boolean GMGen)
+	{
+		isGMGen = GMGen;
+	}
+
+	/**
+	 * Returns the showWarningAtFirstLevelUp.
+	 * @return boolean
+	 */
+	public static boolean isShowWarningAtFirstLevelUp()
+	{
+		return showWarningAtFirstLevelUp;
+	}
+
+	/**
+	 * Sets the showWarningAtFirstLevelUp.
+	 * @param showWarningAtFirstLevelUp The showWarningAtFirstLevelUp to set
+	 */
+	public static void setShowWarningAtFirstLevelUp(boolean showWarningAtFirstLevelUp)
+	{
+		SettingsHandler.showWarningAtFirstLevelUp = showWarningAtFirstLevelUp;
+	}
+
+}

@@ -1,0 +1,18 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.5.1-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.5.1-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.4.5.1-2 Array [[Put]] (P,V)
+a["3.00"] =  three; a.length = 0 PASSED!
+a["00010"] =  eight; a.length = 0 PASSED!
+a["37xyz"] =  thirty-five; a.length = 0 PASSED!
+a["5000000000"] =  5; a.length = 0 PASSED!
+a["-2"] =  -3; a.length = 0 PASSED!
+a[10] = undefined PASSED!
+a[3] = undefined PASSED!
+a[4] = "four"; a[4] = four PASSED!
+a["4"] = four PASSED!
+a["4.00"] = undefined PASSED!
+a.length = 5 PASSED!
+a["5000000000"] = 5; a.length = 5 PASSED!
+a["-2"] = -3; a.length = 5 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.5.1-2.interpreted.arff] ...

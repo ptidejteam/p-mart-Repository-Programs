@@ -1,0 +1,76 @@
+#!/usr/bin/perl
+# This is a perl, http://www.perl.com/, script to detect syntax errors
+# in PCGen, http://pcgen.sourceforge.net/, LST files.
+# $Id: checklst,v 1.1 2006/02/21 01:00:39 vauchers Exp $
+#
+# To operate:
+# perl checklst <list of directories to scan>
+# 
+# checklst will examine all files whose names end in .lst or .LST and report
+# ones with dangerous syntax.  If you say, --fix it will attempt to fix the
+# error.  The original file is saved as .lst~.
+#
+# Copyright (C) 2001 Tom Epperly
+#
+# Release under the terms of the Lesser GNU Public License
+
+require "find.pl";
+
+foreach $arg (@ARGV) {
+    if ($arg =~ /^--help$/) {
+	print "checklst --fix <dirs>\n";
+	exit 0;
+    }
+    elsif ($arg =~ /^--fix$/) {
+	$modify = 1;
+    }
+    else {
+	&find($arg);
+    }
+}
+
+sub wanted {
+    if (/.*\.[lL][sS][tT]$/ && (-f $_)) {
+	&searchLSTForErrs($dir, $_);
+    }
+}
+
+sub searchLSTForErrs {
+    my $dir = shift;
+    my $filename = shift;
+    my $linecount = 0;
+    if ($modify) {
+	rename "$filename", "$filename~" 
+	    || die "Unable to rename $filename: $!\n";
+	open (NEWLST, ">$filename") 
+	    || die "Unable to write $dir/$filename: $!\n";
+	open (OLDLST, "$filename~")
+	    || die "Unable to read $dir/$filename~: $!\n";
+    }
+    else {
+	open (OLDLST, "<$filename") 
+	    || die "Unable to read $dir/$filename: $!\n";
+    }
+    while (<OLDLST>) {
+	$linecount++;
+	if (s/ +\t/\t/g) {
+	    print "File: $dir/$filename has space around a tab character (line $linecount)\n";
+	}
+	if (s/\t +/\t/g) {
+	    print "File: $dir/$filename has space around a tab character (line $linecount)\n";
+	}
+	if (s/^ +//g) {
+	    print "File: $dir/$filename has space at the begining of a line (line $linecount)\n";
+	}
+	if (s/ +(\r?\n)$/$1/g) {
+	    print "File: $dir/$filename has space at the end of a line (line $linecount)\n";
+	}
+	if ($modify) {
+	    print NEWLST;
+	}
+    }
+    close OLDLST;
+    if ($modify) {
+	close NEWLST;
+    }
+}

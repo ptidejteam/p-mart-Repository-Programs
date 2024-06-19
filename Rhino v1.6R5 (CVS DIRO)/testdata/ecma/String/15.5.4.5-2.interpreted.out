@@ -1,0 +1,36 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.5-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.5-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.5.4.5-2 String.prototype.charCodeAt
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(0) = 116 PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(1) = 114 PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(2) = 117 PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(3) = 101 PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(4) = NaN PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(-1) = NaN PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(true) = 114 PASSED!
+x = new Boolean(true); x.charCodeAt=String.prototype.charCodeAt;x.charCodeAt(false) = 116 PASSED!
+x = new String(); x.charCodeAt(0) = NaN PASSED!
+x = new String(); x.charCodeAt(1) = NaN PASSED!
+x = new String(); x.charCodeAt(-1) = NaN PASSED!
+x = new String(); x.charCodeAt(NaN) = NaN PASSED!
+x = new String(); x.charCodeAt(Number.POSITIVE_INFINITY) = NaN PASSED!
+x = new String(); x.charCodeAt(Number.NEGATIVE_INFINITY) = NaN PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(0) = 49 PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(1) = 44 PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(2) = 50 PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(3) = 44 PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(4) = 51 PASSED!
+x = new Array(1,2,3); x.charCodeAt = String.prototype.charCodeAt; x.charCodeAt(5) = NaN PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(0) = 91 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(1) = 111 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(2) = 98 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(3) = 106 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(4) = 101 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(5) = 99 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(6) = 116 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(7) = 32 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(8) = 79 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(9) = 98 PASSED!
+x = new Function( 'this.charCodeAt = String.prototype.charCodeAt' ); f = new x(); f.charCodeAt(10) = 106 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.5-2.interpreted.arff] ...

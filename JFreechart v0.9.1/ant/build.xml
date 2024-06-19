@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<project name="jfreechart" default="compile" basedir=".">
+
+<!-- =================== Environmental Properties ======================= -->
+<property name="version" value="0.9"/>
+<property name="build" value="build"/>
+<property name="dist" value="dist"/>
+<property name="lib" value="lib"/>
+<property name="deprecation" value="on"/>
+<property name="debug" value="on"/>
+
+<!-- ===================== Prepare Directories ========================= -->
+<target name="prepare">
+<!-- "Build" Hierarchy -->
+<mkdir dir="${build}"/>
+<mkdir dir="${build}/classes"/>
+<mkdir dir="${build}/docs"/>
+<mkdir dir="${build}/docs/api"/>
+<!-- "Dist" Hierarchy -->
+<mkdir dir="${dist}"/>
+<mkdir dir="${dist}/docs"/>
+<mkdir dir="${dist}/docs/api"/>
+<mkdir dir="${dist}/lib"/>
+<mkdir dir="${dist}/source"/>
+</target>
+
+<!-- ======================== Compile Classes ========================== -->
+<target name="compile" depends="prepare">
+<javac srcdir="source/" destdir="${build}/classes"
+deprecation="${deprecation}" debug="${debug}"/>
+</target>
+
+<!-- ======================== Build JavaDoc =========================== -->
+<target name="javadoc" depends="prepare">
+<javadoc packagenames="com.*"
+sourcepath="source"
+destdir="${build}/docs/api"
+use="true"
+windowtitle="JFreeChart Documentation"
+doctitle="JFreeChart Documentation"/>
+</target>
+
+<target name="jar" depends="compile">
+<jar jarfile="${dist}/lib/jfreechart.jar"
+basedir="${build}/classes"/>
+<copy file="${dist}/lib/jfreechart.jar" tofile="${lib}/jfreechart.jar"/>
+</target>
+
+<!-- ===================== Distribution Files ========================= -->
+<target name="dist" depends="compile,jar,javadoc">
+<copy todir="${dist}/docs/api">
+<fileset dir="${build}/docs/api"/>
+</copy>
+<copy file="build.xml" tofile="${dist}/lib/build.xml"/>
+<copy todir="${dist}/source">
+<fileset dir="source/"/>
+</copy>
+</target>
+
+<!-- ====================== Clean Generated Files ===================== -->
+<target name="clean">
+<delete>
+<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+</delete>
+</target>
+
+<target name="full-clean">
+<delete dir="${build}"/>
+<delete dir="${dist}"/>
+<delete dir="${lib}"/>
+<delete>
+<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+</delete>
+</target>
+
+<!-- ========================= All In One Build ======================= -->
+<target name="all" depends="clean,dist"/>
+</project>

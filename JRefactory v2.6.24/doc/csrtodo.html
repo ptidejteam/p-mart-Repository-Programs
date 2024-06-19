@@ -1,0 +1,350 @@
+<HTML>
+<HEAD>
+<TITLE>JRefactory To Do</TITLE>
+</HEAD>
+<BODY>
+<TABLE BORDER="0">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> Requested Features <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csdevutil.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">To Do List
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="chrisdown.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+<H2>Requested</H2>
+
+<P>I'm starting to use SourceForge more and more.  If you have
+time and you see a feature on this list that you would really
+want, could you please enter it in the SourceForge database?
+Here is how:</P>
+
+<P>Go to <A HREF="http://www.sourceforge.net/projects/jrefactory">the
+JRefactory Project</A> and click on the list of bugs or features.
+Then press the button to submit a new request.</P>
+
+<P>Thanks!!!</P>
+
+<P>Also, if you really want a feature that is listed here, send me e-mail
+which feature it is.  The more people who want a feature, the sooner I'll
+get it done.  (As it is, I'll never finish this list, so I prioritize
+the feature based on the number of requests for it.)</P>
+
+<H3>Pretty Printer</H3>
+  <OL>
+    <LI>  GUI for pretty printer configuration
+      <!-- jade@novodynamics.com -->
+    <LI>  Removed duplicate import statements
+      <!-- pmogren@productivitynet.com -->
+    <LI>  Remove import *
+       <!-- Stephen.Griese@imedium.com (Stephen Griese), rypan@citiz.net (Pan RuoYu),
+       		Ragnar (westad@systek.no) -->
+    <LI> A "remove imports not used" function (automatic or prompt at users choice?)
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI>  Long loop for bug with super() and no ;
+     <!-- Matt Mower -->
+    <LI>  The error box takes a long time to appear
+     <!--  Matt Mower -->
+    <LI>  Removes CVS comments from the end of the file
+     <!-- jammons@sbti.com (Jeffa) -->
+    <LI>  Blocks inside a method
+      <!-- robert.klemme@myview.de (robert) -->
+    <LI>  // single line comments move after the {
+    <LI>  When passing values to a function which spans
+		more than one line, the parameters should line up with
+		the (
+      <!-- ydesfosses@wysdom.com (Yves Desfosses) -->
+    <LI>  If only a @return tag, don't include the double space after the name
+     <!-- vmassol@octo.fr  -->
+    <LI>  Space in statements but not expressions and space after !
+     <!-- r.klemme@gmx.de (Robert) -->
+    <LI>  Wrap long lines of code.  They should be wrapped on
+			parameter separator (","), then on open bracket ("("), then on expressions but
+			not inside brackets.
+            <!-- zeljko@post.hinet.hr -->
+    <LI>  Parse Error dialog - only a single one with error in a scrollable area box
+      <!--  Matt Mower -->
+    <LI>  File header without the stars to the left
+      <!--  Andreas Rieß (andreas.riess@bln1.siemens.de)  -->
+    <LI>  Eliminate javadoc comments if it is already
+      documented in the interface
+      <!-- Thomas Calivera (calivera@telocity.com) -->
+    <LI>  Add a header only if no header comments are present
+      <!-- Steven Hale (sthll@wmdata.com) -->
+    <LI>  Growing javadoc comments
+          <!-- bwacek@eidea.com  -->
+    <LI>  A single line // comment should be moved to the line
+             before the code
+             <!-- pmogren@productivitynet.com -->
+    <LI>  Remove {} around a single statement
+             <!-- Armond@neda.net -->
+    <LI>  Indent variable declarations with the previous block
+             <!-- Armond@neda.net -->
+    <LI>  Default comment for getAt and setAt
+		      <!-- (fries@lionbioscience.com) -->
+	<LI>  If a method overloads a method from a parent class
+		      or abstract class or implements a method in an interface
+		      insert a javadoc comment that says that the description
+		      is in the appropriate interface/abstract method/parent
+		      class with a @see tag.
+		      <!-- (fries@lionbioscience.com) -->
+     <LI>  Only use the variable spacing for fields (not for variables in a method)
+              <!-- m.brockhage@syborg.de -->
+     <LI>  Make array declarations line up with the rest of the declarations
+              <!-- pmogren@productivitynet.com -->
+     <LI>  Array {} line up with the declaration but
+            the contents of the array are indented
+            <!-- m.brockhage@syborg.de -->
+     <LI>  Sort implemented classes
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Sort thrown exceptions
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Newline before extends
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Newline before implements
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Option to add blank line after "package"
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Option to add blank line after "import"
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Sort order for imports. Example: put "java" on top, then javax, then other
+          packages. This can be done in even more complicated, but logical way if you sort
+          packages by level matching.
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Option to add blank line after every "import" group (java, javax, com...).
+          Problem: some imports should be grouped by second package level, like "com" because
+          they import very different things. Idea: if group contains more than "n"
+          imports, split it on next level recursively.
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Import sort looks bad if you alread have blank lines between imports because it
+          keeps blank line after import example:
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Option to add space before block statements like for, while, try, switch...,
+          but only if they are not the first statement of containing block.
+          Javadoc template for indexed properties (getSomething(int it), setSomething(int
+          i))
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Sort order: add option to sort by final / non-final.
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Option to add blank line(s) between method/class declaration and body.
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Templates for getters / setters / parameters: if property name contains
+          uppercase letters, {3} should be split into lowercase words. Example: setHostName
+          return "host name". In Javadoc, you'll get "Sets host name" rather than "Sets
+          hostName". But if there are more than one uppercase letter, split and leave
+          uppercase: setHostURL becomes "host URL".
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Comments for add / remove listener methods are strange (feature?!). Example:
+            <!-- zeljko@post.hinet.hr -->
+     <LI>  Add a removeSomething template.
+            <!-- zeljko@post.hinet.hr -->
+  </OL>
+
+<H3>Refactorings</H3>
+  <OL>
+    <LI>  Rename method
+      <!--  Dan (bdan@rieska.oulu.fi) -->
+    <LI>  Rename inner class
+      <!--  Legend Lee (legendlee@gxlu.com.cn) -->
+    <LI>  Rename local variable
+      <!-- Dan (bdan@rieska.oulu.fi) -->
+    <LI>  Accurately reflect whether a method can be moved
+    <LI>  Move method into field
+    <LI>  Deleting comment before extract method
+      <!-- Steven.Hale@etx.ericsson.se -->
+    <LI>  Automatically manage length of undo stack
+    <LI>  NEXT Browser - instead of class diagram view
+     <!-- alberto_ricart@hotmail.com (Alberto Ricart) -->
+    <LI>  Rename package
+     <!-- Tiemco.de.Jong@EverMind.com (Tiemco de Jong) -->
+    <LI>  Move inner classes into their own file
+      <!--  Matt Mower -->
+    <LI>  Allow user to set public/package for parent class
+      <!--  Matt Mower -->
+    <LI>  Push up a constructor
+      <!--  Matt Mower -->
+    <LI>  Include the javadoc from the original file when you do an extract
+      <!-- Thomas.Arge@TietoEnator.com -->
+    <LI>  Create stub operation.  User enters a method with arguments,
+       highlights the method, and then selects create stub.  System
+       generates a method with the correct signature based on the inputs
+       and a reasonable return (null or 0 or false).
+      <!--  Matt -->
+    <LI>  ConvertLocalVariableToInstanceVariable refactoring
+      <!-- Brian Button (bbutton@objectmentor.com) -->
+    <LI>  Change the parameters of the extract method
+          <!-- Matt  -->
+    <LI>  Better at getting the return type when a return statement is included
+          <!-- Matt  -->
+    <LI>  Encapsulate field (replace a public field with a private one,
+          add getters and setters and replace all usage of the field
+          with the appropriate accessor.
+          <!-- marco.comtois@videotron.ca -->
+  </OL>
+
+<H3>UML Diagrams</H3>
+  <OL>
+    <LI>  Add a tooltip for each class (especially when in 10% zoom mode)
+     <!--  Joi -->
+    <LI>  Put a wait cursor over the structure pane when loading the diagrams
+     <!-- Joi -->
+    <LI>  Scroll pane makes larger jumps for the key and class list panels
+     <!-- Joi -->
+    <LI>  Develop a layout engine
+     <!-- Sujee.Sivasubramaniyam@crossworlds.com (Sujee),
+          van.j.woods@erdc.usace.army.mil - offered to help  -->
+    <LI>  Moving a class changes the view back to 100%
+       <!--  Joi  -->
+    <LI>  View inner classes in a diagram
+    <LI>  Center Loading dialog box for the metadata
+      <!--  Matt Mower -->
+    <LI>  Hide methods/fields/classes to simplify the diagram
+      <!-- glauseru@post.ch  (Urs Glauser), zeljko@post.hinet.hr -->
+    <LI> Edit classes in the UML diagrams (change class/method/field/arguments names
+        + add/remove of the same + updates of usage)
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI> Add class to a package (without relationship to other classes)
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI> Sizing of classes in the UML diagram and more steps to the zoom function.
+        Also, there should be a tick showing what zoom level
+            is currently chosen
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI> The dialog box that pops up when "New UML diagram" is chosen has a very
+        narrow window, unsuitable for long pacakage names.
+        Resizing the dialog box does not help since the scrollpane does not
+        "follow".
+      <!--  Ragnar ()  -->
+    <LI>  JDK summary loader not sized for linux
+          <!-- Joi -->
+    <LI>  When mouse is held at background, it would be nice to move diagram with mouse.
+            <!-- zeljko@post.hinet.hr -->
+  </OL>
+
+<H3>IDEs</H3>
+  <OL>
+    <LI>  Integrate into netbeans
+     <!-- jacky_cheung@mochamail.com (Jacky), ooexpert@hotmail.com -->
+    <LI>  Moving/Adding/Renaming classes should update JBuilder
+  	 <!-- Joi, nico.max@cmg.de (Nico) -->
+    <LI>  JRefactory plugs into JEdit (like <A HREF="http://jedit.standmed.com/plugins/JavaStyle">JavaStyle</A>)
+     <!--  dmoebius@gmx.net (Dirk), sl@scottlangley.com will help -->
+  <LI>  Plugin for VA4J
+     <!-- imendelev@100x.com (Igor) -->
+     I need to learn answers to the following questions before
+     JRefactory can integrate with VA4J.  Some answers are in
+     <A HREF="http://www.javadude.com/vaj/general/ch27.html">Chapter
+     27</A>.
+     <UL>
+       <LI>  How can you get a list of all the classes in the
+          repository?
+       <LI>  How can you get the text of a specific class?
+       <LI>  How can you set the text of a specific class?
+       <LI>  How can you get the current class that the user is
+          editing?
+       <LI>  How can you get the text that the user selected?
+     </UL>
+    <LI>  Access JRefactory from the structure pane of a .java file in JBuilder
+    <LI>  Add a new diagram to the project pane of JBuilder
+      <!-- William.R.Zwicky@erdc.usace.army.mil  -->
+    <LI>  Integrate with Emacs JDE
+      <!--  Guillaume (gberche@acm.org) -->
+    <LI> It would be nice if the default for the "New UML diagram" was the package
+        that one are currently viewing.  In JBuilder, I often want the UML diagram
+        for the class that I am currently viewing.
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI> When a UML diagram is saved, it's (default) location is in its place in the
+        package hierarchy. Fine. But why is it not shown in its place in the package
+        hierarchy in the JBuilder project pane? Seems that all UML diagrams are shown
+        at top level.
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI>  Menu item to edit pretty.settings
+      <!-- Tiemco (tiemco.de.jong@evermind.com) -->
+  </OL>
+
+<H3>Other</H3>
+  <OL>
+    <LI>  Better documentation of what the pretty printer does:
+   			<P>The pretty printer does these transformations on the source
+			file:
+			<UL>
+			 	<LI> reindentation accoring to bla bla style...
+			 	<LI> sorting of methods and data members according to these criteria
+			 	<LI> ...
+			</UL>
+			</P>
+			<P>Just a brief overview of what changes the pretty printer does to the source
+			possibly intermixed with some examples.</P>
+      <!-- robert.klemme@myview.de (robert) -->
+    <LI>  Color blind colors in about box
+     <!-- joi -->
+   <LI>  Do a check for style (catching and ignoring exceptions, correct
+      case for fields and methods and classes, etc.
+      <!--  Matt -->
+    <LI>  Add embedded JSQL to the parser
+      <!--  Roland (roland.geier@epost.de)   -->
+    <LI>  Online help
+      <!-- Joi -->
+    <LI>  Add the ability for a user to add a comment to the log file
+      to serve as a vote for future refactorings
+      <!--  Joi -->
+    <LI> Add "usage search". There obviously is one implicitly since the "Rename
+        class" function updates all usages, but it would be nice to simply have
+        the results available in a list with a "Show source" option.<P>
+
+           Then it would be possible to have the questions "is this class used at
+        all?" and "where is this class used?" answered easily.
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI> A "find private fields/methods never used" function. Items found could
+            actually be removed (after prompting the user ?)  Likewise, a
+            "Find protected/public/default fields/methods would be useful, searching
+            all available code.  Here the user must evaluate wether the items
+            found can be deleted, since they may be used by others. But it would be
+            helpful when searching for obsolete code in larger systems.
+      <!--  Ragnar (westad@systek.no)  -->
+    <LI>  Break the JPG file into pages
+          <!-- Dave (dave.harp@eds.com) -->
+    <LI>  Export UML diagram to another UML tool's format
+         <!-- dave.harp@eds.com -->
+    <LI> Change the license to Apache
+         <!-- Edwin Hautus (edwin_hautus@nl.compuware.com) -->
+  </OL>
+
+	  </TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csdevutil.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: November 28, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="chrisdown.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

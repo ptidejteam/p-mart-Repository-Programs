@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt_3.3.0.v20070607-1300.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt_3.3.1.r332_v20080131.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.core_3.3.1.R33x_v20070831-0435.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.core_3.3.1.R33x_v20071112-2330.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.pluggable.core_1.0.1.R33x_v20070831-0435.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.pluggable.core_1.0.1.R33x_v20071002-2100.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.ui_3.3.1.R33x_v20070801-1930.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.apt.ui_3.3.1.R33x_v20071002-2100.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.compiler.apt_1.0.1.R33x_v20070831-0435.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.compiler.apt_1.0.1.R33x_v20071002-2100.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.compiler.tool_1.0.1.v_780_R33x.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.compiler.tool_1.0.1.v_793_R33x.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.core_3.3.1.v_780_R33x.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.core_3.3.3.v_793_R33x.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.core.manipulation_1.1.0.v20070606-0010.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug_3.3.1.v20070719_r331/jdi.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug_3.3.1.v20070719_r331/jdimodel.jar" sourcepath="plugins/org.eclipse.jdt.debug_3.3.1.v20070719_r331/jdi.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug.ui_3.2.101.v20070718_r331.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.debug.ui_3.2.102.v20071002_r332.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.doc.isv_3.3.1.r331_v20070913.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.doc.user_3.3.1.r331_v20070912a.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.doc.user_3.3.2.r332_20080116-0900.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit_3.3.1.r331_v20070829.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit_3.3.2.r332_20080109-0800.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit.runtime_3.3.0.v20070606-0010.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.junit4.runtime_1.0.100.v20070606-0010.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.launching_3.3.1.v20070808_r331.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.launching_3.3.2.v20080115_r332.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.ui_3.3.1.r331_v20070906.jar"/>
+	<classpathentry kind="lib" path="plugins/org.eclipse.jdt.ui_3.3.2.r332_20080128.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Function\15.3.4.4-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Function\shell.js -f mozilla\js\tests\ecma_3\Function\15.3.4.4-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+BUGNUMBER: 49286
+STATUS: Invoking try...catch through Function.call
+PASSED! Section A of test: direct call of f
+PASSED! Section B of test: indirect call of f
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Function\15.3.4.4-3.compiled.arff] ...

@@ -1,0 +1,24 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.27-14.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.27-14.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.9.5.23-14 Date.prototype.setTime(time)
+var d = new Date(now); d.setTime(946684800000); d.getTime() = 946684800000 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.valueOf() = 946684800000 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCFullYear() = 2000 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCMonth() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCDate() = 1 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCDay() = 6 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCHours() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCMinutes() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCSeconds() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getUTCMilliseconds() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getFullYear() = 1999 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getMonth() = 11 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getDate() = 31 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getDay() = 5 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getHours() = 19 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getMinutes() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getSeconds() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.getMilliseconds() = 0 PASSED!
+var d = new Date(now); d.setTime(946684800000); d.toString=Object.prototype.toString;var d = new Date(now); d.setTime(946684800000); d.toString() = [object Date] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.27-14.compiled.arff] ...

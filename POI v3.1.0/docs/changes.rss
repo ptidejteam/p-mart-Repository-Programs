@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
+<rss version="0.91"><channel><title>POI Changes</title><link>http://poi.apache.org//changes.html</link><description>POI Changes</description><language>en-us</language><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              30978 - Fixed re-serialization of tRefErr3d and tAreaErr3d</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45234 - Removed incorrect shared formula conversion in CFRuleRecord</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45001 - Improved HWPF Range.replaceText()</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44692 - Fixed HSSFPicture.resize() to properly resize pictures if the underlying columns/rows have modified size</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support custom image renderers in HSLF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Correctly increment the reference count of a blip when a picture is inserted</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45110 - Fixed TextShape.resizeToFitText() to properly resize TextShape</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45091 - Fixed serialization of RefN~ tokens.  Simplified Ptg class hierarchy</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45133 - Fixed OBJ Record (5Dh) to pad the sub-record data to a 4-byte boundary</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45145 - Fixed Sheet to always enforce RowRecordsAggregate before ValueRecordsAggregate</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45123 - Fixed SharedFormulaRecord.convertSharedFormulas() to propagate token operand classes</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45087 - Correctly detect date formats like [Black]YYYY as being date based</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45060 - Improved token class transformation during formula parsing</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              44840 - Improved handling of HSSFObjectData, especially for entries with data held not in POIFS</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45043 - Support for getting excel cell comments when extracting text</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Extend the support for specifying a policy to HSSF on missing / blank cells when fetching, to be able to specify the policy at the HSSFWorkbook level</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45025 - improved FormulaParser parse error messages</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45046 - allowed EXTERNALBOOK(0x01AE) to be optional in the LinkTable</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45066 - fixed sheet encoding size mismatch problems</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45003 - Support embeded HDGF visio documents</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45001 - Partial fix for HWPF Range.insertBefore() and Range.delete() with unicode characters</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44977 - Support for AM/PM in excel date formats</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support for specifying a policy to HSSF on missing / blank cells when fetching</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              44937 - Partial support for extracting Escher images from HWPF files</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44824 - Avoid an infinite loop when reading some HWPF pictures</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44898 - Correctly handle short last blocks in POIFS</description></item></channel></rss>

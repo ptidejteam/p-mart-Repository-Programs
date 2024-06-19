@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Design Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+			    @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.org"></meta></head><body class="composite"><div id="banner"><a href="http://pmd.sourceforge.net/" id="organizationLogo"><img alt="Project Ultra*Log @ DARPA" src="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"></img></a><a href="http://pmd.sourceforge.net/" id="projectLogo"><img alt="PMD" src="../images/pmd_logo_small.jpg"></img></a><div class="clear"><hr></hr></div></div><div id="breadcrumbs"><div class="xright">
+        
+        <a href="http://sourceforge.net/projects/pmd">SourceForge.net Project Page</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://sourceforge.net">Hosted by SourceForge</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.ultralog.net/">Ultra*Log</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.darpa.mil/">DARPA</a>
+      </div><div class="clear"><hr></hr></div></div><div id="leftColumn"><div id="navcolumn"><div id="menuOverview"><h5>Overview</h5><ul><li class="none"><a href="../installing.html">Installation</a></li><li class="none"><a href="../running.html">Command line usage</a></li><li class="none"><a href="../ant-task.html">Ant task usage</a></li><li class="none"><a href="../integrations.html">IDE plugin usage</a></li><li class="none"><a href="../news.html">PMD in the press</a></li><li class="none"><a href="../bestpractices.html">Best practices</a></li><li class="none"><a href="../cpd.html">Finding copied and pasted code</a></li><li class="none"><a href="../similar-projects.html">Similar projects</a></li><li class="none"><a href="../credits.html">Credits</a></li><li class="none"><a href="../license.html">License</a></li><li class="none"><a href="../meaning.html">What does 'PMD' mean?</a></li></ul></div><div id="menuCustomizing_PMD"><h5>Customizing PMD</h5><ul><li class="none"><a href="../compiling.html">Compiling PMD</a></li><li class="none"><a href="../howtowritearule.html">How to write a rule</a></li><li class="none"><a href="../howtomakearuleset.html">How to make a rule set</a></li><li class="none"><a href="../howitworks.html">How it works</a></li></ul></div><div id="menuFor_example"><h5>For example</h5><ul><li class="none"><a href="../scoreboard.html">Run PMD on a Sourceforge project</a></li></ul></div><div id="menuRule_Sets"><h5>Rule Sets</h5><ul><li class="none"><a href="../rules/basic.html">Basic</a></li><li class="none"><a href="../rules/naming.html">Naming</a></li><li class="none"><a href="../rules/unusedcode.html">Unused Code</a></li><li class="none"><strong><a href="../rules/design.html">Design</a></strong></li><li class="none"><a href="../rules/imports.html">Import Statements</a></li><li class="none"><a href="../rules/junit.html">JUnit Tests</a></li><li class="none"><a href="../rules/strings.html">Strings</a></li><li class="none"><a href="../rules/braces.html">Braces</a></li><li class="none"><a href="../rules/codesize.html">Code Size</a></li><li class="none"><a href="../rules/javabeans.html">Javabeans</a></li><li class="none"><a href="../rules/finalizers.html">Finalizers</a></li><li class="none"><a href="../rules/coupling.html">Coupling</a></li><li class="none"><a href="../rules/strictexception.html">Strict Exceptions</a></li><li class="none"><a href="../rules/controversial.html">Controversial</a></li></ul></div><div id="menuProject_Documentation"><h5>Project Documentation</h5><ul><li class="none"><a href="../index.html">About PMD</a></li><li class="collapsed"><a href="../project-info.html">Project Info</a></li><li class="collapsed"><a href="../maven-reports.html">Project Reports</a></li><li class="none"><a href="http://maven.apache.org/development-process.html">Development Process</a></li></ul></div><a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy"><img alt="Built by Maven" src="../images/logos/maven-button-1.png"></img></a></div></div><div id="bodyColumn"><div class="contentBox"><div class="section"><h2><a name="Design_Rules">Design Rules</a></h2><p>
+The Design Ruleset contains a collection of rules that find questionable designs.
+  </p><div class="subsection"><h3><a name="UseSingletonRule">UseSingletonRule</a></h3><p>
+    If you have a class that has nothing but static methods, consider making it a Singleton
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class MaybeASingleton {
+    public static void foo() {
+     // etc
+    }
+    public static void bar() {
+     // etc
+    }
+}
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="LooseCouplingRule">LooseCouplingRule</a></h3><p>
+    Avoid using implementation types (i.e., HashSet); use the interface (i.e, Set) instead
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+import java.util.*;
+public class Bar {
+
+ // should be "private List list"
+ private ArrayList list = new ArrayList();
+
+ // should be "public Set getFoo()"
+ public HashSet getFoo() {
+  return new HashSet();
+ }
+}
+
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="SimplifyBooleanReturnsRule">SimplifyBooleanReturnsRule</a></h3><p>
+Avoid unnecessary if..then..else statements when returning a boolean
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class Foo {
+  private int bar =2;
+  public boolean isBarEqualsTo(int x) {
+    // this bit of code
+    if (bar == x) {
+     return true;
+    } else {
+     return false;
+    }
+    // can be replaced with a simple
+    // return bar == x;
+  }
+}
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="SimplifyBooleanExpressions">SimplifyBooleanExpressions</a></h3><p>
+  Avoid unnecessary comparisons in boolean expressions - this makes simple code seem complicated.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+//Expression/EqualityExpression
+ /PrimaryExpression/PrimaryPrefix/Literal/BooleanLiteral
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+public class Bar {
+ // can be simplified to
+ // bar = isFoo();
+ private boolean bar = (isFoo() == true);
+
+ public isFoo() { return false;}
+}
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="SwitchStmtsShouldHaveDefault">SwitchStmtsShouldHaveDefault</a></h3><p>
+    Switch statements should have a default label.
+    </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //SwitchStatement[not(SwitchLabel[count(*) = 0])]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class Foo {
+ public void bar() {
+  int x = 2;
+  switch (x) {
+   case 2: int j = 8;
+  }
+ }
+}
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="AvoidDeeplyNestedIfStmts">AvoidDeeplyNestedIfStmts</a></h3><p>
+    Deeply nested if..then statements are hard to read.
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class Foo {
+ public void bar() {
+  int x=2;
+  int y=3;
+  int z=4;
+  if (x&amp;gt;y) {
+   if (y&amp;gt;z) {
+    if (z==x) {
+     // this is officially out of control now
+    }
+   }
+  }
+ }
+}
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="AvoidReassigningParametersRule">AvoidReassigningParametersRule</a></h3><p>
+Reassigning values to parameters is a questionable practice.  Use a temporary local variable instead.
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class Foo {
+ private void foo(String bar) {
+  bar = "something else";
+ }
+}
+
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="SwitchDensity">SwitchDensity</a></h3><p>
+ A high ratio of statements to labels in a switch statement implies that the switch
+ statement is doing too much work.  Consider moving the statements either into new
+ methods, or creating subclasses based on the switch variable.
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+   public class Foo {
+     private int x;
+     public void bar() {
+       switch (x) {
+         case 1: {
+           System.out.println("I am a fish.");
+           System.out.println("I am a fish.");
+           System.out.println("I am a fish.");
+           System.out.println("I am a fish.");
+           break;
+         }
+
+         case 2: {
+           System.out.println("I am a cow.");
+           System.out.println("I am a cow.");
+           System.out.println("I am a cow.");
+           System.out.println("I am a cow.");
+           break;
+         }
+       }
+     }
+   }
+ 
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="ConstructorCallsOverridableMethodRule">ConstructorCallsOverridableMethodRule</a></h3><p>
+      Calling overridable methods during construction poses a risk of invoking methods on an
+          incompletely constructed object.  This situation can be difficult to discern.
+      It may leave the sub-class unable to construct its superclass or forced to
+          replicate the construction process completely within itself, losing the ability to call
+      super().  If the default constructor contains a call to an overridable method,
+          the subclass may be completely uninstantiable.
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+    public class SeniorClass {
+      public SeniorClass(){
+          toString(); //may throw NullPointerException if overridden
+      }
+      public String toString(){
+        return "IAmSeniorClass";
+      }
+    }
+    public class JuniorClass extends SeniorClass {
+      private String name;
+      public JuniorClass(){
+        super(); //Automatic call leads to NullPointerException
+        name = "JuniorClass";
+      }
+      public String toString(){
+        return name.toUpperCase();
+      }
+    }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="AccessorClassGenerationRule">AccessorClassGenerationRule</a></h3><p>
+      Instantiation by way of private constructors from outside of the constructor's class often causes the generation of an accessor.
+      A factory method, or non-privitization of the constructor can eliminate this situation.
+      The generated class file is actually an interface.  It gives the accessing class the ability to invoke a new hidden package
+      scope constructor that takes the interface as a supplementary parameter.  This turns a private constructor effectively into
+      one with package scope, though not visible to the naked eye.
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class OuterClass {
+    void method(){
+      InnerClass ic = new InnerClass();//Causes generation of accessor
+    }
+    public class InnerClass {
+      private InnerClass(){
+      }
+    }
+  }
+
+  public class OuterClass {
+    void method(){
+      InnerClass ic = new InnerClass();//OK, due to public constructor
+    }
+    public class InnerClass {
+      public InnerClass(){
+      }
+    }
+  }
+
+  public class OuterClass {
+    void method(){
+      InnerClass ic = InnerClass.getInnerClass();//OK
+    }
+    public static class InnerClass {
+      private InnerClass(){
+      }
+      private static InnerClass getInnerClass(){
+        return new InnerClass();
+      }
+    }
+  }
+
+  public class OuterClass {
+    private OuterClass(){
+    }
+    public class InnerClass {
+      void method(){
+        OuterClass oc = new OuterClass();//Causes generation of accessor
+      }
+    }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="FinalFieldCouldBeStatic">FinalFieldCouldBeStatic</a></h3><p>
+      If a final field is assigned to a compile-time constant, it could be
+          made static, thus saving overhead in each object
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+//FieldDeclaration
+ [not (ancestor::InterfaceDeclaration)]
+  [@Final='true' and @Static='false']
+   /VariableDeclarator/VariableInitializer/Expression
+    /PrimaryExpression/PrimaryPrefix/Literal
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+public class Foo {
+ public final int BAR = 42; // this could be static and save some space
+}
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="BooleanInstantiation">BooleanInstantiation</a></h3><p>
+   Avoid instantiating Boolean objects, instead use Boolean.valueOf().
+   </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+//AllocationExpression[not (ArrayDimsAndInits)
+                       and
+                       (Name/@Image='Boolean'
+                       or
+                       Name/@Image='java.lang.Boolean')]
+
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+public class Foo {
+ private Boolean bar = new Boolean("true"); // just do a Boolean bar = Boolean.TRUE or Boolean.valueOf(true);
+}
+   
+   
+		</pre></div>
+  </div><div class="subsection"><h3><a name="CloseConnectionRule">CloseConnectionRule</a></h3><p>
+      Ensures that Connection objects are always closed after use
+    </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+      
+           public void foo() {
+             Connection c = pool.getConnection();
+             try {
+               // do stuff
+             } catch (SQLException ex) {
+               // handle exception
+             } finally {
+               // oops, should close the connection using 'close'!
+               // c.close();
+             }
+           }
+  
+    
+		</pre></div>
+  </div><div class="subsection"><h3><a name="ProperCloneImplementationRule">ProperCloneImplementationRule</a></h3><p>
+     Object clone() should be implemented with super.clone()
+     </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                 
+//ClassDeclaration//MethodDeclarator
+[@Image = 'clone']
+[count(FormalParameters/*) = 0]
+[count(../Block//*[
+	(self::AllocationExpression) and
+	(./Name/@Image = ancestor::
+UnmodifiedClassDeclaration[position()=last()]/@Image)
+  ])&amp;gt; 0
+]
+                
+             </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+class Foo{
+	public Object clone(){
+		return new Foo(); // This is bad
+	}
+}
+
+     
+		</pre></div>
+  </div><div class="subsection"><h3><a name="NonStaticInitializer">NonStaticInitializer</a></h3><p>
+       A nonstatic initializer block will be called any time a constructor
+       is invoked (just prior to invoking the constructor).  While this
+       is a valid language construct, it is rarely used and is confusing.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+//ClassBodyDeclaration/Initializer[not(@Static='true')]
+
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+public class MyClass {
+ // this block gets run before any call to a constructor
+ {
+  System.out.println("I am about to construct myself");
+ }
+}
+   
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="DefaultLabelNotLastInSwitchStmt">DefaultLabelNotLastInSwitchStmt</a></h3><p>
+       The default label in a switch statement should be the last label, by convention.
+       Most programmers will expect the default label (if present) to be the last one.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+//SwitchStatement
+ [not(SwitchLabel[position() = last()][count(*) = 0])]
+ [SwitchLabel[count(*) = 0]
+
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+      switch (a)
+      {
+         case 1:
+            // do something
+            break;
+         default:
+            // the default case should be last, by convention
+            break;
+         case 2:
+            break;
+      }
+   
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="NonCaseLabelInSwitchStatement">NonCaseLabelInSwitchStatement</a></h3><p>
+       A non-case label (e.g. a named break/continue label) was present in a switch statement.
+       This legal, but confusing. It is easy to mix up the case labels and the non-case labels.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+ 
+    //SwitchStatement//BlockStatement/Statement/LabeledStatement
+ 
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+public class Foo {
+ void bar(int a) {
+  switch (a)
+  {
+   case 1:
+      // do something
+      break;
+   mylabel: // this is legal, but confusing!
+      break;
+   default:
+      break;
+  }
+ }
+}
+   
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="OptimizableToArrayCallRule">OptimizableToArrayCallRule</a></h3><p>
+  A call to Collection.toArray can use the Collection's size vs an empty Array of the desired type.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+//PrimaryExpression
+[PrimaryPrefix/Name[ends-with(@Image, 'toArray')]]
+[
+PrimarySuffix/Arguments/ArgumentList/Expression
+ /PrimaryExpression/PrimaryPrefix/AllocationExpression
+ /ArrayDimsAndInits/Expression/PrimaryExpression/PrimaryPrefix/Literal[@Image='0']
+]
+
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+class Example {
+ void bar() {
+   // A bit inefficient, unlike...
+   x.toArray(new Foo[0]);
+
+   // ..this one, which sizes the destination array, avoiding
+   // a reflection call in some Collection implementations
+   x.toArray(new Foo[x.size()]);
+}
+}  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="BadComparisonRule">BadComparisonRule</a></h3><p>
+  Avoid equality comparisons with Double.NaN - these are
+likely to be logic errors.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+//EqualityExpression[@Image='==']
+ /PrimaryExpression/PrimaryPrefix
+ /Name[@Image='Double.NaN' or @Image='Float.NaN']
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+public class Bar {
+int x = (y == Double.NaN);
+}
+  
+      
+		</pre></div>
+  </div></div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2004, Project Ultra*Log @ DARPA</div><div class="clear"><hr></hr></div></div></body></html>

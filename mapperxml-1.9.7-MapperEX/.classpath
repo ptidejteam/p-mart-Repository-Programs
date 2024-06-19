@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/MapperXML v1.9.7/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="/MapperXML v1.9.7/lib/xerces.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MapperXML v1.9.7"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

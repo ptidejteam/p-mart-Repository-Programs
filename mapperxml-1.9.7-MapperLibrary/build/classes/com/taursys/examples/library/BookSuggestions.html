@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Library System - Book Suggestions List</title>
+</head>
+<body>
+<form method="post" action="BookSuggestions.sf">
+  <table border="1" width="100%" summary="Library System - Book Suggestions List">
+    <caption>Library System - Book Suggestions List</caption>
+    <tbody>
+      <tr>
+        <td>Catalog No</td>
+        <td>Title</td>
+        <td>Keywords</td>
+        <td>Cost</td>
+        <td>Date Added</td>
+        <td>Suggested</td>
+      </tr>
+      <tr id="bookList">
+        <td><span  id="catalogNo">0123456789</span></td>
+        <td><span id="title">This is the Title of My First Book</span></td>
+        <td><span id="keywords">anything, everything</span></td>
+        <td><span id="cost">0.00</span></td>
+        <td><span id="dateAdded">01/01/2000</span></td>
+        <td><input type="checkbox" name="suggested" value="01234" id="suggested"/></td>
+      </tr>
+    </tbody>
+  </table>
+  <br/>
+  Send list to: <input type="text" name="email" value="xxx" id="email"/>
+  <br/>
+  <span id="errorMessage">Error goes here</span>
+  <br/>
+  <br/>
+  <input type="submit" name="action" value="Send" id="sendButton"/>
+</form>
+<p><a href="MainMenu.sf">Main Menu</a></p>
+</body>
+</html>

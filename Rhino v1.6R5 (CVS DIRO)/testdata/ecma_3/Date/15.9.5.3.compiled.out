@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Date\15.9.5.3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Date\shell.js -f mozilla\js\tests\ecma_3\Date\15.9.5.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 375 ms]
+15.9.5.3 Date.prototype.toDateString()
+typeof (now.toDateString()) = string PASSED!
+Date.prototype.toDateString.length = 0 PASSED!
+(Date.parse(now.toDateString()) - (midnight(now)).valueOf()) == 0 = true PASSED!
+Date.parse(Wed Dec 31 1969 19:00:00 GMT-0500 (EST)).toDateString()) = -68400000 PASSED!
+Date.parse(Wed Dec 31 1969 14:00:00 GMT-0500 (EST)).toDateString()) = -68400000 PASSED!
+Date.parse(Sun Dec 31 1899 19:00:00 GMT-0500 (EST)).toDateString()) = -2209057200000 PASSED!
+Date.parse(Mon Jan 01 1900 00:00:00 GMT-0500 (EST)).toDateString()) = -2208970800000 PASSED!
+Date.parse(Fri Dec 31 1999 19:00:00 GMT-0500 (EST)).toDateString()) = 946616400000 PASSED!
+Date.parse(Sat Jan 01 2000 00:00:00 GMT-0500 (EST)).toDateString()) = 946702800000 PASSED!
+Date.parse(Mon Feb 28 2000 19:00:00 GMT-0500 (EST)).toDateString()) = 951714000000 PASSED!
+Date.parse(Mon Feb 28 2000 18:59:59 GMT-0500 (EST)).toDateString()) = 951714000000 PASSED!
+Date.parse(Tue Feb 29 2000 00:00:00 GMT-0500 (EST)).toDateString()) = 951800400000 PASSED!
+Date.parse(Fri Dec 31 2004 19:00:00 GMT-0500 (EST)).toDateString()) = 1104469200000 PASSED!
+Date.parse(Fri Dec 31 2004 18:59:59 GMT-0500 (EST)).toDateString()) = 1104469200000 PASSED!
+Date.parse(Sat Jan 01 2005 00:00:00 GMT-0500 (EST)).toDateString()) = 1104555600000 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Date\15.9.5.3.compiled.arff] ...

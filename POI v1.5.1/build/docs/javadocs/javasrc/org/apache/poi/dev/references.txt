@@ -1,0 +1,12 @@
+# ReferentFileClass | ReferentClass | ReferentType | ReferentTag | ReferringPackage | ReferringClass | ReferringMethod | ReferringFile | ReferringLineNumber
+RecordGenerator|RecordGenerator|RecordGenerator|Class|org.apache.poi.dev|?|?|RecordGenerator.java|64
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords(String,String,String,String)|Method|org.apache.poi.dev|RecordGenerator|main|RecordGenerator.java|78
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords(String,String,String,String)|Method|org.apache.poi.dev|RecordGenerator|?|RecordGenerator.java|82
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.i|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|87
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.i|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|87
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.i|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|89
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.i|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|87
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.definitionsFile|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|87
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.definitionsFile|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|89
+RecordGenerator|RecordGenerator|RecordGenerator.generateRecords.definitionsFile|Variable|org.apache.poi.dev|RecordGenerator|generateRecords|RecordGenerator.java|85
+RecordGenerator|RecordGenerator|RecordGenerator.main(String)|Method|org.apache.poi.dev|RecordGenerator|?|RecordGenerator.java|66

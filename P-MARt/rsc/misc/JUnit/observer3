@@ -1,0 +1,218 @@
+				<microArchitecture number="70">
+					<roles>
+						<subjects>
+							<subject roleKind="AbstractClass">
+								<entity kind="Ghost">java.awt.Component</entity>
+								<properties>
+									<connectivity value="-0.0625"/>
+									<NCM value="18.0"/>
+									<NMA value="18.0"/>
+									<WMC value="19.0"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>junit.awtui.AboutDialog</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.awtui.Logo</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.awtui.ProgressBar</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.awtui.TestRunner</target>
+										<properties>
+											<CBO value="23.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.AboutDialog</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.ProgressBar</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</subject>
+						</subjects>
+						<concreteSubjects>
+							<concreteSubject roleKind="Class">
+								<entity kind="Class">junit.swingui.TestSelector</entity>
+								<properties>
+									<AID value="1.0"/>
+									<DIT value="1.0"/>
+									<connectivity value="0.6190476190476191"/>
+									<LCOM1 value="32.0"/>
+									<LCOM5 value="0.833333324108805"/>
+									<NCM value="11.0"/>
+									<NMA value="9.0"/>
+									<NMI value="2.0"/>
+									<NOA value="11.0"/>
+									<NOP value="1.0"/>
+									<WMC value="132.0"/>
+									<cohesionAttributes value="0.045454545454545456"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>java.awt.Component</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Container</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Cursor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Dialog</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.GridBagConstraints</target>
+										<properties>
+											<CBO value="30.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Toolkit</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Window</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Character</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Enumeration</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Vector</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.AbstractButton</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JDialog</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JList</target>
+										<properties>
+											<CBO value="9.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JRootPane</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.ListModel</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.Sorter</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector</target>
+										<properties>
+											<CBO value="60.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector$TestCellRenderer</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</concreteSubject>
+						</concreteSubjects>
+						<observers>
+							<observer roleKind="AbstractClass">
+								<entity kind="Ghost">java.awt.event.KeyListener</entity>
+								<properties>
+									<WMC value="1.0"/>
+								</properties>
+								<relations/>
+							</observer>
+						</observers>
+						<concreteObservers>
+							<concreteObserver roleKind="Class">
+								<entity kind="Ghost">junit.swingui.TestSelector.KeySelectListener</entity>
+								<properties/>
+								<relations/>
+							</concreteObserver>
+						</concreteObservers>
+					</roles>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>

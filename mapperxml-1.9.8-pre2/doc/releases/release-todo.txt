@@ -1,0 +1,635 @@
+MapperXML
+To Do Items
+
+---------------------------------------------------------------
+BUGFIX/CHANGE:
+---------------------------------------------------------------
+o Fix or deprecate "validating" property in DocumentAdapterBuilder/Factory.
+
+---------------------------------------------------------------
+BUGFIX/CHANGE:
+---------------------------------------------------------------
+o	Consider modification of ParameterDispatcher.dispatchToParameter
+	to process "null" default value. This would cause firing of
+	ParameterEvent in all cases, but the value would be null if
+	no value received or value received was blank. Without this,
+	the value of a Parameter persists between calls if it is not
+	explicitly included in the invocation query string. The current
+	work-around is to set the defaultValue of the Parameter to
+	an empty string "".
+
+Parameters (and presumably Input fields) carry over their
+last values between Form calls if they do not get new values submitted
+to them, or if they do not have a default value. The ParameterDispatcher
+does nothing if input(and default) is null, thereby leaving the old value.
+
+There should probably be an "initialize" event dispatched that components
+would respond to by nulling out their value. Should separate Parameters
+from Input fields and dispatch separately. May want to consider providing
+a way to NOT null out Input Fields if no input present.
+
+Exceptions will occur if no input for bound components with primative 
+properties, or no value object in holder. Example code.
+
+    Component[] components = getComponents();
+    for (int i = 0; i < components.length; i++) {
+      if (components[i] instanceof Parameter) {
+        Parameter parameter = (Parameter) components[i];
+        parameter.setValue(null);
+      }
+    }
+    
+May need to define a system wide default "null" value for primatives. This
+would probably be 0 for numeric primatives and false for boolean primative.
+This behavior may need to go into the model.
+
+com.taursys.model.ModelPropertyAccessorException: ValueObject and ValueObjectClass are both null.
+Property Name=siteId(n/a)
+ValueObject Class=null
+Invoked Method Name=n/a
+Given ValueObject Class=n/a
+Given Value data type=n/a
+	com.taursys.model.VOValueHolder.getPropertyAccessor(VOValueHolder.java:245)
+	com.taursys.model.VOValueHolder.setPropertyValue(VOValueHolder.java:72)
+	com.taursys.model.AbstractCollectionValueHolder.setPropertyValue(AbstractCollectionValueHolder.java:107)
+	com.taursys.xml.Parameter.setValue(Parameter.java:217)
+	rwis.web.forms.MaintenanceForm.doGet(MaintenanceForm.java:112)
+	com.taursys.servlet.ServletApp.doGet(ServletApp.java:76)
+	rwis.web.RwisServlet.doGet(RwisServlet.java:48)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:697)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:810)
+	org.jboss.web.tomcat.filters.ReplyHeaderFilter.doFilter(ReplyHeaderFilter.java:75)
+
+---------------------------------------------------------------
+CHANGE:
+---------------------------------------------------------------
+TextField.setAttributeText/Value(name,"xxx"), should probably create the attribute if
+it does not exist.
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+Maybe the factory should also provide a "hint" feature that
+would allow you to specify the component class for an element by id.
+
+---------------------------------------------------------------
+BUGFIX:
+---------------------------------------------------------------
+  When using a parent/child VOCollectionValueHolder
+	with the parent.valueObjectClass property is NOT set,
+	during openForm method invoking parentHolder.setCollection(..
+	the following exception is trapped and logged as ERROR. The
+	error also appears again during rendering. The
+	exception does not occur in the openForm method:
+
+(during parent.setCollection...)
+[ERROR] Sat Aug 20 06:16:13 AKDT 2005 - Problem getting new collection from parent
+com.taursys.model.ModelPropertyAccessorException: ValueObject and ValueObjectClass are both null.
+Property Name=menuItems(n/a)
+ValueObject Class=null
+Invoked Method Name=n/a
+Given ValueObject Class=n/a
+Given Value data type=n/a
+	at com.taursys.model.VOValueHolder.getPropertyAccessor(VOValueHolder.java:245)
+	at com.taursys.model.VOValueHolder.getPropertyValue(VOValueHolder.java:62)
+	at com.taursys.model.AbstractCollectionValueHolder.getPropertyValue(AbstractCollectionValueHolder.java:84)
+	at com.taursys.model.AbstractCollectionValueHolder.stateChanged(AbstractCollectionValueHolder.java:261)
+	at com.taursys.model.AbstractValueHolder.fireStateChanged(AbstractValueHolder.java:217)
+	at com.taursys.model.VOValueHolder.setObject(VOValueHolder.java:122)
+	at com.taursys.model.ObjectValueHolder.setObject(ObjectValueHolder.java:63)
+	at com.taursys.model.VOValueHolder.setObject(VOValueHolder.java:104)
+	at com.taursys.model.AbstractCollectionValueHolder.reset(AbstractCollectionValueHolder.java:311)
+	at com.taursys.model.AbstractCollectionValueHolder.setCollection(AbstractCollectionValueHolder.java:345)
+	at rwis.web.forms.MenuForm.openForm(MenuForm.java:86)
+	at rwis.web.forms.MenuForm.main(MenuForm.java:98)
+
+(during rendering)
+[ERROR] Sat Aug 20 06:21:44 AKDT 2005 - Problem getting new collection from parent
+com.taursys.model.ModelPropertyAccessorException: ValueObject and ValueObjectClass are both null.
+Property Name=menuItems(n/a)
+ValueObject Class=null
+Invoked Method Name=n/a
+Given ValueObject Class=n/a
+Given Value data type=n/a
+	at com.taursys.model.VOValueHolder.getPropertyAccessor(VOValueHolder.java:245)
+	at com.taursys.model.VOValueHolder.getPropertyValue(VOValueHolder.java:62)
+	at com.taursys.model.AbstractCollectionValueHolder.getPropertyValue(AbstractCollectionValueHolder.java:84)
+	at com.taursys.model.AbstractCollectionValueHolder.stateChanged(AbstractCollectionValueHolder.java:261)
+	at com.taursys.model.AbstractValueHolder.fireStateChanged(AbstractValueHolder.java:217)
+	at com.taursys.model.VOValueHolder.setObject(VOValueHolder.java:122)
+	at com.taursys.model.ObjectValueHolder.setObject(ObjectValueHolder.java:63)
+	at com.taursys.model.VOValueHolder.setObject(VOValueHolder.java:104)
+	at com.taursys.model.AbstractCollectionValueHolder.reset(AbstractCollectionValueHolder.java:311)
+	at com.taursys.xml.render.TemplateRenderer.render(TemplateRenderer.java:92)
+	at com.taursys.xml.DocumentElement.processRenderEvent(DocumentElement.java:125)
+	at com.taursys.xml.event.RenderDispatcher.dispatchToComponent(RenderDispatcher.java:57)
+	at com.taursys.xml.event.RenderDispatcher.dispatch(RenderDispatcher.java:67)
+	at com.taursys.xml.DispatchingContainer.dispatchRender(DispatchingContainer.java:193)
+	at rwis.web.forms.MenuForm.main(MenuForm.java:99)
+
+
+---------------------------------------------------------------
+CONSIDER:
+---------------------------------------------------------------
+  Add behavior to ElementDelegate that populates Attribute
+	values from Document
+
+MapperXML Ideas Under Consideration
+===============================================================
+o	Improved error handling strategy -- esp for production
+o	Add new type of ServletForm: WizardServletForm to better 
+	support multi-form transactions.
+o	Consider adding Calendar data type to support SOAP data
+o	Consider adding get/setValue to TextModel interface. This would
+	be a convience method for:
+	model.getValueHolder().getPropertyValue(model.getPropertyName())
+	Refactor XMLComponents to then use the model method.
+o	Consider refactor to extract minimal interface from
+	CollectionValueHolder to support Template. Refactor template
+	to use this type of value holder. Refactor ObjectArrayValueHolder
+	to implement this interface rather than the CollectionValueHolder
+	interface.
+o Modify ServletFormFactory for cache control of forms (min, max)
+o	Modify ServletFormFactory and add management control to allow
+	flushing/modification at runtime.
+o Research if the classloader can be set in the init method of
+  ServletApp. Research other alternatives. Is it always needed.
+o	XMLComponents which can generate client-side Javascript and can
+	be sensitive to browser types and user preferences.
+o	Consider adding property 'renderAlways' so that a control can be 
+	set to only render a part of a document once (drop-down, 
+	sale-items, etc).
+o	Consider modifications to HttpMultiPartServletRequest to store
+	value in file/stream.
+o	Consider throwing an java.lang.UnsupportedOperationException for
+	methods: ObjectValueHolder.setPropertyValues(String propertyName, 
+	Object value, Object vo) and ObjectValueHolder.setPropertyValues(
+	String[] propertyNames, Object[] values, Object vo)
+o Consider Modify HTMLCheckbox. Add boolean property - only process 
+	input during POST. (maybe sh/b ServletForm behavior)
+o	Consider modify ServletForm to process input on POST only. Also
+	add property to override this behavior.
+o	Consider new HTMLAnchorURLText element which supports display
+	of two properties: url and nested text.
+o	Consider new HTML components that expose most of the attributes
+	as component properties. A null value in these properties will
+	leave the HTML document unchanged, whereas any other value
+	will be propagated through to the document. Maybe during initialization,
+	they could read their values from the form.
+o	Consider creating superclass for HTML components which exposes
+	the following common attributes: class, style, title...
+o	Consider adding feature to support a "Working..." type message
+	on long running servlet forms.
+o	Look for other open source project which implements HTMLWriter. 
+	Want to	support multiple HTML versions. Want speed.
+o	Update DocumentAdaptor to be used exclusively to access DOM
+	to provide most portability.
+o	Consider creating a SelectModel and HTML component which
+	uses the VALUE attribute of the OPTION.
+o	Consider new HTML component for IMG.
+o	Consider special components ConditionalCompare(holder, propname,
+	compareToOperation, exp2, objTrue, objFalse).
+	ConditionalBetween, ConditionalNull.
+o Consider new HTMLElement which has core attributes
+o Consider deprecate EarlyInputNotify. Instead, components can
+	be parameter listeners, input listeners, both or neither
+o com.taursys.xml.Form: misc follow-up changes.
+  //TODO after refactor of URI/URL "resource" feature, change this to URL
+  	why?
+  //TODO add an InitDocument event and move these methods there: maybe?
+  //TODO add proxy method for import here also
+  //TODO finish JavaDoc for Document related methods
+  //TODO write JavaDoc for Form class
+o	Deprecate DocumentComponent IF - superceeded by Element IF
+	
+Component
+	Container
+		DispatchingContainer
+			DocumentElement <-Element [ElementDelegate]
+				BoundDocumentElement
+				Template
+				Form
+				  ServletForm
+				    DefaultMessageForm
+			ElementDelegate
+	Parameter
+		AbstractField <-Element [ElementDelegate]
+		  AttributeField
+			  HTMLInputText
+			  HTMLAnchorURL
+			CheckboxField
+			  HTMLCheckBox
+			SelectField
+			  HTMLSelect
+			TextField
+			  HTMLTextArea
+	  Attribute
+	  TextNode
+	Trigger
+		Button <- [ElementDelegate]
+
+Attribute
+	- no Id -- uses parent during render
+	- stored in attribute container (part of DocumentComponent IF)
+	- parent dispatches a render event, parameter event, input event
+	- Properties:
+		- name
+		- valueHolder
+		- dataType
+		- propertyName
+
+
+Template
+  HTMLDiv
+  HTMLMapArea
+  HTMLTableRow
+  
+Heirarchy
+
+Component
+	Container
+		DispatchingContainer
+			ElementDelegate <-Element
+			DocumentElement <-Element [ElementDelegate]
+				BoundDocumentElement
+					HTMLAnchor ** (text node attached)
+				Form
+				Template
+	Parameter
+		Attribute
+			(StandAloneAttribute **)
+		TextNode **
+		AbstractField <-Element [ElementDelegate]
+			AttributeField ** (no text node attached)
+			  HTMLInputText
+			  HTMLAnchorURL
+			TextField (text node attached)
+			  HTMLTextArea
+			CheckboxField
+			  HTMLCheckBox
+			SelectField
+			  HTMLSelect
+	Trigger
+		Button <- [ElementDelegate]
+
+ToDo:
+========
+[x] Create TextNodeRenderer
+[x] Create TextNode component like Attribute
+[x] Modify Element interface: new methods:
+		addTextNode
+		removeTextNode
+		setTextNodeText
+		getTextNodeText
+		setTextNodeValue
+		getTextNodeValue
+		createTextNode ...
+		createBoundTextNode
+		(future - add support for multiple text nodes)
+[x] Implement Element interface:
+		[x] ElementDelegate
+		[x] DocumentElement
+		[x] AbstractField
+		[x] Button
+[x] Refactor TextField to use TextNode
+[ ] Modify TemplateRenderer constructor to accept Element and
+		check ValueHolder type before casting to CollectionValueHolder
+[ ] Refactor HTMLCheckBox to extend AttributeField
+		(Attribute "value" set to model.selectedValue)
+		StandAloneAttribute
+[ ] Deprecate CheckboxField ?
+[ ] Deprecate CheckboxFieldRenderer ?
+[ ] Deprecate "attributeName" property in AbstractField
+
+
+Architecture Description
+-------------------------------
+MapperXML uses Components to provide most of the needed behavior for web
+applications. Components handle input, output, data binding, and event
+handling.
+
+Top level components are typically made up of sub-components. Sub-components provide
+the majority of the behavior. The following is the typical makeup of a top
+level MapperXML component. This example is based on a TextField component. The
+TextField is a generic input/output field which can also be bound to a ValueObject
+(simple java bean).
+
+TextField - this is the top level component
+	Contains ElementDelegate sub-component
+		Contains TextNode
+			Contains TextNodeRenderer
+			Contains TextModel
+		Contains Attribute(s)
+			Contains AttributeRenderer
+			Contains TextModel
+			
+What Component should I use to do...
+------------------------------------
+Simple parameter input: Parameter
+Modify Text (and optionally the Attributes) of an Element: TextField
+Modify Attributes of an Element, but not the text: AttributeField, DocumentElement or BoundDocumentElement
+Replcate self and child Elements: Template
+How to create a default action
+
+
+How-to outline
+--------------
+Setup and Deploy a MapperXML project
+Create a ServletApp
+Create a ServletForm
+Display dynamic content
+Get parameters and input
+
+
+HTML Components
+---------------
+HTMLOutput
+	Extends: BoundDocumentElement
+	Subcomponents:
+		Model
+		(TextNode)
+		(Attributes)
+	Contains:
+		Nested Components
+	Renderer: DocumentElementRenderer or TemplateRenderer
+
+HTMLInputText
+	Extends: AttributeField
+
+HTMLTextArea
+	Extends: TextField
+
+ModelBoundDocumentElement
+	Extends: BoundDocumentElement
+	
+Examples of ComponentFactory Syntax
+===================================
+y
+<input type="text" id="holder1Alias__propName" name="whatever" value=""/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" name="__propName" value=""/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "__propName"
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" name="whatever" value="__propName2"/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" style="__prop2Name" name="whatever" value=""/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Attribute "style" created and bound to holder1 and prop2Name
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" style="holder2Alias__prop2Name" name="whatever" value=""/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Attribute "style" created and bound to holder2 and prop2Name
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="__prop3Name" id="holder1Alias__" style="holder2Alias__prop2Name" name="whatever" value=""/>
+	ComponentType: BoundDocumentElement
+	id set to "holder1Alias__"
+	valueHolder set to holder1
+	Attribute "style" created and bound to holder2 and prop2Name
+	name ignored
+	value ignored
+	Attribute "type" created and bound to holder1 and prop3Name
+
+<input type="text" style="holder2Alias__prop2Name" name="whatever" value=""/>
+	No ID -- skipped
+
+<input type="text" id="myId" style="holder2Alias__prop2Name" name="whatever" value=""/>
+	ComponentType: DocumentElement
+	id set to "myId"
+	Attribute "style" created and bound to holder2 and prop2Name
+	name ignored
+	value ignored
+	type ignored
+
+<input type="text" id="holder1Alias__propName" name="whatever" value="FORMAT:pattern"/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Model format and pattern set to given
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" name="whatever" value="__propName__FORMAT:pattern"/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Model format and pattern set to given
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<input type="text" id="holder1Alias__propName" style="holder2Alias__prop2Name__FORMAT:pattern" name="whatever" value=""/>
+	Component Type: AttributeField
+	id set to "holder1Alias__propName"
+	Model bound to holder1 and propName
+	Attribute "value" created and bound to Model
+	parameter set to "whatever"
+	Attribute "style" created and bound to holder2 and prop2Name
+		Attribute model format and pattern set to given
+	Attributes "type", "name" and "value" are reserved - binding syntax ignored
+
+<a href=""></a>
+<a id="holder1Alias" href=""></a>
+<a id="holder1Alias__0" href=""></a>
+<a id="holder1Alias__propName" href=""></a>
+<a id="holder1Alias__propName" href="__prop2Name"></a>
+<a id="holder1Alias__propName" href="holder2Alias__prop2Name"></a>
+<a id="holder1Alias__propName__FORMAT:pattern" href=""></a>
+<a id="holder1Alias__propName" href="__prop2Name__FORMAT:pattern"></a>
+<a id="holder1Alias__propName__FORMAT:pattern" href="__prop2Name__FORMAT:pattern"></a>
+<a id="holder1Alias__propName__FORMAT:pattern" href="holder2Alias__prop2Name__FORMAT:pattern"></a>
+
+Binding Syntax
+=====================
+ID syntax: 
+	holderAlias__propName
+	holderAlias__propName__#
+	holderAlias__propName__TEMPLATE_NODE
+	holderAlias__propName__TEMPLATE_NODE__#
+	holderAlias__TEMPLATE_NODE
+	holderAlias__TEMPLATE_NODE__#
+Default value attribute syntax (only FORMAT:pattern part is processed)
+	FORMAT:pattern
+	__propName
+	__propName__FORMAT:pattern
+	holderAlias__propName
+	holderAlias__propName__FORMAT:pattern
+Other attribute syntax
+	__propName
+	__propName__FORMAT:pattern
+	holderAlias__propName
+	holderAlias__propName__FORMAT:pattern
+	
+If the TEMPLATE_NODE indicator is present in the ID, then the
+Element's renderer will be changed from a DocumentElementRender
+to a TemplateRenderer
+
+BindingInfo.java
+	String valueHolderAlias
+	ValueHolder valueHolder
+	String propertyName
+	int sequenceNo
+	boolean templateNode
+	Format format
+	String pattern
+				  
+MapperXML.ComponentFactory Ideas Under Consideration
+===============================================================
+o Consider creation of an option list descriptor for use by ComponentFactory
+  to use for binding HTMLSelect components. (NO - Do this in the
+  component manifest described below)
+o Consider Modifing HTMLComponentFactory to preset selectedValue and
+  unselectedValue properties from HTML document for HTMLCheckbox.
+  (Maybe this would be better in XML Component factory).
+o	Consider ComponentFactory would either 1) set any properties not already
+	set by code of existing components, or 2) set properties regardless of
+	whether or not they have already been set. Also a property on component
+	factory to suppress this behavior.
+o	New ComponentFactory which will read an XML component manifest
+	for list of components and properties.
+	
+
+MapperXML Modifications
+===============================================================
+o Deprecate get/setList and replace with get/setListValueHolder in
+  SelectModel, DefaultSelectModel, SelectField & HTMLSelect
+o	Add Log4J & Java 1.4 LoggerAdapters. default: Log4J, Java, SimpleLogger
+o Increase diagnostic info for NotInListException
+o Refactor Dispatcher's to use base class methods
+o Review/refactor renderers to use properties set in AbstractRenderer
+o All TextFields: if data conversion error occurs, (in DataTypes),
+  need better Exception (maybe ModelParseException?)
+o Harden code to eliminate/reduce null pointer exceptions when
+  developer does not set all properties or invoke initialize
+  methods properly. Use Debug.WARN messages instead with
+  specific cause/recommendations.
+o Add behavior to remaining components for recycle - clear/reset
+  values.
+o Add remove(c) method to DispatchingContainer which reverses
+	Dispatcher linking done in add(c)
+
+MapperTools Changes
+===============================================================
+o	Modify templates to use new built in parse behavior
+o	Modify to accept project file argument at startup
+o Add sample to build.xml
+
+MapperXML New Features
+===============================================================
+o	Create new MonthYearAndDayField component. This is a compound
+	component.
+o Create Unit Test for self-test of ServletForms. Develop unit testing
+  methodology and write how-to.
+    
+    Self test goals:
+    	verify id's
+    	document valid
+
+MapperXML New Custom Components
+===============================================================
+o	Create new MonthYearAndDayField component. This is a compound
+	field which breaks a single date into 2 fields in a form:
+	Month-Year and Day.
+
+MapperGUI Ideas Under Consideration
+===============================================================
+o	Add components for SWT
+
+MapperGUI Modifications
+===============================================================
+o	Cleanup imports
+o MTextField: add get/setValue() method
+o	Refactor MTable and MTableColumn for less order specific
+	property setting
+o Add undo and/or cancel to MapperGUI components
+
+MapperGUI New Features
+===============================================================
+o   New MCheckBox component
+
+Example Items
+===============================================================
+o	Complete InventoryEditPage
+o Example for Default actions with Triggers and Buttons
+o	Complete SubFormMasterPage (and children)
+o Modify Examples for to use built in parse behavior
+o Add Wizard form example
+
+Documentation Items
+===============================================================
+o Complete Developer's Guide for MapperXML
+o	Project structure and development strategy and roles.
+o	Consider cookbook style document
+o	Consider a troubleshooting/common problems document
+o Modify for built in parser behavior
+
+Javadoc Items
+===============================================================
+o Complete JavaDoc for SelectField/Model changes
+o	Complete JavaDoc for AbstractListValueHolder - use @see List
+o	Complete JavaDoc for Form
+o	Complete JavaDoc for com.taursys.servlet.DefaultMessageForm
+
+Fixes TODO
+================================================================
+o	Eliminate error message while rendering compound components
+	which may or may not have an id. Their sub-components, however,
+	must have id's. The message appears 2 times each time the form
+	is rendered.
+o	Cannot reproduce yet:
+	Eliminate the following warning message that appears the very
+	first time a form is invoked (containing a select field):
+	2004-08-06 09:07:43,586 ERROR [STDERR] 
+	[WARN] Fri Aug 06 09:07:43 AKDT 2004 - Current selection not in 
+	list. value=Sat Feb 05 00:00:00 AKST 2005
+o	Review ObjectValueHolder.addChangeListener(ChangeListener l)
+	method. Either correct method or javadoc for method.
+o	Research java verifier error. When project is complied in
+	Eclipse, then deployed, the verify error appears. The problem
+	can be resolved by doing clean build in ant.
+
+	java.lang.VerifyError: (class: com/taursys/examples/simpleweb/SubFormMasterPage, method: initForm signature: ()V) Incompatible object argument for function call
+		at java.lang.Class.getDeclaredConstructors0(Native Method)
+		at java.lang.Class.privateGetDeclaredConstructors(Class.java:1590)
+		at java.lang.Class.getConstructor0(Class.java:1762)
+		at java.lang.Class.newInstance0(Class.java:276)
+		at java.lang.Class.newInstance(Class.java:259)
+		at com.taursys.servlet.ServletFormFactory.createServletForm(ServletFormFactory.java:86)
+		at com.taursys.servlet.ServletApp.doGet(ServletApp.java:74)
+		at com.taursys.examples.simpleweb.MainServlet.doGet(MainServlet.java:55)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:740)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	
+	Problem can also be resolved by changing project settings in
+	Eclipse: Project/Properties/Java Compiler/Compliance and Classfiles tab
+		use JDK 1.4 compliance (was 1.3)
+
+

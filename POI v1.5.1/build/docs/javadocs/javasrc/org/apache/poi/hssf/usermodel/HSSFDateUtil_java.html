@@ -1,0 +1,229 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/usermodel/classList.html" TARGET="packageFrame">org.apache.poi.hssf.usermodel</A>: HSSFDateUtil');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/usermodel/classList.html" TARGET="packageFrame">org.apache.poi.hssf.usermodel</A>: HSSFDateUtil';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a><span class="comment">/*
+<a name=57 class="linenum">57   </a> * DateUtil.java
+<a name=58 class="linenum">58   </a> *
+<a name=59 class="linenum">59   </a> * Created on January 19, 2002, 9:30 AM
+<a name=60 class="linenum">60   </a> */</span>
+<a name=61 class="linenum">61   </a>package org.apache.poi.hssf.usermodel;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a>import java.util.Calendar;
+<a name=64 class="linenum">64   </a>import java.util.Date;
+<a name=65 class="linenum">65   </a>import java.util.GregorianCalendar;
+<a name=66 class="linenum">66   </a>
+<a name=67 class="linenum">67   </a><span class="comment">/**
+<a name=68 class="linenum">68   </a> * Contains methods for dealing with Excel dates.
+<a name=69 class="linenum">69   </a> *
+<a name=70 class="linenum">70   </a> * @author  Michael Harhen
+<a name=71 class="linenum">71   </a> * @author  Glen Stampoultzis (glens at apache.org)
+<a name=72 class="linenum">72   </a> */</span>
+<a name=73 class="linenum">73   </a>
+<a name=74 class="linenum">74   </a>public class <a class="classDef" name=HSSFDateUtil href=HSSFDateUtil_java_ref.html#HSSFDateUtil>HSSFDateUtil</a>
+<a name=75 class="linenum">75   </a>{
+<a name=76 class="linenum">76   </a>    private <a class="methodDef" name=HSSFDateUtil.HSSFDateUtil() href=HSSFDateUtil_java_ref.html#HSSFDateUtil.HSSFDateUtil()>HSSFDateUtil</a>()
+<a name=77 class="linenum">77   </a>    {
+<a name=78 class="linenum">78   </a>    }
+<a name=79 class="linenum">79   </a>
+<a name=80 class="linenum">80   </a>    private static final int    <a class="varDef" name=HSSFDateUtil.BAD_DATE href=HSSFDateUtil_java_ref.html#HSSFDateUtil.BAD_DATE>BAD_DATE</a>          =
+<a name=81 class="linenum">81   </a>        -1;   <span class="comment">// used to specify that date is invalid</span>
+<a name=82 class="linenum">82   </a>    private static final long   <a class="varDef" name=HSSFDateUtil.DAY_MILLISECONDS href=HSSFDateUtil_java_ref.html#HSSFDateUtil.DAY_MILLISECONDS>DAY_MILLISECONDS</a>  = 24 * 60 * 60 * 1000;
+<a name=83 class="linenum">83   </a>    private static final double <a class="varDef" name=HSSFDateUtil.CAL_1900_ABSOLUTE href=HSSFDateUtil_java_ref.html#HSSFDateUtil.CAL_1900_ABSOLUTE>CAL_1900_ABSOLUTE</a> =
+<a name=84 class="linenum">84   </a>        ( double ) <a class="methodRef" title="HSSFDateUtil" href=HSSFDateUtil_java.html#HSSFDateUtil.absoluteDay(Calendar)>absoluteDay</a>(new GregorianCalendar(1900, Calendar
+<a name=85 class="linenum">85   </a>        .JANUARY, 1)) - 2.0;
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>    <span class="comment">/**
+<a name=88 class="linenum">88   </a>     * Given a Date, converts it into a double representing its internal Excel representation,
+<a name=89 class="linenum">89   </a>     *   which is the number of days since 1/1/1900. Fractional days represent hours, minutes, and seconds.
+<a name=90 class="linenum">90   </a>     *
+<a name=91 class="linenum">91   </a>     * @return Excel representation of Date (-1 if error - test for error by checking for less than 0.1)
+<a name=92 class="linenum">92   </a>     * @param  date the Date
+<a name=93 class="linenum">93   </a>     */</span>
+<a name=94 class="linenum">94   </a>
+<a name=95 class="linenum">95   </a>    public static double <a class="methodDef" name=HSSFDateUtil.getExcelDate(Date) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.getExcelDate(Date)>getExcelDate</a>(Date date)
+<a name=96 class="linenum">96   </a>    {
+<a name=97 class="linenum">97   </a>        Calendar calStart = new GregorianCalendar();
+<a name=98 class="linenum">98   </a>
+<a name=99 class="linenum">99   </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a>.setTime(
+<a name=100 class="linenum">100  </a>            <a class="varRef" title="Date" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.date>date</a>);   <span class="comment">// If date includes hours, minutes, and seconds, set them to 0</span>
+<a name=101 class="linenum">101  </a>        if (<a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a>.get(Calendar.YEAR) &lt; 1900)
+<a name=102 class="linenum">102  </a>        {
+<a name=103 class="linenum">103  </a>            return <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.BAD_DATE>BAD_DATE</a>;
+<a name=104 class="linenum">104  </a>        }
+<a name=105 class="linenum">105  </a>        else
+<a name=106 class="linenum">106  </a>        {
+<a name=107 class="linenum">107  </a>            <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a> = <a class="methodRef" title="HSSFDateUtil" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart(Calendar)>dayStart</a>(<a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a>);
+<a name=108 class="linenum">108  </a>            double fraction = (<a class="varRef" title="Date" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.date>date</a>.getTime() - <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a>.getTime().getTime())
+<a name=109 class="linenum">109  </a>                              / ( double ) <a class="varRef" title="long" href=HSSFDateUtil_java.html#HSSFDateUtil.DAY_MILLISECONDS>DAY_MILLISECONDS</a>;
+<a name=110 class="linenum">110  </a>
+<a name=111 class="linenum">111  </a>            return <a class="varRef" title="double" href=HSSFDateUtil_java.html#~NO NAME~.fraction>fraction</a> + ( double ) <a class="methodRef" title="HSSFDateUtil" href=HSSFDateUtil_java.html#HSSFDateUtil.absoluteDay(Calendar)>absoluteDay</a>(<a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.getExcelDate.calStart>calStart</a>)
+<a name=112 class="linenum">112  </a>                   - <a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.CAL_1900_ABSOLUTE>CAL_1900_ABSOLUTE</a>;
+<a name=113 class="linenum">113  </a>        }
+<a name=114 class="linenum">114  </a>    }
+<a name=115 class="linenum">115  </a>
+<a name=116 class="linenum">116  </a>    <span class="comment">/**
+<a name=117 class="linenum">117  </a>     * Given a excel date, converts it into a Date.
+<a name=118 class="linenum">118  </a>     *
+<a name=119 class="linenum">119  </a>     * @param  date the Excel Date
+<a name=120 class="linenum">120  </a>     *
+<a name=121 class="linenum">121  </a>     * @return Java representation of a date (null if error)
+<a name=122 class="linenum">122  </a>     */</span>
+<a name=123 class="linenum">123  </a>
+<a name=124 class="linenum">124  </a>    public static Date <a class="methodDef" name=HSSFDateUtil.getJavaDate(double) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.getJavaDate(double)>getJavaDate</a>(double date)
+<a name=125 class="linenum">125  </a>    {
+<a name=126 class="linenum">126  </a>        if (<a class="methodRef" title="HSSFDateUtil" href=HSSFDateUtil_java.html#HSSFDateUtil.isValidExcelDate(double)>isValidExcelDate</a>(<a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.getJavaDate.date>date</a>))
+<a name=127 class="linenum">127  </a>        {
+<a name=128 class="linenum">128  </a>            int               wholeDaysSince1900 = ( int ) Math.floor(<a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.getJavaDate.date>date</a>);
+<a name=129 class="linenum">129  </a>            GregorianCalendar calendar           = new GregorianCalendar(1900,
+<a name=130 class="linenum">130  </a>                                                       0, <a class="varRef" title="int" href=HSSFDateUtil_java.html#~NO NAME~.wholeDaysSince1900>wholeDaysSince1900</a>
+<a name=131 class="linenum">131  </a>                                                       - 1);
+<a name=132 class="linenum">132  </a>            int               millisecondsInDay  =
+<a name=133 class="linenum">133  </a>                ( int ) ((<a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.getJavaDate.date>date</a> - Math.floor(<a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.getJavaDate.date>date</a>))
+<a name=134 class="linenum">134  </a>                         * ( double ) <a class="varRef" title="long" href=HSSFDateUtil_java.html#HSSFDateUtil.DAY_MILLISECONDS>DAY_MILLISECONDS</a> + 0.5);
+<a name=135 class="linenum">135  </a>
+<a name=136 class="linenum">136  </a>            <a class="varRef" title="GregorianCalendar" href=HSSFDateUtil_java.html#~NO NAME~.calendar>calendar</a>.set(GregorianCalendar.MILLISECOND, <a class="varRef" title="int" href=HSSFDateUtil_java.html#~NO NAME~.millisecondsInDay>millisecondsInDay</a>);
+<a name=137 class="linenum">137  </a>            return <a class="varRef" title="GregorianCalendar" href=HSSFDateUtil_java.html#~NO NAME~.calendar>calendar</a>.getTime();
+<a name=138 class="linenum">138  </a>        }
+<a name=139 class="linenum">139  </a>        else
+<a name=140 class="linenum">140  </a>        {
+<a name=141 class="linenum">141  </a>            return null;
+<a name=142 class="linenum">142  </a>        }
+<a name=143 class="linenum">143  </a>    }
+<a name=144 class="linenum">144  </a>
+<a name=145 class="linenum">145  </a>    <span class="comment">/**
+<a name=146 class="linenum">146  </a>     * Given a double, checks if it is a valid Excel date.
+<a name=147 class="linenum">147  </a>     *
+<a name=148 class="linenum">148  </a>     * @return true if valid
+<a name=149 class="linenum">149  </a>     * @param  value the double value
+<a name=150 class="linenum">150  </a>     */</span>
+<a name=151 class="linenum">151  </a>
+<a name=152 class="linenum">152  </a>    public static boolean <a class="methodDef" name=HSSFDateUtil.isValidExcelDate(double) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.isValidExcelDate(double)>isValidExcelDate</a>(double value)
+<a name=153 class="linenum">153  </a>    {
+<a name=154 class="linenum">154  </a>        return (<a class="varRef" title="double" href=HSSFDateUtil_java.html#HSSFDateUtil.isValidExcelDate.value>value</a> &gt; -Double.MIN_VALUE);
+<a name=155 class="linenum">155  </a>    }
+<a name=156 class="linenum">156  </a>
+<a name=157 class="linenum">157  </a>    <span class="comment">/**
+<a name=158 class="linenum">158  </a>     * Given a Calendar, return the number of days since 1600/12/31.
+<a name=159 class="linenum">159  </a>     *
+<a name=160 class="linenum">160  </a>     * @return days number of days since 1600/12/31
+<a name=161 class="linenum">161  </a>     * @param  cal the Calendar
+<a name=162 class="linenum">162  </a>     * @exception IllegalArgumentException if date is invalid
+<a name=163 class="linenum">163  </a>     */</span>
+<a name=164 class="linenum">164  </a>
+<a name=165 class="linenum">165  </a>    private static int <a class="methodDef" name=HSSFDateUtil.absoluteDay(Calendar) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.absoluteDay(Calendar)>absoluteDay</a>(Calendar cal)
+<a name=166 class="linenum">166  </a>    {
+<a name=167 class="linenum">167  </a>        return <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.absoluteDay.cal>cal</a>.get(Calendar.DAY_OF_YEAR)
+<a name=168 class="linenum">168  </a>               + <a class="methodRef" title="HSSFDateUtil" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears(int)>daysInPriorYears</a>(<a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.absoluteDay.cal>cal</a>.get(Calendar.YEAR));
+<a name=169 class="linenum">169  </a>    }
+<a name=170 class="linenum">170  </a>
+<a name=171 class="linenum">171  </a>    <span class="comment">/**
+<a name=172 class="linenum">172  </a>     * Return the number of days in prior years since 1601
+<a name=173 class="linenum">173  </a>     *
+<a name=174 class="linenum">174  </a>     * @return    days  number of days in years prior to yr.
+<a name=175 class="linenum">175  </a>     * @param     yr    a year (1600 &lt; yr &lt; 4000)
+<a name=176 class="linenum">176  </a>     * @exception IllegalArgumentException if year is outside of range.
+<a name=177 class="linenum">177  </a>     */</span>
+<a name=178 class="linenum">178  </a>
+<a name=179 class="linenum">179  </a>    private static int <a class="methodDef" name=HSSFDateUtil.daysInPriorYears(int) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.daysInPriorYears(int)>daysInPriorYears</a>(int yr)
+<a name=180 class="linenum">180  </a>    {
+<a name=181 class="linenum">181  </a>        if (<a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.yr>yr</a> &lt; 1601)
+<a name=182 class="linenum">182  </a>        {
+<a name=183 class="linenum">183  </a>            throw new IllegalArgumentException(
+<a name=184 class="linenum">184  </a>                "'year' must be 1601 or greater");
+<a name=185 class="linenum">185  </a>        }
+<a name=186 class="linenum">186  </a>        int y    = <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.yr>yr</a> - 1601;
+<a name=187 class="linenum">187  </a>        int days = 365 * <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.y>y</a>      <span class="comment">// days in prior years</span>
+<a name=188 class="linenum">188  </a>                   + <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.y>y</a> / 4      <span class="comment">// plus julian leap days in prior years</span>
+<a name=189 class="linenum">189  </a>                   - <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.y>y</a> / 100    <span class="comment">// minus prior century years</span>
+<a name=190 class="linenum">190  </a>                   + <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.y>y</a> / 400;   <span class="comment">// plus years divisible by 400</span>
+<a name=191 class="linenum">191  </a>
+<a name=192 class="linenum">192  </a>        return <a class="varRef" title="int" href=HSSFDateUtil_java.html#HSSFDateUtil.daysInPriorYears.days>days</a>;
+<a name=193 class="linenum">193  </a>    }
+<a name=194 class="linenum">194  </a>
+<a name=195 class="linenum">195  </a>    <span class="comment">// set HH:MM:SS fields of cal to 00:00:00:000</span>
+<a name=196 class="linenum">196  </a>    private static Calendar <a class="methodDef" name=HSSFDateUtil.dayStart(Calendar) href=HSSFDateUtil_java_ref.html#HSSFDateUtil.dayStart(Calendar)>dayStart</a>(final Calendar cal)
+<a name=197 class="linenum">197  </a>    {
+<a name=198 class="linenum">198  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.get(Calendar
+<a name=199 class="linenum">199  </a>            .HOUR_OF_DAY);   <span class="comment">// force recalculation of internal fields</span>
+<a name=200 class="linenum">200  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.set(Calendar.HOUR_OF_DAY, 0);
+<a name=201 class="linenum">201  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.set(Calendar.MINUTE, 0);
+<a name=202 class="linenum">202  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.set(Calendar.SECOND, 0);
+<a name=203 class="linenum">203  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.set(Calendar.MILLISECOND, 0);
+<a name=204 class="linenum">204  </a>        <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>.get(Calendar
+<a name=205 class="linenum">205  </a>            .HOUR_OF_DAY);   <span class="comment">// force recalculation of internal fields</span>
+<a name=206 class="linenum">206  </a>        return <a class="varRef" title="Calendar" href=HSSFDateUtil_java.html#HSSFDateUtil.dayStart.cal>cal</a>;
+<a name=207 class="linenum">207  </a>    }
+<a name=208 class="linenum">208  </a>
+<a name=209 class="linenum">209  </a>    <span class="comment">// ---------------------------------------------------------------------------------------------------------</span>
+<a name=210 class="linenum">210  </a>}
+<a name=211 class="linenum">211  </a></pre>

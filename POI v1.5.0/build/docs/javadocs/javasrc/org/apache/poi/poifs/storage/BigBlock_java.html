@@ -1,0 +1,146 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/poifs/storage/classList.html" TARGET="packageFrame">org.apache.poi.poifs.storage</A>: BigBlock');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/poifs/storage/classList.html" TARGET="packageFrame">org.apache.poi.poifs.storage</A>: BigBlock';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.poifs.storage;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a><span class="comment">/**
+<a name=59 class="linenum">59   </a> * Abstract base class of all POIFS block storage classes. All
+<a name=60 class="linenum">60   </a> * extensions of BigBlock should write 512 bytes of data when
+<a name=61 class="linenum">61   </a> * requested to write their data.
+<a name=62 class="linenum">62   </a> *
+<a name=63 class="linenum">63   </a> * This class has package scope, as there is no reason at this time to
+<a name=64 class="linenum">64   </a> * make the class public.
+<a name=65 class="linenum">65   </a> *
+<a name=66 class="linenum">66   </a> * @author Marc Johnson (mjohnson at apache dot org)
+<a name=67 class="linenum">67   </a> */</span>
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a>import java.io.IOException;
+<a name=70 class="linenum">70   </a>import java.io.OutputStream;
+<a name=71 class="linenum">71   </a>
+<a name=72 class="linenum">72   </a>abstract class <a class="classDef" name=BigBlock href=BigBlock_java_ref.html#BigBlock>BigBlock</a>
+<a name=73 class="linenum">73   </a>    implements <a class="classRef" href=BlockWritable_java.html#BlockWritable>BlockWritable</a>
+<a name=74 class="linenum">74   </a>{
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>    <span class="comment">/**
+<a name=77 class="linenum">77   </a>     * Default implementation of write for extending classes that
+<a name=78 class="linenum">78   </a>     * contain their data in a simple array of bytes.
+<a name=79 class="linenum">79   </a>     *
+<a name=80 class="linenum">80   </a>     * @param stream the OutputStream to which the data should be
+<a name=81 class="linenum">81   </a>     *               written.
+<a name=82 class="linenum">82   </a>     * @param data the byte array of to be written.
+<a name=83 class="linenum">83   </a>     *
+<a name=84 class="linenum">84   </a>     * @exception IOException on problems writing to the specified
+<a name=85 class="linenum">85   </a>     *            stream.
+<a name=86 class="linenum">86   </a>     */</span>
+<a name=87 class="linenum">87   </a>
+<a name=88 class="linenum">88   </a>    protected void <a class="methodDef" name=BigBlock.doWriteData(OutputStream,byte) href=BigBlock_java_ref.html#BigBlock.doWriteData(OutputStream,byte)>doWriteData</a>(final OutputStream stream, final byte [] data)
+<a name=89 class="linenum">89   </a>        throws IOException
+<a name=90 class="linenum">90   </a>    {
+<a name=91 class="linenum">91   </a>        <a class="varRef" title="OutputStream" href=BigBlock_java.html#BigBlock.doWriteData.stream>stream</a>.write(<a class="varRef" title="byte" href=BigBlock_java.html#BigBlock.doWriteData.data>data</a>);
+<a name=92 class="linenum">92   </a>    }
+<a name=93 class="linenum">93   </a>
+<a name=94 class="linenum">94   </a>    <span class="comment">/**
+<a name=95 class="linenum">95   </a>     * Write the block's data to an OutputStream
+<a name=96 class="linenum">96   </a>     *
+<a name=97 class="linenum">97   </a>     * @param stream the OutputStream to which the stored data should
+<a name=98 class="linenum">98   </a>     *               be written
+<a name=99 class="linenum">99   </a>     *
+<a name=100 class="linenum">100  </a>     * @exception IOException on problems writing to the specified
+<a name=101 class="linenum">101  </a>     *            stream
+<a name=102 class="linenum">102  </a>     */</span>
+<a name=103 class="linenum">103  </a>
+<a name=104 class="linenum">104  </a>    abstract void <a class="methodDef" name=BigBlock.writeData(OutputStream) href=BigBlock_java_ref.html#BigBlock.writeData(OutputStream)>writeData</a>(final OutputStream stream)
+<a name=105 class="linenum">105  </a>        throws IOException;
+<a name=106 class="linenum">106  </a>
+<a name=107 class="linenum">107  </a>    <span class="comment">/* ********** START implementation of BlockWritable ********** */</span>
+<a name=108 class="linenum">108  </a>
+<a name=109 class="linenum">109  </a>    <span class="comment">/**
+<a name=110 class="linenum">110  </a>     * Write the storage to an OutputStream
+<a name=111 class="linenum">111  </a>     *
+<a name=112 class="linenum">112  </a>     * @param stream the OutputStream to which the stored data should
+<a name=113 class="linenum">113  </a>     *               be written
+<a name=114 class="linenum">114  </a>     *
+<a name=115 class="linenum">115  </a>     * @exception IOException on problems writing to the specified
+<a name=116 class="linenum">116  </a>     *            stream
+<a name=117 class="linenum">117  </a>     */</span>
+<a name=118 class="linenum">118  </a>
+<a name=119 class="linenum">119  </a>    public void <a class="methodDef" name=BigBlock.writeBlocks(OutputStream) href=BigBlock_java_ref.html#BigBlock.writeBlocks(OutputStream)>writeBlocks</a>(final OutputStream stream)
+<a name=120 class="linenum">120  </a>        throws IOException
+<a name=121 class="linenum">121  </a>    {
+<a name=122 class="linenum">122  </a>        writeData(<a class="varRef" title="OutputStream" href=BigBlock_java.html#BigBlock.writeBlocks.stream>stream</a>);
+<a name=123 class="linenum">123  </a>    }
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    <span class="comment">/* **********  END  implementation of BlockWritable ********** */</span>
+<a name=126 class="linenum">126  </a>}   <span class="comment">// end abstract class BigBlock</span>
+<a name=127 class="linenum">127  </a>
+<a name=128 class="linenum">128  </a></pre>

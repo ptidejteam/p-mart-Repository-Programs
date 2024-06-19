@@ -1,0 +1,17 @@
+21.8.48b	+0	(def_block
+21.8.48b	+5	r_class
+22.1.493	+16	id|AEWin32AccessInterface
+23.1.4ac	+1	(brace
+29.8.5fe	+1	(brace
+2a.3.603	+6	id|System
+2a.9.609	+1	dot
+2a.a.60a	+b	id|loadLibrary
+2a.15.615	+0	c_func
+2a.15.615	+1	(paren
+2a.17.617	+1c	id|PlatformManagerImpl.DLL_NAME
+2a.34.634	+1	)paren
+2a.35.635	+1	suffix:semicolon
+2b.2.639	+1	)brace
+74.1.b9f	+1	)brace
+74.2.ba0	+0	)def_block
+75.1.ba2	+0	eof

@@ -1,0 +1,13 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.5.4.2 String.prototype.tostring
+String.prototype.toString() == String.prototype.valueOf() = true PASSED!
+String.prototype.toString() =  PASSED!
+String.prototype.toString.length = 0 PASSED!
+TESTSTRING = new String();TESTSTRING.valueOf() == TESTSTRING.toString() = true PASSED!
+TESTSTRING = new String(true);TESTSTRING.valueOf() == TESTSTRING.toString() = true PASSED!
+TESTSTRING = new String(false);TESTSTRING.valueOf() == TESTSTRING.toString() = true PASSED!
+TESTSTRING = new String(Math.PI);TESTSTRING.valueOf() == TESTSTRING.toString() = true PASSED!
+TESTSTRING = new String();TESTSTRING.valueOf() == TESTSTRING.toString() = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.2.compiled.arff] ...

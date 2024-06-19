@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JRefactory</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="ant-task.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-moveclass.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H3>JRefactory</H3>
+
+			<P>This software supports 15 refactorings.  For details
+			of what these refactorings do and how they are implemented,
+			please click on the links below.</P>
+
+			<UL>
+			  <LI>  <A HREF="csr-moveclass.html">Repackage or move class</A>
+			  <LI>  <A HREF="csr-renameclass.html">Rename class</A>
+			  <LI>  <A HREF="csr-addparent.html">Add an abstract parent class</A>
+			  <LI>  <A HREF="csr-addchild.html">Adds a child class</A>
+			  <LI>  <A HREF="csr-removeclass.html">Removes a class</A>
+			  <LI>  <A HREF="csr-extractinterface.html">Extracts an interface</A>
+			  <LI>  <A HREF="csr-pushupfield.html">Push up field</A>
+			  <LI>  <A HREF="csr-pushdownfield.html">Push down field</A>
+			  <LI>  <A HREF="csr-renamefield.html">(<B>New!!</B>) Rename Field</A>
+			  <LI>  <A HREF="csr-pushupmethod.html">Push up method</A>
+			  <LI>  <A HREF="csr-pushupabstractmethod.html">Push up abstract method</A>
+			  <LI>  <A HREF="csr-pushdownmethod.html">Push down method</A>
+			  <LI>  <A HREF="csr-movemethod.html">Move method</A>
+			  <LI>  <A HREF="csr-extractmethod.html">Extract method</A>
+			  <LI>  <A HREF="csr-renameparam.html">(<B>New!!</B>) Rename Parameter</A>
+			</UL>
+
+			<H4>GUI</H4>
+
+			<P>The UML diagrams are reverse engineered from the .java files, so there is no fear that they will get out of
+			date.  The class diagrams are the main interface to the
+			system.  The user inteface for the refactory is described <A HREF="csr-gui.html">here</A>.
+
+			<P>The refactoring tool now supports the <A HREF="csr-undo.html">Undo</A>
+			operation.</P>
+
+			<H5>Saving Diagrams</H5>
+			<P>Selecting save from the menu option will save a particular diagram.  Selecting save from a package selector
+			window will save all diagrams.</P>
+
+			<P>All diagrams are also saved on exit.</P>
+
+			<H5>Reloading/Updating Diagrams</H5>
+
+			<P>You can reload the class diagrams by pressing the reload button on the package selector.  This will scan through
+			the directory tree and update any classes where the .java file has changed and add new classes into the diagrams.
+			 Invoking this method saves all diagrams.</P>
+
+			<H4>Printing and Images</H4>
+
+			<P>Click <A HREF="csr-output.html">here</A> to learn more
+			about printing and generating JPG images from the class
+			diagrams.</P>
+
+			<H4>IDEs</H4>
+
+			<P>The refactory tool currently supports the following IDEs:</P>
+
+			<UL>
+			  <LI><A HREF="csr-commandline.html">Command line operation</A>
+			  <LI><A HREF="csr-elixir.html">Elixir IDE</A>
+			  <LI><A HREF="csr-jbuilder.html">JBuilder</A>
+			  <LI>NetBeans - Extract Method Only.  The UML diagrams and
+   				other refactorings are available through the command
+				line interface.
+			</UL>
+
+			<P>Visual Age and Visual Cafe are planned for the future.</A>
+
+			<H4>Metrics</H4>
+
+			<P><A HREF="csr-metrics.html">Metrics</A> are
+			also available from the refactory gui.</P>
+
+			<H4>Third party Tools</H4>
+
+			<P>This software supports loading the class diagrams
+			for the JDK and other third party tools.  To do this,
+			you need the source code.  The software generates
+			a skeleton of the class diagrams to allow more rapid
+			loading.  For more information, click
+			<A HREF="csr-thirdparty.html">here</A>.
+			</P>
+
+			<H4>Release Notes</H4>
+
+			<P><A HREF="csr-releasenotes.html">Here</A> are the
+			release notes.</P>
+			<H4>Future</H4>
+
+			<P>I will probably try to implement move
+			method next.</P>
+
+			<P>I still would like to integrate this with various
+			editors, but I need some help from people who use these editors
+			all the time.  If you want this for Visual Age or Visual Cafe or
+			something, please <A HREF="mailto:seguin@acm.org">e-mail</A> me.</P>
+
+			<TABLE BORDER="1">
+			  <TR>
+			    <TD>
+			      This software tool was developed to research how
+			      people use refactorings.  The latest version creates
+			      a small log file called <em>log.txt</em> in your
+			      home directory (jrefactory.home if specified).
+			      This file contains an ID number of the refactoring
+			      returned, and the date and time when it occurred.
+			      Please e-mail me this file on a monthly basis
+			      if you are willing to
+			      participate in a study on the use of refactorings.<P>
+
+			      Thanks!
+			    </TD>
+			  </TR>
+			</TABLE>
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="ant-task.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: February 22, 2001</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-moveclass.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

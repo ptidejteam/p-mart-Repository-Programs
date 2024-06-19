@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Starting jEdit</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="launcher-guide.html" title="Appendix G. jEditLauncher for Windows"><link rel="previous" href="launcher-intro.html" title="Introduction"><link rel="next" href="launcher-menu.html" title="The Context Menu Handler"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Starting jEdit</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="launcher-intro.html">Prev</a> </td><th width="60%" align="center">Appendix G. jEditLauncher for Windows</th><td width="20%" align="right"> <a accesskey="n" href="launcher-menu.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="launcher-starting"></a>Starting jEdit</h2></div></div><p>
+      The main component of the jEditLauncher package is a client
+      application
+      entitled <b>jedit.exe</b>. It may be executed either
+      from either Windows Explorer, a shortcut icon or the command line.
+      It uses the jEditLauncher
+      COM component to open files in jEdit that are listed as command line
+      parameters. It supports Windows and UNC file
+      specifications as well as wild cards. If called without parameters, it
+      will launch jEdit. If jEdit is already running, it will simply open a new, empty buffer.
+    </p><p>
+      <b>jedit.exe</b> supports five command-line
+      options.
+      Except for the <b><tt>/1</tt></b> option, if any of these options
+      are invoked correctly, the application will not load files or
+      execute jEdit.
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+          The option <b><tt>/h</tt></b> causes a window to be displayed
+          with a brief description of the application and its various options.
+        </p></li><li xmlns:ns1=""><p>
+          The option <b><tt>/p</tt></b> will activate a dialog window
+          displaying the command-line parameters to be used when calling jEdit.
+          This option can also be triggered by selecting <b>Set
+          jEdit Parameters</b> from the <b>jEdit</b>
+          section of the Windows Programs menu, or by running the utility program
+          <b>jedinit.exe</b>
+        </p><ns1:p>
+          Using the dialog, you can change parameters specifying the executable for
+          the Java application loader (either <tt>java.exe</tt>
+          or <tt>javaw.exe</tt>), the location of the jEdit archive file,
+          <tt>jedit.jar</tt>, and command line options for both.
+          </ns1:p><div class="itemizedlist"><ul type="circle"><li><p>
+                The input fields for Java options and jEdit options are separate.
+                If you insert an option in the wrong place it will not be
+                properly executed.
+              </p></li><li><p>
+                If the <b><tt>-jar</tt></b> option is not used with the
+                Java application loader the principal jEdit class of
+                <tt>org.gjt.sp.jedit.jEdit</tt> is set as
+                fixed data.
+              </p></li><li><p>
+                The working directory for the Java interpreter's process
+                can also be specified.
+              </p></li></ul></div><ns1:p>
+          A read-only window at the bottom of the dialog displays
+          the full command line that jEditLauncher will invoke.
+        </ns1:p><p>
+          Before committing changes to the command line parameters,
+          <b>jedit.exe</b> validates the paths for the Java
+          and jEdit targets as well as the working directory. It will complain if
+          the paths are invalid. It will not validate command line options, but it
+          will warn you if it finds the <b><tt>-noserver</tt></b> option
+          used for jEdit, since this will deactivate the edit
+          server and make it
+          impossible for jEditLauncher to open files.
+        </p><p>
+          Note that due to the design of
+          jEditLauncher,
+          platform-independent command line options
+          handled by jEdit itself (such as
+          <b><tt>-background</tt></b> and
+          <b><tt>-norestore</tt></b>) must be entered in the
+          &#8220;Set jEdit Parameters&#8221; dialog box, and cannot be
+          specified on the <b>jedit.exe</b> command line
+          directly. For information about platform-independent command
+          line options, see <a href="cli-usage.html" title="Command Line Usage">the section called &#8220;Command Line Usage&#8221;</a>.
+        </p></li><li><p>
+          The option <b><tt>/1</tt></b> is intended for use in
+          circumstances where a single file name is passed to jEdit for opening,
+          and quotation marks cannot be used to delimit file names containing
+          whitespace.  The launcher reads the entire command line following
+          the <b><tt>/1</tt></b> options as a single file path,
+          regardless of the presence of whitespace, and passes the resulting
+          string as a single file name parameter to jEdit.
+        </p><p>
+          This option allows jEdit
+          to be used with version 5 or greater of Internet Explorer as an
+          alternate text editor or as the target of the <b>View
+          Source</b> command.  Included with the jEditLauncher
+          distribution is a file named <tt>jEdit_IE.reg.txt</tt>
+          containing an example of a Window registry file that you can use
+          to register jEdit as a HTML editor with Internet Explorer. Instructions
+          for the file's use are included in the text.
+        </p><p>
+          The use of the <b><tt>/1</tt></b>
+          option with multiple file names or other parameters will lead to
+          program errors or unpredictable results.
+        </p></li><li><p>
+          The option <b><tt>/i</tt></b> is not mentioned in the help window
+          for <tt>jedit.exe</tt>. It is intended primarily to be used
+          in conjunction with jEdit's Java installer, but it can also be used to
+          install or reinstall jEditLauncher manually. When accompanied by a second
+          parameter specifying the directory where your preferred Java interpreter
+          is located, jEditLauncher will install itself and set a reasonable
+          initial set of command line parameters for executing jEdit. You can
+          change these parameters later by running <tt>jedinit.exe</tt>
+          or <tt>jedit.exe</tt>
+          with the<b><tt>/p</tt></b> option.
+        </p></li><li><p>
+          The option <b><tt>/u</tt></b> will cause jEditLauncher
+          to be uninstalled by removing its registry entries.
+          This option does not delete any jEditLauncher or jEdit files.
+        </p></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="launcher-intro.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="launcher-guide.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="launcher-menu.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Introduction </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The Context Menu Handler</td></tr></table></div></body></html>

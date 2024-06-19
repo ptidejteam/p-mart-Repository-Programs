@@ -1,0 +1,51 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.5.2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.5.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 111202
+11.5.2 Applying the / operator
+Number.NaN / Number.NaN = NaN PASSED!
+Number.NaN / 1 = NaN PASSED!
+1 / Number.NaN = NaN PASSED!
+Number.POSITIVE_INFINITY / Number.NaN = NaN PASSED!
+Number.NEGATIVE_INFINITY / Number.NaN = NaN PASSED!
+Number.NEGATIVE_INFINITY / Number.NEGATIVE_INFINITY = NaN PASSED!
+Number.POSITIVE_INFINITY / Number.NEGATIVE_INFINITY = NaN PASSED!
+Number.NEGATIVE_INFINITY / Number.POSITIVE_INFINITY = NaN PASSED!
+Number.POSITIVE_INFINITY / Number.POSITIVE_INFINITY = NaN PASSED!
+Number.POSITIVE_INFINITY / 0 = Infinity PASSED!
+Number.NEGATIVE_INFINITY / 0 = -Infinity PASSED!
+Number.POSITIVE_INFINITY / -0 = -Infinity PASSED!
+Number.NEGATIVE_INFINITY / -0 = Infinity PASSED!
+Number.NEGATIVE_INFINITY / 1  = -Infinity PASSED!
+Number.NEGATIVE_INFINITY / -1  = Infinity PASSED!
+Number.POSITIVE_INFINITY / 1  = Infinity PASSED!
+Number.POSITIVE_INFINITY / -1  = -Infinity PASSED!
+Number.NEGATIVE_INFINITY / Number.MAX_VALUE  = -Infinity PASSED!
+Number.NEGATIVE_INFINITY / -Number.MAX_VALUE  = Infinity PASSED!
+Number.POSITIVE_INFINITY / Number.MAX_VALUE  = Infinity PASSED!
+Number.POSITIVE_INFINITY / -Number.MAX_VALUE  = -Infinity PASSED!
+1 / Number.NEGATIVE_INFINITY = 0 PASSED!
+1 / Number.POSITIVE_INFINITY = 0 PASSED!
+-1 / Number.POSITIVE_INFINITY = 0 PASSED!
+-1 / Number.NEGATIVE_INFINITY = 0 PASSED!
+Number.MAX_VALUE / Number.NEGATIVE_INFINITY = 0 PASSED!
+Number.MAX_VALUE / Number.POSITIVE_INFINITY = 0 PASSED!
+-Number.MAX_VALUE / Number.POSITIVE_INFINITY = 0 PASSED!
+-Number.MAX_VALUE / Number.NEGATIVE_INFINITY = 0 PASSED!
+0 / -0 = NaN PASSED!
+-0 / 0 = NaN PASSED!
+-0 / -0 = NaN PASSED!
+0 / 0 = NaN PASSED!
+0 / 1 = 0 PASSED!
+0 / -1 = 0 PASSED!
+-0 / 1 = 0 PASSED!
+-0 / -1 = 0 PASSED!
+1 / 0 = Infinity PASSED!
+1 / -0 = -Infinity PASSED!
+-1 / 0 = -Infinity PASSED!
+-1 / -0 = Infinity PASSED!
+0 / Number.POSITIVE_INFINITY = 0 PASSED!
+0 / Number.NEGATIVE_INFINITY = 0 PASSED!
+-0 / Number.POSITIVE_INFINITY = 0 PASSED!
+-0 / Number.NEGATIVE_INFINITY = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.5.2.interpreted.arff] ...

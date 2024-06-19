@@ -1,0 +1,18 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.14-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.14-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+ The try statement
+ The try statement
+newJavaValue( 3.14159 ) = Invalid value for java.lang.Integer constructor PASSED!
+newJavaValue( 3.14159 ) hit finally block = true PASSED!
+newJavaValue( NaN ) = Invalid value for java.lang.Integer constructor PASSED!
+newJavaValue( NaN ) hit finally block = true PASSED!
+newJavaValue( 0 ) = 0 PASSED!
+newJavaValue( 0 ) hit finally block = true PASSED!
+newJavaValue( -1 ) = -1 PASSED!
+newJavaValue( -1 ) hit finally block = true PASSED!
+newJavaValue( 1 ) = 1 PASSED!
+newJavaValue( 1 ) hit finally block = true PASSED!
+newJavaValue( Infinity ) = Infinity PASSED!
+newJavaValue( Infinity ) hit finally block = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.14-1.compiled.arff] ...

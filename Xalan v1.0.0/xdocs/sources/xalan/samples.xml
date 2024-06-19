@@ -1,0 +1,220 @@
+<?xml version="1.0" standalone="no"?> 
+<!--
+ * The Apache Software License, Version 1.1
+ *
+ *
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer. 
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution,
+ *    if any, must include the following acknowledgment:  
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowledgment may appear in the software itself,
+ *    if and wherever such third-party acknowledgments normally appear.
+ *
+ * 4. The names "Xalan" and "Apache Software Foundation" must
+ *    not be used to endorse or promote products derived from this
+ *    software without prior written permission. For written 
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache",
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation and was
+ * originally based on software copyright (c) 1999, Lotus
+ * Development Corporation., http://www.lotus.com.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ -->
+
+<!DOCTYPE s1 SYSTEM "sbk:/style/dtd/document.dtd">
+<s1 title="Samples">
+<ul>
+<li><link anchor="simpletransform">SimpleTransform</link></li>
+<li><link anchor="transformtodom">TransformToDom</link></li>
+<li><link anchor="usestylesheetparam">UseStylesheetParam</link></li>
+<li><link anchor="xpath">ApplyXPath</link></li>
+<li><link anchor="pipe">Pipe</link></li>
+<li><link anchor="sax">PureSAX</link></li>
+<li><link anchor="extensions">Extensions</link></li>
+<li><link anchor="appletxmltohtml">AppletXMLtoHTML</link></li>
+<li><link anchor="servlet">Servlet</link></li>
+</ul>       
+	  <s2 title="Samples to help you get started">
+    <p>Each of the subdirectories in the &xslt4j; samples directory contains the source files for one or more
+     sample applications. The class files for all the samples are in xalansamples.jar, so to run the samples, 
+     you should place xalansamples.jar on the system class path.</p>
+     <p>With most of the samples, you can use the following procedure:</p>
+     <ol>
+     <li>Be sure xalan.jar, xalansamples.jar, and xerces.jar are on the system class path. For the extension
+      examples, bsf.jar, bsfengines.jar, and (for the JavaScript extensions) js.jar must also be on the class
+      path.</li>
+     <li>Be sure the java executable is on your path.</li>
+     <li>Go to the samples subdirectory containing the sample (use the DOS shell if you are running Windows).</li>
+     <li>Run the sample from the command line (as indicated below)</li>
+    <li>Examine the application source files. You may also want to modify the source files. Remember that if you
+     modify a java file, you must recompile the class and place it on the class path before you can run the
+     modified application.</li>
+     </ol>      
+    <p>The basic command line for running most of the samples is </p> 
+    <p><code>java <ref>classname args</ref></code></p>
+    <p>where <ref>classname</ref> is the classname and <ref>args</ref> are the arguments, if any. As described in
+     the following sections, some samples take no arguments. The samples in UseStylesheetParam and ApplyXPath take
+     additional arguments. The samples in extensions use the &xslt4j; <link idref="commandline">command-line
+     utility</link>, so they take arguments for the XML source file and the XSL stylesheet.</p>
+  	</s2><anchor name="simpletransform"/>
+    <s2 title="SimpleTransform">
+    <p>What it does: The SimpleTransform class uses the foo.xsl stylesheet to transform foo.xml, and prints the
+     output to System.out.</p>
+    <p>You can run it from the SimpleTransform subdirectory with</p>
+    <p><code>java SimpleTransform</code></p>
+    </s2><anchor name="transformtodom"/>
+    <s2 title="TransformToDom">
+    <p>What it does: The TransformToDom class uses the foo.xsl stylesheet to transform foo.xml, produces an output
+     DOM, and traverses the DOM, printing the traversal to System.out. In contrast to SimpleTransform,
+      TransformToDom illustrates the procedure for creating an output DOM that is available for further
+      processing. The XSLTProcessor is set up to use XercesLiaison and the Xerces DOM parser rather than the default DTM liaison
+      and parser.</p>
+   <p>You can run it from the TransformToDom subdirectory with</p>
+    <p><code>java TransformToDom</code></p>
+    </s2><anchor name="usestylesheetparam"/>
+    <s2 title="UseStylesheetParam">
+      <p>What it does: The UseStyleSheetParam class uses foo.xsl and a stylesheet parameter to transform foo.xml,
+       and prints the output to System.out. The stylesheet parameter appears as a text node in the output.</p>
+    <p>Run this sample from the UseStylesheetParam subdirectory with</p> 
+    <p><code>java UseStylesheetParam <ref>param</ref></code></p>
+    <p>where <ref>param</ref> is the stylesheet parameter (a string of your choice).</p>  
+    </s2><anchor name="xpath"/>
+    <s2 title="ApplyXPath">
+    <p>What it does: The ApplyXPath class uses the XPathAPI to execute an XPath expression against an XML document 
+    and returns the nodes (if any) it finds. XPathAPI contains some convenience methods for using XPath expressions to return
+    single Nodes, NodeLists, and XObjects. In the future, we plan to incorporate user feedback and move these methods into the
+    core API.</p>
+     <note>You can use this sample as an aid when you want to find out what a given XPath expression returns from a
+     given XML file. Keep in mind that the context node (base point of evaluation) for the XPath expression is the document
+     root.</note>
+    <p>Run this sample from the ApplyXPath subdirectory with</p> 
+    <p><code>java ApplyXPath <ref>XMLFile XPathExpression</ref></code></p>
+    <p>where <ref>XMLFile</ref> is an XML source file and <ref>XPathExpression</ref> is an XPath expression to
+     apply to that file. The ApplyXPath subdirectory contains an XML file named foo.xml, so you can try command
+     lines like</p>
+    <p><code>java ApplyXPath foo.xml /</code></p>
+    <p>and</p>
+    <p><code>java ApplyXPath foo.xml /doc/name/@first</code></p>
+    <p>If you are interested in the API for executing XPath expressions, we suggest you take a look at the methods in XPathAPI,
+    and send us feedback on what best meets your needs.</p>
+    </s2><anchor name="pipe"/>
+    <s2 title="Pipe">
+    <p>What it does: The Pipe class uses the output of the first transformation as input to a second
+     transformation.</p>
+     <p>The first transformation produces a sequence of SAX events which the second transformation processes with
+      its own stylesheet. The consumer of SAX output can respond to these events as they occur, rather than waiting
+       for the entire result tree to be constructed (as the DOM consumer must do).</p>
+    <p>Run this sample from the Pipe subdirectory with</p> 
+    <p><code>java Pipe</code></p>
+    <p>For other examples using the SAX document handler, see the next section and <link idref="usagepatterns"
+     anchor="sax">Generating and responding to SAX events</link>.</p>
+    </s2><anchor name="sax"/>
+    <s2 title="PureSAX">
+    <p>What it does: The PureSAX class uses SAX DocumentHandlers and the Xerces SAX parser to produce a stylesheet tree, 
+    an XML input tree, and the transformation result tree. The SAX parser uses the XSLT processor to set a lexical handler,
+    which enables the parser to include "lexical" events in the XML source, such as the occurrence of comment nodes.</p>
+    <p>Run this sample from the PureSax subdirectory with</p> 
+    <p><code>java PureSAX</code></p>    
+    </s2><anchor name="extensions"/>
+    <s2 title="Extensions">
+    <p>The extensions subdirectory contains four samples with &xslt4j; extensions. Two of the samples use
+     extensions implemented in JavaScript, and two of the samples use extensions implemented in Java. All of
+     the samples are documented in <link idref="extensions">Extensions</link>.</p>
+     <p>To run these examples, you must place bsf.jar and bsfengines.jar (distributed with &xslt4j;), and js.jar
+     (available from <jump href="http://www.mozilla.org/rhino">http://www.mozilla.org/rhino</jump>) on the class path. 
+     You do not need js.jar  on the class path for the samples that use Java extensions. </p>
+     <p>Use java.org.apache.xalan.xslt.Process, the &xslt4j; command-line utility, to run these samples from
+      the <link idref="commandline">command line</link>. The command line must include an -in flag with the 
+      XML source and an -xsl flag with the XSL stylesheet. If you want the output to be printed to a file, rather
+      than to the screen, add an -out flag with the output file name.</p>
+      <p>Run these samples from the extensions directory as follows (each of the following is a single command
+       line):</p> 
+
+      <p><code>java org.apache.xalan.xslt.Process -in 1basicJscript</code> 
+        <br/>&nbsp;&nbsp;<code>-xsl 1basicJscript</code></p>
+      <p><code>java org.apache.xalan.xslt.Process -in 2java-namespace.xml</code> 
+        <br/>&nbsp;&nbsp;<code>-xsl 2java-namespace.xsl</code></p>
+      <p><code> java org.apache.xalan.xslt.Process -in 3numlistJava.xml</code> 
+        <br/>&nbsp;&nbsp;<code>-xsl 3numlistJava.xsl</code></p>
+      <p><code> java org.apache.xalan.xslt.Process -in 4numlistJcript.xml </code>
+        <br/>&nbsp;&nbsp;<code>-xsl 4numlistJscript.xsl</code></p>
+    </s2><anchor name="appletxmltohtml"/>
+    <s2 title="AppletXMLtoHTML">
+    <p>The applet uses a stylesheet to transform an XML document into HTML. It displays the XML document, the
+     stylesheet, and the HTML output.</p>
+    <p>How to run it: See <jump href="../samples/appletXMLtoHTML/readme.html">sample applet readme</jump>.</p>
+    <p>For a brief introduction to using applets to perform transformations, see <link idref="usagepatterns"
+    anchor="applet">Using the &xslt4j; applet wrapper</link></p>  
+    </s2><anchor name="servlet"/>
+    <s2 title="Servlet">
+    <p>What it does: The client (which you must set up) specifies an XML document and a stylesheet. The servlet
+     performs the transformation and returns the output to the client. You can use media.properties to specify 
+    which stylesheet is to be used depending on the client browser/device.</p>
+    <p>How to run it:</p>
+    <ol>
+      <li>Configure your application server (Websphere or JServ, for example) so it can find the classes (in
+       xalansamples.jar) as well as the stylesheets and properties file in the servlet subdirectory.</li>
+      <li>Set up an HTML client to call DefaultApplyXSL with arguments as illustrated below.</li>
+    </ol>
+    <p>Examples:</p>
+<gloss>
+<label>http://localhost/servlet/DefaultApplyXSL?URL=/data.xml&amp;xslURL=
+/style.xsl</label>
+<item>...applies the style.xsl stylesheet to the data.xml data. Both files are<br/>
+served from the Web server's HTTP XSLTInputSource root.<br/><br/></item>
+<label>http://localhost/servlet/DefaultApplyXSL?URL=/data.xml&amp;xslURL=
+/style.xsl&amp;debug=true</label>
+<item>...ensures that XML and XSL processor messages are returned in the event of problems
+applying style.xsl to data.xml<br/><br/></item>
+<label>http://localhost/servlet/DefaultApplyXSL/data.xml?xslURL=/style.xsl</label>
+<item>...applies the style.xsl stylesheet to the data.xml data, just like the first example.
+This is an alternative way of specifying the XML XSLTInputSource by utilizing the HTTP request's path
+information.<br/><br/></item>
+<label>http://localhost/servlet/DefaultApplyXSL/data.xml</label>
+<item>...examines data.xml for an associated XSL stylesheet. If multiple XSLs are associated with the data, the stylesheet whose media attribute maps to your browser type will be chosen.  If no mapping is successful, the primary associated stylesheet is used.<br/><br/></item>
+<label>http://localhost/servlet/data.xml</label>
+<item>...provides the same function as the previous example, but this example assumes
+that /servlet/data.xml has been mapped to be executed by this servlet.  The servlet engine may be configured
+to map all or some *.xml files to this servlet through the use of servlet aliases or filters.<br/><br/></item>
+<label>http://localhost/servlet/data.xml?catalog=http://www.xml.org/dtds/oag.xml</label>
+<item>...supplements any servlet-configured XCatalog
+with a catalog of supply chain DTDs residing at the XML.ORG DTD repository.</item>
+</gloss>
+<p>For more information, see the comments in DefaultApplyXSL.java.</p>
+    </s2> 
+</s1>

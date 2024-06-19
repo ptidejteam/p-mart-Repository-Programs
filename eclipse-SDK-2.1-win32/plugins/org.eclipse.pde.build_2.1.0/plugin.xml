@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.pde.build"
+   name="%pluginName"
+   version="2.1.0"
+   provider-name="%providerName">
+
+<requires>
+   <import plugin="org.eclipse.ant.core"/>
+   <import plugin="org.eclipse.jdt.core"/>
+   <import plugin="org.eclipse.update.core"/>
+</requires>
+
+<runtime>
+   <library name="pdebuild.jar">
+      <export name="*"/>
+   </library>
+</runtime>
+
+<!-- Tasks -->
+
+<extension point="org.eclipse.ant.core.antTasks">
+   <antTask
+      name="eclipse.fetch"
+      class="org.eclipse.pde.internal.build.tasks.FetchTask"
+      library="lib/pdebuild-ant.jar">
+   </antTask>
+   <antTask
+      name="eclipse.buildScript"
+      class="org.eclipse.pde.internal.build.tasks.BuildScriptGeneratorTask"
+      library="lib/pdebuild-ant.jar">
+   </antTask>
+   <antTask
+      name="eclipse.buildManifest"
+      class="org.eclipse.pde.internal.build.tasks.BuildManifestTask"
+      library="lib/pdebuild-ant.jar">
+   </antTask>
+</extension>
+
+</plugin>

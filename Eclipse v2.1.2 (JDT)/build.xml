@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.jdt.core" default="build.jars" basedir=".">
+
+	<property name="bootclasspath" value=""/>
+	<property name="ws" value="motif"/>
+	<property name="os" value="linux"/>
+	<property name="arch" value="x86"/>
+
+	<target name="init" depends="properties">
+		<property name="plugin" value="org.eclipse.jdt.core"/>
+		<property name="version.suffix" value="_2.1.2"/>
+		<property name="full.name" value="${plugin}${version.suffix}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+		<property name="build.result.folder" value="${basedir}"/>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	</target>
+
+	<target name="build.update.jar" depends="init">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip zipfile="${plugin.destination}/${full.name}.jar" basedir="${temp.folder}/${full.name}" filesonly="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/jdtCompilerAdapter.jar" todir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/jdtcore.jar" todir="${destination.temp.folder}/${full.name}"/>
+		<copy todir="${destination.temp.folder}/${full.name}">
+			<fileset dir="${basedir}" includes="plugin.xml,plugin.properties,about.html,*.jar,.options"/>
+		</copy>
+	</target>
+
+	<target name="jdtcore.jar" depends="init" unless="jdtcore.jar">
+		<property name="destdir" value="${temp.folder}/jdtcore.jar.bin"/>
+		<delete dir="${temp.folder}/jdtcore.jar.bin"/>
+		<mkdir dir="${temp.folder}/jdtcore.jar.bin"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/jdtcore.jar.bin" failonerror="false" verbose="true" debug="on" includeAntRuntime="no" bootclasspath="${bootclasspath}" classpath="../org.eclipse.core.runtime/runtime.jar;../org.apache.ant/ant.jar;../org.apache.xerces/xercesImpl.jar;../org.apache.xerces/xmlParserAPIs.jar;../org.eclipse.core.resources.qnx/resources.jar;../org.eclipse.core.resources.macosx/resources.jar;../org.eclipse.ant.core/antsupport.jar;../org.eclipse.core.resources.linux/resources.jar;../org.eclipse.core.resources.win32/resources.jar;../org.eclipse.team.core/team.jar;../org.eclipse.core.resources/resources.jar;../org.eclipse.core.boot/boot.jar">
+			<src path="batch/"/>
+			<src path="codeassist/"/>
+			<src path="compiler/"/>
+			<src path="eval/"/>
+			<src path="formatter/"/>
+			<src path="dom/"/>
+			<src path="model/"/>
+			<src path="search/"/>
+		</javac>
+		<!-- copy necessary resources -->
+		<copy todir="${temp.folder}/jdtcore.jar.bin">
+			<fileset dir="batch/" excludes="**/*.java"/>
+			<fileset dir="codeassist/" excludes="**/*.java"/>
+			<fileset dir="compiler/" excludes="**/*.java"/>
+			<fileset dir="eval/" excludes="**/*.java"/>
+			<fileset dir="formatter/" excludes="**/*.java"/>
+			<fileset dir="dom/" excludes="**/*.java"/>
+			<fileset dir="model/" excludes="**/*.java"/>
+			<fileset dir="search/" excludes="**/*.java"/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar jarfile="${build.result.folder}/jdtcore.jar" basedir="${temp.folder}/jdtcore.jar.bin"/>
+		<delete dir="${temp.folder}/jdtcore.jar.bin"/>
+	</target>
+
+	<target name="jdtcoresrc.zip" depends="init" unless="jdtcoresrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip zipfile="${build.result.folder}/jdtcoresrc.zip" filesonly="false">
+			<fileset dir="batch/" includes="**/*.java"/>
+			<fileset dir="codeassist/" includes="**/*.java"/>
+			<fileset dir="compiler/" includes="**/*.java"/>
+			<fileset dir="eval/" includes="**/*.java"/>
+			<fileset dir="formatter/" includes="**/*.java"/>
+			<fileset dir="dom/" includes="**/*.java"/>
+			<fileset dir="model/" includes="**/*.java"/>
+			<fileset dir="search/" includes="**/*.java"/>
+		</zip>
+	</target>
+
+	<target name="jdtCompilerAdapter.jar" depends="init" unless="jdtCompilerAdapter.jar">
+		<property name="destdir" value="${temp.folder}/jdtCompilerAdapter.jar.bin"/>
+		<delete dir="${temp.folder}/jdtCompilerAdapter.jar.bin"/>
+		<mkdir dir="${temp.folder}/jdtCompilerAdapter.jar.bin"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/jdtCompilerAdapter.jar.bin" failonerror="false" verbose="true" debug="on" includeAntRuntime="no" bootclasspath="${bootclasspath}" classpath="../org.eclipse.core.runtime/runtime.jar;../org.apache.ant/ant.jar;../org.apache.xerces/xercesImpl.jar;../org.apache.xerces/xmlParserAPIs.jar;../org.eclipse.core.resources.qnx/resources.jar;../org.eclipse.core.resources.macosx/resources.jar;../org.eclipse.ant.core/antsupport.jar;../org.eclipse.core.resources.linux/resources.jar;jdtcore.jar;../org.eclipse.core.resources.win32/resources.jar;../org.eclipse.team.core/team.jar;../org.eclipse.core.resources/resources.jar;../org.eclipse.core.boot/boot.jar">
+			<src path="antadapter/"/>
+		</javac>
+		<!-- copy necessary resources -->
+		<copy todir="${temp.folder}/jdtCompilerAdapter.jar.bin">
+			<fileset dir="antadapter/" excludes="**/*.java"/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar jarfile="${build.result.folder}/jdtCompilerAdapter.jar" basedir="${temp.folder}/jdtCompilerAdapter.jar.bin"/>
+		<delete dir="${temp.folder}/jdtCompilerAdapter.jar.bin"/>
+	</target>
+
+	<target name="jdtCompilerAdaptersrc.zip" depends="init" unless="jdtCompilerAdaptersrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip zipfile="${build.result.folder}/jdtCompilerAdaptersrc.zip" filesonly="false">
+			<fileset dir="antadapter/" includes="**/*.java"/>
+		</zip>
+	</target>
+
+	<target name="build.jars" depends="init">
+		<available property="jdtcore.jar" file="${build.result.folder}/jdtcore.jar"/>
+		<antcall target="jdtcore.jar"/>
+		<available property="jdtCompilerAdapter.jar" file="${build.result.folder}/jdtCompilerAdapter.jar"/>
+		<antcall target="jdtCompilerAdapter.jar"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="jdtcoresrc.zip" file="${build.result.folder}/jdtcoresrc.zip"/>
+		<antcall target="jdtcoresrc.zip"/>
+		<available property="jdtCompilerAdaptersrc.zip" file="${build.result.folder}/jdtCompilerAdaptersrc.zip"/>
+		<antcall target="jdtCompilerAdaptersrc.zip"/>
+	</target>
+
+		<target name="build.zips" depends="init">
+		</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/jdtCompilerAdaptersrc.zip" todir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${build.result.folder}/jdtcoresrc.zip" todir="${destination.temp.folder}/${full.name}"/>
+		<copy todir="${destination.temp.folder}/${full.name}">
+			<fileset dir="${basedir}" includes="about.html,schema/"/>
+		</copy>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${temp.folder}/jdtCompilerAdapter.jar.bin.log" todir="${destination.temp.folder}/${full.name}"/>
+		<copy file="${temp.folder}/jdtcore.jar.bin.log" todir="${destination.temp.folder}/${full.name}"/>
+	</target>
+
+	<target name="clean" depends="init">
+		<delete file="${build.result.folder}/jdtCompilerAdapter.jar"/>
+		<delete file="${build.result.folder}/jdtCompilerAdaptersrc.zip"/>
+		<delete file="${build.result.folder}/jdtcore.jar"/>
+		<delete file="${build.result.folder}/jdtcoresrc.zip"/>
+		<delete file="${plugin.destination}/${full.name}.jar"/>
+		<delete file="${plugin.destination}/${full.name}.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running">
+		<eclipse.refreshLocal resource="${plugin}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"/>
+		</delete>
+		<zip zipfile="${plugin.destination}/${full.name}.zip" basedir="${temp.folder}" filesonly="true"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+</project>

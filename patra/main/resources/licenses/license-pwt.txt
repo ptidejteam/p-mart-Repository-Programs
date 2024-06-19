@@ -1,0 +1,4 @@
+Password Tracker 1.0, Copyright (C) 2006-2009 Bruno Ranschaert, S.D.I.-Consulting BVBA.
+Password Tracker comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions.

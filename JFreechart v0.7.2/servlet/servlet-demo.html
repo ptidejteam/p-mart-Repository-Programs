@@ -1,0 +1,139 @@
+<html>
+
+<!-- This servlet demo was contributed to the JFreeChart project by -->
+<!-- Wolfgang Irler. -->
+ 
+<title>JFreeChart Servlet Demo</title>
+
+<body bgcolor="white">
+
+  <center>
+    <h1>The JFreeChart Servlet Demo</h1>
+
+    <!-- You need to modify the following action attribute, nomad is -->
+    <!-- my intranet server not yours! -->
+    <form action="http://nomad:8080/jfreechart/servlet/JFreechartServletDemo">	
+
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td colspan=3></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <font face="Verdana,Arial,Helvetica" size="2">
+              <b>Series Type:</b>
+            </font>
+          </td>
+          <td colspan="3" align="center">
+            <font face="Verdana,Arial,Helvetica" size="2">
+              <b>Gradient Colors:</b>
+            </font>
+          </td>
+        </tr>
+        <tr>
+          <td colspan=3></td>
+        </tr>
+        <tr>
+          <td>
+            <font face="Verdana,Arial,Helvetica" size="1">
+              <select name="type">
+                <option value="1">Vertical Bar Chart</option>
+                <option value="2">Horizontal Bar Chart</option>
+                <option value="3">Line Chart</option>
+                <option value="4">XY Plot</option>
+                <option value="5">Time Series</option>
+                <option value="6">Pie Plot</option>
+                <option value="7">High-Low Plot</option>
+                <option value="8">Time Series Moving Average</option>
+                <option value="9">Time Series Linear Fit</option>
+              </select>
+            </font>
+          </td>
+          <td>
+            <font face="Verdana,Arial,Helvetica" size="2">
+              Initial Color:
+              <select name="initGradColor">
+                <option value="0">white</option>
+                <option value="1">black</option>
+                <option value="2">blue</option>
+                <option value="3">green</option>
+                <option value="4">red</option>
+                <option value="5" selected>yellow</option>
+                <option value="6">gray</option>
+                <option value="7">orange</option>
+                <option value="8">cyan</option>
+                <option value="9">magenta</option>
+                <option value="10">pink</option>  
+              </select>
+            </font>
+          </td>
+          <td>
+            <font face="Verdana,Arial,Helvetica" size="2">
+              Final Color:
+              <select name="finalGradColor">
+                <option value="0">white</option>
+                <option value="1">black</option>
+                <option value="2" selected>blue</option>
+                <option value="3">green</option>
+                <option value="4">red</option>
+                <option value="5">yellow</option>
+                <option value="6">gray</option>
+                <option value="7">orange</option>
+                <option value="8">cyan</option>
+                <option value="9">magenta</option>
+                <option value="10">pink</option>
+              </select>
+            </font>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+      <br>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <font face="Verdana,Arial,Helvetica" size="2">
+              Chart Width:  <input type="text" name="width" value="500">
+            </font>
+          </td>
+          <td align="center">
+            <font face="Verdana,Arial,Helvetica" size="2">
+              Chart Height:  <input type="text" name="height" value="400">
+            </font>
+          </td> 
+          <td align="center">
+            <font face="Verdana,Arial,Helvetica" size="2">
+	      <input type="submit" value="submit">
+            </font>
+          </td>
+        </tr>  
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+      <br>
+    </form>
+  </center>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

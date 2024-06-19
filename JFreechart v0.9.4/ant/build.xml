@@ -1,0 +1,256 @@
+<!--
+//**********************************************************
+// MODIFICATION HISTORY
+//
+// 20020807 Thomas Bohmbach, Jr. - Initial version
+// 20020808 Justin Johnson       - Changes to work with JFreeChart
+//**********************************************************
+
+An ANT build file for JFreeChart.
+-->
+<project name="com.jrefinery" default="compile" basedir="..">
+    <target name="init" depends="init-params,init-jarfile,init-test"
+        description="Initialize all properties"/>
+
+    <target name="init-params"
+        description="Initialize subproject properties">
+        <tstamp />
+
+        <!-- Set the build properties filename -->
+        <!-- These are the values that are appropriate to define in this file (or to pass in from the command line):
+                project.outdir:                 The directory within which the build will occur
+                [subprojectname].tipsversion:   The version string to use for a tips build
+                [subprojectname].stableversion: The version string to use for a stable build
+                buildstable:                    If set to any value, will build the stable release of this subproject
+
+            NOTE: If this build file is called from the bootstrap build file, any properties defined there will
+                  override any property settings in this file.
+        -->
+        <property name="jfreechart.propertiesfile" value="${basedir}/ant/build.properties" />
+
+        <!-- Read properties from file -->
+        <property file="${jfreechart.propertiesfile}" />
+
+        <!-- Project output (build destination) directories -->
+        <property name="project.name" value="jfreechart" />
+        <property name="project.outdir" value="${basedir}/.." />
+
+        <!-- Subproject settings -->
+        <!-- Subproject input (build source) settings -->
+        <property name="jfreechart.name" value="jfreechart" />
+        <property name="jfreechart.srcdir" value="${basedir}/src" />
+        <property name="jfreechart.libdir" value="${basedir}/lib" />
+        <property name="jfreechart.metadir" value="${basedir}/META-INF" />
+
+        <!-- Subproject output (build destination) settings -->
+        <property name="jfreechart.tipsversion" value="0.9.2.1" />
+        <property name="jfreechart.stableversion" value="0.9.2" />
+        <property name="jfreechart.outdir" value="${project.outdir}/${jfreechart.name}" />
+        <property name="jfreechart.builddir" value="${jfreechart.outdir}/classes" />
+        <property name="jfreechart.distdir" value="${jfreechart.outdir}/dist" />
+        <property name="jfreechart.distlibdir" value="${jfreechart.distdir}/lib" />
+        <property name="jfreechart.distsrcdir" value="${jfreechart.distdir}/src" />
+        <property name="jfreechart.javadocdir" value="${jfreechart.distdir}/javadoc" />
+        <property name="jfreechart.reportdir" value="${jfreechart.distdir}/report" />
+        <property name="jfreechart.xmlreportdir" value="${jfreechart.reportdir}/xml" />
+
+        <!-- Subproject path settings -->
+        <path id="jfreechart.build.classpath">
+            <fileset dir="${jfreechart.libdir}" includes="**/*.jar" />
+            <fileset dir="${jfreechart.libdir}" includes="**/*.zip" />
+        </path>
+
+        <path id="jfreechart.test.classpath">
+            <path refid="jfreechart.build.classpath" />
+            <pathelement path="${jfreechart.builddir}" />
+        </path>
+    </target>
+
+    <target name="init-jarfile" depends="init-jarfile-stable, init-jarfile-other, init-jarname-postfix"
+        description="Initialize the jarfile locations and names">
+        <property name="jfreechart.jarname" value="${jfreechart.name}${jfreechart.postfix}" />
+        <property name="jfreechart.jarfilename" value="${jfreechart.jarname}.jar" />
+        <property name="jfreechart.jarfile" value="${jfreechart.distlibdir}/${jfreechart.jarfilename}" />
+        <property name="jfreechart.srcjarname" value="${jfreechart.jarname}-src" />
+        <property name="jfreechart.srcjarfilename" value="${jfreechart.srcjarname}.jar" />
+        <property name="jfreechart.srcjarfile" value="${jfreechart.distsrcdir}/${jfreechart.srcjarfilename}" />
+    </target>
+
+    <target name="init-jarfile-stable" if="buildstable"
+        description="Initialize values used in forming the jarname property in the case of a stable build">
+        <property name="jfreechart.version" value="${jfreechart.stableversion}" />
+        <property name="jfreechart.timestamp" value="" />
+    </target>
+
+    <target name="init-jarfile-other" unless="buildstable"
+        description="Initialize values used in forming the jarname property in the case of a non-stable build">
+        <property name="jfreechart.version" value="${jfreechart.tipsversion}" />
+        <property name="jfreechart.timestamp" value="${DSTAMP}" />
+    </target>
+
+    <target name="init-jarname-postfix"
+        description="Caluclate the postfix to use for the jarname">
+        <condition property="jfreechart.postfix" value="-${jfreechart.version}-${jfreechart.timestamp}">
+            <and>
+                <not>
+                    <equals arg1="${jfreechart.version}" arg2="" />
+                </not>
+                <not>
+                    <equals arg1="${jfreechart.timestamp}" arg2="" />
+                </not>
+            </and>
+        </condition>
+        <condition property="jfreechart.postfix" value="-${jfreechart.version}">
+            <and>
+                <not>
+                    <equals arg1="${jfreechart.version}" arg2="" />
+                </not>
+                <equals arg1="${jfreechart.timestamp}" arg2="" />
+            </and>
+        </condition>
+        <condition property="jfreechart.postfix" value="-${jfreechart.timestamp}">
+            <and>
+                <not>
+                    <equals arg1="${jfreechart.timestamp}" arg2="" />
+                </not>
+                <equals arg1="${jfreechart.version}" arg2="" />
+            </and>
+        </condition>
+        <condition property="jfreechart.postfix" value="">
+            <and>
+                <equals arg1="${jfreechart.version}" arg2="" />
+                <equals arg1="${jfreechart.timestamp}" arg2="" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="init-test" depends="init-junit-available,init-junitreport-available"
+        description="Determine whether junit and junitreport are available" />
+
+    <target name="init-junit-available" unless="jfreechart.junit.available"
+        description="Determine whether junit is available">
+        <condition property="jfreechart.junit.available" value="true">
+            <and>
+                <available classpathref="jfreechart.test.classpath"
+                    classname="junit.framework.Test" />
+                <available classpathref="jfreechart.test.classpath"
+                    classname="${ant.project.name}.test.AllTests" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="init-junitreport-available" unless="jfreechart.junitreport.available"
+        description="Determine whether junitreport is available">
+        <condition property="jfreechart.junitreport.available" value="true">
+            <and>
+                <available classpathref="jfreechart.test.classpath"
+                    classname="org.apache.xalan.Version" />
+                <equals arg1="${jfreechart.junit.available}" arg2="true" />
+            </and>
+        </condition>
+    </target>
+
+    <target name="clean" depends="init"
+        description="Clean up output dirs and jar">
+        <delete dir="${jfreechart.builddir}" />
+        <delete dir="${jfreechart.distdir}" />
+    </target>
+
+    <target name="prepare" depends="init"
+        description="Prepare needed output dirs">
+        <mkdir dir="${jfreechart.outdir}" />
+        <mkdir dir="${jfreechart.builddir}" />
+        <mkdir dir="${jfreechart.distdir}" />
+        <mkdir dir="${jfreechart.distlibdir}" />
+        <mkdir dir="${jfreechart.distsrcdir}" />
+        <mkdir dir="${jfreechart.javadocdir}" />
+        <mkdir dir="${jfreechart.reportdir}" />
+        <mkdir dir="${jfreechart.xmlreportdir}" />
+    </target>
+
+    <target name="compile" depends="prepare"
+        description="Compile the java code">
+        <javac srcdir="${jfreechart.srcdir}" destdir="${jfreechart.builddir}">
+            <classpath refid="jfreechart.build.classpath" />
+        </javac>
+    </target>
+
+    <target name="package-bin" depends="compile"
+        description="Package java classes into a jar">
+        <jar jarfile="${jfreechart.jarfile}"
+            basedir="${jfreechart.builddir}"
+            excludes="**/test/**"/>
+            <!-- manifest="${jfreechart.metadir}/MANIFEST.MF" /> -->
+    </target>
+
+    <target name="package-src" depends="prepare"
+        description="Package java source into a jar">
+        <jar jarfile="${jfreechart.srcjarfile}"
+            basedir="${jfreechart.srcdir}" />
+    </target>
+
+    <target name="package" depends="package-bin,package-src"
+        description="Package both classes and source into jars" />
+
+    <target name="test" depends="prepare,test-junit,test-junitreport"
+        description="Run jUnit tests and create report">
+    </target>
+
+    <target name="test-junit" if="jfreechart.junit.available"
+        description="Run the jUnit tests">
+        <condition property="jfreechart.junit.testtype"
+            value="xml">
+            <available classname="org.apache.xalan.Version" />
+        </condition>
+        <condition property="jfreechart.junit.reportdir"
+            value="${jfreechart.xmlreportdir}">
+            <available classname="org.apache.xalan.Version" />
+        </condition>
+        <condition property="jfreechart.junit.testtype"
+            value="plain">
+            <not>
+                <available classname="org.apache.xalan.Version" />
+            </not>
+        </condition>
+        <condition property="jfreechart.junit.reportdir"
+            value="${jfreechart.reportdir}">
+            <not>
+                <available classname="org.apache.xalan.Version" />
+            </not>
+        </condition>
+
+        <junit printsummary="true">
+            <formatter type="${jfreechart.junit.testtype}" />
+            <test name="${ant.project.name}.test.AllTests"
+                todir="${jfreechart.junit.reportdir}" />
+            <classpath refid="jfreechart.test.classpath" />
+        </junit>
+    </target>
+
+    <target name="test-junitreport" if="jfreechart.junitreport.available"
+        description="Convert the xml junit reports into junit report web pages">
+        <junitreport>
+            <fileset dir="${jfreechart.xmlreportdir}">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${jfreechart.reportdir}" />
+        </junitreport>
+    </target>
+
+    <target name="document" depends="prepare"
+        description="Generate javadoc">
+        <javadoc destdir="${jfreechart.javadocdir}"
+            packagenames="${ant.project.name}.*"
+            sourcepath="${jfreechart.srcdir}"
+            excludepackagenames="**.test"
+            defaultexcludes="yes"
+            author="true"
+            version="true"
+            use="true"
+            classpathref="jfreechart.build.classpath">
+        </javadoc>
+    </target>
+
+    <target name="all" depends="clean,package,test,document"
+        description="Clean, package, test, and document" />
+</project>

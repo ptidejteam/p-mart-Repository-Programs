@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Configuring Your Email Account</title>
+</head>
+<body>
+<h1>Configuring Your Email Account</h1>
+<img height=253 width=480 src="images/newAcct_imap_main.jpg" alt="New Account Configuration Dialog">
+
+<p>The first thing that you will need to do is to tell Pooka where your
+email is stored.  Pooka supports three kinds of email accounts:  <a href =
+"#pop3">Post Office Protocol version 3 (POP3, or POP)</a>, <a href = "#imap">
+Internet Mail Access Protocol (IMAP)</a>, or <a href = "#mbox">local UNIX 
+mail files (mbox)</a>.</p>
+
+<p>The second thing that you will need to configure is your outgoing mail 
+information.  For that you need (at least) three pieces of information:
+your email address, your personal name, and the name of your SMTP server.
+</p>
+
+<p>Pooka will use your connection information to provide an email address; if
+this information is incorrect (if, for instance, your username is <code>me
+</code>, your IMAP server is <code>imap.example.com</code>, but your correct 
+email address is actually <code>me@example.com</code> instead of 
+<code>me@imap.example.com</code>), you can change it in the User Configuration
+screen.  <!-- FIXME provide link --></p>
+
+<dl>
+<dt>Your full name</dt>
+<dd>This will be put in the Personal Name field of outgoing email.  It can
+be whatever you want, but it's a good idea to make it something that will
+be recognizable to the recipients of your email.</dd>
+<dt>SMTP server</dt>
+<dd>The server that will accept outgoing mail.  This should be provided
+by your ISP.</dd>
+
+<a name="imap"><h2>Configuring IMAP mailboxes</h2></a>
+<p>There are three pieces of information needed to configurate an IMAP mailbox:
+the username of your account, the password for your account (optional, see
+below), and the name of the server which stores your email.  All of this
+information should be available from your ISP.</p>
+
+<p>You can either enter your account's password in at this time, or you can
+leave this field blank.  If you leave the field blank, then you will be
+prompted for your account password every time you run Pooka.  However, if 
+you do enter your password, your password will be stored in your Pooka
+Configuration file.  While the password will be encoded such that a casual
+reading won't reveal it, a person could use the Pooka source code in order
+to decrypt the string into your actual password.</p>
+
+<h3>IMAP options</h3>
+
+<img height=92 width=400 src="images/newAcct_imap_options.jpg" alt="New Account Configuration Dialog">
+
+<dl>
+<dt><b>Location of local files</b></dt>
+<dd>Where local files will be held.  These files include the approved SSL
+certificates files (if connecting over SSL), an Address Book file, and
+any locally cached messages (if using disconnected IMAP).  This will also
+be the default location for the local Sent and Outbox folders.</dd>
+<dt><b>Connect over SSL</b></dt>
+<dd>SSL (Secure Sockets Layer) provides a secure, encrypted connection 
+between two machines.  IMAP connections by default send your account 
+information across the network in plaintext, and thus are fairly insecure.
+So if your ISP offers IMAP over SSL, it is usually a good idea to take
+advantage of it.  Note that Pooka uses the default IMAPS port (port 993)
+for IMAP over SSL connections; if your ISP puts their IMAP/SSL connections
+on a different port, you will need to configure this in the Store Configuration
+screen. <!-- FIXME add link --></dd>
+<dt><b>Enable disconnected operation</b></dt>
+<dd>By default, IMAP mail is stored on the remote server rather than downloaded
+onto the client machine.  This means that, while you save time and disk space
+by not having to download and store old messages on your own computer, you 
+sacrifice the ability of read your email while the network connection to 
+your mail server is unavailable.  Enabling disconnected operation makes it so
+Pooka stores a copy of your messages locally on your client, thus allowing
+you to read your messages offline.</dd>
+</dl>
+
+<a name="pop3"><h2>Configuring POP3 Accounts</h2></a>
+<p>There are three pieces of information needed to configurate an IMAP mailbox:
+the username of your account, the password for your account (optional, see
+below), and the name of the server which stores your email.  All of this
+information should be available from your ISP.</p>
+
+<p>You can either enter your account's password in at this time, or you can
+leave this field blank.  If you leave the field blank, then you will be
+prompted for your account password every time you run Pooka.  However, if 
+you do enter your password, your password will be stored in your Pooka
+Configuration file.  While the password will be encoded such that a casual
+reading won't reveal it, a person could use the Pooka source code in order
+to decrypt the string into your actual password.</p>
+
+<h3>POP3 Options</h3>
+<img height=91 width=401 src="images/newAcct_pop3_options.jpg" alt="New Account Configuration Dialog">
+<dl>
+<dt><b>Location of local files</b></dt>
+<dd>Where local files will be held.  These files include the messages 
+downloaded from the POP server, as well as the approved SSL
+certificates files (if connecting over SSL) and an Address Book file.
+<dt><b>Connect over SSL</b></dt>
+<dd>SSL (Secure Sockets Layer) provides a secure, encrypted connection 
+between two machines.  POP3 connections by default send your account 
+information across the network in plaintext, and thus are fairly insecure.
+So if your ISP offers POP3 over SSL, it is usually a good idea to take
+advantage of it.  Note that Pooka uses the default POP3S port (port 995)
+for POP3 over SSL connections; if your ISP puts their POP3/SSL connections
+on a different port, you will need to configure this in the Store Configuration
+screen. <!-- FIXME add link --></dd>
+<dt><b>Leave messages on server</b></dt>
+<dd>Pooka can either be configured to download messages and then delete them
+off the server immediately, or to leave the messages on the server until
+they are deleted on the client.</dd>
+
+<a name = "mbox"><h3>Configuring local (mbox) stores</h3></a>
+<dl>
+<dt><b>Location of inbox file</b></dt>
+<dd>Where your local mail spool is located.  Usually something like
+<code>/var/spool/mail/username</code></dd>
+<dt><b>Location of local files</b></dt>
+<dd>Where local files will be held.  These files include any personal mail
+folders that you create, as well as the approved SSL
+certificates files (if connecting over SSL) and an Address Book file.
+</dl>
+</body>
+</html>

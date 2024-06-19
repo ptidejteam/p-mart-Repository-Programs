@@ -1,0 +1,21 @@
+<HTML><HEAD></HEAD><BODY>
+     <P>Default liaison and XML parser.</P>
+   
+     <P>DOM (Document Object Model) is a standard interface for interacting with XML documents. Xalan fully
+     supports this interface. For large XML documents, however, this may involve considerable overhead, since Xalan 
+     must create one or more Java objects for each Node in the document.</P>
+     <P>For the majority of cases -- your input and output are URLs, files, or streams, and you use the default Liaison 
+     {@link org.apache.xalan.xpath.dtm.DTMLiaison} and XML parser {@link org.apache.xalan.xpath.dtm.DTM} -- Xalan avoids
+      this overhead by implementing the Document Table Model (DTM), a pseudo-DOM that uses integer arrays in place of the DOM. 
+      For larger input and output trees, the performance improvements can be very significant.</P>
+      
+      <P>To use the high performance DTMLiaison and parser, instantiate the {@link org.apache.xalan.xslt.XSLTProcessor} as
+      follows:</P>
+      <P><CODE>org.apache.xalan.xslt.XSLTProcessor xsltProc = org.apache.xalan.xslt.XSLTProcessorFactory.getProcessor();
+      </CODE></P>
+      <P>When your provide input or write output in the form of a DOM Node, the XSLTProcessor switches to 
+      {@link org.apache.xalan.xpath.xdom.XercesLiaison} and the Xerces DOM parser. You can explicitly instantiate an
+      XSLTProcessor to use XercesLiaison and the Xerces DOM parser as follows:</P>
+      <P><CODE>org.apache.xalan.xslt.XSLTProcessor xsltProc = org.apache.xalan.xslt.XSLTProcessorFactory.getProcessor(</CODE><BR>
+      <CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new org.apache.xalan.xpath.xdom.XercesLiaison());</CODE></P>
+	 </BODY></HTML>

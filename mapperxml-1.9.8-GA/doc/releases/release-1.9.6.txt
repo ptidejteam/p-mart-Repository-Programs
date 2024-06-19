@@ -1,0 +1,140 @@
+MapperXML
+Version 1.9.6
+Release Notes:
+
+Quick Highlights
+================================================================
+o   New ComponentFactory to automatically create and bind components
+o   Support for master/detail in value holders.
+o   Added recycle behavior to some components.
+o   New MapperGUI components for Swing(tm).
+o   New ValueObject wizard added to CodeGen.
+o   Some maintenance and bug fixes this release.
+
+
+New Features and Important Changes:
+================================================================
+o   Added new HTMLComponentFactory which will automatically create
+    components and bind them based on the HTML document. It will
+    set the following properties: id, valueHolder, propertyName,
+    parameter, format, and formatPattern. The createComponents
+    method is normally called within the initForm of the ServletForm.
+o   Added support for hierarchical data (master/detail). This is
+    accomplished by joining the child to the parent ValueHolder
+    via the child's parentValueHolder and parentPropertyName
+    properties. Whenever there is a change in the parent, the
+    child will be notified and retrieve its new Object or Collection
+    from the parent.
+o   Added recycle behavior to components. The Template responds
+    to recycle messages by removing its cloned rows.
+o   Continued development work on MapperGUI components in the
+    com.taursys.swing package. These components function in a
+    similar way to the MapperXML components.
+o   Continued development work on CodeGen sub-project for
+    MapperXML (com.taursys.tools package). Added new wizard for
+    generating ValueObjects.
+
+
+Public API Interface Changes/Deprecations:
+================================================================
+o   HttpMultiPartServletRequest methods no longer throws a generic
+    ServletExceptions. They throw MultiPartRequestSizeExceptions
+    or MultiPartRequestContentExceptions. They still continue to
+    throw IOExceptions as before.
+o   Interface ListValueHolder now also extends java.util.List.
+    Implementations should invoke the corresponding method on the
+    internal List. New method getPropertyValue(String propertyName,
+    int row) added to provide means for obtaining a value from
+    a specific row without affecting the current position.
+o   Interface CollectionValueHolder now extends the Collection
+    interface . Implementations should invoke the the corresponding
+    methods on the internal Collection.
+o   Interface ValueHolder has been modified to add methods to
+    set/get multiple properties at once.
+o   Refactored ValueHolders: get/setObject no longer throws ModelException.
+o   ObjectValueHolder, VariantValueHolder and VOValueHolder now
+    include ability to connect them to a parent value holder in
+    the same way as the collection value holders.
+o   Added proxy methods to MapperGUI components to access model
+    and value holder properties.
+
+
+Internal API Interface Changes/Deprecations:
+================================================================
+o   Removed old components which have been deprecated for many
+    months and are preventing compile with Xerces 1.4.4 and 2.x:
+    XMLProxy and XMLFactory.
+o   Changed mapIdentifiers method in DOM_1_20000929_DocumentAdapter
+    from public to protected. Should only be needed by subclasses.
+o   Added methods: public Object[] getPropertyValues(String[]
+    propertyNames, int index) throws ModelException and public int
+    indexOf(String[] propertyNames, Object[] values) throws ModelException
+    to ListValueHolder interface.
+o   Visibility of following internal methods in VOValueHolder have been changed
+    from public to protected: getPropertyAccessors(),
+    getPropertyValue(propertyName, vo), getPropertyValues(propertyNames, vo),
+    setPropertyValue(propertyName, value, vo), setPropertyValues(propertyNames,
+    values, vo). These internal methods are no longer directly available in
+    VOCollectionValueHolder or VOListValueHolder.
+o   Major refactoring of ValueHolders. New inheritance eliminated much redundant
+    code. New class AbstractCollectionValueHolder implements
+    CollectionValueHolder and contains an ObjectValueHolder.
+o   SelectModel.getDisplayOptionList no issues a debug warning rather than
+    throwing a NotInListException if the current value is not in the list of
+    options.
+o   Modified PropertyAccessorException to set userFriendlyMessage property.
+o   Modified PropertyAccessor to record exceptions using Debug (except for
+    ModelPropertyAccessorException.REASON_NULL_VALUE_FOR_PRIMATIVE exception).
+o   Modified Component to make addNotify and removeNotify abstract rather than
+    just empty methods.
+
+Bux Fixes:
+================================================================
+o   CodeGen did not use the updated user project path. It did,
+    however, save the change in user.mpj.
+o   HttpMultiPartServletRequest appears to append a carridge
+    return onto end of binary file (015 octal). Problem was not
+    following rfc1867 re: CR/LF as required line separators.
+o   Fixed problem in XMLWriter. Comments in document were not
+    being written. Added code to write comment type nodes.
+o   Corrected problem for writing HTML documents by creating an
+    HTMLWriter (subclass of XMLWriter). The HTMLWriter will
+    produce older style HTML supported by most browsers.
+    Specifically, it generates empty tags (<br>, <img>) without
+    an ending tag. The document adapter inspects the document
+    type in the createDefaultWriter method and creates either
+    an HTMLWriter or an XMLWriter based on the type of document.
+    The XML/HTMLWriters no longer produce the <?xml... processing
+    instruction tag unless it appears as a DOM node.
+
+Other Changes:
+================================================================
+o   Moved BeanInfo classes to JBuilder project since they were
+    specific to that development environment. BeanInfo will be
+    kept with the specific tools that use this information
+    rather than the general distribution.
+o   HttpMultiPartServletRequest: Increased the default for
+    maxLineSize from 1,024 to 4,096 bytes. Increase the default
+    for maxBufferSize from 4,096 to 64 kilobytes.
+o   HttpMultiPartServletRequest: Added setters/getters for
+    maxLineLength property so it can be changed.
+o   HttpMultiPartServletRequest: now throws a
+    MultiPartRequestSizeException if the maximum line length
+    or file size is exceeded. It throws a
+    MultiPartRequestContentException if the content of the request
+    is not as expected.
+o   Improved response time for HttpMultiPartServletRequest.
+o   Modified behavior of processRenderEvent method for components
+    which respond to RenderEvent. The method will first notify
+    RenderListeners before actually rendering value. This provides
+    opportunity to make modifications before the component value
+    is rendered.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none

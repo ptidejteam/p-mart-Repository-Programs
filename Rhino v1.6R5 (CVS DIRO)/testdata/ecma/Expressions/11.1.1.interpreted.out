@@ -1,0 +1,17 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.1.1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.1.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+11.1.1 The this keyword
+Global Code: this.toString() = [object global] PASSED!
+Global Code:  eval('this.toString()') = [object global] PASSED!
+Anonymous Code: var MYFUNC = new Function('return this.toString()'); MYFUNC() = [object global] PASSED!
+Anonymous Code: var MYFUNC = new Function('return (eval("this.toString()")'); (MYFUNC()).toString() = [object global] PASSED!
+Anonymous Code: var MYFUNC = new Function('this.THIS = this'); ((new MYFUNC()).THIS).toString() = [object Object] PASSED!
+Anonymous Code: var MYFUNC = new Function('this.THIS = this'); var FUN1 = new MYFUNC(); FUN1.THIS == FUN1 = true PASSED!
+Anonymous Code: var MYFUNC = new Function('this.THIS = eval("this")'); ((new MYFUNC().THIS).toString() = [object Object] PASSED!
+Anonymous Code: var MYFUNC = new Function('this.THIS = eval("this")'); var FUN1 = new MYFUNC(); FUN1.THIS == FUN1 = true PASSED!
+Function Code:  ReturnThis() = [object global] PASSED!
+Function Code:  ReturnEvalThis() = [object global] PASSED!
+var MYOBJECT = new ReturnThis(); MYOBJECT.toString() = [object Object] PASSED!
+var MYOBJECT = new ReturnEvalThis(); MYOBJECT.toString() = [object Object] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.1.1.interpreted.arff] ...

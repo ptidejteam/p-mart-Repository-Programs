@@ -1,0 +1,903 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/usermodel/classList.html" TARGET="packageFrame">org.apache.poi.hssf.usermodel</A>: HSSFCellStyle');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/usermodel/classList.html" TARGET="packageFrame">org.apache.poi.hssf.usermodel</A>: HSSFCellStyle';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a><span class="comment">/*
+<a name=57 class="linenum">57   </a> * HSSFCellStyle.java
+<a name=58 class="linenum">58   </a> *
+<a name=59 class="linenum">59   </a> * Created on September 30, 2001, 3:47 PM
+<a name=60 class="linenum">60   </a> */</span>
+<a name=61 class="linenum">61   </a>package org.apache.poi.hssf.usermodel;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a>import org.apache.poi.hssf.record.ExtendedFormatRecord;
+<a name=64 class="linenum">64   </a>
+<a name=65 class="linenum">65   </a><span class="comment">/**
+<a name=66 class="linenum">66   </a> * High level representation of the style of a cell in a sheet of a workbook.
+<a name=67 class="linenum">67   </a> *
+<a name=68 class="linenum">68   </a> * @version 1.0-pre
+<a name=69 class="linenum">69   </a> *
+<a name=70 class="linenum">70   </a> * @author  Andrew C. Oliver (acoliver at apache dot org)
+<a name=71 class="linenum">71   </a> * @see org.apache.poi.hssf.usermodel.HSSFWorkbook#createCellStyle()
+<a name=72 class="linenum">72   </a> * @see org.apache.poi.hssf.usermodel.HSSFWorkbook#getCellStyleAt(short)
+<a name=73 class="linenum">73   </a> * @see org.apache.poi.hssf.usermodel.HSSFCell#setCellStyle(HSSFCellStyle)
+<a name=74 class="linenum">74   </a> */</span>
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>public class <a class="classDef" name=HSSFCellStyle href=HSSFCellStyle_java_ref.html#HSSFCellStyle>HSSFCellStyle</a>
+<a name=77 class="linenum">77   </a>    implements <a class="classRef" href=HSSFColorConstants_java.html#HSSFColorConstants>HSSFColorConstants</a>
+<a name=78 class="linenum">78   </a>{
+<a name=79 class="linenum">79   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord>ExtendedFormatRecord</a> <a class="varDef" name=HSSFCellStyle.format href=HSSFCellStyle_java_ref.html#HSSFCellStyle.format>format</a>                     = null;
+<a name=80 class="linenum">80   </a>    private short                <a class="varDef" name=HSSFCellStyle.index href=HSSFCellStyle_java_ref.html#HSSFCellStyle.index>index</a>                      = 0;
+<a name=81 class="linenum">81   </a>    private short                <a class="varDef" name=HSSFCellStyle.fontindex href=HSSFCellStyle_java_ref.html#HSSFCellStyle.fontindex>fontindex</a>                  = 0;
+<a name=82 class="linenum">82   </a>
+<a name=83 class="linenum">83   </a>    <span class="comment">/**
+<a name=84 class="linenum">84   </a>     * general (normal) horizontal alignment
+<a name=85 class="linenum">85   </a>     */</span>
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_GENERAL href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_GENERAL>ALIGN_GENERAL</a>              = 0x0;
+<a name=88 class="linenum">88   </a>
+<a name=89 class="linenum">89   </a>    <span class="comment">/**
+<a name=90 class="linenum">90   </a>     * left-justified horizontal alignment
+<a name=91 class="linenum">91   </a>     */</span>
+<a name=92 class="linenum">92   </a>
+<a name=93 class="linenum">93   </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_LEFT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_LEFT>ALIGN_LEFT</a>                 = 0x1;
+<a name=94 class="linenum">94   </a>
+<a name=95 class="linenum">95   </a>    <span class="comment">/**
+<a name=96 class="linenum">96   </a>     * center horizontal alignment
+<a name=97 class="linenum">97   </a>     */</span>
+<a name=98 class="linenum">98   </a>
+<a name=99 class="linenum">99   </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_CENTER href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_CENTER>ALIGN_CENTER</a>               = 0x2;
+<a name=100 class="linenum">100  </a>
+<a name=101 class="linenum">101  </a>    <span class="comment">/**
+<a name=102 class="linenum">102  </a>     * right-justified horizontal alignment
+<a name=103 class="linenum">103  </a>     */</span>
+<a name=104 class="linenum">104  </a>
+<a name=105 class="linenum">105  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_RIGHT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_RIGHT>ALIGN_RIGHT</a>                = 0x3;
+<a name=106 class="linenum">106  </a>
+<a name=107 class="linenum">107  </a>    <span class="comment">/**
+<a name=108 class="linenum">108  </a>     * fill? horizontal alignment
+<a name=109 class="linenum">109  </a>     */</span>
+<a name=110 class="linenum">110  </a>
+<a name=111 class="linenum">111  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_FILL href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_FILL>ALIGN_FILL</a>                 = 0x4;
+<a name=112 class="linenum">112  </a>
+<a name=113 class="linenum">113  </a>    <span class="comment">/**
+<a name=114 class="linenum">114  </a>     * justified horizontal alignment
+<a name=115 class="linenum">115  </a>     */</span>
+<a name=116 class="linenum">116  </a>
+<a name=117 class="linenum">117  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_JUSTIFY href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_JUSTIFY>ALIGN_JUSTIFY</a>              = 0x5;
+<a name=118 class="linenum">118  </a>
+<a name=119 class="linenum">119  </a>    <span class="comment">/**
+<a name=120 class="linenum">120  </a>     * center-selection? horizontal alignment
+<a name=121 class="linenum">121  </a>     */</span>
+<a name=122 class="linenum">122  </a>
+<a name=123 class="linenum">123  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.ALIGN_CENTER_SELECTION href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALIGN_CENTER_SELECTION>ALIGN_CENTER_SELECTION</a>     = 0x6;
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    <span class="comment">/**
+<a name=126 class="linenum">126  </a>     * top-aligned vertical alignment
+<a name=127 class="linenum">127  </a>     */</span>
+<a name=128 class="linenum">128  </a>
+<a name=129 class="linenum">129  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.VERTICAL_TOP href=HSSFCellStyle_java_ref.html#HSSFCellStyle.VERTICAL_TOP>VERTICAL_TOP</a>               = 0x0;
+<a name=130 class="linenum">130  </a>
+<a name=131 class="linenum">131  </a>    <span class="comment">/**
+<a name=132 class="linenum">132  </a>     * center-aligned vertical alignment
+<a name=133 class="linenum">133  </a>     */</span>
+<a name=134 class="linenum">134  </a>
+<a name=135 class="linenum">135  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.VERTICAL_CENTER href=HSSFCellStyle_java_ref.html#HSSFCellStyle.VERTICAL_CENTER>VERTICAL_CENTER</a>            = 0x1;
+<a name=136 class="linenum">136  </a>
+<a name=137 class="linenum">137  </a>    <span class="comment">/**
+<a name=138 class="linenum">138  </a>     * bottom-aligned vertical alignment
+<a name=139 class="linenum">139  </a>     */</span>
+<a name=140 class="linenum">140  </a>
+<a name=141 class="linenum">141  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.VERTICAL_BOTTOM href=HSSFCellStyle_java_ref.html#HSSFCellStyle.VERTICAL_BOTTOM>VERTICAL_BOTTOM</a>            = 0x2;
+<a name=142 class="linenum">142  </a>
+<a name=143 class="linenum">143  </a>    <span class="comment">/**
+<a name=144 class="linenum">144  </a>     * vertically justified vertical alignment
+<a name=145 class="linenum">145  </a>     */</span>
+<a name=146 class="linenum">146  </a>
+<a name=147 class="linenum">147  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.VERTICAL_JUSTIFY href=HSSFCellStyle_java_ref.html#HSSFCellStyle.VERTICAL_JUSTIFY>VERTICAL_JUSTIFY</a>           = 0x3;
+<a name=148 class="linenum">148  </a>
+<a name=149 class="linenum">149  </a>    <span class="comment">/**
+<a name=150 class="linenum">150  </a>     * No border
+<a name=151 class="linenum">151  </a>     */</span>
+<a name=152 class="linenum">152  </a>
+<a name=153 class="linenum">153  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_NONE href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_NONE>BORDER_NONE</a>                = 0x0;
+<a name=154 class="linenum">154  </a>
+<a name=155 class="linenum">155  </a>    <span class="comment">/**
+<a name=156 class="linenum">156  </a>     * Thin border
+<a name=157 class="linenum">157  </a>     */</span>
+<a name=158 class="linenum">158  </a>
+<a name=159 class="linenum">159  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_THIN href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_THIN>BORDER_THIN</a>                = 0x1;
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>    <span class="comment">/**
+<a name=162 class="linenum">162  </a>     * Medium border
+<a name=163 class="linenum">163  </a>     */</span>
+<a name=164 class="linenum">164  </a>
+<a name=165 class="linenum">165  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_MEDIUM href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_MEDIUM>BORDER_MEDIUM</a>              = 0x2;
+<a name=166 class="linenum">166  </a>
+<a name=167 class="linenum">167  </a>    <span class="comment">/**
+<a name=168 class="linenum">168  </a>     * dash border
+<a name=169 class="linenum">169  </a>     */</span>
+<a name=170 class="linenum">170  </a>
+<a name=171 class="linenum">171  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_DASHED href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_DASHED>BORDER_DASHED</a>              = 0x3;
+<a name=172 class="linenum">172  </a>
+<a name=173 class="linenum">173  </a>    <span class="comment">/**
+<a name=174 class="linenum">174  </a>     * dot border
+<a name=175 class="linenum">175  </a>     */</span>
+<a name=176 class="linenum">176  </a>
+<a name=177 class="linenum">177  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_DOTTED href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_DOTTED>BORDER_DOTTED</a>              = 0x4;
+<a name=178 class="linenum">178  </a>
+<a name=179 class="linenum">179  </a>    <span class="comment">/**
+<a name=180 class="linenum">180  </a>     * Thick border
+<a name=181 class="linenum">181  </a>     */</span>
+<a name=182 class="linenum">182  </a>
+<a name=183 class="linenum">183  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_THICK href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_THICK>BORDER_THICK</a>               = 0x5;
+<a name=184 class="linenum">184  </a>
+<a name=185 class="linenum">185  </a>    <span class="comment">/**
+<a name=186 class="linenum">186  </a>     * double-line border
+<a name=187 class="linenum">187  </a>     */</span>
+<a name=188 class="linenum">188  </a>
+<a name=189 class="linenum">189  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_DOUBLE href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_DOUBLE>BORDER_DOUBLE</a>              = 0x6;
+<a name=190 class="linenum">190  </a>
+<a name=191 class="linenum">191  </a>    <span class="comment">/**
+<a name=192 class="linenum">192  </a>     * hair-line border
+<a name=193 class="linenum">193  </a>     */</span>
+<a name=194 class="linenum">194  </a>
+<a name=195 class="linenum">195  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_HAIR href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_HAIR>BORDER_HAIR</a>                = 0x7;
+<a name=196 class="linenum">196  </a>
+<a name=197 class="linenum">197  </a>    <span class="comment">/**
+<a name=198 class="linenum">198  </a>     * Medium dashed border
+<a name=199 class="linenum">199  </a>     */</span>
+<a name=200 class="linenum">200  </a>
+<a name=201 class="linenum">201  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_MEDIUM_DASHED href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_MEDIUM_DASHED>BORDER_MEDIUM_DASHED</a>       = 0x8;
+<a name=202 class="linenum">202  </a>
+<a name=203 class="linenum">203  </a>    <span class="comment">/**
+<a name=204 class="linenum">204  </a>     * dash-dot border
+<a name=205 class="linenum">205  </a>     */</span>
+<a name=206 class="linenum">206  </a>
+<a name=207 class="linenum">207  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_DASH_DOT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_DASH_DOT>BORDER_DASH_DOT</a>            = 0x9;
+<a name=208 class="linenum">208  </a>
+<a name=209 class="linenum">209  </a>    <span class="comment">/**
+<a name=210 class="linenum">210  </a>     * medium dash-dot border
+<a name=211 class="linenum">211  </a>     */</span>
+<a name=212 class="linenum">212  </a>
+<a name=213 class="linenum">213  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_MEDIUM_DASH_DOT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_MEDIUM_DASH_DOT>BORDER_MEDIUM_DASH_DOT</a>     = 0xA;
+<a name=214 class="linenum">214  </a>
+<a name=215 class="linenum">215  </a>    <span class="comment">/**
+<a name=216 class="linenum">216  </a>     * dash-dot-dot border
+<a name=217 class="linenum">217  </a>     */</span>
+<a name=218 class="linenum">218  </a>
+<a name=219 class="linenum">219  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_DASH_DOT_DOT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_DASH_DOT_DOT>BORDER_DASH_DOT_DOT</a>        = 0xB;
+<a name=220 class="linenum">220  </a>
+<a name=221 class="linenum">221  </a>    <span class="comment">/**
+<a name=222 class="linenum">222  </a>     * medium dash-dot-dot border
+<a name=223 class="linenum">223  </a>     */</span>
+<a name=224 class="linenum">224  </a>
+<a name=225 class="linenum">225  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_MEDIUM_DASH_DOT_DOT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_MEDIUM_DASH_DOT_DOT>BORDER_MEDIUM_DASH_DOT_DOT</a> = 0xC;
+<a name=226 class="linenum">226  </a>
+<a name=227 class="linenum">227  </a>    <span class="comment">/**
+<a name=228 class="linenum">228  </a>     * slanted dash-dot border
+<a name=229 class="linenum">229  </a>     */</span>
+<a name=230 class="linenum">230  </a>
+<a name=231 class="linenum">231  </a>    public final static short    <a class="varDef" name=HSSFCellStyle.BORDER_SLANTED_DASH_DOT href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BORDER_SLANTED_DASH_DOT>BORDER_SLANTED_DASH_DOT</a>    = 0xD;
+<a name=232 class="linenum">232  </a>
+<a name=233 class="linenum">233  </a>    <span class="comment">/**  No background */</span>
+<a name=234 class="linenum">234  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.NO_FILL href=HSSFCellStyle_java_ref.html#HSSFCellStyle.NO_FILL>NO_FILL</a>             = 0  ;
+<a name=235 class="linenum">235  </a>    <span class="comment">/**  Solidly filled */</span>
+<a name=236 class="linenum">236  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.SOLID_FOREGROUND href=HSSFCellStyle_java_ref.html#HSSFCellStyle.SOLID_FOREGROUND>SOLID_FOREGROUND</a>    = 1  ;
+<a name=237 class="linenum">237  </a>    <span class="comment">/**  Small fine dots */</span>
+<a name=238 class="linenum">238  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.FINE_DOTS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.FINE_DOTS>FINE_DOTS</a>           = 2  ;
+<a name=239 class="linenum">239  </a>    <span class="comment">/**  Wide dots */</span>
+<a name=240 class="linenum">240  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.ALT_BARS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.ALT_BARS>ALT_BARS</a>            = 3  ;
+<a name=241 class="linenum">241  </a>    <span class="comment">/**  Sparse dots */</span>
+<a name=242 class="linenum">242  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.SPARSE_DOTS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.SPARSE_DOTS>SPARSE_DOTS</a>         = 4  ;
+<a name=243 class="linenum">243  </a>    <span class="comment">/**  Thick horizontal bands */</span>
+<a name=244 class="linenum">244  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THICK_HORZ_BANDS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THICK_HORZ_BANDS>THICK_HORZ_BANDS</a>    = 5  ;
+<a name=245 class="linenum">245  </a>    <span class="comment">/**  Thick vertical bands */</span>
+<a name=246 class="linenum">246  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THICK_VERT_BANDS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THICK_VERT_BANDS>THICK_VERT_BANDS</a>    = 6  ;
+<a name=247 class="linenum">247  </a>    <span class="comment">/**  Thick backward facing diagonals */</span>
+<a name=248 class="linenum">248  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THICK_BACKWARD_DIAG href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THICK_BACKWARD_DIAG>THICK_BACKWARD_DIAG</a> = 7  ;
+<a name=249 class="linenum">249  </a>    <span class="comment">/**  Thick forward facing diagonals */</span>
+<a name=250 class="linenum">250  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THICK_FORWARD_DIAG href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THICK_FORWARD_DIAG>THICK_FORWARD_DIAG</a>  = 8  ;
+<a name=251 class="linenum">251  </a>    <span class="comment">/**  Large spots */</span>
+<a name=252 class="linenum">252  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.BIG_SPOTS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BIG_SPOTS>BIG_SPOTS</a>           = 9  ;
+<a name=253 class="linenum">253  </a>    <span class="comment">/**  Brick-like layout */</span>
+<a name=254 class="linenum">254  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.BRICKS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.BRICKS>BRICKS</a>              = 10 ;
+<a name=255 class="linenum">255  </a>    <span class="comment">/**  Thin horizontal bands */</span>
+<a name=256 class="linenum">256  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THIN_HORZ_BANDS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THIN_HORZ_BANDS>THIN_HORZ_BANDS</a>     = 11 ;
+<a name=257 class="linenum">257  </a>    <span class="comment">/**  Thin vertical bands */</span>
+<a name=258 class="linenum">258  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THIN_VERT_BANDS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THIN_VERT_BANDS>THIN_VERT_BANDS</a>     = 12 ;
+<a name=259 class="linenum">259  </a>    <span class="comment">/**  Thin backward diagonal */</span>
+<a name=260 class="linenum">260  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THIN_BACKWARD_DIAG href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THIN_BACKWARD_DIAG>THIN_BACKWARD_DIAG</a>  = 13 ;
+<a name=261 class="linenum">261  </a>    <span class="comment">/**  Thin forward diagonal */</span>
+<a name=262 class="linenum">262  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.THIN_FORWARD_DIAG href=HSSFCellStyle_java_ref.html#HSSFCellStyle.THIN_FORWARD_DIAG>THIN_FORWARD_DIAG</a>   = 14 ;
+<a name=263 class="linenum">263  </a>    <span class="comment">/**  Squares */</span>
+<a name=264 class="linenum">264  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.SQUARES href=HSSFCellStyle_java_ref.html#HSSFCellStyle.SQUARES>SQUARES</a>             = 15 ;
+<a name=265 class="linenum">265  </a>    <span class="comment">/**  Diamonds */</span>
+<a name=266 class="linenum">266  </a>    public final static short     <a class="varDef" name=HSSFCellStyle.DIAMONDS href=HSSFCellStyle_java_ref.html#HSSFCellStyle.DIAMONDS>DIAMONDS</a>            = 16 ;
+<a name=267 class="linenum">267  </a>
+<a name=268 class="linenum">268  </a>
+<a name=269 class="linenum">269  </a>    <span class="comment">/** Creates new HSSFCellStyle why would you want to do this?? */</span>
+<a name=270 class="linenum">270  </a>
+<a name=271 class="linenum">271  </a>    protected <a class="methodDef" name=HSSFCellStyle.HSSFCellStyle(short,ExtendedFormatRecord) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.HSSFCellStyle(short,ExtendedFormatRecord)>HSSFCellStyle</a>(short index, <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord>ExtendedFormatRecord</a> rec)
+<a name=272 class="linenum">272  </a>    {
+<a name=273 class="linenum">273  </a>        this.index = <a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.HSSFCellStyle.index>index</a>;
+<a name=274 class="linenum">274  </a>        format     = <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.HSSFCellStyle.rec>rec</a>;
+<a name=275 class="linenum">275  </a>    }
+<a name=276 class="linenum">276  </a>
+<a name=277 class="linenum">277  </a>    <span class="comment">/**
+<a name=278 class="linenum">278  </a>     * get the index within the HSSFWorkbook (sequence within the collection of ExtnededFormat objects)
+<a name=279 class="linenum">279  </a>     * @return unique index number of the underlying record this style represents (probably you don't care
+<a name=280 class="linenum">280  </a>     *  unless you're comparing which one is which)
+<a name=281 class="linenum">281  </a>     */</span>
+<a name=282 class="linenum">282  </a>
+<a name=283 class="linenum">283  </a>    public short <a class="methodDef" name=HSSFCellStyle.getIndex() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getIndex()>getIndex</a>()
+<a name=284 class="linenum">284  </a>    {
+<a name=285 class="linenum">285  </a>        return index;
+<a name=286 class="linenum">286  </a>    }
+<a name=287 class="linenum">287  </a>
+<a name=288 class="linenum">288  </a>    <span class="comment">/**
+<a name=289 class="linenum">289  </a>     * set the data format (only builtin formats are supported)
+<a name=290 class="linenum">290  </a>     * @see org.apache.poi.hssf.usermodel.HSSFDataFormat
+<a name=291 class="linenum">291  </a>     */</span>
+<a name=292 class="linenum">292  </a>
+<a name=293 class="linenum">293  </a>    public void <a class="methodDef" name=HSSFCellStyle.setDataFormat(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setDataFormat(short)>setDataFormat</a>(short fmt)
+<a name=294 class="linenum">294  </a>    {
+<a name=295 class="linenum">295  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setFormatIndex(short)>setFormatIndex</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setDataFormat.fmt>fmt</a>);
+<a name=296 class="linenum">296  </a>    }
+<a name=297 class="linenum">297  </a>
+<a name=298 class="linenum">298  </a>    <span class="comment">/**
+<a name=299 class="linenum">299  </a>     * get the index of the built in format
+<a name=300 class="linenum">300  </a>     * @see org.apache.poi.hssf.usermodel.HSSFDataFormat
+<a name=301 class="linenum">301  </a>     */</span>
+<a name=302 class="linenum">302  </a>
+<a name=303 class="linenum">303  </a>    public short <a class="methodDef" name=HSSFCellStyle.getDataFormat() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getDataFormat()>getDataFormat</a>()
+<a name=304 class="linenum">304  </a>    {
+<a name=305 class="linenum">305  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getFormatIndex()>getFormatIndex</a>();
+<a name=306 class="linenum">306  </a>    }
+<a name=307 class="linenum">307  </a>
+<a name=308 class="linenum">308  </a>    <span class="comment">/**
+<a name=309 class="linenum">309  </a>     * set the font for this style
+<a name=310 class="linenum">310  </a>     * @param font  a font object created or retreived from the HSSFWorkbook object
+<a name=311 class="linenum">311  </a>     * @see org.apache.poi.hssf.usermodel.HSSFWorkbook#createFont()
+<a name=312 class="linenum">312  </a>     * @see org.apache.poi.hssf.usermodel.HSSFWorkbook#getFontAt(short)
+<a name=313 class="linenum">313  </a>     */</span>
+<a name=314 class="linenum">314  </a>
+<a name=315 class="linenum">315  </a>    public void <a class="methodDef" name=HSSFCellStyle.setFont(HSSFFont) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setFont(HSSFFont)>setFont</a>(<a class="classRef" href=HSSFFont_java.html#HSSFFont>HSSFFont</a> font)
+<a name=316 class="linenum">316  </a>    {
+<a name=317 class="linenum">317  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentFont(boolean)>setIndentNotParentFont</a>(true);
+<a name=318 class="linenum">318  </a>        <a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.fontindex>fontindex</a> = <a class="varRef" title="HSSFFont" href=HSSFCellStyle_java.html#HSSFCellStyle.setFont.font>font</a>.<a class="methodRef" title="HSSFFont" href=HSSFFont_java.html#HSSFFont.getIndex()>getIndex</a>();
+<a name=319 class="linenum">319  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setFontIndex(short)>setFontIndex</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.fontindex>fontindex</a>);
+<a name=320 class="linenum">320  </a>    }
+<a name=321 class="linenum">321  </a>
+<a name=322 class="linenum">322  </a>    public short <a class="methodDef" name=HSSFCellStyle.getFontIndex() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getFontIndex()>getFontIndex</a>()
+<a name=323 class="linenum">323  </a>    {
+<a name=324 class="linenum">324  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getFontIndex()>getFontIndex</a>();
+<a name=325 class="linenum">325  </a>    }
+<a name=326 class="linenum">326  </a>
+<a name=327 class="linenum">327  </a>    <span class="comment">/**
+<a name=328 class="linenum">328  </a>     * set the cell's using this style to be hidden
+<a name=329 class="linenum">329  </a>     * @param hidden - whether the cell using this style should be hidden
+<a name=330 class="linenum">330  </a>     */</span>
+<a name=331 class="linenum">331  </a>
+<a name=332 class="linenum">332  </a>    public void <a class="methodDef" name=HSSFCellStyle.setHidden(boolean) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setHidden(boolean)>setHidden</a>(boolean hidden)
+<a name=333 class="linenum">333  </a>    {
+<a name=334 class="linenum">334  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentCellOptions(boolean)>setIndentNotParentCellOptions</a>(true);
+<a name=335 class="linenum">335  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setHidden(boolean)>setHidden</a>(<a class="varRef" title="boolean" href=HSSFCellStyle_java.html#HSSFCellStyle.setHidden.hidden>hidden</a>);
+<a name=336 class="linenum">336  </a>    }
+<a name=337 class="linenum">337  </a>
+<a name=338 class="linenum">338  </a>    <span class="comment">/**
+<a name=339 class="linenum">339  </a>     * get whether the cell's using this style are to be hidden
+<a name=340 class="linenum">340  </a>     * @return hidden - whether the cell using this style should be hidden
+<a name=341 class="linenum">341  </a>     */</span>
+<a name=342 class="linenum">342  </a>
+<a name=343 class="linenum">343  </a>    public boolean <a class="methodDef" name=HSSFCellStyle.getHidden() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getHidden()>getHidden</a>()
+<a name=344 class="linenum">344  </a>    {
+<a name=345 class="linenum">345  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.isHidden()>isHidden</a>();
+<a name=346 class="linenum">346  </a>    }
+<a name=347 class="linenum">347  </a>
+<a name=348 class="linenum">348  </a>    <span class="comment">/**
+<a name=349 class="linenum">349  </a>     * set the cell's using this style to be locked
+<a name=350 class="linenum">350  </a>     * @param locked - whether the cell using this style should be locked
+<a name=351 class="linenum">351  </a>     */</span>
+<a name=352 class="linenum">352  </a>
+<a name=353 class="linenum">353  </a>    public void <a class="methodDef" name=HSSFCellStyle.setLocked(boolean) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setLocked(boolean)>setLocked</a>(boolean locked)
+<a name=354 class="linenum">354  </a>    {
+<a name=355 class="linenum">355  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentCellOptions(boolean)>setIndentNotParentCellOptions</a>(true);
+<a name=356 class="linenum">356  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setLocked(boolean)>setLocked</a>(<a class="varRef" title="boolean" href=HSSFCellStyle_java.html#HSSFCellStyle.setLocked.locked>locked</a>);
+<a name=357 class="linenum">357  </a>    }
+<a name=358 class="linenum">358  </a>
+<a name=359 class="linenum">359  </a>    <span class="comment">/**
+<a name=360 class="linenum">360  </a>     * get whether the cell's using this style are to be locked
+<a name=361 class="linenum">361  </a>     * @return hidden - whether the cell using this style should be locked
+<a name=362 class="linenum">362  </a>     */</span>
+<a name=363 class="linenum">363  </a>
+<a name=364 class="linenum">364  </a>    public boolean <a class="methodDef" name=HSSFCellStyle.getLocked() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getLocked()>getLocked</a>()
+<a name=365 class="linenum">365  </a>    {
+<a name=366 class="linenum">366  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.isLocked()>isLocked</a>();
+<a name=367 class="linenum">367  </a>    }
+<a name=368 class="linenum">368  </a>
+<a name=369 class="linenum">369  </a>    <span class="comment">/**
+<a name=370 class="linenum">370  </a>     * set the type of horizontal alignment for the cell
+<a name=371 class="linenum">371  </a>     * @param align - the type of alignment
+<a name=372 class="linenum">372  </a>     * @see #ALIGN_GENERAL
+<a name=373 class="linenum">373  </a>     * @see #ALIGN_LEFT
+<a name=374 class="linenum">374  </a>     * @see #ALIGN_CENTER
+<a name=375 class="linenum">375  </a>     * @see #ALIGN_RIGHT
+<a name=376 class="linenum">376  </a>     * @see #ALIGN_FILL
+<a name=377 class="linenum">377  </a>     * @see #ALIGN_JUSTIFY
+<a name=378 class="linenum">378  </a>     * @see #ALIGN_CENTER_SELECTION
+<a name=379 class="linenum">379  </a>     */</span>
+<a name=380 class="linenum">380  </a>
+<a name=381 class="linenum">381  </a>    public void <a class="methodDef" name=HSSFCellStyle.setAlignment(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setAlignment(short)>setAlignment</a>(short align)
+<a name=382 class="linenum">382  </a>    {
+<a name=383 class="linenum">383  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentAlignment(boolean)>setIndentNotParentAlignment</a>(true);
+<a name=384 class="linenum">384  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setAlignment(short)>setAlignment</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setAlignment.align>align</a>);
+<a name=385 class="linenum">385  </a>    }
+<a name=386 class="linenum">386  </a>
+<a name=387 class="linenum">387  </a>    <span class="comment">/**
+<a name=388 class="linenum">388  </a>     * get the type of horizontal alignment for the cell
+<a name=389 class="linenum">389  </a>     * @return align - the type of alignment
+<a name=390 class="linenum">390  </a>     * @see #ALIGN_GENERAL
+<a name=391 class="linenum">391  </a>     * @see #ALIGN_LEFT
+<a name=392 class="linenum">392  </a>     * @see #ALIGN_CENTER
+<a name=393 class="linenum">393  </a>     * @see #ALIGN_RIGHT
+<a name=394 class="linenum">394  </a>     * @see #ALIGN_FILL
+<a name=395 class="linenum">395  </a>     * @see #ALIGN_JUSTIFY
+<a name=396 class="linenum">396  </a>     * @see #ALIGN_CENTER_SELECTION
+<a name=397 class="linenum">397  </a>     */</span>
+<a name=398 class="linenum">398  </a>
+<a name=399 class="linenum">399  </a>    public short <a class="methodDef" name=HSSFCellStyle.getAlignment() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getAlignment()>getAlignment</a>()
+<a name=400 class="linenum">400  </a>    {
+<a name=401 class="linenum">401  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getAlignment()>getAlignment</a>();
+<a name=402 class="linenum">402  </a>    }
+<a name=403 class="linenum">403  </a>
+<a name=404 class="linenum">404  </a>    <span class="comment">/**
+<a name=405 class="linenum">405  </a>     * get whether this cell is to be part of a merged block of cells
+<a name=406 class="linenum">406  </a>     *
+<a name=407 class="linenum">407  </a>     * @returns merged or not
+<a name=408 class="linenum">408  </a>     */</span>
+<a name=409 class="linenum">409  </a>
+<a name=410 class="linenum">410  </a><span class="comment">//    public boolean getMergeCells()</span>
+<a name=411 class="linenum">411  </a><span class="comment">//    {</span>
+<a name=412 class="linenum">412  </a><span class="comment">//        return format.getMergeCells();</span>
+<a name=413 class="linenum">413  </a><span class="comment">//    }</span>
+<a name=414 class="linenum">414  </a>
+<a name=415 class="linenum">415  </a>    <span class="comment">/**
+<a name=416 class="linenum">416  </a>     * set whether this cell is to be part of a merged block of cells
+<a name=417 class="linenum">417  </a>     *
+<a name=418 class="linenum">418  </a>     * @param merge  merged or not
+<a name=419 class="linenum">419  </a>     */</span>
+<a name=420 class="linenum">420  </a>
+<a name=421 class="linenum">421  </a><span class="comment">//    public void setMergeCells(boolean merge)</span>
+<a name=422 class="linenum">422  </a><span class="comment">//    {</span>
+<a name=423 class="linenum">423  </a><span class="comment">//        format.setMergeCells(merge);</span>
+<a name=424 class="linenum">424  </a><span class="comment">//    }</span>
+<a name=425 class="linenum">425  </a>
+<a name=426 class="linenum">426  </a>    <span class="comment">/**
+<a name=427 class="linenum">427  </a>     * set whether the text should be wrapped
+<a name=428 class="linenum">428  </a>     * @param wrapped  wrap text or not
+<a name=429 class="linenum">429  </a>     */</span>
+<a name=430 class="linenum">430  </a>
+<a name=431 class="linenum">431  </a>    public void <a class="methodDef" name=HSSFCellStyle.setWrapText(boolean) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setWrapText(boolean)>setWrapText</a>(boolean wrapped)
+<a name=432 class="linenum">432  </a>    {
+<a name=433 class="linenum">433  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentAlignment(boolean)>setIndentNotParentAlignment</a>(true);
+<a name=434 class="linenum">434  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setWrapText(boolean)>setWrapText</a>(<a class="varRef" title="boolean" href=HSSFCellStyle_java.html#HSSFCellStyle.setWrapText.wrapped>wrapped</a>);
+<a name=435 class="linenum">435  </a>    }
+<a name=436 class="linenum">436  </a>
+<a name=437 class="linenum">437  </a>    <span class="comment">/**
+<a name=438 class="linenum">438  </a>     * get whether the text should be wrapped
+<a name=439 class="linenum">439  </a>     * @return wrap text or not
+<a name=440 class="linenum">440  </a>     */</span>
+<a name=441 class="linenum">441  </a>
+<a name=442 class="linenum">442  </a>    public boolean <a class="methodDef" name=HSSFCellStyle.getWrapText() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getWrapText()>getWrapText</a>()
+<a name=443 class="linenum">443  </a>    {
+<a name=444 class="linenum">444  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getWrapText()>getWrapText</a>();
+<a name=445 class="linenum">445  </a>    }
+<a name=446 class="linenum">446  </a>
+<a name=447 class="linenum">447  </a>    <span class="comment">/**
+<a name=448 class="linenum">448  </a>     * set the type of vertical alignment for the cell
+<a name=449 class="linenum">449  </a>     * @param align the type of alignment
+<a name=450 class="linenum">450  </a>     * @see #VERTICAL_TOP
+<a name=451 class="linenum">451  </a>     * @see #VERTICAL_CENTER
+<a name=452 class="linenum">452  </a>     * @see #VERTICAL_BOTTOM
+<a name=453 class="linenum">453  </a>     * @see #VERTICAL_JUSTIFY
+<a name=454 class="linenum">454  </a>     */</span>
+<a name=455 class="linenum">455  </a>
+<a name=456 class="linenum">456  </a>    public void <a class="methodDef" name=HSSFCellStyle.setVerticalAlignment(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setVerticalAlignment(short)>setVerticalAlignment</a>(short align)
+<a name=457 class="linenum">457  </a>    {
+<a name=458 class="linenum">458  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setVerticalAlignment(short)>setVerticalAlignment</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setVerticalAlignment.align>align</a>);
+<a name=459 class="linenum">459  </a>    }
+<a name=460 class="linenum">460  </a>
+<a name=461 class="linenum">461  </a>    <span class="comment">/**
+<a name=462 class="linenum">462  </a>     * get the type of vertical alignment for the cell
+<a name=463 class="linenum">463  </a>     * @return align the type of alignment
+<a name=464 class="linenum">464  </a>     * @see #VERTICAL_TOP
+<a name=465 class="linenum">465  </a>     * @see #VERTICAL_CENTER
+<a name=466 class="linenum">466  </a>     * @see #VERTICAL_BOTTOM
+<a name=467 class="linenum">467  </a>     * @see #VERTICAL_JUSTIFY
+<a name=468 class="linenum">468  </a>     */</span>
+<a name=469 class="linenum">469  </a>
+<a name=470 class="linenum">470  </a>    public short <a class="methodDef" name=HSSFCellStyle.getVerticalAlignment() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getVerticalAlignment()>getVerticalAlignment</a>()
+<a name=471 class="linenum">471  </a>    {
+<a name=472 class="linenum">472  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getVerticalAlignment()>getVerticalAlignment</a>();
+<a name=473 class="linenum">473  </a>    }
+<a name=474 class="linenum">474  </a>
+<a name=475 class="linenum">475  </a>    <span class="comment">/**
+<a name=476 class="linenum">476  </a>     * set the degree of rotation for the text in the cell
+<a name=477 class="linenum">477  </a>     * @param rotation degrees
+<a name=478 class="linenum">478  </a>     */</span>
+<a name=479 class="linenum">479  </a>
+<a name=480 class="linenum">480  </a>    public void <a class="methodDef" name=HSSFCellStyle.setRotation(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setRotation(short)>setRotation</a>(short rotation)
+<a name=481 class="linenum">481  </a>    {
+<a name=482 class="linenum">482  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setRotation(short)>setRotation</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setRotation.rotation>rotation</a>);
+<a name=483 class="linenum">483  </a>    }
+<a name=484 class="linenum">484  </a>
+<a name=485 class="linenum">485  </a>    <span class="comment">/**
+<a name=486 class="linenum">486  </a>     * get the degree of rotation for the text in the cell
+<a name=487 class="linenum">487  </a>     * @return rotation degrees
+<a name=488 class="linenum">488  </a>     */</span>
+<a name=489 class="linenum">489  </a>
+<a name=490 class="linenum">490  </a>    public short <a class="methodDef" name=HSSFCellStyle.getRotation() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getRotation()>getRotation</a>()
+<a name=491 class="linenum">491  </a>    {
+<a name=492 class="linenum">492  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getRotation()>getRotation</a>();
+<a name=493 class="linenum">493  </a>    }
+<a name=494 class="linenum">494  </a>
+<a name=495 class="linenum">495  </a>    <span class="comment">/**
+<a name=496 class="linenum">496  </a>     * set the number of spaces to indent the text in the cell
+<a name=497 class="linenum">497  </a>     * @param indent - number of spaces
+<a name=498 class="linenum">498  </a>     */</span>
+<a name=499 class="linenum">499  </a>
+<a name=500 class="linenum">500  </a>    public void <a class="methodDef" name=HSSFCellStyle.setIndention(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setIndention(short)>setIndention</a>(short indent)
+<a name=501 class="linenum">501  </a>    {
+<a name=502 class="linenum">502  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndent(short)>setIndent</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setIndention.indent>indent</a>);
+<a name=503 class="linenum">503  </a>    }
+<a name=504 class="linenum">504  </a>
+<a name=505 class="linenum">505  </a>    <span class="comment">/**
+<a name=506 class="linenum">506  </a>     * get the number of spaces to indent the text in the cell
+<a name=507 class="linenum">507  </a>     * @return indent - number of spaces
+<a name=508 class="linenum">508  </a>     */</span>
+<a name=509 class="linenum">509  </a>
+<a name=510 class="linenum">510  </a>    public short <a class="methodDef" name=HSSFCellStyle.getIndention() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getIndention()>getIndention</a>()
+<a name=511 class="linenum">511  </a>    {
+<a name=512 class="linenum">512  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getIndent()>getIndent</a>();
+<a name=513 class="linenum">513  </a>    }
+<a name=514 class="linenum">514  </a>
+<a name=515 class="linenum">515  </a>    <span class="comment">/**
+<a name=516 class="linenum">516  </a>     * set the type of border to use for the left border of the cell
+<a name=517 class="linenum">517  </a>     * @param border type
+<a name=518 class="linenum">518  </a>     * @see #BORDER_NONE
+<a name=519 class="linenum">519  </a>     * @see #BORDER_THIN
+<a name=520 class="linenum">520  </a>     * @see #BORDER_MEDIUM
+<a name=521 class="linenum">521  </a>     * @see #BORDER_DASHED
+<a name=522 class="linenum">522  </a>     * @see #BORDER_DOTTED
+<a name=523 class="linenum">523  </a>     * @see #BORDER_THICK
+<a name=524 class="linenum">524  </a>     * @see #BORDER_DOUBLE
+<a name=525 class="linenum">525  </a>     * @see #BORDER_HAIR
+<a name=526 class="linenum">526  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=527 class="linenum">527  </a>     * @see #BORDER_DASH_DOT
+<a name=528 class="linenum">528  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=529 class="linenum">529  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=530 class="linenum">530  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=531 class="linenum">531  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=532 class="linenum">532  </a>     */</span>
+<a name=533 class="linenum">533  </a>
+<a name=534 class="linenum">534  </a>    public void <a class="methodDef" name=HSSFCellStyle.setBorderLeft(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setBorderLeft(short)>setBorderLeft</a>(short border)
+<a name=535 class="linenum">535  </a>    {
+<a name=536 class="linenum">536  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentBorder(boolean)>setIndentNotParentBorder</a>(true);
+<a name=537 class="linenum">537  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setBorderLeft(short)>setBorderLeft</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setBorderLeft.border>border</a>);
+<a name=538 class="linenum">538  </a>    }
+<a name=539 class="linenum">539  </a>
+<a name=540 class="linenum">540  </a>    <span class="comment">/**
+<a name=541 class="linenum">541  </a>     * get the type of border to use for the left border of the cell
+<a name=542 class="linenum">542  </a>     * @return border type
+<a name=543 class="linenum">543  </a>     * @see #BORDER_NONE
+<a name=544 class="linenum">544  </a>     * @see #BORDER_THIN
+<a name=545 class="linenum">545  </a>     * @see #BORDER_MEDIUM
+<a name=546 class="linenum">546  </a>     * @see #BORDER_DASHED
+<a name=547 class="linenum">547  </a>     * @see #BORDER_DOTTED
+<a name=548 class="linenum">548  </a>     * @see #BORDER_THICK
+<a name=549 class="linenum">549  </a>     * @see #BORDER_DOUBLE
+<a name=550 class="linenum">550  </a>     * @see #BORDER_HAIR
+<a name=551 class="linenum">551  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=552 class="linenum">552  </a>     * @see #BORDER_DASH_DOT
+<a name=553 class="linenum">553  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=554 class="linenum">554  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=555 class="linenum">555  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=556 class="linenum">556  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=557 class="linenum">557  </a>     */</span>
+<a name=558 class="linenum">558  </a>
+<a name=559 class="linenum">559  </a>    public short <a class="methodDef" name=HSSFCellStyle.getBorderLeft() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getBorderLeft()>getBorderLeft</a>()
+<a name=560 class="linenum">560  </a>    {
+<a name=561 class="linenum">561  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getBorderLeft()>getBorderLeft</a>();
+<a name=562 class="linenum">562  </a>    }
+<a name=563 class="linenum">563  </a>
+<a name=564 class="linenum">564  </a>    <span class="comment">/**
+<a name=565 class="linenum">565  </a>     * set the type of border to use for the right border of the cell
+<a name=566 class="linenum">566  </a>     * @param border type
+<a name=567 class="linenum">567  </a>     * @see #BORDER_NONE
+<a name=568 class="linenum">568  </a>     * @see #BORDER_THIN
+<a name=569 class="linenum">569  </a>     * @see #BORDER_MEDIUM
+<a name=570 class="linenum">570  </a>     * @see #BORDER_DASHED
+<a name=571 class="linenum">571  </a>     * @see #BORDER_DOTTED
+<a name=572 class="linenum">572  </a>     * @see #BORDER_THICK
+<a name=573 class="linenum">573  </a>     * @see #BORDER_DOUBLE
+<a name=574 class="linenum">574  </a>     * @see #BORDER_HAIR
+<a name=575 class="linenum">575  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=576 class="linenum">576  </a>     * @see #BORDER_DASH_DOT
+<a name=577 class="linenum">577  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=578 class="linenum">578  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=579 class="linenum">579  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=580 class="linenum">580  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=581 class="linenum">581  </a>     */</span>
+<a name=582 class="linenum">582  </a>
+<a name=583 class="linenum">583  </a>    public void <a class="methodDef" name=HSSFCellStyle.setBorderRight(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setBorderRight(short)>setBorderRight</a>(short border)
+<a name=584 class="linenum">584  </a>    {
+<a name=585 class="linenum">585  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentBorder(boolean)>setIndentNotParentBorder</a>(true);
+<a name=586 class="linenum">586  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setBorderRight(short)>setBorderRight</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setBorderRight.border>border</a>);
+<a name=587 class="linenum">587  </a>    }
+<a name=588 class="linenum">588  </a>
+<a name=589 class="linenum">589  </a>    <span class="comment">/**
+<a name=590 class="linenum">590  </a>     * get the type of border to use for the right border of the cell
+<a name=591 class="linenum">591  </a>     * @return border type
+<a name=592 class="linenum">592  </a>     * @see #BORDER_NONE
+<a name=593 class="linenum">593  </a>     * @see #BORDER_THIN
+<a name=594 class="linenum">594  </a>     * @see #BORDER_MEDIUM
+<a name=595 class="linenum">595  </a>     * @see #BORDER_DASHED
+<a name=596 class="linenum">596  </a>     * @see #BORDER_DOTTED
+<a name=597 class="linenum">597  </a>     * @see #BORDER_THICK
+<a name=598 class="linenum">598  </a>     * @see #BORDER_DOUBLE
+<a name=599 class="linenum">599  </a>     * @see #BORDER_HAIR
+<a name=600 class="linenum">600  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=601 class="linenum">601  </a>     * @see #BORDER_DASH_DOT
+<a name=602 class="linenum">602  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=603 class="linenum">603  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=604 class="linenum">604  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=605 class="linenum">605  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=606 class="linenum">606  </a>     */</span>
+<a name=607 class="linenum">607  </a>
+<a name=608 class="linenum">608  </a>    public short <a class="methodDef" name=HSSFCellStyle.getBorderRight() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getBorderRight()>getBorderRight</a>()
+<a name=609 class="linenum">609  </a>    {
+<a name=610 class="linenum">610  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getBorderRight()>getBorderRight</a>();
+<a name=611 class="linenum">611  </a>    }
+<a name=612 class="linenum">612  </a>
+<a name=613 class="linenum">613  </a>    <span class="comment">/**
+<a name=614 class="linenum">614  </a>     * set the type of border to use for the top border of the cell
+<a name=615 class="linenum">615  </a>     * @param border type
+<a name=616 class="linenum">616  </a>     * @see #BORDER_NONE
+<a name=617 class="linenum">617  </a>     * @see #BORDER_THIN
+<a name=618 class="linenum">618  </a>     * @see #BORDER_MEDIUM
+<a name=619 class="linenum">619  </a>     * @see #BORDER_DASHED
+<a name=620 class="linenum">620  </a>     * @see #BORDER_DOTTED
+<a name=621 class="linenum">621  </a>     * @see #BORDER_THICK
+<a name=622 class="linenum">622  </a>     * @see #BORDER_DOUBLE
+<a name=623 class="linenum">623  </a>     * @see #BORDER_HAIR
+<a name=624 class="linenum">624  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=625 class="linenum">625  </a>     * @see #BORDER_DASH_DOT
+<a name=626 class="linenum">626  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=627 class="linenum">627  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=628 class="linenum">628  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=629 class="linenum">629  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=630 class="linenum">630  </a>     */</span>
+<a name=631 class="linenum">631  </a>
+<a name=632 class="linenum">632  </a>    public void <a class="methodDef" name=HSSFCellStyle.setBorderTop(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setBorderTop(short)>setBorderTop</a>(short border)
+<a name=633 class="linenum">633  </a>    {
+<a name=634 class="linenum">634  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentBorder(boolean)>setIndentNotParentBorder</a>(true);
+<a name=635 class="linenum">635  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setBorderTop(short)>setBorderTop</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setBorderTop.border>border</a>);
+<a name=636 class="linenum">636  </a>    }
+<a name=637 class="linenum">637  </a>
+<a name=638 class="linenum">638  </a>    <span class="comment">/**
+<a name=639 class="linenum">639  </a>     * get the type of border to use for the top border of the cell
+<a name=640 class="linenum">640  </a>     * @return border type
+<a name=641 class="linenum">641  </a>     * @see #BORDER_NONE
+<a name=642 class="linenum">642  </a>     * @see #BORDER_THIN
+<a name=643 class="linenum">643  </a>     * @see #BORDER_MEDIUM
+<a name=644 class="linenum">644  </a>     * @see #BORDER_DASHED
+<a name=645 class="linenum">645  </a>     * @see #BORDER_DOTTED
+<a name=646 class="linenum">646  </a>     * @see #BORDER_THICK
+<a name=647 class="linenum">647  </a>     * @see #BORDER_DOUBLE
+<a name=648 class="linenum">648  </a>     * @see #BORDER_HAIR
+<a name=649 class="linenum">649  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=650 class="linenum">650  </a>     * @see #BORDER_DASH_DOT
+<a name=651 class="linenum">651  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=652 class="linenum">652  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=653 class="linenum">653  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=654 class="linenum">654  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=655 class="linenum">655  </a>     */</span>
+<a name=656 class="linenum">656  </a>
+<a name=657 class="linenum">657  </a>    public short <a class="methodDef" name=HSSFCellStyle.getBorderTop() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getBorderTop()>getBorderTop</a>()
+<a name=658 class="linenum">658  </a>    {
+<a name=659 class="linenum">659  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getBorderTop()>getBorderTop</a>();
+<a name=660 class="linenum">660  </a>    }
+<a name=661 class="linenum">661  </a>
+<a name=662 class="linenum">662  </a>    <span class="comment">/**
+<a name=663 class="linenum">663  </a>     * set the type of border to use for the bottom border of the cell
+<a name=664 class="linenum">664  </a>     * @param border type
+<a name=665 class="linenum">665  </a>     * @see #BORDER_NONE
+<a name=666 class="linenum">666  </a>     * @see #BORDER_THIN
+<a name=667 class="linenum">667  </a>     * @see #BORDER_MEDIUM
+<a name=668 class="linenum">668  </a>     * @see #BORDER_DASHED
+<a name=669 class="linenum">669  </a>     * @see #BORDER_DOTTED
+<a name=670 class="linenum">670  </a>     * @see #BORDER_THICK
+<a name=671 class="linenum">671  </a>     * @see #BORDER_DOUBLE
+<a name=672 class="linenum">672  </a>     * @see #BORDER_HAIR
+<a name=673 class="linenum">673  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=674 class="linenum">674  </a>     * @see #BORDER_DASH_DOT
+<a name=675 class="linenum">675  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=676 class="linenum">676  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=677 class="linenum">677  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=678 class="linenum">678  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=679 class="linenum">679  </a>     */</span>
+<a name=680 class="linenum">680  </a>
+<a name=681 class="linenum">681  </a>    public void <a class="methodDef" name=HSSFCellStyle.setBorderBottom(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setBorderBottom(short)>setBorderBottom</a>(short border)
+<a name=682 class="linenum">682  </a>    {
+<a name=683 class="linenum">683  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setIndentNotParentBorder(boolean)>setIndentNotParentBorder</a>(true);
+<a name=684 class="linenum">684  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setBorderBottom(short)>setBorderBottom</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setBorderBottom.border>border</a>);
+<a name=685 class="linenum">685  </a>    }
+<a name=686 class="linenum">686  </a>
+<a name=687 class="linenum">687  </a>    <span class="comment">/**
+<a name=688 class="linenum">688  </a>     * get the type of border to use for the bottom border of the cell
+<a name=689 class="linenum">689  </a>     * @return border type
+<a name=690 class="linenum">690  </a>     * @see #BORDER_NONE
+<a name=691 class="linenum">691  </a>     * @see #BORDER_THIN
+<a name=692 class="linenum">692  </a>     * @see #BORDER_MEDIUM
+<a name=693 class="linenum">693  </a>     * @see #BORDER_DASHED
+<a name=694 class="linenum">694  </a>     * @see #BORDER_DOTTED
+<a name=695 class="linenum">695  </a>     * @see #BORDER_THICK
+<a name=696 class="linenum">696  </a>     * @see #BORDER_DOUBLE
+<a name=697 class="linenum">697  </a>     * @see #BORDER_HAIR
+<a name=698 class="linenum">698  </a>     * @see #BORDER_MEDIUM_DASHED
+<a name=699 class="linenum">699  </a>     * @see #BORDER_DASH_DOT
+<a name=700 class="linenum">700  </a>     * @see #BORDER_MEDIUM_DASH_DOT
+<a name=701 class="linenum">701  </a>     * @see #BORDER_DASH_DOT_DOT
+<a name=702 class="linenum">702  </a>     * @see #BORDER_MEDIUM_DASH_DOT_DOT
+<a name=703 class="linenum">703  </a>     * @see #BORDER_SLANTED_DASH_DOT
+<a name=704 class="linenum">704  </a>     */</span>
+<a name=705 class="linenum">705  </a>
+<a name=706 class="linenum">706  </a>    public short <a class="methodDef" name=HSSFCellStyle.getBorderBottom() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getBorderBottom()>getBorderBottom</a>()
+<a name=707 class="linenum">707  </a>    {
+<a name=708 class="linenum">708  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getBorderBottom()>getBorderBottom</a>();
+<a name=709 class="linenum">709  </a>    }
+<a name=710 class="linenum">710  </a>
+<a name=711 class="linenum">711  </a>    <span class="comment">/**
+<a name=712 class="linenum">712  </a>     * set the color to use for the left border
+<a name=713 class="linenum">713  </a>     * @param color
+<a name=714 class="linenum">714  </a>     */</span>
+<a name=715 class="linenum">715  </a>
+<a name=716 class="linenum">716  </a>    public void <a class="methodDef" name=HSSFCellStyle.setLeftBorderColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setLeftBorderColor(short)>setLeftBorderColor</a>(short color)
+<a name=717 class="linenum">717  </a>    {
+<a name=718 class="linenum">718  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setLeftBorderPaletteIdx(short)>setLeftBorderPaletteIdx</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setLeftBorderColor.color>color</a>);
+<a name=719 class="linenum">719  </a>    }
+<a name=720 class="linenum">720  </a>
+<a name=721 class="linenum">721  </a>    <span class="comment">/**
+<a name=722 class="linenum">722  </a>     * get the color to use for the left border
+<a name=723 class="linenum">723  </a>     * @return color
+<a name=724 class="linenum">724  </a>     */</span>
+<a name=725 class="linenum">725  </a>
+<a name=726 class="linenum">726  </a>    public short <a class="methodDef" name=HSSFCellStyle.getLeftBorderColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getLeftBorderColor()>getLeftBorderColor</a>()
+<a name=727 class="linenum">727  </a>    {
+<a name=728 class="linenum">728  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getLeftBorderPaletteIdx()>getLeftBorderPaletteIdx</a>();
+<a name=729 class="linenum">729  </a>    }
+<a name=730 class="linenum">730  </a>
+<a name=731 class="linenum">731  </a>    <span class="comment">/**
+<a name=732 class="linenum">732  </a>     * set the color to use for the right border
+<a name=733 class="linenum">733  </a>     * @param color
+<a name=734 class="linenum">734  </a>     */</span>
+<a name=735 class="linenum">735  </a>
+<a name=736 class="linenum">736  </a>    public void <a class="methodDef" name=HSSFCellStyle.setRightBorderColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setRightBorderColor(short)>setRightBorderColor</a>(short color)
+<a name=737 class="linenum">737  </a>    {
+<a name=738 class="linenum">738  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setRightBorderPaletteIdx(short)>setRightBorderPaletteIdx</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setRightBorderColor.color>color</a>);
+<a name=739 class="linenum">739  </a>    }
+<a name=740 class="linenum">740  </a>
+<a name=741 class="linenum">741  </a>    <span class="comment">/**
+<a name=742 class="linenum">742  </a>     * get the color to use for the left border
+<a name=743 class="linenum">743  </a>     * @return color
+<a name=744 class="linenum">744  </a>     */</span>
+<a name=745 class="linenum">745  </a>
+<a name=746 class="linenum">746  </a>    public short <a class="methodDef" name=HSSFCellStyle.getRightBorderColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getRightBorderColor()>getRightBorderColor</a>()
+<a name=747 class="linenum">747  </a>    {
+<a name=748 class="linenum">748  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getRightBorderPaletteIdx()>getRightBorderPaletteIdx</a>();
+<a name=749 class="linenum">749  </a>    }
+<a name=750 class="linenum">750  </a>
+<a name=751 class="linenum">751  </a>    <span class="comment">/**
+<a name=752 class="linenum">752  </a>     * set the color to use for the top border
+<a name=753 class="linenum">753  </a>     * @param color
+<a name=754 class="linenum">754  </a>     */</span>
+<a name=755 class="linenum">755  </a>
+<a name=756 class="linenum">756  </a>    public void <a class="methodDef" name=HSSFCellStyle.setTopBorderColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setTopBorderColor(short)>setTopBorderColor</a>(short color)
+<a name=757 class="linenum">757  </a>    {
+<a name=758 class="linenum">758  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setTopBorderPaletteIdx(short)>setTopBorderPaletteIdx</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setTopBorderColor.color>color</a>);
+<a name=759 class="linenum">759  </a>    }
+<a name=760 class="linenum">760  </a>
+<a name=761 class="linenum">761  </a>    <span class="comment">/**
+<a name=762 class="linenum">762  </a>     * get the color to use for the top border
+<a name=763 class="linenum">763  </a>     * @return color
+<a name=764 class="linenum">764  </a>     */</span>
+<a name=765 class="linenum">765  </a>
+<a name=766 class="linenum">766  </a>    public short <a class="methodDef" name=HSSFCellStyle.getTopBorderColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getTopBorderColor()>getTopBorderColor</a>()
+<a name=767 class="linenum">767  </a>    {
+<a name=768 class="linenum">768  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getTopBorderPaletteIdx()>getTopBorderPaletteIdx</a>();
+<a name=769 class="linenum">769  </a>    }
+<a name=770 class="linenum">770  </a>
+<a name=771 class="linenum">771  </a>    <span class="comment">/**
+<a name=772 class="linenum">772  </a>     * set the color to use for the bottom border
+<a name=773 class="linenum">773  </a>     * @param color
+<a name=774 class="linenum">774  </a>     */</span>
+<a name=775 class="linenum">775  </a>
+<a name=776 class="linenum">776  </a>    public void <a class="methodDef" name=HSSFCellStyle.setBottomBorderColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setBottomBorderColor(short)>setBottomBorderColor</a>(short color)
+<a name=777 class="linenum">777  </a>    {
+<a name=778 class="linenum">778  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setBottomBorderPaletteIdx(short)>setBottomBorderPaletteIdx</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setBottomBorderColor.color>color</a>);
+<a name=779 class="linenum">779  </a>    }
+<a name=780 class="linenum">780  </a>
+<a name=781 class="linenum">781  </a>    <span class="comment">/**
+<a name=782 class="linenum">782  </a>     * get the color to use for the left border
+<a name=783 class="linenum">783  </a>     * @return color
+<a name=784 class="linenum">784  </a>     */</span>
+<a name=785 class="linenum">785  </a>
+<a name=786 class="linenum">786  </a>    public short <a class="methodDef" name=HSSFCellStyle.getBottomBorderColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getBottomBorderColor()>getBottomBorderColor</a>()
+<a name=787 class="linenum">787  </a>    {
+<a name=788 class="linenum">788  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getBottomBorderPaletteIdx()>getBottomBorderPaletteIdx</a>();
+<a name=789 class="linenum">789  </a>    }
+<a name=790 class="linenum">790  </a>
+<a name=791 class="linenum">791  </a>    <span class="comment">/**
+<a name=792 class="linenum">792  </a>     * setting to one fills the cell with the foreground color... No idea about
+<a name=793 class="linenum">793  </a>     * other values
+<a name=794 class="linenum">794  </a>     *
+<a name=795 class="linenum">795  </a>     * @see #NO_FILL
+<a name=796 class="linenum">796  </a>     * @see #SOLID_FOREGROUND
+<a name=797 class="linenum">797  </a>     * @see #FINE_DOTS
+<a name=798 class="linenum">798  </a>     * @see #ALT_BARS
+<a name=799 class="linenum">799  </a>     * @see #SPARSE_DOTS
+<a name=800 class="linenum">800  </a>     * @see #THICK_HORZ_BANDS
+<a name=801 class="linenum">801  </a>     * @see #THICK_VERT_BANDS
+<a name=802 class="linenum">802  </a>     * @see #THICK_BACKWARD_DIAG
+<a name=803 class="linenum">803  </a>     * @see #THICK_FORWARD_DIAG
+<a name=804 class="linenum">804  </a>     * @see #BIG_SPOTS
+<a name=805 class="linenum">805  </a>     * @see #BRICKS
+<a name=806 class="linenum">806  </a>     * @see #THIN_HORZ_BANDS
+<a name=807 class="linenum">807  </a>     * @see #THIN_VERT_BANDS
+<a name=808 class="linenum">808  </a>     * @see #THIN_BACKWARD_DIAG
+<a name=809 class="linenum">809  </a>     * @see #THIN_FORWARD_DIAG
+<a name=810 class="linenum">810  </a>     * @see #SQUARES
+<a name=811 class="linenum">811  </a>     * @see #DIAMONDS
+<a name=812 class="linenum">812  </a>     *
+<a name=813 class="linenum">813  </a>     * @param fp  fill pattern (set to 1 to fill w/foreground color)
+<a name=814 class="linenum">814  </a>     */</span>
+<a name=815 class="linenum">815  </a>    public void <a class="methodDef" name=HSSFCellStyle.setFillPattern(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setFillPattern(short)>setFillPattern</a>(short fp)
+<a name=816 class="linenum">816  </a>    {
+<a name=817 class="linenum">817  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setAdtlFillPattern(short)>setAdtlFillPattern</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setFillPattern.fp>fp</a>);
+<a name=818 class="linenum">818  </a>    }
+<a name=819 class="linenum">819  </a>
+<a name=820 class="linenum">820  </a>    <span class="comment">/**
+<a name=821 class="linenum">821  </a>     * get the fill pattern (??) - set to 1 to fill with foreground color
+<a name=822 class="linenum">822  </a>     * @return fill pattern
+<a name=823 class="linenum">823  </a>     */</span>
+<a name=824 class="linenum">824  </a>
+<a name=825 class="linenum">825  </a>    public short <a class="methodDef" name=HSSFCellStyle.getFillPattern() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getFillPattern()>getFillPattern</a>()
+<a name=826 class="linenum">826  </a>    {
+<a name=827 class="linenum">827  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getAdtlFillPattern()>getAdtlFillPattern</a>();
+<a name=828 class="linenum">828  </a>    }
+<a name=829 class="linenum">829  </a>
+<a name=830 class="linenum">830  </a>    <span class="comment">/**
+<a name=831 class="linenum">831  </a>     * set the background fill color.
+<a name=832 class="linenum">832  </a>     * &lt;p&gt;
+<a name=833 class="linenum">833  </a>     * For example:
+<a name=834 class="linenum">834  </a>     * &lt;pre&gt;
+<a name=835 class="linenum">835  </a>     * cs.setFillPattern(HSSFCellStyle.FINE_DOTS );
+<a name=836 class="linenum">836  </a>     * cs.setFillBackgroundColor(HSSFCellStyle.RED);
+<a name=837 class="linenum">837  </a>     * &lt;/pre&gt;
+<a name=838 class="linenum">838  </a>     * or, for the special case of SOLID_FILL:
+<a name=839 class="linenum">839  </a>     * &lt;pre&gt;
+<a name=840 class="linenum">840  </a>     * cs.setFillPattern(HSSFCellStyle.SOLID_FILL );
+<a name=841 class="linenum">841  </a>     * cs.setFillForgroundColor(HSSFSeCellStyle.RED);
+<a name=842 class="linenum">842  </a>     * &lt;/pre&gt;
+<a name=843 class="linenum">843  </a>     * It is necessary to set the fill style in order
+<a name=844 class="linenum">844  </a>     * for the color to be shown in the cell.
+<a name=845 class="linenum">845  </a>     *
+<a name=846 class="linenum">846  </a>     * @param bg  color
+<a name=847 class="linenum">847  </a>     */</span>
+<a name=848 class="linenum">848  </a>
+<a name=849 class="linenum">849  </a>    public void <a class="methodDef" name=HSSFCellStyle.setFillBackgroundColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setFillBackgroundColor(short)>setFillBackgroundColor</a>(short bg)
+<a name=850 class="linenum">850  </a>    {
+<a name=851 class="linenum">851  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setFillBackground(short)>setFillBackground</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setFillBackgroundColor.bg>bg</a>);
+<a name=852 class="linenum">852  </a>    }
+<a name=853 class="linenum">853  </a>
+<a name=854 class="linenum">854  </a>    <span class="comment">/**
+<a name=855 class="linenum">855  </a>     * get the background fill color
+<a name=856 class="linenum">856  </a>     * @return fill color
+<a name=857 class="linenum">857  </a>     */</span>
+<a name=858 class="linenum">858  </a>
+<a name=859 class="linenum">859  </a>    public short <a class="methodDef" name=HSSFCellStyle.getFillBackgroundColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getFillBackgroundColor()>getFillBackgroundColor</a>()
+<a name=860 class="linenum">860  </a>    {
+<a name=861 class="linenum">861  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getFillBackground()>getFillBackground</a>();
+<a name=862 class="linenum">862  </a>    }
+<a name=863 class="linenum">863  </a>
+<a name=864 class="linenum">864  </a>    <span class="comment">/**
+<a name=865 class="linenum">865  </a>     * set the foreground fill color
+<a name=866 class="linenum">866  </a>     * @param bg  color
+<a name=867 class="linenum">867  </a>     */</span>
+<a name=868 class="linenum">868  </a>
+<a name=869 class="linenum">869  </a>    public void <a class="methodDef" name=HSSFCellStyle.setFillForegroundColor(short) href=HSSFCellStyle_java_ref.html#HSSFCellStyle.setFillForegroundColor(short)>setFillForegroundColor</a>(short bg)
+<a name=870 class="linenum">870  </a>    {
+<a name=871 class="linenum">871  </a>        <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.setFillForeground(short)>setFillForeground</a>(<a class="varRef" title="short" href=HSSFCellStyle_java.html#HSSFCellStyle.setFillForegroundColor.bg>bg</a>);
+<a name=872 class="linenum">872  </a>    }
+<a name=873 class="linenum">873  </a>
+<a name=874 class="linenum">874  </a>    <span class="comment">/**
+<a name=875 class="linenum">875  </a>     * get the foreground fill color
+<a name=876 class="linenum">876  </a>     * @return fill color
+<a name=877 class="linenum">877  </a>     */</span>
+<a name=878 class="linenum">878  </a>
+<a name=879 class="linenum">879  </a>    public short <a class="methodDef" name=HSSFCellStyle.getFillForegroundColor() href=HSSFCellStyle_java_ref.html#HSSFCellStyle.getFillForegroundColor()>getFillForegroundColor</a>()
+<a name=880 class="linenum">880  </a>    {
+<a name=881 class="linenum">881  </a>        return <a class="varRef" title="ExtendedFormatRecord" href=HSSFCellStyle_java.html#HSSFCellStyle.format>format</a>.<a class="methodRef" title="ExtendedFormatRecord" href=..\..\..\..\..\org\apache\poi\hssf\record\ExtendedFormatRecord_java.html#ExtendedFormatRecord.getFillForeground()>getFillForeground</a>();
+<a name=882 class="linenum">882  </a>    }
+<a name=883 class="linenum">883  </a>
+<a name=884 class="linenum">884  </a>}
+<a name=885 class="linenum">885  </a></pre>

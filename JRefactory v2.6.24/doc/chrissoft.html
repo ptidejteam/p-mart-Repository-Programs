@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			Software <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="authors.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="cspretty.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+<P>I've been developing some software which I would like to share with
+the Java community. The software is free,
+and I provide it as is. (If you use it and find any bugs,
+<A HREF="mailto:seguin@acm.org">let me know</A>. However,
+since I do this for the fun of it, so please don't expect a fix in a day.</P>
+<P>A number of the tools described below are Elixir Plugins.
+The <A HREF="http://www.elixirtech.com">Elixir IDE</A> is an excellent IDE.
+Since it is written in Java, and distributed
+in a jar file it is possible to extend the editor.
+This is what I have done for the pretty printer, microsoft's
+visual source safe, and Java 1.2 printing.
+</P>
+<P>JBuilder is now the best IDE for the price.  It uses
+a lot of memory but has a lot of features.  The low end
+version is free, but if you are doing server side development,
+you really need the Professional or Enterprise versions.
+JRefactory and the pretty printer fully integrate with
+this tool.  A couple of people have asked if JRefactory
+could be used from popup menus in the structure pane.
+It's in release 2.6.12!</P>
+
+<P>NetBeans is viaing for the most popular IDE right
+now.  Support for the pretty printer and the extract
+method refactoring are present in this release!  Thanks
+to Jason Yip of Thoughtworks!</P>
+
+<P>Visual Cafe is a good tool.  I had a lot of bad luck
+with it though.  (My hard disk has corrupted a couple of
+the DLLs and I can't run it any more.)  JRefactory supports
+pretty printing and extracting methods for Visual Cafe.</P>
+<P>Other editors are on the horizon.  I'll either look
+at integrating with JEdit next.  Visual Age
+for Java is the hardest, and if you know VA4J really
+well and can answer some questions, please e-mail me.
+Thanks!</P>
+			<P>  Here is a list of tools that I've developed:</P>
+			<P>
+			  <P><FONT SIZE='4'><A HREF="cspretty.html">Pretty Printer/Beautifier</A></FONT>
+			  is a tool
+			  that allows you to clean up the indenting and formatting of your
+			  java source code.</P>
+
+			  <P>This tool has a powerful feature of being able
+			  to insert the appropriate javadoc comments so that the javadoc
+			  program does not generate error messages for missing fields.  To
+			  simplify writing javadoc comments, some methods have javadoc
+			  comments automatically generated based on the name of the method.</P>
+
+			  <P><FONT SIZE='4'><A HREF="csrefactory.html">JRefactory</A></FONT>
+			  is a tool that allows you
+			  to perform the following refactorings:
+			  <UL>
+			  <LI>  Move class between packages (repackage)
+			  <LI>  Rename class
+			  <LI>  Add abstract parent class
+			  <LI>  Add child class
+			  <LI>  Remove empty class
+			  <LI>  Extract interface
+			  <LI>  Push up field
+			  <LI>  Push down field
+			  <LI>  (<B>New!!</B>) Rename Field
+			  <LI>  Push up method
+			  <LI>  Push up abstract method
+			  <LI>  Push down method
+			  <LI>  Move method
+			  <LI>  Extract method
+			  <LI>  (<B>New!!</B>) Rename Parameter
+			  </UL>
+			  <P>It updates other java source files
+			  as appropriate.</P>
+			  <P>This tool comes as a command line option with GUI or without, and
+			  as a plugin for the JBuilder, NetBeans, and Elixir IDEs.</P>
+
+			  <P>For JBuilder and Elixir you can now
+			  switch from the UML diagram to the source code.</P>
+
+			  <P><FONT SIZE='4'><A HREF="csprint.html">Printing</A></FONT>
+			  provides the ability to print UML diagrams and print text
+			  files.  Printing includes line numbering and may include
+			  syntax highlighting.</P>
+
+			  <P><FONT SIZE='4'><A HREF="cselixirext.html">Elixir Extensions</A></FONT>
+			  provides the ability to
+			  check in/check out files from Microsoft's
+			  Visual Source Safe from inside Elixir.</P>
+
+			  <P><FONT SIZE='4'><A HREF="cslineno.html">Line Number Tool</A></FONT>
+			  a command line program to
+			  format a number of java source code files and generate an output file
+			  with line numbers.  It can also combine a number of files together,
+			  and keep the numbering scheme between files.  I've found this useful
+			  for code reviews.</P>
+
+			  <P><FONT SIZE='4'><A HREF="csmetrics.html">Metrics</A></FONT>
+			   gathers metrics about your java
+			  source code.<P>
+
+			  <P><FONT SIZE='4'><A href="csstub.html">Stub Generator</A></FONT>
+			  creates a file that allows the refactory tool
+			  to display Java 1.2 library classes (or other applications where you
+			  have access to the source code, but you don't intend to change the
+			  source code).  This facility is used for the refactoring tool to show
+			  classes from 3rd party vendors in the refactoring GUI.</P>
+
+			  <P><FONT SIZE='4'><A href="csdevutil.html">Development Utilities</A></FONT>
+			  are various development utilities that I use to create builds of
+			  these tools.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="authors.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: February 22, 2001</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="cspretty.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

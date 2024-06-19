@@ -1,0 +1,6 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\extensions\15.6.4-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\extensions\shell.js -f mozilla\js\tests\ecma\extensions\15.6.4-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.6.4-2 Properties of the Boolean Prototype Object
+Boolean.prototype.__proto__ = [object Object] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\extensions\15.6.4-2.compiled.arff] ...

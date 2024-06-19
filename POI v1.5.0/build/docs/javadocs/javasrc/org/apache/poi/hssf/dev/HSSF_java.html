@@ -1,0 +1,428 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: HSSF');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: HSSF';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.hssf.dev;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import java.io.InputStream;
+<a name=59 class="linenum">59   </a>import java.io.IOException;
+<a name=60 class="linenum">60   </a>import java.io.ByteArrayInputStream;
+<a name=61 class="linenum">61   </a>import java.io.FileInputStream;
+<a name=62 class="linenum">62   </a>import java.io.FileOutputStream;
+<a name=63 class="linenum">63   </a>
+<a name=64 class="linenum">64   </a>import java.util.Random;
+<a name=65 class="linenum">65   </a>
+<a name=66 class="linenum">66   </a>import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+<a name=67 class="linenum">67   </a>import org.apache.poi.hssf.record.*;
+<a name=68 class="linenum">68   </a>import org.apache.poi.hssf.model.*;
+<a name=69 class="linenum">69   </a>import org.apache.poi.hssf.usermodel.*;
+<a name=70 class="linenum">70   </a>import org.apache.poi.hssf.util.*;
+<a name=71 class="linenum">71   </a>
+<a name=72 class="linenum">72   </a><span class="comment">/**
+<a name=73 class="linenum">73   </a> * File for HSSF testing/examples
+<a name=74 class="linenum">74   </a> *
+<a name=75 class="linenum">75   </a> * THIS IS NOT THE MAIN HSSF FILE!!  This is a util for testing functionality.
+<a name=76 class="linenum">76   </a> * It does contain sample API usage that may be educational to regular API users.
+<a name=77 class="linenum">77   </a> *
+<a name=78 class="linenum">78   </a> * @see #main
+<a name=79 class="linenum">79   </a> * @author Andrew Oliver (acoliver at apache dot org)
+<a name=80 class="linenum">80   </a> */</span>
+<a name=81 class="linenum">81   </a>
+<a name=82 class="linenum">82   </a>public class <a class="classDef" name=HSSF href=HSSF_java_ref.html#HSSF>HSSF</a>
+<a name=83 class="linenum">83   </a>{
+<a name=84 class="linenum">84   </a>    private String         <a class="varDef" name=HSSF.filename href=HSSF_java_ref.html#HSSF.filename>filename</a>     = null;
+<a name=85 class="linenum">85   </a>
+<a name=86 class="linenum">86   </a>    <span class="comment">// private POIFSFileSystem     fs           = null;</span>
+<a name=87 class="linenum">87   </a>    private InputStream    <a class="varDef" name=HSSF.stream href=HSSF_java_ref.html#HSSF.stream>stream</a>       = null;
+<a name=88 class="linenum">88   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record>Record</a>[]       <a class="varDef" name=HSSF.records href=HSSF_java_ref.html#HSSF.records>records</a>      = null;
+<a name=89 class="linenum">89   </a>    protected <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook>HSSFWorkbook</a> <a class="varDef" name=HSSF.hssfworkbook href=HSSF_java_ref.html#HSSF.hssfworkbook>hssfworkbook</a> = null;
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    <span class="comment">/**
+<a name=92 class="linenum">92   </a>     * Constructor HSSF - creates an HSSFStream from an InputStream.  The HSSFStream
+<a name=93 class="linenum">93   </a>     * reads in the records allowing modification.
+<a name=94 class="linenum">94   </a>     *
+<a name=95 class="linenum">95   </a>     *
+<a name=96 class="linenum">96   </a>     * @param filename
+<a name=97 class="linenum">97   </a>     *
+<a name=98 class="linenum">98   </a>     * @exception IOException
+<a name=99 class="linenum">99   </a>     *
+<a name=100 class="linenum">100  </a>     */</span>
+<a name=101 class="linenum">101  </a>
+<a name=102 class="linenum">102  </a>    public <a class="methodDef" name=HSSF.HSSF(String) href=HSSF_java_ref.html#HSSF.HSSF(String)>HSSF</a>(String filename)
+<a name=103 class="linenum">103  </a>        throws IOException
+<a name=104 class="linenum">104  </a>    {
+<a name=105 class="linenum">105  </a>        this.filename = <a class="varRef" title="String" href=HSSF_java.html#HSSF.HSSF.filename>filename</a>;
+<a name=106 class="linenum">106  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem>POIFSFileSystem</a> fs =
+<a name=107 class="linenum">107  </a>            new <a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.POIFSFileSystem(InputStream)>POIFSFileSystem</a>(new FileInputStream(<a class="varRef" title="String" href=HSSF_java.html#HSSF.HSSF.filename>filename</a>));
+<a name=108 class="linenum">108  </a>
+<a name=109 class="linenum">109  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.hssfworkbook>hssfworkbook</a> = new <a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.HSSFWorkbook(POIFSFileSystem)>HSSFWorkbook</a>(<a class="varRef" title="POIFSFileSystem" href=HSSF_java.html#HSSF.HSSF.fs>fs</a>);
+<a name=110 class="linenum">110  </a>
+<a name=111 class="linenum">111  </a>        <span class="comment">// records = RecordFactory.createRecords(stream);</span>
+<a name=112 class="linenum">112  </a>    }
+<a name=113 class="linenum">113  </a>
+<a name=114 class="linenum">114  </a>    <span class="comment">/**
+<a name=115 class="linenum">115  </a>     * Constructor HSSF - given a filename this outputs a sample sheet with just
+<a name=116 class="linenum">116  </a>     * a set of rows/cells.
+<a name=117 class="linenum">117  </a>     *
+<a name=118 class="linenum">118  </a>     *
+<a name=119 class="linenum">119  </a>     * @param filename
+<a name=120 class="linenum">120  </a>     * @param write
+<a name=121 class="linenum">121  </a>     *
+<a name=122 class="linenum">122  </a>     * @exception IOException
+<a name=123 class="linenum">123  </a>     *
+<a name=124 class="linenum">124  </a>     */</span>
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>    public <a class="methodDef" name=HSSF.HSSF(String,boolean) href=HSSF_java_ref.html#HSSF.HSSF(String,boolean)>HSSF</a>(String filename, boolean write)
+<a name=127 class="linenum">127  </a>        throws IOException
+<a name=128 class="linenum">128  </a>    {
+<a name=129 class="linenum">129  </a>        short            rownum = 0;
+<a name=130 class="linenum">130  </a>        FileOutputStream out    = new FileOutputStream(<a class="varRef" title="String" href=HSSF_java.html#HSSF.HSSF.filename>filename</a>);
+<a name=131 class="linenum">131  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook>HSSFWorkbook</a>     wb     = new <a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.HSSFWorkbook()>HSSFWorkbook</a>();
+<a name=132 class="linenum">132  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet>HSSFSheet</a>        s      = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createSheet()>createSheet</a>();
+<a name=133 class="linenum">133  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow>HSSFRow</a>          r      = null;
+<a name=134 class="linenum">134  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>         c      = null;
+<a name=135 class="linenum">135  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle>HSSFCellStyle</a>    cs     = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createCellStyle()>createCellStyle</a>();
+<a name=136 class="linenum">136  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle>HSSFCellStyle</a>    cs2    = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createCellStyle()>createCellStyle</a>();
+<a name=137 class="linenum">137  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle>HSSFCellStyle</a>    cs3    = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createCellStyle()>createCellStyle</a>();
+<a name=138 class="linenum">138  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont>HSSFFont</a>         f      = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createFont()>createFont</a>();
+<a name=139 class="linenum">139  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont>HSSFFont</a>         f2     = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createFont()>createFont</a>();
+<a name=140 class="linenum">140  </a>
+<a name=141 class="linenum">141  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f>f</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setFontHeightInPoints(short)>setFontHeightInPoints</a>(( short ) 12);
+<a name=142 class="linenum">142  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f>f</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setColor(short)>setColor</a>(( short ) 0xA);
+<a name=143 class="linenum">143  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f>f</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setBoldweight(short)>setBoldweight</a>(<a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f>f</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.BOLDWEIGHT_BOLD>BOLDWEIGHT_BOLD</a>);
+<a name=144 class="linenum">144  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f2>f2</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setFontHeightInPoints(short)>setFontHeightInPoints</a>(( short ) 10);
+<a name=145 class="linenum">145  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f2>f2</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setColor(short)>setColor</a>(( short ) 0xf);
+<a name=146 class="linenum">146  </a>        <a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f2>f2</a>.<a class="methodRef" title="HSSFFont" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.setBoldweight(short)>setBoldweight</a>(<a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f2>f2</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFFont_java.html#HSSFFont.BOLDWEIGHT_BOLD>BOLDWEIGHT_BOLD</a>);
+<a name=147 class="linenum">147  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs>cs</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setFont(HSSFFont)>setFont</a>(<a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f>f</a>);
+<a name=148 class="linenum">148  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs>cs</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setDataFormat(short)>setDataFormat</a>(<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFDataFormat_java.html#HSSFDataFormat>HSSFDataFormat</a>.<a class="methodRef" title="HSSFDataFormat" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFDataFormat_java.html#HSSFDataFormat.getFormat(String)>getFormat</a>("($#,##0_);[Red]($#,##0)"));
+<a name=149 class="linenum">149  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setBorderBottom(short)>setBorderBottom</a>(<a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.BORDER_THIN>BORDER_THIN</a>);
+<a name=150 class="linenum">150  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setFillPattern(short)>setFillPattern</a>(( short ) 1);   <span class="comment">// fill w fg</span>
+<a name=151 class="linenum">151  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setFillForegroundColor(short)>setFillForegroundColor</a>(( short ) 0xA);
+<a name=152 class="linenum">152  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setFont(HSSFFont)>setFont</a>(<a class="varRef" title="HSSFFont" href=HSSF_java.html#HSSF.HSSF.f2>f2</a>);
+<a name=153 class="linenum">153  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.setSheetName(int,String)>setSheetName</a>(0, "HSSF Test");
+<a name=154 class="linenum">154  </a>        for (<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> = ( short ) 0; <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> &lt; 300; <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a>++)
+<a name=155 class="linenum">155  </a>        {
+<a name=156 class="linenum">156  </a>            <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a> = <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.createRow(short)>createRow</a>(<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a>);
+<a name=157 class="linenum">157  </a>            if ((<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> % 2) == 0)
+<a name=158 class="linenum">158  </a>            {
+<a name=159 class="linenum">159  </a>                <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.setHeight(short)>setHeight</a>(( short ) 0x249);
+<a name=160 class="linenum">160  </a>            }
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>            <span class="comment">// r.setRowNum(( short ) rownum);</span>
+<a name=163 class="linenum">163  </a>            for (short cellnum = ( short ) 0; <a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a> &lt; 50; <a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a> += 2)
+<a name=164 class="linenum">164  </a>            {
+<a name=165 class="linenum">165  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a> = <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.createCell(short,int)>createCell</a>(<a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a>, <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_NUMERIC>CELL_TYPE_NUMERIC</a>);
+<a name=166 class="linenum">166  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellValue(double)>setCellValue</a>(<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> * 10000 + <a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a>
+<a name=167 class="linenum">167  </a>                               + ((( double ) <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> / 1000)
+<a name=168 class="linenum">168  </a>                                  + (( double ) <a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a> / 10000)));
+<a name=169 class="linenum">169  </a>                if ((<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> % 2) == 0)
+<a name=170 class="linenum">170  </a>                {
+<a name=171 class="linenum">171  </a>                    <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellStyle(HSSFCellStyle)>setCellStyle</a>(<a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs>cs</a>);
+<a name=172 class="linenum">172  </a>                }
+<a name=173 class="linenum">173  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a> = <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.createCell(short,int)>createCell</a>(( short ) (<a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a> + 1),
+<a name=174 class="linenum">174  </a>                                 <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_STRING>CELL_TYPE_STRING</a>);
+<a name=175 class="linenum">175  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellValue(double)>setCellValue</a>("TEST");
+<a name=176 class="linenum">176  </a>                <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.setColumnWidth(short,short)>setColumnWidth</a>(( short ) (<a class="varRef" title="short" href=HSSF_java.html#~NO NAME~.cellnum>cellnum</a> + 1),
+<a name=177 class="linenum">177  </a>                                 ( short ) ((50 * 8) / (( double ) 1 / 20)));
+<a name=178 class="linenum">178  </a>                if ((<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a> % 2) == 0)
+<a name=179 class="linenum">179  </a>                {
+<a name=180 class="linenum">180  </a>                    <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellStyle(HSSFCellStyle)>setCellStyle</a>(<a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs2>cs2</a>);
+<a name=181 class="linenum">181  </a>                }
+<a name=182 class="linenum">182  </a>            }   <span class="comment">// 50 characters divided by 1/20th of a point</span>
+<a name=183 class="linenum">183  </a>        }
+<a name=184 class="linenum">184  </a>
+<a name=185 class="linenum">185  </a>        <span class="comment">// draw a thick black border on the row at the bottom using BLANKS</span>
+<a name=186 class="linenum">186  </a>        <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a>++;
+<a name=187 class="linenum">187  </a>        <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a>++;
+<a name=188 class="linenum">188  </a>        <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a> = <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.createRow(short)>createRow</a>(<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.rownum>rownum</a>);
+<a name=189 class="linenum">189  </a>        <a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs3>cs3</a>.<a class="methodRef" title="HSSFCellStyle" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.setBorderBottom(short)>setBorderBottom</a>(<a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs3>cs3</a>.<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCellStyle_java.html#HSSFCellStyle.BORDER_THICK>BORDER_THICK</a>);
+<a name=190 class="linenum">190  </a>        for (short cellnum = ( short ) 0; <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.cellnum>cellnum</a> &lt; 50; <a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.cellnum>cellnum</a>++)
+<a name=191 class="linenum">191  </a>        {
+<a name=192 class="linenum">192  </a>            <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a> = <a class="varRef" title="HSSFRow" href=HSSF_java.html#HSSF.HSSF.r>r</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.createCell(short,int)>createCell</a>(<a class="varRef" title="short" href=HSSF_java.html#HSSF.HSSF.cellnum>cellnum</a>, <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_BLANK>CELL_TYPE_BLANK</a>);
+<a name=193 class="linenum">193  </a>
+<a name=194 class="linenum">194  </a>            <span class="comment">// c.setCellValue(0);</span>
+<a name=195 class="linenum">195  </a>            <a class="varRef" title="HSSFCell" href=HSSF_java.html#HSSF.HSSF.c>c</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellStyle(HSSFCellStyle)>setCellStyle</a>(<a class="varRef" title="HSSFCellStyle" href=HSSF_java.html#HSSF.HSSF.cs3>cs3</a>);
+<a name=196 class="linenum">196  </a>        }
+<a name=197 class="linenum">197  </a>        <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.addMergedRegion(Region)>addMergedRegion</a>(new <a class="methodRef" title="Region" href=..\..\..\..\..\org\apache\poi\hssf\util\Region_java.html#Region.Region(int,short,int,short)>Region</a>(( short ) 0, ( short ) 0, ( short ) 3,
+<a name=198 class="linenum">198  </a>                                     ( short ) 3));
+<a name=199 class="linenum">199  </a>        <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.addMergedRegion(Region)>addMergedRegion</a>(new <a class="methodRef" title="Region" href=..\..\..\..\..\org\apache\poi\hssf\util\Region_java.html#Region.Region(int,short,int,short)>Region</a>(( short ) 100, ( short ) 100,
+<a name=200 class="linenum">200  </a>                                     ( short ) 110, ( short ) 110));
+<a name=201 class="linenum">201  </a>
+<a name=202 class="linenum">202  </a>        <span class="comment">// end draw thick black border</span>
+<a name=203 class="linenum">203  </a>        <span class="comment">// create a sheet, set its title then delete it</span>
+<a name=204 class="linenum">204  </a>        <a class="varRef" title="HSSFSheet" href=HSSF_java.html#HSSF.HSSF.s>s</a> = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.createSheet()>createSheet</a>();
+<a name=205 class="linenum">205  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.setSheetName(int,String)>setSheetName</a>(1, "DeletedSheet");
+<a name=206 class="linenum">206  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.removeSheetAt(int)>removeSheetAt</a>(1);
+<a name=207 class="linenum">207  </a>
+<a name=208 class="linenum">208  </a>        <span class="comment">// end deleted sheet</span>
+<a name=209 class="linenum">209  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.HSSF.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.write(OutputStream)>write</a>(<a class="varRef" title="FileOutputStream" href=HSSF_java.html#HSSF.HSSF.out>out</a>);
+<a name=210 class="linenum">210  </a>        <a class="varRef" title="FileOutputStream" href=HSSF_java.html#HSSF.HSSF.out>out</a>.close();
+<a name=211 class="linenum">211  </a>    }
+<a name=212 class="linenum">212  </a>
+<a name=213 class="linenum">213  </a>    <span class="comment">/**
+<a name=214 class="linenum">214  </a>     * Constructor HSSF - takes in file - attempts to read it then reconstruct it
+<a name=215 class="linenum">215  </a>     *
+<a name=216 class="linenum">216  </a>     *
+<a name=217 class="linenum">217  </a>     * @param infile
+<a name=218 class="linenum">218  </a>     * @param outfile
+<a name=219 class="linenum">219  </a>     * @param write
+<a name=220 class="linenum">220  </a>     *
+<a name=221 class="linenum">221  </a>     * @exception IOException
+<a name=222 class="linenum">222  </a>     *
+<a name=223 class="linenum">223  </a>     */</span>
+<a name=224 class="linenum">224  </a>
+<a name=225 class="linenum">225  </a>    public <a class="methodDef" name=HSSF.HSSF(String,String,boolean) href=HSSF_java_ref.html#HSSF.HSSF(String,String,boolean)>HSSF</a>(String infile, String outfile, boolean write)
+<a name=226 class="linenum">226  </a>        throws IOException
+<a name=227 class="linenum">227  </a>    {
+<a name=228 class="linenum">228  </a>        this.filename = <a class="varRef" title="String" href=HSSF_java.html#HSSF.filename>filename</a>;
+<a name=229 class="linenum">229  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem>POIFSFileSystem</a> fs =
+<a name=230 class="linenum">230  </a>            new <a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.POIFSFileSystem(InputStream)>POIFSFileSystem</a>(new FileInputStream(<a class="varRef" title="String" href=HSSF_java.html#HSSF.filename>filename</a>));
+<a name=231 class="linenum">231  </a>
+<a name=232 class="linenum">232  </a>        <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.hssfworkbook>hssfworkbook</a> = new <a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.HSSFWorkbook(POIFSFileSystem)>HSSFWorkbook</a>(<a class="varRef" title="POIFSFileSystem" href=HSSF_java.html#HSSF.HSSF.fs>fs</a>);
+<a name=233 class="linenum">233  </a>
+<a name=234 class="linenum">234  </a>        <span class="comment">// HSSFWorkbook book = hssfstream.getWorkbook();</span>
+<a name=235 class="linenum">235  </a>    }
+<a name=236 class="linenum">236  </a>
+<a name=237 class="linenum">237  </a>    <span class="comment">/**
+<a name=238 class="linenum">238  </a>     * Method main
+<a name=239 class="linenum">239  </a>     *
+<a name=240 class="linenum">240  </a>     * Given 1 argument takes that as the filename, inputs it and dumps the
+<a name=241 class="linenum">241  </a>     * cell values/types out to sys.out
+<a name=242 class="linenum">242  </a>     *
+<a name=243 class="linenum">243  </a>     * given 2 arguments where the second argument is the word "write" and the
+<a name=244 class="linenum">244  </a>     * first is the filename - writes out a sample (test) spreadsheet (see
+<a name=245 class="linenum">245  </a>     * public HSSF(String filename, boolean write)).
+<a name=246 class="linenum">246  </a>     *
+<a name=247 class="linenum">247  </a>     * given 2 arguments where the first is an input filename and the second
+<a name=248 class="linenum">248  </a>     * an output filename (not write), attempts to fully read in the
+<a name=249 class="linenum">249  </a>     * spreadsheet and fully write it out.
+<a name=250 class="linenum">250  </a>     *
+<a name=251 class="linenum">251  </a>     * given 3 arguments where the first is an input filename and the second an
+<a name=252 class="linenum">252  </a>     * output filename (not write) and the third is "modify1", attempts to read in the
+<a name=253 class="linenum">253  </a>     * spreadsheet, deletes rows 0-24, 74-99.  Changes cell at row 39, col 3 to
+<a name=254 class="linenum">254  </a>     * "MODIFIED CELL" then writes it out.  Hence this is "modify test 1".  If you
+<a name=255 class="linenum">255  </a>     * take the output from the write test, you'll have a valid scenario.
+<a name=256 class="linenum">256  </a>     *
+<a name=257 class="linenum">257  </a>     * @param args
+<a name=258 class="linenum">258  </a>     *
+<a name=259 class="linenum">259  </a>     */</span>
+<a name=260 class="linenum">260  </a>
+<a name=261 class="linenum">261  </a>    public static void <a class="methodDef" name=HSSF.main(String) href=HSSF_java_ref.html#HSSF.main(String)>main</a>(String [] args)
+<a name=262 class="linenum">262  </a>    {
+<a name=263 class="linenum">263  </a>        if (<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>.length &lt; 2)
+<a name=264 class="linenum">264  </a>        {
+<a name=265 class="linenum">265  </a>
+<a name=266 class="linenum">266  </a><span class="comment">/*            try
+<a name=267 class="linenum">267  </a>            {
+<a name=268 class="linenum">268  </a>                HSSF hssf = new HSSF(args[ 0 ]);
+<a name=269 class="linenum">269  </a>
+<a name=270 class="linenum">270  </a>                System.out.println("Data dump:\n");
+<a name=271 class="linenum">271  </a>                HSSFWorkbook wb = hssf.hssfworkbook;
+<a name=272 class="linenum">272  </a>
+<a name=273 class="linenum">273  </a>                for (int k = 0; k &lt; wb.getNumberOfSheets(); k++)
+<a name=274 class="linenum">274  </a>                {
+<a name=275 class="linenum">275  </a>                    System.out.println("Sheet " + k);
+<a name=276 class="linenum">276  </a>                    HSSFSheet sheet = wb.getSheetAt(k);
+<a name=277 class="linenum">277  </a>                    int       rows  = sheet.getPhysicalNumberOfRows();
+<a name=278 class="linenum">278  </a>
+<a name=279 class="linenum">279  </a>                    for (int r = 0; r &lt; rows; r++)
+<a name=280 class="linenum">280  </a>                    {
+<a name=281 class="linenum">281  </a>                        HSSFRow row   = sheet.getPhysicalRowAt(r);
+<a name=282 class="linenum">282  </a>                        int     cells = row.getPhysicalNumberOfCells();
+<a name=283 class="linenum">283  </a>
+<a name=284 class="linenum">284  </a>                        System.out.println("ROW " + row.getRowNum());
+<a name=285 class="linenum">285  </a>                        for (int c = 0; c &lt; cells; c++)
+<a name=286 class="linenum">286  </a>                        {
+<a name=287 class="linenum">287  </a>                            HSSFCell cell  = row.getPhysicalCellAt(c);
+<a name=288 class="linenum">288  </a>                            String   value = null;
+<a name=289 class="linenum">289  </a>
+<a name=290 class="linenum">290  </a>                            switch (cell.getCellType())
+<a name=291 class="linenum">291  </a>                            {
+<a name=292 class="linenum">292  </a>
+<a name=293 class="linenum">293  </a>                                case HSSFCell.CELL_TYPE_FORMULA :
+<a name=294 class="linenum">294  </a>                                    value = "FORMULA ";
+<a name=295 class="linenum">295  </a>                                    break;
+<a name=296 class="linenum">296  </a>
+<a name=297 class="linenum">297  </a>                                case HSSFCell.CELL_TYPE_NUMERIC :
+<a name=298 class="linenum">298  </a>                                    value = "NUMERIC value="
+<a name=299 class="linenum">299  </a>                                            + cell.getNumericCellValue();
+<a name=300 class="linenum">300  </a>                                    break;
+<a name=301 class="linenum">301  </a>
+<a name=302 class="linenum">302  </a>                                case HSSFCell.CELL_TYPE_STRING :
+<a name=303 class="linenum">303  </a>                                    value = "STRING value="
+<a name=304 class="linenum">304  </a>                                            + cell.getStringCellValue();
+<a name=305 class="linenum">305  </a>                                    break;
+<a name=306 class="linenum">306  </a>
+<a name=307 class="linenum">307  </a>                                default :
+<a name=308 class="linenum">308  </a>                            }
+<a name=309 class="linenum">309  </a>                            System.out.println("CELL col="
+<a name=310 class="linenum">310  </a>                                               + cell.getCellNum()
+<a name=311 class="linenum">311  </a>                                               + " VALUE=" + value);
+<a name=312 class="linenum">312  </a>                        }
+<a name=313 class="linenum">313  </a>                    }
+<a name=314 class="linenum">314  </a>                }
+<a name=315 class="linenum">315  </a>            }
+<a name=316 class="linenum">316  </a>            catch (Exception e)
+<a name=317 class="linenum">317  </a>            {
+<a name=318 class="linenum">318  </a>                e.printStackTrace();
+<a name=319 class="linenum">319  </a>            }*/</span>
+<a name=320 class="linenum">320  </a>        }
+<a name=321 class="linenum">321  </a>        else if (<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>.length == 2)
+<a name=322 class="linenum">322  </a>        {
+<a name=323 class="linenum">323  </a>            if (<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 1 ].toLowerCase().equals("write"))
+<a name=324 class="linenum">324  </a>            {
+<a name=325 class="linenum">325  </a>                System.out.println("Write mode");
+<a name=326 class="linenum">326  </a>                try
+<a name=327 class="linenum">327  </a>                {
+<a name=328 class="linenum">328  </a>                    long time = System.currentTimeMillis();
+<a name=329 class="linenum">329  </a>                    <a class="classRef" href=HSSF_java.html#HSSF>HSSF</a> hssf = new <a class="methodRef" title="HSSF" href=HSSF_java.html#HSSF.HSSF(String,boolean)>HSSF</a>(<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 0 ], true);
+<a name=330 class="linenum">330  </a>
+<a name=331 class="linenum">331  </a>                    System.out
+<a name=332 class="linenum">332  </a>                        .println("" + (System.currentTimeMillis() - <a class="varRef" title="long" href=HSSF_java.html#~NO NAME~.time>time</a>)
+<a name=333 class="linenum">333  </a>                                 + " ms generation time");
+<a name=334 class="linenum">334  </a>                }
+<a name=335 class="linenum">335  </a>                catch (Exception e)
+<a name=336 class="linenum">336  </a>                {
+<a name=337 class="linenum">337  </a>                    <a class="varRef" title="Exception" href=HSSF_java.html#~NO NAME~.e>e</a>.printStackTrace();
+<a name=338 class="linenum">338  </a>                }
+<a name=339 class="linenum">339  </a>            }
+<a name=340 class="linenum">340  </a>            else
+<a name=341 class="linenum">341  </a>            {
+<a name=342 class="linenum">342  </a>                System.out.println("readwrite test");
+<a name=343 class="linenum">343  </a>                try
+<a name=344 class="linenum">344  </a>                {
+<a name=345 class="linenum">345  </a>                    <a class="classRef" href=HSSF_java.html#HSSF>HSSF</a>             hssf   = new <a class="methodRef" title="HSSF" href=HSSF_java.html#HSSF.HSSF(String)>HSSF</a>(<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 0 ]);
+<a name=346 class="linenum">346  </a>
+<a name=347 class="linenum">347  </a>                    <span class="comment">// HSSFStream       hssfstream = hssf.hssfstream;</span>
+<a name=348 class="linenum">348  </a>                    <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook>HSSFWorkbook</a>     wb     = <a class="varRef" title="HSSF" href=HSSF_java.html#~NO NAME~.hssf>hssf</a>.<a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.hssfworkbook>hssfworkbook</a>;
+<a name=349 class="linenum">349  </a>                    FileOutputStream stream = new FileOutputStream(<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 1 ]);
+<a name=350 class="linenum">350  </a>
+<a name=351 class="linenum">351  </a>                    <span class="comment">// HSSFCell cell = new HSSFCell();</span>
+<a name=352 class="linenum">352  </a>                    <span class="comment">// cell.setCellNum((short)3);</span>
+<a name=353 class="linenum">353  </a>                    <span class="comment">// cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);</span>
+<a name=354 class="linenum">354  </a>                    <span class="comment">// cell.setCellValue(-8009.999);</span>
+<a name=355 class="linenum">355  </a>                    <span class="comment">// hssfstream.modifyCell(cell,0,(short)6);</span>
+<a name=356 class="linenum">356  </a>                    <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#~NO NAME~.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.write(OutputStream)>write</a>(<a class="varRef" title="FileOutputStream" href=HSSF_java.html#~NO NAME~.stream>stream</a>);
+<a name=357 class="linenum">357  </a>                    <a class="varRef" title="FileOutputStream" href=HSSF_java.html#~NO NAME~.stream>stream</a>.close();
+<a name=358 class="linenum">358  </a>                }
+<a name=359 class="linenum">359  </a>                catch (Exception e)
+<a name=360 class="linenum">360  </a>                {
+<a name=361 class="linenum">361  </a>                    <a class="varRef" title="Exception" href=HSSF_java.html#~NO NAME~.e>e</a>.printStackTrace();
+<a name=362 class="linenum">362  </a>                }
+<a name=363 class="linenum">363  </a>            }
+<a name=364 class="linenum">364  </a>        }
+<a name=365 class="linenum">365  </a>        else if ((<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>.length == 3)
+<a name=366 class="linenum">366  </a>                 && <a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 2 ].toLowerCase().equals("modify1"))
+<a name=367 class="linenum">367  </a>        {
+<a name=368 class="linenum">368  </a>            try   <span class="comment">// delete row 0-24, row 74 - 99 && change cell 3 on row 39 to string "MODIFIED CELL!!"</span>
+<a name=369 class="linenum">369  </a>            {
+<a name=370 class="linenum">370  </a>                <a class="classRef" href=HSSF_java.html#HSSF>HSSF</a>             hssf   = new <a class="methodRef" title="HSSF" href=HSSF_java.html#HSSF.HSSF(String)>HSSF</a>(<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 0 ]);
+<a name=371 class="linenum">371  </a>
+<a name=372 class="linenum">372  </a>                <span class="comment">// HSSFStream       hssfstream = hssf.hssfstream;</span>
+<a name=373 class="linenum">373  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook>HSSFWorkbook</a>     wb     = <a class="varRef" title="HSSF" href=HSSF_java.html#~NO NAME~.hssf>hssf</a>.<a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#HSSF.hssfworkbook>hssfworkbook</a>;
+<a name=374 class="linenum">374  </a>                FileOutputStream stream = new FileOutputStream(<a class="varRef" title="String" href=HSSF_java.html#HSSF.main.args>args</a>[ 1 ]);
+<a name=375 class="linenum">375  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet>HSSFSheet</a>        sheet  = <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#~NO NAME~.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.getSheetAt(int)>getSheetAt</a>(0);
+<a name=376 class="linenum">376  </a>
+<a name=377 class="linenum">377  </a>                for (int k = 0; <a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a> &lt; 25; <a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a>++)
+<a name=378 class="linenum">378  </a>                {
+<a name=379 class="linenum">379  </a>                    <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow>HSSFRow</a> row = <a class="varRef" title="HSSFSheet" href=HSSF_java.html#~NO NAME~.sheet>sheet</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.getRow(int)>getRow</a>(<a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a>);
+<a name=380 class="linenum">380  </a>
+<a name=381 class="linenum">381  </a>                    <a class="varRef" title="HSSFSheet" href=HSSF_java.html#~NO NAME~.sheet>sheet</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.removeRow(HSSFRow)>removeRow</a>(<a class="varRef" title="HSSFRow" href=HSSF_java.html#~NO NAME~.row>row</a>);
+<a name=382 class="linenum">382  </a>                }
+<a name=383 class="linenum">383  </a>                for (int k = 74; <a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a> &lt; 100; <a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a>++)
+<a name=384 class="linenum">384  </a>                {
+<a name=385 class="linenum">385  </a>                    <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow>HSSFRow</a> row = <a class="varRef" title="HSSFSheet" href=HSSF_java.html#~NO NAME~.sheet>sheet</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.getRow(int)>getRow</a>(<a class="varRef" title="int" href=HSSF_java.html#~NO NAME~.k>k</a>);
+<a name=386 class="linenum">386  </a>
+<a name=387 class="linenum">387  </a>                    <a class="varRef" title="HSSFSheet" href=HSSF_java.html#~NO NAME~.sheet>sheet</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.removeRow(HSSFRow)>removeRow</a>(<a class="varRef" title="HSSFRow" href=HSSF_java.html#~NO NAME~.row>row</a>);
+<a name=388 class="linenum">388  </a>                }
+<a name=389 class="linenum">389  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow>HSSFRow</a>  row  = <a class="varRef" title="HSSFSheet" href=HSSF_java.html#~NO NAME~.sheet>sheet</a>.<a class="methodRef" title="HSSFSheet" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFSheet_java.html#HSSFSheet.getRow(int)>getRow</a>(39);
+<a name=390 class="linenum">390  </a>                <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a> cell = <a class="varRef" title="HSSFRow" href=HSSF_java.html#~NO NAME~.row>row</a>.<a class="methodRef" title="HSSFRow" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFRow_java.html#HSSFRow.getCell(short)>getCell</a>(( short ) 3);
+<a name=391 class="linenum">391  </a>
+<a name=392 class="linenum">392  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#~NO NAME~.cell>cell</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellType(int)>setCellType</a>(<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell>HSSFCell</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.CELL_TYPE_STRING>CELL_TYPE_STRING</a>);
+<a name=393 class="linenum">393  </a>                <a class="varRef" title="HSSFCell" href=HSSF_java.html#~NO NAME~.cell>cell</a>.<a class="methodRef" title="HSSFCell" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFCell_java.html#HSSFCell.setCellValue(double)>setCellValue</a>("MODIFIED CELL!!!!!");
+<a name=394 class="linenum">394  </a>
+<a name=395 class="linenum">395  </a>                <span class="comment">// HSSFCell cell = new HSSFCell();</span>
+<a name=396 class="linenum">396  </a>                <span class="comment">// cell.setCellNum((short)3);</span>
+<a name=397 class="linenum">397  </a>                <span class="comment">// cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);</span>
+<a name=398 class="linenum">398  </a>                <span class="comment">// cell.setCellValue(-8009.999);</span>
+<a name=399 class="linenum">399  </a>                <span class="comment">// hssfstream.modifyCell(cell,0,(short)6);</span>
+<a name=400 class="linenum">400  </a>                <a class="varRef" title="HSSFWorkbook" href=HSSF_java.html#~NO NAME~.wb>wb</a>.<a class="methodRef" title="HSSFWorkbook" href=..\..\..\..\..\org\apache\poi\hssf\usermodel\HSSFWorkbook_java.html#HSSFWorkbook.write(OutputStream)>write</a>(<a class="varRef" title="FileOutputStream" href=HSSF_java.html#~NO NAME~.stream>stream</a>);
+<a name=401 class="linenum">401  </a>                <a class="varRef" title="FileOutputStream" href=HSSF_java.html#~NO NAME~.stream>stream</a>.close();
+<a name=402 class="linenum">402  </a>            }
+<a name=403 class="linenum">403  </a>            catch (Exception e)
+<a name=404 class="linenum">404  </a>            {
+<a name=405 class="linenum">405  </a>                <a class="varRef" title="Exception" href=HSSF_java.html#~NO NAME~.e>e</a>.printStackTrace();
+<a name=406 class="linenum">406  </a>            }
+<a name=407 class="linenum">407  </a>        }
+<a name=408 class="linenum">408  </a>    }
+<a name=409 class="linenum">409  </a>}
+<a name=410 class="linenum">410  </a></pre>

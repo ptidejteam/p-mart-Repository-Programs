@@ -1,0 +1,502 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: ValueRangeRecord');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: ValueRangeRecord';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>
+<a name=57 class="linenum">57   </a>package org.apache.poi.hssf.record;
+<a name=58 class="linenum">58   </a>
+<a name=59 class="linenum">59   </a>
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a>import org.apache.poi.util.BitField;
+<a name=62 class="linenum">62   </a>import org.apache.poi.util.LittleEndian;
+<a name=63 class="linenum">63   </a>import org.apache.poi.util.StringUtil;
+<a name=64 class="linenum">64   </a>import org.apache.poi.util.HexDump;
+<a name=65 class="linenum">65   </a>
+<a name=66 class="linenum">66   </a><span class="comment">/**
+<a name=67 class="linenum">67   </a> * The value range record defines the range of the value axis.
+<a name=68 class="linenum">68   </a> * NOTE: This source is automatically generated please do not modify this file.  Either subclass or
+<a name=69 class="linenum">69   </a> *       remove the record in src/records/definitions.
+<a name=70 class="linenum">70   </a>
+<a name=71 class="linenum">71   </a> * @author Glen Stampoultzis (glens at apache.org)
+<a name=72 class="linenum">72   </a> */</span>
+<a name=73 class="linenum">73   </a>public class <a class="classDef" name=ValueRangeRecord href=ValueRangeRecord_java_ref.html#ValueRangeRecord>ValueRangeRecord</a>
+<a name=74 class="linenum">74   </a>    extends <a class="classRef" href=Record_java.html#Record>Record</a>
+<a name=75 class="linenum">75   </a>{
+<a name=76 class="linenum">76   </a>    public final static short      <a class="varDef" name=ValueRangeRecord.sid href=ValueRangeRecord_java_ref.html#ValueRangeRecord.sid>sid</a>                             = 0x101f;
+<a name=77 class="linenum">77   </a>    private  double     <a class="varDef" name=ValueRangeRecord.field_1_minimumAxisValue href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_1_minimumAxisValue>field_1_minimumAxisValue</a>;
+<a name=78 class="linenum">78   </a>    private  double     <a class="varDef" name=ValueRangeRecord.field_2_maximumAxisValue href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_2_maximumAxisValue>field_2_maximumAxisValue</a>;
+<a name=79 class="linenum">79   </a>    private  double     <a class="varDef" name=ValueRangeRecord.field_3_majorIncrement href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_3_majorIncrement>field_3_majorIncrement</a>;
+<a name=80 class="linenum">80   </a>    private  double     <a class="varDef" name=ValueRangeRecord.field_4_minorIncrement href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_4_minorIncrement>field_4_minorIncrement</a>;
+<a name=81 class="linenum">81   </a>    private  double     <a class="varDef" name=ValueRangeRecord.field_5_categoryAxisCross href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_5_categoryAxisCross>field_5_categoryAxisCross</a>;
+<a name=82 class="linenum">82   </a>    private  short      <a class="varDef" name=ValueRangeRecord.field_6_options href=ValueRangeRecord_java_ref.html#ValueRangeRecord.field_6_options>field_6_options</a>;
+<a name=83 class="linenum">83   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.automaticMinimum href=ValueRangeRecord_java_ref.html#ValueRangeRecord.automaticMinimum>automaticMinimum</a>                           = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x1);
+<a name=84 class="linenum">84   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.automaticMaximum href=ValueRangeRecord_java_ref.html#ValueRangeRecord.automaticMaximum>automaticMaximum</a>                           = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x2);
+<a name=85 class="linenum">85   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.automaticMajor href=ValueRangeRecord_java_ref.html#ValueRangeRecord.automaticMajor>automaticMajor</a>                             = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x4);
+<a name=86 class="linenum">86   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.automaticMinor href=ValueRangeRecord_java_ref.html#ValueRangeRecord.automaticMinor>automaticMinor</a>                             = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x8);
+<a name=87 class="linenum">87   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.automaticCategoryCrossing href=ValueRangeRecord_java_ref.html#ValueRangeRecord.automaticCategoryCrossing>automaticCategoryCrossing</a>                  = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x10);
+<a name=88 class="linenum">88   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.logarithmicScale href=ValueRangeRecord_java_ref.html#ValueRangeRecord.logarithmicScale>logarithmicScale</a>                           = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x20);
+<a name=89 class="linenum">89   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.valuesInReverse href=ValueRangeRecord_java_ref.html#ValueRangeRecord.valuesInReverse>valuesInReverse</a>                            = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x40);
+<a name=90 class="linenum">90   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.crossCategoryAxisAtMaximum href=ValueRangeRecord_java_ref.html#ValueRangeRecord.crossCategoryAxisAtMaximum>crossCategoryAxisAtMaximum</a>                 = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x80);
+<a name=91 class="linenum">91   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>   <a class="varDef" name=ValueRangeRecord.reserved href=ValueRangeRecord_java_ref.html#ValueRangeRecord.reserved>reserved</a>                                   = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x100);
+<a name=92 class="linenum">92   </a>
+<a name=93 class="linenum">93   </a>
+<a name=94 class="linenum">94   </a>    public <a class="methodDef" name=ValueRangeRecord.ValueRangeRecord() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.ValueRangeRecord()>ValueRangeRecord</a>()
+<a name=95 class="linenum">95   </a>    {
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>    }
+<a name=98 class="linenum">98   </a>
+<a name=99 class="linenum">99   </a>    <span class="comment">/**
+<a name=100 class="linenum">100  </a>     * Constructs a ValueRange record and sets its fields appropriately.
+<a name=101 class="linenum">101  </a>     *
+<a name=102 class="linenum">102  </a>     * @param id    id must be 0x101f or an exception
+<a name=103 class="linenum">103  </a>     *              will be throw upon validation
+<a name=104 class="linenum">104  </a>     * @param size  size the size of the data area of the record
+<a name=105 class="linenum">105  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=106 class="linenum">106  </a>     */</span>
+<a name=107 class="linenum">107  </a>
+<a name=108 class="linenum">108  </a>    public <a class="methodDef" name=ValueRangeRecord.ValueRangeRecord(short,short,byte) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.ValueRangeRecord(short,short,byte)>ValueRangeRecord</a>(short id, short size, byte [] data)
+<a name=109 class="linenum">109  </a>    {
+<a name=110 class="linenum">110  </a>        super(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.id>id</a>, <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.size>size</a>, <a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.data>data</a>);
+<a name=111 class="linenum">111  </a>    }
+<a name=112 class="linenum">112  </a>
+<a name=113 class="linenum">113  </a>    <span class="comment">/**
+<a name=114 class="linenum">114  </a>     * Constructs a ValueRange record and sets its fields appropriately.
+<a name=115 class="linenum">115  </a>     *
+<a name=116 class="linenum">116  </a>     * @param id    id must be 0x101f or an exception
+<a name=117 class="linenum">117  </a>     *              will be throw upon validation
+<a name=118 class="linenum">118  </a>     * @param size  size the size of the data area of the record
+<a name=119 class="linenum">119  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=120 class="linenum">120  </a>     * @param offset of the record's data
+<a name=121 class="linenum">121  </a>     */</span>
+<a name=122 class="linenum">122  </a>
+<a name=123 class="linenum">123  </a>    public <a class="methodDef" name=ValueRangeRecord.ValueRangeRecord(short,short,byte,int) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.ValueRangeRecord(short,short,byte,int)>ValueRangeRecord</a>(short id, short size, byte [] data, int offset)
+<a name=124 class="linenum">124  </a>    {
+<a name=125 class="linenum">125  </a>        super(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.id>id</a>, <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.size>size</a>, <a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.data>data</a>, <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.ValueRangeRecord.offset>offset</a>);
+<a name=126 class="linenum">126  </a>    }
+<a name=127 class="linenum">127  </a>
+<a name=128 class="linenum">128  </a>    <span class="comment">/**
+<a name=129 class="linenum">129  </a>     * Checks the sid matches the expected side for this record
+<a name=130 class="linenum">130  </a>     *
+<a name=131 class="linenum">131  </a>     * @param id   the expected sid.
+<a name=132 class="linenum">132  </a>     */</span>
+<a name=133 class="linenum">133  </a>    protected void <a class="methodDef" name=ValueRangeRecord.validateSid(short) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.validateSid(short)>validateSid</a>(short id)
+<a name=134 class="linenum">134  </a>    {
+<a name=135 class="linenum">135  </a>        if (<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.validateSid.id>id</a> != <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.sid>sid</a>)
+<a name=136 class="linenum">136  </a>        {
+<a name=137 class="linenum">137  </a>            throw new RecordFormatException("Not a ValueRange record");
+<a name=138 class="linenum">138  </a>        }
+<a name=139 class="linenum">139  </a>    }
+<a name=140 class="linenum">140  </a>
+<a name=141 class="linenum">141  </a>    protected void <a class="methodDef" name=ValueRangeRecord.fillFields(byte,short,int) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.fillFields(byte,short,int)>fillFields</a>(byte [] data, short size, int offset)
+<a name=142 class="linenum">142  </a>    {
+<a name=143 class="linenum">143  </a>        <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_1_minimumAxisValue>field_1_minimumAxisValue</a>        = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x0 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=144 class="linenum">144  </a>        <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_2_maximumAxisValue>field_2_maximumAxisValue</a>        = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x8 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=145 class="linenum">145  </a>        <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_3_majorIncrement>field_3_majorIncrement</a>          = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x10 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=146 class="linenum">146  </a>        <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_4_minorIncrement>field_4_minorIncrement</a>          = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x18 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=147 class="linenum">147  </a>        <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_5_categoryAxisCross>field_5_categoryAxisCross</a>       = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x20 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=148 class="linenum">148  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>                 = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.data>data</a>, 0x28 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.fillFields.offset>offset</a>);
+<a name=149 class="linenum">149  </a>
+<a name=150 class="linenum">150  </a>    }
+<a name=151 class="linenum">151  </a>
+<a name=152 class="linenum">152  </a>    public String <a class="methodDef" name=ValueRangeRecord.toString() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.toString()>toString</a>()
+<a name=153 class="linenum">153  </a>    {
+<a name=154 class="linenum">154  </a>        StringBuffer buffer = new StringBuffer();
+<a name=155 class="linenum">155  </a>
+<a name=156 class="linenum">156  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("[ValueRange]\n");
+<a name=157 class="linenum">157  </a>
+<a name=158 class="linenum">158  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .minimumAxisValue     = ")
+<a name=159 class="linenum">159  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getMinimumAxisValue()>getMinimumAxisValue</a>()).append(" )\n");
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .maximumAxisValue     = ")
+<a name=162 class="linenum">162  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getMaximumAxisValue()>getMaximumAxisValue</a>()).append(" )\n");
+<a name=163 class="linenum">163  </a>
+<a name=164 class="linenum">164  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .majorIncrement       = ")
+<a name=165 class="linenum">165  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getMajorIncrement()>getMajorIncrement</a>()).append(" )\n");
+<a name=166 class="linenum">166  </a>
+<a name=167 class="linenum">167  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .minorIncrement       = ")
+<a name=168 class="linenum">168  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getMinorIncrement()>getMinorIncrement</a>()).append(" )\n");
+<a name=169 class="linenum">169  </a>
+<a name=170 class="linenum">170  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .categoryAxisCross    = ")
+<a name=171 class="linenum">171  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getCategoryAxisCross()>getCategoryAxisCross</a>()).append(" )\n");
+<a name=172 class="linenum">172  </a>
+<a name=173 class="linenum">173  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("    .options              = ")
+<a name=174 class="linenum">174  </a>            .append("0x")
+<a name=175 class="linenum">175  </a>            .append(<a class="classRef" href=..\..\..\..\..\org\apache\poi\util\HexDump_java.html#HexDump>HexDump</a>.<a class="methodRef" title="HexDump" href=..\..\..\..\..\org\apache\poi\util\HexDump_java.html#HexDump.toHex(byte)>toHex</a>((short)<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getOptions()>getOptions</a>()))
+<a name=176 class="linenum">176  </a>            .append(" (").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getOptions()>getOptions</a>()).append(" )\n");
+<a name=177 class="linenum">177  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .automaticMinimum         = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isAutomaticMinimum()>isAutomaticMinimum</a>    ()).append('\n');
+<a name=178 class="linenum">178  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .automaticMaximum         = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isAutomaticMaximum()>isAutomaticMaximum</a>    ()).append('\n');
+<a name=179 class="linenum">179  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .automaticMajor           = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isAutomaticMajor()>isAutomaticMajor</a>      ()).append('\n');
+<a name=180 class="linenum">180  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .automaticMinor           = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isAutomaticMinor()>isAutomaticMinor</a>      ()).append('\n');
+<a name=181 class="linenum">181  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .automaticCategoryCrossing     = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isAutomaticCategoryCrossing()>isAutomaticCategoryCrossing</a>()).append('\n');
+<a name=182 class="linenum">182  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .logarithmicScale         = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isLogarithmicScale()>isLogarithmicScale</a>    ()).append('\n');
+<a name=183 class="linenum">183  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .valuesInReverse          = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isValuesInReverse()>isValuesInReverse</a>     ()).append('\n');
+<a name=184 class="linenum">184  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .crossCategoryAxisAtMaximum     = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isCrossCategoryAxisAtMaximum()>isCrossCategoryAxisAtMaximum</a>()).append('\n');
+<a name=185 class="linenum">185  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("         .reserved                 = ").append(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.isReserved()>isReserved</a>            ()).append('\n');
+<a name=186 class="linenum">186  </a>
+<a name=187 class="linenum">187  </a>        <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.append("[/ValueRange]\n");
+<a name=188 class="linenum">188  </a>        return <a class="varRef" title="StringBuffer" href=ValueRangeRecord_java.html#ValueRangeRecord.toString.buffer>buffer</a>.toString();
+<a name=189 class="linenum">189  </a>    }
+<a name=190 class="linenum">190  </a>
+<a name=191 class="linenum">191  </a>    public int <a class="methodDef" name=ValueRangeRecord.serialize(int,byte) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.serialize(int,byte)>serialize</a>(int offset, byte[] data)
+<a name=192 class="linenum">192  </a>    {
+<a name=193 class="linenum">193  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 0 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.sid>sid</a>);
+<a name=194 class="linenum">194  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 2 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, (short)(<a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getRecordSize()>getRecordSize</a>() - 4));
+<a name=195 class="linenum">195  </a>
+<a name=196 class="linenum">196  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 4 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_1_minimumAxisValue>field_1_minimumAxisValue</a>);
+<a name=197 class="linenum">197  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 12 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_2_maximumAxisValue>field_2_maximumAxisValue</a>);
+<a name=198 class="linenum">198  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 20 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_3_majorIncrement>field_3_majorIncrement</a>);
+<a name=199 class="linenum">199  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 28 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_4_minorIncrement>field_4_minorIncrement</a>);
+<a name=200 class="linenum">200  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 36 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_5_categoryAxisCross>field_5_categoryAxisCross</a>);
+<a name=201 class="linenum">201  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.data>data</a>, 44 + <a class="varRef" title="int" href=ValueRangeRecord_java.html#ValueRangeRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=202 class="linenum">202  </a>
+<a name=203 class="linenum">203  </a>        return <a class="methodRef" title="ValueRangeRecord" href=ValueRangeRecord_java.html#ValueRangeRecord.getRecordSize()>getRecordSize</a>();
+<a name=204 class="linenum">204  </a>    }
+<a name=205 class="linenum">205  </a>
+<a name=206 class="linenum">206  </a>    <span class="comment">/**
+<a name=207 class="linenum">207  </a>     * Size of record (exluding 4 byte header)
+<a name=208 class="linenum">208  </a>     */</span>
+<a name=209 class="linenum">209  </a>    public int <a class="methodDef" name=ValueRangeRecord.getRecordSize() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getRecordSize()>getRecordSize</a>()
+<a name=210 class="linenum">210  </a>    {
+<a name=211 class="linenum">211  </a>        return 4 + 8 + 8 + 8 + 8 + 8 + 2;
+<a name=212 class="linenum">212  </a>    }
+<a name=213 class="linenum">213  </a>
+<a name=214 class="linenum">214  </a>    public short <a class="methodDef" name=ValueRangeRecord.getSid() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getSid()>getSid</a>()
+<a name=215 class="linenum">215  </a>    {
+<a name=216 class="linenum">216  </a>        return this.sid;
+<a name=217 class="linenum">217  </a>    }
+<a name=218 class="linenum">218  </a>
+<a name=219 class="linenum">219  </a>
+<a name=220 class="linenum">220  </a>    <span class="comment">/**
+<a name=221 class="linenum">221  </a>     * Get the minimum axis value field for the ValueRange record.
+<a name=222 class="linenum">222  </a>     */</span>
+<a name=223 class="linenum">223  </a>    public double <a class="methodDef" name=ValueRangeRecord.getMinimumAxisValue() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getMinimumAxisValue()>getMinimumAxisValue</a>()
+<a name=224 class="linenum">224  </a>    {
+<a name=225 class="linenum">225  </a>        return <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_1_minimumAxisValue>field_1_minimumAxisValue</a>;
+<a name=226 class="linenum">226  </a>    }
+<a name=227 class="linenum">227  </a>
+<a name=228 class="linenum">228  </a>    <span class="comment">/**
+<a name=229 class="linenum">229  </a>     * Set the minimum axis value field for the ValueRange record.
+<a name=230 class="linenum">230  </a>     */</span>
+<a name=231 class="linenum">231  </a>    public void <a class="methodDef" name=ValueRangeRecord.setMinimumAxisValue(double) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setMinimumAxisValue(double)>setMinimumAxisValue</a>(double field_1_minimumAxisValue)
+<a name=232 class="linenum">232  </a>    {
+<a name=233 class="linenum">233  </a>        this.field_1_minimumAxisValue = <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.setMinimumAxisValue.field_1_minimumAxisValue>field_1_minimumAxisValue</a>;
+<a name=234 class="linenum">234  </a>    }
+<a name=235 class="linenum">235  </a>
+<a name=236 class="linenum">236  </a>    <span class="comment">/**
+<a name=237 class="linenum">237  </a>     * Get the maximum axis value field for the ValueRange record.
+<a name=238 class="linenum">238  </a>     */</span>
+<a name=239 class="linenum">239  </a>    public double <a class="methodDef" name=ValueRangeRecord.getMaximumAxisValue() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getMaximumAxisValue()>getMaximumAxisValue</a>()
+<a name=240 class="linenum">240  </a>    {
+<a name=241 class="linenum">241  </a>        return <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_2_maximumAxisValue>field_2_maximumAxisValue</a>;
+<a name=242 class="linenum">242  </a>    }
+<a name=243 class="linenum">243  </a>
+<a name=244 class="linenum">244  </a>    <span class="comment">/**
+<a name=245 class="linenum">245  </a>     * Set the maximum axis value field for the ValueRange record.
+<a name=246 class="linenum">246  </a>     */</span>
+<a name=247 class="linenum">247  </a>    public void <a class="methodDef" name=ValueRangeRecord.setMaximumAxisValue(double) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setMaximumAxisValue(double)>setMaximumAxisValue</a>(double field_2_maximumAxisValue)
+<a name=248 class="linenum">248  </a>    {
+<a name=249 class="linenum">249  </a>        this.field_2_maximumAxisValue = <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.setMaximumAxisValue.field_2_maximumAxisValue>field_2_maximumAxisValue</a>;
+<a name=250 class="linenum">250  </a>    }
+<a name=251 class="linenum">251  </a>
+<a name=252 class="linenum">252  </a>    <span class="comment">/**
+<a name=253 class="linenum">253  </a>     * Get the major increment field for the ValueRange record.
+<a name=254 class="linenum">254  </a>     */</span>
+<a name=255 class="linenum">255  </a>    public double <a class="methodDef" name=ValueRangeRecord.getMajorIncrement() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getMajorIncrement()>getMajorIncrement</a>()
+<a name=256 class="linenum">256  </a>    {
+<a name=257 class="linenum">257  </a>        return <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_3_majorIncrement>field_3_majorIncrement</a>;
+<a name=258 class="linenum">258  </a>    }
+<a name=259 class="linenum">259  </a>
+<a name=260 class="linenum">260  </a>    <span class="comment">/**
+<a name=261 class="linenum">261  </a>     * Set the major increment field for the ValueRange record.
+<a name=262 class="linenum">262  </a>     */</span>
+<a name=263 class="linenum">263  </a>    public void <a class="methodDef" name=ValueRangeRecord.setMajorIncrement(double) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setMajorIncrement(double)>setMajorIncrement</a>(double field_3_majorIncrement)
+<a name=264 class="linenum">264  </a>    {
+<a name=265 class="linenum">265  </a>        this.field_3_majorIncrement = <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.setMajorIncrement.field_3_majorIncrement>field_3_majorIncrement</a>;
+<a name=266 class="linenum">266  </a>    }
+<a name=267 class="linenum">267  </a>
+<a name=268 class="linenum">268  </a>    <span class="comment">/**
+<a name=269 class="linenum">269  </a>     * Get the minor increment field for the ValueRange record.
+<a name=270 class="linenum">270  </a>     */</span>
+<a name=271 class="linenum">271  </a>    public double <a class="methodDef" name=ValueRangeRecord.getMinorIncrement() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getMinorIncrement()>getMinorIncrement</a>()
+<a name=272 class="linenum">272  </a>    {
+<a name=273 class="linenum">273  </a>        return <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_4_minorIncrement>field_4_minorIncrement</a>;
+<a name=274 class="linenum">274  </a>    }
+<a name=275 class="linenum">275  </a>
+<a name=276 class="linenum">276  </a>    <span class="comment">/**
+<a name=277 class="linenum">277  </a>     * Set the minor increment field for the ValueRange record.
+<a name=278 class="linenum">278  </a>     */</span>
+<a name=279 class="linenum">279  </a>    public void <a class="methodDef" name=ValueRangeRecord.setMinorIncrement(double) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setMinorIncrement(double)>setMinorIncrement</a>(double field_4_minorIncrement)
+<a name=280 class="linenum">280  </a>    {
+<a name=281 class="linenum">281  </a>        this.field_4_minorIncrement = <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.setMinorIncrement.field_4_minorIncrement>field_4_minorIncrement</a>;
+<a name=282 class="linenum">282  </a>    }
+<a name=283 class="linenum">283  </a>
+<a name=284 class="linenum">284  </a>    <span class="comment">/**
+<a name=285 class="linenum">285  </a>     * Get the category axis cross field for the ValueRange record.
+<a name=286 class="linenum">286  </a>     */</span>
+<a name=287 class="linenum">287  </a>    public double <a class="methodDef" name=ValueRangeRecord.getCategoryAxisCross() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getCategoryAxisCross()>getCategoryAxisCross</a>()
+<a name=288 class="linenum">288  </a>    {
+<a name=289 class="linenum">289  </a>        return <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.field_5_categoryAxisCross>field_5_categoryAxisCross</a>;
+<a name=290 class="linenum">290  </a>    }
+<a name=291 class="linenum">291  </a>
+<a name=292 class="linenum">292  </a>    <span class="comment">/**
+<a name=293 class="linenum">293  </a>     * Set the category axis cross field for the ValueRange record.
+<a name=294 class="linenum">294  </a>     */</span>
+<a name=295 class="linenum">295  </a>    public void <a class="methodDef" name=ValueRangeRecord.setCategoryAxisCross(double) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setCategoryAxisCross(double)>setCategoryAxisCross</a>(double field_5_categoryAxisCross)
+<a name=296 class="linenum">296  </a>    {
+<a name=297 class="linenum">297  </a>        this.field_5_categoryAxisCross = <a class="varRef" title="double" href=ValueRangeRecord_java.html#ValueRangeRecord.setCategoryAxisCross.field_5_categoryAxisCross>field_5_categoryAxisCross</a>;
+<a name=298 class="linenum">298  </a>    }
+<a name=299 class="linenum">299  </a>
+<a name=300 class="linenum">300  </a>    <span class="comment">/**
+<a name=301 class="linenum">301  </a>     * Get the options field for the ValueRange record.
+<a name=302 class="linenum">302  </a>     */</span>
+<a name=303 class="linenum">303  </a>    public short <a class="methodDef" name=ValueRangeRecord.getOptions() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.getOptions()>getOptions</a>()
+<a name=304 class="linenum">304  </a>    {
+<a name=305 class="linenum">305  </a>        return <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>;
+<a name=306 class="linenum">306  </a>    }
+<a name=307 class="linenum">307  </a>
+<a name=308 class="linenum">308  </a>    <span class="comment">/**
+<a name=309 class="linenum">309  </a>     * Set the options field for the ValueRange record.
+<a name=310 class="linenum">310  </a>     */</span>
+<a name=311 class="linenum">311  </a>    public void <a class="methodDef" name=ValueRangeRecord.setOptions(short) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setOptions(short)>setOptions</a>(short field_6_options)
+<a name=312 class="linenum">312  </a>    {
+<a name=313 class="linenum">313  </a>        this.field_6_options = <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.setOptions.field_6_options>field_6_options</a>;
+<a name=314 class="linenum">314  </a>    }
+<a name=315 class="linenum">315  </a>
+<a name=316 class="linenum">316  </a>    <span class="comment">/**
+<a name=317 class="linenum">317  </a>     * Sets the automatic minimum field value.
+<a name=318 class="linenum">318  </a>     * automatic minimum value selected
+<a name=319 class="linenum">319  </a>     */</span>
+<a name=320 class="linenum">320  </a>    public void <a class="methodDef" name=ValueRangeRecord.setAutomaticMinimum(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setAutomaticMinimum(boolean)>setAutomaticMinimum</a>(boolean value)
+<a name=321 class="linenum">321  </a>    {
+<a name=322 class="linenum">322  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMinimum>automaticMinimum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setAutomaticMinimum.value>value</a>);
+<a name=323 class="linenum">323  </a>    }
+<a name=324 class="linenum">324  </a>
+<a name=325 class="linenum">325  </a>    <span class="comment">/**
+<a name=326 class="linenum">326  </a>     * automatic minimum value selected
+<a name=327 class="linenum">327  </a>     * @return  the automatic minimum field value.
+<a name=328 class="linenum">328  </a>     */</span>
+<a name=329 class="linenum">329  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isAutomaticMinimum() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isAutomaticMinimum()>isAutomaticMinimum</a>()
+<a name=330 class="linenum">330  </a>    {
+<a name=331 class="linenum">331  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMinimum>automaticMinimum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=332 class="linenum">332  </a>    }
+<a name=333 class="linenum">333  </a>
+<a name=334 class="linenum">334  </a>    <span class="comment">/**
+<a name=335 class="linenum">335  </a>     * Sets the automatic maximum field value.
+<a name=336 class="linenum">336  </a>     * automatic maximum value selected
+<a name=337 class="linenum">337  </a>     */</span>
+<a name=338 class="linenum">338  </a>    public void <a class="methodDef" name=ValueRangeRecord.setAutomaticMaximum(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setAutomaticMaximum(boolean)>setAutomaticMaximum</a>(boolean value)
+<a name=339 class="linenum">339  </a>    {
+<a name=340 class="linenum">340  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMaximum>automaticMaximum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setAutomaticMaximum.value>value</a>);
+<a name=341 class="linenum">341  </a>    }
+<a name=342 class="linenum">342  </a>
+<a name=343 class="linenum">343  </a>    <span class="comment">/**
+<a name=344 class="linenum">344  </a>     * automatic maximum value selected
+<a name=345 class="linenum">345  </a>     * @return  the automatic maximum field value.
+<a name=346 class="linenum">346  </a>     */</span>
+<a name=347 class="linenum">347  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isAutomaticMaximum() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isAutomaticMaximum()>isAutomaticMaximum</a>()
+<a name=348 class="linenum">348  </a>    {
+<a name=349 class="linenum">349  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMaximum>automaticMaximum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=350 class="linenum">350  </a>    }
+<a name=351 class="linenum">351  </a>
+<a name=352 class="linenum">352  </a>    <span class="comment">/**
+<a name=353 class="linenum">353  </a>     * Sets the automatic major field value.
+<a name=354 class="linenum">354  </a>     * automatic major unit selected
+<a name=355 class="linenum">355  </a>     */</span>
+<a name=356 class="linenum">356  </a>    public void <a class="methodDef" name=ValueRangeRecord.setAutomaticMajor(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setAutomaticMajor(boolean)>setAutomaticMajor</a>(boolean value)
+<a name=357 class="linenum">357  </a>    {
+<a name=358 class="linenum">358  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMajor>automaticMajor</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setAutomaticMajor.value>value</a>);
+<a name=359 class="linenum">359  </a>    }
+<a name=360 class="linenum">360  </a>
+<a name=361 class="linenum">361  </a>    <span class="comment">/**
+<a name=362 class="linenum">362  </a>     * automatic major unit selected
+<a name=363 class="linenum">363  </a>     * @return  the automatic major field value.
+<a name=364 class="linenum">364  </a>     */</span>
+<a name=365 class="linenum">365  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isAutomaticMajor() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isAutomaticMajor()>isAutomaticMajor</a>()
+<a name=366 class="linenum">366  </a>    {
+<a name=367 class="linenum">367  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMajor>automaticMajor</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=368 class="linenum">368  </a>    }
+<a name=369 class="linenum">369  </a>
+<a name=370 class="linenum">370  </a>    <span class="comment">/**
+<a name=371 class="linenum">371  </a>     * Sets the automatic minor field value.
+<a name=372 class="linenum">372  </a>     * automatic minor unit selected
+<a name=373 class="linenum">373  </a>     */</span>
+<a name=374 class="linenum">374  </a>    public void <a class="methodDef" name=ValueRangeRecord.setAutomaticMinor(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setAutomaticMinor(boolean)>setAutomaticMinor</a>(boolean value)
+<a name=375 class="linenum">375  </a>    {
+<a name=376 class="linenum">376  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMinor>automaticMinor</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setAutomaticMinor.value>value</a>);
+<a name=377 class="linenum">377  </a>    }
+<a name=378 class="linenum">378  </a>
+<a name=379 class="linenum">379  </a>    <span class="comment">/**
+<a name=380 class="linenum">380  </a>     * automatic minor unit selected
+<a name=381 class="linenum">381  </a>     * @return  the automatic minor field value.
+<a name=382 class="linenum">382  </a>     */</span>
+<a name=383 class="linenum">383  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isAutomaticMinor() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isAutomaticMinor()>isAutomaticMinor</a>()
+<a name=384 class="linenum">384  </a>    {
+<a name=385 class="linenum">385  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticMinor>automaticMinor</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=386 class="linenum">386  </a>    }
+<a name=387 class="linenum">387  </a>
+<a name=388 class="linenum">388  </a>    <span class="comment">/**
+<a name=389 class="linenum">389  </a>     * Sets the automatic category crossing field value.
+<a name=390 class="linenum">390  </a>     * category crossing point is automatically selected
+<a name=391 class="linenum">391  </a>     */</span>
+<a name=392 class="linenum">392  </a>    public void <a class="methodDef" name=ValueRangeRecord.setAutomaticCategoryCrossing(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setAutomaticCategoryCrossing(boolean)>setAutomaticCategoryCrossing</a>(boolean value)
+<a name=393 class="linenum">393  </a>    {
+<a name=394 class="linenum">394  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticCategoryCrossing>automaticCategoryCrossing</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setAutomaticCategoryCrossing.value>value</a>);
+<a name=395 class="linenum">395  </a>    }
+<a name=396 class="linenum">396  </a>
+<a name=397 class="linenum">397  </a>    <span class="comment">/**
+<a name=398 class="linenum">398  </a>     * category crossing point is automatically selected
+<a name=399 class="linenum">399  </a>     * @return  the automatic category crossing field value.
+<a name=400 class="linenum">400  </a>     */</span>
+<a name=401 class="linenum">401  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isAutomaticCategoryCrossing() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isAutomaticCategoryCrossing()>isAutomaticCategoryCrossing</a>()
+<a name=402 class="linenum">402  </a>    {
+<a name=403 class="linenum">403  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.automaticCategoryCrossing>automaticCategoryCrossing</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=404 class="linenum">404  </a>    }
+<a name=405 class="linenum">405  </a>
+<a name=406 class="linenum">406  </a>    <span class="comment">/**
+<a name=407 class="linenum">407  </a>     * Sets the logarithmic scale field value.
+<a name=408 class="linenum">408  </a>     * use logarithmic scale
+<a name=409 class="linenum">409  </a>     */</span>
+<a name=410 class="linenum">410  </a>    public void <a class="methodDef" name=ValueRangeRecord.setLogarithmicScale(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setLogarithmicScale(boolean)>setLogarithmicScale</a>(boolean value)
+<a name=411 class="linenum">411  </a>    {
+<a name=412 class="linenum">412  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.logarithmicScale>logarithmicScale</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setLogarithmicScale.value>value</a>);
+<a name=413 class="linenum">413  </a>    }
+<a name=414 class="linenum">414  </a>
+<a name=415 class="linenum">415  </a>    <span class="comment">/**
+<a name=416 class="linenum">416  </a>     * use logarithmic scale
+<a name=417 class="linenum">417  </a>     * @return  the logarithmic scale field value.
+<a name=418 class="linenum">418  </a>     */</span>
+<a name=419 class="linenum">419  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isLogarithmicScale() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isLogarithmicScale()>isLogarithmicScale</a>()
+<a name=420 class="linenum">420  </a>    {
+<a name=421 class="linenum">421  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.logarithmicScale>logarithmicScale</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=422 class="linenum">422  </a>    }
+<a name=423 class="linenum">423  </a>
+<a name=424 class="linenum">424  </a>    <span class="comment">/**
+<a name=425 class="linenum">425  </a>     * Sets the values in reverse field value.
+<a name=426 class="linenum">426  </a>     * values are reverses in graph
+<a name=427 class="linenum">427  </a>     */</span>
+<a name=428 class="linenum">428  </a>    public void <a class="methodDef" name=ValueRangeRecord.setValuesInReverse(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setValuesInReverse(boolean)>setValuesInReverse</a>(boolean value)
+<a name=429 class="linenum">429  </a>    {
+<a name=430 class="linenum">430  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.valuesInReverse>valuesInReverse</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setValuesInReverse.value>value</a>);
+<a name=431 class="linenum">431  </a>    }
+<a name=432 class="linenum">432  </a>
+<a name=433 class="linenum">433  </a>    <span class="comment">/**
+<a name=434 class="linenum">434  </a>     * values are reverses in graph
+<a name=435 class="linenum">435  </a>     * @return  the values in reverse field value.
+<a name=436 class="linenum">436  </a>     */</span>
+<a name=437 class="linenum">437  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isValuesInReverse() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isValuesInReverse()>isValuesInReverse</a>()
+<a name=438 class="linenum">438  </a>    {
+<a name=439 class="linenum">439  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.valuesInReverse>valuesInReverse</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=440 class="linenum">440  </a>    }
+<a name=441 class="linenum">441  </a>
+<a name=442 class="linenum">442  </a>    <span class="comment">/**
+<a name=443 class="linenum">443  </a>     * Sets the cross category axis at maximum field value.
+<a name=444 class="linenum">444  </a>     * category axis to cross at maximum value
+<a name=445 class="linenum">445  </a>     */</span>
+<a name=446 class="linenum">446  </a>    public void <a class="methodDef" name=ValueRangeRecord.setCrossCategoryAxisAtMaximum(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setCrossCategoryAxisAtMaximum(boolean)>setCrossCategoryAxisAtMaximum</a>(boolean value)
+<a name=447 class="linenum">447  </a>    {
+<a name=448 class="linenum">448  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.crossCategoryAxisAtMaximum>crossCategoryAxisAtMaximum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setCrossCategoryAxisAtMaximum.value>value</a>);
+<a name=449 class="linenum">449  </a>    }
+<a name=450 class="linenum">450  </a>
+<a name=451 class="linenum">451  </a>    <span class="comment">/**
+<a name=452 class="linenum">452  </a>     * category axis to cross at maximum value
+<a name=453 class="linenum">453  </a>     * @return  the cross category axis at maximum field value.
+<a name=454 class="linenum">454  </a>     */</span>
+<a name=455 class="linenum">455  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isCrossCategoryAxisAtMaximum() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isCrossCategoryAxisAtMaximum()>isCrossCategoryAxisAtMaximum</a>()
+<a name=456 class="linenum">456  </a>    {
+<a name=457 class="linenum">457  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.crossCategoryAxisAtMaximum>crossCategoryAxisAtMaximum</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=458 class="linenum">458  </a>    }
+<a name=459 class="linenum">459  </a>
+<a name=460 class="linenum">460  </a>    <span class="comment">/**
+<a name=461 class="linenum">461  </a>     * Sets the reserved field value.
+<a name=462 class="linenum">462  </a>     * reserved, must equal 1 (excel dev. guide says otherwise)
+<a name=463 class="linenum">463  </a>     */</span>
+<a name=464 class="linenum">464  </a>    public void <a class="methodDef" name=ValueRangeRecord.setReserved(boolean) href=ValueRangeRecord_java_ref.html#ValueRangeRecord.setReserved(boolean)>setReserved</a>(boolean value)
+<a name=465 class="linenum">465  </a>    {
+<a name=466 class="linenum">466  </a>        <a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a> = <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.reserved>reserved</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>, <a class="varRef" title="boolean" href=ValueRangeRecord_java.html#ValueRangeRecord.setReserved.value>value</a>);
+<a name=467 class="linenum">467  </a>    }
+<a name=468 class="linenum">468  </a>
+<a name=469 class="linenum">469  </a>    <span class="comment">/**
+<a name=470 class="linenum">470  </a>     * reserved, must equal 1 (excel dev. guide says otherwise)
+<a name=471 class="linenum">471  </a>     * @return  the reserved field value.
+<a name=472 class="linenum">472  </a>     */</span>
+<a name=473 class="linenum">473  </a>    public boolean <a class="methodDef" name=ValueRangeRecord.isReserved() href=ValueRangeRecord_java_ref.html#ValueRangeRecord.isReserved()>isReserved</a>()
+<a name=474 class="linenum">474  </a>    {
+<a name=475 class="linenum">475  </a>        return <a class="varRef" title="BitField" href=ValueRangeRecord_java.html#ValueRangeRecord.reserved>reserved</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=ValueRangeRecord_java.html#ValueRangeRecord.field_6_options>field_6_options</a>);
+<a name=476 class="linenum">476  </a>    }
+<a name=477 class="linenum">477  </a>
+<a name=478 class="linenum">478  </a>
+<a name=479 class="linenum">479  </a>}  <span class="comment">// END OF CLASS</span>
+<a name=480 class="linenum">480  </a>
+<a name=481 class="linenum">481  </a>
+<a name=482 class="linenum">482  </a>
+<a name=483 class="linenum">483  </a>
+<a name=484 class="linenum">484  </a></pre>

@@ -1,0 +1,30 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.15.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.15.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 331411
+15.8.2.15 Math.round(x)
+Math.round.length = 1 PASSED!
+Math.round() = NaN PASSED!
+Math.round(null) = 0 PASSED!
+Math.round(void 0) = NaN PASSED!
+Math.round(true) = 1 PASSED!
+Math.round(false) = 0 PASSED!
+Math.round('.99999') = 1 PASSED!
+Math.round('12345e-2') = 123 PASSED!
+Math.round(NaN) = NaN PASSED!
+Math.round(0) = 0 PASSED!
+Math.round(-0) = 0 PASSED!
+Infinity/Math.round(-0) = -Infinity PASSED!
+Math.round(Infinity) = Infinity PASSED!
+Math.round(-Infinity) = -Infinity PASSED!
+Math.round(0.49) = 0 PASSED!
+Math.round(0.5) = 1 PASSED!
+Math.round(0.51) = 1 PASSED!
+Math.round(-0.49) = 0 PASSED!
+Math.round(-0.5) = 0 PASSED!
+Infinity/Math.round(-0.49) = -Infinity PASSED!
+Infinity/Math.round(-0.5) = -Infinity PASSED!
+Math.round(-0.51) = -1 PASSED!
+Math.round(3.5) = 4 PASSED!
+Math.round(-3.5) = -3 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.15.interpreted.arff] ...

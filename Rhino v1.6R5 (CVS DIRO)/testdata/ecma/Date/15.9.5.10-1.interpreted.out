@@ -1,0 +1,37 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.10-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.10-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.9.5.5 Date.prototype.getYear()
+(new Date(1184088679437)).getYear() = 107 PASSED!
+(new Date(1184088679438)).getYear() = 107 PASSED!
+(new Date(1184088679436)).getYear() = 107 PASSED!
+(new Date(1184106679437)).getYear() = 107 PASSED!
+(new Date(1184070679437)).getYear() = 107 PASSED!
+(new Date(-62167219200000)).getYear() = -1901 PASSED!
+(new Date(-62167219199999)).getYear() = -1901 PASSED!
+(new Date(-62167219200001)).getYear() = -1901 PASSED!
+(new Date(-62167201200000)).getYear() = -1900 PASSED!
+(new Date(-62167237200000)).getYear() = -1901 PASSED!
+(new Date(0)).getYear() = 69 PASSED!
+(new Date(1)).getYear() = 69 PASSED!
+(new Date(-1)).getYear() = 69 PASSED!
+(new Date(18000000)).getYear() = 70 PASSED!
+(new Date(-18000000)).getYear() = 69 PASSED!
+(new Date(-2208988800000)).getYear() = -1 PASSED!
+(new Date(-2208988799999)).getYear() = -1 PASSED!
+(new Date(-2208988800001)).getYear() = -1 PASSED!
+(new Date(-2208970800000)).getYear() = 0 PASSED!
+(new Date(-2209006800000)).getYear() = -1 PASSED!
+(new Date(946684800000)).getYear() = 99 PASSED!
+(new Date(946684800001)).getYear() = 99 PASSED!
+(new Date(946684799999)).getYear() = 99 PASSED!
+(new Date(946702800000)).getYear() = 100 PASSED!
+(new Date(946666800000)).getYear() = 99 PASSED!
+(new Date(951782400000)).getYear() = 100 PASSED!
+(new Date(951782400001)).getYear() = 100 PASSED!
+(new Date(951782399999)).getYear() = 100 PASSED!
+(new Date(951800400000)).getYear() = 100 PASSED!
+(new Date(951764400000)).getYear() = 100 PASSED!
+(new Date(NaN)).getYear() = NaN PASSED!
+Date.prototype.getYear.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.10-1.interpreted.arff] ...

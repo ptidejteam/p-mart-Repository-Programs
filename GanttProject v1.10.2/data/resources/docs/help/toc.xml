@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+				 
+<toc>
+	<tocitem text="First Step" >
+		<tocitem text="Overview"  target="firststep/overview.html" home="true"/>		
+		<tocitem text="Where can I the releases?" target="firststep/releases.html"/>
+		<tocitem text="Where is the CVS?" target="firststep/cvs.html"/>
+		<tocitem text="Run GanttProject" target="firststep/run.html"/>
+	</tocitem>
+	<tocitem text="Gantt Chart">
+		<tocitem text="Task creation" target="ganttchart/create.html"/>
+		<tocitem text="Relashionships" target="ganttchart/relationships.html"/>
+		<tocitem text="Editing properties" target="ganttchart/properties.html"/>
+	</tocitem>
+	<tocitem text="Resources">
+		<tocitem text="Resources creation" target="resources/create.html"/>
+		<tocitem text="Asign to tasks" target="resources/assign.html"/>
+		<tocitem text="Resources chart" target="resources/chart.html"/>
+	</tocitem>
+	<tocitem text="File Management">
+		<tocitem text="XML format" target="file/xml.html"/>
+		<tocitem text="PNG/JPG" target="file/pngjpg.html"/>
+		<tocitem text="HTML/PDF" target="file/htmlpdf.html"/>
+		<tocitem text="Web server" target="file/webserver.html"/>
+	</tocitem>
+	<tocitem text="Miscellaneous">
+		<tocitem text="Command line" target="misc/commandline.html"/>
+		<tocitem text="Options" target="misc/options.html"/>
+	</tocitem>
+	<tocitem text="History">
+		<tocitem text="release 1.10" target="history/1.10.html"/>
+		<tocitem text="release 1.9.11" target="history/1.9.11.html"/>
+		<tocitem text="release 1.9.10" target="history/1.9.10.html"/>
+		<tocitem text="release 1.9.9" target="history/1.9.9.html"/>
+		<tocitem text="release 1.9.8" target="history/1.9.8.html"/>
+		<tocitem text="release 1.9.7" target="history/1.9.7.html"/>
+		<tocitem text="release 1.9.6" target="history/1.9.6.html"/>
+		<tocitem text="release 1.9.4" target="history/1.9.5.html"/>
+		<tocitem text="release 1.9.5" target="history/1.9.4.html"/>
+		<tocitem text="release 1.9.3" target="history/1.9.3.html"/>
+		<tocitem text="release 1.9.2" target="history/1.9.2.html"/>
+		<tocitem text="release 1.9.1" target="history/1.9.1.html"/>
+		<tocitem text="release 1.9" target="history/1.9.html"/>
+		<tocitem text="release 1.8" target="history/1.8.html"/>
+		<tocitem text="release 1.7" target="history/1.7.html"/>
+		<tocitem text="release 1.6" target="history/1.6.html"/>
+		<tocitem text="release 1.5" target="history/1.5.html"/>
+		<tocitem text="release 1.4" target="history/1.4.html"/>
+		<tocitem text="release 1.3" target="history/1.3.html"/>
+		<tocitem text="release 1.0" target="history/1.0.html"/>
+	</tocitem>
+	<tocitem text="License" target="license.html"/>
+	<tocitem text="Contact and Links">
+		<tocitem text="Mails" target="contacts/mails.html"/>
+		<tocitem text="Contribution" target="contacts/contributions.html"/>
+		<tocitem text="Web links" target="contacts/links.html"/>
+	</tocitem>
+</toc>

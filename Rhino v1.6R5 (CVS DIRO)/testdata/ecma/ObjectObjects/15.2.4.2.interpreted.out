@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ObjectObjects\15.2.4.2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ObjectObjects\shell.js -f mozilla\js\tests\ecma\ObjectObjects\15.2.4.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.2.4.2 Object.prototype.toString()
+(new Object()).toString() = [object Object] PASSED!
+myvar = this;  myvar.toString = Object.prototype.toString; myvar.toString() = [object global] PASSED!
+myvar = MyObject; myvar.toString = Object.prototype.toString; myvar.toString() = [object Function] PASSED!
+myvar = new MyObject( true ); myvar.toString = Object.prototype.toString; myvar.toString() = [object Object] PASSED!
+myvar = new Number(0); myvar.toString = Object.prototype.toString; myvar.toString() = [object Number] PASSED!
+myvar = new String(''); myvar.toString = Object.prototype.toString; myvar.toString() = [object String] PASSED!
+myvar = Math; myvar.toString = Object.prototype.toString; myvar.toString() = [object Math] PASSED!
+myvar = new Function(); myvar.toString = Object.prototype.toString; myvar.toString() = [object Function] PASSED!
+myvar = new Array(); myvar.toString = Object.prototype.toString; myvar.toString() = [object Array] PASSED!
+myvar = new Boolean(); myvar.toString = Object.prototype.toString; myvar.toString() = [object Boolean] PASSED!
+myvar = new Date(); myvar.toString = Object.prototype.toString; myvar.toString() = [object Date] PASSED!
+var MYVAR = new Object( this ); MYVAR.toString() = [object global] PASSED!
+var MYVAR = new Object(); MYVAR.toString() = [object Object] PASSED!
+var MYVAR = new Object(void 0); MYVAR.toString() = [object Object] PASSED!
+var MYVAR = new Object(null); MYVAR.toString() = [object Object] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ObjectObjects\15.2.4.2.interpreted.arff] ...

@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>MapperXML Example: Component Factory</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: Component Factory</h1>
+    <p>Example using HTMLComponentFactory to automatically create and bind
+    components.</p>
+    <div id="Invoice__TEMPLATE_NODE">
+      <table border="0" width="100%">
+        <tr>
+          <td width="60%"><h1>I N V O I C E</h1></td>
+          <td >Issue Date</td>
+          <td id="Invoice__issueDate">DATE:MM/dd/yyyy</td>
+          <td >Invoice Number</td>
+          <td id="Invoice__invoiceNumber">NUMBER:0000000</td>
+        </tr>
+        <tr>
+          <td><h3>Bill To:</h3></td>
+          <td>Customer ID:</td>
+          <td id="Invoice__customerID">1</td>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td>John Smith</td>
+          <td colspan="4"></td>
+        </tr>
+        <tr>
+          <td>123 Main Street</td>
+          <td colspan="4"></td>
+        </tr>
+        <tr>
+          <td>Suite 200</td>
+          <td colspan="4"></td>
+        </tr>
+        <tr>
+          <td>Juneau, AK 99801</td>
+          <td colspan="4"></td>
+        </tr>
+      </table>
+      <br/>
+      <table border="1" width="100%">
+        <tr bgcolor="yellow">
+          <td>Sales by:</td>
+          <td bgcolor="white">cash</td>
+          <td>Shipping:</td>
+          <td bgcolor="white">pickup</td>
+          <td>Terms:</td>
+          <td bgcolor="white" id="Invoice__terms">0 net 0</td>
+        </tr>
+        <tr bgcolor="orange">
+          <td>Quantity</td>
+          <td colspan="3">Product ID</td>
+          <td>Unit Price</td>
+          <td>Extension</td>
+        </tr>
+        <tr id="InvoiceItem__TEMPLATE_NODE">
+          <td id="InvoiceItem__quantity">1</td>
+          <td colspan="3" id="InvoiceItem__productID">MSG:1-{0}</td>
+          <td id="InvoiceItem__unitPrice">NUMBER:###,##0.00</td>
+          <td id="InvoiceItem__extension">NUMBER:###,##0.00</td>
+        </tr>
+        <tr>
+          <td bgcolor="pink" colspan="5"><br/>Total<br/></td>
+          <td id="Invoice__total">NUMBER:###,##0.00</td>
+        </tr>
+      </table>
+      <br/>
+      <hr/>
+      <br/><br/>
+    </div>
+    <p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

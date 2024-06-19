@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="Imported/bcmail.jar"/>
+	<classpathentry kind="lib" path="Imported/bcpg.jar"/>
+	<classpathentry kind="lib" path="Imported/bcprov.jar"/>
+	<classpathentry kind="lib" path="Imported/htmlparser.jar"/>
+	<classpathentry kind="lib" path="Imported/icons.jar"/>
+	<classpathentry kind="lib" path="Imported/javamail-crypto-bouncycastle-openpgp.jar"/>
+	<classpathentry kind="lib" path="Imported/javamail-crypto-bouncycastle-smime.jar"/>
+	<classpathentry kind="lib" path="Imported/javamail-crypto.jar"/>
+	<classpathentry kind="lib" path="Imported/javamaildir.jar"/>
+	<classpathentry kind="lib" path="Imported/jh.jar"/>
+	<classpathentry kind="lib" path="Imported/kunststoff.jar"/>
+	<classpathentry kind="lib" path="Imported/linspire_clear.jar"/>
+	<classpathentry kind="lib" path="Imported/localproviders.jar"/>
+	<classpathentry kind="lib" path="Imported/mail.jar"/>
+	<classpathentry kind="lib" path="Imported/mbox.jar"/>
+	<classpathentry kind="lib" path="Imported/mysql-connector-java-5.0.6-bin.jar"/>
+	<classpathentry kind="lib" path="Imported/TableLayout.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,24 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.27-11.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.27-11.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.9.5.23-1 Date.prototype.setTime(time)
+var d = new Date(now); d.setTime(-86400000); d.getTime() = -86400000 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.valueOf() = -86400000 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCFullYear() = 1969 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCMonth() = 11 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCDate() = 31 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCDay() = 3 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCHours() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCMinutes() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCSeconds() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getUTCMilliseconds() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getFullYear() = 1969 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getMonth() = 11 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getDate() = 30 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getDay() = 2 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getHours() = 19 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getMinutes() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getSeconds() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.getMilliseconds() = 0 PASSED!
+var d = new Date(now); d.setTime(-86400000); d.toString=Object.prototype.toString;var d = new Date(now); d.setTime(-86400000); d.toString() = [object Date] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.27-11.compiled.arff] ...

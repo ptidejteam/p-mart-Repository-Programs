@@ -1,0 +1,15 @@
+2c.8.6a0	+0	(def_block
+2c.8.6a0	+5	r_class
+2c.e.6a6	+15	id|NotAFunctionException
+2d.1.6d5	+1	(brace
+30.c.722	+0	(def_block
+30.c.722	+15	id|NotAFunctionException
+30.21.737	+0	c_func
+30.21.737	+1	(paren
+30.22.738	+1	)paren
+30.24.73a	+1	(brace
+30.26.73c	+1	)brace
+30.27.73d	+0	)def_block
+31.1.73e	+1	)brace
+31.2.73f	+0	)def_block
+32.1.740	+0	eof

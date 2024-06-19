@@ -1,0 +1,27 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\FunctionObjects\shell.js -f mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.3.2.1-2 The Function Constructor
+myfunc1 = new Function('a','b','c'); myfunc.toString = Object.prototype.toString; myfunc.toString() = [object Function] PASSED!
+myfunc1.length = 3 PASSED!
+myfunc1.prototype.toString() = [object Object] PASSED!
+myfunc1.prototype.constructor = [object Function] PASSED!
+myfunc1.arguments = null PASSED!
+myfunc1(1,2,3) = 6 PASSED!
+var MYPROPS = ''; for ( var p in myfunc1.prototype ) { MYPROPS += p; }; MYPROPS =  PASSED!
+myfunc2 = new Function('a','b','c'); myfunc.toString = Object.prototype.toString; myfunc.toString() = [object Function] PASSED!
+myfunc2.length = 3 PASSED!
+myfunc2.prototype.toString() = [object Object] PASSED!
+myfunc2.prototype.constructor = [object Function] PASSED!
+myfunc2.arguments = null PASSED!
+myfunc2( 1000, 200, 30 ) = 1230 PASSED!
+var MYPROPS = ''; for ( var p in myfunc2.prototype ) { MYPROPS += p; }; MYPROPS =  PASSED!
+myfunc3 = new Function('a','b','c'); myfunc.toString = Object.prototype.toString; myfunc.toString() = [object Function] PASSED!
+myfunc3.length = 3 PASSED!
+myfunc3.prototype.toString() = [object Object] PASSED!
+myfunc3.prototype.valueOf() +'' = [object Object] PASSED!
+myfunc3.prototype.constructor = [object Function] PASSED!
+myfunc3.arguments = null PASSED!
+myfunc3(-100,100,NaN) = NaN PASSED!
+var MYPROPS = ''; for ( var p in myfunc3.prototype ) { MYPROPS += p; }; MYPROPS =  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-2.interpreted.arff] ...

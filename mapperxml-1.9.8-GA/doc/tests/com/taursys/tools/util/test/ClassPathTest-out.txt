@@ -1,0 +1,24 @@
+com/
+com/sun/
+com/sun/tools/
+com/sun/tools/jdi/
+com/sun/tools/jdi/resources/
+com/sun/tools/jdi/resources/jdi.properties
+com/sun/xml/
+com/sun/xml/parser/
+com/sun/xml/parser/AttributeDecl.class
+com/sun/xml/parser/AttributeListEx.class
+com/sun/xml/parser/AttributeListImpl.class
+com/sun/xml/parser/ContentModel.class
+
+  com
+    sun
+      tools
+        jdi
+          resources
+      xml
+        parser
+          AttributeDecl
+          AttributeListEx
+          AttributeListImpl
+          ContentModel

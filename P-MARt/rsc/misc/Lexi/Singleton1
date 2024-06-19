@@ -1,0 +1,128 @@
+	<program type="Java">
+		<name>2 - Lexi v0.1.1 alpha</name>
+		<designPattern name="Singleton">
+			<microArchitectures>
+				<microArchitecture number="11">
+					<roles>
+						<singletons>
+							<singleton roleKind="Class">
+								<entity kind="Class">com.jmonkey.export.Registry</entity>
+								<properties>
+									<ACMIC value="4.0"/>
+									<AID value="1.0"/>
+									<DIT value="1.0"/>
+									<connectivity value="1.028205128205128"/>
+									<ICHClass value="26.0"/>
+									<LCOM1 value="4414.0"/>
+									<LCOM2 value="2136.0"/>
+									<LCOM5 value="1.0101010100069372"/>
+									<NCM value="70.0"/>
+									<NMA value="68.0"/>
+									<NMI value="2.0"/>
+									<NOA value="1.0"/>
+									<NOP value="1.0"/>
+									<WMC value="137.0"/>
+									<cohesionAttributes value="0.0070028011204481795"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>com.jmonkey.export.Format</target>
+										<properties>
+											<CBO value="7.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.export.Registry</target>
+										<properties>
+											<CBO value="44.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.Main</target>
+										<properties>
+											<CBO value="82.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.Editor</target>
+										<properties>
+											<CBO value="16.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.EditorActionManager</target>
+										<properties>
+											<CBO value="7.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.Mime</target>
+										<properties>
+											<CBO value="17.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.HTMLEditor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.RTFEditor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.TEXTEditor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.io.File</target>
+										<properties>
+											<CBO value="10.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Class</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Integer</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.String</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.StringBuffer</target>
+										<properties>
+											<CBO value="11.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.System</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.security.MessageDigest</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</singleton>
+						</singletons>
+					</roles>
+				</microArchitecture>

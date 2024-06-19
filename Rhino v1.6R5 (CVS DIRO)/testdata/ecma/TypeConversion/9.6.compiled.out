@@ -1,0 +1,39 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.6.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.6.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+9.6 Type Conversion:  ToUint32
+0 >>> 0 = 0 PASSED!
+-0 >>> 0 = 0 PASSED!
+'Infinity' >>> 0 = 0 PASSED!
+'-Infinity' >>> 0 = 0 PASSED!
+'+Infinity' >>> 0 = 0 PASSED!
+Number.POSITIVE_INFINITY >>> 0 = 0 PASSED!
+Number.NEGATIVE_INFINITY >>> 0 = 0 PASSED!
+Number.NaN >>> 0 = 0 PASSED!
+Number.MIN_VALUE >>> 0 = 0 PASSED!
+-Number.MIN_VALUE >>> 0 = 0 PASSED!
+0.1 >>> 0 = 0 PASSED!
+-0.1 >>> 0 = 0 PASSED!
+1 >>> 0 = 1 PASSED!
+1.1 >>> 0 = 1 PASSED!
+-1.1 >>> 0 = 4294967295 PASSED!
+-1 >>> 0 = 4294967295 PASSED!
+2147483647 >>> 0 = 2147483647 PASSED!
+2147483648 >>> 0 = 2147483648 PASSED!
+2147483649 >>> 0 = 2147483649 PASSED!
+4294967295 >>> 0 = 4294967295 PASSED!
+4294967296 >>> 0 = 0 PASSED!
+4294967297 >>> 0 = 1 PASSED!
+-2147483647 >>> 0 = 2147483649 PASSED!
+-2147483648 >>> 0 = 2147483648 PASSED!
+-2147483649 >>> 0 = 2147483647 PASSED!
+-4294967295 >>> 0 = 1 PASSED!
+-4294967296 >>> 0 = 0 PASSED!
+-4294967297 >>> 0 = 4294967295 PASSED!
+'2147483647' >>> 0 = 2147483647 PASSED!
+'2147483648' >>> 0 = 2147483648 PASSED!
+'2147483649' >>> 0 = 2147483649 PASSED!
+'4294967295' >>> 0 = 4294967295 PASSED!
+'4294967296' >>> 0 = 0 PASSED!
+'4294967297' >>> 0 = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.6.compiled.arff] ...

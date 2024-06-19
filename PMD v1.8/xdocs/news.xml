@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <author email="tom@infoether.org">Tom Copeland</author>
+    <title>PMD in the press</title>
+  </properties>
+
+  <body>
+    <section name="Sites/Articles about PMD">
+    <ul>
+        <br/>
+        <li>2/1/2004 - <a href="http://www.sdmagazine.com/documents/s=9058/sdm0403a/sdm0403a.html">Software Development</a> - Listed as one of their 'Open-Source Projects to Watch'</li>
+        <br/>
+        <li>11/21/2003 - <a href="http://www.javaworld.com/javaworld/jw-11-2003/jw-1121-quality_p.html">JavaWorld</a> - Various code inspection tools</li>
+        <br/>
+        <li><a href="https://jjguidelines.dev.java.net/index.html">JJGuidelines - Java and J2EE Conventions, Guidelines and Best Practices</a> - a project sponsored by the Belgian government to codify coding practices; uses PMD as the compliance checking utility</li>
+        <br/>
+        <li>6/15/2003 - <a href="http://www.sdtimes.com/news/080/story15.htm">Software Development Times</a> - PMD is embedded in QStudio.</li>
+        <br/>
+        <li>5/20/2003 - <a href="http://www.zdnet.com.au/builder/program/java/story/0,2000034779,20274635-1,00.htm">ZDNet</a> - PMD, Checkstyle, and Jalopy</li>
+        <br/>
+        <li>4/13/2003 - <a href="http://www.onjava.com/pub/a/onjava/2003/04/09/pmd_rules.html">O'Reilly OnJava.com</a> - PMD custom rules</li>
+        <br/>
+        <li>3/13/2003 - <a href="http://www.onjava.com/pub/a/onjava/2003/03/12/pmd_cpd.html">O'Reilly OnJava.com</a> - overview of CPD</li>
+        <br/>
+        <li>2/12/2003 - <a href="http://www.onjava.com/pub/a/onjava/2003/02/12/static_analysis.html">O'Reilly OnJava.com</a> - overview of PMD</li>
+        <br/>
+        <li>1/07/2003 - <a href="http://www.netbeans.org/newsletter/sprout/2003-01-07.html">Sprout</a> - interview with Ole-Martin and Tom</li>
+    </ul>
+    </section>
+      <section name="Books that mention PMD">
+          <ul>
+              <br/>
+          <li><a href="http://www.amazon.com/exec/obidos/tg/detail/-/0672325624/ref=ase_interncom-20/103-5706126-6692649?v=glance&amp;s=book">Extreme Programming With Ant</a></li>
+          </ul>
+      </section>
+  </body>
+</document>
+

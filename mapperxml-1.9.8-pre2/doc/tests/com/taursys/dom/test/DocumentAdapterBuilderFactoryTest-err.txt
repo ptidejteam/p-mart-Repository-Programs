@@ -1,0 +1,1 @@
+[ERROR] Tue Jan 10 09:40:20 AKST 2006 - DocumentAdapterBuilder class=com.taursys.dom.BogusDocumentAdapterBuilder not found

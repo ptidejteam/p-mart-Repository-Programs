@@ -1,0 +1,41 @@
+CHANGELOG
+---------
+
+13.11.03 | Azureus 2.0.4.0
+
+FEATURE: Disable (per torrent) the auto priority setting when seeding [Gudy]
+FEATURE: Disable (per torrent) the rules to start / stop a seeding torrent [Gudy]
+FEATURE: Move files to a directory upon completion [Nolar]
+FEATURE: Slowly establish new connections to peers (for those with internet disconnection issues) [Nolar]
+FEATURE: Bind to local IP address [Nolar]
+FEATURE: Export/import torrent file to/from XML file [Parg]
+FEATURE: Export of runtime statistics to XML file [Parg]
+FEATURE: Hosting of torrents using built-in tracker [Parg]
+FEATURE: Trackers used in the 'make torrent' wizard are now remembered.
+FEATURE: Embedded tracker [Parg]
+FEATURE: Enhanced peer client identification [Nolar]
+FEATURE: Publishing of torrents to tracker (as opposed to hosting them) [Parg]
+FEATURE: Choosable color for the progress bars [Gudy]
+FEATURE: Plugin support [Gudy]
+FEATURE: Open a torrent file without using the default save location [Gudy]
+FEATURE: Added a FAQ and a Donate link in Help menu [Gudy]
+FEATURE: New languages : Brazilian-Portuguese, Czech, Lithuanian [Gouss - Translators]
+
+CHANGE: Some GUI Changes, so that SWT WinXP theme is better supported [Gudy]
+CHANGE: Saving of torrent files to central dir now optional [Nolar]
+CHANGE: Checking after crash now remembers Fast Resume data [Nolar]
+CHANGE: Internal refactorization of core classes [Parg]
+CHANGE: More logging of reasons for connection closed [Gudy]
+
+BUGFIX: Fixed snub/unsnub multiple peers on the peers list [Gudy]
+BUGFIX: Save file dialog now opens as a 'save' dialog, and not 'open' (for OSX) [Gudy]
+BUGFIX: DNS name resolution caching no longer infinite [Nolar]
+BUGFIX: Better recovery checking of partially-allocated files [Nolar]
+BUGFIX: Re-check file(s) integrity after completion [Nolar]
+BUGFIX: Max torrent file size was limited to 1MB - limit removed [Parg]
+BUGFIX: Fix for several exceptions thrown during socket reads/writes [Nolar]
+BUGFIX: Fix for exception thrown when peer sends an invalid bitfield [Nolar]
+BUGFIX: AZ was reporting cumulative upload/download stats to tracker - should be per session [Parg]
+BUGFIX: Fix for handling single data files larger than 2GB [Nolar]
+BUGFIX: Corrected socket writing [Gudy]
+BUGFIX: Weren't sending "complete" event to tracker on download->seeding transition [Parg]

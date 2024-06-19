@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Scripting Examples</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="launcher-guide.html" title="Appendix G. jEditLauncher for Windows"><link rel="previous" href="launcher-interface.html" title="The jEditLauncher Interface"><link rel="next" href="launcher-logging.html" title="jEditLauncher Logging"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Scripting Examples</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="launcher-interface.html">Prev</a> </td><th width="60%" align="center">Appendix G. jEditLauncher for Windows</th><td width="20%" align="right"> <a accesskey="n" href="launcher-logging.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="launcher-examples"></a>Scripting Examples</h2></div></div><p>
+    Here are some brief examples of scripts using jEditLauncher. The first
+    two will run under Windows Script Host, which is either installed or
+    available for download for 32-bit Windows operating systems. The next
+    example is written in Perl and requires the Win32::OLE package. The
+    last is written in Python and requires the win32gui and win32com.client
+    extensions.
+  </p><p>
+    If Windows Script Host is installed, you can run the first two
+    scripts by typing the name of the file containing the script at a
+    command prompt.  In jEdit's Console
+    plugin, you can type
+    <b><tt>cmd /c <i><tt>script_path</tt></i></tt></b> or
+    <b><tt>wscript <i><tt>script_path</tt></i></tt></b>.
+  </p><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting">' Example VBScript using jEditLauncher interface
+dim launcher
+set launcher = CreateObject(&quot;JEdit.JEditLauncher&quot;)
+a = Array(&quot;I:\Source Code Files\shellext\jeditshell\*.h&quot;, _
+	&quot;I:\Source Code Files\shellext\jeditshell\*.cpp&quot;)
+MsgBox &quot;The server authorization code is &quot; + _
+	FormatNumber(launcher.ServerKey, 0, 0, 0, 0) + &quot;.&quot;, _
+	vbOKOnly + vbInformation, &quot;jEditLauncher&quot;
+launcher.openFiles(a)
+myScript = &quot;jEdit.newFile(view); textArea.setSelectedText(&quot; _
+  &amp; CHR(34) _
+  &amp; &quot;Welcome to jEditLauncher.&quot; _
+  &amp; CHR(34) &amp; &quot;);&quot;
+launcher.evalScript(myScript)</pre></td></tr></table></div><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting">/* Example JScript using jEditLauncher interface
+ * Note: in contrast to VBScript, JScript does not
+ * directly support message boxes outside a browser window
+ */
+var launcher = WScript.createObject(&quot;JEdit.JEditLauncher&quot;);
+var a = new Array(&quot;I:\\weather.html&quot;, &quot;I:\\test.txt&quot;);
+b = &quot;I:\\*.pl&quot;;
+launcher.openFiles(a);
+launcher.openFile(b);
+c = &quot;G:\\Program Files\\jEdit\\macros\\Misc&quot;
+  + &quot;\\Properties\\System_properties.bsh&quot;;
+launcher.runScript(c);</pre></td></tr></table></div><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting"># Example Perl script using jEditLauncher interface
+use Win32::OLE;
+$launcher = Win32::OLE-&gt;new('JEdit.JEditLauncher') ||
+   die &quot;JEditLauncher: not found !\n&quot;;
+@files = ();
+foreach $entry (@ARGV) {
+    @new = glob($entry);
+    push(@files,@new);
+}
+$launcher-&gt;openFiles(\@files);
+my($script) = &quot;Macros.message(view, \&quot;I found &quot;
+    .(scalar @files).&quot; files.\&quot;);&quot;;
+$launcher-&gt;evalScript($script);</pre></td></tr></table></div><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting"># Example Python script using jEditLauncher interface
+import win32gui
+import win32com.client
+o = win32com.client.Dispatch(&quot;JEdit.JEditLauncher&quot;)
+port = o.ServerPort
+if port == 0:
+  port = &quot;inactive. We will now launch jEdit&quot;
+win32gui.MessageBox(0, &quot;The server port is %s.&quot; % port,
+    &quot;jEditLauncher&quot;, 0)
+path = &quot;C:\\WINNT\\Profiles\\Administrator\\Desktop\\&quot;
+o.RunDiff(path + &quot;Search.bsh&quot;, path + &quot;Search2.bsh&quot;)
+</pre></td></tr></table></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="launcher-interface.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="launcher-guide.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="launcher-logging.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The jEditLauncher Interface </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> jEditLauncher Logging</td></tr></table></div></body></html>

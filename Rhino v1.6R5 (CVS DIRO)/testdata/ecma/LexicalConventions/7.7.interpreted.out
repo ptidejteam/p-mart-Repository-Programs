@@ -1,0 +1,50 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\LexicalConventions\7.7.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\LexicalConventions\shell.js -f mozilla\js\tests\ecma\LexicalConventions\7.7.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+7.6 Punctuators
+var c,d;c==d = true PASSED!
+var a=true;a = true PASSED!
+var a=true,b=false;a>b = true PASSED!
+var a=true,b=false;a<b = false PASSED!
+var a=0xFFFF,b=0X0FFF;a<=b = false PASSED!
+var a=0xFFFF,b=0XFFFE;a>=b = true PASSED!
+var a=true,b=false;a!=b = true PASSED!
+var a=false,b=false;a!=b = false PASSED!
+var a=true,b=false;a,b = false PASSED!
+var a=true,b=false;!a = false PASSED!
+var a=true;~a = -2 PASSED!
+var a=true; (a ? 'PASS' : '') = PASS PASSED!
+var a=false; (a ? 'FAIL' : 'PASS') = PASS PASSED!
+var a=Number;a.NaN = NaN PASSED!
+var a=true,b=true;if(a&&b)'PASS';else'FAIL' = PASS PASSED!
+var a=false,b=false;if(a||b)'FAIL';else'PASS' = PASS PASSED!
+var a=false,b=false;++a = 1 PASSED!
+var a=true,b=false--a = 0 PASSED!
+var a=true,b=true;a+b = 2 PASSED!
+var a=true,b=true;a-b = 0 PASSED!
+var a=true,b=true;a*b = 1 PASSED!
+var a=true,b=true;a/b = 1 PASSED!
+var a=3,b=2;a&b = 2 PASSED!
+var a=4,b=3;a|b = 7 PASSED!
+var a=4,b=3;a^b = 7 PASSED!
+var a=4,b=3;a|b = 1 PASSED!
+var a=4,b=3;a<<b = 32 PASSED!
+var a=4,b=1;a>>b = 2 PASSED!
+var a=1,b=1;a>>>b = 0 PASSED!
+var a=4,b=3;a+=b;a = 7 PASSED!
+var a=4,b=3;a-=b;a = 1 PASSED!
+var a=4,b=3;a*=b;a = 12 PASSED!
+var a=4,b=3;a+=b;a = 7 PASSED!
+var a=12,b=3;a/=b;a = 4 PASSED!
+var a=4,b=5;a&=b;a = 4 PASSED!
+var a=4,b=5;a&=b;a = 5 PASSED!
+var a=4,b=5;a^=b;a = 1 PASSED!
+var a=12,b=5;a%=b;a = 2 PASSED!
+var a=4,b=3;a<<=b;a = 32 PASSED!
+var a=4,b=1;a>>=b;a = 2 PASSED!
+var a=1,b=1;a>>>=b;a = 0 PASSED!
+var a=4,b=3;(a) = 4 PASSED!
+var a=4,b=3;{b} = 3 PASSED!
+var a=new Array('hi');a[0] = hi PASSED!
+; = undefined PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\LexicalConventions\7.7.interpreted.arff] ...

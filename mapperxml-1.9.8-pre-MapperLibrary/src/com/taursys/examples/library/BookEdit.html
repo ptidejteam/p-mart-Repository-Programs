@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Library System - Book Maintenance Form</title>
+</head>
+<body>
+<form method="post" action="BookEdit.sf">
+  <table border="1" width="50%" summary="Library System - Book Maintenance Form">
+    <caption>Library System - Book Maintenance Form</caption>
+    <tbody>
+      <tr>
+        <td>Catalog No:</td>
+        <td width="70%">
+          <span id="catalogNo">0000</span>
+          <input type="hidden" size="10" maxlength="10" name="catalogNo" id="hiddenCatalogNo"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Title:</td>
+        <td>
+          <input type="text" size="50" maxlength="50" name="title" id="title"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Keywords:</td>
+        <td>
+          <input type="text" size="30" maxlength="30" name="keywords" id="keywords"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Date Added:</td>
+        <td>
+          <input type="text" size="20" name="dateAdded" id="dateAdded"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Cost:</td>
+        <td>
+          <input type="text" size="20" name="cost" id="cost"/>
+        </td>
+      </tr>
+      <tr>
+        <td>Location:</td>
+        <td>
+          <select name="locationId" id="locationId">
+            <option selected="selected">Option 0</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Save" name="action" id="saveButton"/>
+          <input type="submit" value="Revert" name="action" id="revertButton"/>
+        </td>
+        <td>
+          <span id="errorMessage">Error message goes here</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<p><a href="MainMenu.sf">Main Menu</a></p>
+</body>
+</html>

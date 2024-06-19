@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PADL_Statements
+Bundle-SymbolicName: PADL_Statements
+Bundle-Version: 1.0.0
+Export-Package: padl.kernel,
+ padl.kernel.impl
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Require-Bundle: CPL;bundle-version="1.0.0",
+ PADL;bundle-version="1.0.0"

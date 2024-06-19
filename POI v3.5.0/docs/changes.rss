@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
+<rss version="0.91"><channel><title>POI Changes</title><link>http://poi.apache.org//changes.html</link><description>POI Changes</description><language>en-us</language><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47747 - fixed logic for locating shared formula records</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47809 - Improved work with user-defined functions</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47581 - fixed XSSFSheet.setColumnWidth to produce XML compatible with Mac Excel 2008</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47734 - removed unnecessary svn:executable flag from files in SVN trunk</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47543 - added javadoc how to avoid Excel crash when creating too many HSSFRichTextString cells</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47813 - fixed problems with XSSFWorkbook.removeSheetAt when workbook contains chart</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47737 - adjust sheet indices of named ranges when deleting sheets</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47770 - built-in positive formats don't need starting '('</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47771 - Added method setFunction(boolean) for defined names</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47768 - Implementation of Excel "Days360" and "Npv" functions</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47751 - Do not allow HSSF's cell text longer than 32,767 characters</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47757 - Added an example demonstrating how to convert an XLSX workbook to CSV</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44770 - Fixed PPT parser to tolerate Comment2000 containers with missing comment text</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47773 - Fix for extraction paragraphs and sections from headers/footers with XWPFWordExtractor</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47727 - Support for extraction of header / footer images in HWPF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              moved all test data to a top-level directory</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47721 - Added implementation for INDIRECT()</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45583 - Avoid exception when reading ClipboardData packet in OLE property sets</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47652 - Added support for reading encrypted workbooks</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47604 - Implementation of an XML to XLSX Importer using Custom XML Mapping</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47620 - Avoid FormulaParseException in XSSFWorkbook.setRepeatingRowsAndColumns when removing repeated rows and columns</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47606 - Fixed  XSSFCell to correctly parse column indexes greater than 702 (ZZ)</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47598 - Improved formula evaluator number comparison</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47571 - Fixed XWPFWordExtractor to extract inserted/deleted text</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47548 - Fixed RecordFactoryInputStream to properly read continued DrawingRecords</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              46419 - Fixed compatibility issue with OpenOffice 3.0</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47559 - Fixed compatibility issue with Excel 2008 Mac sp2. Please see
+              the HSSF+XSSF project page for more information. </description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47540 - Fix for saving custom and extended OOXML properties</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47535 - Fixed WordExtractor to tolerate files with empty footnote block</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47517 - Fixed ExtractorFactory to support .xltx and .dotx files</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45556 - Support for extraction of footnotes from docx files</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45555 - Support for extraction of endnotes from docx files</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47520 - Initial support for custom XML mappings in XSSF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47460 - Fixed NPE when retrieving core properties from a newly created workbook</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47498 - Fixed HyperlinkRecord to properly handle URL monikers</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47504 - Fixed XSSFWorkbook to read files with hyperlinks to document locations</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47479 - Fix BoolErrRecord to tolerate incorrect format written by OOO</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47448 - Allow HSSFEventFactory to handle non-zero padding at the end of the workbook stream</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47456 - Support for getting OLE object data in PowerPointExtractor</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47411 - Explicitly set the 1900 date system when creating XSSF workbooks</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47400 - Support for text extraction of footnotes, endnotes and comments in HWPF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47415 - Fixed PageSettingsBlock to allow multiple PLS records</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47412 - Fixed concurrency issue with EscherProperties.initProps()</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47143 - Fixed OOM in HSSFWorkbook#getAllPictures when reading .xls files containing metafiles</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Added implementation for ISNA()</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              46793 - fixed SimpleShape#getLineWidth to handle default line width </description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47356 - removed unused private fields in HWPF BorderCode</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              47355 - Improved  HWPF TableCell to expose TableCellDescriptor</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              46610 - Improved HWPF to better handle unicode</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47261 - Fixed SlideShow#removeSlide to remove references to Notes</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47375 - Fixed HSSFHyperlink to correctly set inter-sheet and file links</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47384 - Fixed ExternalNameRecord to handle unicode names</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              47372 - Fixed locale-sensitive unit tests to pass when running on non-US locale</description></item></channel></rss>

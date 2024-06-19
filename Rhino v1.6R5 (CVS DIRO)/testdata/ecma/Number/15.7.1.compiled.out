@@ -1,0 +1,19 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Number\15.7.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Number\shell.js -f mozilla\js\tests\ecma\Number\15.7.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.7.1 The Number Constructor Called as a Function
+Number() = 0 PASSED!
+Number(void 0) = NaN PASSED!
+Number(null) = 0 PASSED!
+Number() = 0 PASSED!
+Number(new Number()) = 0 PASSED!
+Number(0) = 0 PASSED!
+Number(1) = 1 PASSED!
+Number(-1) = -1 PASSED!
+Number(NaN) = NaN PASSED!
+Number('string') = NaN PASSED!
+Number(new String()) = 0 PASSED!
+Number('') = 0 PASSED!
+Number(Infinity) = Infinity PASSED!
+Number(new MyObject(100)) = 100 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Number\15.7.1.compiled.arff] ...

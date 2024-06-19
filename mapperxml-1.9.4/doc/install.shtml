@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Mapper - A Presentation Framework</title>
+  <meta name="CREATED" content="20020420;13192700">
+  <meta name="CHANGEDBY" content="Marty Phelan">
+  <meta name="CHANGED" content="20020421;8001800">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="media/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"></td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%">
+        <div class="content">
+        <h2>Requirements</h2>
+        <ul>
+          <li>Java VM 1.3.1 (not yet tested with 1.4)</li>
+          <li>For examples: Xerces 1.4.4</li>
+        </ul>
+
+        <h2>General Installation</h2>
+        <ul>
+          <li>Download JAR and JavaDoc and copy to a directory such as:
+            /usr/local/mapperxml</li>
+          <li>Unzip JavaDoc</li>
+          <li>Include mapperxml.jar in CLASSPATH for applications</li>
+        </ul>
+
+        <h2>Installation for use with JBuilder 3 through 5</h2>
+        <ul>
+          <li>Follow General Installation first</li>
+          <li>Copy (or symlink) mapperxml.jar to
+            &lt;jbuilder-install-dir&gt;/lib/ext</li>
+          <li>Start JBuilder</li>
+          <li>Select Tools/Configure Libraries and add "MapperXML" using
+            mapperxml.jar</li>
+        </ul>
+
+        <h2>Installation for use with Forte 3</h2>
+        <ul>
+          <li>Follow General Installation</li>
+          <li>Mount mapperxml.jar in projects as needed</li>
+          <li>May also need to mount Xerces 1.4.4 if used</li>
+        </ul>
+
+        <h2>Installation for use with Tomcat 3 or 4</h2>
+        <ul>
+          <li>Follow General Installation</li>
+          <li>Copy mapperxml.jar to Tomcat's shared library (Tomcat 3 -
+            /lib/apps 4 - /lib)
+            <p>- or -</p>
+          </li>
+          <li>Include mapperxml.jar in your deployment WAR file as a
+          library</li>
+          <li>You will also need to do the same for xerces.jar if you are
+            using the same xml parser as the examples.</li>
+        </ul>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="footer.shtml" -->
+</div>
+</body>
+</html>

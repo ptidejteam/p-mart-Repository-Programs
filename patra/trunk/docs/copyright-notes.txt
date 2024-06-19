@@ -1,0 +1,41 @@
+CREDITS
+=======
+
+Idea of the application comes from the "Password Safe" application. This was first written by Bruce Shneier, and than
+transferred to the open source community. It is now available at: http://passwordsafe.sourceforge.net.
+The password safe project was important to know the file format, especially the header format.
+
+I found some more information about the file format in another open source project which is also based on the
+Password Safe application. It is the pwsafe password database application which can be found at: http://nsd.dyndns.org/pwsafe.
+
+Password generator:
+* The classification system (11 categories) comes from a script written by David Finch. The generator algorithm does not.
+
+Encryption:
+* Written from scratch based on the example provided by Bruce Schneier in the book: "Applied Cryptography".
+
+GOAL
+====
+
+I started using the original password safe application from Bruce Schneier and I still find it very useful.
+I try to maintain a number of different computers running different OS's. On Linux I am using WINE to run password safe.
+I don't want to be "locked in"  in an old format that I didn't understand, I was afraid my data would get lost
+at some point. Therefore, I wanted to be able to decode the fileformat myself to be able to recuperate my data if this would
+be necessary. Some things were bothering me a bit regarding the application.
+
+ * No easy buttons to copy uid/pwd (both, not only the password).
+ * Cross platform - no dependency on WINE - PC, Linux, OSX.
+ * New password safe format 2.0.
+ * Import/export to plain text to prevent lock-in.
+ * Changing the password generating stuff, sometimes I need longer/shorter passwords with other requirements.
+
+The current password safe project hosts a Java version as well but I decided not to investigate this solution further.
+I noticed that there has been progress on the Java version since I started my own implementation, but since, but I did not
+investigate it anymore. The remarks might not be valid anymore at this point in time.
+
+ * Code not clear and clean.
+ * I am in Java myself.
+ * Dependency on external libs.
+
+So I decided to rewrite the complete application from scratch without reusing code. Simple to install, clean lean interface,
+a handy polished tool.

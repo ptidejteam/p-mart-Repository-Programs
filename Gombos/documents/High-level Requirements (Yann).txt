@@ -1,0 +1,59 @@
+1. The system allows the user to type in a URL and open/display the
+corresponding page.
+
+2. The system allows the user to open different URL protocols, in
+particular "http" and "file".
+
+3. The system allows the user to open Web page in different
+versions/flavours of HTML, in particular v4.01 and superior.
+
+4. The system allows the user to navigate through the opened page.
+
+5. The system identifies links and allows the user to browse through
+links by selecting and validating on links.
+
+6. The system remembers the URL of previously-opened pages and
+allows the user to go "back" ("back" in the navigation sense) to
+these.
+
+7. The system allows the user to save the URL of open pages.
+
+8. The system allows the user to retrieve from a list
+previously-saved URL and open them again.
+
+9. The system allows the user to navigate trough an open page or
+through history or through saved URL or through the Web browser
+interface either using the mouse or the keyboard.
+
+10. The system allows the user to print out an open page.
+
+11. The system allows the user to save an open page on disk,
+including images so that it can be viewed again from disk.
+
+12. The system allows the open pages to execute JavaScript scripts.
+
+13. The system allows the user to visualise the trace of the
+execution of JavaScript scripts.
+
+14. The system allows the open pages to call a Java VM.
+
+15. The system allows the user to visualise the trace of the
+execution of a Java VM.
+
+16. The system allows open pages to set cookies.
+
+17. The system allows the user to customise the Web browser to set
+default font face and size and to accept/refuse JavaScript and to
+load/do not load images and to accept/refuse cookies and to
+show/hide favicons and to accept/refuse calls to the Java VM.
+
+18. The system allows the user to search in an opened page for a
+given piece of text.
+
+19. The system allows the user to visualise the code source of an
+opened page.
+
+20. The system allows the user to clear private data, including
+visited URL, cached pages and images, cookies, JavaScript scripts.
+
+21. The system displays favicons if appropriate.

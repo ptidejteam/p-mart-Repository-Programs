@@ -1,0 +1,15 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\String\15.5.4.10-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\String\shell.js -f mozilla\js\tests\ecma_2\String\15.5.4.10-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+String/match-003.js String.prototype.match( regexp )
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g).length = 1 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 0 ).length = 1 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 0 )[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 16).length = 1 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 16)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 11).length = 1 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 11)[0] = 02134 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 12).length = 1 PASSED!
+( Boston, MA 02134 ).match(re = /([\d]{5})([-\ ]?[\d]{4})?$/g; re.lastIndex = 12)[0] = 02134 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\String\15.5.4.10-3.compiled.arff] ...

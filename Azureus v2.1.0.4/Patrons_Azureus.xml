@@ -1,0 +1,273 @@
+	<program type="Java">
+		<name>Design Pattern Group</name>
+		<designPattern name="Flyweight">
+			<microArchitectures>
+				<microArchitecture number="500">
+				<referance>Azureus_Flyweight_01</referance>
+					<actors>
+						<flyweights>
+							<flyweight roleKind="AbstractClass"><entity>org.bouncycastle.crypto.BlockCipher</entity></flyweight>
+						</flyweights>
+						<concreteFlyweights>
+							<concreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.CFBBlockCipher</entity></concreteFlyweight>
+						</concreteFlyweights>
+						<unsharedConcreteFlyweights>
+							<unsharedConcreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.OFBBlockCipher</entity></unsharedConcreteFlyweight>
+							<unsharedConcreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.CBCBlockCipher</entity></unsharedConcreteFlyweight>
+							<unsharedConcreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.SICBlocCipher</entity></unsharedConcreteFlyweight>
+							<unsharedConcreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.OpenPGPCFBBlockCipher</entity></unsharedConcreteFlyweight>
+							<unsharedConcreteFlyweight roleKind="Class"><entity>org.bouncycastle.crypto.modes.PGPCFBBlockCipher</entity></unsharedConcreteFlyweight>
+						</unsharedConcreteFlyweights>
+						<flyweightFactories>
+							<flyweightFactory roleKind="Class"><entity>org.bouncycastle.crypto.BufferedBlockCipher</entity></flyweightFactory>
+						</flyweightFactories>
+						<clients>
+							<client roleKind="Class"><entity>org.bouncycastle.crypto.modes.CTSBlockCipher</entity></client>
+						</clients>
+					</actors>
+					<comment>
+	Ici toutes les classes du "Flyweight Pool" se trouve dans le meme package !
+	Le "Flyweight" et le "FlyweightFactory" se trouvent dans un package de niveau plus elever. Cela nous fait penser que le "Flyweight Pool" serait une sorte de sous systeme,
+en analogie avec la "Facade".
+					</comment>
+				</microArchitecture>
+			</microArchitectures>
+		<comment>
+	Patron rare.
+
+	Ce patron nous permet de definir en parallele des etats differants fonctionnant conjointement tout au long du programme.
+		</comment>
+		</designPattern>
+		<designPattern name="Interpreter">
+			<microArchitectures>
+				<microArchitecture number="501">
+				<referance>Azureus_Interpreter_01</referance>
+					<actors>
+						<abstractExpressions>
+							<abstractExpression roleKind="AbstractClass"><entity>org.bouncycastle.crypto.BlockCipher</entity></abstractExpression>
+						</abstractExpressions>
+						<terminalExpressions>
+							<terminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.CFBBlockCipher</entity></terminalExpression>
+						</terminalExpressions>
+						<nonterminalExpressions>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.OFBBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.CBCBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.SICBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.PGPCFBBlockCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.OpenPGPCFBBlocCipher</entity></nonterminalExpression>
+						</nonterminalExpressions>
+						<contexts>
+							<context roleKind="Class"><entity>org.bouncycastle.crypto.CipherParameters</entity></context>
+						</contexts>
+						<clients>
+							<client roleKind="Class"><entity>org.bouncycastle.crypto.BufferedBlockCipher</entity></client>
+						</clients>
+					</actors>
+				</microArchitecture>
+				<microArchitecture number="502">
+				<referance>Azureus_Interpreter_02</referance>
+					<actors>
+						<abstractExpressions>
+							<abstractExpression roleKind="AbstractClass"><entity>org.bouncycastle.crypto.BlockCipher</entity></abstractExpression>
+						</abstractExpressions>
+						<terminalExpressions>
+							<terminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.CFBBlockCipher</entity></terminalExpression>
+						</terminalExpressions>
+						<nonterminalExpressions>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.OFBBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.CBCBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.SICBlocCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.PGPCFBBlockCipher</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.modes.OpenPGPCFBBlocCipher</entity></nonterminalExpression>
+						</nonterminalExpressions>
+						<contexts>
+							<context roleKind="Class"><entity>org.bouncycastle.crypto.CipherParameters</entity></context>
+						</contexts>
+						<clients>
+							<client roleKind="Class"><entity>org.bouncycastle.crypto.BufferedBlockCipher</entity></client>
+						</clients>
+					</actors>
+				</microArchitecture>
+				<microArchitecture number="501">
+				<referance>Azureus_Interpreter_03</referance>
+					<actors>
+						<abstractExpressions>
+							<abstractExpression roleKind="AbstractClass"><entity>org.bouncycastle.crypto.AsymmetricBlockCipher</entity></abstractExpression>
+						</abstractExpressions>
+						<terminalExpressions>
+							<terminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.engines.RSAEngine</entity></terminalExpression>
+						</terminalExpressions>
+						<nonterminalExpressions>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.encodings.OAEPEncoding</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.encodings.ISO9796d1Encoding</entity></nonterminalExpression>
+							<nonterminalExpression roleKind="Class"><entity>org.bouncycastle.crypto.encodings.PKCS1Encoding</entity></nonterminalExpression>
+						</nonterminalExpressions>
+						<contexts>
+							<context roleKind="Class"><entity>org.bouncycastle.jce.provider.RSAUtil</entity></context>
+						</contexts>
+						<clients>
+							<client roleKind="Class"><entity>org.bouncycastle.jce.provider.JDKDigestSignature</entity></client>
+						</clients>
+					</actors>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="Visitor">
+			<microArchitectures>
+				<microArchitecture number="503">
+				<referance>Azureus_Visitor_01</referance>
+					<actors>
+						<visitors>
+							<visitor roleKind="AbstractClass"><entity>org.bouncycastle.crypto.CipherParameters</entity></visitor>
+						</visitors>
+						<concreteVisitors>
+							<concreteVisitor roleKind="Class"><entity>org.bouncycastle.crypto.params.ParametersWithRandom</entity></concreteVisitor>
+							<concreteVisitor roleKind="Class"><entity>org.bouncycastle.crypto.params.ParametersWithIV</entity></concreteVisitor>
+						</concreteVisitors>
+						<elements>
+							<element roleKind="AbstractClass"><entity>org.bouncycastle.crypto.BlockCipher</entity></element>
+						</elements>
+						<concreteElements>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.OFBBlockCipher</entity></concreteElement>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.CBCBlockCipher</entity></concreteElement>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.SICBlocCipher</entity></concreteElement>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.PGPCFBBlockCipher</entity></concreteElement>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.OpenPGPCFBBlockCipher</entity></concreteElement>
+							<concreteElement roleKind="Class"><entity>org.bouncycastle.crypto.modes.CFBBlockCipher</entity></concreteElement>
+						</concreteElements>
+						<objectStructures>
+							<objectStructure roleKind="Class"><entity>org.bouncycastle.crypto.BufferedBlockCipher</entity></objectStructure>
+						</objectStructures>
+					</actors>
+					<comment>
+	En prenant le livre "Design Pattern" comme reference, le "Client" n'est pas un participant assez important pour etre precise.
+Mais nous pensons que, comme ici, nous devons preciser que le "Client" peut faire qu'un avec le "ObjectStructure".
+En fait, au cours de notre recherche, nous avons trouve que c'est souvent le cas.
+					</comment>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="State">
+			<microArchitectures>
+				<microArchitecture number="504">
+				<referance>Azureus_State_01</referance>
+					<actors>
+						<contexts>
+							<context roleKind="Class"><entity>org.bouncycastle.crypto.encodings.PKCS1Encoding</entity></context>
+							<context roleKind="Class"><entity>org.bouncycastle.crypto.encodings.OAEPEncoding</entity></context>
+						</contexts>
+						<states>
+							<state roleKind="AbstractClass"><entity>org.bouncycastle.crypto.params.AsymmetricKeyParameter</entity></state>
+						</states>
+						<concreteStates>
+							<concreteState roleKind="Class"><entity>org.bouncycastle.crypto.params.DSAPublicKeyParameters</entity></concreteState>
+							<concreteState roleKind="Class"><entity>org.bouncycastle.crypto.params.DSAPrivateKeyParameters</entity></concreteState>
+						</concreteStates>
+					</actors>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="Factory Method">
+			<microArchitectures>
+				<microArchitecture number="505">
+				<referance>Azureus_FactoryMethod_TemplateMethod_01</referance>
+					<actors>
+						<products>
+							<product roleKind="AbstractClass"><entity>org.bouncycastle.crypto.CipherParameters</entity></product>
+						</products>
+						<concretesProducts>
+							<creator roleKind="AbstractClass"><entity>org.bouncycastle.crypto.params.KeyParameter</entity></creator>
+						</concretesProducts>
+						<creators>
+							<concreteProduct roleKind="Class"><entity>org.bouncycastle.crypto.PBEParametersGenerator</entity></concreteProduct>
+						</creators>
+						<concretesCreators>
+							<concreteCreator roleKind="Class"><entity>org.bouncycastle.crypto.generators.PKCS5S1ParametersGenerator</entity></concreteCreator>
+							<concreteCreator roleKind="Class"><entity>org.bouncycastle.crypto.generators.PKCS12ParametersGenerator</entity></concreteCreator>
+						</concretesCreators>
+					</actors>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="Template Method">
+			<microArchitectures>
+				<microArchitecture number="505">
+				<referance>Azureus_FactoryMethod_TemplateMethod_01</referance>
+					<actors>
+						<abstractsClasses>
+							<abstractClass roleKind="AbstractClass"><entity>org.bouncycastle.crypto.PBEParametersGenerator</entity></abstractClass>
+						</abstractsClasses>
+						<concretesClasses>
+							<concreteClass roleKind="Class"><entity>org.bouncycastle.crypto.generators.PKCS5S1ParametersGenerator</entity></concreteClass>
+							<concreteClass roleKind="Class"><entity>org.bouncycastle.crypto.generators.PKCS12ParametersGenerator</entity></concreteClass>
+						</concretesClasses>
+					</actors>
+					<comment>
+	Ici, rien de spécial, à moins que l'on jette un coup d'oeil sur le magnifique Diagramme "Azureus_FactoryMethod_TemplateMethod_01".
+	On remarque donc un bel example de Factory Method dérivé d'un Template Method
+					</comment>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="Bridge">
+			<microArchitectures>
+				<microArchitecture number="506">
+				<referance>Azureus_Bridge_01</referance>
+					<actors>
+						<abstractions>
+							<abstraction roleKind="Class"><entity>org.bouncycastle.crypto.CipherKeyGenerator</entity></abstraction>
+						</abstractions>
+						<refinedAbstractions>
+							<refinedAbstraction roleKind="Class"><entity>org.bouncycastle.crypto.generators.DESKeyGenerator</entity></refinedAbstraction>
+						</refinedAbstractions>
+						<implementors>
+							<implementor roleKind="AbstractClass"><entity>org.bouncycastle.crypto.KeyGenerationParameters</entity></implementor>
+						</implementors>
+						<concretesImplementors>
+							<concreteImplementor roleKind="Class"><entity>org.bouncycastle.crypto.params.RSAKeyGenerationParameters</entity></concreteImplementor>
+							<concreteImplementor roleKind="Class"><entity>org.bouncycastle.crypto.params.ECKeyGenerationParameters</entity></concreteImplementor>
+							<concreteImplementor roleKind="Class"><entity>org.bouncycastle.crypto.params.ElGamalKeyGenerationParameters</entity></concreteImplementor>
+							<concreteImplementor roleKind="Class"><entity>org.bouncycastle.crypto.params.DSAKeyGenerationParameters</entity></concreteImplementor>
+							<concreteImplementor roleKind="Class"><entity>org.bouncycastle.crypto.params.DHKeyGenerationParameters</entity></concreteImplementor>
+						</concretesImplementors>
+					</actors>
+					<comment>
+	Ici, ni l'objet "Abstraction", ni l'objet "Implementor" ne sont des interfaces, comme propose le GoF
+	La raison pour lequelle nous pensons être en présence d'un bridge, c'est par la motivation.
+	En fait, nous supposons que la volonté du programmeur est de creer une class "DESKeyGenerator", dont le but est de générer des clées,
+pouvant s'adapter et surtout interchanger des jeux de parametres de clees different. Dans ce but, l'esprit du "Bridge" à été respecté.
+	Pourquoi nous pensons, ici, que avoir des "Class" au lieu de "AbstractClass" n'est pas si important, c'est que une interface nous oblige
+à avoir une certaine structure dans les class enfants. Mais en regardant de plus près le code source, nous constatons que toutes les "ConcreteImplementor"
+possèdent une structure plus ou moins identique. Donc suivent la même "ligne" de programmation.
+	En conclusion, nous sommes bien en présence d'un bridge, mais l'utilisation de "Class" au lieu de "AbstractClass" ne nous garantis pas que tous les
+enfants des Objets "Abstraction" et "Implementor" constitue des éléments du Bridge. Et ainsi, cela remetrait un question le Patron lui même.
+					</comment>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+		<designPattern name="Composite">
+			<microArchitectures>
+				<microArchitecture number="507">
+				<referance>Azureus_Composite_01</referance>
+					<actors>
+						<components>
+							<component roleKind="AbstractClass"><entity>org.bouncycastle.crypto.AsymmetricBlockCipher</entity></component>
+						</components>
+						<leaves>
+							<leaf roleKind="Class"><entity>org.bouncycastle.crypto.encodings.RSAEngine</entity></leaf>
+						</leaves>
+						<composites>
+							<composite roleKind="Class"><entity>org.bouncycastle.crypto.encodings.ISO9796d1Encoding</entity></composite>
+							<composite roleKind="Class"><entity>org.bouncycastle.crypto.encodings.OAEPEncoding</entity></composite>
+							<composite roleKind="Class"><entity>org.bouncycastle.crypto.encodings.PKCS1Encoding</entity></composite>
+						</composites>
+						<clients>
+							<client roleKind="Class"><entity>org.bouncycastle.jce.provider.JDKDigestSignature</entity></client>
+						</clients>
+					</actors>
+					<comment>
+					</comment>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+	</program>

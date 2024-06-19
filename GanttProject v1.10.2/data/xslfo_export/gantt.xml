@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ganttproject SYSTEM "gantt.dtd">
+<xsl:stylesheet
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:ganttproject="http://ganttproject.sf.net/"
+        version="1.0">
+ 
+<ganttproject:report>
+ 
+        <ganttproject:project
+								xslfo-path="/home/thomas/xslfodirectory"
+                title="GanttProject Report"
+                name="Project"
+                nameValue="Test project"
+                organisation="Organization"
+                organisationValue="Some fancy organization"
+                description="Description">
+                <desctiptionValue>
+                        Thorough project description
+                </desctiptionValue>
+        </ganttproject:project>
+ 
+        <ganttproject:ganttchart 
+						title="Gantt Chart" 
+						src="/tmp/ganttchart.jpg"
+						xslfo-path="/home/thomas/xslfodirectory">
+        </ganttproject:ganttchart>
+ 
+        <ganttproject:resourceschart 
+						title="Resources Chart" 
+						src="/tmp/resourceschart.jpg"
+						xslfo-path="/home/thomas/xslfodirectory">
+        </ganttproject:resourceschart>
+ 
+        <ganttproject:tasks 
+								xslfo-path="/home/thomas/xslfodirectory"
+								title="Tasks List"
+                name="Name"
+                begin="Start"
+                end="End"
+                milestone="Bilan"
+                progress="%"
+                assigned-to="Res."
+                notes="Notes">
+ 
+                <ganttproject:task>
+                        <name>Task1</name>
+                        <begin>Sep 21, 2003</begin>
+                        <end>Sep 25, 2003</end>
+                        <milestone>false</milestone>
+                        <progress>0</progress>
+                        <assigned-to>&#160;</assigned-to>
+                        <notes><![CDATA[ ]]></notes>
+                        <color>#8cb6ce</color>
+                </ganttproject:task>
+                <ganttproject:task>
+                        <name>Task2</name>
+                        <begin>Sep 11, 2003</begin>
+                        <end>Sep 22, 2003</end>
+                        <milestone>false</milestone>
+                        <progress>0</progress>
+                        <assigned-to>&#160;</assigned-to>
+                        <notes><![CDATA[ ]]></notes>
+                        <color>#8cb6ce</color>
+                </ganttproject:task>
+ 
+        </ganttproject:tasks>
+ 
+        <ganttproject:resources 
+								xslfo-path="/home/thomas/xslfodirectory"
+								title="Resources List"
+                name="Name"
+                role="Role"
+                mail="Mail"
+                phone="Phone">
+ 
+                <ganttproject:resource>
+                        <name>Person1</name>
+                        <role>developer</role>
+                        <mail>toto@toto.com</mail>
+                        <phone>0878565442</phone>
+                </ganttproject:resource>
+                <ganttproject:resource>
+                        <name>Person2</name>
+                        <role>tester</role>
+                        <mail>evan@essence.fr</mail>
+                        <phone>(+33)984566544</phone>
+                </ganttproject:resource>
+        </ganttproject:resources>
+ 
+</ganttproject:report>
+ 
+</xsl:stylesheet>

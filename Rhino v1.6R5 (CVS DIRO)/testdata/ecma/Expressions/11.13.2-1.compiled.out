@@ -1,0 +1,35 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.13.2-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.13.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 438 ms]
+11.13.2-1 Compound Assignment: *=
+VAR1 = NaN; VAR2=1; VAR1 *= VAR2 = NaN PASSED!
+VAR1 = NaN; VAR2=1; VAR1 *= VAR2; VAR1 = NaN PASSED!
+VAR1 = 0; VAR2=1; VAR1 *= VAR2 = 0 PASSED!
+VAR1 = 0; VAR2=1; VAR1 *= VAR2;VAR1 = 0 PASSED!
+VAR1 = 0xFF; VAR2 = 0xA, VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = 0; VAR2= Infinity; VAR1 *= VAR2 = NaN PASSED!
+VAR1 = -0; VAR2= Infinity; VAR1 *= VAR2 = NaN PASSED!
+VAR1 = -0; VAR2= -Infinity; VAR1 *= VAR2 = NaN PASSED!
+VAR1 = 0; VAR2= -Infinity; VAR1 *= VAR2 = NaN PASSED!
+VAR1 = 0; VAR2= Infinity; VAR2 *= VAR1 = NaN PASSED!
+VAR1 = -0; VAR2= Infinity; VAR2 *= VAR1 = NaN PASSED!
+VAR1 = -0; VAR2= -Infinity; VAR2 *= VAR1 = NaN PASSED!
+VAR1 = 0; VAR2= -Infinity; VAR2 *= VAR1 = NaN PASSED!
+VAR1 = Infinity; VAR2= Infinity; VAR1 *= VAR2 = Infinity PASSED!
+VAR1 = Infinity; VAR2= -Infinity; VAR1 *= VAR2 = -Infinity PASSED!
+VAR1 =-Infinity; VAR2= Infinity; VAR1 *= VAR2 = -Infinity PASSED!
+VAR1 =-Infinity; VAR2=-Infinity; VAR1 *= VAR2 = Infinity PASSED!
+VAR1 = 10; VAR2 = '255', VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = '255'; VAR2 = 10, VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = 10; VAR2 = '0XFF', VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = '0xFF'; VAR2 = 0xA, VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = '10'; VAR2 = '255', VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = '10'; VAR2 = '0XFF', VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = '0xFF'; VAR2 = 0xA, VAR1 *= VAR2 = 2550 PASSED!
+VAR1 = true; VAR2 = false; VAR1 *= VAR2 = 0 PASSED!
+VAR1 = true; VAR2 = true; VAR1 *= VAR2 = 1 PASSED!
+VAR1 = new Boolean(true); VAR2 = 10; VAR1 *= VAR2;VAR1 = 10 PASSED!
+VAR1 = new Number(11); VAR2 = 10; VAR1 *= VAR2; VAR1 = 110 PASSED!
+VAR1 = new Number(11); VAR2 = new Number(10); VAR1 *= VAR2 = 110 PASSED!
+VAR1 = new String('15'); VAR2 = new String('0xF'); VAR1 *= VAR2 = 225 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.13.2-1.compiled.arff] ...

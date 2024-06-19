@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JRefactory - JBuilder IDE</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> JRefactory<BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csr-elixir.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JRefactory - JBuilder IDE
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csr-metrics.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H4>JBuilder Extension</H4>
+
+			<P>Starting with release 2.4.31, this software also plugs into JBuilder
+			3.0 Foundation and 3.5 and later releases.  To install the software
+			into JBuilder 3.0 Foundation and later releases, please the jrefactory.jar
+			file into the lib/ext directory.</P>
+
+			<P>The software creates a new menu called JRefactory, and all the
+			functions are under that.  The pretty printer can be accessed
+			by pressing Control+Shift+P.  The extract method function can
+			be accessed with Control+Shift+E.</P>
+
+			<P>A powerful new feature has been added to JBuilder.  If you
+			select the JRefactory top level menu, you will notice that there
+			is a new menu item:  Refactorings.  Under this, it lists the
+			different refactorings that are available for the system.  Some
+			options will be greyed out depending on the location of the
+			cursor.  To perform a method refactoring, place your cursor
+			in the method you wish to change.  Then select JRefactory ->
+			Refactorings -> Method Refactorings -> Specific refactoring.
+			Similarly you can put the cursor on a field to invoke the
+			field refactorings.</P>
+
+			<P>The type refactorings are available on the Refactoring menu
+			as described above as well.  But you can also do the type
+			refactorings by selecting on one or more of the files in the
+			project view.  Then right click on one of the selected files
+			and you have the JRefactory menu item.  This menu item expands
+			to a list of type level refactorings.</P>
+
+			<P>To preform the refactorings, the metadata must be loaded.
+			When you select one of these menu items, the system will
+			launch the metadata loader process.  Please be patient and
+			let it complete before you press the OK button to complete
+			the refactorings.  In fact, it is a good idea to manually
+			load the refactorings before selecting the refactorings
+			from these menus.</P>
+
+			<P>The current version of software waits to load the meta data until
+			directed to do so by the user.  Please be sure to close all class
+			diagrams before you exit JBuilder to insure a quick start to JBuilder.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csr-elixir.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: June 6, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csr-metrics.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

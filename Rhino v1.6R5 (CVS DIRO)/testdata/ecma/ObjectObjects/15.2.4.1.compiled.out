@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ObjectObjects\15.2.4.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ObjectObjects\shell.js -f mozilla\js\tests\ecma\ObjectObjects\15.2.4.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+15.2.4.1 Object.prototype.constructor
+Object.prototype.constructor = function Object() { [native code for Object.Object, arity=1] }
+ PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ObjectObjects\15.2.4.1.compiled.arff] ...

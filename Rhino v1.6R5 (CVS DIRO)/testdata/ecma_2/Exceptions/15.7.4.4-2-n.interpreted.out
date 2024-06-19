@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\15.7.4.4-2-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\15.7.4.4-2-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+number-002 Exceptions for Number.valueOf()
+number-002 Number.prototype.valueOf()
+object = new Object(); object.valueOf = Number.prototype.valueOf; object.valueOf() (threw TypeError: Method "valueOf" called on incompatible object.) = Passed PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\15.7.4.4-2-n.interpreted.arff] ...

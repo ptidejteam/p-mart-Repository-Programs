@@ -1,0 +1,288 @@
+/*
+ * File    : SystemTraySWT.java
+ * Created : 2 avr. 2004
+ * By      : Olivier
+ * 
+ * Azureus - a Java Bittorrent client
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details ( see the LICENSE file ).
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+package org.gudy.azureus2.ui.systray;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MenuEvent;
+import org.eclipse.swt.events.MenuListener;
+import org.eclipse.swt.widgets.*;
+import org.gudy.azureus2.core3.download.DownloadManager;
+import org.gudy.azureus2.core3.global.GlobalManager;
+import org.gudy.azureus2.core3.internat.MessageText;
+import org.gudy.azureus2.core3.util.DisplayFormatters;
+import org.gudy.azureus2.ui.swt.ImageRepository;
+import org.gudy.azureus2.ui.swt.Messages;
+import org.gudy.azureus2.ui.swt.mainwindow.SWTThread;
+import org.gudy.azureus2.ui.swt.mainwindow.SelectableSpeedMenu;
+import org.gudy.azureus2.ui.swt.views.utils.ManagerUtils;
+
+import com.aelitis.azureus.core.AzureusCore;
+import com.aelitis.azureus.core.AzureusCoreFactory;
+import com.aelitis.azureus.ui.swt.UIFunctionsManagerSWT;
+import com.aelitis.azureus.ui.swt.UIFunctionsSWT;
+
+import java.util.List;
+
+/**
+ * @author Olivier Chalouhi
+ *
+ */
+public class SystemTraySWT
+{
+
+	Display display;
+
+	UIFunctionsSWT uiFunctions;
+
+	Tray tray;
+
+	TrayItem trayItem;
+
+	Menu menu;
+
+	public SystemTraySWT() {
+		uiFunctions = UIFunctionsManagerSWT.getUIFunctionsSWT();
+		display = SWTThread.getInstance().getDisplay();
+
+		tray = display.getSystemTray();
+		trayItem = new TrayItem(tray, SWT.NULL);
+
+		trayItem.setImage(ImageRepository.getImage("azureus"));
+		trayItem.setVisible(true);
+
+		menu = new Menu(uiFunctions.getMainShell(), SWT.POP_UP);
+
+		final MenuItem itemShow = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemShow, "SystemTray.menu.show");
+
+		new MenuItem(menu, SWT.SEPARATOR);
+
+		final MenuItem itemCloseAll = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemCloseAll,
+				"SystemTray.menu.closealldownloadbars");
+
+		new MenuItem(menu, SWT.SEPARATOR);
+
+		createUploadLimitMenu(menu);
+		createDownloadLimitMenu(menu);
+
+		new MenuItem(menu, SWT.SEPARATOR);
+
+		final MenuItem itemStartAll = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemStartAll, "SystemTray.menu.startalltransfers");
+
+		final MenuItem itemStopAll = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemStopAll, "SystemTray.menu.stopalltransfers");
+
+		final MenuItem itemPause = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemPause, "SystemTray.menu.pausetransfers");
+
+		final MenuItem itemResume = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemResume, "SystemTray.menu.resumetransfers");
+
+		new MenuItem(menu, SWT.SEPARATOR);
+
+		final MenuItem itemExit = new MenuItem(menu, SWT.NULL);
+		Messages.setLanguageText(itemExit, "SystemTray.menu.exit");
+
+		itemShow.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				showMainWindow();
+			}
+		});
+
+		itemStartAll.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				AzureusCoreFactory.getSingleton().getGlobalManager().startAllDownloads();
+			}
+		});
+
+		itemStopAll.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				ManagerUtils.asyncStopAll();
+			}
+		});
+
+		itemPause.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				ManagerUtils.asyncPause();
+			}
+		});
+
+		itemResume.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				AzureusCoreFactory.getSingleton().getGlobalManager().resumeDownloads();
+			}
+		});
+
+		menu.addMenuListener(new MenuListener() {
+			public void menuShown(MenuEvent _menu) {
+				GlobalManager gm = AzureusCoreFactory.getSingleton().getGlobalManager();
+				itemPause.setEnabled(gm.canPauseDownloads());
+
+				itemResume.setEnabled(gm.canResumeDownloads());
+			}
+
+			public void menuHidden(MenuEvent _menu) {
+
+			}
+		});
+
+		itemCloseAll.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				uiFunctions.closeDownloadBars();
+			}
+		});
+
+		itemExit.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event arg0) {
+				uiFunctions.requestShutdown();
+			}
+		});
+
+		trayItem.addListener(SWT.DefaultSelection, new Listener() {
+			public void handleEvent(Event arg0) {
+				showMainWindow();
+			}
+		});
+
+		trayItem.addListener(SWT.MenuDetect, new Listener() {
+			public void handleEvent(Event arg0) {
+				menu.setVisible(true);
+			}
+		});
+	}
+
+	/**
+	 * Creates the global upload limit context menu item
+	 * @param parent The system tray contextual menu
+	 */
+	private final void createUploadLimitMenu(final Menu parent) {
+		final MenuItem uploadSpeedItem = new MenuItem(parent, SWT.CASCADE);
+		uploadSpeedItem.setText(MessageText.getString("GeneralView.label.maxuploadspeed"));
+
+		final Menu uploadSpeedMenu = new Menu(uiFunctions.getMainShell(),
+				SWT.DROP_DOWN);
+
+		uploadSpeedMenu.addListener(SWT.Show, new Listener() {
+			public void handleEvent(Event event) {
+				AzureusCore core = AzureusCoreFactory.getSingleton();
+				SelectableSpeedMenu.generateMenuItems(uploadSpeedMenu, core,
+						core.getGlobalManager(), true);
+			}
+		});
+
+		uploadSpeedItem.setMenu(uploadSpeedMenu);
+	}
+
+	/**
+	 * Creates the global download limit context menu item
+	 * @param parent The system tray contextual menu
+	 */
+	private final void createDownloadLimitMenu(final Menu parent) {
+		final MenuItem downloadSpeedItem = new MenuItem(parent, SWT.CASCADE);
+		downloadSpeedItem.setText(MessageText.getString("GeneralView.label.maxdownloadspeed"));
+
+		final Menu downloadSpeedMenu = new Menu(uiFunctions.getMainShell(),
+				SWT.DROP_DOWN);
+
+		downloadSpeedMenu.addListener(SWT.Show, new Listener() {
+			public void handleEvent(Event event) {
+				AzureusCore core = AzureusCoreFactory.getSingleton();
+				SelectableSpeedMenu.generateMenuItems(downloadSpeedMenu, core,
+						core.getGlobalManager(), false);
+			}
+		});
+
+		downloadSpeedItem.setMenu(downloadSpeedMenu);
+	}
+
+	public void dispose() {
+		if (trayItem != null && !trayItem.isDisposed()) {
+			trayItem.dispose();
+		}
+	}
+
+	public void update() {
+		if (trayItem.isDisposed())
+			return;
+		List managers = AzureusCoreFactory.getSingleton().getGlobalManager().getDownloadManagers();
+		//StringBuffer toolTip = new StringBuffer("Azureus - ");//$NON-NLS-1$
+		StringBuffer toolTip = new StringBuffer();
+		int seeding = 0;
+		int downloading = 0;
+
+		for (int i = 0; i < managers.size(); i++) {
+			DownloadManager manager = (DownloadManager) managers.get(i);
+			int state = manager.getState();
+			if (state == DownloadManager.STATE_DOWNLOADING)
+				downloading++;
+			if (state == DownloadManager.STATE_SEEDING)
+				seeding++;
+		}
+
+		// something went funny here across Java versions, leading " " got lost
+
+		String seeding_text = MessageText.getString("SystemTray.tooltip.seeding").replaceAll(
+				"%1", "" + seeding);
+		String downloading_text = MessageText.getString(
+				"SystemTray.tooltip.downloading").replaceAll("%1", "" + downloading);
+
+		/*	if ( !seeding_text.startsWith(" " )){
+		 seeding_text = " " + seeding_text;
+		 }*/
+		if (!downloading_text.startsWith(" ")) {
+			downloading_text = " " + downloading_text;
+		}
+
+		GlobalManager gm = AzureusCoreFactory.getSingleton().getGlobalManager();
+
+		toolTip.append(seeding_text).append(downloading_text).append("\n");
+		toolTip.append(MessageText.getString("ConfigView.download.abbreviated")).append(
+				" ");
+		toolTip.append(DisplayFormatters.formatByteCountToKiBEtcPerSec(gm.getStats().getDataReceiveRate()
+				+ gm.getStats().getProtocolReceiveRate()));
+		toolTip.append(", ").append(
+				MessageText.getString("ConfigView.upload.abbreviated")).append(" ");
+		toolTip.append(DisplayFormatters.formatByteCountToKiBEtcPerSec(gm.getStats().getDataSendRate()
+				+ gm.getStats().getProtocolSendRate()));
+
+		trayItem.setToolTipText(toolTip.toString());
+
+		//Why should we refresh the image? it never changes ...
+		//and is a memory bottleneck for some non-obvious reasons.
+		//trayItem.setImage(ImageRepository.getImage("azureus"));   
+		trayItem.setVisible(true);
+	}
+
+	private void showMainWindow() {
+		uiFunctions.bringToFront();
+	}
+
+	public void updateLanguage() {
+		if (menu != null) {
+			Messages.updateLanguageForControl(menu);
+		}
+
+		update();
+	}
+
+}

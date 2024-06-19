@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Application Architecture</title>
+  <link href="../common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="../common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%">
+        <h1>2. Application Architecture</h1>
+        <p>
+        <center>
+        <img src="media/MapperXMLApplication.gif" alt="Application Architecture">
+        <br/>
+        figure 2.1 - MapperXML Application Architecture
+        </center>
+        </p>
+
+        <h2>2.1 ServletApp</h2>
+        <p>The top component in a MapperXML application is the ServletApp. All requests
+        go through the ServletApp. The ServletApp in turn, delegates the work of
+        servicing the request to a ServletForm.</p>
+
+        <p>You will typically subclass com.taursys.servlet.ServletApp to build
+        a new application. Use of the ServletApp, however, is not required for
+        building a MapperXML applications. You can implement your own version of
+        the ServletApp.</p>
+
+        <p>The core method of the ServletApp is the doGet method. This method also
+        services requests for the doPost method. In the doGet method, the ServletApp
+        inspects the request's path information to decide which ServletForm should
+        handle the request. It then invokes the doGet method of the appropriate
+        ServletForm. The ServletApp actually uses a ServletFormFactory to do much
+        of this work,
+        </p>
+        <p>The following code is an extract from the ServletApp's doGet method:</p>
+        <pre>
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // Determine the Presentation Manager
+    try {
+      ServletForm form = factory.createServletForm(request.getPathInfo());
+      try {
+        form.doGet(request, response);
+      }
+      catch (Exception ex) {
+        throw new ServletException("Unhandled Exception in ServletForm: "
+            + ex.getMessage(), ex);
+      } finally {
+        factory.recycle(form);
+      }
+    }
+    catch (ServletFormNotFoundException ex) {
+      // throw 404
+      response.sendError(HttpServletResponse.SC_NOT_FOUND,
+        "The requested ServletForm was not found.  If you typed the url, please "
+        + "check to be sure it is correct.  It is also possible that the system "
+        + "that provides this resource is temporarily unavailable.&lt;br/&gt;&lt;hr/&gt;"
+        + "Internal error message: " + ex.getMessage() + ").");
+    }
+  }
+        </pre>
+        <p>The core process is very simple. The ServletApp asks the ServletFormFactory
+        for the appropriate ServletForm. If that cannot be found, a 404 response
+        is sent. If found, the request is sent the the ServletForm's doGet
+        method. If an Exception occurs in the ServletForm, a ServletException is
+        thrown with the cause attached. Finally the ServletForm is recycled (more
+        on recycling below).
+        </p>
+        <h2>2.2 ServletFormFactory</h2>
+        <p>The ServletFormFactory creates and recycles ServletForms for an application.
+        This class was designed to be used by a ServletApp.  It will typically
+        be setup in the init method of the ServletApp.  Below is an example of
+        typical usage:</p>
+        <pre>
+        public class MyMainServlet extends ServletApp {
+
+          public void init(ServletConfig config) throws ServletException {
+            super.init(config);
+            getFactory().addPackage("/","com.taursys.examples.simpleweb");
+            getFactory().setDefaultFormName("com.taursys.examples.simpleweb.ShowHidePage");
+            getFactory().setDefaultClassLoader(getClass().getClassLoader());
+            // Set default logging
+            Debug.setLoggerAdapter(new SimpleLogger(Debug.DEBUG));
+          }
+        }
+        </pre>
+        <p>The ServletApp invokes the ServletFormFactory's createServletForm
+        method at the beginning of a request. This method returns a ServletForm
+        based on the given url.  This method will first see if there are any
+        recycled forms in the servletForms pool.  If so, it will remove that
+        ServletForm from the pool and return it.  If none are in the pool,
+        it will create a new one.</p>
+        <p>When the request processing is complete the ServletApp invokes the
+        ServletFormFactory's recycle method.  The recycle method will put given
+        servletForm back into pool if servletForm supports recycling.</p>
+        <h2>2.3 Sharing Application Resources</h2>
+        <p>Sharing resources among the ServletForms which make up an application
+        is accomplished through some simple means. The basic approach is to
+        Create the resource in the ServletApp and pass it to the ServletForms
+        through the request object. Below is an example of sharing a
+        database connection. The datasource is first created and initialized
+        by the ServletApp:</p>
+        <pre>
+  ...
+  private OracleConnectionPoolDataSource dataSource;
+  ...
+  public void init(ServletConfig config) throws ServletException {
+    ...
+    try {
+      dataSource = new OracleConnectionPoolDataSource();
+      dataSource.setURL("jdbc:oracle:thin:@192.168.5.1:1521:ORCL");
+      dataSource.setUser("librarian");
+      dataSource.setPassword("shelves");
+    } catch (Exception ex) {
+      throw new ServletException("Cannot open database connection pool", ex);
+    }
+  }
+        </pre>
+        <p>Then the request is passed to ServletForms as an attribute in
+        the request object:</p>
+        <pre>
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // Share dataSource with ServletForms
+    request.setAttribute("dataSource", dataSource);
+    super.doGet(request, response);
+  }
+        </pre>
+        <p>Finally, the ServletForms access the shared resource in their
+        initForm or openForm method:</p>
+        <pre>
+  protected void initForm() throws java.lang.Exception {
+    ...
+    dao.setDataSource(
+        (DataSource)getRequest().getAttribute("dataSource"));
+    ...
+  }
+        </pre>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="../common/footer.shtml" -->
+</div>
+</body>
+</html>

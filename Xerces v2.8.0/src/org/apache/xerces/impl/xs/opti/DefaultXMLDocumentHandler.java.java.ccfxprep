@@ -1,0 +1,15 @@
+2b.8.608	+0	(def_block
+2b.8.608	+5	r_class
+2b.e.60e	+19	id|DefaultXMLDocumentHandler
+2d.4d.6d6	+1	(brace
+30.c.707	+0	(def_block
+30.c.707	+19	id|DefaultXMLDocumentHandler
+30.25.720	+0	c_func
+30.25.720	+1	(paren
+30.26.721	+1	)paren
+30.28.723	+1	(brace
+31.5.729	+1	)brace
+31.6.72a	+0	)def_block
+364.1.7d89	+1	)brace
+364.2.7d8a	+0	)def_block
+364.2.7d8a	+0	eof

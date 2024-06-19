@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Braces Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+			    @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.org"></meta></head><body class="composite"><div id="banner"><a href="http://pmd.sourceforge.net/" id="organizationLogo"><img alt="Project Ultra*Log @ DARPA" src="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"></img></a><a href="http://pmd.sourceforge.net/" id="projectLogo"><img alt="PMD" src="../images/pmd_logo_small.jpg"></img></a><div class="clear"><hr></hr></div></div><div id="breadcrumbs"><div class="xright">
+        
+        <a href="http://sourceforge.net/projects/pmd">SourceForge.net Project Page</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://sourceforge.net">Hosted by SourceForge</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.ultralog.net/">Ultra*Log</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.darpa.mil/">DARPA</a>
+      </div><div class="clear"><hr></hr></div></div><div id="leftColumn"><div id="navcolumn"><div id="menuOverview"><h5>Overview</h5><ul><li class="none"><a href="../installing.html">Installation</a></li><li class="none"><a href="../running.html">Command line usage</a></li><li class="none"><a href="../ant-task.html">Ant task usage</a></li><li class="none"><a href="../integrations.html">IDE plugin usage</a></li><li class="none"><a href="../news.html">PMD in the press</a></li><li class="none"><a href="../bestpractices.html">Best practices</a></li><li class="none"><a href="../cpd.html">Finding copied and pasted code</a></li><li class="none"><a href="../similar-projects.html">Similar projects</a></li><li class="none"><a href="../credits.html">Credits</a></li><li class="none"><a href="../license.html">License</a></li><li class="none"><a href="../meaning.html">What does 'PMD' mean?</a></li></ul></div><div id="menuCustomizing_PMD"><h5>Customizing PMD</h5><ul><li class="none"><a href="../compiling.html">Compiling PMD</a></li><li class="none"><a href="../howtowritearule.html">How to write a rule</a></li><li class="none"><a href="../howtomakearuleset.html">How to make a rule set</a></li><li class="none"><a href="../howitworks.html">How it works</a></li></ul></div><div id="menuFor_example"><h5>For example</h5><ul><li class="none"><a href="../scoreboard.html">Run PMD on a Sourceforge project</a></li></ul></div><div id="menuRule_Sets"><h5>Rule Sets</h5><ul><li class="none"><a href="../rules/basic.html">Basic</a></li><li class="none"><a href="../rules/naming.html">Naming</a></li><li class="none"><a href="../rules/unusedcode.html">Unused Code</a></li><li class="none"><a href="../rules/design.html">Design</a></li><li class="none"><a href="../rules/imports.html">Import Statements</a></li><li class="none"><a href="../rules/junit.html">JUnit Tests</a></li><li class="none"><a href="../rules/strings.html">Strings</a></li><li class="none"><strong><a href="../rules/braces.html">Braces</a></strong></li><li class="none"><a href="../rules/codesize.html">Code Size</a></li><li class="none"><a href="../rules/javabeans.html">Javabeans</a></li><li class="none"><a href="../rules/finalizers.html">Finalizers</a></li><li class="none"><a href="../rules/coupling.html">Coupling</a></li><li class="none"><a href="../rules/strictexception.html">Strict Exceptions</a></li><li class="none"><a href="../rules/controversial.html">Controversial</a></li></ul></div><div id="menuProject_Documentation"><h5>Project Documentation</h5><ul><li class="none"><a href="../index.html">About PMD</a></li><li class="collapsed"><a href="../project-info.html">Project Info</a></li><li class="collapsed"><a href="../maven-reports.html">Project Reports</a></li><li class="none"><a href="http://maven.apache.org/development-process.html">Development Process</a></li></ul></div><a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy"><img alt="Built by Maven" src="../images/logos/maven-button-1.png"></img></a></div></div><div id="bodyColumn"><div class="contentBox"><div class="section"><h2><a name="Braces_Rules">Braces Rules</a></h2><p>
+The Braces Ruleset contains a collection of braces rules.
+  </p><div class="subsection"><h3><a name="IfStmtsMustUseBraces">IfStmtsMustUseBraces</a></h3><p>
+     Avoid using if statements without using curly braces
+     </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                   
+    //IfStatement[count(*) &amp;lt; 3][not(Statement/Block)]
+                   
+               </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+ public class Foo {
+   public void bar() {
+     int x = 0;
+     if (foo) x++;
+   }
+ }
+ 
+     
+		</pre></div>
+  </div><div class="subsection"><h3><a name="WhileLoopsMustUseBracesRule">WhileLoopsMustUseBracesRule</a></h3><p>
+      Avoid using 'while' statements without using curly braces
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+    //WhileStatement[not(Statement/Block)]
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+    public void doSomething() {
+      while (true)
+          x++;
+    }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="IfElseStmtsMustUseBracesRule">IfElseStmtsMustUseBracesRule</a></h3><p>
+       Avoid using if..else statements without using curly braces
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+//Statement
+ [parent::IfStatement]
+ [not(child::Block)]
+ [not(child::IfStatement)]
+
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+
+     public void doSomething() {
+       // this is OK
+       if (foo) x++;
+
+       // but this is not
+       if (foo)
+           x=x+1;
+       else
+           x=x-1;
+     }
+   
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="ForLoopsMustUseBracesRule">ForLoopsMustUseBracesRule</a></h3><p>
+       Avoid using 'for' statements without using curly braces
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                     
+    //ForStatement[not(Statement/Block)]
+                     
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+     public void foo() {
+       for (int i=0; i&amp;lt;42;i++)
+           foo();
+     }
+   
+       
+		</pre></div>
+  </div></div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2004, Project Ultra*Log @ DARPA</div><div class="clear"><hr></hr></div></div></body></html>

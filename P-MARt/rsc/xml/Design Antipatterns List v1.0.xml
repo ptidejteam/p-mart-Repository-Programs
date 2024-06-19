@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * (c) Copyright 2001-2013 Yann-Gaël Guéhéneuc,
+ * University of Montréal and École Polytechnique de Montréal
+ * 
+ * Use and copying of this software and preparation of derivative works
+ * based upon this software are permitted. Any copy of this software or
+ * of any derivative work must include the above copyright notice of
+ * the author, this paragraph, the one after it, and the comments below.
+ * 
+ * This software is made available AS IS, and THE AUTHOR DISCLAIMS
+ * ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE, AND NOT WITHSTANDING ANY OTHER PROVISION CONTAINED HEREIN,
+ * ANY LIABILITY FOR DAMAGES RESULTING FROM THE SOFTWARE OR ITS USE IS
+ * EXPRESSLY DISCLAIMED, WHETHER ARISING IN CONTRACT, TORT (INCLUDING
+ * NEGLIGENCE) OR STRICT LIABILITY, EVEN IF THE AUTHOR IS ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * All Rights Reserved.
+-->
+
+<!--
+Claim:
+	We do not claim that this list is complete with respect to a given program.
+	Should you happen to know a micro-architecture not listed here,
+	please contact Yann-Gaël Guéhéneuc (yann-gael.gueheneuc@polymtl.ca).
+	The source code of the studied programs is available upon request.
+
+Contributors:
+	- Yann-Gaël Guéhéneuc ;
+	- many others.
+-->
+
+<!--
+ * The roleKind for a role might be:
+ * - Class
+ * - AbstractClass
+ * - Any
+ * As defined in the notation from the
+ * Design Patterns book.
+-->
+<antipatterns>
+    <program type="Java">
+        <name>Nutch v0.7.1</name>
+        <location> </location>
+        <antipattern name="Blob">
+            <microArchitectures>
+                <microArchitecture number="1">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.analysis.NutchAnalysis</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass><entity>org.apache.nutch.analysis.NutchAnalysis</entity></largeClass>
+        				</largeClasses>
+        				<dataClasses>
+            				<dataClass><entity>org.apache.nutch.analysis.NutchAnalysis.JJCalls</entity></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="2">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.db.DistributedWebDBWriter</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass><entity>org.apache.nutch.db.DistributedWebDBWriter</entity></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="3">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.db.WebDBWriter</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass><entity>org.apache.nutch.db.WebDBWriter</entity></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="4">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.mapReduce.JobTracker</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass><entity>org.apache.nutch.mapReduce.JobTracker</entity></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="5">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.ndfs.FSNamesystem</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass><entity>org.apache.nutch.ndfs.FSNamesystem</entity></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+               <microArchitecture number="6">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.net.BasicUrlNormalizer</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass><entity>org.apache.nutch.net.BasicUrlNormalizer.Rule</entity></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="7">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.net.RegexUrlNormalizer</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass><entity>org.apache.nutch.net.RegexUrlNormalizer.Rule</entity></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="8">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.net.RegexURLFilter</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass><entity>oorg.apache.nutch.net.RegexURLFilter.Rule</entity></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+                <microArchitecture number="9">
+				    <roles>
+        				<blobs>
+            				<blob><entity>org.apache.nutch.searcher.NutchBean</entity></blob>
+        				</blobs>
+        				<largeClasses>
+  							<largeClass></largeClass>
+        				</largeClasses>
+                        <dataClasses>
+            				<dataClass><entity>org.apache.nutch.searcher.NutchBean.DupHits</entity></dataClass>
+        				</dataClasses>
+    				</roles>
+				</microArchitecture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Lava Flow">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.analysis.NutchAnalysis</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.analysis.NutchAnalysisTokenManager</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="3">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.fs.NutchFileSystem</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="4">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.indexer.IndexOptimizer</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="5">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.io.UTF8</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="6">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.ndfs.FSConstants</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="7">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.ndfs.FSNamesystem</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="8">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.ontology.Ontology</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="9">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.protocol.Content</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="10">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.quality.dynamic.PageDescription</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="11">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.quality.dynamic.PageDescriptionTokenManager</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="12">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.searcher.Summarizer</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="13">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.util.CommandRunner</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="14">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.util.mime.MimeTypes</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="15">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.clustering.carrot2.Clusterer</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="16">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.creativecommons.nutch.TestCCParseFilter</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="17">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.analysis.lang.NGramProfile</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="18">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.ontology.OntologyImpl</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="19">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.parse.html.DOMBuilder</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="20">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.parse.rtf.RTFParserDelegateImpl</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="21">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.parse.text.TextParser</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="22">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.protocol.file.FileResponse</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="23">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.protocol.ftp.Client</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="24">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.protocol.ftp.FtpResponse</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="25">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.protocol.httpclient.HttpAuthenticationFactory</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="26">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.io.TestArrayFile</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="27">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.io.TestSequenceFile</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="28">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.io.TestSetFile</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="29">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.ipc.TestIPC</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="30">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.plugin.TestPluginSystem</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="31">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.searcher.TestHitDetails</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="32">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.searcher.TestQuery</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="33">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.util.mime.TestMimeTypes</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="34">
+                    <roles>
+                        <lavaFlow>
+                            <lavaFlow><entity>org.apache.nutch.db.WebDBInjector.XMLCharFilter</entity></lavaFlow>
+                        </lavaFlow>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Poltergeist">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.analysis.NutchAnalysis</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.analysis.NutchDocumentAnalyzer</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="3">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.db.DistributedWebDBReader</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="4">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.db.EditSectionGroupWriter</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="5">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.tools.SegmentMergeTool</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="6">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.parse.html.HTMLMetaProcessor</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="7">
+                    <roles>
+                        <poltergeist>
+                            <poltergeist><entity>org.apache.nutch.parse.html.HtmlParser</entity></poltergeist>
+                        </poltergeist>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Functional Decompositions">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.analysis.NutchAnalysis</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.analysis.NutchDocumentAnalyzer</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="3">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.analysis.ParseException</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="4">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.db.DistributedWebDBReader</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="5">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.fs.LocalFileSystem</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="6">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.fs.NutchFileSystem</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="7">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.fs.TestClient</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="8">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.indexer.DeleteDuplicates</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="9">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ndfs.FSDirectory</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="10">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ndfs.FSNamesystem</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="11">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ndfs.NDFS</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="12">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ndfs.NDFSClient</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="13">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.searcher.NutchBean</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="14">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.searcher.QueryException</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="15">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.tools.UpdateSegmentsFromDb</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="16">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.util.CommandRunner</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="17">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.util.mime.MimeType</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="18">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.parse.rtf.RTFParserDelegateImpl</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="19">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.db.DBTester</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="20">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.plugin.HelloWorldExtension</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="21">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.db.EditSectionGroupReader</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="22">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.db.EditSectionGroupWriter</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="23">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.fetcher.Fetcher</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="24">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.io.SequenceFile</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="25">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ipc.Client</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="26">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.ipc.Server</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="27">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.mapReduce.JobTrackerInfoServer</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="28">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.searcher.Summary</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="29">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.segment.SegmentReader</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="30">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.segment.SegmentWriter</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="31">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.tools.DistributedAnalysisTool</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="32">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.tools.FetchListTool</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="33">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.apache.nutch.util.FibonacciHeap</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="34">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.creativecommons.nutch.CCDeleteUnlicensedTool</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="35">
+                    <roles>
+                        <functionalDecompositions>
+                            <functionalDecomposition><entity>org.creativecommons.nutch.CCDeleteUnlicensedTool</entity></functionalDecomposition>
+                        </functionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="36">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.analysis.NutchDocumentAnalyzer.AnchorAnalyzer</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="37">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.analysis.NutchDocumentAnalyzer.ContentAnalyzer</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="38">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBWriter.CloseProcessor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="39">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBWriter.TargetTester</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="40">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.WebDBInjector.RDFProcessor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="41">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.WebDBWriter.CloseProcessor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="42">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.WebDBWriter.TargetTester</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="43">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.MapFile.Reader</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="44">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.MapFile.Writer</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="45">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Sorter.MergeFiles</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="46">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Sorter.MergePass</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="47">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Sorter.MergeQueue</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="48">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Sorter.SortPass</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="49">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.ndfs.FSDataset.FSDir</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="50">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.ndfs.FSDirectory.INode</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="51">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.ndfs.NDFSClient.NameNodeCaller</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="52">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.searcher.Query.Term</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="53">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.searcher.Summarizer.Excerpt</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="54">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.tools.DistributedAnalysisTool.EditSet</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="55">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.util.ThreadPool.TaskThread</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="56">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.tools.FetchListTool.TableSet</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="57">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBReader.EnumCall</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="58">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBReader.LinkEnumCall</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="59">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBReader.PageByMD5EnumCall</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="60">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.DistributedWebDBReader.PageEnumCall</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="61">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.EditSectionGroupWriter.KeyExtractor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="62">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.EditSectionGroupWriter.LinkMD5Extractor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="63">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.EditSectionGroupWriter.LinkURLExtractor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="64">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.EditSectionGroupWriter.PageMD5Extractor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="65">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.EditSectionGroupWriter.PageURLExtractor</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="66">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.db.WebDBWriter.LinkInstructionWriter</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="67">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.fs.NFSOutputStream</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="68">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.parse.msword.MSWordParser</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="69">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.MapFile.Reader</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="70">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.MapFile.Writer</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="71">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Reader</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="72">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Writer</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="73">
+                    <roles>
+                        <FunctionalDecompositions>
+                            <FunctionalDecompositions><entity>org.apache.nutch.io.SequenceFile.Sorter</entity></FunctionalDecompositions>
+                        </FunctionalDecompositions>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Spaghetti Codes">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.analysis.FastCharStream</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.analysis.NutchAnalysis</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="3">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.analysis.NutchAnalysisTokenManager</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="4">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.db.EditSectionGroupReader</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="5">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.db.EditSectionGroupWriter</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="6">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.db.EditSectionWriter</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="7">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.db.Page</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="8">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.fetcher.Fetcher</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="9">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.fs.LocalFileSystem</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="10">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.fs.NutchFileSystem</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="11">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.fs.TestClient</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="12">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.io.SequenceFile</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="13">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ipc.Client</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="14">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ipc.Server</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="15">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.mapReduce.JobTrackerInfoServer</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="16">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ndfs.DatanodeInfo</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="17">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ndfs.FSDirectory</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="18">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ndfs.NDFS</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="19">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.ndfs.NDFSClient</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="20">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.pagedb.FetchListEntry</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="21">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.quality.dynamic.PageDescription</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="22">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.quality.dynamic.PageDescriptionTokenManager</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="23">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.searcher.Summary</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="24">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.segment.SegmentReader</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="25">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.segment.SegmentWriter</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="26">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.tools.DistributedAnalysisTool</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                 <microArchietcture number="27">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.tools.FetchListTool</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="28">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.util.FibonacciHeap</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="29">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.util.mime.MimeType</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="30">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.creativecommons.nutch.CCDeleteUnlicensedTool</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="31">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.protocol.ftp.Client</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="32">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.protocol.ftp.FtpResponse</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="33">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.plugin.TestPluginSystem</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="34">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.tools.TestSegmentMergeTool</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="35">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.util.mime.TestMimeTypes</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="36">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCode><entity>org.apache.nutch.indexer.DeleteDuplicates</entity></SpaghettiCode>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="37">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.db.WebDBInjector.RDFProcessor</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="38">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.db.WebDBWriter.TargetTester</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="39">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.ArrayFile.Reader</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="40">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.ArrayFile.Writer</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="41">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Sorter.MergeFiles</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="42">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Sorter.MergePass</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="43">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Sorter.MergeQueue</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="44">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Sorter.SortPass</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="45">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.ndfs.FSDataset.FSDir</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="46">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.searcher.Query.Term</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="47">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.ndfs.FSDirectory.INode</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="48">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.ndfs.NDFSClient.NameNodeCaller</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="49">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.searcher.Summarizer.Excerpt</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="50">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.tools.DistributedAnalysisTool.EditSet</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="51">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.tools.FetchListTool.TableSet</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="52">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.MapFile.Reader</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="53">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.MapFile.Writer</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="54">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Writer</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="55">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Reader</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="56">
+                    <roles>
+                        <SpaghettiCodes>
+                            <SpaghettiCodes><entity>org.apache.nutch.io.SequenceFile.Sorter</entity></SpaghettiCodes>
+                        </SpaghettiCodes>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Cut And Paste Programming">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <cutAndPasteProgramming>
+                            <cutAndPasteProgramming><entity>org.apache.nutch.db.Link</entity></cutAndPasteProgramming>
+                        </cutAndPasteProgramming>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <cutAndPasteProgramming>
+                            <cutAndPasteProgramming><entity>org.apache.nutch.io.DataOutputBuffer</entity></cutAndPasteProgramming>
+                        </cutAndPasteProgramming>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="3">
+                    <roles>
+                        <cutAndPasteProgramming>
+                            <cutAndPasteProgramming><entity>org.apache.nutch.io.FloatWritable</entity></cutAndPasteProgramming>
+                        </cutAndPasteProgramming>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="4">
+                    <roles>
+                        <cutAndPasteProgramming>
+                            <cutAndPasteProgramming><entity>org.apache.nutch.io.LongWritable</entity></cutAndPasteProgramming>
+                        </cutAndPasteProgramming>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="5">
+                    <roles>
+                        <cutAndPasteProgramming>
+                            <cutAndPasteProgramming><entity>org.apache.nutch.io.IntWritable</entity></cutAndPasteProgramming>
+                        </cutAndPasteProgramming>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>   
+        </antipattern>
+        <antipattern name="Walking Through A Mine Field">
+            <microArchitectures>
+                <microArchietcture number="1">
+                    <roles>
+                        <walkingThroughAMineField>
+                            <walkingThroughAMineField><entity>org.apache.nutch.ndfs.DF</entity></walkingThroughAMineField>
+                        </walkingThroughAMineField>
+                    </roles>
+                </microArchietcture>
+                <microArchietcture number="2">
+                    <roles>
+                        <walkingThroughAMineField>
+                            <walkingThroughAMineField><entity>org.apache.nutch.parse.ext.TestExtParser</entity></walkingThroughAMineField>
+                        </walkingThroughAMineField>
+                    </roles>
+                </microArchietcture>
+            </microArchitectures>
+        </antipattern>
+    </program>
+</antipatterns>

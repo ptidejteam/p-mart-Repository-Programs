@@ -1,0 +1,16 @@
+<s3 title="Version of Xerces to use"> 
+<p>Xalan-J version 1.0.0 has been tested with Xerces-j version 1.0.3. &download; For information about including xerces.jar on the system class path, see <link idref="getstarted" anchor="classpath">Setting up the system class path</link>.</p>
+<p><em>Important</em> You may experience unpredictable anomalies if your Xalan and Xerces builds are not in synch. If you download an update to Xalan, check the release notes to determine which version of Xerces you should use.</p>
+<note>You can use Xalan with other XML parsers, but it is up to you to implement liaisons to those parsers. Your liaison class should extend <resource-ref idref="XMLParserLiaisonDefaultDoc"/> and implement <resource-ref idref="XMLParserLiaisonDoc"/>.</note>
+</s3>
+<s3 title="To-do tasks for future Xalan releases">
+   <p>A top priority for the &xslt4j; team in the ongoing development of &xslt4j; is to improve performance. This includes
+    enhanced support for SAX and incremental transformations, more efficient trees than current implementations of the DOM
+    interfaces provide, and a number of possibilities pertaining to the compilation of stylesheets, preprocessing XML/XPaths,
+    and so on.</p>  
+    <p>As part of the xml.apache team, the &xslt4j; team is exploring options to upgrade the integration of all the xml.apache
+    projects, including Xalan, Xerces, Cocoon, and FOP.</p>
+    <p><human-resource-ref idref="scurcuru"/> is looking into replacing our current make system with the Java Ant
+    system.</p>
+    <p>Watch the <human-resource-ref idref="xalandev"/> for more information and for ideas about how you can get involved.</p>
+</s3>    

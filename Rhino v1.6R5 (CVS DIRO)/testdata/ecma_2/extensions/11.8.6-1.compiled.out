@@ -1,0 +1,21 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\extensions\11.8.6-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\extensions\shell.js -f mozilla\js\tests\ecma_2\extensions\11.8.6-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+instanceof-001 instanceof
+instanceof-001 instanceof
+(true) instanceof (Boolean object) = false PASSED!
+(false) instanceof (Boolean object) = true PASSED!
+((instance of GenA)) instanceof (GenA object) = false PASSED!
+((Gen2 instance)) instanceof (Gen0 object) = false PASSED!
+((Gen2 instance)) instanceof (Gen1 object) = false PASSED!
+((Gen2 instance)) instanceof (Gen2 object) = true PASSED!
+((Gen2 instance)) instanceof (Gen3 object) = true PASSED!
+((Gen0 instance)) instanceof (Gen0 object) = true PASSED!
+((Gen0 instance)) instanceof (Gen1 object) = true PASSED!
+((Gen0 instance)) instanceof (Gen2 object) = true PASSED!
+((Gen0 instance)) instanceof (Gen3 object) = true PASSED!
+((Gen0 instance)) instanceof (Object object) = true PASSED!
+((Gen0 instance)) instanceof (Function object) = false PASSED!
+((Gen0 object)) instanceof (Function object) = true PASSED!
+((Gen0 object)) instanceof (Object object) = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\extensions\11.8.6-1.compiled.arff] ...

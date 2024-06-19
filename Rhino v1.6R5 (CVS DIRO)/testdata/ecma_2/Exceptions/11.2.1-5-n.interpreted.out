@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\11.2.1-5-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\11.2.1-5-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+expression-004 Property Accessors
+expression-004 Property Accessors
+Get the toString value of an object whose value is null (threw TypeError: Cannot call method "toString" of null) = Passed PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\11.2.1-5-n.interpreted.arff] ...

@@ -1,0 +1,189 @@
+License
+=======
+
+This software is covered by the GNU public license.  Feel
+free to distribute this software to your friends!
+
+
+Installation for Command Line Operation
+=======================================
+
+(1)  Add jrefactory.jar onto the classpath.  Run
+    java Refactory <dir> where <dir> is your source directory.
+
+(2)  The system will prompt you to find the src.jar file that
+    comes with the java development kit from sun.  You can
+    browse to a directory that contains the .java files for
+    the JDK that you are working with.
+
+    Select the src.jar file or directory containing the
+    source code, and press OK.
+
+    This process is very disk and CPU intensive.  On my
+    machine at work (333 MHz Pentium II, 128 Meg of
+    RAM, Dell Computer running Windows NT 4.0 Service
+    Pack 5), this operation takes about 2.5 minutes.
+    The hard disk light will be running continuously
+    during this process.
+
+    This step will allow the JDK classes to appear in the
+    class diagrams.  It is also required for some of the
+    refactorings.
+
+(3)  A dialog box labeled "Loading source files" appears
+    in the upper left corner of the screen almost immediately.
+
+    The interior of the "Loading source files" dialog box
+    may take a few seconds to paint.  This is because the
+    system is doing a lot of work to load the JDK.
+
+    The box will first say "Loading JDK" with a red
+    progress bar under it.  Then it will say "Loading <dir>",
+    where <dir> is the name of the directory you entered
+    in step 1.  The progress bar is now blue.
+
+    When the "Loading source files" dialog box disappears,
+    you have a dialog box to select the package to view.
+
+Normal Launch
+=============
+
+This is what happens when you launch Refactory for the second
+and all further times.
+
+(1)  Upon launching Refactory, the dialog box labeled "Loading
+    source files" appears.  First it appears with the label
+    "Loading JDK" with a red progress bar.  Then the label
+    changes to "Loading <dir>", and the progress bar is blue.
+
+(2)  Once the "Loading source files" dialog box disappears,
+    the system is configured to display UML class diagrams
+    and preform refactorings.
+
+Reformatting source code
+========================
+
+To reformat your code, type
+
+java PrettyPrinter {-quiet|-u}? {<file>|<dir>}*
+
+when you specify a file, then only that file is reformatted.
+If you specify a directory, then all source files in that
+directory or it's subdirectories are reformatted.
+
+The option "-quiet" ("-u" is equivalent) suppresses all questions.
+If this option is present and no file or directory argument is
+present, then the directory named by the system property
+"user.dir" is used.  otherwise the user is asked for all .java
+files in the current directory and subdirectories.
+
+"-h" and "-?" print a short help message.
+
+
+Configuring the Pretty Printer
+==============================
+
+The configuration for the pretty printer is contained
+in a file called pretty.settings.  This file is located
+in <home>/.Refactory.
+
+<home> is ~ for developers using Linux or Unix based
+systems.  For developers using Windows NT, <home> is
+c:/winnt/profiles/<yourname>.  For developers
+using Windows 95/98, <home> is c:/windows.  For developers
+using Windows 2000, <home> is C:\Documents and Settings.
+
+Before each configuration is a brief description of
+what effect making the change has on the system.  Feel
+free to change any of them and watch the effects.
+If you don't like the results, don't save it to the
+disk.
+
+The configuration is reloaded each time you select
+Pretty Printer from the menu.
+
+Displaying a UML diagram
+========================
+
+To display a UML diagram, you:
+
+(1)  Select the package name from the listbox
+
+(2)  Press the show button.  The class diagram appears.
+
+Performing a Refactoring
+========================
+
+The real power of this system is that by changing
+the UML class diagram, your source code gets updated.
+Here is a generic description of how the refactorings
+work:
+
+(1)  Find the class that you would like to change
+
+    For instance, let's say that we have a class
+    named "BadName" and we want to rename it to
+    be "BetterName"
+
+(2)  Right click on that class
+
+(3)  Select the refactoring to be performed
+
+    If you clicked on the name of the class, then
+    you just see two options:  Type Refactorings
+    and Metrics.  Mouse over Type Refactorings.
+
+    The pop up window shows Rename Class at the
+    top of the menu.  Click on Rename Class.
+
+(4)  A dialog box appears and requests more information.
+
+    In our example, the dialog box prompts you for
+    the new name of the class.  Enter the new class
+    name and press OK
+
+(5)  The system starts updating your source files.
+
+    Note that if a file that contains source code is
+    read only and that file needs to be changed by
+    the refactoring, you will be prompted to check it
+    out of your version control system.
+
+(6)  The class diagram shifts and wiggles as it reloads
+    the files.  You can now browse through your source
+    code to see the effects of the change.
+
+Printing
+========
+
+If your system has the JDK 1.2 printing features implemented,
+then you will be able to print a file.
+
+If the file is a class diagram, the diagram will be printed.
+
+To print, simply open the package that you want to print.
+Select JRefactory then Print.  After you have printed the
+first diagram, the page breaks are drawn in all the diagrams.
+
+
+Comments or Undocumented Feature Reports  :-)
+=============================================
+
+If you like the software or if you would like to have the
+software improved, feel free to send me an e-mail at
+seguin@acm.org.
+
+If there is a bug, then please describe what you were doing
+when it occurred.  Also, please send me any stack traces
+that appear in the JBuilder shell window.  (When I launch
+JBuilder in Windows NT, I get two windows:  A Command Shell
+and the JBuilder editor.  The command shell contiains the
+exception traces that I need to help debug the problem.)
+
+My next goal is to get some method refactoring going.  The
+first one is push up method and push down method.  (See
+Refactoring by Martin Fowler.)
+
+Since this is open source, feel free to add more functionality!
+I'll be happy to help show you where to add a particular feature.
+

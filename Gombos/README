@@ -1,0 +1,7 @@
+Handles missing closing '/' in body tags - a few of the provided examples had this property.
+This does not cause a malformed document exception.
+
+Does not handle malformed tags, missing closing tags, etc. as according to the spec.  Some of the examples contained
+errors such as these - they were allowed when deemed appropriate (i.e. valid according to some interpretation of the 
+spec)
+

@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Object\8.6.2.2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Object\shell.js -f mozilla\js\tests\ecma_3\Object\8.6.2.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 79129
+STATUS: Regression test: we shouldn't crash on this code
+PASSED! Should not crash
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Object\8.6.2.2.compiled.arff] ...

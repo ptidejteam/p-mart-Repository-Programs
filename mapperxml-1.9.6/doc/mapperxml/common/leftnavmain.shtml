@@ -1,0 +1,28 @@
+<a href="/index.shtml">Project Overview</a><br>
+<a href="http://sourceforge.net/projects/mapper/">SourceForge Page</a><br>
+<a href="http://mapper.enhydra.org">Enhydra Page</a><br>
+<a href="index.shtml">Documentation</a>
+  <div class="submenu">
+  <a href="/quickguidexml.shtml">Quick Guide</a><br>
+  <a href="/mapperxml/index.shtml">MapperXML</a><br>
+  <a href="/notcomplete.shtml">MapperGUI</a><br>
+  <a href="/notcomplete.shtml">Mapper for JBuilder</a><br>
+  <a href="/notcomplete.shtml">Mapper Tools</a><br>
+  <a href="/api/index.html" target="_blank">API JavaDoc</a><br>
+  </div>
+<a href="index.shtml">Examples</a>
+  <div class="submenu">
+  <a href="/simpleweb.shtml">Simple Web</a><br>
+  <a href="/notcomplete.shtml">Simple GUI</a><br>
+  <a href="/notcomplete.shtml">Library WEB</a><br>
+  <a href="/notcomplete.shtml">Calculator WEB</a><br>
+  </div>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=9359&release_id=85901" target="_blank">Download</a><br>
+<a href="/install.shtml">Installation</a><br>
+<a href="/index.shtml">CVS</a>
+  <div class="submenu">
+  <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/mapper/MapperXML/" target="_blank">MapperXML</a><br>
+  <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/mapper/MapperJB/" target="_blank">MapperJB</a><br>
+  </div>
+<a href="/license.shtml">License</a><br>
+<a href="/index.shtml">Contact</a><br>

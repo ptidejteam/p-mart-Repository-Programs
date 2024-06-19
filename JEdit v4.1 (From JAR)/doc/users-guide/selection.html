@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Selecting Text</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="editing.html" title="Chapter 4. Editing Text"><link rel="previous" href="caret.html" title="Moving The Caret"><link rel="next" href="entering-text.html" title="Inserting and Deleting Text"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Selecting Text</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="caret.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Editing Text</th><td width="20%" align="right"> <a accesskey="n" href="entering-text.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="selection"></a>Selecting Text</h2></div></div><p>
+   A <i>selection</i> is a a block of text marked for further
+   manipulation. jEdit supports both
+   range and rectangular selections, and several chunks of text can be
+   selected simultaneously.
+  </p><p>
+   Dragging the mouse creates a range selection from where the mouse was
+   pressed to where it was released.
+   Holding down <b>Shift</b> while clicking a location in the
+   buffer will create a selection from the caret position to the clicked
+   location.
+  </p><p>
+   Holding down <b>Shift</b> in addition to a caret movement key
+   (<b>Left</b>, <b>Up</b>, <b>Home</b>, etc) will
+   extend a selection in the specified direction.
+  </p><p>
+   <b>Edit</b>&gt;<b>Select All</b> (shortcut:
+   <b>Control</b>-<b>A</b>) selects the
+   entire buffer.
+  </p><p>
+   <b>Edit</b>&gt;<b>Select
+   None</b>&gt;<b>Select None</b> (shortcut:
+   <b>Escape</b>) deactivates the selection.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="rect-select"></a>Rectangular Selection</h3></div></div><p>
+    Dragging with the <b>Control</b> key held down will create a
+    rectangular selection. Holding down
+    <b>Shift</b> and <b>Control</b> while clicking a
+    location in the buffer will create a rectangular selection from the caret
+    position to the clicked location.
+   </p><p>
+    It is possible to select a rectangle with zero width but non-zero height.
+    This can be used to insert a new column between two existing
+    columns, for example. Such zero-width selections are shown as a thin
+    vertical line.
+   </p><p>
+    Rectangles can be deleted, copied, pasted, and operated on using ordinary
+    editing commands.
+   </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+     Rectangular selections are implemented using character offsets,
+     not absolute screen positions, so they might not behave as you might
+     expect if a proportional-width font is being used or if soft wrap is
+     enabled. The text area font can be changed in the
+     <b>Text Area</b> pane of the
+     <b>Utilities</b>&gt;<b>Global Options</b>
+     dialog box. For information about soft wrap,
+     see <a href="word-wrap.html" title="Wrapping Long Lines">the section called &#8220;Wrapping Long Lines&#8221;</a>.
+    </p></div></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="multi-select"></a>Multiple Selection</h3></div></div><p>
+    <b>Edit</b>&gt;<b>More
+    Selection</b>&gt;<b>Multiple Selection</b>
+    (keyboard shortcut: <b>Control</b>-<b>\</b>)
+    turns multiple selection mode on and
+    off. In multiple selection mode, multiple fragments of text can be selected
+    and operated on simultaneously, and the caret can be moved independently
+    of the selection. The status bar indicates if multiple
+    selection mode is active; see <a href="views.html#status-bar" title="The Status Bar">the section called &#8220;The Status Bar&#8221;</a>.
+   </p><p>
+    Various jEdit commands behave differently with multiple selections:
+   </p><div class="itemizedlist"><ul type="disc"><li><p>Commands that copy text place the contents of
+    each selection, separated by line breaks, in the specified register.
+    </p></li><li><p>Commands that insert (or paste) text replace each selection
+    with the entire text that is being inserted.</p></li><li><p>Commands that filter text (such as <b>Spaces to
+    Tabs</b>, <b>Range Comment</b>,
+    <b>Replace in Selection</b>, and so on) behave as if
+    each block was selected independently, and the command invoked on each in
+    turn.</p></li><li><p>Line-based commands (such as <b>Shift Indent
+    Left</b>, <b>Shift Indent Right</b>, and
+    <b>Line Comment</b>) operate on each line that contains
+    at least one selection.
+    </p></li><li><p>Caret movement commands that would normally deactivate the
+    selection (such as the arrow keys, while <b>Shift</b> is not being
+    held down), move the caret, leaving the selection as-is.</p></li><li><p>Some older plugins may not support multiple selection at
+    all.</p></li></ul></div><p>
+    <b>Edit</b>&gt;<b>More
+    Selection</b>&gt;<b>Select None</b>
+    (shortcut: <b>Escape</b>) deactivates the selection containing the
+    caret, if there is one. Otherwise it deactivates all active selections.
+   </p><p>
+    <b>Edit</b>&gt;<b>More
+    Selection</b>&gt;<b>Invert Selection</b>
+    (shortcut: <b>Control</b>-<b>E</b>
+    <b>I</b>) selects a set of text chunks such that all text
+    that was formerly part of a selection is now unselected, and all text that
+    wasn't, is selected.
+   </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+     Deactivating multiple selection
+     mode while multiple blocks of text are selected will leave the selections
+     in place, but you will not be able to add new selections until
+     multiple selection mode is reactivated.
+    </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="caret.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="editing.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="entering-text.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Moving The Caret </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Inserting and Deleting Text</td></tr></table></div></body></html>

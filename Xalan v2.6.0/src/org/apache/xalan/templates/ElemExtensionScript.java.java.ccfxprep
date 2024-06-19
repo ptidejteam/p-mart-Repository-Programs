@@ -1,0 +1,15 @@
+19.8.346	+0	(def_block
+19.8.346	+5	r_class
+19.e.34c	+13	id|ElemExtensionScript
+1a.1.37d	+1	(brace
+20.a.3c5	+0	(def_block
+20.a.3c5	+13	id|ElemExtensionScript
+20.1d.3d8	+0	c_func
+20.1d.3d8	+1	(paren
+20.1e.3d9	+1	)paren
+21.3.3de	+1	(brace
+24.3.41d	+1	)brace
+24.4.41e	+0	)def_block
+64.1.889	+1	)brace
+64.2.88a	+0	)def_block
+65.1.88c	+0	eof

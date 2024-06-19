@@ -1,0 +1,14 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Exceptions\15.11.7.6-002.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Exceptions\shell.js -f mozilla\js\tests\ecma_3\Exceptions\15.11.7.6-002.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 201989
+STATUS: Prototype of predefined error objects should be DontDelete
+PASSED! Testing DontDelete attribute of |Error.prototype|
+PASSED! Testing DontDelete attribute of |ConversionError.prototype|
+PASSED! Testing DontDelete attribute of |EvalError.prototype|
+PASSED! Testing DontDelete attribute of |RangeError.prototype|
+PASSED! Testing DontDelete attribute of |ReferenceError.prototype|
+PASSED! Testing DontDelete attribute of |SyntaxError.prototype|
+PASSED! Testing DontDelete attribute of |TypeError.prototype|
+PASSED! Testing DontDelete attribute of |URIError.prototype|
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Exceptions\15.11.7.6-002.interpreted.arff] ...

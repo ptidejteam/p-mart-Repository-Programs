@@ -1,0 +1,56 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.22.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.22.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.9.5.18 Date.prototype.getSeconds()
+(new Date(1184090123359)).getSeconds() = 23 PASSED!
+(new Date(1184090124359)).getSeconds() = 24 PASSED!
+(new Date(1184090125359)).getSeconds() = 25 PASSED!
+(new Date(1184090126359)).getSeconds() = 26 PASSED!
+(new Date(1184090127359)).getSeconds() = 27 PASSED!
+(new Date(1184090128359)).getSeconds() = 28 PASSED!
+(new Date(1184090129359)).getSeconds() = 29 PASSED!
+(new Date(-62167219199000)).getSeconds() = 1 PASSED!
+(new Date(-62167219198000)).getSeconds() = 2 PASSED!
+(new Date(-62167219197000)).getSeconds() = 3 PASSED!
+(new Date(-62167219196000)).getSeconds() = 4 PASSED!
+(new Date(-62167219195000)).getSeconds() = 5 PASSED!
+(new Date(-62167219194000)).getSeconds() = 6 PASSED!
+(new Date(-62167219193000)).getSeconds() = 7 PASSED!
+(new Date(1000)).getSeconds() = 1 PASSED!
+(new Date(2000)).getSeconds() = 2 PASSED!
+(new Date(3000)).getSeconds() = 3 PASSED!
+(new Date(4000)).getSeconds() = 4 PASSED!
+(new Date(5000)).getSeconds() = 5 PASSED!
+(new Date(6000)).getSeconds() = 6 PASSED!
+(new Date(7000)).getSeconds() = 7 PASSED!
+(new Date(-2208988799000)).getSeconds() = 1 PASSED!
+(new Date(-2208988798000)).getSeconds() = 2 PASSED!
+(new Date(-2208988797000)).getSeconds() = 3 PASSED!
+(new Date(-2208988796000)).getSeconds() = 4 PASSED!
+(new Date(-2208988795000)).getSeconds() = 5 PASSED!
+(new Date(-2208988794000)).getSeconds() = 6 PASSED!
+(new Date(-2208988793000)).getSeconds() = 7 PASSED!
+(new Date(946684801000)).getSeconds() = 1 PASSED!
+(new Date(946684802000)).getSeconds() = 2 PASSED!
+(new Date(946684803000)).getSeconds() = 3 PASSED!
+(new Date(946684804000)).getSeconds() = 4 PASSED!
+(new Date(946684805000)).getSeconds() = 5 PASSED!
+(new Date(946684806000)).getSeconds() = 6 PASSED!
+(new Date(946684807000)).getSeconds() = 7 PASSED!
+(new Date(951782401000)).getSeconds() = 1 PASSED!
+(new Date(951782402000)).getSeconds() = 2 PASSED!
+(new Date(951782403000)).getSeconds() = 3 PASSED!
+(new Date(951782404000)).getSeconds() = 4 PASSED!
+(new Date(951782405000)).getSeconds() = 5 PASSED!
+(new Date(951782406000)).getSeconds() = 6 PASSED!
+(new Date(951782407000)).getSeconds() = 7 PASSED!
+(new Date(1104537601000)).getSeconds() = 1 PASSED!
+(new Date(1104537602000)).getSeconds() = 2 PASSED!
+(new Date(1104537603000)).getSeconds() = 3 PASSED!
+(new Date(1104537604000)).getSeconds() = 4 PASSED!
+(new Date(1104537605000)).getSeconds() = 5 PASSED!
+(new Date(1104537606000)).getSeconds() = 6 PASSED!
+(new Date(1104537607000)).getSeconds() = 7 PASSED!
+(new Date(NaN)).getSeconds() = NaN PASSED!
+Date.prototype.getSeconds.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.22.interpreted.arff] ...

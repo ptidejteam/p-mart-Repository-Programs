@@ -1,0 +1,21 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.1-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.1-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.4.1.2 Array Constructor Called as a Function:  Array(len)
+(Array()).length = 0 PASSED!
+(Array(0)).length = 0 PASSED!
+(Array(1)).length = 1 PASSED!
+(Array(10)).length = 10 PASSED!
+(Array('1')).length = 1 PASSED!
+(Array(1000)).length = 1000 PASSED!
+(Array('1000')).length = 1 PASSED!
+(Array(4294967295)).length = 4294967295 PASSED!
+(Array(Math.pow(2,31)-1)).length = 2147483647 PASSED!
+(Array(Math.pow(2,31))).length = 2147483648 PASSED!
+(Array(Math.pow(2,31)+1)).length = 2147483649 PASSED!
+(Array('8589934592')).length = 1 PASSED!
+(Array('4294967296')).length = 1 PASSED!
+(Array(1073741823)).length = 1073741823 PASSED!
+(Array(1073741824)).length = 1073741824 PASSED!
+(Array('a string')).length = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.1-2.compiled.arff] ...

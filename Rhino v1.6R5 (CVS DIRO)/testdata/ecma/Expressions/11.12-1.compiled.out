@@ -1,0 +1,12 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.12-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.12-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 313 ms]
+11.12 Conditional operator( ? : )
+true ? 'PASSED' : 'FAILED' = PASSED PASSED!
+false ? 'FAILED' : 'PASSED' = PASSED PASSED!
+1 ? 'PASSED' : 'FAILED' = PASSED PASSED!
+0 ? 'FAILED' : 'PASSED' = PASSED PASSED!
+-1 ? 'PASSED' : 'FAILED' = PASSED PASSED!
+NaN ? 'FAILED' : 'PASSED' = PASSED PASSED!
+var VAR = true ? , : 'FAILED' = PASSED PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.12-1.compiled.arff] ...

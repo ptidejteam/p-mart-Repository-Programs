@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="org/apache/xalan/xsltc/|org/apache/xml/utils/synthetic/" kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/BCEL.jar"/>
+	<classpathentry kind="lib" path="lib/bsf.jar"/>
+	<classpathentry kind="lib" path="lib/java_cup.jar"/>
+	<classpathentry kind="lib" path="lib/JLex.jar"/>
+	<classpathentry kind="lib" path="lib/runtime.jar"/>
+	<classpathentry kind="lib" path="lib/xerces.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

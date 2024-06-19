@@ -1,0 +1,178 @@
+R0
+
+Your browser must be implemented as a standalone Java SWT application on the Eclipse platform.
+ 
+R1
+
+Upon the launch of your browser software, the main screen of the browser shall appear. The
+main screen shall consist of a main menu bar, a navigational toolbar, a text field for URL
+entry, and an area for display of results. We will call the latter ``html display zone".
+
+While all other parts of the browser main screen are ``fixed", the html display zone
+implementation is left to you.
+
+R2
+
+The main screen of your browser may also optionally contain a status bar at its bottom, which
+your software can use to post various status messages. Because this feature is optional, no
+detailed specifications are provided, but you may have your status bar mimic the operation of
+status bars in a traditional browser.
+
+R3
+
+The main menu bar shall contain at least two options: ``File"
+and ``Help". Other main bar options may be added if deemed necessary or desired.
+
+R4
+
+The ``File" pull-down (drop-down) menu shall contain 
+at least the following options: ``Open", ``Close" and ``Exit". Other
+options, such as ``Save" may also be present.
+R5
+
+The ``Help" pull-down menu shall contain at least on option: ``About". Other options may be
+added to this menu.
+
+R6
+
+The toolbar shall be located on the left side of the browser screen directly under the menu
+bar. It shall contain buttons for at least the following actions: ``Back", ``Forward", ``Home"
+and ``Reload".  Buttons for other actions may also be present. If possible, render simple
+arrow and home icons on the appropriate toolbar buttons. If not, use appropriate text. (e.g,
+the ``Back" button can contain text ``Back" or a simple text rendering of an arrow: ``<--".)
+
+R7
+
+The text field for URL entry, which we call URL field, or address field shall be located on
+the same line as the toolbar, to the right of it. It shall have the same height as the toolbar
+buttons and its width shall be the remaining width of the browser screen. At the beginning of
+the browser operation, the field shall be empty.
+
+R8
+
+The html display zone shall be located directly under the toolbar/address field. It shall have
+the width of the browser window and shall occupy the rest of the height of the browser window
+(except for the small space needed to divide it from the toolbar/address field and any space
+you want to allocate for the status bar at the bottom).
+
+R9
+
+The type and the number of controls you decide to use for the html display zone is not fixed
+by the requirements. Your solution must satisfy all requirements set in this document, but
+otherwise is up to you.
+
+
+R10
+
+ At each moment of time the browser can display one Simple HTML
+page, which we call current, or it can display no Simple HTML page,
+in which case we say the the browser has no current page.
+
+R11
+
+"File --> Open" menu option. When this option is selected, your browser shall produce a simple
+pop-up dialog window which shall consist of at least a text field, an ``OK" and a ``Cancel"
+button and some text prompting the user to enter the URL of the document (s)he wants to open
+into the text field. When ``OK" button is pressed, the dialog window shall close, and the
+contents of the text field shall be remembered. These contents shall be copied into the
+address field of the main browser window, and the browser software shall attempt to download
+the resource specified in the contents. If ``Cancel" button is pressed, the pop-up window
+shall close and no further action with respect the ``Open" command shall be taken.
+
+R12
+
+"File ---> Close". When this option is selected, the browser shall check if current html
+document exists. If it does not, the browser shall perform no further action. If current
+document exists, the browser shall close it. Closing the document means cleaning up the html
+display zone of any traces of the document, and cleaning any internal data structures used to
+support rendering this document. At the end of the ``close" operation there shall be no
+current document in the browser.
+
+R13
+
+"File --> Exit". When this option is
+selected, the browser shall quit its operation. Optionally, you may
+ask the user to confirm the exit via a simple message box.
+
+R14
+
+"Help --> About". When this option is selected, the software shall open a pop-up window
+containing basic description of your browser. The text must contain the name of the
+programmer, a mention that this program is a homework assignment for CS 585, the date of the
+browser's release and the version number (you are welcome to use any versioning scheme you
+want), and any other information you deem useful.
+
+
+R15
+
+"Toolbar --> Back Button".
+Your browser must maintain a two-way stack of all pages that were current
+during the lifetime of the run of the browser. A click on the ``Back" button
+shall result in changing the current page to the previous current page from
+the stack. If there is no previous page, ``Back" button shall either
+be disabled (but visible), or clicking it shall yield in no action.
+
+R16
+
+"Toolbar ---> Forward Button". When this button is pressed, current page changes to the next
+page in the ``forward" portion of the stack, if such exists. If no such page exists, the
+``Forward" button shall either be disabled (but still visible), or pressing it shall yield no
+action.
+
+R18
+
+"Toolbar ---> Home".  Your browser must have a home page associated with it. The home page
+shall be either one of the published test pages, or any Simple HTML age that you might create.
+For extra credit you may choose to introduce the ``Options" item to the top menu bar, and
+through it, implement a dialog that allows the user to set up browser options, including the
+location of the homepage.
+
+
+When the ``Home" button is clicked, the home page of the browser shall become current, and be
+appropriately rendered. (as with the ``Back" and ``Forward" navigation, you may choose, but do
+not have to, to use a buffer to store the HTML for the home page.
+R19
+
+"Toolbar ---> Reload". When this button is pressed, current page must be downloaded again from
+its location. There is no change to the ``back" and ``forward" stacks.
+
+
+R20
+
+ When the "Enter" key is pressed while the browser focus (cursor) is in the address field, the
+software shall perform the following actions. The text currently entered into the field shall
+be retrieved and analyzed. If the text forms a correct URL, the document represented by this
+URL shall be downloaded and shall become current. If the text does not form a correct URL,
+current document shall be pused into the "back" stack, the browser shall have no current
+document, and an error message shall be displayed in the html display zone. Pushing "Back"
+button in this state shall return back the last current page.
+
+
+The same URL check and the same behavior shall also be applicable to opening a document via
+"File ---> Open" option.
+
+R21
+
+ Correct rendering of a successfully retrieved Simple HTML document shall mean the display of
+the contents of the document in the HTML display zone as specified in the Simple HTML
+specification section.
+
+R22
+
+If the URL entered as described in R11, R20, or the home page URL is correct, but the resource
+specified in it does not exist, or have not been successfully retrieved, due to other problems
+(time out, network failure), the browser shall push current page into the ``Back" stack, shall
+have no current page, and shall display an appropriate error message.
+
+R23
+
+Part of the correct rendering of a Simple HTML document (see R21) is rendering and software
+support for the anchor elements. The anchor elements shall be rendered in a manner that is in
+contrast with the non-anchor content.  When a mouse button is clicked on top of the anchor
+element content, the browser shall push current page into the "Back" stack, check if the url
+from the "href" attribute of the clicked anchor is the same as the top of the "forward" stack
+and attempt to download the document. If successful the new document shall become the current
+document. If the top url from the "forward" stack matched the anchor url, the "forward" stack
+shall be popped. If it does not match, the "forward" stack shall be cleared.
+
+

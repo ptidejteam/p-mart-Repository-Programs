@@ -1,0 +1,14 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.6.1-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.6.1-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+11.6.1-3 The Addition operator ( + )
+var DATE1 = new Date(); DATE1 + DATE1 = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)Tue Jul 10 2007 13:08:13 GMT-0400 (EDT) PASSED!
+var DATE1 = new Date(); DATE1 + 0 = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)0 PASSED!
+var DATE1 = new Date(); DATE1 + new Number(0) = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)0 PASSED!
+var DATE1 = new Date(); DATE1 + true = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)true PASSED!
+var DATE1 = new Date(); DATE1 + new Boolean(true) = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)true PASSED!
+var DATE1 = new Date(); DATE1 + new Boolean(true) = Tue Jul 10 2007 13:08:13 GMT-0400 (EDT)true PASSED!
+MYOB1 = new MyObject(DATE1); MYOB1 + new Number(1) = [object Object]1 PASSED!
+MYOB1 = new MyObject(DATE1); MYOB1 + 1 = [object Object]1 PASSED!
+MYOB1 = new MyObject(DATE1); MYOB1 + true = [object Object]true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.6.1-3.compiled.arff] ...

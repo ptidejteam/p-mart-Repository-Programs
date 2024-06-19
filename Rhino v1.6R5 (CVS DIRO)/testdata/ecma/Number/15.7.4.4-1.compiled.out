@@ -1,0 +1,12 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Number\15.7.4.4-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Number\shell.js -f mozilla\js\tests\ecma\Number\15.7.4.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.7.4.3-1 Number.prototype.valueOf()
+Number.prototype.valueOf() = 0 PASSED!
+(new Number(1)).valueOf() = 1 PASSED!
+(new Number(-1)).valueOf() = -1 PASSED!
+(new Number(0)).valueOf() = 0 PASSED!
+(new Number(Number.POSITIVE_INFINITY)).valueOf() = Infinity PASSED!
+(new Number(Number.NaN)).valueOf() = NaN PASSED!
+(new Number()).valueOf() = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Number\15.7.4.4-1.compiled.arff] ...

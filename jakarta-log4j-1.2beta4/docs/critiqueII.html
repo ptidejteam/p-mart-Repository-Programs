@@ -1,0 +1,68 @@
+<HTML>
+<document>
+
+<HEAD>
+<title>JSR47 vs. log4j</title>
+</HEAD>
+
+<body>
+
+<CENTER>
+<H1>JSR47 vs. log4j (take two)</H1>
+<font size="+1">by Ceki G&uuml;lc&uuml;</font>
+</CENTER>
+ 
+<hr>
+
+<p>In the next, still unpublished draft of JSR 47, the
+<code>java.util.logging</code> API will resemble log4j even more.  The
+way the APIs name componets may vary but otherwise their degree of
+resemblance is quite scary.
+
+<p>Changes introduced in the latest draft include configuration order
+independence, appender inheritance, resource bundle inheritance, error
+handlers and lazy inference of caller information. In other words, the
+vast majority of the points raised in my <a
+href="critique.html">previous critique</a> of JSR47 are now
+obsolete. That is clearly good news.
+
+<p>It is fair to say that our campaign to influence the JSR47 API has
+handsomely bore fruit. I wish to thank all those who have expressed
+their support for the campaign. My gratitude goes to Jason Hunter for
+arranging the appropriate commucation channel to Sun. Graham Hamilton,
+the JSR47 specification lead, was very open and receptive during our
+exchanges.
+
+<p>As one of its authors, I still think that at its core log4j is a
+better API in some small ways. I will not delve into the differences
+because they are somewhat secondary.
+
+<p>There are two critical differences however. First, JSR47 requires
+JDK 1.4 whereas log4j is compatible with JDK 1.1 and later. Second,
+log4j has much more functionality. It supports a rich configuration
+language and about a million appenders and layouts.
+
+<p>Efforts to backport JSR47 to earlier JDKs are doomed to fail
+because the <code>java.util.logging</code> package is located under
+the <code>java</code> namespace. This will cause backported code to
+systematically throw a <code>SecurityException</code> under JDK
+1.3. Moreover, Java is a trademark owned by Sun Microsystems. As such,
+the backported code will be under the threat of litigation as long as
+Sun is expected to defend its trademark.
+
+<p>Even without the <code>SecurityException</code> and the trademark
+issue, the backported code would need to be installed. If you are
+going to install a logging API, then why not install log4j which
+offers a lot more than JSR47?
+
+<p>Log4j is the de facto logging API in Java. It has been ported to
+Python, C++ and the much maligned C#. By using log4j one
+simultaneously benefits from much richer functionality and wider JDK
+compatibility.
+
+
+
+
+
+
+</body> </HTML>

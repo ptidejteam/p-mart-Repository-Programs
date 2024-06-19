@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.6.4-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.6.4-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 437 ms]
+forin-001 The for...in  statement
+BUGNUMBER: http://scopus.mcom.com/bugsplat/show_bug.cgi?id=344855
+forin-001 The for...in  statement
+object[0] = zero PASSED!
+object[length] = 4 PASSED!
+object[year] = 2000 PASSED!
+object[company] = netscape PASSED!
+object.length = 4 PASSED!
+object[0] = zero PASSED!
+object[length] = 4 PASSED!
+object[year] = 2000 PASSED!
+object[company] = netscape PASSED!
+object.length = 4 PASSED!
+check break out of for...in = pass PASSED!
+properties.length = 1 PASSED!
+object[0] = zero PASSED!
+check break out of for...in = pass PASSED!
+properties.length = 1 PASSED!
+object[0] = zero PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.6.4-1.interpreted.arff] ...

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>MapperXML Example: The ShowHidePage</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: The ShowHidePage</h1>
+    <form method="post" action="ShowHidePage.sf">
+      Show Optional: <input type="text" name="showOptional" id="showOptional" value="y" maxlength="1" size="2"/> (y/n)<br/>
+      Show Field: <input type="text" name="showField" id="showField" value="y" maxlength="1" size="2"/> (y/n)<br/>
+      Show Message: <input type="text" name="showMessage" id="showMessage" value="y" maxlength="1" size="2"/> (y/n)<br/>
+      Show Template: <input type="text" name="showTemplate" id="showTemplate" value="y" maxlength="1" size="2"/> (y/n)<br/>
+      Show Button: <input type="text" name="showButton" id="showButton" value="y" maxlength="1" size="2"/> (y/n)<br/>
+      <br/>
+      <input type="submit" value="Refresh"/>
+    </form>
+    <hr/>
+    <div id="optional">
+    <h2>Optional Section</h2>
+    This is a small section that can be shown or hidden depending on the following conditions:
+    <ol>
+    <li>If it is needed</li>
+    <li>If it is wanted</li>
+    <li>If it is available</li>
+    </ol>
+    </div>
+    <hr/>
+    <span id="message">Message: Hello</span>
+    <hr/>
+    Template:<br/>
+    <hr/>
+    <div id="reportTemplate">
+      <span id="item">Item 1</span>
+    </div>
+    <hr/>
+    <form method="post" action="">
+      Field LastName: <input type="text" name="lastName" id="lastName" value="Smith"/>
+      <hr/>
+      <input type="submit" value="Button" id="button"/>
+    </form>
+    <br/><br/><p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

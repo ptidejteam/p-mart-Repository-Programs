@@ -1,0 +1,45 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.2 The String Constructor
+typeof new String('string primitive') = object PASSED!
+var TESTSTRING = new String('string primitive'); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String('string primitive')).valueOf() = string primitive PASSED!
+(new String('string primitive')).substring = function substring() { [native code for String.substring, arity=2] }
+ PASSED!
+typeof new String(void 0) = object PASSED!
+var TESTSTRING = new String(void 0); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String(void 0)).valueOf() = undefined PASSED!
+(new String(void 0)).toString = function toString() { [native code for String.toString, arity=0] }
+ PASSED!
+typeof new String(null) = object PASSED!
+var TESTSTRING = new String(null); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String(null)).valueOf() = null PASSED!
+(new String(null)).valueOf = function valueOf() { [native code for String.valueOf, arity=0] }
+ PASSED!
+typeof new String(true) = object PASSED!
+var TESTSTRING = new String(true); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String(true)).valueOf() = true PASSED!
+(new String(true)).charAt = function charAt() { [native code for String.charAt, arity=1] }
+ PASSED!
+typeof new String(false) = object PASSED!
+var TESTSTRING = new String(false); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String(false)).valueOf() = false PASSED!
+(new String(false)).charCodeAt = function charCodeAt() { [native code for String.charCodeAt, arity=1] }
+ PASSED!
+typeof new String(new Boolean(true)) = object PASSED!
+var TESTSTRING = new String(new Boolean(true)); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String(new Boolean(true))).valueOf() = true PASSED!
+(new String(new Boolean(true))).indexOf = function indexOf() { [native code for String.indexOf, arity=1] }
+ PASSED!
+typeof new String() = object PASSED!
+var TESTSTRING = new String(); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String()).valueOf() =  PASSED!
+(new String()).lastIndexOf = function lastIndexOf() { [native code for String.lastIndexOf, arity=1] }
+ PASSED!
+typeof new String('') = object PASSED!
+var TESTSTRING = new String(''); TESTSTRING.toString=Object.prototype.toString;TESTSTRING.toString() = [object String] PASSED!
+(new String('')).valueOf() =  PASSED!
+(new String('')).split = function split() { [native code for String.split, arity=2] }
+ PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.2.interpreted.arff] ...

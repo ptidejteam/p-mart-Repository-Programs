@@ -1,0 +1,529 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: RowRecord');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: RowRecord';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.hssf.record;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import org.apache.poi.util.BitField;
+<a name=59 class="linenum">59   </a>import org.apache.poi.util.LittleEndian;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a><span class="comment">/**
+<a name=62 class="linenum">62   </a> * Title:        Row Record&lt;P&gt;
+<a name=63 class="linenum">63   </a> * Description:  stores the row information for the sheet. &lt;P&gt;
+<a name=64 class="linenum">64   </a> * REFERENCE:  PG 379 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)&lt;P&gt;
+<a name=65 class="linenum">65   </a> * @author Andrew C. Oliver (acoliver at apache dot org)
+<a name=66 class="linenum">66   </a> * @version 2.0-pre
+<a name=67 class="linenum">67   </a> */</span>
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a>public class <a class="classDef" name=RowRecord href=RowRecord_java_ref.html#RowRecord>RowRecord</a>
+<a name=70 class="linenum">70   </a>    extends <a class="classRef" href=Record_java.html#Record>Record</a>
+<a name=71 class="linenum">71   </a>    implements Comparable
+<a name=72 class="linenum">72   </a>{
+<a name=73 class="linenum">73   </a>    public final static short <a class="varDef" name=RowRecord.sid href=RowRecord_java_ref.html#RowRecord.sid>sid</a> = 0x208;
+<a name=74 class="linenum">74   </a>    private short             <a class="varDef" name=RowRecord.field_1_row_number href=RowRecord_java_ref.html#RowRecord.field_1_row_number>field_1_row_number</a>;
+<a name=75 class="linenum">75   </a>    private short             <a class="varDef" name=RowRecord.field_2_first_col href=RowRecord_java_ref.html#RowRecord.field_2_first_col>field_2_first_col</a>;
+<a name=76 class="linenum">76   </a>    private short             <a class="varDef" name=RowRecord.field_3_last_col href=RowRecord_java_ref.html#RowRecord.field_3_last_col>field_3_last_col</a>;   <span class="comment">// plus 1</span>
+<a name=77 class="linenum">77   </a>    private short             <a class="varDef" name=RowRecord.field_4_height href=RowRecord_java_ref.html#RowRecord.field_4_height>field_4_height</a>;
+<a name=78 class="linenum">78   </a>    private short             <a class="varDef" name=RowRecord.field_5_optimize href=RowRecord_java_ref.html#RowRecord.field_5_optimize>field_5_optimize</a>;   <span class="comment">// hint field for gui, can/should be set to zero</span>
+<a name=79 class="linenum">79   </a>
+<a name=80 class="linenum">80   </a>    <span class="comment">// for generated sheets.</span>
+<a name=81 class="linenum">81   </a>    private short             <a class="varDef" name=RowRecord.field_6_reserved href=RowRecord_java_ref.html#RowRecord.field_6_reserved>field_6_reserved</a>;
+<a name=82 class="linenum">82   </a>    private short             <a class="varDef" name=RowRecord.field_7_option_flags href=RowRecord_java_ref.html#RowRecord.field_7_option_flags>field_7_option_flags</a>;
+<a name=83 class="linenum">83   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>          <a class="varDef" name=RowRecord.outlineLevel href=RowRecord_java_ref.html#RowRecord.outlineLevel>outlineLevel</a>  = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x07);
+<a name=84 class="linenum">84   </a>
+<a name=85 class="linenum">85   </a>    <span class="comment">// bit 3 reserved</span>
+<a name=86 class="linenum">86   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>          <a class="varDef" name=RowRecord.colapsed href=RowRecord_java_ref.html#RowRecord.colapsed>colapsed</a>      = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x10);
+<a name=87 class="linenum">87   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>          <a class="varDef" name=RowRecord.zeroHeight href=RowRecord_java_ref.html#RowRecord.zeroHeight>zeroHeight</a>    = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x20);
+<a name=88 class="linenum">88   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>          <a class="varDef" name=RowRecord.badFontHeight href=RowRecord_java_ref.html#RowRecord.badFontHeight>badFontHeight</a> = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x40);
+<a name=89 class="linenum">89   </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField>BitField</a>          <a class="varDef" name=RowRecord.formatted href=RowRecord_java_ref.html#RowRecord.formatted>formatted</a>     = new <a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.BitField(int)>BitField</a>(0x80);
+<a name=90 class="linenum">90   </a>    private short             <a class="varDef" name=RowRecord.field_8_xf_index href=RowRecord_java_ref.html#RowRecord.field_8_xf_index>field_8_xf_index</a>;   <span class="comment">// only if isFormatted</span>
+<a name=91 class="linenum">91   </a>
+<a name=92 class="linenum">92   </a>    public <a class="methodDef" name=RowRecord.RowRecord() href=RowRecord_java_ref.html#RowRecord.RowRecord()>RowRecord</a>()
+<a name=93 class="linenum">93   </a>    {
+<a name=94 class="linenum">94   </a>    }
+<a name=95 class="linenum">95   </a>
+<a name=96 class="linenum">96   </a>    <span class="comment">/**
+<a name=97 class="linenum">97   </a>     * Constructs a Row record and sets its fields appropriately.
+<a name=98 class="linenum">98   </a>     *
+<a name=99 class="linenum">99   </a>     * @param id     id must be 0x208 or an exception will be throw upon validation
+<a name=100 class="linenum">100  </a>     * @param size  the size of the data area of the record
+<a name=101 class="linenum">101  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=102 class="linenum">102  </a>     */</span>
+<a name=103 class="linenum">103  </a>
+<a name=104 class="linenum">104  </a>    public <a class="methodDef" name=RowRecord.RowRecord(short,short,byte) href=RowRecord_java_ref.html#RowRecord.RowRecord(short,short,byte)>RowRecord</a>(short id, short size, byte [] data)
+<a name=105 class="linenum">105  </a>    {
+<a name=106 class="linenum">106  </a>        super(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.RowRecord.id>id</a>, <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.RowRecord.size>size</a>, <a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.RowRecord.data>data</a>);
+<a name=107 class="linenum">107  </a>    }
+<a name=108 class="linenum">108  </a>
+<a name=109 class="linenum">109  </a>    <span class="comment">/**
+<a name=110 class="linenum">110  </a>     * Constructs a Row record and sets its fields appropriately.
+<a name=111 class="linenum">111  </a>     *
+<a name=112 class="linenum">112  </a>     * @param id     id must be 0x208 or an exception will be throw upon validation
+<a name=113 class="linenum">113  </a>     * @param size  the size of the data area of the record
+<a name=114 class="linenum">114  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=115 class="linenum">115  </a>     * @param offset of the record data
+<a name=116 class="linenum">116  </a>     */</span>
+<a name=117 class="linenum">117  </a>
+<a name=118 class="linenum">118  </a>    public <a class="methodDef" name=RowRecord.RowRecord(short,short,byte,int) href=RowRecord_java_ref.html#RowRecord.RowRecord(short,short,byte,int)>RowRecord</a>(short id, short size, byte [] data, int offset)
+<a name=119 class="linenum">119  </a>    {
+<a name=120 class="linenum">120  </a>        super(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.RowRecord.id>id</a>, <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.RowRecord.size>size</a>, <a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.RowRecord.data>data</a>, <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.RowRecord.offset>offset</a>);
+<a name=121 class="linenum">121  </a>    }
+<a name=122 class="linenum">122  </a>
+<a name=123 class="linenum">123  </a>    protected void <a class="methodDef" name=RowRecord.validateSid(short) href=RowRecord_java_ref.html#RowRecord.validateSid(short)>validateSid</a>(short id)
+<a name=124 class="linenum">124  </a>    {
+<a name=125 class="linenum">125  </a>        if (<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.validateSid.id>id</a> != <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.sid>sid</a>)
+<a name=126 class="linenum">126  </a>        {
+<a name=127 class="linenum">127  </a>            throw new RecordFormatException("NOT A valid ROW RECORD");
+<a name=128 class="linenum">128  </a>        }
+<a name=129 class="linenum">129  </a>    }
+<a name=130 class="linenum">130  </a>
+<a name=131 class="linenum">131  </a>    protected void <a class="methodDef" name=RowRecord.fillFields(byte,short,int) href=RowRecord_java_ref.html#RowRecord.fillFields(byte,short,int)>fillFields</a>(byte [] data, short size, int offset)
+<a name=132 class="linenum">132  </a>    {
+<a name=133 class="linenum">133  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_1_row_number>field_1_row_number</a>   = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 0 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=134 class="linenum">134  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_2_first_col>field_2_first_col</a>    = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 2 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=135 class="linenum">135  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_3_last_col>field_3_last_col</a>     = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 4 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=136 class="linenum">136  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_4_height>field_4_height</a>       = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 6 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=137 class="linenum">137  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_5_optimize>field_5_optimize</a>     = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 8 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=138 class="linenum">138  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_6_reserved>field_6_reserved</a>     = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 10 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=139 class="linenum">139  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 12 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=140 class="linenum">140  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_8_xf_index>field_8_xf_index</a>     = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.fillFields.data>data</a>, 14 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.fillFields.offset>offset</a>);
+<a name=141 class="linenum">141  </a>    }
+<a name=142 class="linenum">142  </a>
+<a name=143 class="linenum">143  </a>    <span class="comment">/**
+<a name=144 class="linenum">144  </a>     * set the logical row number for this row (0 based index)
+<a name=145 class="linenum">145  </a>     * @param row - the row number
+<a name=146 class="linenum">146  </a>     */</span>
+<a name=147 class="linenum">147  </a>
+<a name=148 class="linenum">148  </a>    public void <a class="methodDef" name=RowRecord.setRowNumber(short) href=RowRecord_java_ref.html#RowRecord.setRowNumber(short)>setRowNumber</a>(short row)
+<a name=149 class="linenum">149  </a>    {
+<a name=150 class="linenum">150  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_1_row_number>field_1_row_number</a> = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setRowNumber.row>row</a>;
+<a name=151 class="linenum">151  </a>    }
+<a name=152 class="linenum">152  </a>
+<a name=153 class="linenum">153  </a>    <span class="comment">/**
+<a name=154 class="linenum">154  </a>     * set the logical col number for the first cell this row (0 based index)
+<a name=155 class="linenum">155  </a>     * @param col - the col number
+<a name=156 class="linenum">156  </a>     */</span>
+<a name=157 class="linenum">157  </a>
+<a name=158 class="linenum">158  </a>    public void <a class="methodDef" name=RowRecord.setFirstCol(short) href=RowRecord_java_ref.html#RowRecord.setFirstCol(short)>setFirstCol</a>(short col)
+<a name=159 class="linenum">159  </a>    {
+<a name=160 class="linenum">160  </a>        field_2_first_col = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setFirstCol.col>col</a>;
+<a name=161 class="linenum">161  </a>    }
+<a name=162 class="linenum">162  </a>
+<a name=163 class="linenum">163  </a>    <span class="comment">/**
+<a name=164 class="linenum">164  </a>     * set the logical col number for the last cell this row (0 based index)
+<a name=165 class="linenum">165  </a>     * @param col - the col number
+<a name=166 class="linenum">166  </a>     */</span>
+<a name=167 class="linenum">167  </a>
+<a name=168 class="linenum">168  </a>    public void <a class="methodDef" name=RowRecord.setLastCol(short) href=RowRecord_java_ref.html#RowRecord.setLastCol(short)>setLastCol</a>(short col)
+<a name=169 class="linenum">169  </a>    {
+<a name=170 class="linenum">170  </a>        field_3_last_col = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setLastCol.col>col</a>;
+<a name=171 class="linenum">171  </a>    }
+<a name=172 class="linenum">172  </a>
+<a name=173 class="linenum">173  </a>    <span class="comment">/**
+<a name=174 class="linenum">174  </a>     * set the height of the row
+<a name=175 class="linenum">175  </a>     * @param height of the row
+<a name=176 class="linenum">176  </a>     */</span>
+<a name=177 class="linenum">177  </a>
+<a name=178 class="linenum">178  </a>    public void <a class="methodDef" name=RowRecord.setHeight(short) href=RowRecord_java_ref.html#RowRecord.setHeight(short)>setHeight</a>(short height)
+<a name=179 class="linenum">179  </a>    {
+<a name=180 class="linenum">180  </a>        field_4_height = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setHeight.height>height</a>;
+<a name=181 class="linenum">181  </a>    }
+<a name=182 class="linenum">182  </a>
+<a name=183 class="linenum">183  </a>    <span class="comment">/**
+<a name=184 class="linenum">184  </a>     * set whether to optimize or not (set to 0)
+<a name=185 class="linenum">185  </a>     * @param optimize (set to 0)
+<a name=186 class="linenum">186  </a>     */</span>
+<a name=187 class="linenum">187  </a>
+<a name=188 class="linenum">188  </a>    public void <a class="methodDef" name=RowRecord.setOptimize(short) href=RowRecord_java_ref.html#RowRecord.setOptimize(short)>setOptimize</a>(short optimize)
+<a name=189 class="linenum">189  </a>    {
+<a name=190 class="linenum">190  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_5_optimize>field_5_optimize</a> = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setOptimize.optimize>optimize</a>;
+<a name=191 class="linenum">191  </a>    }
+<a name=192 class="linenum">192  </a>
+<a name=193 class="linenum">193  </a>    <span class="comment">/**
+<a name=194 class="linenum">194  </a>     * sets the option bitmask.  (use the individual bit setters that refer to this
+<a name=195 class="linenum">195  </a>     * method)
+<a name=196 class="linenum">196  </a>     * @param options - the bitmask
+<a name=197 class="linenum">197  </a>     */</span>
+<a name=198 class="linenum">198  </a>
+<a name=199 class="linenum">199  </a>    public void <a class="methodDef" name=RowRecord.setOptionFlags(short) href=RowRecord_java_ref.html#RowRecord.setOptionFlags(short)>setOptionFlags</a>(short options)
+<a name=200 class="linenum">200  </a>    {
+<a name=201 class="linenum">201  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setOptionFlags.options>options</a>;
+<a name=202 class="linenum">202  </a>    }
+<a name=203 class="linenum">203  </a>
+<a name=204 class="linenum">204  </a>    <span class="comment">// option bitfields</span>
+<a name=205 class="linenum">205  </a>
+<a name=206 class="linenum">206  </a>    <span class="comment">/**
+<a name=207 class="linenum">207  </a>     * set the outline level of this row
+<a name=208 class="linenum">208  </a>     * @param ol - the outline level
+<a name=209 class="linenum">209  </a>     * @see #setOptionFlags(short)
+<a name=210 class="linenum">210  </a>     */</span>
+<a name=211 class="linenum">211  </a>
+<a name=212 class="linenum">212  </a>    public void <a class="methodDef" name=RowRecord.setOutlineLevel(short) href=RowRecord_java_ref.html#RowRecord.setOutlineLevel(short)>setOutlineLevel</a>(short ol)
+<a name=213 class="linenum">213  </a>    {
+<a name=214 class="linenum">214  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> =
+<a name=215 class="linenum">215  </a>            <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.outlineLevel>outlineLevel</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortValue(short,short)>setShortValue</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>, <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setOutlineLevel.ol>ol</a>);
+<a name=216 class="linenum">216  </a>    }
+<a name=217 class="linenum">217  </a>
+<a name=218 class="linenum">218  </a>    <span class="comment">/**
+<a name=219 class="linenum">219  </a>     * set whether or not to colapse this row
+<a name=220 class="linenum">220  </a>     * @param c - colapse or not
+<a name=221 class="linenum">221  </a>     * @see #setOptionFlags(short)
+<a name=222 class="linenum">222  </a>     */</span>
+<a name=223 class="linenum">223  </a>
+<a name=224 class="linenum">224  </a>    public void <a class="methodDef" name=RowRecord.setColapsed(boolean) href=RowRecord_java_ref.html#RowRecord.setColapsed(boolean)>setColapsed</a>(boolean c)
+<a name=225 class="linenum">225  </a>    {
+<a name=226 class="linenum">226  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> = <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.colapsed>colapsed</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>,
+<a name=227 class="linenum">227  </a>                <a class="varRef" title="boolean" href=RowRecord_java.html#RowRecord.setColapsed.c>c</a>);
+<a name=228 class="linenum">228  </a>    }
+<a name=229 class="linenum">229  </a>
+<a name=230 class="linenum">230  </a>    <span class="comment">/**
+<a name=231 class="linenum">231  </a>     * set whether or not to display this row with 0 height
+<a name=232 class="linenum">232  </a>     * @param z  height is zero or not.
+<a name=233 class="linenum">233  </a>     * @see #setOptionFlags(short)
+<a name=234 class="linenum">234  </a>     */</span>
+<a name=235 class="linenum">235  </a>
+<a name=236 class="linenum">236  </a>    public void <a class="methodDef" name=RowRecord.setZeroHeight(boolean) href=RowRecord_java_ref.html#RowRecord.setZeroHeight(boolean)>setZeroHeight</a>(boolean z)
+<a name=237 class="linenum">237  </a>    {
+<a name=238 class="linenum">238  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> =
+<a name=239 class="linenum">239  </a>            <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.zeroHeight>zeroHeight</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>, <a class="varRef" title="boolean" href=RowRecord_java.html#RowRecord.setZeroHeight.z>z</a>);
+<a name=240 class="linenum">240  </a>    }
+<a name=241 class="linenum">241  </a>
+<a name=242 class="linenum">242  </a>    <span class="comment">/**
+<a name=243 class="linenum">243  </a>     * set whether the font and row height are not compatible
+<a name=244 class="linenum">244  </a>     * @param  f  true if they aren't compatible (damn not logic)
+<a name=245 class="linenum">245  </a>     * @see #setOptionFlags(short)
+<a name=246 class="linenum">246  </a>     */</span>
+<a name=247 class="linenum">247  </a>
+<a name=248 class="linenum">248  </a>    public void <a class="methodDef" name=RowRecord.setBadFontHeight(boolean) href=RowRecord_java_ref.html#RowRecord.setBadFontHeight(boolean)>setBadFontHeight</a>(boolean f)
+<a name=249 class="linenum">249  </a>    {
+<a name=250 class="linenum">250  </a>        field_7_option_flags =
+<a name=251 class="linenum">251  </a>            badFontHeight.setShortBoolean(field_7_option_flags, <a class="varRef" title="boolean" href=RowRecord_java.html#RowRecord.setBadFontHeight.f>f</a>);
+<a name=252 class="linenum">252  </a>    }
+<a name=253 class="linenum">253  </a>
+<a name=254 class="linenum">254  </a>    <span class="comment">/**
+<a name=255 class="linenum">255  </a>     * set whether the row has been formatted (even if its got all blank cells)
+<a name=256 class="linenum">256  </a>     * @param f  formatted or not
+<a name=257 class="linenum">257  </a>     * @see #setOptionFlags(short)
+<a name=258 class="linenum">258  </a>     */</span>
+<a name=259 class="linenum">259  </a>
+<a name=260 class="linenum">260  </a>    public void <a class="methodDef" name=RowRecord.setFormatted(boolean) href=RowRecord_java_ref.html#RowRecord.setFormatted(boolean)>setFormatted</a>(boolean f)
+<a name=261 class="linenum">261  </a>    {
+<a name=262 class="linenum">262  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a> = <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.formatted>formatted</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.setShortBoolean(short,boolean)>setShortBoolean</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>,
+<a name=263 class="linenum">263  </a>                <a class="varRef" title="boolean" href=RowRecord_java.html#RowRecord.setFormatted.f>f</a>);
+<a name=264 class="linenum">264  </a>    }
+<a name=265 class="linenum">265  </a>
+<a name=266 class="linenum">266  </a>    <span class="comment">// end bitfields</span>
+<a name=267 class="linenum">267  </a>
+<a name=268 class="linenum">268  </a>    <span class="comment">/**
+<a name=269 class="linenum">269  </a>     * if the row is formatted then this is the index to the extended format record
+<a name=270 class="linenum">270  </a>     * @see org.apache.poi.hssf.record.ExtendedFormatRecord
+<a name=271 class="linenum">271  </a>     * @param index to the XF record
+<a name=272 class="linenum">272  </a>     */</span>
+<a name=273 class="linenum">273  </a>
+<a name=274 class="linenum">274  </a>    public void <a class="methodDef" name=RowRecord.setXFIndex(short) href=RowRecord_java_ref.html#RowRecord.setXFIndex(short)>setXFIndex</a>(short index)
+<a name=275 class="linenum">275  </a>    {
+<a name=276 class="linenum">276  </a>        <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_8_xf_index>field_8_xf_index</a> = <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.setXFIndex.index>index</a>;
+<a name=277 class="linenum">277  </a>    }
+<a name=278 class="linenum">278  </a>
+<a name=279 class="linenum">279  </a>    <span class="comment">/**
+<a name=280 class="linenum">280  </a>     * get the logical row number for this row (0 based index)
+<a name=281 class="linenum">281  </a>     * @return row - the row number
+<a name=282 class="linenum">282  </a>     */</span>
+<a name=283 class="linenum">283  </a>
+<a name=284 class="linenum">284  </a>    public short <a class="methodDef" name=RowRecord.getRowNumber() href=RowRecord_java_ref.html#RowRecord.getRowNumber()>getRowNumber</a>()
+<a name=285 class="linenum">285  </a>    {
+<a name=286 class="linenum">286  </a>        return field_1_row_number;
+<a name=287 class="linenum">287  </a>    }
+<a name=288 class="linenum">288  </a>
+<a name=289 class="linenum">289  </a>    <span class="comment">/**
+<a name=290 class="linenum">290  </a>     * get the logical col number for the first cell this row (0 based index)
+<a name=291 class="linenum">291  </a>     * @return col - the col number
+<a name=292 class="linenum">292  </a>     */</span>
+<a name=293 class="linenum">293  </a>
+<a name=294 class="linenum">294  </a>    public short <a class="methodDef" name=RowRecord.getFirstCol() href=RowRecord_java_ref.html#RowRecord.getFirstCol()>getFirstCol</a>()
+<a name=295 class="linenum">295  </a>    {
+<a name=296 class="linenum">296  </a>        return field_2_first_col;
+<a name=297 class="linenum">297  </a>    }
+<a name=298 class="linenum">298  </a>
+<a name=299 class="linenum">299  </a>    <span class="comment">/**
+<a name=300 class="linenum">300  </a>     * get the logical col number for the last cell this row (0 based index)
+<a name=301 class="linenum">301  </a>     * @return col - the col number
+<a name=302 class="linenum">302  </a>     */</span>
+<a name=303 class="linenum">303  </a>
+<a name=304 class="linenum">304  </a>    public short <a class="methodDef" name=RowRecord.getLastCol() href=RowRecord_java_ref.html#RowRecord.getLastCol()>getLastCol</a>()
+<a name=305 class="linenum">305  </a>    {
+<a name=306 class="linenum">306  </a>        return field_3_last_col;
+<a name=307 class="linenum">307  </a>    }
+<a name=308 class="linenum">308  </a>
+<a name=309 class="linenum">309  </a>    <span class="comment">/**
+<a name=310 class="linenum">310  </a>     * get the height of the row
+<a name=311 class="linenum">311  </a>     * @return height of the row
+<a name=312 class="linenum">312  </a>     */</span>
+<a name=313 class="linenum">313  </a>
+<a name=314 class="linenum">314  </a>    public short <a class="methodDef" name=RowRecord.getHeight() href=RowRecord_java_ref.html#RowRecord.getHeight()>getHeight</a>()
+<a name=315 class="linenum">315  </a>    {
+<a name=316 class="linenum">316  </a>        return field_4_height;
+<a name=317 class="linenum">317  </a>    }
+<a name=318 class="linenum">318  </a>
+<a name=319 class="linenum">319  </a>    <span class="comment">/**
+<a name=320 class="linenum">320  </a>     * get whether to optimize or not (set to 0)
+<a name=321 class="linenum">321  </a>     * @return optimize (set to 0)
+<a name=322 class="linenum">322  </a>     */</span>
+<a name=323 class="linenum">323  </a>
+<a name=324 class="linenum">324  </a>    public short <a class="methodDef" name=RowRecord.getOptimize() href=RowRecord_java_ref.html#RowRecord.getOptimize()>getOptimize</a>()
+<a name=325 class="linenum">325  </a>    {
+<a name=326 class="linenum">326  </a>        return <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_5_optimize>field_5_optimize</a>;
+<a name=327 class="linenum">327  </a>    }
+<a name=328 class="linenum">328  </a>
+<a name=329 class="linenum">329  </a>    <span class="comment">/**
+<a name=330 class="linenum">330  </a>     * gets the option bitmask.  (use the individual bit setters that refer to this
+<a name=331 class="linenum">331  </a>     * method)
+<a name=332 class="linenum">332  </a>     * @return options - the bitmask
+<a name=333 class="linenum">333  </a>     */</span>
+<a name=334 class="linenum">334  </a>
+<a name=335 class="linenum">335  </a>    public short <a class="methodDef" name=RowRecord.getOptionFlags() href=RowRecord_java_ref.html#RowRecord.getOptionFlags()>getOptionFlags</a>()
+<a name=336 class="linenum">336  </a>    {
+<a name=337 class="linenum">337  </a>        return <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>;
+<a name=338 class="linenum">338  </a>    }
+<a name=339 class="linenum">339  </a>
+<a name=340 class="linenum">340  </a>    <span class="comment">// option bitfields</span>
+<a name=341 class="linenum">341  </a>
+<a name=342 class="linenum">342  </a>    <span class="comment">/**
+<a name=343 class="linenum">343  </a>     * get the outline level of this row
+<a name=344 class="linenum">344  </a>     * @return ol - the outline level
+<a name=345 class="linenum">345  </a>     * @see #getOptionFlags()
+<a name=346 class="linenum">346  </a>     */</span>
+<a name=347 class="linenum">347  </a>
+<a name=348 class="linenum">348  </a>    public short <a class="methodDef" name=RowRecord.getOutlineLevel() href=RowRecord_java_ref.html#RowRecord.getOutlineLevel()>getOutlineLevel</a>()
+<a name=349 class="linenum">349  </a>    {
+<a name=350 class="linenum">350  </a>        return <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.outlineLevel>outlineLevel</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.getShortValue(short)>getShortValue</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>);
+<a name=351 class="linenum">351  </a>    }
+<a name=352 class="linenum">352  </a>
+<a name=353 class="linenum">353  </a>    <span class="comment">/**
+<a name=354 class="linenum">354  </a>     * get whether or not to colapse this row
+<a name=355 class="linenum">355  </a>     * @return c - colapse or not
+<a name=356 class="linenum">356  </a>     * @see #getOptionFlags()
+<a name=357 class="linenum">357  </a>     */</span>
+<a name=358 class="linenum">358  </a>
+<a name=359 class="linenum">359  </a>    public boolean <a class="methodDef" name=RowRecord.getColapsed() href=RowRecord_java_ref.html#RowRecord.getColapsed()>getColapsed</a>()
+<a name=360 class="linenum">360  </a>    {
+<a name=361 class="linenum">361  </a>        return (<a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.colapsed>colapsed</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>));
+<a name=362 class="linenum">362  </a>    }
+<a name=363 class="linenum">363  </a>
+<a name=364 class="linenum">364  </a>    <span class="comment">/**
+<a name=365 class="linenum">365  </a>     * get whether or not to display this row with 0 height
+<a name=366 class="linenum">366  </a>     * @return - z height is zero or not.
+<a name=367 class="linenum">367  </a>     * @see #getOptionFlags()
+<a name=368 class="linenum">368  </a>     */</span>
+<a name=369 class="linenum">369  </a>
+<a name=370 class="linenum">370  </a>    public boolean <a class="methodDef" name=RowRecord.getZeroHeight() href=RowRecord_java_ref.html#RowRecord.getZeroHeight()>getZeroHeight</a>()
+<a name=371 class="linenum">371  </a>    {
+<a name=372 class="linenum">372  </a>        return <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.zeroHeight>zeroHeight</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>);
+<a name=373 class="linenum">373  </a>    }
+<a name=374 class="linenum">374  </a>
+<a name=375 class="linenum">375  </a>    <span class="comment">/**
+<a name=376 class="linenum">376  </a>     * get whether the font and row height are not compatible
+<a name=377 class="linenum">377  </a>     * @return - f -true if they aren't compatible (damn not logic)
+<a name=378 class="linenum">378  </a>     * @see #getOptionFlags()
+<a name=379 class="linenum">379  </a>     */</span>
+<a name=380 class="linenum">380  </a>
+<a name=381 class="linenum">381  </a>    public boolean <a class="methodDef" name=RowRecord.getBadFontHeight() href=RowRecord_java_ref.html#RowRecord.getBadFontHeight()>getBadFontHeight</a>()
+<a name=382 class="linenum">382  </a>    {
+<a name=383 class="linenum">383  </a>        return <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.badFontHeight>badFontHeight</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>);
+<a name=384 class="linenum">384  </a>    }
+<a name=385 class="linenum">385  </a>
+<a name=386 class="linenum">386  </a>    <span class="comment">/**
+<a name=387 class="linenum">387  </a>     * get whether the row has been formatted (even if its got all blank cells)
+<a name=388 class="linenum">388  </a>     * @return formatted or not
+<a name=389 class="linenum">389  </a>     * @see #getOptionFlags()
+<a name=390 class="linenum">390  </a>     */</span>
+<a name=391 class="linenum">391  </a>
+<a name=392 class="linenum">392  </a>    public boolean <a class="methodDef" name=RowRecord.getFormatted() href=RowRecord_java_ref.html#RowRecord.getFormatted()>getFormatted</a>()
+<a name=393 class="linenum">393  </a>    {
+<a name=394 class="linenum">394  </a>        return <a class="varRef" title="BitField" href=RowRecord_java.html#RowRecord.formatted>formatted</a>.<a class="methodRef" title="BitField" href=..\..\..\..\..\org\apache\poi\util\BitField_java.html#BitField.isSet(int)>isSet</a>(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_7_option_flags>field_7_option_flags</a>);
+<a name=395 class="linenum">395  </a>    }
+<a name=396 class="linenum">396  </a>
+<a name=397 class="linenum">397  </a>    <span class="comment">// end bitfields</span>
+<a name=398 class="linenum">398  </a>
+<a name=399 class="linenum">399  </a>    <span class="comment">/**
+<a name=400 class="linenum">400  </a>     * if the row is formatted then this is the index to the extended format record
+<a name=401 class="linenum">401  </a>     * @see org.apache.poi.hssf.record.ExtendedFormatRecord
+<a name=402 class="linenum">402  </a>     * @return index to the XF record or bogus value (undefined) if isn't formatted
+<a name=403 class="linenum">403  </a>     */</span>
+<a name=404 class="linenum">404  </a>
+<a name=405 class="linenum">405  </a>    public short <a class="methodDef" name=RowRecord.getXFIndex() href=RowRecord_java_ref.html#RowRecord.getXFIndex()>getXFIndex</a>()
+<a name=406 class="linenum">406  </a>    {
+<a name=407 class="linenum">407  </a>        return <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_8_xf_index>field_8_xf_index</a>;
+<a name=408 class="linenum">408  </a>    }
+<a name=409 class="linenum">409  </a>
+<a name=410 class="linenum">410  </a>    public boolean <a class="methodDef" name=RowRecord.isInValueSection() href=RowRecord_java_ref.html#RowRecord.isInValueSection()>isInValueSection</a>()
+<a name=411 class="linenum">411  </a>    {
+<a name=412 class="linenum">412  </a>        return true;
+<a name=413 class="linenum">413  </a>    }
+<a name=414 class="linenum">414  </a>
+<a name=415 class="linenum">415  </a>    public String <a class="methodDef" name=RowRecord.toString() href=RowRecord_java_ref.html#RowRecord.toString()>toString</a>()
+<a name=416 class="linenum">416  </a>    {
+<a name=417 class="linenum">417  </a>        StringBuffer buffer = new StringBuffer();
+<a name=418 class="linenum">418  </a>
+<a name=419 class="linenum">419  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("[ROW]\n");
+<a name=420 class="linenum">420  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .rownumber      = ")
+<a name=421 class="linenum">421  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>())).append("\n");
+<a name=422 class="linenum">422  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .firstcol       = ")
+<a name=423 class="linenum">423  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getFirstCol()>getFirstCol</a>())).append("\n");
+<a name=424 class="linenum">424  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .lastcol        = ")
+<a name=425 class="linenum">425  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getLastCol()>getLastCol</a>())).append("\n");
+<a name=426 class="linenum">426  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .height         = ")
+<a name=427 class="linenum">427  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getHeight()>getHeight</a>())).append("\n");
+<a name=428 class="linenum">428  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .optimize       = ")
+<a name=429 class="linenum">429  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getOptimize()>getOptimize</a>())).append("\n");
+<a name=430 class="linenum">430  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .reserved       = ")
+<a name=431 class="linenum">431  </a>            .append(Integer.toHexString(<a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_6_reserved>field_6_reserved</a>)).append("\n");
+<a name=432 class="linenum">432  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .optionflags    = ")
+<a name=433 class="linenum">433  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getOptionFlags()>getOptionFlags</a>())).append("\n");
+<a name=434 class="linenum">434  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("        .outlinelvl = ")
+<a name=435 class="linenum">435  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getOutlineLevel()>getOutlineLevel</a>())).append("\n");
+<a name=436 class="linenum">436  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("        .colapsed   = ").append(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getColapsed()>getColapsed</a>())
+<a name=437 class="linenum">437  </a>            .append("\n");
+<a name=438 class="linenum">438  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("        .zeroheight = ").append(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getZeroHeight()>getZeroHeight</a>())
+<a name=439 class="linenum">439  </a>            .append("\n");
+<a name=440 class="linenum">440  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("        .badfontheig= ").append(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getBadFontHeight()>getBadFontHeight</a>())
+<a name=441 class="linenum">441  </a>            .append("\n");
+<a name=442 class="linenum">442  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("        .formatted  = ").append(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getFormatted()>getFormatted</a>())
+<a name=443 class="linenum">443  </a>            .append("\n");
+<a name=444 class="linenum">444  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("    .xfindex        = ")
+<a name=445 class="linenum">445  </a>            .append(Integer.toHexString(<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getXFIndex()>getXFIndex</a>())).append("\n");
+<a name=446 class="linenum">446  </a>        <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.append("[/ROW]\n");
+<a name=447 class="linenum">447  </a>        return <a class="varRef" title="StringBuffer" href=RowRecord_java.html#RowRecord.toString.buffer>buffer</a>.toString();
+<a name=448 class="linenum">448  </a>    }
+<a name=449 class="linenum">449  </a>
+<a name=450 class="linenum">450  </a>    public int <a class="methodDef" name=RowRecord.serialize(int,byte) href=RowRecord_java_ref.html#RowRecord.serialize(int,byte)>serialize</a>(int offset, byte [] data)
+<a name=451 class="linenum">451  </a>    {
+<a name=452 class="linenum">452  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 0 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.sid>sid</a>);
+<a name=453 class="linenum">453  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 2 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, ( short ) 16);
+<a name=454 class="linenum">454  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 4 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>());
+<a name=455 class="linenum">455  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 6 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getFirstCol()>getFirstCol</a>() == -1 ? (short)0 : <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getFirstCol()>getFirstCol</a>());
+<a name=456 class="linenum">456  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 8 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getLastCol()>getLastCol</a>() == -1 ? (short)0 : <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getLastCol()>getLastCol</a>());
+<a name=457 class="linenum">457  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 10 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getHeight()>getHeight</a>());
+<a name=458 class="linenum">458  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 12 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getOptimize()>getOptimize</a>());
+<a name=459 class="linenum">459  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 14 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=RowRecord_java.html#RowRecord.field_6_reserved>field_6_reserved</a>);
+<a name=460 class="linenum">460  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 16 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getOptionFlags()>getOptionFlags</a>());
+<a name=461 class="linenum">461  </a>
+<a name=462 class="linenum">462  </a><span class="comment">//    LittleEndian.putShort(data,18,getOutlineLevel());</span>
+<a name=463 class="linenum">463  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=RowRecord_java.html#RowRecord.serialize.data>data</a>, 18 + <a class="varRef" title="int" href=RowRecord_java.html#RowRecord.serialize.offset>offset</a>, <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getXFIndex()>getXFIndex</a>());
+<a name=464 class="linenum">464  </a>        return <a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRecordSize()>getRecordSize</a>();
+<a name=465 class="linenum">465  </a>    }
+<a name=466 class="linenum">466  </a>
+<a name=467 class="linenum">467  </a>    public int <a class="methodDef" name=RowRecord.getRecordSize() href=RowRecord_java_ref.html#RowRecord.getRecordSize()>getRecordSize</a>()
+<a name=468 class="linenum">468  </a>    {
+<a name=469 class="linenum">469  </a>        return 20;
+<a name=470 class="linenum">470  </a>    }
+<a name=471 class="linenum">471  </a>
+<a name=472 class="linenum">472  </a>    public short <a class="methodDef" name=RowRecord.getSid() href=RowRecord_java_ref.html#RowRecord.getSid()>getSid</a>()
+<a name=473 class="linenum">473  </a>    {
+<a name=474 class="linenum">474  </a>        return this.sid;
+<a name=475 class="linenum">475  </a>    }
+<a name=476 class="linenum">476  </a>
+<a name=477 class="linenum">477  </a>    public int <a class="methodDef" name=RowRecord.compareTo(Object) href=RowRecord_java_ref.html#RowRecord.compareTo(Object)>compareTo</a>(Object obj)
+<a name=478 class="linenum">478  </a>    {
+<a name=479 class="linenum">479  </a>        <a class="classRef" href=RowRecord_java.html#RowRecord>RowRecord</a> loc = ( RowRecord ) <a class="varRef" title="Object" href=RowRecord_java.html#RowRecord.compareTo.obj>obj</a>;
+<a name=480 class="linenum">480  </a>
+<a name=481 class="linenum">481  </a>        if (this.getRowNumber() == <a class="varRef" title="RowRecord" href=RowRecord_java.html#RowRecord.compareTo.loc>loc</a>.<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>())
+<a name=482 class="linenum">482  </a>        {
+<a name=483 class="linenum">483  </a>            return 0;
+<a name=484 class="linenum">484  </a>        }
+<a name=485 class="linenum">485  </a>        if (this.getRowNumber() &lt; <a class="varRef" title="RowRecord" href=RowRecord_java.html#RowRecord.compareTo.loc>loc</a>.<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>())
+<a name=486 class="linenum">486  </a>        {
+<a name=487 class="linenum">487  </a>            return -1;
+<a name=488 class="linenum">488  </a>        }
+<a name=489 class="linenum">489  </a>        if (this.getRowNumber() &gt; <a class="varRef" title="RowRecord" href=RowRecord_java.html#RowRecord.compareTo.loc>loc</a>.<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>())
+<a name=490 class="linenum">490  </a>        {
+<a name=491 class="linenum">491  </a>            return 1;
+<a name=492 class="linenum">492  </a>        }
+<a name=493 class="linenum">493  </a>        return -1;
+<a name=494 class="linenum">494  </a>    }
+<a name=495 class="linenum">495  </a>
+<a name=496 class="linenum">496  </a>    public boolean <a class="methodDef" name=RowRecord.equals(Object) href=RowRecord_java_ref.html#RowRecord.equals(Object)>equals</a>(Object obj)
+<a name=497 class="linenum">497  </a>    {
+<a name=498 class="linenum">498  </a>        if (!(<a class="varRef" title="Object" href=RowRecord_java.html#RowRecord.equals.obj>obj</a> instanceof RowRecord))
+<a name=499 class="linenum">499  </a>        {
+<a name=500 class="linenum">500  </a>            return false;
+<a name=501 class="linenum">501  </a>        }
+<a name=502 class="linenum">502  </a>        <a class="classRef" href=RowRecord_java.html#RowRecord>RowRecord</a> loc = ( RowRecord ) <a class="varRef" title="Object" href=RowRecord_java.html#RowRecord.equals.obj>obj</a>;
+<a name=503 class="linenum">503  </a>
+<a name=504 class="linenum">504  </a>        if (this.getRowNumber() == <a class="varRef" title="RowRecord" href=RowRecord_java.html#RowRecord.equals.loc>loc</a>.<a class="methodRef" title="RowRecord" href=RowRecord_java.html#RowRecord.getRowNumber()>getRowNumber</a>())
+<a name=505 class="linenum">505  </a>        {
+<a name=506 class="linenum">506  </a>            return true;
+<a name=507 class="linenum">507  </a>        }
+<a name=508 class="linenum">508  </a>        return false;
+<a name=509 class="linenum">509  </a>    }
+<a name=510 class="linenum">510  </a>}
+<a name=511 class="linenum">511  </a></pre>

@@ -1,0 +1,50 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\ExecutionContexts\10.1.6-01.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\ExecutionContexts\shell.js -f mozilla\js\tests\ecma_3\ExecutionContexts\10.1.6-01.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+BUGNUMBER: 290774
+STATUS: activation object never delegates to Object.prototype
+STATUS: normal
+STATUS: ======
+STATUS: toStringResult 
+STATUS: function toString() {
+STATUS:     return "fooString";
+STATUS: }
+STATUS: 
+STATUS: toString 
+STATUS: function toString() {
+STATUS:     return "fooString";
+STATUS: }
+STATUS: 
+PASSED! Section 1 of test -
+STATUS: evalResult fooEval
+STATUS: eval fooEval
+PASSED! Section 2 of test -
+STATUS: watchResult undefined
+STATUS: watch undefined
+PASSED! Section 3 of test -
+STATUS: parseIntResult fooParseInt
+STATUS: parseInt fooParseInt
+PASSED! Section 4 of test -
+STATUS: outerinner
+STATUS: ==========
+STATUS: toStringResult 
+STATUS: function toString() {
+STATUS:     return "fooString";
+STATUS: }
+STATUS: 
+STATUS: toString 
+STATUS: function toString() {
+STATUS:     return "fooString";
+STATUS: }
+STATUS: 
+PASSED! Section 5 of test -
+STATUS: evalResult fooEval
+STATUS: eval fooEval
+PASSED! Section 6 of test -
+STATUS: watchResult undefined
+STATUS: watch undefined
+PASSED! Section 7 of test -
+STATUS: parseIntResult fooParseInt
+STATUS: parseInt fooParseInt
+PASSED! Section 8 of test -
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\ExecutionContexts\10.1.6-01.interpreted.arff] ...

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN"
+        "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+        
+<toc version="2.0">
+    <tocitem expand="true" target="intro_html" text="Introduction" image="file"/>
+    <tocitem target="quickstart_html" text="quickstart" image="file"/>
+    <tocitem expand="false" text="Manual" image="folder" >
+        <tocitem target="startscreen_html" text="Start Screen" image="file"/>
+        <tocitem target="mainscreen_html" text="Main Screen" image="file"/>
+        <tocitem target="importexport_html" text="Import/Export a Safe" image="file"/>
+        <tocitem target="editentry_html" text="Edit a Password Entry" image="file"/>
+        <tocitem target="generator_html" text="Password Generator" image="file"/>
+        <tocitem target="preferences_html" text="Preferences" image="file"/>
+        <tocitem target="clipboard_html" text="Using the Clipboard" image="file"/>
+        <tocitem target="tips_html" text="Tips" image="file" />
+        <tocitem target="shortcuts_html" text="Keyboard Shortcuts" image="file" />
+    </tocitem>
+    <tocitem expand="false" text="Licenses" image="folder">
+        <tocitem target="jgoodies-license_html" text="JGoodies License" image="file"/>
+        <tocitem target="pwt-license_html" text="Gnu GPL License" image="file"/>
+    </tocitem>
+</toc>

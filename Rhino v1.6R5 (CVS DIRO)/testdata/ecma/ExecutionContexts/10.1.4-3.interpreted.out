@@ -1,0 +1,6 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\ExecutionContexts\10.1.4-3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\ExecutionContexts\shell.js -f mozilla\js\tests\ecma\ExecutionContexts\10.1.4-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+10.1.4-3 Scope Chain and Identifier Resolution
+with MyObject, eval should be [object Global].eval 2 = undefined PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\ExecutionContexts\10.1.4-3.interpreted.arff] ...

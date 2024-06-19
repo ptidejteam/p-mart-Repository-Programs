@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.26-8.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.26-8.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.9.5.22 Date.prototype.getTimezoneOffset()
+(new Date(NaN)).getTimezoneOffset() = NaN PASSED!
+Date.prototype.getTimezoneOffset.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.26-8.interpreted.arff] ...

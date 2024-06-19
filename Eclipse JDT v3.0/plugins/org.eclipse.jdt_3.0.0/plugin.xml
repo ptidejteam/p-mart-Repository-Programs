@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.jdt"
+   name="%pluginName"
+   version="3.0.0"
+   provider-name="%providerName">
+
+   <requires>
+      <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.ui.cheatsheets"/>
+   </requires>
+
+   <extension
+         point="org.eclipse.ui.intro.configExtension">
+      <configExtension
+            configId="org.eclipse.platform.introConfig"
+            content="$nl$/overviewExtensionContent.xml"/>  
+        
+      <configExtension
+            configId="org.eclipse.platform.introConfig"
+            content="$nl$/tutorialsExtensionContent.xml"/>  
+      
+      <configExtension
+            configId="org.eclipse.platform.introConfig"
+            content="$nl$/samplesExtensionContent.xml"/>
+            
+      <configExtension
+            configId="org.eclipse.platform.introConfig"
+            content="$nl$/newsExtensionContent.xml"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <cheatsheet
+            name="%cheatsheet.helloworld.name"
+            contentFile="$nl$/cheatsheets/HelloWorld.xml"
+            id="org.eclipse.jdt.helloworld">
+         <description>%cheatsheet.helloworld.desc</description>
+      </cheatsheet>
+      <cheatsheet
+            name="%cheatsheet.helloworld.swt.name"
+            contentFile="$nl$/cheatsheets/HelloWorldSWT.xml"
+            id="org.eclipse.jdt.helloworld.swt">
+         <description>%cheatsheet.helloworld.swt.desc</description>
+      </cheatsheet>
+   </extension>
+
+</plugin>

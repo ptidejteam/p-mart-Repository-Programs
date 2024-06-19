@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Component Architecture</title>
+  <link href="common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="common/leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%"><h1>4. Component Architecture</h1>
+
+        <h2>4.1 Components</h2>
+
+        <p>This is the foundation object for MapperXML components.  All components
+        share this base abstract class.  It provides common attributes and basic
+        event dispatching methods with limited implementation.
+        </p>
+
+        <p>This object defines the following properties:</p>
+        <ul>
+        <li><tt>parent</tt> - the parent <tt>Container</tt> for this
+        <tt>Component</tt>. This property is set by the <tt>Container</tt>
+        methods: <tt>add</tt> and <tt>remove</tt>.</li>
+        <li><tt>visible</tt> - this property is used by render subcomponents to
+        determine whether to hide or show this component during rendering.</li>
+        </ul>
+
+        <p>This object is designed to respond to 5 types of events. The following
+        are the events this component is designed to respond to:</p>
+        <ul>
+        <li><tt>ParameterEvent</tt> - this event is generated when parameter
+        values are available for this component. A <tt>ParameterEvent</tt>
+        differs from an <tt>InputEvent</tt> only by WHEN it is dispatched.
+        <tt>ParameterEvents</tt> are normally dispatched before
+        <tt>InputEvents</tt></li>
+        <li><tt>InputEvent</tt> - this event is generated when input
+        values are available for this component. An <tt>InputEvent</tt>
+        differs from a <tt>ParameterEvent</tt> only by WHEN it is dispatched.
+        <tt>InputEvents</tt> are normally dispatched after
+        <tt>ParameterEvents</tt></li>
+        <li><tt>TriggerEvent</tt> - this event is generated when a specific
+        name/value pair appears (or does not appear) in the request.</li>
+        <li><tt>RenderEvent</tt> - this event is generated when it is time
+        for components to render their value to the document.</li>
+        <li><tt>RecycleEvent</tt> - this event is generated after the
+        request/response cycle as a signal that components should return to a
+        default or initial state. Components may also modify the document as
+        part of their response to this event.</li>
+        </ul>
+
+        <p>In order to be notified of these events, this component must register
+        with each of the appropriate dispatchers. This component should attempt to
+        register with dispatchers during the <tt>addNotify</tt> method and
+        unregister during the <tt>removeNotify</tt> method. These methods are
+        called by the <tt>Container</tt> during the <tt>add</tt> and
+        <tt>remove</tt> methods. The dispatchers for these events are available
+        as properties from the parent <tt>Container</tt> of this component.
+        </p>
+
+        <p>This component contains a 2 general purpose methods modeled after
+        AWT and Swing: <tt>dispatchEvent</tt> and <tt>processEvent</tt>.
+        These 2 methods simply call the specific processXXXEvent method based
+        on the event type.
+        </p>
+
+        <p>For each of the specific event types, there are a set of 3 related
+        methods.</p>
+        <ul>
+        <li><tt>processXXXEvent</tt> - this method is where you would provide
+        the necessary behavior to respond to the event. This abstract implementation
+        simply propagates the event to registered listeners. You should override
+        this method to provide appropriate behavior.</li>
+        <li><tt>addXXXListener</tt> - registers the given listener with this
+        component to be notified whenever this component has began/ended processing
+        the event.</li>
+        <li><tt>removeXXXListener</tt> - unregisters the given listener so it
+        will no longer be notified.</li>
+        </ul>
+
+        <h2>4.2 Containers</h2>
+
+        <p>This class is a foundation container for MapperXML components. This class
+        defines all required properties and methods for a container and provides
+        basic implementation for many of them. The <tt>Container</tt> provides
+        3 primary functions:</p>
+
+        <ul>
+          <li><tt>Component</tt> management - provides methods to add, remove and
+          retrieve <tt>Components</tt>.
+          </li>
+
+          <li>Provide access to a <tt>DocumentAdapter</tt> for the
+          <tt>Components</tt> to render themselves to. This implementation simply
+          looks to its parent <tt>Container</tt> to obtain the
+          <tt>DocumentAdapter</tt>. Bottom level or master <tt>Containers</tt>
+          should override this method and provide access to a
+          <tt>DocumentAdapter</tt>.
+          </li>
+
+          <li>Provide access to <tt>Dispatchers</tt> for the various event types
+          to the <tt>Components</tt>. There are separate
+          <tt>getXXXDispatcher</tt> methods for each event type.
+          <tt>Components</tt> need to access these whenever they are added or
+          removed from this <tt>Container</tt> so they can add or remove themselves
+          from the various event notification lists. This implementation simply
+          looks to its parent <tt>Container</tt> to obtain the appropriate
+          <tt>Dispatcher</tt>. Bottom level or master <tt>Containers</tt>
+          should override this method and provide access to an appropriate
+          <tt>Dispatcher</tt>. Intermediate level <tt>Containers</tt> can
+          also override this method and provide access to their own
+          <tt>Dispatchers</tt>.
+          </li>
+
+        </ul>
+
+        <h2>4.3 Models</h2>
+
+        <p>Models are used to store and retrieve the "state" or value for
+        <tt>Components</tt>. Models are responsible for any conversion,
+        parsing, or formatting of values. The following is the heirarchy
+        of Model interfaces and implementations:</p>
+        <pre>
+        * interface com.taursys.model.TextModel
+            * interface com.taursys.model.CheckboxModel
+            * interface com.taursys.model.SelectModel
+
+        * class com.taursys.model.DefaultTextModel (implements
+                javax.swing.event.ChangeListener, com.taursys.model.TextModel)
+            * class com.taursys.model.DefaultCheckboxModel (implements
+                    com.taursys.model.CheckboxModel)
+            * class com.taursys.model.DefaultSelectModel (implements
+                    com.taursys.model.SelectModel)
+        </pre>
+        <p>MapperXML also uses some of the exsiting Swing(tm) model:
+        javax.swing.ButtonModel.</p>
+
+        <p>MapperXML models use <tt>ValueHolders</tt> to store the actual
+        value or state internally. These models create their own
+        <tt>ValueHolder</tt> during construction. They can also be attached
+        to an external <tt>ValueHolder</tt> (which can be shared by
+        multiple models)</p>
+
+        <p>The <tt>TextModel</tt> is a foundation model for MapperXML. The
+        <tt>TextModel</tt> provides access to the internal "state" or value
+        via the <tt>getText</tt> and <tt>setText</tt> methods. It is the
+        responsibility of theses methods to provide any required parsing or
+        formatting as they transform the value between its <tt>String</tt>
+        representation and actual internal representation (<tt>int</tt>,
+        <tt>Date</tt>, <tt>BigDecimal</tt>, etc). There are 2 properties
+        which govern the parse/format process: <tt>format</tt> and
+        <tt>formatPattern</tt>. These use the standard
+        <tt>java.text.Format</tt> objects and patterns.
+
+        <p>The <tt>TextModel</tt> uses a <tt>ValueHolder</tt> to hold the
+        actual "state" or value. A <tt>ValueHolder</tt> can provide storage for
+        any data type. Implementations of the <tt>TextModel</tt> can create and
+        use their own internal <tt>ValueHolder</tt>. They can also be assigned
+        an external <tt>ValueHolder</tt> to use. Multiple <tt>TextModels</tt>
+        can share the same <tt>ValueHolder</tt>. A specific property of the
+        <tt>ValueHolder</tt> host object can also be targeted. The target property
+        can be specified by setting the <tt>propertyName</tt> property. (Note:
+        the <tt>ValueHolder</tt> itself must be one that actually supports
+        access to individual properties for this feature to work, otherwise the
+        <tt>propertyName</tt> setting is ignored).</p>
+
+        <p>The <tt>TextModel</tt> also provides notification to
+        <tt>ChangeListeners</tt> whenever the "state" or value changes. Interested
+        listeners can register or unregister to receive notification of
+        <tt>ChangeEvents</tt> by using the <tt>addChangeListener</tt> or
+        <tt>removeChangeListener</tt> methods.</p>
+
+        <h2>4.4 ValueHolders</h2>
+
+        <p>A <tt>ValueHolder</tt> is a foundation subcomponent for MapperXML which
+        is used by <tt>TextModels</tt> to store/retrieve the current "state"
+        or value. A <tt>ValueHolder</tt> can be used exclusively by a single
+        <tt>TextModel</tt> or shared by multiple <tt>TextModels</tt>. A
+        specific property of the <tt>ValueHolder</tt> host object can also be
+        targeted. The targeted property can be specified by setting the
+        <tt>propertyName</tt> property. (Note: the <tt>ValueHolder</tt>
+        implementation must be one that actually supports access to individual
+        properties for this feature to work, otherwise the <tt>propertyName</tt>
+        setting is ignored and the whole host object is accessed).</p>
+
+        <p>The data type of the targeted host object property (or the host object
+        itself) is available via the <tt>getJavaDataType</tt> method.</p>
+
+        <p>The <tt>alias</tt> property provides a way of naming this
+        <tt>ValueHolder</tt>. This name is required when using the
+        <tt>ComponentFactory</tt> to automatically create and bind
+        MapperXML components from an HTML/XML document.</p>
+
+        <p>The <tt>ValueHolder</tt> also provides notification to
+        <tt>ChangeListeners</tt> whenever the "state" or value changes. Interested
+        listeners can register or unregister to receive notification of
+        <tt>ChangeEvents</tt> by using the <tt>addChangeListener</tt> or
+        <tt>removeChangeListener</tt> methods.</p>
+
+        <p>For more information about <tt>ValueHolders</tt> see section 7</p>
+
+        <h2>4.5 Renderers (Views)</h2>
+
+        <h2>4.6 Events and Dispatchers</h2>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="common/footer.shtml" -->
+</div>
+</body>
+</html>

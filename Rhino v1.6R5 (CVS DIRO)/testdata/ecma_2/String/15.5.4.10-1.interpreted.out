@@ -1,0 +1,33 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\String\15.5.4.10-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\String\shell.js -f mozilla\js\tests\ecma_2\String\15.5.4.10-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+String/match-001.js String.prototype.match( regexp )
+( 1234567890 ).match(3).length = 1 PASSED!
+( 1234567890 ).match(3).index = 2 PASSED!
+( 1234567890 ).match(3).input = 1234567890 PASSED!
+( 1234567890 ).match(3)[0] = 3 PASSED!
+( 343443444 ).match(/34/g).length = 3 PASSED!
+( 343443444 ).match(/34/g)[0] = 34 PASSED!
+( 343443444 ).match(/34/g)[1] = 34 PASSED!
+( 343443444 ).match(/34/g)[2] = 34 PASSED!
+( 123456abcde7890 ).match(/d{1}/g).length = 10 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[0] = 1 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[1] = 2 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[2] = 3 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[3] = 4 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[4] = 5 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[5] = 6 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[6] = 7 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[7] = 8 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[8] = 9 PASSED!
+( 123456abcde7890 ).match(/d{1}/g)[9] = 0 PASSED!
+( 123456abcde7890 ).match(/d{2}/g).length = 5 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[0] = 12 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[1] = 34 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[2] = 56 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[3] = 78 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[4] = 90 PASSED!
+( 123456abcde7890 ).match(/d{2}/g).length = 2 PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[0] = ab PASSED!
+( 123456abcde7890 ).match(/d{2}/g)[1] = cd PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\String\15.5.4.10-1.interpreted.arff] ...

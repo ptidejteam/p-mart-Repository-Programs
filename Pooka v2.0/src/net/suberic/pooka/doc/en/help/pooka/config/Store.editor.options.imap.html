@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Incoming Mail Accounts</title>
+</head>
+<body>
+<h1>Incoming Mail Accounts - IMAP options</h1>
+<p>This screen gives you a list of options available for IMAP Mail Accounts.</p>
+
+<dl>
+  <dt>Use Server's Subscribed Folder List</dt>
+  <dd>Most IMAP servers will store a list of subscribed folders.  If this option is enabled, then Pooka will use the server's list of folders to determine which folders are displayed for the Store.  This is useful if you are using several mail clients and want to make sure that if you subscribe to a folder using one client that it also shows up in the other client.</dd>
+  <dt>Use namespace from Server</dt>
+  <dd>Usually an IMAP server will be set up with the correct namespace for a user, so it is rarely necessary to change this setting.  If your system adminstrator does require you to use a different namespace, then enter it here.</dd>
+  <dt>Caching</dt>
+  <dd>Determines the level of caching that Pooka will use.  Cached messages are stored in a subfolder of the  Pooka.cacheDirectory (by default $USERHOME/.pooka) called cache.  Caching options available are:
+  <ul>
+    <li>None:  No caching.  This option stores no information about the messages on the disk.  Note that switching to this option from another cache mode will not delete any old files; you must do that by hand.</li>
+    <li>Headers only:  Message headers are cached to make loading of folders faster, but the message contents are not saved.</li>
+    <li>Full Disconnected Support:  Message headers, flags, and contents are cached.  If not connected to the IMAP server, cached messages can still be read.  Note that unless Cache New Messages Automatically is selected, then only messages that have been read or that have been explicitly cached are available in disconnected mode.</li>
+    <li>Cache New Messages Automatically (Only available when Full Disconnected Support is enabled):  Automatically download the full contents of each new message.  Can make loading new messages take much longer, but makes it so all new messages are available for reading in disconnected mode.</li>
+  </ul>
+  </dd>
+</dl>
+
+</body>
+</html>

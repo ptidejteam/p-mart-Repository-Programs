@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.2-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 360 ms]
+15.9.5.2 Date.prototype.toString
+Date.prototype.toString.length = 0 PASSED!
+Math.abs(Date.parse(now.toString()) - now.valueOf()) < 1000 = true PASSED!
+typeof now.toString() = string PASSED!
+Date.parse( (new Date(0)).toString() ) = 0 PASSED!
+Date.parse( (new Date(-18000000)).toString() ) = -18000000 PASSED!
+Date.parse( (new Date(-2208988800000)).toString() ) = -2208988800000 PASSED!
+NaN)).toString() ) = -2208970800000 PASSED!
+Date.parse( (new Date(946684800000)).toString() ) = 946684800000 PASSED!
+NaN)).toString() ) = 946702800000 PASSED!
+Date.parse( (new Date(951782400000)).toString() ) = 951782400000 PASSED!
+Date.parse( (new Date(951782399000)).toString() ) = 951782399000 PASSED!
+Date.parse( (new Date(951800400000)).toString() ) = 951800400000 PASSED!
+Date.parse( (new Date(1104537600000)).toString() ) = 1104537600000 PASSED!
+Date.parse( (new Date(1104537599000)).toString() ) = 1104537599000 PASSED!
+Date.parse( (new Date(1104555600000)).toString() ) = 1104555600000 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.2-1.interpreted.arff] ...

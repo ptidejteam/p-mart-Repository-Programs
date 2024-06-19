@@ -1,0 +1,111 @@
+/* ======================================
+ * JFreeChart : a free Java chart library
+ * ======================================
+ *
+ * Project Info:  http://www.object-refinery.com/jfreechart/index.html
+ * Project Lead:  David Gilbert (david.gilbert@object-refinery.com);
+ *
+ * (C) Copyright 2000-2003, by Simba Management Limited and Contributors.
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this
+ * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * --------------------
+ * ShapeTableTests.java
+ * --------------------
+ * (C) Copyright 2003 by Simba Management Limited and Contributors.
+ *
+ * Original Author:  David Gilbert (for Simba Management Limited);
+ * Contributor(s):   -;
+ *
+ * $Id: ShapeTableTests.java,v 1.1 2007/10/10 20:00:10 vauchers Exp $
+ *
+ * Changes
+ * -------
+ * 25-Mar-2003 : Version 1 (DG);
+ *
+ */
+
+package com.jrefinery.chart.renderer.junit;
+
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+import com.jrefinery.chart.renderer.ShapeTable;
+
+/**
+ * Tests for the {@link ShapeTable} class.
+ *
+ * @author David Gilbert
+ */
+public class ShapeTableTests extends TestCase {
+
+    /**
+     * Returns the tests as a test suite.
+     *
+     * @return the test suite.
+     */
+    public static Test suite() {
+        return new TestSuite(ShapeTableTests.class);
+    }
+
+    /**
+     * Constructs a new set of tests.
+     *
+     * @param  name the name of the tests.
+     */
+    public ShapeTableTests(String name) {
+        super(name);
+    }
+
+    /**
+     * Serialize an instance, restore it, and check for equality.
+     */
+    public void testSerialization() {
+        
+        ShapeTable t1 = new ShapeTable();
+        t1.setShape(0, 0, new Line2D.Double(50, 50, 100, 200));
+        t1.setShape(0, 1, new Rectangle2D.Double(50, 50, 100, 200));
+        t1.setShape(1, 0, new Ellipse2D.Double(50, 50, 100, 200));
+        t1.setShape(1, 1, new Line2D.Double(50, 50, 100, 200));
+        
+        ShapeTable t2 = null;
+        
+        try {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
+            out.writeObject(t1);
+            out.close();
+        
+            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+            t2 = (ShapeTable) in.readObject();
+            in.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        assertEquals(t1, t2); 
+        
+    }
+
+}

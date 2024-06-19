@@ -1,0 +1,15 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.4.11-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.4.11-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.4.4.5-2 Array.prototype.sort(comparefn)
+var A = new Array();  A.sort(Compare); A.length = 0 PASSED!
+var A = new Array( true );  A.sort(Compare); A.length = 1 PASSED!
+A[0].toString() = true PASSED!
+var A = new Array( true, false, new Boolean(true), new Boolean(false), 'true', 'false' );  A.sort(Compare); A.length = 6 PASSED!
+A[0].toString() = true PASSED!
+A[1].toString() = true PASSED!
+A[2].toString() = true PASSED!
+A[3].toString() = false PASSED!
+A[4].toString() = false PASSED!
+A[5].toString() = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.4.11-2.interpreted.arff] ...

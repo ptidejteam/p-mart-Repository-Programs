@@ -1,0 +1,238 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/formula/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record.formula</A>: Ptg');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/formula/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record.formula</A>: Ptg';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a><span class="comment">/*
+<a name=57 class="linenum">57   </a> * Ptg.java
+<a name=58 class="linenum">58   </a> *
+<a name=59 class="linenum">59   </a> * Created on October 28, 2001, 6:30 PM
+<a name=60 class="linenum">60   </a> */</span>
+<a name=61 class="linenum">61   </a>package org.apache.poi.hssf.record.formula;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a>import java.util.List;
+<a name=64 class="linenum">64   </a>import java.util.ArrayList;
+<a name=65 class="linenum">65   </a>
+<a name=66 class="linenum">66   </a><span class="comment">/**
+<a name=67 class="linenum">67   </a> *
+<a name=68 class="linenum">68   </a> * @author  andy
+<a name=69 class="linenum">69   </a> */</span>
+<a name=70 class="linenum">70   </a>
+<a name=71 class="linenum">71   </a>public abstract class <a class="classDef" name=Ptg href=Ptg_java_ref.html#Ptg>Ptg</a>
+<a name=72 class="linenum">72   </a>{
+<a name=73 class="linenum">73   </a>
+<a name=74 class="linenum">74   </a>    <span class="comment">/** Creates new Ptg */</span>
+<a name=75 class="linenum">75   </a>    
+<a name=76 class="linenum">76   </a>    public <a class="methodDef" name=Ptg.Ptg() href=Ptg_java_ref.html#Ptg.Ptg()>Ptg</a>()
+<a name=77 class="linenum">77   </a>    {
+<a name=78 class="linenum">78   </a>    }
+<a name=79 class="linenum">79   </a>    
+<a name=80 class="linenum">80   </a>    
+<a name=81 class="linenum">81   </a>    
+<a name=82 class="linenum">82   </a>    <span class="comment">/*
+<a name=83 class="linenum">83   </a>    private static List ptgsToList(Class [] ptgs)
+<a name=84 class="linenum">84   </a>    {
+<a name=85 class="linenum">85   </a>        List         result = new ArrayList();
+<a name=86 class="linenum">86   </a>        Constructor constructor;
+<a name=87 class="linenum">87   </a>
+<a name=88 class="linenum">88   </a>        for (int i = 0; i &lt; ptgs.length; i++)
+<a name=89 class="linenum">89   </a>        {
+<a name=90 class="linenum">90   </a>            Class ptg = null;
+<a name=91 class="linenum">91   </a> 
+<a name=92 class="linenum">92   </a>            ptg = ptgs[ i ];
+<a name=93 class="linenum">93   </a>            try
+<a name=94 class="linenum">94   </a>            {
+<a name=95 class="linenum">95   </a>                
+<a name=96 class="linenum">96   </a>                constructor = ptg.getConstructor(new Class[]
+<a name=97 class="linenum">97   </a>                {
+<a name=98 class="linenum">98   </a>                    byte [].class, int.class
+<a name=99 class="linenum">99   </a>                });
+<a name=100 class="linenum">100  </a>            }
+<a name=101 class="linenum">101  </a>            catch (Exception illegalArgumentException)
+<a name=102 class="linenum">102  </a>            {
+<a name=103 class="linenum">103  </a>                throw new RuntimeException(
+<a name=104 class="linenum">104  </a>                    "Now that didn't work nicely at all (couldn't do that there list of ptgs)");
+<a name=105 class="linenum">105  </a>            }
+<a name=106 class="linenum">106  </a>            result.add(constructor);
+<a name=107 class="linenum">107  </a>        }
+<a name=108 class="linenum">108  </a>        return result;
+<a name=109 class="linenum">109  </a>    }*/</span>
+<a name=110 class="linenum">110  </a>    
+<a name=111 class="linenum">111  </a>
+<a name=112 class="linenum">112  </a>    public static <a class="classRef" href=Ptg_java.html#Ptg>Ptg</a> <a class="methodDef" name=Ptg.createPtg(byte,int) href=Ptg_java_ref.html#Ptg.createPtg(byte,int)>createPtg</a>(byte [] data, int offset)
+<a name=113 class="linenum">113  </a>    {
+<a name=114 class="linenum">114  </a>        byte id     = <a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>[ <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a> + 0 ];
+<a name=115 class="linenum">115  </a>        <a class="classRef" href=Ptg_java.html#Ptg>Ptg</a>  retval = null;
+<a name=116 class="linenum">116  </a>
+<a name=117 class="linenum">117  </a>        System.out.println("PTG = " + Integer.toHexString(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.id>id</a>) + " (" + <a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.id>id</a>
+<a name=118 class="linenum">118  </a>                           + ")");
+<a name=119 class="linenum">119  </a>        switch (<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.id>id</a>)
+<a name=120 class="linenum">120  </a>        {
+<a name=121 class="linenum">121  </a>
+<a name=122 class="linenum">122  </a>            case AddPtg.sid :
+<a name=123 class="linenum">123  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new AddPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=124 class="linenum">124  </a>                break;
+<a name=125 class="linenum">125  </a>
+<a name=126 class="linenum">126  </a>            case SubtractPtg.sid :
+<a name=127 class="linenum">127  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new SubtractPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=128 class="linenum">128  </a>                break;
+<a name=129 class="linenum">129  </a>
+<a name=130 class="linenum">130  </a>            case IntPtg.sid :
+<a name=131 class="linenum">131  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new IntPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=132 class="linenum">132  </a>                break;
+<a name=133 class="linenum">133  </a>
+<a name=134 class="linenum">134  </a>            case DividePtg.sid :
+<a name=135 class="linenum">135  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new DividePtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=136 class="linenum">136  </a>                break;
+<a name=137 class="linenum">137  </a>
+<a name=138 class="linenum">138  </a>            case MultiplyPtg.sid :
+<a name=139 class="linenum">139  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new MultiplyPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=140 class="linenum">140  </a>                break;
+<a name=141 class="linenum">141  </a>
+<a name=142 class="linenum">142  </a>            case PowerPtg.sid :
+<a name=143 class="linenum">143  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new PowerPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=144 class="linenum">144  </a>                break;
+<a name=145 class="linenum">145  </a>
+<a name=146 class="linenum">146  </a>            case AreaPtg.sid :
+<a name=147 class="linenum">147  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new AreaPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=148 class="linenum">148  </a>                break;
+<a name=149 class="linenum">149  </a>
+<a name=150 class="linenum">150  </a>            case MemErrPtg.sid :
+<a name=151 class="linenum">151  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new MemErrPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=152 class="linenum">152  </a>                break;
+<a name=153 class="linenum">153  </a>
+<a name=154 class="linenum">154  </a>            case AttrPtg.sid :
+<a name=155 class="linenum">155  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new AttrPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=156 class="linenum">156  </a>                break;
+<a name=157 class="linenum">157  </a>
+<a name=158 class="linenum">158  </a>            case ValueReferencePtg.sid :
+<a name=159 class="linenum">159  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new ValueReferencePtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=160 class="linenum">160  </a>                break;
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>    <span class="comment">//        case ParenthesisPtg.sid :</span>
+<a name=163 class="linenum">163  </a>      <span class="comment">//          retval = new ParenthesisPtg(data, offset);</span>
+<a name=164 class="linenum">164  </a>        <span class="comment">//        break;</span>
+<a name=165 class="linenum">165  </a>
+<a name=166 class="linenum">166  </a>            case ValueVariableFunctionPtg.sid :
+<a name=167 class="linenum">167  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new ValueVariableFunctionPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=168 class="linenum">168  </a>                break;
+<a name=169 class="linenum">169  </a>
+<a name=170 class="linenum">170  </a>            case NamePtg.sid :
+<a name=171 class="linenum">171  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new NamePtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=172 class="linenum">172  </a>                break;
+<a name=173 class="linenum">173  </a>
+<a name=174 class="linenum">174  </a>            case ExpPtg.sid :
+<a name=175 class="linenum">175  </a>                <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a> = new ExpPtg(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.data>data</a>, <a class="varRef" title="int" href=Ptg_java.html#Ptg.createPtg.offset>offset</a>);
+<a name=176 class="linenum">176  </a>                break;
+<a name=177 class="linenum">177  </a>
+<a name=178 class="linenum">178  </a>            default :
+<a name=179 class="linenum">179  </a>
+<a name=180 class="linenum">180  </a>                <span class="comment">// retval = new UnknownPtg();</span>
+<a name=181 class="linenum">181  </a>                throw new RuntimeException("Unknown PTG = "
+<a name=182 class="linenum">182  </a>                                           + Integer.toHexString(( int ) <a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.id>id</a>)
+<a name=183 class="linenum">183  </a>                                           + " (" + ( int ) <a class="varRef" title="byte" href=Ptg_java.html#Ptg.createPtg.id>id</a> + ")");
+<a name=184 class="linenum">184  </a>        }
+<a name=185 class="linenum">185  </a>        return <a class="varRef" title="Ptg" href=Ptg_java.html#Ptg.createPtg.retval>retval</a>;
+<a name=186 class="linenum">186  </a>    }
+<a name=187 class="linenum">187  </a>
+<a name=188 class="linenum">188  </a>    public abstract int <a class="methodDef" name=Ptg.getSize() href=Ptg_java_ref.html#Ptg.getSize()>getSize</a>();
+<a name=189 class="linenum">189  </a>
+<a name=190 class="linenum">190  </a>    public final byte [] <a class="methodDef" name=Ptg.getBytes() href=Ptg_java_ref.html#Ptg.getBytes()>getBytes</a>()
+<a name=191 class="linenum">191  </a>    {
+<a name=192 class="linenum">192  </a>        int    size  = <a class="methodRef" title="Ptg" href=Ptg_java.html#Ptg.getSize()>getSize</a>();
+<a name=193 class="linenum">193  </a>        byte[] bytes = new <a class="classRef" href=..\..\..\..\..\..\~NO NAME~\null#byte>byte</a>[ <a class="varRef" title="int" href=Ptg_java.html#Ptg.getBytes.size>size</a> ];
+<a name=194 class="linenum">194  </a>
+<a name=195 class="linenum">195  </a>        <a class="methodRef" title="Ptg" href=Ptg_java.html#Ptg.writeBytes(byte,int)>writeBytes</a>(<a class="varRef" title="byte" href=Ptg_java.html#Ptg.getBytes.bytes>bytes</a>, 0);
+<a name=196 class="linenum">196  </a>        return <a class="varRef" title="byte" href=Ptg_java.html#Ptg.getBytes.bytes>bytes</a>;
+<a name=197 class="linenum">197  </a>    }
+<a name=198 class="linenum">198  </a>
+<a name=199 class="linenum">199  </a>    public abstract void <a class="methodDef" name=Ptg.writeBytes(byte,int) href=Ptg_java_ref.html#Ptg.writeBytes(byte,int)>writeBytes</a>(byte [] array, int offset);
+<a name=200 class="linenum">200  </a>
+<a name=201 class="linenum">201  </a>    public abstract String <a class="methodDef" name=Ptg.toFormulaString() href=Ptg_java_ref.html#Ptg.toFormulaString()>toFormulaString</a>();
+<a name=202 class="linenum">202  </a>    
+<a name=203 class="linenum">203  </a>    <span class="comment">/**
+<a name=204 class="linenum">204  </a>     * Ptg's should override this
+<a name=205 class="linenum">205  </a>     */</span>
+<a name=206 class="linenum">206  </a><span class="comment">//    public boolean isNextStringToken(String formula, int pos) {</span>
+<a name=207 class="linenum">207  </a><span class="comment">//        return false;</span>
+<a name=208 class="linenum">208  </a><span class="comment">//    }</span>
+<a name=209 class="linenum">209  </a>    
+<a name=210 class="linenum">210  </a>    public int <a class="methodDef" name=Ptg.getPrecedence() href=Ptg_java_ref.html#Ptg.getPrecedence()>getPrecedence</a>() {
+<a name=211 class="linenum">211  </a>        return 100;
+<a name=212 class="linenum">212  </a>    }
+<a name=213 class="linenum">213  </a>    
+<a name=214 class="linenum">214  </a>    public int <a class="methodDef" name=Ptg.getStringLength() href=Ptg_java_ref.html#Ptg.getStringLength()>getStringLength</a>() {
+<a name=215 class="linenum">215  </a>        return 0;
+<a name=216 class="linenum">216  </a>    }
+<a name=217 class="linenum">217  </a>    
+<a name=218 class="linenum">218  </a>    
+<a name=219 class="linenum">219  </a>}
+<a name=220 class="linenum">220  </a></pre>

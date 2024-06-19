@@ -1,0 +1,414 @@
+<!--  Khashayar 11 Jan 2005  **** Start **** -->
+
+<designPatterns>
+	<qualityStructure>
+		<properties>
+			<property>
+  				<name>expandability</name> 
+			</property>
+			<property>
+  				<name>simplicity</name> 
+			</property>
+			<property>
+  				<name>generality</name> 
+			</property>
+			<property>
+  				<name>modularity</name> 
+			</property>
+			<property>
+  				<name>softwareIndependence</name> 
+			</property>
+			<property>
+  				<name>hardwareIndependence</name> 
+			</property>
+			<property>
+  				<name>learnability</name> 
+			</property>
+			<property>
+  				<name>understandability</name> 
+			</property>
+			<property>
+  				<name>operability</name> 
+			</property>
+			<property>
+  				<name>scalability</name> 
+			</property>
+			<property>
+  				<name>robustness</name> 
+			</property>
+		</properties>
+	</qualityStructure>
+	<evaluation name="Khashayar">
+		<name>13 - Software architecture design patterns in Java</name>
+			<designPattern name="Abstract Factory">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Excellent"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="Fair"></softwareIndependence>
+					<hardwareIndependence value="Fair"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+			
+			<designPattern name="Builder">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+			
+			<designPattern name="Factory Method">
+				<quality>
+					<expandability value="Bad"></expandability>
+					<simplicity value="Bad"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+			
+			<designPattern name="Prototype">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Excellent"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+					
+			<designPattern name="Singleton">
+				<quality>
+					<expandability value="Bad"></expandability>
+					<simplicity value="VeryBad"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Excellent"></modularity>
+					<softwareIndependence value="Fair"></softwareIndependence>
+					<hardwareIndependence value="Fair"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Adapter">
+				<quality>
+					<expandability value="Fair"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Bad"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="Good"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Bridge">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+					
+			<designPattern name="Composite">
+				<quality>
+					<expandability value="Fair"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="NotApplicable"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="NotApplicable"></operability>
+					<scalability value="NotApplicable"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+				
+			<designPattern name="Decorator">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Excellent"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="Good"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Facade">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Fair"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Flyweight">
+				<quality>
+					<expandability value="Bad"></expandability>
+					<simplicity value="Bad"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Bad"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Proxy">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Bad"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Bad"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="ChainOfResponsibility">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Bad"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Bad"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Command">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Bad"></simplicity>
+					<generality value="NotApplicable"></generality>
+					<modularity value="NotApplicable"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Bad"></learnability>
+					<understandability value="VeryBad"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Interpreter">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Iterator">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Excellent"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="Good"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Mediator">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Good"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Memento">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="VeryBad"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Bad"></learnability>
+					<understandability value="Fair"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Fair"></scalability>
+					<robustness value="Bad"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Observer">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Excellent"></generality>
+					<modularity value="NotApplicable"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="State">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="Bad"></modularity>
+					<softwareIndependence value="Good"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Fair"></learnability>
+					<understandability value="VeryBad"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Strategy">
+				<quality>
+					<expandability value="Good"></expandability>
+					<simplicity value="Fair"></simplicity>
+					<generality value="Bad"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="Fair"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Bad"></learnability>
+					<understandability value="Bad"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Bad"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+
+			<designPattern name="Template Method">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Fair"></generality>
+					<modularity value="NotApplicable"></modularity>
+					<softwareIndependence value="NotApplicable"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Good"></understandability>
+					<operability value="Good"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Good"></robustness>
+				</quality>
+			</designPattern>
+			
+			<designPattern name="Visitor">
+				<quality>
+					<expandability value="Excellent"></expandability>
+					<simplicity value="Good"></simplicity>
+					<generality value="Good"></generality>
+					<modularity value="Fair"></modularity>
+					<softwareIndependence value="Good"></softwareIndependence>
+					<hardwareIndependence value="NotApplicable"></hardwareIndependence>
+					<learnability value="Good"></learnability>
+					<understandability value="Bad"></understandability>
+					<operability value="Fair"></operability>
+					<scalability value="Good"></scalability>
+					<robustness value="Fair"></robustness>
+				</quality>
+			</designPattern>
+			
+	</evaluation>
+</designPatterns>
+
+<!--  Khashayar 11 Jan 2005  **** End **** -->

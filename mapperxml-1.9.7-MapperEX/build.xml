@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MapperEX" default="war" basedir=".">
+
+  <!-- =================================================================== -->
+  <!--            External Properties                                      -->
+  <!-- =================================================================== -->
+
+  <!-- Load User and Project properties -->
+  <property file="${user.home}/.build.properties"/>
+  <property file="${user.home}/.${ant.project.name}.properties"/>
+  <property file=".build.properties"/>
+  <property file="build.properties"/>
+
+  <!-- =================================================================== -->
+  <!--            Fixed Properties                                         -->
+  <!-- =================================================================== -->
+
+  <property name="output.dir"               value="build"/>
+  <property name="output.classes"           value="${output.dir}/classes"/>
+  <property name="output.classes.dir"       value="${output.dir}/classes"/>
+
+  <property name="java.source.dir"          value="src"/>
+  <property name="lib.dir"                  value="../MapperXML/lib"/>
+  <property name="web.dir"                  value="web"/>
+
+  <property name="war.file"                 value="mapperex.war"/>
+
+  <patternset id="binary.resources">
+    <include name="**/*.gif"/>
+    <include name="**/*.jpg"/>
+    <include name="**/*.png"/>
+    <include name="**/*.pdf"/>
+  </patternset>
+
+  <patternset id="text.resources">
+    <include name="**/*.template"/>
+    <include name="**/*.properties"/>
+    <include name="**/*.html"/>
+    <include name="**/*.jsp"/>
+    <include name="**/*.css"/>
+    <include name="**/*.js"/>
+  </patternset>
+
+  <!-- =================================================================== -->
+  <!--            Classpath definitions                                    -->
+  <!-- =================================================================== -->
+
+  <!-- Project Classpath -->
+  <path id="project.class.path">
+    <fileset dir="${lib.dir}" includes="*.jar"/>
+  </path>
+
+  <!-- =================================================================== -->
+  <!--            Initialization                                           -->
+  <!-- =================================================================== -->
+
+  <target name="init">
+    <tstamp>
+        <format property="build.time" pattern="MM/dd/yyyy HH:mm:ss"/>
+    </tstamp>
+    <filterset id="app.filterset">
+      <filter token="BUILDTIME" value="${build.time}"/>
+    </filterset>
+    
+  </target>
+
+  <!-- =================================================================== -->
+  <!--            Construction Tasks                                       -->
+  <!-- =================================================================== -->
+
+  <!-- Cleanup previous builds -->
+  <target name="clean" depends="init">
+	<delete includeemptydirs="true">
+	  <fileset dir="${output.classes}" includes="**/*"/>
+	</delete>    
+	<delete >
+	  <fileset dir="${output.dir}" includes="**/*"/>
+	</delete>    
+  </target>
+
+  <!-- Prepare for compilation - create directories -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${output.dir}" />
+    <mkdir dir="${output.classes}" />
+  </target>
+
+  <!-- Copy resources to build directory -->
+  <target name="copy-resources" depends="prepare">
+    <!-- Copy binary files from source to classes -->
+    <copy todir="${output.classes}">
+      <fileset dir="${java.source.dir}">
+		<patternset refid="binary.resources"/>
+      </fileset>
+    </copy>
+    <!-- Copy text files from source to classes with substitutions -->
+    <copy todir="${output.classes}">
+      <fileset dir="${java.source.dir}">
+		<patternset refid="text.resources"/>
+      </fileset>
+      <filterset refid="app.filterset"/>
+    </copy>
+  </target>
+
+  <!-- Compile project -->
+  <target name="compile" depends="copy-resources">
+    <javac destDir="${output.classes}" debug="on" 
+        classpathref="project.class.path">
+      <src path="${java.source.dir}"/>
+    </javac>
+  </target>
+
+  <!-- Assemble WAR file for web deployment -->
+  <target name="war" depends="compile">
+    <war warfile="${output.dir}/${war.file}" 
+    	webxml="${java.source.dir}/metadata/web.xml">
+      <!-- Java classes and resources -->
+      <classes dir="${output.classes}">
+        <include name="com/**/*.class"/>
+        <include name="com/**/*.html"/>
+        <include name="com/**/*.gif"/>
+        <include name="com/**/*.jpg"/>
+      </classes>
+      <!-- Libraries to Deploy -->
+      <lib dir="${lib.dir}">
+        <include name="xerces.jar"/>
+        <include name="mapperxml.jar"/>
+      </lib>
+      <!-- Static web content to deploy -->
+      <fileset dir="${web.dir}">
+        <include name="**/*"/>
+      </fileset>
+    </war>
+  </target>
+
+</project>

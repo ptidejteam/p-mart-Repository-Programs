@@ -1,0 +1,63 @@
+Mapper
+Version 1.9.1
+Release Notes:
+
+Quick Highlights
+================================================================
+o   Added additional HTML specialized components (HTMLInputText and HTMLSelect)
+o   Enhancements the ServletFormFactory to support more customization
+o   Minor enhancements and cleanup
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+o   Minor enhancements to DefaultSelectModel.  Deprecated nullAllowed property -
+    null is always allowed.  Re-activated set/getPropertyName methods.  Added
+    createDefaultList method and invoked from constructor.
+o   ObjectArrayValueHolder: Deprecated variantArray property and replaced with
+    array property.  Property name was misleading.
+o   SelectModel: deprecated nullAllowed property.  Select will now
+    always allow null value (no selection).
+o   ServletApp minor enhancements: Modified exception handler to rethrow
+    exception as ServletException with cause. Added JavaDoc.
+    Removed empty methods
+o   ServletFormFactory: Numerous enhancements to factory including:
+    Pool now holds multiple instances of same type of form,
+    User defined form suffix (can be blank)
+    Minor fixes
+o   Parameter: Added methods to get/set value through model and valueHolder.
+    Code cleaning. Removed unused instance variable.
+o   SelectField: Re-activated set/getPropertyName methods.
+    Added proxy methods to model to set/get selection.
+    Deprecated nullAllowed property.  Select will now
+    always allow null value (no selection).
+    Cleaning of code.
+
+
+Internal API Interface Changes/Deprecations:
+================================================================
+none
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+none
+
+Other Changes:
+================================================================
+none
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Mapper Known Limitations/Problems/Bugs:
+================================================================
+none

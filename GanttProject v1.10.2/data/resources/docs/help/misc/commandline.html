@@ -1,0 +1,31 @@
+<html>
+<head>
+	<meta name="author" content="THOMAS Alexandre">
+	<title>License</title>
+	<link rel=stylesheet type="text/css" href="../style.css">
+</head>
+<body>
+
+<H3>GanttProject - Command line</H3>
+
+Ganttproject allows you to set some parameters on the command line.<br>
+Try <b>java -jar ganttproject.jar --help</b> to see the parameters available.<br><br>
+
+First, you can directly specify a xml file for GanttProject to open.<br>
+Eg : <b>java -jar ganttproject.jar myproject.xml</b><br><br>
+
+The second possiblity is to export the project as HTML pages, PDF document or a PNG/JPG image.<br>
+Eg : <b>java -jar ganttproject.jar -html myproject.xml directory</b> to export the project as a web page in the specified directory.<br>
+Eg : <b>java -jar ganttproject.jar -pdf  myproject.xml myproject.pdf</b> to export the project chart as myproject.pdf.<br>
+Eg : <b>java -jar ganttproject.jar -png  myproject.xml myproject.png</b> to export the project chart as myproject.png.<br>
+Eg : <b>java -jar ganttproject.jar -jpg  myproject.xml myproject.jpg</b> to export the project chart as myproject.jpg.<br><br>
+
+With the html export you could specify an xsl directory by using the -xsl-dir argument.<br><br>
+
+In all these cases the project file name can either be a file on local disk or an URL.  If the URL is password-protected, you can give 
+credentials this way:<br>
+Eg : <b>java -jar ganttproject.jar http://username:password@example.com/filename</b><br>
+
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: FormulaViewer');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/dev/classList.html" TARGET="packageFrame">org.apache.poi.hssf.dev</A>: FormulaViewer';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a><span class="comment">/*
+<a name=57 class="linenum">57   </a> * FormulaViewer.java - finds formulas in a BIFF8 file and attempts to parse them and
+<a name=58 class="linenum">58   </a> * display info about them.
+<a name=59 class="linenum">59   </a> *
+<a name=60 class="linenum">60   </a> * Created on November 18, 2001, 7:58 AM
+<a name=61 class="linenum">61   </a> */</span>
+<a name=62 class="linenum">62   </a>package org.apache.poi.hssf.dev;
+<a name=63 class="linenum">63   </a>
+<a name=64 class="linenum">64   </a>import java.io.InputStream;
+<a name=65 class="linenum">65   </a>import java.io.IOException;
+<a name=66 class="linenum">66   </a>import java.io.ByteArrayInputStream;
+<a name=67 class="linenum">67   </a>import java.io.FileInputStream;
+<a name=68 class="linenum">68   </a>import java.io.FileOutputStream;
+<a name=69 class="linenum">69   </a>
+<a name=70 class="linenum">70   </a><span class="comment">//import java.io.*;</span>
+<a name=71 class="linenum">71   </a>import java.util.List;
+<a name=72 class="linenum">72   </a>
+<a name=73 class="linenum">73   </a>import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+<a name=74 class="linenum">74   </a>import org.apache.poi.util.LittleEndian;
+<a name=75 class="linenum">75   </a>import org.apache.poi.util.HexDump;
+<a name=76 class="linenum">76   </a>import org.apache.poi.hssf.record.*;
+<a name=77 class="linenum">77   </a>import org.apache.poi.hssf.record.formula.*;
+<a name=78 class="linenum">78   </a>import org.apache.poi.hssf.model.*;
+<a name=79 class="linenum">79   </a>import org.apache.poi.hssf.usermodel.*;
+<a name=80 class="linenum">80   </a>
+<a name=81 class="linenum">81   </a><span class="comment">/**
+<a name=82 class="linenum">82   </a> * FormulaViewer - finds formulas in a BIFF8 file and attempts to read them/display
+<a name=83 class="linenum">83   </a> * data from them. Only works if Formulas are enabled in "RecordFactory"
+<a name=84 class="linenum">84   </a> * @author  andy
+<a name=85 class="linenum">85   </a> */</span>
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>public class <a class="classDef" name=FormulaViewer href=FormulaViewer_java_ref.html#FormulaViewer>FormulaViewer</a>
+<a name=88 class="linenum">88   </a>{
+<a name=89 class="linenum">89   </a>    private String <a class="varDef" name=FormulaViewer.file href=FormulaViewer_java_ref.html#FormulaViewer.file>file</a>;
+<a name=90 class="linenum">90   </a>
+<a name=91 class="linenum">91   </a>    <span class="comment">/** Creates new FormulaViewer */</span>
+<a name=92 class="linenum">92   </a>
+<a name=93 class="linenum">93   </a>    public <a class="methodDef" name=FormulaViewer.FormulaViewer() href=FormulaViewer_java_ref.html#FormulaViewer.FormulaViewer()>FormulaViewer</a>()
+<a name=94 class="linenum">94   </a>    {
+<a name=95 class="linenum">95   </a>    }
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>    <span class="comment">/**
+<a name=98 class="linenum">98   </a>     * Method run
+<a name=99 class="linenum">99   </a>     *
+<a name=100 class="linenum">100  </a>     *
+<a name=101 class="linenum">101  </a>     * @exception Exception
+<a name=102 class="linenum">102  </a>     *
+<a name=103 class="linenum">103  </a>     */</span>
+<a name=104 class="linenum">104  </a>
+<a name=105 class="linenum">105  </a>    public void <a class="methodDef" name=FormulaViewer.run() href=FormulaViewer_java_ref.html#FormulaViewer.run()>run</a>()
+<a name=106 class="linenum">106  </a>        throws Exception
+<a name=107 class="linenum">107  </a>    {
+<a name=108 class="linenum">108  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem>POIFSFileSystem</a> fs      =
+<a name=109 class="linenum">109  </a>            new <a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.POIFSFileSystem(InputStream)>POIFSFileSystem</a>(new FileInputStream(<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.file>file</a>));
+<a name=110 class="linenum">110  </a>        List            records =
+<a name=111 class="linenum">111  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\RecordFactory_java.html#RecordFactory>RecordFactory</a>
+<a name=112 class="linenum">112  </a>                .createRecords(fs.createDocumentInputStream("Workbook"));
+<a name=113 class="linenum">113  </a>
+<a name=114 class="linenum">114  </a>        for (int k = 0; k &lt; records.size(); k++)
+<a name=115 class="linenum">115  </a>        {
+<a name=116 class="linenum">116  </a>            Record record = ( Record ) records.get(k);
+<a name=117 class="linenum">117  </a>
+<a name=118 class="linenum">118  </a>            if (record.getSid() == FormulaRecord.sid)
+<a name=119 class="linenum">119  </a>            {
+<a name=120 class="linenum">120  </a>                parseFormulaRecord(( FormulaRecord ) record);
+<a name=121 class="linenum">121  </a>            }
+<a name=122 class="linenum">122  </a>        }
+<a name=123 class="linenum">123  </a>    }
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    /**
+<a name=126 class="linenum">126  </a>     * Method parseFormulaRecord
+<a name=127 class="linenum">127  </a>     *
+<a name=128 class="linenum">128  </a>     *
+<a name=129 class="linenum">129  </a>     * @param record
+<a name=130 class="linenum">130  </a>     *
+<a name=131 class="linenum">131  </a>     */
+<a name=132 class="linenum">132  </a>
+<a name=133 class="linenum">133  </a>    public void parseFormulaRecord(FormulaRecord record)
+<a name=134 class="linenum">134  </a>    {
+<a name=135 class="linenum">135  </a>        System.out.println("In ParseFormula Record");
+<a name=136 class="linenum">136  </a>        System.out.println("row   = " + record.getRow());
+<a name=137 class="linenum">137  </a>        System.out.println("col   = " + record.getColumn());
+<a name=138 class="linenum">138  </a>        System.out.println("value = " + record.getValue());
+<a name=139 class="linenum">139  </a>        System.out.println("xf    = " + record.getXFIndex());
+<a name=140 class="linenum">140  </a>        System.out.println("number of ptgs = "
+<a name=141 class="linenum">141  </a>                           + record.getNumberOfExpressionTokens());
+<a name=142 class="linenum">142  </a>        System.out.println("options = " + record.getOptions());
+<a name=143 class="linenum">143  </a>        System.out.println(composeForumla(record));
+<a name=144 class="linenum">144  </a>    }
+<a name=145 class="linenum">145  </a>
+<a name=146 class="linenum">146  </a>    public String composeForumla(FormulaRecord record)
+<a name=147 class="linenum">147  </a>    {
+<a name=148 class="linenum">148  </a>        StringBuffer formula = new StringBuffer("=");
+<a name=149 class="linenum">149  </a>        int          numptgs = record.getNumberOfExpressionTokens();
+<a name=150 class="linenum">150  </a>        List         ptgs    = record.getParsedExpression();
+<a name=151 class="linenum">151  </a>
+<a name=152 class="linenum">152  </a>        for (int ptgnum = numptgs - 1; ptgnum &gt; (-1); ptgnum--)
+<a name=153 class="linenum">153  </a>        {
+<a name=154 class="linenum">154  </a>            Ptg          ptg      = ( Ptg ) ptgs.get(ptgnum);
+<a name=155 class="linenum">155  </a>            OperationPtg optg     = ( OperationPtg ) ptg;
+<a name=156 class="linenum">156  </a>            int          numops   = optg.getNumberOfOperands();
+<a name=157 class="linenum">157  </a>            Ptg[]        ops      = new Ptg[ numops ];
+<a name=158 class="linenum">158  </a>            int          opoffset = 1;
+<a name=159 class="linenum">159  </a>
+<a name=160 class="linenum">160  </a>            for (int opnum = ops.length - 1; opnum &gt; -1; opnum--)
+<a name=161 class="linenum">161  </a>            {
+<a name=162 class="linenum">162  </a>                ops[ opnum ] = ( Ptg ) ptgs.get(ptgnum - opoffset);
+<a name=163 class="linenum">163  </a>                opoffset++;
+<a name=164 class="linenum">164  </a>            }
+<a name=165 class="linenum">165  </a>            formula.append(optg.toFormulaString(ops));
+<a name=166 class="linenum">166  </a>            ptgnum -= ops.length;
+<a name=167 class="linenum">167  </a>        }
+<a name=168 class="linenum">168  </a>        return formula.toString();
+<a name=169 class="linenum">169  </a>    }
+<a name=170 class="linenum">170  </a>
+<a name=171 class="linenum">171  </a>    /**
+<a name=172 class="linenum">172  </a>     * Method setFile
+<a name=173 class="linenum">173  </a>     *
+<a name=174 class="linenum">174  </a>     *
+<a name=175 class="linenum">175  </a>     * @param file
+<a name=176 class="linenum">176  </a>     *
+<a name=177 class="linenum">177  </a>     */
+<a name=178 class="linenum">178  </a>
+<a name=179 class="linenum">179  </a>    public void setFile(String file)
+<a name=180 class="linenum">180  </a>    {
+<a name=181 class="linenum">181  </a>        this.file = file;
+<a name=182 class="linenum">182  </a>    }
+<a name=183 class="linenum">183  </a>
+<a name=184 class="linenum">184  </a>    /**
+<a name=185 class="linenum">185  </a>     * Method main
+<a name=186 class="linenum">186  </a>     *
+<a name=187 class="linenum">187  </a>     * pass me a filename and I'll try and parse the formulas from it
+<a name=188 class="linenum">188  </a>     *
+<a name=189 class="linenum">189  </a>     * @param args pass one argument with the filename or --help
+<a name=190 class="linenum">190  </a>     *
+<a name=191 class="linenum">191  </a>     */
+<a name=192 class="linenum">192  </a>
+<a name=193 class="linenum">193  </a>    public static void main(String args[])
+<a name=194 class="linenum">194  </a>    {
+<a name=195 class="linenum">195  </a>        if ((args == null) || (args.length != 1)
+<a name=196 class="linenum">196  </a>                || args[ 0 ].equals("--help"))
+<a name=197 class="linenum">197  </a>        {
+<a name=198 class="linenum">198  </a>            System.out.println(
+<a name=199 class="linenum">199  </a>                "FormulaViewer .8 proof that the devil lies in the details (or just in BIFF8 files in general)");
+<a name=200 class="linenum">200  </a>            System.out.println("usage: Give me a big fat file name");
+<a name=201 class="linenum">201  </a>        }
+<a name=202 class="linenum">202  </a>        else
+<a name=203 class="linenum">203  </a>        {
+<a name=204 class="linenum">204  </a>            try
+<a name=205 class="linenum">205  </a>            {
+<a name=206 class="linenum">206  </a>                FormulaViewer viewer = new FormulaViewer();
+<a name=207 class="linenum">207  </a>
+<a name=208 class="linenum">208  </a>                viewer.setFile(args[ 0 ]);
+<a name=209 class="linenum">209  </a>                viewer.run();
+<a name=210 class="linenum">210  </a>            }
+<a name=211 class="linenum">211  </a>            catch (Exception e)
+<a name=212 class="linenum">212  </a>            {
+<a name=213 class="linenum">213  </a>                System.out.println("Whoops!");
+<a name=214 class="linenum">214  </a>                e.printStackTrace();
+<a name=215 class="linenum">215  </a>            }
+<a name=216 class="linenum">216  </a>        }
+<a name=217 class="linenum">217  </a>    }
+<a name=218 class="linenum">218  </a>}
+<a name=219 class="linenum">219  </a>??????????????????<a class="methodRef" title="RecordFactory" href=..\..\..\..\..\org\apache\poi\hssf\record\RecordFactory_java.html#RecordFactory.createRecords(InputStream)>createRecords</a>????????????????????????????????<a class="varRef" title="POIFSFileSystem" href=FormulaViewer_java.html#FormulaViewer.run.fs>fs</a>???????????????????????????????????<a class="methodRef" title="POIFSFileSystem" href=..\..\..\..\..\org\apache\poi\poifs\filesystem\POIFSFileSystem_java.html#POIFSFileSystem.createDocumentInputStream(String)>createDocumentInputStream</a>?????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.run.k>k</a>?????????????????????????????<a class="varRef" title="List" href=FormulaViewer_java.html#FormulaViewer.run.records>records</a>?????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.run.k>k</a>?????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record>Record</a>???????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record>Record</a>????????????????????????????????????????<a class="varRef" title="List" href=FormulaViewer_java.html#FormulaViewer.run.records>records</a>????????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.run.k>k</a>?????????????????<a class="varRef" title="Record" href=FormulaViewer_java.html#~NO NAME~.record>record</a>????????????????????????<a class="methodRef" title="Record" href=..\..\..\..\..\org\apache\poi\hssf\record\Record_java.html#Record.getSid()>getSid</a>????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\FormulaRecord_java.html#FormulaRecord>FormulaRecord</a>??????????????????????????????????????????????????<a class="varRef" title="short" href=..\..\..\..\..\org\apache\poi\hssf\record\FormulaRecord_java.html#FormulaRecord.sid>sid</a>?????????????????<a class="methodRef" title="FormulaViewer" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord(FormulaRecord)>parseFormulaRecord</a>??????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\FormulaRecord_java.html#FormulaRecord>FormulaRecord</a>??????????????????????????????????????????????????????<a class="varRef" title="Record" href=FormulaViewer_java.html#~NO NAME~.record>record</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????</span>?????????????????<a class="methodDef" name=FormulaViewer.parseFormulaRecord(FormulaRecord) href=FormulaViewer_java_ref.html#FormulaViewer.parseFormulaRecord(FormulaRecord)>parseFormulaRecord</a>????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\FormulaRecord_java.html#FormulaRecord>FormulaRecord</a>?????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>?????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>?????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>?????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>??????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>???????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>????????????????????????????<a class="methodRef" title="FormulaViewer" href=FormulaViewer_java.html#FormulaViewer.composeForumla(FormulaRecord)>composeForumla</a>???????????????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.parseFormulaRecord.record>record</a>???????????????????<a class="methodDef" name=FormulaViewer.composeForumla(FormulaRecord) href=FormulaViewer_java_ref.html#FormulaViewer.composeForumla(FormulaRecord)>composeForumla</a>??????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\FormulaRecord_java.html#FormulaRecord>FormulaRecord</a>????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.composeForumla.record>record</a>????????????????????????????????<a class="varRef" title="FormulaRecord" href=FormulaViewer_java.html#FormulaViewer.composeForumla.record>record</a>???????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.numptgs>numptgs</a>????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgnum>ptgnum</a>???????????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgnum>ptgnum</a>?????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a>???????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a>?????????????????????????????????????????????<a class="varRef" title="List" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgs>ptgs</a>??????????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgnum>ptgnum</a>?????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\OperationPtg_java.html#OperationPtg>OperationPtg</a>???????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\OperationPtg_java.html#OperationPtg>OperationPtg</a>??????????????????????????????????????????????????????<a class="varRef" title="Ptg" href=FormulaViewer_java.html#~NO NAME~.ptg>ptg</a>?????????????????????????????????????<a class="varRef" title="OperationPtg" href=FormulaViewer_java.html#~NO NAME~.optg>optg</a>??????????????????????????????????????????<a class="methodRef" title="OperationPtg" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\OperationPtg_java.html#OperationPtg.getNumberOfOperands()>getNumberOfOperands</a>?????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a>?????????????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a>??????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.numops>numops</a>??????????????????????????????<a class="varRef" title="Ptg" href=FormulaViewer_java.html#~NO NAME~.ops>ops</a>??????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.opnum>opnum</a>??????????????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.opnum>opnum</a>?????????????????<a class="varRef" title="Ptg" href=FormulaViewer_java.html#~NO NAME~.ops>ops</a>??????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.opnum>opnum</a>??????????????????????????????????<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a>????????????????????????????????????????<a class="varRef" title="List" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgs>ptgs</a>?????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgnum>ptgnum</a>??????????????????????????????????????????????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.opoffset>opoffset</a>?????????????????<a class="varRef" title="int" href=FormulaViewer_java.html#~NO NAME~.opoffset>opoffset</a>?????????????<a class="varRef" title="StringBuffer" href=FormulaViewer_java.html#FormulaViewer.composeForumla.formula>formula</a>????????????????????????????<a class="varRef" title="OperationPtg" href=FormulaViewer_java.html#~NO NAME~.optg>optg</a>?????????????????????????????????<a class="methodRef" title="OperationPtg" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\OperationPtg_java.html#OperationPtg.toFormulaString(Ptg)>toFormulaString</a>?????????????????????????????????????????????????<a class="varRef" title="Ptg" href=FormulaViewer_java.html#~NO NAME~.ops>ops</a>?????????????<a class="varRef" title="int" href=FormulaViewer_java.html#FormulaViewer.composeForumla.ptgnum>ptgnum</a>???????????????????????<a class="varRef" title="Ptg" href=FormulaViewer_java.html#~NO NAME~.ops>ops</a>????????????????<a class="varRef" title="StringBuffer" href=FormulaViewer_java.html#FormulaViewer.composeForumla.formula>formula</a>?????<span class="comment">?????????????????????????????????????????????????????????????????????????</span>?????????????????<a class="methodDef" name=FormulaViewer.setFile(String) href=FormulaViewer_java_ref.html#FormulaViewer.setFile(String)>setFile</a>?????????????????????<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.setFile.file>file</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????????<a class="methodDef" name=FormulaViewer.main(String) href=FormulaViewer_java_ref.html#FormulaViewer.main(String)>main</a>??????????????<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.main.args>args</a>????????????????????????????????<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.main.args>args</a>????????????????????<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.main.args>args</a>?????????????????<a class="classRef" href=FormulaViewer_java.html#FormulaViewer>FormulaViewer</a>????????????????????????????????????????????<a class="methodRef" title="FormulaViewer" href=FormulaViewer_java.html#FormulaViewer.FormulaViewer()>FormulaViewer</a>?????????????????<a class="varRef" title="FormulaViewer" href=FormulaViewer_java.html#~NO NAME~.viewer>viewer</a>????????????????????????<a class="methodRef" title="FormulaViewer" href=FormulaViewer_java.html#FormulaViewer.setFile(String)>setFile</a>????????????????????????????????<a class="varRef" title="String" href=FormulaViewer_java.html#FormulaViewer.main.args>args</a>?????????????????<a class="varRef" title="FormulaViewer" href=FormulaViewer_java.html#~NO NAME~.viewer>viewer</a>????????????????????????<a class="methodRef" title="FormulaViewer" href=FormulaViewer_java.html#FormulaViewer.run()>run</a>?????????????????<a class="varRef" title="Exception" href=FormulaViewer_java.html#~NO NAME~.e>e</a></pre>

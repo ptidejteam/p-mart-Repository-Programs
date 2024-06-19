@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+    <classpathentry kind="lib" path="lib/apple-extensions.jar"/>
+    <classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
+    <classpathentry kind="lib" path="lib/jce.jar"/>
+    <classpathentry kind="lib" path="lib/jsse.jar"/>
+    <classpathentry kind="lib" path="lib/junit-4.4.jar"/>
+    <classpathentry kind="lib" path="lib/log4j-1.2.6.jar"/>
+    <classpathentry kind="lib" path="lib/swt-3.2.2-carbon-macosx.zip"/>
+    <classpathentry kind="lib" path="lib/swt-3.2.2-gtk-linux-x86.zip"/>
+    <classpathentry kind="lib" path="lib/swt-3.2.2-win32-win32-x86.zip"/>
+    <classpathentry kind="lib" path="lib/systray4j.jar"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

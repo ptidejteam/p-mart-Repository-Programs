@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Now For Something Useful</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="macro-basics.html" title="Chapter 12. Macro Basics"><link rel="previous" href="dynamic-typing.html" title="BeanShell Dynamic Typing"><link rel="next" href="dialog-macro.html" title="Chapter 13. A Dialog-Based Macro"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Now For Something Useful</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="dynamic-typing.html">Prev</a> </td><th width="60%" align="center">Chapter 12. Macro Basics</th><td width="20%" align="right"> <a accesskey="n" href="dialog-macro.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="something-useful"></a>Now For Something Useful</h2></div></div><p>
+    Here is a macro that inserts the path of the current buffer in
+    the text:
+  </p><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting">String newText = buffer.getPath();
+textArea.setSelectedText(newText);</pre></td></tr></table></div><p>
+    Unlike in our first macro example, here we are calling class methods on
+    particular objects. First, we call <tt>getPath()</tt> on the
+    current <tt>Buffer</tt> object to get the full path of the
+    text file currently being edited. Next, we call
+    <tt>setSelectedText()</tt> on the current text display
+    component, specifying the text to be inserted as a parameter.
+  </p><p>
+    In precise terms, the <tt>setSelectedText()</tt> method
+    substitutes the contents of the <tt>String</tt>
+    parameter for a range of selected text that includes the current caret
+    position. If no text is selected at the caret position, the effect
+    of this operation is simply to insert the new text at that position.
+  </p><p>
+    Here's a few alternatives to the full file path that you could
+    use to insert various useful things:
+  </p><div class="informalexample"><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting">// the file name (without full path)
+String newText = buffer.getName();
+
+// today's date
+import java.text.DateFormat;
+
+String newText = DateFormat.getDateInstance()
+    .format(new Date());
+
+// a line count for the current buffer
+String newText = &quot;This file contains &quot;
+    + textArea.getLineCount() + &quot; lines.&quot;;</pre></td></tr></table></div><p>
+    Here are brief comments on each:
+  </p><div class="itemizedlist"><ul type="disc"><li><p>
+      In the first, the call to <tt>getName()</tt> invokes
+      another method of the <tt>Buffer</tt> class.
+    </p></li><li><p>
+      The syntax of the second example chains the results of
+      several methods. You could write it this way:
+    </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="programlisting">import java.text.DateFormat;
+Date d = new Date();
+DateFormat df = DateFormat.getDateInstance();
+String result = df.format(d);
+</pre></td></tr></table><p>
+	  Taking the pieces in order:
+   </p><div class="itemizedlist"><ul type="circle"><li><p>
+         A Java <tt>Date</tt> object is created using the
+         <tt>new</tt> keyword. The empty parenthesis after
+         <tt>Date</tt> signify a call on the <i>
+         constructor method</i> of <tt>Date</tt> having no
+         parameters; here, a <tt>Date</tt> is created representing
+         the current date and time.
+       </p></li><li><p>
+         <tt>DateFormat.getDateInstance()</tt> is a static method
+         that creates and returns a <tt>DateFormat</tt> object. As
+         the name implies, <tt>DateFormat</tt> is a Java class
+         that takes <tt>Date</tt> objects and produces readable
+         text. The method <tt>getDateInstance()</tt> returns a
+         <tt>DateFormat</tt> object that parses and formats dates.
+         It will use the default <i>locale</i> or text format
+         specified in the user's Java installation.
+       </p></li><li><p>
+        Finally, <tt>DateFormat.format()</tt> is called on the
+        new <tt>DateFormat</tt> object using the
+        <tt>Date</tt> object as a parameter. The result is a
+        <tt>String</tt> containing the date in the default
+        locale.
+      </p></li><li><p>
+        Note that the <tt>Date</tt> class is contained in
+        the <tt>java.util</tt> package, so an explicit import
+        statement is not required. However, <tt>DateFormat</tt>
+        is part of the <tt>java.text</tt> package, which is
+        not automatically imported, so an explicit
+        <tt>import</tt> statement must be used.
+      </p></li></ul></div></li><li xmlns:ns2=""><ns2:p>
+    The third example shows three items of note:
+	 </ns2:p><div class="itemizedlist"><ul type="circle"><li><p>
+       <tt>getLineCount()</tt> is a method in jEdit's
+       <tt>JEditTextArea</tt> class. It returns an
+       <tt>int</tt> representing the number of lines in the
+       current text buffer. We call it on <tt>textArea</tt>, the
+       pre-defined, current <tt>JEditTextArea</tt> object.
+      </p></li><li><p>
+       The use of the <tt>+</tt> operator (which can be chained,
+       as here) appends objects and string
+       literals to return a single, concatenated <tt>String</tt>.
+       </p></li></ul></div><ns2:p>
+   </ns2:p></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="dynamic-typing.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="macro-basics.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="dialog-macro.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">BeanShell Dynamic Typing </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 13. A Dialog-Based Macro</td></tr></table></div></body></html>

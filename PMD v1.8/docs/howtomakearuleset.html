@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - How to make a rule set</title><style type="text/css" media="all">
+          @import url("./style/maven-base.css");
+          
+			    @import url("./style/maven-theme.css");</style><link rel="stylesheet" href="./style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tomcopeland@users.sourceforge.net"></meta></head><body class="composite"><div id="banner"><a href="http://pmd.sourceforge.net/" id="organizationLogo"><img alt="Project Ultra*Log @ DARPA" src="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"></img></a><a href="http://pmd.sourceforge.net/" id="projectLogo"><img alt="PMD" src="./images/pmd_logo_small.jpg"></img></a><div class="clear"><hr></hr></div></div><div id="breadcrumbs"><div class="xright">
+        
+        <a href="http://sourceforge.net/projects/pmd">SourceForge.net Project Page</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://sourceforge.net">Hosted by SourceForge</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.ultralog.net/">Ultra*Log</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.darpa.mil/">DARPA</a>
+      </div><div class="clear"><hr></hr></div></div><div id="leftColumn"><div id="navcolumn"><div id="menuOverview"><h5>Overview</h5><ul><li class="none"><a href="installing.html">Installation</a></li><li class="none"><a href="running.html">Command line usage</a></li><li class="none"><a href="ant-task.html">Ant task usage</a></li><li class="none"><a href="integrations.html">IDE plugin usage</a></li><li class="none"><a href="news.html">PMD in the press</a></li><li class="none"><a href="bestpractices.html">Best practices</a></li><li class="none"><a href="cpd.html">Finding copied and pasted code</a></li><li class="none"><a href="similar-projects.html">Similar projects</a></li><li class="none"><a href="credits.html">Credits</a></li><li class="none"><a href="license.html">License</a></li><li class="none"><a href="meaning.html">What does 'PMD' mean?</a></li></ul></div><div id="menuCustomizing_PMD"><h5>Customizing PMD</h5><ul><li class="none"><a href="compiling.html">Compiling PMD</a></li><li class="none"><a href="howtowritearule.html">How to write a rule</a></li><li class="none"><strong><a href="howtomakearuleset.html">How to make a rule set</a></strong></li><li class="none"><a href="howitworks.html">How it works</a></li></ul></div><div id="menuFor_example"><h5>For example</h5><ul><li class="none"><a href="scoreboard.html">Run PMD on a Sourceforge project</a></li></ul></div><div id="menuRule_Sets"><h5>Rule Sets</h5><ul><li class="none"><a href="rules/basic.html">Basic</a></li><li class="none"><a href="rules/naming.html">Naming</a></li><li class="none"><a href="rules/unusedcode.html">Unused Code</a></li><li class="none"><a href="rules/design.html">Design</a></li><li class="none"><a href="rules/imports.html">Import Statements</a></li><li class="none"><a href="rules/junit.html">JUnit Tests</a></li><li class="none"><a href="rules/strings.html">Strings</a></li><li class="none"><a href="rules/braces.html">Braces</a></li><li class="none"><a href="rules/codesize.html">Code Size</a></li><li class="none"><a href="rules/javabeans.html">Javabeans</a></li><li class="none"><a href="rules/finalizers.html">Finalizers</a></li><li class="none"><a href="rules/coupling.html">Coupling</a></li><li class="none"><a href="rules/strictexception.html">Strict Exceptions</a></li><li class="none"><a href="rules/controversial.html">Controversial</a></li></ul></div><div id="menuProject_Documentation"><h5>Project Documentation</h5><ul><li class="none"><a href="index.html">About PMD</a></li><li class="collapsed"><a href="project-info.html">Project Info</a></li><li class="collapsed"><a href="maven-reports.html">Project Reports</a></li><li class="none"><a href="http://maven.apache.org/development-process.html">Development Process</a></li></ul></div><a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy"><img alt="Built by Maven" src="./images/logos/maven-button-1.png"></img></a></div></div><div id="bodyColumn"><div class="contentBox"><div class="section"><h2><a name="How_to_make_a_new_rule_set">How to make a new rule set</a></h2><p>
+Say you want to pick specific rules from various rule sets.  You can do this by making your own rule set.
+</p><div class="subsection"><h3><a name="Create_a_new_ruleset_xml_file">Create a new ruleset.xml file</a></h3><p>Use one of the current rulesets as an example.  Copy and paste
+    it into your new file, delete all the old rules from it, and change
+    the name and description.  Like this:</p>
+    <div class="source"><pre>
+
+&lt;?xml version="1.0"?&gt;
+
+&lt;ruleset name="customruleset"&gt;
+  &lt;description&gt;
+  This ruleset checks my code for bad stuff
+  &lt;/description&gt;
+&lt;/ruleset&gt;
+
+    </pre></div>
+  </div><div class="subsection"><h3><a name="Add_some_rule_references_to_it">Add some rule references to it</a></h3><p>After you add these references it'll look something like this:</p>
+    <div class="source"><pre>
+
+&lt;?xml version="1.0"?&gt;
+&lt;ruleset name="customruleset"&gt;
+
+  &lt;description&gt;
+  This ruleset checks my code for bad stuff
+  &lt;/description&gt;
+
+  &lt;!-- Here's some rules we'll specify one at a time --&gt;
+  &lt;rule ref="rulesets/unusedcode.xml/UnusedLocalVariable"/&gt;
+  &lt;rule ref="rulesets/unusedcode.xml/UnusedPrivateField"/&gt;
+  &lt;rule ref="rulesets/imports.xml/DuplicateImports"/&gt;
+  &lt;rule ref="rulesets/basic.xml/UnnecessaryConversionTemporaryRule"/&gt;
+
+  &lt;!-- Note we want everything from braces.xml except the WhileLoopsMustUseBracesRule --&gt;
+  &lt;rule ref="rulesets/braces.xml"&gt;
+    &lt;exclude name="WhileLoopsMustUseBracesRule"/&gt;
+  &lt;/rule&gt;
+&lt;/ruleset&gt;
+
+    </pre></div>
+  </div><div class="subsection"><h3><a name="Excluding_rules_from_a_ruleset">Excluding rules from a ruleset</a></h3><p>You can also make a custom ruleset that excludes rules, like this:</p>
+    <div class="source"><pre>
+
+&lt;?xml version="1.0"?&gt;
+&lt;ruleset name="mybraces"&gt;
+ &lt;description&gt;Just the braces rules I like&lt;/description&gt;
+ &lt;rule ref="rulesets/braces.xml"&gt;
+  &lt;exclude name="WhileLoopsMustUseBracesRule"/&gt;
+  &lt;exclude name="IfElseStmtsMustUseBracesRule"/&gt;
+ &lt;/rule&gt;
+&lt;/ruleset&gt;
+
+            </pre></div>
+  </div><div class="subsection"><h3><a name="Reference_it_in_your_Ant_task">Reference it in your Ant task</a></h3><p>You can specify the full path to your custom ruleset name alongside
+        of the built-in PMD rulesets - like this:</p>
+    <div class="source"><pre>
+    
+    &lt;pmd rulesetfiles="/home/tom/data/pmd/pmd/rulesets/favorites.xml,rulesets/unusedcode.xml"&gt;
+        &lt;formatter type="xml" toFile="foo.xml"/&gt;
+        &lt;fileset dir="/home/tom/data/pmd/pmd/src"&gt;
+            &lt;include name="**/*.java"/&gt;
+        &lt;/fileset&gt;
+    &lt;/pmd&gt;
+    
+</pre></div>
+  </div><div class="subsection"><h3><a name="To_see_it_in_your_IDE__add_it_to_rulesets_rulesets_properties">To see it in your IDE, add it to rulesets/rulesets.properties</a></h3><p>At least, that's the way some of the IDE plugins do it.  Some
+    have other ways of adding custom rulesets.</p></div><div class="subsection"><h3><a name="Send_us_feedback">Send us feedback</a></h3><p>If you have suggestions on clarifying this document, please post
+    them to <a href="http://sourceforge.net/forum/forum.php?forum_id=188192">the forum</a>.  Thanks!</p></div></div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2004, Project Ultra*Log @ DARPA</div><div class="clear"><hr></hr></div></div></body></html>

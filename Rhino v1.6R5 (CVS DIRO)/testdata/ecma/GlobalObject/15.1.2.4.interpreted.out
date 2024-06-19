@@ -1,0 +1,56 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\GlobalObject\15.1.2.4.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\GlobalObject\shell.js -f mozilla\js\tests\ecma\GlobalObject\15.1.2.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: none
+15.1.2.6 isNaN( x )
+isNaN.length = 1 PASSED!
+var MYPROPS=''; for ( var p in isNaN ) { MYPROPS+= p }; MYPROPS =  FAILED! expected: prototype
+isNaN.length = null; isNaN.length = 1 PASSED!
+delete isNaN.length = false PASSED!
+delete isNaN.length; isNaN.length = 1 PASSED!
+isNaN() = true PASSED!
+isNaN( null ) = false PASSED!
+isNaN( void 0 ) = true PASSED!
+isNaN( true ) = false PASSED!
+isNaN( false) = false PASSED!
+isNaN( ' ' ) = false PASSED!
+isNaN( 0 ) = false PASSED!
+isNaN( 1 ) = false PASSED!
+isNaN( 2 ) = false PASSED!
+isNaN( 3 ) = false PASSED!
+isNaN( 4 ) = false PASSED!
+isNaN( 5 ) = false PASSED!
+isNaN( 6 ) = false PASSED!
+isNaN( 7 ) = false PASSED!
+isNaN( 8 ) = false PASSED!
+isNaN( 9 ) = false PASSED!
+isNaN( '0' ) = false PASSED!
+isNaN( '1' ) = false PASSED!
+isNaN( '2' ) = false PASSED!
+isNaN( '3' ) = false PASSED!
+isNaN( '4' ) = false PASSED!
+isNaN( '5' ) = false PASSED!
+isNaN( '6' ) = false PASSED!
+isNaN( '7' ) = false PASSED!
+isNaN( '8' ) = false PASSED!
+isNaN( '9' ) = false PASSED!
+isNaN( 0x0a ) = false PASSED!
+isNaN( 0xaa ) = false PASSED!
+isNaN( 0x0A ) = false PASSED!
+isNaN( 0xAA ) = false PASSED!
+isNaN( '0x0a' ) = false PASSED!
+isNaN( '0xaa' ) = false PASSED!
+isNaN( '0x0A' ) = false PASSED!
+isNaN( '0xAA' ) = false PASSED!
+isNaN( 077 ) = false PASSED!
+isNaN( '077' ) = false PASSED!
+isNaN( Number.NaN ) = true PASSED!
+isNaN( Number.POSITIVE_INFINITY ) = false PASSED!
+isNaN( Number.NEGATIVE_INFINITY ) = false PASSED!
+isNaN( Number.MAX_VALUE ) = false PASSED!
+isNaN( Number.MIN_VALUE ) = false PASSED!
+isNaN( NaN ) = true PASSED!
+isNaN( Infinity ) = false PASSED!
+isNaN( 'Infinity' ) = false PASSED!
+isNaN( '-Infinity' ) = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\GlobalObject\15.1.2.4.interpreted.arff] ...

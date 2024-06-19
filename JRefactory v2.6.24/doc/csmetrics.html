@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Metrics</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> Metrics <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="cslineno.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::Metrics
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csstub.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3" VALIGN="top">
+			<H3>Java Metrics</H3>
+
+			<P>The advantage of being able to create a parse tree for a Java source file, is that you can count various things
+
+			about the source file. Currently the metrics are a little rough, but you can gather them from a source tree.</P>
+
+			<P>The current program gathers the following metrics:</P>
+
+			<UL>
+
+				<LI>Number of statements
+
+				<LI>Number of public instance methods
+
+				<LI>Number of nonpublic instance methods
+
+				<LI>Number of class methods
+
+				<LI>Number of instance variables
+
+				<LI>Number of class variables
+
+				<LI>Number of abstract classes
+
+				<LI>Number of interfaces
+
+			</UL>
+
+			<P>It also outputs the metrics in a text form that allows the data to be sorted.</P>
+
+			<P>This program has two types of outputs. The first option is the text output. The second option is the comma delimited
+
+			to simplify loading into a spreadsheet.</P>
+
+			<P>
+
+			<TABLE BORDER="1">
+
+				<TR>
+
+					<TH>
+
+						<P>Syntax
+
+					</TH>
+
+					<TH>
+
+						<P>Description
+
+					</TH>
+
+				</TR>
+
+				<TR>
+
+					<TD><TT>java Metrics [-comma|-text] &lt;dir&gt;</TT></TD>
+
+					<TD>Traverses the directory specified and acquires metrics for all .java files found in the source tree.</TD>
+
+				</TR>
+
+			</TABLE>
+
+</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="cslineno.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: October 18, 1999</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csstub.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

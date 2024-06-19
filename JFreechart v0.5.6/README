@@ -1,0 +1,57 @@
+JFREECHART version 0.5.6 (25 November 2000)
+===========================================
+
+1. INTRODUCTION
+JFreeChart is an open-source Java class library for producing charts.  It runs on the Java 2 Platform (SDK1.2.2 or later) and uses the Java 2D API for drawing.
+
+2. LICENCE
+JFreeChart has been made available under the terms of the GNU Lesser General Public Licence (LGPL).  Please read the licence and make sure that you are prepared to comply with its terms (if not, you should not use JFreeChart in your own applications).  
+
+Note that the LGPL is a complicated licence - try reading and understanding the much simpler GNU General Public Licence (GPL) first.  If the GPL is all that you require, then note that the LGPL allows you to apply the terms of the GPL to JFreeChart.
+
+3. NO LICENCE FEES AND NO WARRANTY
+You do not have to pay a licence fee to use JFreeChart, but please note that the author distributes the software WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please refer refer to the licence for details.
+
+4. RUNNING THE DEMO APPLICATION
+The demo application is now included in the jfreechart.jar file, so you no longer need demo.jar (so you won't find it in the download).  Using SDK 1.2.2 (or later) you can start the demo by invoking the class com.jrefinery.chart.demo.JFreeChartDemo.
+
+For example, the following command line will run the demo application:
+
+java -cp jfreechart.jar com.jrefinery.chart.demo.JFreeChartDemo
+
+Depending on your system configuration and the current working directory, you may need to specify paths in the above command line, as noted below:
+
+{**PATH**}java -cp {**PATH**}jfreechart.jar com.jrefinery.chart.demo.JFreeChartDemo 
+
+5. CHANGES IN EACH VERSION
+The changes in the most recent versions of JFreeChart are listed here:
+
+Version 0.5.6
+- included a High/Low/Open/Close chart implementation written by Andrzej Porebski;
+- included plot fitting classes written by Matthew Wright;
+- added accessor methods for the vertical tick label property in the horizontal axes;
+- fixed a bug in the auto-tick selection;
+- tidied up Javadoc comments;
+
+Version 0.5.5
+- included a Pie Chart implementation written by Andrzej Porebski;
+- fixed a bug where the Plot class does not register itself to listen for DataSource changes;
+- improved the code so that "bad path" exceptions are less likely to occur;
+- fixed several other bugs;
+
+Version 0.5.4
+- fixed a bug in LinePlot and XYPlot where the drawing was not being clipped at the edges of the plot;
+- corrected the instructions for running the demo application, contained in this readme.txt file (note that the PDF documentation has not been updated yet);
+
+Version 0.5.3  
+- fixed bugs in the HorizontalDateAxis class that prevented tick units < 1 day being displayed;
+- fixed a bug in the demo application that prevented the grid properties from being changed;
+- introduced a new version numbering scheme (note that versions 0.5.1 and 0.5.2 were not made available for download);
+
+6. UPDATES/LATEST VERSION
+New releases will be announced at:  http://www.jrefinery.com
+
+7. COMMENTS/SUGGESTIONS
+Your comments and suggestions are welcome.  Please use the JFreeChart Discussion Forum on the web-site, or send e-mail to: david.gilbert@bigfoot.com.
+
+$Id: README,v 1.1 2007/10/10 18:52:17 vauchers Exp $

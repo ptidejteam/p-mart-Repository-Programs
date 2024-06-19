@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="source"/>
+    <classpathentry kind="lib" path="jars/jcommon-0.6.3.jar"/>
+    <classpathentry kind="lib" path="jars/jfreechart-0.9.1-demo.jar"/>
+    <classpathentry kind="lib" path="jars/jfreechart-0.9.1-tests.jar"/>
+    <classpathentry kind="lib" path="jars/jfreechart-0.9.1.jar"/>
+    <classpathentry kind="lib" path="jars/junit.jar"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="lib" path="jars/jsp-api-2.0.jar"/>
+    <classpathentry kind="lib" path="jars/batik-awt-util.jar"/>
+    <classpathentry kind="lib" path="jars/batik-dom.jar"/>
+    <classpathentry kind="lib" path="jars/batik-svggen.jar"/>
+    <classpathentry kind="lib" path="jars/batik-util.jar"/>
+    <classpathentry kind="lib" path="jars/servlet-api-5.5.15.jar"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

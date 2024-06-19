@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Pretty Printer</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> Pretty Printer<BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="chrissoft.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::Pretty Printer
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="ant-task.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+			<H3>PrettyPrinter</H3>
+
+			<P>The first piece of software is a pretty printer for Java.
+			It reads a java file or a directory structure containing
+			java files. It reformats the code and inserts javadoc
+			comments where they are missing.</P>
+
+			<P>This new version takes a look at the name of the method.
+			If the method is a setter or getter, it takes an intelligent
+			stab at filling in the javadoc comments, based on the name
+			of the method, the class, and whether the method is static
+			or not.</P>
+
+			<P>If the method is named run or it appears to be the main
+			program, the javadoc comments are also generated appropriately.
+			The exact words in the default descriptions for all methods
+			are located in the <A HREF="csprettysettings.html">pretty.settings</A>
+			file.
+			</P>
+
+			<P>Also new this release is the ability to set the level of
+			protection that the system inserts javadoc comments.  For
+			instance, if the user of this program only wants javadoc
+			comments for public methods and public fields, the user
+			sets the method.minimum level to be public in the
+			<A HREF="csprettysettings.html">pretty.settings</A>
+			file.</P>
+
+			<P>At the moment, there is no interface to the pretty printer
+			settings except by directly editing the
+			<A HREF="csprettysettings.html">pretty.settings</A> files.
+			The location of the <A HREF="csprettysettings.html">pretty.settings</A>
+			file depends on the way
+			you are using the pretty printer.</P>
+
+			<H3>Installation and Usage</H3>
+
+			<H4>Command line</H4>
+
+			<P>To install the pretty printer to use it from the command line,
+			simply add the refactory.jar file to the class path.  The following
+			table describes it's use.</P>
+
+			<P>
+
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java PrettyPrinter <EM>file</EM></PRE>
+					</TD>
+					<TD>Loads the <EM>file</EM> specified, parses it, and then overwrites the file with a reformatted version.</TD>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java PrettyPrinter <EM>dir</EM></PRE>
+					</TD>
+					<TD>Traverses a directory tree. For each file that is writable with the extension .java, it prompts the user if they
+						wish to reformat the file. If the user selects yes, the file is reformatted as described above.</TD>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java PrettyPrinter -quiet|-u <EM>dir</EM></PRE>
+					</TD>
+					<TD>Same as above except with the -quiet or the -u flag, the
+						system does not prompt the user.</TD>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java PrettyPrinter -quiet|-u</PRE>
+					</TD>
+					<TD>Same as above except with the -quiet or the -u flag, the
+						system does not prompt the user and with no directory
+						selected it assumes that you want the current directory.</TD>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java PrettyPrinter</PRE>
+					</TD>
+					<TD>This works just like either one of the previous two descriptions, but before it begins, it opens a file/directory
+						selection dialog box.
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java -Djrefactory.home=<EM>dir</EM> PrettyPrinter (other items shown above here)</PRE>
+					</TD>
+					<TD>This specifies the directory containing the settings files.
+					</TD>
+				</TR>
+			</TABLE>
+		</P>
+
+		<H4>Elixir IDE</H4>
+
+		<P>Installation depends on the version of Elixir that you have.</P>
+
+		<P><B>Version 2.4</B>  If
+		you have version Elixir version 2.4, then you place the refactory-2.4.jar
+		file in <EM>&lt;Your Home Directory&gt;</EM><tt>/.ElixirIDE/2.4/ext</tt>.</P>
+
+		<P><B>Version 2.2</B>  If you have version 2.2, then add refactory-2.4.jar
+		to your classpath.  Then add the refactory-2.4.jar file to your classpath.
+		You also need to edit the file named ide.scm in
+		<EM>&lt;Your Home Directory&gt;</EM><tt>/.ElixirIDE/2.2</tt>.  Add the
+		following lines to the end of the file.</P>
+
+		<TT>
+		<PRE>
+;  Chris's Extensions start here
+(define prettyprint
+    (method "prettyPrint" "org.acm.seguin.pretty.ElixirPrettyPrinter")
+)
+
+(add-menu-item "Script|-")
+(add-menu-item "Script|Pretty Printer=(prettyprint)")
+
+
+(println "Done Chris's extensions")
+
+		</PRE>
+		</TT>
+
+		<P><B>Version 2.0 or earlier</B>  If you are using Elixir IDE 2.0 or
+		earlier, and you want to use the latest release of the pretty printer,
+		please contact me.</P>
+
+		<P>With any version of Elixir IDE, to use the pretty printer select
+		the Script menu item, then select Pretty Printer while the current
+		window hold a java file.</P>
+
+		<H4>NetBeans</H4>
+
+		<P>To install this software, install the file
+		JRefactoryModule.jar in the module directory.</P>
+
+		<P>To use this software, open the .java file
+		and the pretty printer option appears on the tools
+		menu.</P>
+
+		<H4>Symantec Visual Cafe</H4>
+
+		<P>Note that this software is somewhat experimental.</P>
+
+		<P>To install the software with Symantec's Visual Cafe version 3.0,
+		place refactory-2.4.jar in
+		<EM>&lt;Visual Cafe Directory&gt;</EM><tt>/bin/components</tt>.
+		Then edit the sc.ini file in
+		<EM>&lt;Visual Cafe Directory&gt;</EM><tt>/bin</tt>.  Add to the
+		end of the line that specifies the classpath, the following:
+		</P>
+		<TT>
+		<PRE>
+;%@P%\COMPONENTS\refactory-2.4.jar
+		</PRE>
+		</TT>
+
+		<P>Once you restart Symantec's Visual Cafe, there will be a new menu
+		option "Extensions" with one item "Pretty Printer".  To run the pretty
+		printer on the current viewed file, select Pretty Printer from the
+		menu.</P>
+
+		<P>Note for Visual Cafe only, the <A HREF="csprettysettings.html">pretty.settings</A>
+		file is located in
+		<TT>c:\visualcafe\.refactory</TT>.</P>
+
+		<P>For Visual Cafe 4.0, there seems to be a problem reading a file
+		from a disk, so I am unable to read the settings files.  I'm working
+		on this problem.</P>
+
+		<H4>JBuilder 3.0 Foundation or JBuilder 3.5 or JBuilder 4.0</H4>
+
+		<P>To use the pretty printer with JBuilder, the refactory-2.4.jar in
+                <EM>JBuilderDir</EM>/lib/ext.  See the file jbuilder.txt for more
+                specific information.</P>
+
+		<H4>JBuilder 3.0</H4>
+
+		<P>To use the pretty printer with JBuilder, you will need to create
+		a batch file.  This file takes one input.  It sets the classpath
+		to include the pretty printer, and then runs the pretty printer
+		on the input file.  Here is a sample batch file.</P>
+
+		<TT>
+		<PRE>
+set classpath=c:\jars\refactory-2.4.jar
+java PrettyPrinter %1
+		</PRE>
+		</TT>
+
+		<P>Then edit the tools.cfg file in <EM>&lt;JBuilder Directory&gt;</EM><TT>/bin</TT>
+		directory.  You should add the following 4 lines to the end of the file.</P>
+
+		<TT>
+		<PRE>
+Pretty Printer
+c:\bin\pretty.bat
+.
+$(NodeName)
+		</PRE>
+		</TT>
+
+		<P>Note that the second line is the path to the pretty printer batch file
+		that you created.  Also, each item in the tools.cfg file consists of
+		4 lines.  The calculator item has nothing in the fourth line (it doesn't
+		need anything).</P>
+
+		<P>To use the pretty printer, save the file to disk.  Then select tools
+		from the menu and pretty printer.</P>
+
+		<P>Debugging:  If you don't see Pretty Printer on the tools menu and
+		instead see "c:\bin\pretty.bat", then you need to insert a blank line
+		before the PrettyPrinter line.</P>
+
+		<H3>Release Notes</H3>
+		    <P>Release 2.6.8 adds the following features:</P>
+		    <OL>
+		      <LI>  Net beans integration
+			  <LI>  Don't change the spacing on HTML tags
+			  <LI>  Inside Javadoc comments, you would like to
+				maintain the spacing after the first *
+			      <!-- ydesfosses@wysdom.com (Yves Desfosses) -->
+			  <LI>  Maintain the formatting of a PRE tag
+			     <!-- andrew.hircock@mxi.com, chr@active.ch, Matt Mower -->
+			  <LI>  Add a "else.start.line" option
+			      <!-- dmoebius@gmx.net (Dirk) -->
+			  <LI>  No force block
+				<!-- fhurley@cyberdude.com (Frank), Dirk Moebius, cap@novosoft.ru (Constantine Plotnikov) -->
+			  <LI>  Style for class blocks (either pascal or C)
+			     <!-- vmassol@octo.fr  -->
+			  <LI>  Adding more space around &lt; construtor name &gt;
+			      <!-- ydesfosses@wysdom.com -->
+			  <LI>  Lower case attribute in note
+			     <!-- m.brockhage@syborg.de (Mark) -->
+			  <LI>  Brackets for the empty method appear on the same line
+			      <!-- Thomas Calivera (calivera@telocity.com) -->
+			  <LI>  "final" in the initializer of the for loop incorrectly positioned
+			  <LI>  Update Windows 2000 Documentation (C:\Documents and Settings\&lt;user name>\.Refactory)
+		    </OL>
+
+		    <P>Release 2.6.0 adds the following features:</P>
+
+		    <OL>
+			  <LI>  Unicode characters in strings in JBuilder
+			     <!-- joacim.jarkeborn@consultant.volvo.com (Joacim Järkeborn) -->
+			  <LI>  Survive double ; after a field
+			      <!-- ydesfosses@wysdom.com (Yves Desfosses) -->
+			  <LI>  Unicode characters in method names in JBuilder
+			     <!-- phoenix_zeng@citiz.net (Pheonix ZENG), rypan@citiz.net  -->
+			  <LI>  Load named classes defined inside a method
+			     <!--  ???  -->
+			  <LI>  when you initialize a field value, you would like
+				the values ( = "stuff") to line up on the =.
+			      <!-- ydesfosses@wysdom.com (Yves Desfosses), Gabriel@roundpeg.com -->
+			  <LI>  Separate field components by extra spaces
+			      <!-- Gabriel@roundpeg.com -->
+			  <LI>  Improve the stack trace dialog when there is an error in
+			     pretty printing the file
+			  <LI>  Single indent on unexpected end of line
+			      <!--  mjenki@navtech.nl (Marcus Jenkins) -->
+			  <LI>  @version@ are not javadoc tags, but input for Ant.  Leave them on the
+			     same line as @version
+		    </OL>
+
+		    <P>Release 2.5.38 fixes a bug where a /* C style comment */
+		    appears on the same line as source code, and the code before
+		    the comment is deleted (with appropriate settings in the
+		    pretty.settings file).</P>
+
+		    <P>Release 2.5.23 gives more control over the placement and
+		    formatting of comments.  It also allows the user to specify
+		    the directory containing the settings files.  This also indents
+		    the variable name in fields.</P>
+
+		    <P>Release 2.4.42 adds better space control after keywords and
+		    in expressions.  It also can place the catch and else statements
+		    on the same line as the closing brackets.  Many thanks to
+		    <B>Matt Mower</B> for making these changes!</P>
+		    <P>Release 2.4.34 adds the ability to insert a space before
+		    the @ symbols in the javadoc tags.  It also can sort the
+		    import statements.</P>
+
+		    <P>Version 2.4.31 added JBuilder support.</P>
+
+		    <P>Release 2.4.18 adds a number of new features for controlling
+		    the output.  You can add a standard header for the
+		    file, which replaces the current header if it is present.</P>
+
+		    <P>It also fixes a problem for Linix/Unix users, that the
+		    directory containing the settings was sometimes referenced
+		    with capital letters, and other times referenced with lower
+		    case letters.</P>
+
+            <P>Release 2.4.10 adds more control of javadoc comments - like
+            minimum and maximum number of characters to wordwrap and the
+            number of *s at the beginning and end of the javadoc comment.
+            It also allows you to control whether there is a space after
+            the cast command.</P>
+
+		<P>Release 2.4.6 fixes bug that would delete javadoc comment for
+		  @param and @exception tags.</P>
+		<P>Release 2.4.5 adds javadoc for JUnit methods, class javadoc
+                minimum levels, and a fix for the line number tool so that multiple
+                files can be loaded.  There may be some other minor changes, as
+                I've implemented JUnit unit and functional tests.  This release
+                passes all my tests.</P>
+		<P>Release 2.4 adds intelligent javadoc for run and main methods.
+		It also adds more control as to when to insert the javadoc comments.
+		Finally, it provides a plugin for JBuilder and Symantec's Visual
+		Cafe.</P>
+
+            <P>Release 2.2.3 adds intelligent javadoc for getter and setter
+            methods.</P>
+            <P>Release 2.2 fixes a bug with allocating
+            and initializing arrays of objects.</P>
+			<P>Release 1.2 added a lot of new features.
+			It also is much more robust using javacc's static parser
+			rather than trying to create a separate parser for each file.
+			Here is a list of the changes:</P>
+
+			<UL>
+			<LI> Indent with tabs or other characters
+			<LI> Specify the number of blank lines between methods.
+			<LI> Reformats the HTML in javadoc comments
+			<LI> Bug Fix:  the parser failing with a null pointer exception
+			on some files.
+			<LI>  Bug Fix:  it does not include the \r when the result
+			is passed to Elixir.
+			<LI>  Bug Fix:  keeps comments in around {}
+			</UL>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="chrissoft.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: November 28, 2000</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="ant-task.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

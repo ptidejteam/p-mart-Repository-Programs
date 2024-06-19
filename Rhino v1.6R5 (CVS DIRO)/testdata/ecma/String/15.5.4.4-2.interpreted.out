@@ -1,0 +1,46 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.4-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.4-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+15.5.4.4-2 String.prototype.charAt
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(0) = t PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(1) = r PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(2) = u PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(3) = e PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(4) =  PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(-1) =  PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(true) = r PASSED!
+x = new Boolean(true); x.charAt=String.prototype.charAt;x.charAt(false) = t PASSED!
+x = new String(); x.charAt(0) =  PASSED!
+x = new String(); x.charAt(1) =  PASSED!
+x = new String(); x.charAt(-1) =  PASSED!
+x = new String(); x.charAt(NaN) =  PASSED!
+x = new String(); x.charAt(Number.POSITIVE_INFINITY) =  PASSED!
+x = new String(); x.charAt(Number.NEGATIVE_INFINITY) =  PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(0) = 1 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(1) = 2 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(2) = 3 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(3) = 4 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(4) = 5 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(5) = 6 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(6) = 7 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(7) = 8 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(8) = 9 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(9) = 0 PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(10) =  PASSED!
+var MYOB = new MyObject(1234567890); MYOB.charAt(Math.PI) = 4 PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(0) = [ PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(1) = o PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(2) = b PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(3) = j PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(4) = e PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(5) = c PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(6) = t PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(7) =   PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(8) = O PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(9) = b PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(10) = j PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(11) = e PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(12) = c PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(13) = t PASSED!
+var MYOB = new MyOtherObject(1234567890); MYOB.charAt(14) = ] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.4-2.interpreted.arff] ...

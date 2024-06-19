@@ -1,0 +1,14 @@
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+
+InputStream: Document content looks like HTML 4.01 Transitional
+no warnings or errors were found
+
+
+Tidy (vers 4th August 2000) Parsing "InputStream"
+line 3 column 3 - Warning: inserting missing 'title' element
+line 6 column 7 - Warning: &lt;table&gt; lacks "summary" attribute
+
+InputStream: Document content looks like HTML 4.01 Transitional
+2 warnings/errors were found!
+

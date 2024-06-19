@@ -1,0 +1,290 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Branching</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>About</h4>
+<ul>
+<li>
+<a href="index.html">Index</a>
+</li>
+<li>
+<a href="historyandfuture.html">History and Future</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/builds/jakarta-poi/">Download</a>
+</li>
+<li>
+<a href="plan/POI10Vision.html">1.0 Vision</a>
+</li>
+<li>
+<a href="plan/POI20Vision.html">2.0 Vision</a>
+</li>
+<li>
+<a href="who.html">Who we are</a>
+</li>
+<li>
+<a href="changes.html">Changes</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Sub-Projects</h4>
+<ul>
+<li>
+<a href="overview.html">Overview</a>
+</li>
+<li>
+<a href="poifs/index.html">POIFS</a>
+</li>
+<li>
+<a href="hssf/index.html">HSSF</a>
+</li>
+<li>
+<a href="hdf/index.html">HDF</a>
+</li>
+<li>
+<a href="hpsf/index.html">HPSF</a>
+</li>
+<li>
+<a href="utils/index.html">POI-Utils</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>References</h4>
+<ul>
+<li>
+<a href="http://jakarta.apache.org/poi/javadocs/">Javadocs</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/test/">Test Results</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/metrics/jdepend-report.html">Metrics</a>
+</li>
+<li>
+<a href="inthenews.html">In The News</a>
+</li>
+<li>
+<a href="livesites.html">Live Sites</a>
+</li>
+<li>
+<a href="http://sc.openoffice.org/excelfileformat.pdf">XLS spec [PDF]</a>
+</li>
+<li>
+<a href="http://xml.apache.org/cocoon/">Apache Cocoon</a>
+</li>
+<li>
+<a href="resolutions/index.html">Resolutions</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Get Involved</h4>
+<ul>
+<li>
+<a href="contrib.html">Contributing</a>
+</li>
+<li>
+<a href="branching.html">Branching</a>
+</li>
+<li>
+<a href="http://nagoya.apache.org/bugzilla/buglist.cgi?product=POI">Bug Database</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/cvsindex.html">CVS</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/mail.html">Mail Lists</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>Branching</h1>
+</div>
+<div id="contents">
+
+    
+
+    
+        
+<h2>Branching Conventions</h2>
+<div class="section">
+            
+<p>
+                Branches are tagged in the following way:
+            </p>
+            
+<blockquote>
+<ul>
+                
+<li>REL_1_5_BRANCH</li>
+                
+<li>REL_2_0_BRANCH</li>
+            
+</ul>
+</blockquote>
+            
+<p>
+                Merge points should be tagged as follows:
+            </p>
+            
+<blockquote>
+<ul>
+                
+<li>REL_1_5_BRANCH_MERGE1</li>
+                
+<li>REL_1_5_BRANCH_MERGE2</li>
+                
+<li>etc...</li>
+            
+</ul>
+</blockquote>
+            
+<p>
+                Releases should be tagged as:
+            </p>
+            
+<blockquote>
+<ul>
+                
+<li>REL_1_5</li>
+                
+<li>REL_1_5_1</li>
+                
+<li>REL_1_5_2</li>
+                
+<li>etc...</li>
+            
+</ul>
+</blockquote>
+
+        
+</div>
+        
+<h2>Branching Advise</h2>
+<div class="section">
+            
+<p>
+              Don't forget which branch you are currently on.  This is critically
+              important.  Committing stuff to the wrong branch causes all sorts of
+              headaches.  Best to name your checkout after the branch you are on.
+            </p>
+        
+</div>
+        
+<h2>Who Manages Branching?</h2>
+<div class="section">
+            
+<p>
+                All branching is currently managed by Glen Stampoultzis.  If you wish
+                to create your own branch please let him know.  Merging is also
+                handled by Glen.  Just pop him a mail if you feel it's necessary to
+                create a branch or perform a merge.
+            </p>
+            
+<p>
+                The reason to go through a single point for branching is that it can be
+                an easy thing to get wrong.  Having a single person managing branches
+                means there is less chance of getting getting our wires crossed with this
+                difficult area of CVS.
+            </p>
+        
+</div>
+        
+<h2>Currently Active Branches</h2>
+<div class="section">
+            
+<p>
+                The following branches are currently active:
+            </p>
+            
+<table>
+<caption></caption>
+                
+<tr>
+                    
+<td rowspan="1" colspan="1"><b>
+                        Branch
+                    </b>&nbsp;
+    </td>
+                    <td rowspan="1" colspan="1"><b>
+                        Description
+                    </b>&nbsp;
+    </td>
+                
+</tr>
+                
+<tr>
+                    
+<td rowspan="1" colspan="1">
+                        HEAD
+                    &nbsp;
+    </td>
+                    <td rowspan="1" colspan="1">
+                    This is the trunk and is always active.  Currently it is being used to continue development
+                    of the 2.0 release.
+                    &nbsp;
+    </td>
+                
+</tr>
+                
+<tr>
+                    
+<td rowspan="1" colspan="1">
+                        REL_1_5_BRANCH
+                    &nbsp;
+    </td>
+                    <td rowspan="1" colspan="1">
+                        All bug fixes not specifically relevant to the 2.0 work should be placed in this branch.
+                        From here they will merged back to the trunk and the merge point marked.
+                    &nbsp;
+    </td>
+                
+</tr>
+            
+</table>
+        
+</div>
+    
+
+
+<div id="authors">by&nbsp;Glen Stampoultzis</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

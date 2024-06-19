@@ -1,0 +1,44 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.8.3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.8.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+11.8.1 The less-than-or-equal operator ( <= )
+true <= false = false PASSED!
+false <= true = true PASSED!
+false <= false = true PASSED!
+true <= true = true PASSED!
+new Boolean(true) <= new Boolean(true) = true PASSED!
+new Boolean(true) <= new Boolean(false) = false PASSED!
+new Boolean(false) <= new Boolean(true) = true PASSED!
+new Boolean(false) <= new Boolean(false) = true PASSED!
+new MyObject(Infinity) <= new MyObject(Infinity) = true PASSED!
+new MyObject(-Infinity) <= new MyObject(Infinity) = true PASSED!
+new MyObject(-Infinity) <= new MyObject(-Infinity) = true PASSED!
+new MyValueObject(false) <= new MyValueObject(true) = true PASSED!
+new MyValueObject(true) <= new MyValueObject(true) = true PASSED!
+new MyValueObject(false) <= new MyValueObject(false) = true PASSED!
+new MyStringObject(false) <= new MyStringObject(true) = true PASSED!
+new MyStringObject(true) <= new MyStringObject(true) = true PASSED!
+new MyStringObject(false) <= new MyStringObject(false) = true PASSED!
+Number.NaN <= Number.NaN = false PASSED!
+0 <= Number.NaN = false PASSED!
+Number.NaN <= 0 = false PASSED!
+0 <= -0 = true PASSED!
+-0 <= 0 = true PASSED!
+Infinity <= 0 = false PASSED!
+Infinity <= Number.MAX_VALUE = false PASSED!
+Infinity <= Infinity = true PASSED!
+0 <= Infinity = true PASSED!
+Number.MAX_VALUE <= Infinity = true PASSED!
+0 <= -Infinity = false PASSED!
+Number.MAX_VALUE <= -Infinity = false PASSED!
+-Infinity <= -Infinity = true PASSED!
+-Infinity <= 0 = true PASSED!
+-Infinity <= -Number.MAX_VALUE = true PASSED!
+-Infinity <= Number.MIN_VALUE = true PASSED!
+'string' <= 'string' = true PASSED!
+'astring' <= 'string' = true PASSED!
+'strings' <= 'stringy' = true PASSED!
+'strings' <= 'stringier' = false PASSED!
+'string' <= 'astring' = false PASSED!
+'string' <= 'strings' = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.8.3.interpreted.arff] ...

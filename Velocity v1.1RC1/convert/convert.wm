@@ -1,0 +1,39 @@
+## This is a template to convert.
+
+#foreach $this in $that
+#begin
+    This is the text
+#end
+
+#foreach $this in $that
+{
+    This is the text
+}
+
+#if ($foo)
+#begin
+    convert me!
+#end  
+#else
+#begin
+    convert me too!
+#end    
+
+#if ($nested) {
+  #if ($foo)
+  {  
+    convert me!
+  } #else {
+    convert me too!
+  }
+}
+
+$_leadingUnderscore
+
+This is an explicitly terminated $statement;.
+
+$foo;.getBar() when $foo is a variable and getBar() is schmoo.
+
+This is an escaped \$reference, and here's \$another;.
+
+#parse "whatever.wm"

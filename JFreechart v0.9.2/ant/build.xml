@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+
+<project name="jfreechart" default="compile" basedir=".">
+<!-- Give user a chance to override without editing this file
+(and without typing -D each time it compiles it -->
+<property file="${user.home}/jfreechart.build.properties" />
+<property file="${user.home}/build.properties" />
+<property file="${basedir}/build.properties" />
+<property file="${basedir}/default.properties" />
+
+<!-- Build classpath -->
+<path id="classpath">
+<pathelement location="${build.classes}"/>
+<pathelement location="${batik.classpath}"/>
+<fileset dir="${jars.dir}">
+<include name="*.jar" />
+</fileset>
+</path>
+
+<path id="classpath.demo">
+<pathelement location="${build.demo.classes}"/>
+<pathelement location="${batik.classpath}"/>
+<fileset dir="${jars.dir}">
+<include name="*.jar" />
+</fileset>
+</path>
+
+<path id="classpath.junit">
+<pathelement location="${build.classes}"/>
+<pathelement location="${junit.classpath}"/>
+<pathelement location="${batik.classpath}"/>
+<fileset dir="${jars.dir}">
+<include name="*.jar" />
+</fileset>
+</path>
+
+<!-- ===================== Prepare Directories ========================= -->
+<target name="prepare">
+<!-- "Build" Hierarchy -->
+<mkdir dir="${build.dir}"/>
+<mkdir dir="${build.classes}"/>
+<mkdir dir="${build.demo.classes}"/>
+<mkdir dir="${build.junit.classes}"/>
+<mkdir dir="${build.javadocs}"/>
+
+<!-- "Dist" Hierarchy -->
+<mkdir dir="${dist.ant}"/>
+<mkdir dir="${dist.dir}"/>
+<mkdir dir="${dist.javadocs}"/>
+<mkdir dir="${dist.lib}"/>
+<mkdir dir="${dist.src}"/>
+</target>
+
+<!-- ======================== Compile Classes ========================== -->
+<target name="compile" depends="prepare">
+<javac srcdir="${src.dir}" destdir="${build.classes}"
+deprecation="${deprecation}" debug="${debug}"
+excludes="**/demo/**/*.java,**/junit/*.java">
+<classpath refid="classpath"/>
+</javac>
+<javac srcdir="${src.dir}/com/jrefinery/chart/demo"
+destdir="${build.demo.classes}"
+deprecation="${deprecation}" debug="${debug}">
+<classpath refid="classpath.demo"/>
+</javac>
+<javac srcdir="${src.dir}/com/jrefinery/chart/junit"
+destdir="${build.junit.classes}"
+deprecation="${deprecation}" debug="${debug}">
+<classpath refid="classpath.junit"/>
+</javac>
+</target>
+
+<!-- ======================== Build JavaDoc =========================== -->
+<target name="javadoc" depends="prepare">
+<javadoc packagenames="${javadoc.packages}"
+sourcepath="${src.dir}"
+destdir="${build.javadocs}"
+use="${javadocs.use}"
+windowtitle="${javadocs.windowtitle}"
+doctitle="${javadocs.doctitle}">
+<classpath refid="classpath"/>
+</javadoc>
+</target>
+
+<target name="jar" depends="compile">
+<jar jarfile="${build.dir}/${final.name}.jar"
+basedir="${build.classes}"
+excludes="**/*.java"/>
+<jar jarfile="${build.dir}/${final.name}-demo.jar"
+basedir="${build.demo.classes}"
+excludes="**/*.java"/>
+<jar jarfile="${build.dir}/${final.name}-tests.jar"
+basedir="${build.junit.classes}"
+excludes="**/*.java"/>
+</target>
+
+<!-- ===================== Distribution Files ========================= -->
+<target name="dist" depends="compile,jar,javadoc">
+<copy todir="${dist.javadocs}">
+<fileset dir="${build.javadocs}"/>
+</copy>
+<copy file="build.xml" tofile="${dist.ant}/build.xml"/>
+<copy todir="${dist.src}">
+<fileset dir="${src.dir}"/>
+</copy>
+</target>
+
+<!-- ====================== Clean Generated Files ===================== -->
+<target name="clean">
+<delete>
+<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+</delete>
+</target>
+
+<target name="full-clean">
+<delete dir="${build.dir}"/>
+<delete dir="${dist.dir}"/>
+<delete>
+<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+</delete>
+</target>
+
+<!-- ========================= All In One Build ======================= -->
+<target name="all" depends="clean,dist"/>
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<dataset>
+	<!-- Valid XML without DTD -->
+	<person identity="12245667">
+		<lastname>Phelan</lastname>
+		<firstname>Martin</firstname>
+		<middleinitial>T</middleinitial>
+		<address>123 Main Street</address>
+	</person>
+</dataset>

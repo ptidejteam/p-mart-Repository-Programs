@@ -1,0 +1,3 @@
+These unit tests refer to the RegExp functionality described in a *draft*
+version of the 2nd ed. of the ECMA spec.  RegExp did not get put into the
+spec until the 3rd ed., and they were put into section 15.10 *not* 15.7.

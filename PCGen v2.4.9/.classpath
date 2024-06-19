@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="test/|test/pcgen/|test/pcgen/core/|test/pcgen/gui/|test/pcgen/xml/" kind="src" path="java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/fop.jar"/>
+	<classpathentry kind="lib" path="lib/jep-2.24.jar"/>
+	<classpathentry kind="lib" path="lib/jformatter.jar"/>
+	<classpathentry kind="lib" path="lib/pcgen.jar"/>
+	<classpathentry kind="lib" path="lib/skinlf.jar"/>
+	<classpathentry kind="lib" path="lib/xalan.jar"/>
+	<classpathentry kind="lib" path="lib/xerces.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

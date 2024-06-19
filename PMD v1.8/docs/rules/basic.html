@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Basic Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+			    @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.org"></meta></head><body class="composite"><div id="banner"><a href="http://pmd.sourceforge.net/" id="organizationLogo"><img alt="Project Ultra*Log @ DARPA" src="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"></img></a><a href="http://pmd.sourceforge.net/" id="projectLogo"><img alt="PMD" src="../images/pmd_logo_small.jpg"></img></a><div class="clear"><hr></hr></div></div><div id="breadcrumbs"><div class="xright">
+        
+        <a href="http://sourceforge.net/projects/pmd">SourceForge.net Project Page</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://sourceforge.net">Hosted by SourceForge</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.ultralog.net/">Ultra*Log</a>
+      
+        
+          
+            <span class="separator">|</span>
+          
+        
+        <a href="http://www.darpa.mil/">DARPA</a>
+      </div><div class="clear"><hr></hr></div></div><div id="leftColumn"><div id="navcolumn"><div id="menuOverview"><h5>Overview</h5><ul><li class="none"><a href="../installing.html">Installation</a></li><li class="none"><a href="../running.html">Command line usage</a></li><li class="none"><a href="../ant-task.html">Ant task usage</a></li><li class="none"><a href="../integrations.html">IDE plugin usage</a></li><li class="none"><a href="../news.html">PMD in the press</a></li><li class="none"><a href="../bestpractices.html">Best practices</a></li><li class="none"><a href="../cpd.html">Finding copied and pasted code</a></li><li class="none"><a href="../similar-projects.html">Similar projects</a></li><li class="none"><a href="../credits.html">Credits</a></li><li class="none"><a href="../license.html">License</a></li><li class="none"><a href="../meaning.html">What does 'PMD' mean?</a></li></ul></div><div id="menuCustomizing_PMD"><h5>Customizing PMD</h5><ul><li class="none"><a href="../compiling.html">Compiling PMD</a></li><li class="none"><a href="../howtowritearule.html">How to write a rule</a></li><li class="none"><a href="../howtomakearuleset.html">How to make a rule set</a></li><li class="none"><a href="../howitworks.html">How it works</a></li></ul></div><div id="menuFor_example"><h5>For example</h5><ul><li class="none"><a href="../scoreboard.html">Run PMD on a Sourceforge project</a></li></ul></div><div id="menuRule_Sets"><h5>Rule Sets</h5><ul><li class="none"><strong><a href="../rules/basic.html">Basic</a></strong></li><li class="none"><a href="../rules/naming.html">Naming</a></li><li class="none"><a href="../rules/unusedcode.html">Unused Code</a></li><li class="none"><a href="../rules/design.html">Design</a></li><li class="none"><a href="../rules/imports.html">Import Statements</a></li><li class="none"><a href="../rules/junit.html">JUnit Tests</a></li><li class="none"><a href="../rules/strings.html">Strings</a></li><li class="none"><a href="../rules/braces.html">Braces</a></li><li class="none"><a href="../rules/codesize.html">Code Size</a></li><li class="none"><a href="../rules/javabeans.html">Javabeans</a></li><li class="none"><a href="../rules/finalizers.html">Finalizers</a></li><li class="none"><a href="../rules/coupling.html">Coupling</a></li><li class="none"><a href="../rules/strictexception.html">Strict Exceptions</a></li><li class="none"><a href="../rules/controversial.html">Controversial</a></li></ul></div><div id="menuProject_Documentation"><h5>Project Documentation</h5><ul><li class="none"><a href="../index.html">About PMD</a></li><li class="collapsed"><a href="../project-info.html">Project Info</a></li><li class="collapsed"><a href="../maven-reports.html">Project Reports</a></li><li class="none"><a href="http://maven.apache.org/development-process.html">Development Process</a></li></ul></div><a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy"><img alt="Built by Maven" src="../images/logos/maven-button-1.png"></img></a></div></div><div id="bodyColumn"><div class="contentBox"><div class="section"><h2><a name="Basic_Rules">Basic Rules</a></h2><p>
+The Basic Ruleset contains a collection of good practices which everyone should follow.
+  </p><div class="subsection"><h3><a name="EmptyCatchBlock">EmptyCatchBlock</a></h3><p>
+  Empty Catch Block finds instances where an exception is caught,
+  but nothing is done.  In most circumstances, this swallows an exception
+  which should either be acted on or reported.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //TryStatement
+    [@Catch='true']
+    [FormalParameter/Type/Name[@Image != 'InterruptedException']]
+    [FormalParameter/Type/Name[@Image != 'CloneNotSupportedException']]
+    /Block[position() &amp;gt; 1]
+    [count(*) = 0]
+    [../@Finally='false' or following-sibling::Block]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+    public void doSomething() {
+      try {
+        FileInputStream fis = new FileInputStream("/tmp/bugger");
+      } catch (IOException ioe) {
+          // not good
+      }
+    }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyIfStmt">EmptyIfStmt</a></h3><p>
+  Empty If Statement finds instances where a condition is checked but nothing is done about it.
+    </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+                    //IfStatement/Statement/Block[count(*) = 0]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+    if (absValue &amp;lt; 1) {
+       // not good
+    }
+  
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyWhileStmt">EmptyWhileStmt</a></h3><p>
+  Empty While Statement finds all instances where a while statement
+  does nothing.  If it is a timing loop, then you should use Thread.sleep() for it; if
+  it's a while loop that does a lot in the exit expression, rewrite it to make it clearer.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //WhileStatement/Statement/Block[count(*) = 0]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  while (a == b) {
+    // not good
+  }
+  
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyTryBlock">EmptyTryBlock</a></h3><p>
+  Avoid empty try blocks - what's the point?
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //TryStatement/Block[1][count(*) = 0]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  // this is bad
+  public void bar() {
+      try {
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyFinallyBlock">EmptyFinallyBlock</a></h3><p>
+  Avoid empty finally blocks - these can be deleted.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //TryStatement[@Finally='true']/Block[position() = last()]
+      [count(*) = 0]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  // this is bad
+  public void bar() {
+      try {
+          int x=2;
+      } finally {
+      }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptySwitchStatements">EmptySwitchStatements</a></h3><p>
+      Avoid empty switch statements.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //SwitchStatement[count(*) = 1]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+   public void bar() {
+    int x = 2;
+    switch (x) {
+     // once there was code here
+     // but it's been commented out or something
+    }
+   }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="JumbledIncrementer">JumbledIncrementer</a></h3><p>
+     Avoid jumbled loop incrementers - it's usually a mistake, and it's confusing even if it's what's intended.
+     </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                 
+//ForStatement
+ [
+  ForUpdate/StatementExpressionList/StatementExpression/PrimaryExpression/PrimaryPrefix/Name/@Image
+  =
+  ancestor::ForStatement/ForInit//VariableDeclaratorId/@Image
+ ]
+             </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+ 
+ public class JumbledIncrementerRule1 {
+  public void foo() {
+   for (int i = 0; i &amp;lt; 10; i++) {
+    for (int k = 0; k &amp;lt; 20; i++) {
+     System.out.println("Hello");
+    }
+   }
+  }
+ }
+     
+		</pre></div>
+  </div><div class="subsection"><h3><a name="ForLoopShouldBeWhileLoop">ForLoopShouldBeWhileLoop</a></h3><p>
+      Some for loops can be simplified to while loops - this makes them more concise.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                
+    //ForStatement[count(*) &amp;gt; 1][not(ForInit)][not(ForUpdate)]
+                
+            </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+      void bar() {
+          for (;true;) true; // No Init or Update part, may as well be: while (true)
+      }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="UnnecessaryConversionTemporaryRule">UnnecessaryConversionTemporaryRule</a></h3><p>
+      Avoid unnecessary temporaries when converting primitives to Strings
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+    public String convert(int x) {
+      // this wastes an object
+      String foo = new Integer(x).toString();
+      // this is better
+      return Integer.toString(x);
+    }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="OverrideBothEqualsAndHashcodeRule">OverrideBothEqualsAndHashcodeRule</a></h3><p>
+  Override both public boolean Object.equals(Object other), and public int Object.hashCode(), or override neither.  Even if you are inheriting a hashCode() from a parent class, consider implementing hashCode and explicitly delegating to your superclass.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+//ClassDeclaration//MethodDeclarator
+[(@Image = 'equals' and count(FormalParameters/*) = 1
+and not(//MethodDeclarator[count(FormalParameters/*) = 0][@Image = 'hashCode']))
+or
+(@Image='hashCode' and count(FormalParameters/*) = 0
+and
+not
+(//MethodDeclarator
+ [count(
+   FormalParameters//Type/Name
+    [@Image = 'Object' or @Image = 'java.lang.Object']) = 1]
+    [@Image = 'equals']))]      
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  // this is bad
+  public class Bar {
+      public boolean equals(Object o) {
+          // do some comparison
+      }
+  }
+
+  // and so is this
+  public class Baz {
+      public int hashCode() {
+          // return some hash value
+      }
+  }
+
+  // this is OK
+  public class Foo {
+      public boolean equals(Object other) {
+          // do some comparison
+      }
+      public int hashCode() {
+          // return some hash value
+      }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="DoubleCheckedLockingRule">DoubleCheckedLockingRule</a></h3><p>
+      Partially created objects can be returned by the Double Checked Locking pattern when used in Java.
+      An optimizing JRE may assign a reference to the baz variable before it creates the object the
+          reference is intended to point to.  For more details see http://www.javaworld.com/javaworld/jw-02-2001/jw-0209-double.html.
+      </p><p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  public class Foo {
+      Object baz;
+      Object bar() {
+        if(baz == null) { //baz may be non-null yet not fully created
+          synchronized(this){
+            if(baz == null){
+              baz = new Object();
+            }
+          }
+        }
+        return baz;
+      }
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="ReturnFromFinallyBlock">ReturnFromFinallyBlock</a></h3><p>
+  Avoid returning from a finally block - this can discard exceptions.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //TryStatement[@Finally='true']/Block[position() = last()]//ReturnStatement
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+public class Bar {
+ public String bugga() {
+  try {
+   throw new Exception( "My Exception" );
+  } catch (Exception e) {
+   throw e;
+  } finally {
+   return "A. O. K."; // Very bad.
+  }
+ }
+}
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptySynchronizedBlock">EmptySynchronizedBlock</a></h3><p>
+  Avoid empty synchronized blocks - they're useless.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+    //SynchronizedStatement/Block[1][count(*) = 0]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  // this is bad
+  public void bar() {
+      synchronized (this) {}
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="UnnecessaryReturn">UnnecessaryReturn</a></h3><p>
+  Avoid unnecessary return statements
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                  
+//ReturnStatement
+ [parent::Statement
+  [parent::BlockStatement
+   [parent::Block
+    [parent::MethodDeclaration/ResultType[@Void='true']
+    ]
+   ]
+  ]
+                  
+              </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+  // this is bad
+  public void bar() {
+      int x = 42;
+      return;
+  }
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyStaticInitializer">EmptyStaticInitializer</a></h3><p>
+       An empty static initializer was found.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+//ClassBodyDeclaration/Initializer[@Static='true']/Block[count(*)=0]
+
+                 </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+   
+ public class Foo {
+  // why are there no statements in this static block?
+  static {}
+ }
+   
+       
+		</pre></div>
+  </div><div class="subsection"><h3><a name="UnconditionalIfStatement">UnconditionalIfStatement</a></h3><p>
+      Do not use "if" statements that are always true or always false.
+      </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+                    
+//IfStatement/Expression
+ [count(PrimaryExpression)=1]
+ /PrimaryExpression/PrimaryPrefix/Literal/BooleanLiteral
+                    
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+  
+public class Foo {
+ public void close() {
+  if (true) {
+       // ...
+   }
+ }
+}
+  
+      
+		</pre></div>
+  </div><div class="subsection"><h3><a name="EmptyStatementNotInLoop">EmptyStatementNotInLoop</a></h3><p>
+       An empty statement (aka a semicolon by itself) that is not used
+       as the sole body of a for loop or while loop is probably a bug.  It
+       could also be a double semicolon, which is useless and should be
+       removed.
+       </p><p>This rule is defined by the following XPath expression:</p>
+    <div class="source"><pre>
+
+   //Statement/EmptyStatement[not(
+       ../../../ForStatement
+       or ../../../WhileStatement
+       or ../../../../../../ForStatement/Statement[1]
+        /Block[1]/BlockStatement[1]/Statement/EmptyStatement
+       or ../../../../../../WhileStatement/Statement[1]
+        /Block[1]/BlockStatement[1]/Statement/EmptyStatement)]
+
+                </pre></div>
+  <p>Here's an example of code that would trigger this rule:</p>
+    <div class="source"><pre>
+			
+
+public class MyClass {
+   public void doit()
+   {
+      // this is probably not what you meant to do
+      ;
+      // the extra semicolon here this is not necessary
+      System.out.println("look at the extra semicolon");;
+   }
+}
+ 
+       
+		</pre></div>
+  </div></div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2004, Project Ultra*Log @ DARPA</div><div class="clear"><hr></hr></div></div></body></html>

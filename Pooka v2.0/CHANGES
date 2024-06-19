@@ -1,0 +1,870 @@
+fixed displayfilters so they update on change rather than requiring a restart.
+
+fixed the About page so it lists more current values.
+
+080505 release
+--------------
+
+made it so cancelling out of a login no longer gives an error message.
+
+improved encryption support, particularly with associating keys with email addresses.
+
+added new header area to display panel.
+
+displayed an email in two panels: header panel and text panel
+
+better support of S/MIME and PGP
+
+updated the third-party libraries javamail-crypto*, bcmail and bcprov.
+
+fixed a bug in which, when a send failed, the message would get stuck in read-only mode.
+
+added a -r (or --root) option to start up pooka against a different root directory than the user's home directory.
+
+fixed first run wizard so that it actually runs.
+
+070709 release (2.0)
+--------------------
+
+moved to javamail 1.4, jdk 1.6.
+
+revamped Configuration UI; moved all main configuration properties to a single
+  Edit-Preferences dialog.
+
+switched default icon set to Linspire CrystalClear
+
+made it so switching icon set has an effect without a restart.
+
+Pooka now uses system browser by default for URLs.
+
+added unread message count to folder node.
+
+added htmlparser library to handle replies to html-only email.
+
+updated TrayIcon settings; we now get a nicer dialog for opening new 
+messages.
+
+made the remove-self-from-reply-all code case-insensitive.
+
+opening a message by keypress was incorrectly happening on the AwtEventThread.
+
+fixed up error display messages.
+
+removed ability to connect to self-signed SSL providers due to incompatibility
+with WebStart.  this may be restored in the future.
+
+folder tables now save their width settings.
+
+sending a message now sets the new message window to disable until the
+send is completed.
+
+060227 release
+--------------
+
+in the folder file chooser, double-clicking on a folder that holds only
+messages (no other folders) now selects the folder, rather than opening it.
+
+fixed a bug with subscribing to subfolders of stores where the subfolder 
+would get the subscription, but the sub-subfolder wouldn't.
+
+you can now subscribe to multiple folders at once.
+
+added a new icon set, and added in an IconManager to allow for changeable
+icon sets.  set IconManager._default=IconSet.crystalclear to see the new
+icon set.  this will most likely be the default iconset for release 2.0
+
+fixed a javamail-crypto bug in which missing classes can cause 
+getEncryptionUtils() to throw an uncaught error.
+
+messages from sent folders should show up properly in search folders now.
+also, empty values should now show up as blank rather than as 'loading...'.
+
+changed the select-first-unread code so that it handles cases where the
+server returns a bogus unread count.
+
+changed the default font under windows to something a bit more readable.
+
+if autoCache is set, you now connect to the folder and show the messages
+before you start to download the messages to cache them.
+
+added a way to save all the attachments on a message at once.
+
+C+W now closes internal frame windows.
+
+if you have multiple folder windows opeening on startup, only the first
+one is selected by default now, so that you don't have your keyboard focus
+changing on you.
+
+middle clicking folder and message internalframes now deselects them
+and moves them to the back.
+
+carriage returns in subjects are now replaced with spaces.
+
+051031 release
+--------------
+
+fixed a bug where the 3rd field was always opening an attachment menu even
+if there were no attachments.
+
+fixed save as draft so it actually works now.
+
+cleaned up the save as draft/resume draft ui a bit.
+
+login authenticator now has password field selected by default.
+
+fixed a bug where pooka would take a long time to startup when the loopback
+address wasn't available.
+
+addresses added from the address book are now added as email addresses 
+rather than aliases.
+
+status messages now disappear after 30 seconds.
+
+synchronized the MailFileSystemView access so its access shouldn't conflict
+with any normal Pooka operations.
+
+default server not having an outbox should no longer throw a NPE.
+
+closing a disconnected imap store no longer results in 'please reopen' 
+messages.
+
+made status area at bottom smaller.
+
+added a system tray icon for Pooka (currenly disabled by default; still
+experimental).
+
+050505 release
+--------------
+
+added -open and --from options to startup.  this allows you to invoke Pooka 
+to only send a new message, rather than starting up the entire client.
+
+added a network listener so that, by default, if you try to start up two
+Pooka clients from the same Pookarc you instead will just bring the first
+one to the foreground.  this also allows an external invocation to contact
+a running client to have it open a new message.
+
+trying to sort a MessageTable before all the messages are loaded no longer
+results in a gui hang.
+
+we now show a status while closing stores on exit.
+
+fixed a bug where replying to a message in a detached window could result
+in the wrong profile being selected by default.
+
+changed the order of saves so that if the save to sent folder fails for
+a new message, the message window doesn't disappear until after the
+error clears.
+
+050329 release
+--------------
+
+optimized large deletes of messages on imap so it doesn't poll the store
+for each message removed.
+
+fixed a bug where offline changes might not get caught after reconnection
+to imap store.
+
+fixed OutOfMemoryError when trying to subscribe to folders in jdk 1.5.
+
+fixed focus with jdk1.5 and closing internal frames bug.
+
+added some support for the jdk 1.5 Ocean theme.
+
+modified date display to use dd/MM/yy for non-US English.
+
+fixed a few situations in which the mail store could be accessed on the
+AWTEventThread.
+
+moved shutdown off of the AWTEvent thread.  also moved the shutdown action
+to a higher priority.
+
+modified ExternalLauncher so that it shows a download dialog and a cancel
+button.
+
+fixed AttachmentPane.openAction from showing dialog on store thread instead
+of AWTEventThread.  Also changed the file chooser on the Attachment save
+dialog to be on the AWTEventThread.
+
+made it so the FolderTracker's actions run at a lower priority.  also fixed
+the tracking function so that it calculates the next update time after the
+first one has finished, rather than before.
+
+fixed a display bug in which a line that was the exact length of the display
+field then followed by a newline would add in an extra, unnecessary newline.
+
+fixed a bug in the ListEditor where values that hadn't changed were reported
+as having changed.
+
+modified the connection checks on folder closes so it should be more efficient.
+
+fixed the mail check time so you can actually set the update time through
+the ui.
+
+fixed a NPE if you bounce a message.
+
+changed the error display so that we now have a button to show the
+stack trace.
+
+made the text in the SendFailedDialog non-editable.
+
+modified trusted SSL certs code so that we remember to trust the certificate
+even if there is no local cert file backing it up.
+
+modified the smtp tls code to comply with javamail 1.3.2.
+
+upgraded to JavaMail 1.3.2.
+
+added some support for jdk 1.4 logging framework, including a way to
+configure more granulated log settings.
+
+changed NewAccountPooka so that you can accept server values that the
+machine can't connect to at the moment.
+
+040914 release
+--------------
+
+added limited support for drag and drop.
+
+added a way to specify caching scheme per folder, so we can avoid autocaching
+of messages in spam and/or sent folders.
+
+added a splashscreen on startup.
+
+optimized the loading of new messages a bit so that we only do one fetch.
+
+messages without CC or BCC entries no longer send a blank cc or bcc line
+in the headers.
+
+fixed autocaching support.  made it so we also show a status while downloading
+lots of new messages.
+
+fixed expunging on backend filteres.
+
+changed the Cached search so that you can now make a custom display filter
+for cached and uncached messages.
+
+fixed a NPE in deleting multiple messages from a search window.
+
+changed the theme selection menu so that we should see all of (and only) the
+available look and feels.
+
+040615 release
+--------------
+disconnection events now test the entire store to see if the connection
+has gone down.
+
+left and right arrows on read message pane now just scrolls left and right.
+
+fixed FilterEditor so that the correct filter is shown. 
+
+messages are now only saved to the sent folder after the send succeeds.
+
+fixed DeleteFilter so it doesn't throw an error on configuration.
+
+fixed forward with attachments so that it no longer tries to treat the 
+first attachment as the content of the message.
+
+smtp authentication no longer requires you to enter a password every time.
+
+applying folder filters to a set of messages now shows a status dialog.
+
+unsuccessful open attachment commands now show an error.
+
+right-clicking on the Attachment icon now brings up a menu to open, save
+(shift-rightclick), or open with (control-rightclick) the attachment.
+
+optimized loading/displaying of new messages in disconnected imap mode.
+
+fixed opening attachments from preview panel.
+
+added a fastDelete option (enabled by default) which auto-selects the next
+message when a delete is requested, instead of waiting for the delete to
+complete.
+
+040327 release
+--------------
+
+added a configurable spam button.
+
+added a button for using custom headers on an outgoing mail message.
+
+updated printing to use the new jdk 1.4 printing system.  also made 
+printing, err, work correctly now.
+
+fixed notifyNewMessagesMain and Node so that they actually work.
+
+running with maildir support (including POP3 with a maildir backend), you
+no longer get excess ...subFolder directories on WinXP.
+
+made a way to reconnect to a folder after it's been disconnected, other than
+closing and reopening the entire store.
+
+fixed a bug where deleted messages weren't being removed from the folder table
+after reconnecting under disconnected imap.
+
+fixed a bug in which, when switching from desktop mode to preview mode
+with autopreview off, you could end up opening a new window with the enter 
+key instead of just showing the message in the preview pane.
+
+fixed a minor bug in which clearing a preview-pane mode message with a 
+custom theme would result in the message flashing for a moment with a 
+default font.
+
+fixed a bug where, in preview pane mode, messages with attachments wouldn't
+get their themes set correctly.
+
+made it so selecting or scrolling in a messagepanel will remove the
+new message icon.
+
+fixed a bug in configuration where a new user without an explicit SMTP
+server set would end up causing NPE's when it tried to send a message.
+
+optimized IMAP folder loading so that we initially fetch the SEEN flag,
+and then pre-fetch the messages we'll actually display (by loading around
+the getFirstUnreadMessage() value)
+
+fixed editor display of boolean properties in Folder editor.
+
+worked around a sun bug in jdk1.4 which would result in the 
+FolderSelectorPane being empty the first time it was brought up.
+
+added Bounce Message command, plus a BounceMessage filter.
+
+modified the sendMessageList of the NewMessageInfo to use a sendMessageMap
+instead.
+
+changed the default action of the FolderSelectorPane to be only subscribed
+folders.  this also fixes an exception you could get when trying to edit
+filters while disconnected from an IMAP server.
+
+040128 release
+--------------
+
+added support for S/MIME and OpenPGP encryption.
+
+fixed a bug in which the new message notification didn't appear immediately
+on the FolderNode.
+
+fixed a case where hitting 'send' twice could end up sending two copies
+of the message.
+
+fixed toolbar button margins in jdk 1.4.2.
+
+modified the attachment filechooser to select for multiple files, now that
+that's supported in swing.
+
+added status messages while sending new messages.  this is to make sure that
+users always know what the status of their outgoing messages is.
+
+moved much of the send message code from the AWTEventThread to the 
+OutgoingMailServer thread.
+
+up and down arrows on ReadMessageWindows now scroll the ScrollPane.  
+
+fixed the handling of incorrectly-formed multipart/alternative messages so 
+that we display the content.
+
+changed the default UserProfile handling so that if a message doesn't have 
+a default UserProfile set, we use the default instead of returning null.
+
+modified the resizing code for message tables so that we now just resize
+the next column.
+
+changed the display for some error message so that there's acutally a 
+space between the message and the error code.
+
+fixed a bug in which some message contents wouldn't should up in raw mode.
+
+modified Attachment handing some so that we should now handle misconfigured
+emails a little bit better.
+
+no longer have to restart for change in IMAP synch with subscribed folders
+setting.
+
+added support for IMAP shared folders. -- tentative on javamail fix.
+
+fixed the StoreInfo so that we now properly use the custom port for
+IMAP/SSL.
+
+fixed the FullMailcapCommandMap so that we support custom DataContentHandlers
+now.
+
+fixed a bug in the Attachment handling where an incorrectly-formed encoding
+would lead to a NullPointerException.
+
+modified the loading of table display infos so that we now don't fail 
+totally if a particular field gets an exception.
+
+added a search/filter for arbitrary message headers.
+
+if a folder becomes disconnected, we now pre-emptively check the store to
+see if it's connected.
+
+030613 release
+--------------
+fixed a bug where reopening a pop folder could result in a StackOverflowError.
+
+fixed a bug in the new acount configuration (and AddressBookManager) that 
+resulted in being unable to send mail or edit the AddressBook on the first 
+startup.
+
+fixed some more cache synchronization bugs in disconnected mode.
+
+backend filters are now run on all new messages, not just messages that
+are added while connected.
+
+030530 release
+--------------
+
+fixed a few cache synchronization bugs in disconnected mode.
+
+we now show from addresses even if they aren't correctly formatted.
+
+fixed a bug where cached messages wouldn't show incorrectly identified
+'7-bit' encoded messages.
+
+disconnected imap now caches message flags correctly.
+
+added a hack way to override errors like a MissingStartBoundary.
+
+keybindings now work in preview pane mode with the preview panel selected.
+
+fixed a deadlock in FolderInfo.copyMessages().
+
+made opening folders in the background the default.
+
+removed the old code that messed with the scroll move during internal pane
+moves.  should be all ok under jdk 1.4.
+
+fixed a bug where unsubscribing to the last subfolder of a folder doesn't
+work.
+
+modified the MessageProxy class so that we don't create lots and lots of
+unnecessary actions.
+
+fixed a couple of memory leaks
+
+the outbox folder now gets the correct toolbar in preview pane mode.
+
+switched pop local store from mbox to maildir.
+
+for internal frames, focus now goes to the correct component instead of to
+the toolbar.
+
+030329 release
+--------------
+
+folder windows now remember both their last location and their last size
+
+changed the order of disconnection for Stores.  this may eliminate some errors
+we were seeing while switching to disconnected mode.
+
+fixed a bug where unsubscribing to the current folder in preview pane mode
+would cause a NPE the next time a folder was selected.
+
+Added a way to delete a folder.
+
+Pooka now remembers its location on screen when restarting.
+
+fixed a problem in Preview mode in which the folder toolbar wouldn't get
+activated on startup.
+
+optimized the caching system somewhat so that we're not writing files over
+and over agian to the filesystem.  this may also fix a problem where a
+message could be cached as blank if the connection to the store broke at
+just the right time.
+
+attachment file choosers now remember your last directory, instead of always
+starting in your home directory.
+
+messages in Sent folders are no longer shown as new.
+
+fixed theme support in preview pane mode.
+
+changed the way we load the sun ssl class so that pooka will work on 
+ibm's jdk 1.4.
+
+made it so you get a warning message if you try to start with an unsupported
+JDK.
+
+add a find in page feature for Read Messages.
+
+fixed a problem with the focus not always returning to the correct component.
+
+030115 release
+--------------
+
+fixed lots of other problems in jdk 1.4, including incorrect sizing of some
+of the configuration dialogs, some times when focus wouldn't follow back from
+a deleted message, and....  some other stuff.  don't remember it all.
+
+fixed SSL on jdk 1.4
+
+----- branched for 1.1/2.0 release. -----
+
+fixed a bug where part of the error message was getting shown twice.
+
+made it so the INBOX is required for imap servers.  with luck this will work
+around a problem in which the inbox sometimes doesn't show up for imap 
+stores.
+
+temporary files for attachments now have the attachment's extension.  
+
+fixed a bug where the copy button on messages wasn't getting enabled.
+
+made it so imap connections time out more quickly.
+
+fixed the build information so that we now include the kunststoff files.
+
+modified the toolbars and the images some.
+
+added an easier interface for adding new folders.
+
+fixed a bug where multipart/alternative messages with additional attachments
+weren't getting parsed properly.
+
+added a way to view emails either with full headers or as raw rfc822
+streams.
+
+added (limited) online help.
+
+fixed a NPE that could happen if you tried to delete a message that was in
+the process of getting deleted.
+
+020918 release
+--------------
+
+removed a lot of unused image files.  this should make the download at least
+a bit smaller.
+
+fixed the AddressBookEditor so that newly created AddressBooks are 
+editable.  you still have to hit 'apply' first to create the address book,
+though.
+
+made it so the outbox and sent folder are both properly configured when
+you start up the first time.  otherwise, though, they still require a 
+restart for changes to be made.  this fix only applies to the first time
+you start.
+
+added a default domain setting, so that if you enter in an email address 
+without a domain, then the default domain is appended.  if no default domain
+is set, then the domain of the user is appended.
+
+fixed an error where incomplete matches to address book entries would return
+as if they were complete matches.
+
+fixed an error with subscribing to deeply nested subfolders.
+
+made it so the address entry windows actually show up in desktop mode.
+
+bringing up folders in disconnected mode shows the correct number of
+read and unread messages again.
+
+fixed the display of the folders in the folder tree.
+
+made it so new external frames don't end up all going at 0,0.
+
+fixed a possible NPE in the MessageProxy if a message has an incorrectly
+formatted header.
+
+fixed a bug where an address without a personal name couldn't be added to
+the address book.
+
+added a button for actually using the address list to pull in addresses
+to the to:, cc:, and bcc: fields.
+
+changed the message display code so that searches work a bit better with
+items in a sent folder.
+
+fixed a possible deadlock in manipulating messages that are the results
+of a search.
+
+added a search in progress dialog so that you can see that something's
+happening while waiting for search results.
+
+added an attachment icon to the main folder/message table.
+
+020810 release
+--------------
+
+NOTE:  i modified the local mail store (mbox) configuration a bit.  if you're
+using any local mail folders, you may need to change the Mail Directory and
+Inbox File settings.  your inbox is specified by Inbox File; subfolders are
+stored in Mail Directory/folders.
+
+pooka can now exit even if all the open stores aren't available.
+
+made it so we don't do unnecessary redraws on the folder panel every time
+a message changes or is loaded.
+
+removed several excess communications with the mail store.
+
+added a disconnected icon so that it looks different if you're browsing
+messages in connected vs. disconnected imap.
+
+added an icon for the root node in the folder tree.
+
+updated the NewAccountPooka so that you can set a better variety of choices
+during setup.
+
+added ssl support for pop3 folders.
+
+added Add buttons to many of the list choices in the configuration editors.
+makes it a lot easier to add all of the items that you want in the correct
+order.
+
+made the VariableEditorPane change within the editor instead of 
+popping up a new window.
+
+made it so by default the ssl seeding is done with /dev/urandom instead of
+using the very very slow seeding that SecureRandom uses.  this speeds
+up initial ssl connections by a huge factor.
+
+020703 release
+--------------
+
+fixed a bug which prevented you from deleting a message from a 
+disconnected folder.
+
+in preview pane mode, when you open up a folder, the keyboard focus now
+shifts to the message table.
+
+added a progress dialog to caching multiple messages during disconnected
+operation.  
+
+changed the sorting method on the message tables.  now clicking a column
+a second time will reverse the sort on that column.  doing a shift+click
+will still explicitly do a reverse sort.
+
+added an option to preview pane mode in which we don't auto-preview
+the selected message.  hitting space or enter now previews the messages.
+also added an option not to automatically select the first unread message.
+these options are useful for situations in which a person doesn't want a
+new message read automatically on folder load.
+
+added keybindings for lots of stuff, including searches, printing, selecting
+the next unread message, etc.  added a page showing the keybindings, 
+available through the help menu or by pressing Alt-K.
+
+fixed the keybindings on top-level message frames.  those should work now.
+
+selecting a NewMessageWindow now selects either the to: field, the subject:
+field, or the text body, depending on which ones are filled out.
+
+changed the display algorithm so that several messages are loaded
+before the folder window itself is shown.
+
+made it so exiting pooka before all the messages are loaded doesn't result
+in a bunch of exceptions.
+
+improved the startup time, so that open folders show up more quickly.
+
+fixed the popup menu on the attachment pane so that it shows up in the
+right place (and isn't selected by default when you right click and 
+release).  fixed a similar problem with the nodes in the Folder Tree.
+
+fixed the keybindings in preview pane mode.
+
+020429 release
+--------------
+
+fixed a NPE that could happen when switching from preview pane mode to
+desktop pane mode.
+
+fixed some minor bugs involving detaching windows.
+
+fixed the theme support so that the default theme is actually used for
+just about everything.
+
+fixed a bug where finding the first unread message was done on the 
+awt event thread instead of the FolderThread.
+
+fixed pooka so that the default image and text viewers that come with
+javamail will actually work when you double click on an attachment.
+
+preview pane mode now gives a resonable size for the message table.
+
+nested subfolders were not being cached when in disconnected imap mode.
+
+fixed a bug where responding or forwarding a message with a null subject
+would result in a NullPointerException
+
+fixed a bug where multiple messages could not be copied between folders
+
+changed the load message tracker to synchronize on the folder thread.
+
+fixed a problem where a second request for an invalid message would
+result in an empty window.
+
+fixed the status messages so that they should be cleared properly.
+
+fixed disconnected imap autocaching. 
+
+caching messages when using disconnected imap no longer marks the messages
+as read.
+
+made some implementation changes to the way that disconnected imap folders
+are loaded.  this should result in a fairly substantial performace increase
+for large folders.
+
+moved saving emails to a sent folder from the AWTEvent thread to the 
+appropriate FolderThread.
+
+fixed the CachingFolderInfo to work with the new display system.
+
+020322 release
+--------------
+
+made it so replying to or forwarding messages with only html content results
+in the inclusion of the html code.  best i can do for now.
+
+fixed a bug in the search window display in which read messages were included
+in the unread message count.
+
+switched the popup menus from checking to see if the event is a right
+click to actually checking the isPopupTrigger() method.
+
+changed the new message icon, the folder->Update title to folder->Get
+New Messages, and put a new Get New Messages icon on the FolderDisplay.
+
+some properties of the UserProfile, such as the selected sent folder and
+the selected mail server, used to require a restart to change them.  they
+now change without a restart.
+
+changed the selection of things like the sent folder, trash folder, etc.,
+to use only already subscribed folders.
+
+made it so doing an open action on the folder node actually makes sure
+that the Folder is in an OPEN state.
+
+changed the display of newly received messages.  now if you try to display
+messages before they're loaded, instead of loading the messages on the
+AWT thread, you just show 'loading' for each frame.  when the table info
+is loaded, the FolderDisplay gets updated with the new values.
+
+made it so that the ReadMessageDisplay only populates one JEditorPane,
+instead of 2 like it used to.
+
+made it so that the main Pooka window shouldn't change size between 
+starts as often.
+
+changed the window place while in desktop pane mode.  new windows are now
+not always places in the top left corner of the desktop.
+
+020304 release
+--------------
+
+fixed a bug in the VariableBundle which made it so backslashes weren't
+handled properly.  this caused file selection under windows to fail 
+horribly.
+
+added support for dynamically switching between LookAndFeels.
+
+clicking Ok on a property editor now saves the current properties to disk.
+this means that you no longer have to exit out of pooka cleanly in order to
+have your changes save.
+
+fixed an ArrayIndexOutOfBoundsException if you right-clicked on an entry
+in the AttachmentPane that wasn't selected.
+
+fixed a bug where the ExternalLauncher wasn't executing correctly if there
+was no wrapper specified.  this resulted in the inability to open attachments
+on windows.
+
+fixed a bug where the StoreNode and FolderNode were each updating their
+gui components on the mail thread, rather than on the swint eventdispatcher
+thread.
+
+added a new default mailcap file, either '.pooka_mailcap' or 
+'pooka_mailcap.txt'.  set it up so this file is the one written to by
+default.  also reset the 'make command default' so that it actually works
+properly.
+
+added more spacing between the headers and the message on html messages.
+
+added an icon for Pooka, and made it change icons when new messages come in.
+	BUG:    the Pooka icon doesn't look great when it's made very small,
+		and the new message icon is just perfunctory.  should get
+		new ones.
+
+improved the startup time for Multi Editor panes.
+
+added support for custom colors and components for most (if not all) 
+components.
+
+added a Color selector and a Font selector.
+
+made file->exit check for unsent messages and offer you a chance to send
+them.  (BUG:  doesn't work properly under jdk1.2)
+
+added saving messages as drafts (BUG:  doesn't work properly under jdk1.2)
+
+Outbox no longer throws a NPE if the Outbox is not yet open.
+
+added support for specifying SMTP port number (dan)
+
+folder menu now uses submenus to display folders instead of one huge menu (dan)
+
+added selectAll support for read messages, new messages, and the FolderTable.
+
+added undo/redo support for the new message editor
+
+added a File Selector for Configuration properties that take files.
+
+
+011226 release
+--------------
+
+fixed a bug where two copies of a message could get added to the folder
+list.
+
+changed the system that synchronized with the IMAP subscribed folders so 
+that it always considers INBOX subscribed.
+
+changed the HTML display method so that, if any errors happen, it shows
+the html as text, instead.
+
+modified the New Account creation on startup to use the new Connection /
+OutgoingMailServer system.
+
+fixed the Search date formater to be MM/dd/yyyy instead of MM/hh/yyyy.
+
+fixed a problem with synchronizing with subscribed IMAP folders--subfolders
+weren't being synchronized properly.
+
+made the property editor windows resizable under the desktoppropertyeditor.
+
+changed the SSL server support so that we now can connect using a self-signed
+certificate chain.
+
+fixed a bug in UIDFolderInfo which made it so you couldn't append 
+non-UIDMimeMessages.
+
+modified the fetch() functionality of the FolderInfos so that we only 
+fetch Pooka.fetchBatchSize messages at a time.  this should reduce the amout
+of time it takes to display large folders at startup.
+
+changed the SMTP server support so that we now have a separate SMTP server
+object, instead of having the servers configured in the UserProfile.
+
+2001 november 05 release
+------------------------
+
+fixed new message check algorithm for pop3 folders where old messages are
+left on the server.
+
+support added for pre and post connection commands for mailboxes (pilone)
+
+added the ability to synchronize with the IMAP subscribed folders list.
+
+added limited address book support using Vcards.
+
+added support for reading RFC 2047 encoded headers
+
+fixed bug where an outgoing message window could be closed even if the
+send failed.
+
+fixed sorting of subject lines and from addresses
+
+

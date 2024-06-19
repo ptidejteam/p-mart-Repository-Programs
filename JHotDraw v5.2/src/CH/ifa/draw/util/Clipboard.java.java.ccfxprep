@@ -1,0 +1,15 @@
+e.8.eb	+0	(def_block
+e.8.eb	+5	r_class
+e.e.f1	+9	id|Clipboard
+e.18.fb	+1	(brace
+1a.d.1e4	+0	(def_block
+1a.d.1e4	+9	id|Clipboard
+1a.16.1ed	+0	c_func
+1a.16.1ed	+1	(paren
+1a.17.1ee	+1	)paren
+1a.19.1f0	+1	(brace
+1b.5.1f7	+1	)brace
+1b.6.1f8	+0	)def_block
+2a.1.315	+1	)brace
+2a.2.316	+0	)def_block
+2b.1.318	+0	eof

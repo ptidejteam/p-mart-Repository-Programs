@@ -1,0 +1,46 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+9.2 ToBoolean
+Boolean() = false PASSED!
+Boolean(var x) = false PASSED!
+Boolean(void 0) = false PASSED!
+Boolean(null) = false PASSED!
+Boolean(false) = false PASSED!
+Boolean(true) = true PASSED!
+Boolean(0) = false PASSED!
+Boolean(-0) = false PASSED!
+Boolean(NaN) = false PASSED!
+Boolean('') = false PASSED!
+Boolean(Infinity) = true PASSED!
+Boolean(-Infinity) = true PASSED!
+Boolean(Math.PI) = true PASSED!
+Boolean(1) = true PASSED!
+Boolean(-1) = true PASSED!
+Boolean([tab]) = true PASSED!
+Boolean('0') = true PASSED!
+Boolean('string') = true PASSED!
+Boolean(new String() ) = true PASSED!
+Boolean(new String('') ) = true PASSED!
+Boolean(new Boolean(true)) = true PASSED!
+Boolean(new Boolean(false)) = true PASSED!
+Boolean(new Boolean() ) = true PASSED!
+Boolean(new Array()) = true PASSED!
+Boolean(new Number()) = true PASSED!
+Boolean(new Number(-0)) = true PASSED!
+Boolean(new Number(0)) = true PASSED!
+Boolean(new Number(NaN)) = true PASSED!
+Boolean(new Number(-1)) = true PASSED!
+Boolean(new Number(Infinity)) = true PASSED!
+Boolean(new Number(-Infinity)) = true PASSED!
+Boolean(new Object()) = true PASSED!
+Boolean(new Function()) = true PASSED!
+Boolean(new Date()) = true PASSED!
+Boolean(new Date(0)) = true PASSED!
+Boolean(Math) = true PASSED!
+NaN ? true : false = false PASSED!
+1000 % 0 ? true : false = false PASSED!
+(function(a,b){ return a % b ? true : false })(1000, 0) = false PASSED!
+(function(x) { return !(x) })(0/0) = true PASSED!
+!(0/0) = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.2.compiled.arff] ...

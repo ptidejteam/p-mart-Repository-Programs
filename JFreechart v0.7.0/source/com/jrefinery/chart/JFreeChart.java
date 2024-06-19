@@ -1,0 +1,593 @@
+/* =======================================
+ * JFreeChart : a Java Chart Class Library
+ * =======================================
+ *
+ * Project Info:  http://www.jrefinery.com/jfreechart;
+ * Project Lead:  David Gilbert (david.gilbert@jrefinery.com);
+ *
+ * (C) Copyright 2000, 2001 Simba Management Limited and Contributors.
+ *
+ * This library is free software; you can redistribute it and/or modify it under the terms
+ * of the GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with this
+ * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * ---------------
+ * JFreeChart.java
+ * ---------------
+ * (C) Copyright 2000, 2001 Simba Management Limited and Contributors.
+ *
+ * Original Author:  David Gilbert (for Simba Management Limited);
+ * Contributor(s):   Andrzej Porebski;
+ *                   David Li;
+ *                   Wolfgang Irler;
+ *
+ * $Id: JFreeChart.java,v 1.1 2007/10/10 18:54:39 vauchers Exp $
+ *
+ * Changes (from 20-Jun-2001)
+ * --------------------------
+ * 20-Jun-2001 : Modifications submitted by Andrzej Porebski for legend placement;
+ * 21-Jun-2001 : Removed JFreeChart parameter from Plot constructors (DG);
+ * 22-Jun-2001 : Multiple titles added (original code by David Berry, with reworkings by DG);
+ * 18-Sep-2001 : Updated e-mail address (DG);
+ * 15-Oct-2001 : Moved data source classes into new package com.jrefinery.data.* (DG);
+ * 18-Oct-2001 : New factory method for creating VerticalXYBarChart (DG);
+ * 19-Oct-2001 : Moved series paint and stroke methods to the Plot class (DG);
+ *               Moved static chart creation methods to new ChartFactory class (DG);
+ * 22-Oct-2001 : Renamed DataSource.java --> Dataset.java etc. (DG);
+ *               Fixed bug where chart isn't registered with the dataset (DG);
+ * 07-Nov-2001 : Fixed bug where null title in constructor causes exception (DG);
+ *               Tidied up event notification code (DG);
+ * 17-Nov-2001 : Added getLegendItemCount() method (DG);
+ * 21-Nov-2001 : Set clipping in draw method to ensure that nothing gets drawn outside the chart
+ *               area (DG);
+ * 11-Dec-2001 : Added the createBufferedImage(...) method, taken from the JFreeChartServletDemo
+ *               class (DG);
+ */
+
+package com.jrefinery.chart;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.*;
+import java.awt.image.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+import com.jrefinery.chart.event.*;
+import com.jrefinery.data.*;
+
+/**
+ * A chart class implemented using the Java 2D APIs.  The current version supports bar charts,
+ * line charts, pie charts and xy plots (including time series data).
+ * <P>
+ * JFreeChart coordinates several objects to achieve its aim of being able to draw a chart
+ * on a Java 2D graphics device: a Title, a Legend, a Plot and a Dataset (the Plot in turn
+ * manages a horizontal axis and a vertical axis).
+ * <P>
+ * You should use JFreeChartPanel to display a chart in a GUI.
+ * <P>
+ * The ChartFactory class contains static methods for creating 'ready-made' charts.
+ * @see JFreeChartPanel
+ * @see ChartFactory
+ * @see Title
+ * @see Legend
+ * @see Plot
+ * @see DataSource
+ */
+public class JFreeChart implements DatasetChangeListener,
+                                   TitleChangeListener,
+                                   LegendChangeListener,
+                                   PlotChangeListener {
+
+    /** The version number. */
+    public static final String VERSION = "0.7.0";
+
+    /** The default font for titles. */
+    public static Font DEFAULT_TITLE_FONT = new Font("SansSerif", Font.BOLD, 18);
+
+    /** The default background color. */
+    public static Color DEFAULT_BACKGROUND_COLOR = Color.lightGray;
+
+    /** The chart title(s). */
+    protected java.util.List titles;
+
+    /** The chart legend. */
+    protected Legend legend;
+
+    /** The source of the data to be displayed in the chart. */
+    protected Dataset data;
+
+    /** Draws the visual representation of the data. */
+    protected Plot plot;
+
+    /** Flag that determines whether or not the chart is drawn with anti-aliasing. */
+    protected boolean antialias;
+
+    /** Paint used to draw the background of the chart. */
+    protected Paint chartBackgroundPaint;
+
+    /** Storage for registered change listeners. */
+    protected java.util.List listeners;
+
+    /**
+     * Constructs a chart.
+     * <P>
+     * Note that the ChartFactory class contains static methods that will return a ready-made chart.
+     * @param data The data to be represented in the chart.
+     * @param plot Controller of the visual representation of the data.
+     */
+    public JFreeChart(Dataset data, Plot plot) {
+
+        this(data, plot, null, null, false);
+
+    }
+
+    /**
+     * Constructs a chart.
+     * <P>
+     * Note that the ChartFactory class contains static methods that will return a ready-made chart.
+     * @param data The data to be represented in the chart.
+     * @param plot Controller of the visual representation of the data.
+     * @param title The main chart title.
+     * @param font The font for displaying the chart title.
+     * @param createLegend Flag indicating whether or not a legend should be created for the chart.
+     */
+    public JFreeChart(Dataset data, Plot plot, String title, Font font, boolean createLegend) {
+
+        // create storage for listeners...
+	listeners = new ArrayList();
+
+	// set the data and register to receive change notifications...
+        this.data = data;
+        if (data!=null) {
+            data.addChangeListener(this);
+        }
+
+	this.plot = plot;
+	plot.setChart(this);
+
+	// the chart listens for changes in the plot...
+	plot.addChangeListener(this);
+
+	// ...and vice versa...
+	this.addChangeListener(plot);
+
+        titles = new ArrayList();
+
+        // create a legend, if requested...
+        if (createLegend) {
+	    this.legend = Legend.createInstance(this);
+	    this.legend.addChangeListener(this);
+        }
+
+	this.antialias = true;
+	this.chartBackgroundPaint = DEFAULT_BACKGROUND_COLOR;
+
+        // add the chart title, if one has been specified...
+        if (title!=null) {
+            if (font==null) {
+                font = DEFAULT_TITLE_FONT;
+            }
+            TextTitle textTitle = new TextTitle(title, font);
+            textTitle.addChangeListener(this);
+            titles.add(textTitle);
+        }
+
+    }
+
+    /**
+     * Returns a reference to the list of titles.
+     * @return A reference to the list of titles.
+     */
+    public java.util.List getTitles() {
+        return this.titles;
+    }
+
+    /**
+     * Sets the title list for the chart (completely replaces any existing titles).
+     * @param titles The new list of titles.
+     */
+    public void setTitles(java.util.List titles) {
+        this.titles = titles;
+        fireChartChanged();
+    }
+
+    /**
+     * Returns the number of titles for the chart.
+     * @return The number of titles for the chart.
+     */
+    public int getTitleCount() {
+        return this.titles.size();
+    }
+
+    /**
+     * Returns a chart title.
+     * @param The index of the chart title (zero based).
+     * @return A chart title.
+     */
+    public AbstractTitle getTitle(int index) {
+
+        // check arguments...
+        if ((index<0) || (index==this.getTitleCount())) {
+            throw new IllegalArgumentException("JFreeChart.getTitle(...): index out of range.");
+        }
+
+        return (AbstractTitle)titles.get(index);
+
+    }
+
+    /**
+     * Adds the chart title, and notifies registered listeners that the chart has been modified.
+     * @param title The chart title being added;
+     */
+    public void addTitle(AbstractTitle title) {
+
+        if (title!=null) {
+            this.titles.add(title);
+            title.addChangeListener(this);
+            fireChartChanged();
+        }
+
+    }
+
+    /**
+     * Returns the chart legend.
+     * @return The chart legend (possibly null).
+     */
+    public Legend getLegend() {
+	return legend;
+    }
+
+    /**
+     * Sets the chart legend.  Registered listeners are notified that the chart has been modified.
+     * @param legend The new chart legend (null permitted).
+     */
+    public void setLegend(Legend legend) {
+
+        // if there is an existing legend, remove the chart from the list of change listeners...
+        Legend existing = this.legend;
+        if (existing!=null) {
+            existing.removeChangeListener(this);
+        }
+
+        // set the new legend, and register the chart as a change listener...
+        this.legend = legend;
+	if (legend!=null) {
+	    legend.addChangeListener(this);
+	}
+
+        // notify chart change listeners...
+	fireChartChanged();
+
+    }
+
+    /**
+     * Returns the number of items that need to be displayed by the legend.
+     * @return The number of items that need to be displayed by the legend.
+     */
+    public int getLegendItemCount() {
+
+        return this.data.getLegendItemCount();
+
+    }
+
+    /**
+     * Returns the class responsible for drawing the visual representation of the data.
+     * @return The class responsible for drawing the visual representation of the data.
+     */
+    public Plot getPlot() {
+	return this.plot;
+    }
+
+    /**
+     * Returns the current dataset.
+     * @return The current dataset.
+     */
+    public Dataset getDataset() {
+	return data;
+    }
+
+    /**
+     * Sets the data for the chart, replacing any existing data.
+     * <P>
+     * Registered listeners are notified that the chart has been modified.
+     * @param data The new dataset.
+     */
+    public void setDataset(Dataset data) {
+
+        // if there is an existing dataset, remove the chart from the list of change listeners...
+        Dataset existing = this.data;
+	if (existing!=null) {
+	    existing.removeChangeListener(this);
+	}
+
+        // set the new dataset, and register the chart as a change listener...
+	this.data = data;
+        if (this.data!=null) {
+            data.addChangeListener(this);
+        }
+
+        // notify chart change listeners...
+	ChartChangeEvent event = new ChartChangeEvent(data, this, ChartChangeEvent.NEW_DATASET);
+	notifyListeners(event);
+
+    }
+
+    /**
+     * Returns a flag that indicates whether or not anti-aliasing is used when the chart is drawn.
+     * @return A flag that indicates whether or not anti-aliasing is used when the chart is drawn.
+     */
+    public boolean getAntiAlias() {
+	return antialias;
+    }
+
+    /**
+     * Sets a flag that indicates whether or not anti-aliasing is used when the chart is drawn.
+     * <P>
+     * Anti-aliasing can improve the appearance of charts.
+     * @param flag The new value of the flag.
+     */
+    public void setAntiAlias(boolean flag) {
+
+        if (this.antialias!=flag) {
+	    this.antialias = flag;
+	    fireChartChanged();
+        }
+
+    }
+
+    /**
+     * Returns the color/shade used to fill the chart background.
+     * @return The color/shade used to fill the chart background.
+     */
+    public Paint getChartBackgroundPaint() {
+	return chartBackgroundPaint;
+    }
+
+    /**
+     * Sets the color/shade used to fill the chart background.  All registered listeners are
+     * notified that the chart has been changed.
+     * @param paint The new background color/shade.
+     */
+    public void setChartBackgroundPaint(Paint paint) {
+
+        if (this.chartBackgroundPaint!=null) {
+            if (!this.chartBackgroundPaint.equals(paint)) {
+	        this.chartBackgroundPaint = paint;
+	        fireChartChanged();
+            }
+        }
+        else {
+            if (paint!=null) {
+	        this.chartBackgroundPaint = paint;
+	        fireChartChanged();
+            }
+        }
+
+    }
+
+    /**
+     * Draws the chart on a Java 2D graphics device (such as the screen or a printer).
+     * <P>
+     * This method is the focus of the entire JFreeChart library.
+     * @param g2 The graphics device.
+     * @param chartArea The area within which the chart should be drawn.
+     */
+    public void draw(Graphics2D g2, Rectangle2D chartArea) {
+
+        // ensure no drawing occurs outside chart area...
+        Shape savedClip = g2.getClip();
+        g2.clip(chartArea);
+
+        // set anti-alias...
+	if (antialias) {
+	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                                RenderingHints.VALUE_ANTIALIAS_ON);
+	}
+	else {
+	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                                RenderingHints.VALUE_ANTIALIAS_OFF);
+	}
+
+        // draw the chart background...
+        if (chartBackgroundPaint!=null) {
+	    g2.setPaint(chartBackgroundPaint);
+	    g2.fill(chartArea);
+        }
+
+        // draw the titles...
+        Rectangle2D nonTitleArea = chartArea;
+
+        Iterator iterator = titles.iterator();
+        while (iterator.hasNext()) {
+            AbstractTitle currentTitle = (AbstractTitle)iterator.next();
+
+            switch (currentTitle.getPosition()) {
+
+                case AbstractTitle.TOP : {
+                    double availableHeight = Math.min(currentTitle.getPreferredHeight(g2),
+                                                      nonTitleArea.getHeight());
+                    double availableWidth = nonTitleArea.getWidth();
+                    Rectangle2D titleArea = new Rectangle2D.Double(nonTitleArea.getX(),
+                                                                   nonTitleArea.getY(),
+                                                                   availableWidth, availableHeight);
+                    currentTitle.draw(g2, titleArea);
+                    nonTitleArea = new Rectangle2D.Double(nonTitleArea.getX(),
+                                                          Math.min(nonTitleArea.getY()
+                                                          +availableHeight, nonTitleArea.getMaxY()),
+                                                          availableWidth,
+                                                          Math.max(nonTitleArea.getHeight()
+                                                          -availableHeight, 0));
+                    break;
+                }
+
+                case AbstractTitle.BOTTOM : {
+                    double availableHeight = Math.min(currentTitle.getPreferredHeight(g2),
+                                                      nonTitleArea.getHeight());
+                    double availableWidth = nonTitleArea.getWidth();
+                    Rectangle2D titleArea = new Rectangle2D.Double(nonTitleArea.getX(),
+                                                                   nonTitleArea.getMaxY()
+                                                                   -availableHeight,
+                                                                   availableWidth, availableHeight);
+                    currentTitle.draw(g2, titleArea);
+                    nonTitleArea = new Rectangle2D.Double(nonTitleArea.getX(), nonTitleArea.getY(),
+                                                          availableWidth, nonTitleArea.getHeight()
+                                                          -availableHeight);
+                    break;
+                }
+
+                case AbstractTitle.RIGHT : {
+                    double availableHeight = nonTitleArea.getHeight();
+                    double availableWidth = Math.min(currentTitle.getPreferredWidth(g2),
+                                                     nonTitleArea.getWidth());
+                    Rectangle2D titleArea = new Rectangle2D.Double(nonTitleArea.getMaxX()-
+                                                                   availableWidth,
+                                                                   nonTitleArea.getY(),
+                                                                   availableWidth, availableHeight);
+                        currentTitle.draw(g2, titleArea);
+                        nonTitleArea = new Rectangle2D.Double(nonTitleArea.getX(),
+                                                              nonTitleArea.getY(),
+                                                              nonTitleArea.getWidth()
+                                                              -availableWidth, availableHeight);
+                    break;
+                }
+
+                case AbstractTitle.LEFT : {
+                    double availableHeight = nonTitleArea.getHeight();
+                    double availableWidth = Math.min(currentTitle.getPreferredWidth(g2),
+                                                     nonTitleArea.getWidth());
+                    Rectangle2D titleArea = new Rectangle2D.Double(nonTitleArea.getX(),
+                                                                   nonTitleArea.getY(),
+                                                                   availableWidth, availableHeight);
+                    currentTitle.draw(g2, titleArea);
+                    nonTitleArea = new Rectangle2D.Double(nonTitleArea.getX()+availableWidth,
+                                                          nonTitleArea.getY(),
+                                                          nonTitleArea.getWidth()-availableWidth,
+                                                          availableHeight);
+                    break;
+                }
+
+                default :
+                    throw new RuntimeException("JFreeChart.draw(...): unknown title position.");
+            }
+        }
+
+	// draw the legend - the draw method will return the remaining draw area after the legend
+        // steals a chunk of the non-title area for itself
+	Rectangle2D drawArea = nonTitleArea;
+	if ((legend!=null) && (data!=null)) {
+	    drawArea = legend.draw(g2, drawArea);
+	}
+
+	// draw the plot (axes and data visualisation)
+	plot.draw(g2, drawArea);
+
+        g2.setClip(savedClip);
+
+    }
+
+    /**
+     * Creates and returns a buffered image into which the chart has been drawn.
+     * @param width The width.
+     * @param height The height.
+     */
+    public BufferedImage createBufferedImage(int width, int height) {
+
+        BufferedImage image = new BufferedImage(width , height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = image.createGraphics();
+        this.draw(g2, new Rectangle2D.Double(0, 0, width, height));
+        g2.dispose();
+        return image;
+
+    }
+
+    /**
+     * Registers an object for notification of changes to the chart.
+     * @param listener The object being registered;
+     */
+    public void addChangeListener(ChartChangeListener listener) {
+	listeners.add(listener);
+    }
+
+    /**
+     * Deregisters an object for notification of changes to the chart.
+     * @param listener The object being deregistered.
+     */
+    public void removeChangeListener(ChartChangeListener listener) {
+	listeners.remove(listener);
+    }
+
+    /**
+     * Sends a default ChartChangeEvent to all registered listeners.
+     * <P>
+     * This method is for convenience only.
+     */
+    protected void fireChartChanged() {
+	ChartChangeEvent event = new ChartChangeEvent(this);
+	notifyListeners(event);
+    }
+
+    /**
+     * Sends a ChartChangeEvent to all registered listeners.
+     * @param event Information about the event that triggered the notification.
+     */
+    protected void notifyListeners(ChartChangeEvent event) {
+	Iterator iterator = listeners.iterator();
+	while (iterator.hasNext()) {
+	    ChartChangeListener listener = (ChartChangeListener)iterator.next();
+	    listener.chartChanged(event);
+	}
+    }
+
+    /**
+     * Receives notification of a change to the plot's dataset.
+     * <P>
+     * The chart reacts by passing on a chart change event to all registered listeners.
+     * @param event Information about the event (not used here).
+     */
+    public void datasetChanged(DatasetChangeEvent event) {
+
+	ChartChangeEvent newEvent = new ChartChangeEvent(event, this,
+							 ChartChangeEvent.UPDATED_DATASET);
+	notifyListeners(newEvent);
+
+    }
+
+    /**
+     * Receives notification that a chart title has changed, and passes this on to registered
+     * listeners.
+     * @param event Information about the chart title change.
+     */
+    public void titleChanged(TitleChangeEvent event) {
+	event.setChart(this);
+	notifyListeners(event);
+    }
+
+    /**
+     * Receives notification that the chart legend has changed, and passes this on to registered
+     * listeners.
+     * @param event Information about the chart legend change.
+     */
+    public void legendChanged(LegendChangeEvent event) {
+	event.setChart(this);
+	notifyListeners(event);
+    }
+
+    /**
+     * Receives notification that the plot has changed, and passes this on to registered listeners.
+     * @param event Information about the plot change.
+     */
+    public void plotChanged(PlotChangeEvent event) {
+	event.setChart(this);
+	notifyListeners(event);
+    }
+
+}

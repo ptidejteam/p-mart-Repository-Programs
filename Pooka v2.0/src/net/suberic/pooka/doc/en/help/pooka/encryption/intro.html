@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Encryption</title>
+</head>
+<body>
+<h1>Encrypting Emails in Pooka</h1>
+<p>Pooka supports both S/MIME and OpenPGP, the two most common protocols
+for email encryption.  Both are supported using the <a href = 
+"http://javamail-crypto.sourceforge.net">JavaMail-Crypto library
+from SourceForge</a>, which provides a simple, generic encryption integration
+with JavaMail.  The <a href = "http://www.bouncycastle.org/">BouncyCastle</a> encryption library is used as a backend
+for S/MIME encryption, while the <a href = "http://www.cryptix.org/">Cryptix library</a> is used for OpenPGP.</p>
+
+<p>Using each of these protocols, users can sign outgoing emails and read
+encrypted emails using their private keys, and encrypt messages and verify
+signed messages using other people's public keys.</p>
+
+<p>Note that you need Sun's Unlimited Strength JCE Policy Files in order
+to run this encryption library.  You can <a href = 
+"http://java.sun.com/j2se/1.4.2/download.html">download those from Sun</a> 
+(link is at the bottom of that page); follow
+the instructions there for installing the policy files in your JRE.</p>
+
+<h1>Setting up encryption</h1>
+<p>Pooka does not yet have the ability to generate new public/private keys
+for S/MIME or OpenPGP, so it is necessary to generate these keys in a 
+third-party application.  Once you have set these up, you can go into
+the Configuration->Encryption Configuration menu.  There you can configure
+the location of the keystore files you have created which contain your
+public and private keys.</p>
+</body>
+</html>

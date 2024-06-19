@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>Library System - Book List</title>
+</head>
+<body>
+<table border="1" width="100%" summary="Library System - Book List">
+  <caption>Library System - Book List</caption>
+  <tbody>
+    <tr>
+      <td>Catalog No</td>
+      <td>Title</td>
+      <td>Keywords</td>
+      <td>Cost</td>
+      <td>Date Added</td>
+      <td>Delete</td>
+    </tr>
+    <tr id="Book__TEMPLATE_NODE">
+      <td><a href="MSG:BookEdit.sf?catalogNo={0}" id="Book__catalogNo__1">
+        <span id="Book__catalogNo__2">0123456789</span></a></td>
+      <td><span id="Book__title">This is the Title of My First Book</span></td>
+      <td><span id="Book__keywords">anything, everything</span></td>
+      <td><span id="Book__cost">NUMBER:###,##0.00</span></td>
+      <td><span id="Book__dateAdded">DATE:MM/dd/yyyy</span></td>
+      <td>
+        <a href="MSG:BookList.sf?action=Delete&amp;catalogNo={0}" id="Book__catalogNo__3">
+          Delete
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><a href="MainMenu.sf">Main Menu</a></p>
+</body>
+</html>

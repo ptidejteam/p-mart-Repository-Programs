@@ -1,0 +1,17 @@
+4b.8.c35	+0	(def_block
+4b.8.c35	+5	r_class
+4b.e.c3b	+a	id|TrAXFilter
+4b.2f.c5c	+1	(brace
+4c.c.c6a	+0	(def_block
+4c.c.c6a	+a	id|TrAXFilter
+4c.16.c74	+0	c_func
+4c.16.c74	+1	(paren
+4c.17.c75	+9	id|Templates
+4c.21.c7f	+9	id|templates
+4c.2a.c88	+1	)paren
+4e.5.cbc	+1	(brace
+50.5.cd8	+1	)brace
+50.6.cd9	+0	)def_block
+51.1.cdb	+1	)brace
+51.2.cdc	+0	)def_block
+52.1.cde	+0	eof

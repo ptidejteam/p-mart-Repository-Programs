@@ -1,0 +1,15 @@
+4d.8.dd0	+0	(def_block
+4d.8.dd0	+5	r_class
+4d.e.dd6	+10	id|DTDGrammarBucket
+4d.1f.de7	+1	(brace
+5d.c.f13	+0	(def_block
+5d.c.f13	+10	id|DTDGrammarBucket
+5d.1c.f23	+0	c_func
+5d.1c.f23	+1	(paren
+5d.1d.f24	+1	)paren
+5d.1f.f26	+1	(brace
+5e.5.f2d	+1	)brace
+5e.6.f2e	+0	)def_block
+6f.1.10da	+1	)brace
+6f.2.10db	+0	)def_block
+70.1.10f7	+0	eof

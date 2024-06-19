@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+  name="%pluginName"
+  id="org.apache.ant"
+  version="1.5.2"
+  provider-name="%providerName">
+
+  <requires>
+    <import plugin="org.apache.xerces"/>
+  </requires>
+  
+  <runtime>
+    <library name="ant.jar">
+      <export name="*"/>
+      <packages prefixes="org.apache.tools"/>
+    </library>
+    <library name="optional.jar">
+      <export name="*"/>
+      <packages prefixes="org.apache.tools.ant"/>
+    </library>
+  </runtime>
+
+</plugin>

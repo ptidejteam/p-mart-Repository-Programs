@@ -1,0 +1,508 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE faqs SYSTEM 'dtd/faqs.dtd'>
+<faqs title='Writing Application FAQs'>
+  <faq title="How do I access the DOM Level 3 functionality?">
+    <q>How do I access the DOM Level 3 functionality?</q>
+    <a> <p>
+      The DOM Level 3 Core functionality is not exposed in the regular 
+      Xerces distribution.
+      To get access to the DOM Level 3, extract source code from CVS and 
+      build Xerces with the target <strong>jars-dom3</strong>. The build will generate 
+      the <code>xmlParserAPIs.jar</code> that includes DOM Level 3 interfaces in 
+      <code>org.w3c.dom</code> and  <code>org.w3c.dom.ls</code> packages, 
+      <code>xercesImpl.jar</code> that includes partial DOM Level 3 implementation 
+      and <code>xercesSamples.jar</code> that includes sample code 
+      (see <code>samples.dom.DOM3</code>).
+      </p> 
+      <p>For more information, refer to the <link idref='dom3'>DOM Level 3 
+	  Implementation</link> page. 
+      </p>
+      <note>Always remove build directory (either manually or by executing build <code>clean</code> target)
+            before building specialized Xerces jars.</note>
+    </a>
+  </faq>
+ <faq title='Creating a DOM Parser'>
+  <q>How do I create a DOM parser?</q>
+  <a>
+   <p>
+    You can create a DOM parser by using  the Java APIs for
+    XML Processing (JAXP) or using the DOM Level 3 Load and Save.
+   </p>
+   <p>  
+    The following source code shows how to create the parser with JAXP:
+   </p>
+   <source>import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+  ...
+
+String xmlFile = &quot;file:///&parserdir;/data/personal.xml&quot;; 
+try {
+    DocumentBuilderFactory factory = 
+        DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document document = builder.parse(xmlFile);
+}
+catch (FactoryConfigurationError e) {
+    // unable to get a document builder factory
+} 
+catch (ParserConfigurationException e) {
+    // parser was unable to be configured
+catch (SAXException e) {
+    // parsing error
+} 
+catch (IOException e) {
+    // i/o error
+}</source>
+
+   <p>  
+   The following source code shows how to create the parser with DOM Level 3:
+   </p>
+   <source>
+import  org.w3c.dom.*;
+import  org.w3c.dom.ls.*;
+
+  ...
+try {
+  System.setProperty(DOMImplementationRegistry.PROPERTY,"org.apache.xerces.dom.DOMImplementationSourceImpl");
+
+  DOMImplementationLS impl = (DOMImplementationLS)DOMImplementationRegistry.getDOMImplementation("LS-Load");
+
+  DOMBuilder builder = impl.createDOMBuilder(DOMImplementationLS.MODE_SYNCHRONOUS, null);
+  
+  Document document = builder.parseURI("data/personal.xml");
+
+} catch ( Exception ex ) {
+}
+
+
+</source>
+<note>You can use DOM Level 3 Load/Save interfaces with the default Xerces distribution. To access the DOM Level 3 Core functionality you need to extract the code from CVS and build Xerces with the <strong>jars-dom3</strong> target.</note>
+
+  </a>
+ </faq>
+ <faq title="Creating a SAX Parser">
+  <q>How do I create a SAX parser?</q>
+  <a>
+   <p>
+    You can create a SAX parser by using the Java APIs for
+    XML Processing (JAXP). The following source code shows
+    how:
+   </p>
+   <source>
+import java.io.IOException; 
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+  ...
+
+String xmlFile = &quot;file:///&parserdir;/data/personal.xml&quot;; 
+try {
+    SAXParserFactory factory = SAXParserFactory.newInstance();
+    SAXParser parser = factory.newSAXParser();
+    DefaultHandler handler = /* custom handler class */;
+    parser.parse(xmlFile, handler);
+} 
+catch (FactoryConfigurationError e) {
+    // unable to get a document builder factory
+} 
+catch (ParserConfigurationException e) {
+    // parser was unable to be configured
+catch (SAXException e) {
+    // parsing error
+} 
+catch (IOException e) {
+    // i/o error
+}</source>
+  </a>
+ </faq>
+ <!--
+   - REVISIT: make sure that JAXP implementation can handle
+   -          passing features and properties through to the
+   -          parser implementation. Then complete this section.
+ <faq title='Controlling parser options'>
+  <q>How do I control the various parser options?</q>
+  <a>TBD</a>
+ </faq>
+ -->
+
+<faq title="Revalidation of DOM document in Memory">
+<q>How can I make sure that my DOM document in memory conforms to a schema?</q>
+<a>
+      <p>
+	DOM revalidation is supported via W3C DOM Level 3 Core 
+	<code>Document.normalizeDocument()</code>.
+</p> 
+      <note>This release only supports revalidation against XML Schemas. 
+            Revalidation against DTDs or any other schema type is not implemented.</note>
+      
+      <p>To revalidate the document you need:</p>
+<ul>
+	<li>Build DOM Level 3 Xerces jars
+	  (see <em>How do I access the DOM Level 3 functionality</em>).</li>
+	<li>Create the DOMBuilder (see <em>Creating DOM parser</em>) 
+            or use DOM methods to create a tree in memory.</li>
+	<li>Set <em>validate</em> feature using <code>setNormalizationFeature</code>
+	  method.</li>
+	<li>Make sure your document has <em>xsi:schemaLocation</em> or 
+           <em>xsi:noSchemaLocation</em> 
+	  attributes at the document root that specify the location of schema(s) 
+	  against which validation should occur.</li>
+        <li>The <jump href="http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20020409/core.html#Document3-documentURI">documentURI</jump> must be set. Locations of the schema documents
+will be resolved relative to the <code>documentURI</code>.</li>
+</ul>
+ <source>
+import  org.w3c.dom.Document;
+import  org.w3c.dom.ls.DOMBuilder;
+
+  .....
+Document document = builder.parseURI("data/personal.xml");
+document.setErrorHandler(new MyErrorHandler());
+document.setNormalizationFeature("validate", true);
+document.normalizeDocument();
+
+  
+</source>
+
+      <p>For more information, please refer to the <link idref='dom3'>DOM Level 3 Implementation</link> page.</p>
+</a>
+</faq>
+
+
+ <faq title='Handling Errors'>
+  <q>How do handle errors?</q>
+  <a>
+   <p>
+    You should register an error handler with the parser by supplying
+    a class which implements the <code>org.xml.sax.ErrorHandler</code>
+    interface. This is true regardless of whether your parser is a
+    DOM based or SAX based parser.
+   </p>
+   <p>
+    You can register an error handler on a <code>DocumentBuilder</code>
+    created using JAXP like this:
+   </p>
+   <source>import javax.xml.parsers.DocumentBuilder;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+ErrorHandler handler = new ErrorHandler() {
+    public void warning(SAXParseException e) throws SAXException {
+        System.err.println("[warning] "+e.getMessage());
+    }
+    public void error(SAXParseException e) throws SAXException {
+        System.err.println("[error] "+e.getMessage());
+    }
+    public void fatalError(SAXParseException e) throws SAXException {
+        System.err.println("[fatal error] "+e.getMessage());
+    throw e;
+    }
+};
+
+DocumentBuilder builder = /* builder instance */;
+builder.setErrorHandler(handler);
+
+</source>
+<p>If you are using <jump href="http://www.w3.org/DOM/DOMTR#DOML3">DOM Level 3</jump> 
+you can register an error handler with the <code>DOMBuilder</code> by supplying
+    a class which implements the <code>org.w3c.dom.DOMErrorHandler</code>
+    interface. </p>
+   <p>
+    You can also register an error handler on a SAXParser using JAXP
+    like this:
+   </p>
+   <source>import javax.xml.parsers.SAXParser;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+ErrorHandler handler = new ErrorHandler() {
+    public void warning(SAXParseException e) throws SAXException {
+        System.err.println("[warning] "+e.getMessage());
+    }
+    public void error(SAXParseException e) throws SAXException {
+        System.err.println("[error] "+e.getMessage());
+    }
+    public void fatalError(SAXParseException e) throws SAXException {
+        System.err.println("[fatal error] "+e.getMessage());
+    throw e;
+    }
+};
+
+SAXParser parser = /* parser instance */;
+parser.getXMLReader().setErrorHandler(handler);</source>
+  </a>
+ </faq>
+ <faq title='Controlling Entity Representation'>
+  <q>
+   How can I control the way that entities are represented in the DOM?
+  </q>
+  <a>
+   <p>
+    The DOM Level 3 feature  <code>entities</code> (or corresponding Xerces  <code>http://apache.org/xml/features/dom/create-entity-ref-nodes</code> feature) 
+    control how entities appear in the DOM tree. When one of those features 
+    is set to true (the default), an occurance of an entity reference
+    in the XML document will be represented by a subtree with an 
+    EntityReference node at the root whose children represent the 
+    entity expansion.
+   </p>
+   <p>
+    If the feature is false, an entity reference in the XML document
+    is represented by only the nodes that represent the entity 
+    expansion.
+   </p> 
+   <p>
+    In either case, the entity expansion will be a DOM tree 
+    representing the structure of the entity expansion, not a text
+    node containing the entity expansion as text.
+   </p>
+  </a>
+ </faq>
+ <faq title='What does &quot;non-validating&quot; mean?'>  
+  <q>
+   Why does &quot;non-validating&quot; not mean &quot;well-formedness 
+   checking only&quot;?
+  </q>
+  <a>
+   <p>
+    Using a &quot;non-validating&quot; parser does not mean that
+    only well-formedness checking is done! There are still many 
+    things that the XML specification requires of the parser, 
+    including entity substitution, defaulting of attribute values, 
+    and attribute normalization.
+   </p>
+   <p>
+    This table describes what &quot;non-validating&quot; really
+    means for &ParserName; parsers. In this table, "no DTD" 
+    means no internal or external DTD subset is present.
+   </p>
+   <table>
+    <tr>
+     <tn/>
+     <th colspan="2">non-validating parsers</th>
+     <th colspan="2">validating parsers</th>
+    </tr>
+    <tr>
+     <tn/>
+     <th>DTD present</th>
+     <th>no DTD</th>
+     <th>DTD present</th>
+     <th>no DTD</th>
+    </tr>
+    <tr>
+     <th>DTD is read</th>
+     <td>Yes</td>
+     <td>No</td>
+     <td>Yes</td>
+     <td>Error</td>
+    </tr>
+    <tr>
+     <th>entity substitution</th>
+     <td>Yes</td>
+     <td>No</td>
+     <td>Yes</td>
+     <td>Error</td>
+    </tr>
+    <tr>
+     <th>defaulting of attributes</th>
+     <td>Yes</td>
+     <td>No</td>
+     <td>Yes</td>
+     <td>Error</td>
+    </tr>
+    <tr>
+     <th>attribute normalization</th>
+     <td>Yes</td>
+     <td>No</td>
+     <td>Yes</td>
+     <td>Error</td>
+    </tr>
+    <tr>
+     <th>checking against model</th>
+     <td>No</td>
+     <td>No</td>
+     <td>Yes</td>
+     <td>Error</td>
+    </tr>
+   </table>
+  </a>
+ </faq>
+ <faq title='Associating Data with a Node'>
+  <q>How do I associate my own data with a node in the DOM tree?</q>
+  <a>
+   <p>
+    The class <code>org.apache.xerces.dom.NodeImpl</code> provides a 
+    <code>void setUserData(Object o)</code> and an <code>Object 
+    getUserData()</code> method that you can use to attach any object
+    to a node in the DOM tree.
+   </p>
+   <p>
+    Beware that you should try and remove references to your data on
+    nodes you no longer use (by calling <code>setUserData(null)</code>,
+    or these nodes will not be garbage collected until the entire
+    document is garbage collected.
+   </p>
+    <p>If you are using Xerces with the DOM Level 3 support  
+       you can use <code>org.w3c.dom.Node.setUserData()</code> and register your own 
+       <code>UserDataHandler</code>. </p>
+  </a>
+ </faq>
+ <faq title='Parsing Several Documents'>
+  <q>
+   How do I more efficiently parse several documents sharing a 
+   common DTD?
+  </q>
+  <a>
+   <p>
+    By default, the parser does not cache DTD's. The common DTD, 
+    since it is specified in each XML document, will be re-parsed 
+    once for each document.
+   </p>
+   <p>
+    However, there are things that you can do to make the 
+    process of reading DTD's more efficient:
+   </p>
+   <ul>
+    <li>First, have a look at the grammar caching/preparsing FAQ:</li>
+    <li>keep your DTD and DTD references local</li>
+    <li>use internal DTD subsets, if possible</li>
+    <li>load files from server to local client before parsing</li>
+    <li>
+     Cache document files into a local client cache. You should do an 
+     HTTP header request to check whether the document has changed, 
+     before accessing it over the network.
+    </li>
+    <li>
+     Do not reference an external DTD or internal DTD subset at all. 
+     In this case, no DTD will be read.
+    </li>
+    <li>
+     Use a custom <code>EntityResolver</code> and keep common 
+     DTDs in a memory buffer.
+    </li>
+   </ul>
+  </a>
+ </faq>
+ <faq title='Pull-parsing documents'>
+  <q>
+   How can I parse documents in a pull-parsing fashion?
+  </q>
+  <a>
+   <p>
+    Since the pull-parsing API is specific to Xerces, you have to use
+    Xerces-specific way to create parsers, and parse documents.
+   </p>
+   <p>
+    You first need to create a parser configuration that implements the
+    <code>XMLPullParserConfiguration</code> interface. Then you need to
+    create a parser from this configuration. To parse documents, method
+    <code>parse(boolean)</code> should be called.
+   </p>
+   <source>import org.apache.xerces.parsers.StandardParserConfiguration;
+import org.apache.xerces.parsers.SAXParser;
+import org.apache.xerces.xni.parser.XMLInputSource;
+
+  ...
+
+boolean continueParse = true;
+void pullParse(XMLInputSource input) throws Exception {
+    StandardParserConfiguration config = new StandardParserConfiguration();
+    SAXParser parser = new SAXParser(config);
+    config.setInputSource(input);
+    parser.reset();
+    while (continueParse)
+        config.parse(false);
+}</source>
+    <p>
+     In the above example, a SAXParser is used to to pull-parse an
+     XMLInputSource. DOMParser can be used in a similar way. A flag
+     <code>continueParse</code> is used to indicate whether to continue
+     parsing the document. The application can stop the parsing by
+     setting this flag to false.
+    </p>
+  </a>
+ </faq>
+ <!--
+   - REVISIT: Rewrite this section with better information.
+ <faq title='How do I read data from a stream as it arrives?'>
+  <q>How do I read data from a stream as it arrives?</q>
+  <a>
+   <p>There are 2 problems you have to deal with:</p>
+   <ol>
+    <li>
+     The Apache parsers terminate when they reach end-of-file; with 
+     a data stream, unless the sender drops the socket, you have no
+     end-of-file, so you need to terminate in some other way
+    </li>
+    <li>
+     The Apache parsers close the input stream on termination, and 
+     this closes the socket; you normally don't want this, because 
+     you'll want to send an ack to the data stream source, and you
+     may want to have further exchanges on the socket anyway.
+    </li>
+   </ol>
+   <p>Terminating the parse</p>
+   <p>
+    One way that works forSAX is to throw an exception when you
+    detect the logical end-of-document.
+   </p>
+   <p>
+    For instance, in your class extending DefaultHandler, you can 
+    have:
+   </p>
+   <source>public class DocProcessor extends DefaultHandler {
+    private int level;
+    .
+    .
+    public void startElement(String uri,
+                             String localName,
+                             String raw,
+                             Attributes attrs) throws SAXException
+    {
+        ++level;
+    }
+
+    public void endElement (String namespaceURI,
+                            String localName,
+                            String qName) throws SAXException
+    {
+        level = level - 1;
+        if (level == 0) {
+            throw new SAXException ("Finished");
+        }
+    }</source>
+  <p>Preventing the parser from closing the socket</p>
+  <p>
+   One way is to subclass BufferedReader to provide an empty close 
+   method. So, invoke the parser as follows:
+  </p>
+  <source>Socket socket;
+
+    // code to set the socket
+
+    parser.parse(new InputSource(new MyBufferedReader(new InputStreamReader(socket.getInputStream()))));
+    .
+    .
+    class MyBufferedReader extends BufferedReader
+    {
+        public MyBufferedReader(InputStreamReader i) {
+            super(i);
+        }
+
+        public void close() {
+        }
+    }</source>
+  </a>
+ </faq>
+ -->
+</faqs>

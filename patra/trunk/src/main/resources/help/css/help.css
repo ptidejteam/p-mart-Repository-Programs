@@ -1,0 +1,59 @@
+html body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: verdana, tahoma, arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a:link {
+    color: blue;
+    text-decoration: none;
+    border-bottom: dashed 1px #0000ff;
+}
+
+a:visited {
+    color: blue;
+    text-decoration: none;
+    border-bottom: dashed 1px #267bee;
+}
+
+a:hover {
+    color: #fb7600;
+    text-decoration: none;
+    border-bottom: dashed 1px #fb7600;
+}
+
+.myTable {
+    margin-left: 0px;
+    margin-right: 12px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom-style: solid;
+    border-left-width: thin;
+    border-bottom-color: #eeeeee;
+
+}
+
+.myTable th {
+    background-color: #999999;
+    color: #eeeeee;
+    font-weight: bold;
+}
+
+.myTable td {
+    background-color: #f7f7f7;
+    vertical-align: text-top;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 4px;
+}
+
+.myTable .myOddRow td {
+    background-color: #dddddd;
+}
+
+.myTable .myEvenRow td {
+    background-color: #eeeeee;
+}

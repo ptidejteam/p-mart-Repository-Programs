@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Value Holders</title>
+  <link href="../common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="../common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%"><h1>7. Value Holders</h1>
+
+        <h2>7.1 Heirarchy</h2>
+        <h2>7.2 ValueHolders</h2>
+        <h2>7.3 Binding Components to ValueHolders</h2>
+        <h2>7.4 ObjectValueHolder</h2>
+        <h2>7.5 VariantValueHolder</h2>
+        <h2>7.6 VOValueHolder</h2>
+        <h2>7.7 ObjectCollectionValueHolder</h2>
+        <h2>7.8 ObjectListValueHolder</h2>
+        <h2>7.9 VOCollectionValueHolder</h2>
+        <h2>7.10 VOListValueHolder</h2>
+        <h2>7.11 VOComparators</h2>
+
+        <p><tt>VOComparator</tt> is a <tt>Comparator</tt> for sorting value
+        objects in a <tt>VOListValueHolder</tt>. This can sort by one or more
+        properties of the value object. Ascending or descending can be specified
+        for each property (default is ascending).
+        </p>
+        <p>To sort by a single property, use the <tt>setPropertyName</tt> method.
+        To sort by more than one property use the <tt>setPropertyNames</tt>
+        method and pass it a <tt>String[]</tt> array of property names.
+        </p>
+        <p>To change the order for a single property, use the
+        <tt>setAscendingOrder</tt> method (<tt>true</tt>=Ascending
+        <tt>false</tt>=descending). To change the order for multiple properties,
+        use the <tt>setAscendingOrders</tt> method and pass it a
+        <tt>boolean[]</tt> array. The order of the ascending order indicators
+        should match the array of property names.
+        </p>
+        <p>This <tt>VOComparator</tt> is then attached to the
+        <tt>VOListValueHolder</tt> using the <tt>setComparator</tt> method.
+        IMPORTANT: This VOComparator can only be used with one VOListValueHolder
+        at a time - it cannot be shared.
+        </p>
+        <p>Example - sort ascending by a lastName</p>
+        <pre>
+           VOListValueHolder holder = new VOListValueHolder();
+           VOComparator comparator = new VOComparator();
+           ...
+           comparator.setPropertyName("lastName");
+           holder.setComparator(comparator);
+        </pre>
+        <p>Example - sort ascending by a salary(descending), yearsWorked(ascending)</p>
+        <pre>
+           VOListValueHolder holder = new VOListValueHolder();
+           VOComparator comparator = new VOComparator();
+           ...
+           comparator.setPropertyNames(new String[] {"salary", "yearsWorked"});
+           comparator.setAscendingOrders(new boolean[] {false, true});
+           holder.setComparator(comparator);
+        </pre>
+
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="../common/footer.shtml" -->
+</div>
+</body>
+</html>

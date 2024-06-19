@@ -1,0 +1,75 @@
+License
+=======
+
+This software is covered by the GNU public license.  Feel
+free to distribute this software to your friends!
+
+
+Installation for NetBeans
+========================================================================
+
+(1)  Copy jrefactory.jar into <netbeans>/modules/ext,
+    where <netbeans> is the directory that you installed
+    NetBeans into.  On my machine, <netbeans> is c:/netbeans.
+    Copy JRefactoryModule.jar into <netbeans>/module.
+
+Reformatting source code
+========================
+
+This system provides a mechanism for reindenting your
+source code.  This system also inserts appropriate javadoc
+comments into your code.
+
+To use this feature:
+
+(1)  Open a .java source file that can be compiled.
+
+(2)  Select Tools from the NetBeans menu
+
+(3)  Select Pretty Printer
+
+     The file is reformatted, and your cursor jumps to
+     somewhere near the end of the file.
+
+Note that if the source code would not compile as it
+stands, you will see a dialog box that says "Unable
+to Parse the File".
+
+Configuring the Pretty Printer
+==============================
+
+The configuration for the pretty printer is contained
+in a file called pretty.settings.  This file is located
+in <home>/.Refactory.
+
+<home> is ~ for developers using Linux or Unix based
+systems.  For developers using Windows NT, <home> is
+c:/winnt/profiles/<yourname>.  For developers
+using Windows 95/98, <home> is c:/windows.  For developers
+using Windows 2000, <home> is C:\Documents and Settings.
+
+Before each configuration is a brief description of
+what effect making the change has on the system.  Feel
+free to change any of them and watch the effects.
+If you don't like the results, don't save it to the
+disk.
+
+The configuration is reloaded each time you select
+Pretty Printer from the menu.
+
+Comments or Undocumented Feature Reports  :-)
+=============================================
+
+If you like the software or if you would like to have the
+software improved, feel free to send me an e-mail at
+seguin@acm.org.
+
+If there is a bug, then please describe what you were doing
+when it occurred.  Also, please send me any stack traces
+that appear in the NetBeans shell window.  (When I launch
+NetBeans in Windows NT, I get two windows:  A Command Shell
+and the JBuilder editor.  The command shell contiains the
+exception traces that I need to help debug the problem.)
+
+Since this is open source, feel free to add more functionality!
+I'll be happy to help show you where to add a particular feature.

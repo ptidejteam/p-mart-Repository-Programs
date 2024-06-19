@@ -1,0 +1,25 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Date\15.9.3.2-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Date\shell.js -f mozilla\js\tests\ecma_3\Date\15.9.3.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+273292
+STATUS: 15.9.3.2  new Date(value)
+PASSED! Section 0 of test - 11/69/2004
+ FAILED! expected: Section 1 of test - 11/70/2004
+ FAILED! expected: Expected value '0', Actual value 'NaN'
+ FAILED! expected: 
+PASSED! Section 2 of test - 69/69/2004
+PASSED! Section 3 of test - 69/69/69
+PASSED! Section 4 of test - 69/69/1969
+ FAILED! expected: Section 5 of test - 70/69/70
+ FAILED! expected: Expected value '0', Actual value 'NaN'
+ FAILED! expected: 
+ FAILED! expected: Section 6 of test - 70/69/1970
+ FAILED! expected: Expected value '0', Actual value 'NaN'
+ FAILED! expected: 
+ FAILED! expected: Section 7 of test - 70/69/2004
+ FAILED! expected: Expected value '0', Actual value 'NaN'
+ FAILED! expected: 
+PASSED! Section 8 of test - 70/70/70 is invalid.
+PASSED! Section 9 of test - 70/70/1970 is invalid.
+PASSED! Section 10 of test - 70/70/2004 is invalid.
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Date\15.9.3.2-1.compiled.arff] ...

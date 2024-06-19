@@ -1,0 +1,19 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.4.1 The Array Constructor Called as a Function
+Array() +'' =  PASSED!
+typeof Array() = object PASSED!
+var arr = Array(); arr.getClass = Object.prototype.toString; arr.getClass() = [object Array] PASSED!
+var arr = Array(); arr.toString == Array.prototype.toString = true PASSED!
+Array().length = 0 PASSED!
+Array(1,2,3) +'' = 1,2,3 PASSED!
+typeof Array(1,2,3) = object PASSED!
+var arr = Array(1,2,3); arr.getClass = Object.prototype.toString; arr.getClass() = [object Array] PASSED!
+var arr = Array(1,2,3); arr.toString == Array.prototype.toString = true PASSED!
+Array(1,2,3).length = 3 PASSED!
+typeof Array(12345) = object PASSED!
+var arr = Array(12345); arr.getClass = Object.prototype.toString; arr.getClass() = [object Array] PASSED!
+var arr = Array(1,2,3,4,5); arr.toString == Array.prototype.toString = true PASSED!
+Array(12345).length = 12345 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.1.interpreted.arff] ...

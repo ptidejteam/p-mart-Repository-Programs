@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.tomcat"
+   name="%pluginName"
+   version="4.0.6"
+   provider-name="%providerName"
+   class="org.eclipse.tomcat.internal.TomcatPlugin">
+
+   <runtime>
+      <library name="tomcatwrapper.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.eclipse.tomcat"/>
+      </library>
+<!-- these are tomcat jar files -->
+      <library name="catalina.jar">
+      	 <packages prefixes="org.apache.catalina,org.apache.service"/>
+      </library>
+      <library name="bootstrap.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina,org.apache.naming,org.apache.service"/>
+      </library>
+      <library name="commons-logging.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.commons.logging"/>
+      </library>
+      <library name="jakarta-regexp-1.2.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.regexp"/>
+      </library>
+      <library name="jasper-compiler.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.jasper"/>
+      </library>
+      <library name="jasper-runtime.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.jasper"/>
+      </library>
+      <library name="naming-factory.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.naming.factory"/>
+      </library>
+      <library name="naming-common.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.naming"/>
+      </library>
+      <library name="naming-resources.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.naming.resources"/>
+      </library>
+      <library name="servlet.jar">
+         <export name="*"/>
+      	 <packages prefixes="javax.servlet"/>
+      </library>
+      <library name="servlets-common.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina.servlets"/>
+      </library>
+      <library name="servlets-default.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina.servlets"/>
+      </library>
+      <library name="servlets-invoker.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina.servlets"/>
+      </library>
+      <library name="servlets-manager.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina.servlets"/>
+      </library>
+      <library name="servlets-webdav.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.catalina.servlets"/>
+      </library>
+      <library name="tomcat-coyote.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.coyote"/>
+      </library>
+      <library name="tomcat-http11.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.coyote.http11"/>
+      </library>
+      <library name="tomcat-util.jar">
+         <export name="*"/>
+      	 <packages prefixes="org.apache.tomcat.util"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.apache.xerces"/>
+      <import plugin="org.eclipse.help.appserver"/>
+   </requires>
+
+
+   <extension
+         id="appserver"
+         name="%appserver"
+         point="org.eclipse.help.appserver.server">
+         
+  		<server 
+  			class="org.eclipse.tomcat.internal.TomcatAppServer" 
+  			default="true" /> 
+
+   </extension>
+
+</plugin>

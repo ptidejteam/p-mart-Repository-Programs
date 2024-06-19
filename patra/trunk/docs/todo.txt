@@ -1,0 +1,204 @@
+Andere issues
+=============
+Cosmetics:
+ -
+
+Afgeschoten - geen plannen meer
+===============================
+(Fill in the access/edit times in 2.) => Not done in current version of PWS either.
+Reason: Dont't know the time format. I could choose this myself, but the password safe project has the lead here.
+
+Handle selections (selector iface+impl should be changed to handle this):
+- single entry selection => edit possible, remove single
+- multiple entry selection => remove multiple
+Reason: Does not seem very useful to edit many entries at the same time.
+
+Turn the file tests in real unit tests. Make test files using different versions of pws. Make tests to read all these files. use accents.
+Reason: uniformity is not a goal. The file codecs are stable at this time. If problems should arise, we
+might reconsider testing the formats. I added two files from two versions of pws though.
+
+Check if the passphrase needs to be stored as plain text. Maybe it is sufficient to store the BF cipher without the plain passphrase. Crf. the JPasswordEditor =-> char[] iso String.
+Or do some preprocessing on it so that it is not apparent that it is the master key.
+Reason: there must be a simple way to change the password, so we must keep it in memory.
+
+Check header-parameter usage. I suspect these are pwd generating parameters, not sure of this.
+It is part of the header of the 2.0 files.
+Reason: No plans to use this info.
+
+Merge wizard to open other db and select one or more entries and these get inserted in the current database.
+Or only import a complete database.
+Reason: Already covered by import. No use for a selection of records. Too complicated.
+
+i8n. Extract textual information, put it in resource bundles. Provide bundles for at least EN, NL, FR.
+Maybe add the locale as a parameter.
+Reason: It would take too much time to translate everything. Also the help should be translated. I see how it can be done, that is the
+most important issue. At this point in time I would like to get a working app. out of the door.
+
+Influence location/size of help window, make it as big as pwt window.
+Note: No simple way to do this, the window can move after the broker has been set and before help has been invoked.
+So we should write our own broker who keeps track of the parent window. But than again, if the help
+is already shown, the help window should not move... we leave it at this; lots of troubles, not much gains.
+
+Rework layout of panels so that they look good in JGoodies, but are okay in Metal.
+Note: I choose the JGoodies look, it is a find L&F; Dont go through the troubles of letting the layout
+be dictated by the worst L&F.
+
+Test nested trees, this happens when group name contains \ or / (I forgot).
+Note: the dot "." is the splitting character!!!!!!!!!
+Can we add group changing by dragging pwd's? -> see hack book.
+Note: feature not immediately useful. Will reconsider later. Keep lean and mean.
+
+Review help button and other button placements in panels/dialogs - the placement should be made consistent.
+Add help buttons?
+Reason: No help buttons on the GUI except for the very first screen, just to help the user to get started.
+On all other screens, the implicit F1 key is provided.
+
+Done
+====
+Default uid, group, title.
+Note: Alleen uid/group genomen. Title is verondersteld om te veranderen van entry tot entry.
+
+Add group combobox so the user can select an existing group.
+Note: Toch nog wat problemen met hoogte van de combobox. zou mooist zijn moest deze even groot zijn
+als te text fields eronder...
+
+Right button context menu for entries - insert, edit, delete/copy uid, copy pwd.
+
+Add accelerators/fastkeys to the menu's (or the actions?). Look at the password safe shortcuts and
+emulate the same keys.
+
+Handle null preference -> remove preference? Eg. set empty default db => problems.
+
+Review handling of character codec (utf8, unicode) and the way the values are written to the bytebufs. Maybe make this a user preference.
+Reason: Do not know which character set to choose.
+Maybe use pws and generate some characters with accents?   -> compare accented characters in different implementations.
+Some versions will support unicode, others don't ...
+US-ASCII Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set
+ISO-8859-1   ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1
+UTF-8 Eight-bit UCS Transformation Format
+UTF-16BE Sixteen-bit UCS Transformation Format, big-endian byte order
+UTF-16LE Sixteen-bit UCS Transformation Format, little-endian byte order
+UTF-16 Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark
+Todo:
+   * Generate pwd file with accents in all fields, do it in pws 1.0 and pws 2.0 format.
+   * Try them in patra.
+Probable scenario: I think 1.0 is in iso format, and 2.0 in unicode. So the solution should be: keep all fields internally in unicode.
+===> solution: the charset should be in the codec. The codec should be used to transform the field into a string. The codec1 would use iso
+     and the codec2 would use unicode. There is an extra issue: Right now when transforming a db between codecs only the codec is  replaced
+     but an extra step is needed: the fields sould be converted from byte[]->String using the old codec and then from String->byte[] using the new codec.
+Notes: Reality is much much simpler. ISO-8895-1 is used for all data. So not furhter logic is needed (for the time being).
+
+Preferences.
+- Initial db
+  The start dialog also contains a db. Right now changing this always changes the preference-db.
+  This should be changed. If the user changes the db in the start and it is different from the preference,
+  then the GUI should ask if this should be made a preference.
+  This allows the user to temporarily choose another db without affecting the default the next time.
+- window position/size
+- table view configuration
+- tree view configuration
+- ...
+Notes: Saving window position and size is not implemented, I doubt the value of this feature.
+
+Table improvements:
+- configurable columns       -- Not done, not much value in it. There are only 3 cols, if there were
+                                say 10 columns or more, than it would become interesting, but not with
+                                only 3 cols.
+- sortable columns  (!!!!!!) -- Ok this is implemented using the hacks book.
+- allow direct edit of fields in table itself (not all fields are editable - eg. times)
+                             -- Not done. It gives a restricted view on the complete record.
+
+Search box to reduce the number of items in tree/table. Kind of a filter function to quickly search for entries in the list. Handy when there are a lot of entries.
+Filter functionality on list/tree, the user types some chars in some field and the list is automatically truncated
+to the entries containing the string.
+Notes: done. Inspiration from the hack book.
+
+Error when > 2.0 version.
+
+Tree improvements:
+- Tree should be sorted. -- Ok, done.
+- allow change of group names by allowing node edits of group. -- Not done. not much value in it, a combination is shown not a single field...
+- allow direct edit of visible name in tree itself (if only 1 field is shown). -- Not done. not much value in it.
+- customizable display        -- Not done, not enough customizable information available.
+
+Clear clipboard command.
+Notes: No problems.
+
+Explicit command to convert from 1-2. So that the user has the option to convert even after opening the file.
+Autoconvert should use this command as well.
+
+Explicit command to convert from 2->1. So that the user has the option to convert even after opening the file.
+Autoconvert should use this command as well.
+
+Add preference to indicate if the password should be shown by default when editing entries or not.
+
+Add preference to never ask for setting the default database to the newly opened file.
+So in this case you can only change the default database explicitly using the preferences.
+The gui will never suggest to make a new database the default.
+
+.dat extensie automatisch toevoegen .... wanneer? Men moet ook file kunnen
+openen met andere extensie of zonder extensie ... Hoe doen andere prgs dit?
+Winzip laat bvb. niet toe om files te maken *zonder* extensie! Mischien een preference van maken?
+
+Keep a number (see prefs. 0-10) of backups, named in a certain way (as moneydance does)
+for safety. You always have the x latest versions around. If something goes wrong, you
+can return to one of the x latest versions. If you have only one backup copy
+the backup might be corrupt as well. The more versions you keep, the less the change you are f**.
+
+import/export to csv. -> CSV is sufficient, we will stick to this.
+import/export to xml. -> Introduces new complexities => which format? etc. I dont want to define a XML format.
+                         We will skip the XML until there is an explicit request for this.
+import other pwd dababase -> Only import, export could be done by saving.
+
+Focus traversal in dialog boxes. See that input box has focus and that some button is default button.
+The password dialog is such an example, the text box should have focus immediately.
+Solved it by creating the dialog box from option pane and then setting options.
+
+ESC key should be shortcut for cancel button.
+ENTER should be shortcut for do it or go.
+Note: added ESC listener to start panel. JOptionpane has this behaviour by default.
+
+Add "change passphrase" action to the features.
+
+Add "save as" action.
+
+Add a warning box wen exporting - warn that passwords will be exposed on disk.
+Add an option to turn these warnings off.
+
+When opening a safe, a password is asked. If this is wrong, the password dialog should remain open.
+Right now the operation is aborted, and the user does not have the chance to correct his mistake.
+
+About-action => popup with logo and (c).
+
+Help action => starts javahelp.
+
+Link the help system in the application (use skeleton help, not the final version), see that all help buttons have a link
+to corresponding topic. Put help browser jar in lib folder. Consider F1...
+
+Create LOGO
+
+Remove all external links from help. External sites are not rendered good in help browser.
+Just mention the URL.
+
+Review focus cycle, especially for the editors.
+Note: When the JCombobox has focus the component does not release it... I suspect this is a bug
+in the look and feel. I dont know how to solve this in short term.
+
+Alle GUI tekst in bundles steken.
+
+About box, text vervangen door HTML ipv image. Analoog aan banner in start panel.
+Background image opnieuw maken, rechterkant slot moet van grafiek.
+Note: Adjusted the image a bit, enlarged the background so that it became a bit nicer.
+For the time being no need to be more fancy than this, the simple adjustment suffices.
+
+put logo in
+   start panel
+   about box
+   help
+
+Take screenshots.
+Take screenshots and elaborate the help system.
+
+Create a help system and integrate it in to the application.
+Look at JavaHelp and ... tool to create the contents.
+Note: used JHelpbuilder free tool in combination with NVU to construct the helpsystem.   

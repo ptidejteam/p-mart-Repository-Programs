@@ -1,0 +1,8 @@
+ExOleObjAtom
+  drawAspect: 1
+  type: 2
+  objID: 1
+  subType: 0
+  objStgDataRef: 2
+  options: 1283584
+

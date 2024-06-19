@@ -1,0 +1,15 @@
+41.8.b8e	+0	(def_block
+41.8.b8e	+5	r_class
+41.e.b94	+9	id|ElemEmpty
+42.1.bbb	+1	(brace
+48.a.bf9	+0	(def_block
+48.a.bf9	+9	id|ElemEmpty
+48.13.c02	+0	c_func
+48.13.c02	+1	(paren
+48.14.c03	+1	)paren
+48.15.c04	+1	(brace
+48.16.c05	+1	)brace
+48.17.c06	+0	)def_block
+49.1.c08	+1	)brace
+49.2.c09	+0	)def_block
+4a.1.c0b	+0	eof

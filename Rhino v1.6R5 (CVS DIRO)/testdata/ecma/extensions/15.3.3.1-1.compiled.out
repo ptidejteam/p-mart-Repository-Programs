@@ -1,0 +1,6 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\extensions\15.3.3.1-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\extensions\shell.js -f mozilla\js\tests\ecma\extensions\15.3.3.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+15.3.3.1-1 Function.prototype
+Function.prototype == Function.__proto__ = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\extensions\15.3.3.1-1.compiled.arff] ...

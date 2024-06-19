@@ -1,0 +1,41 @@
+README for xml-xalan project at xml.apache.org
+
+-- This Xalan build is 1.0.0.  It is compatible with Xerces 1.0.3.
+
+
+-- IMPORTANT NOTES:
+
+- If you have downloaded Xalan from xml.apache.org/dist/, you have sources and the build.
+  Open docs/readme.html for information about setting up and using Xalan.
+  See docs/apidocs/index.html for Javadoc.
+
+- If you have obtained Xalan from the Apache XML CVS repository, you only have sources, 
+  so you must build Xalan, including the HTML documentation.
+
+Basic Build Instructions for xml-xalan:
+
+- The ./build.xml 'Ant' build file sort-of works, but is not currently used for these 
+  distributions and not really supported.  We'd like to move that way in a while.
+
+- Use GNU Make or an equivalent. On win32 you might try http://sourceware.cygnus.com/cygwin
+  Note that you will need the full Cygwin toolkit, since the make relies on a number
+  of other unix-like utilities like cp, rm, etc.  Also, the toolkit must be on your PATH
+  *before* most other Win32 utilities, notably the NT Resource Kit. Set MAKE_MODE as follows:
+       set MAKE_MODE=UNIX 
+
+- The makefiles use:
+    ifeq (,$(findstring usr,$(PATH)))
+  to determine if we're on Win32 (usr not in PATH) or a unix flavor (usr probably
+  in PATH).  Please let shane_curcuru@lotus.com know if you have a better way.
+
+- As long as xml-xalan is built in the sibling directory to xml-xerces, you shouldn't 
+  have to set any environment variables. See Makefile for other environment notes.
+
+- Common make targets from xml-xalan directory:
+    'make all'      to build everything.
+    'make build'    to compile and build the jar.
+    'make jars'     to build jar files.
+    'make docs'     to build the docs (they will be put into a new build/docs directory).
+    'make samples'  to build the samples and create samples.jar.
+    'make clean'    as you'd expect.
+

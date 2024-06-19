@@ -1,0 +1,42 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Array\15.4.4.4.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Array\shell.js -f mozilla\js\tests\ecma_3\Array\15.4.4.4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 322135
+STATUS: Array.prototype.concat on Array with length 2^32-1
+STATUS: This bug passes if it does not cause an out of memory error
+STATUS: Other issues related to array length are not tested.
+java.lang.OutOfMemoryError: Java heap space
+	at org.mozilla.javascript.ScriptableObject.addSlotImpl(ScriptableObject.java:1821)
+	at org.mozilla.javascript.ScriptableObject.addSlot(ScriptableObject.java:1806)
+	at org.mozilla.javascript.ScriptableObject.put(ScriptableObject.java:268)
+	at org.mozilla.javascript.NativeArray.put(NativeArray.java:306)
+	at org.mozilla.javascript.ScriptableObject.putProperty(ScriptableObject.java:1426)
+	at org.mozilla.javascript.ScriptRuntime.setObjectIndex(ScriptRuntime.java:1468)
+	at org.mozilla.javascript.NativeArray.setElem(NativeArray.java:504)
+	at org.mozilla.javascript.NativeArray.js_concat(NativeArray.java:1090)
+	at org.mozilla.javascript.NativeArray.execIdCall(NativeArray.java:233)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:127)
+	at org.mozilla.javascript.Interpreter.interpretLoop(Interpreter.java:3085)
+	at org.mozilla.javascript.Interpreter.interpret(Interpreter.java:2251)
+	at org.mozilla.javascript.InterpretedFunction.call(InterpretedFunction.java:161)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:340)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:2758)
+	at org.mozilla.javascript.InterpretedFunction.exec(InterpretedFunction.java:172)
+	at org.mozilla.javascript.tools.shell.Main.evaluateScript(Main.java:503)
+	at org.mozilla.javascript.tools.shell.Main.processFileSecure(Main.java:425)
+	at org.mozilla.javascript.tools.shell.Main.processFile(Main.java:391)
+	at org.mozilla.javascript.tools.shell.Main.processSource(Main.java:382)
+	at org.mozilla.javascript.tools.shell.Main.processFiles(Main.java:179)
+	at org.mozilla.javascript.tools.shell.Main$IProxy.run(Main.java:100)
+	at org.mozilla.javascript.Context.call(Context.java:528)
+	at org.mozilla.javascript.ContextFactory.call(ContextFactory.java:450)
+	at org.mozilla.javascript.tools.shell.Main.exec(Main.java:162)
+	at org.mozilla.javascript.tools.shell.Main.main(Main.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.vladium.emma.rt.AppRunner$Invoker.run(AppRunner.java:655)
+	at java.lang.Thread.run(Unknown Source)
+js: exception from uncaught JavaScript throw: java.lang.OutOfMemoryError: Java heap space
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Array\15.4.4.4.compiled.arff] ...

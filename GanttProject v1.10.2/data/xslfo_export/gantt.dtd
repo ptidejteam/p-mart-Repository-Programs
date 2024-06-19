@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding="UTF-8"?>
+
+<!-- ==============================================================================================
+This DTD is the description of the XML document format used by the XSLFO to PDF transformation.
+Should be used as a reference for creating custom XSL stylesheets.
+=============================================================================================== -->
+
+<!-- ResourceChart Information -->
+<!ELEMENT xsl:stylesheet (xmlns:xsl, xmlns:ganttproject, version)>
+
+<!-- Root element of the document -->
+<!ELEMENT ganttproject:report (#PCDATA)>
+
+<!-- Project information -->
+<!ELEMENT ganttproject:project (xslfo-path, title,name,nameValue,organisation,organisationValue,description,descriptionValue)>
+<!-- Project attributes -->
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT nameValue (#PCDATA)>
+<!ELEMENT organisation (#PCDATA)>
+<!ELEMENT organisationValue (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT descriptionValue (#PCDATA)>
+
+<!-- GanttChart Information -->
+<!ELEMENT ganttproject:ganttchart (xslfo-path, title,src)>
+
+<!-- ResourceChart Information -->
+<!ELEMENT ganttproject:resourceschart (xslfo-path, title,src)>
+
+
+<!-- All task of the project -->
+<!ELEMENT ganttproject:tasks (#PCDATA|ganttproject:task)*>
+<!-- Lozalized versions for attributes -->
+<!ATTLIST ganttproject:tasks xslfo-path, CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks title CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks name CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks begin CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks end CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks milestone CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks progress CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks assigned-to CDATA #IMPLIED>
+<!ATTLIST ganttproject:tasks notes CDATA #IMPLIED>
+
+<!-- One task -->
+<!ELEMENT ganttproject:task (name,begin,end,milestone,progress,assigned-to,notes,color)>
+<!-- Task attributes -->
+<!ELEMENT begin (#PCDATA)>
+<!ELEMENT end (#PCDATA)>
+<!ELEMENT milestone (#PCDATA)>
+<!ELEMENT progress (#PCDATA)>
+<!ELEMENT assigned-to (#PCDATA)>
+<!ELEMENT notes (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+
+
+<!-- All resources for the project -->
+<!ELEMENT ganttproject:resources (#PCDATA|ganttproject:resource)*>
+<!-- XFLFO directory " -->
+<!ATTLIST ganttproject:resources xslfo-path, CDATA #IMPLIED>
+<!-- Localized version of title for this chapter," -->
+<!ATTLIST ganttproject:resources title CDATA #IMPLIED>
+<!-- Localized version of "Name" -->
+<!ATTLIST ganttproject:resources name CDATA #IMPLIED>
+<!-- Localized version of "Role" -->
+<!ATTLIST ganttproject:resources role CDATA #IMPLIED>
+<!-- Localized version of "Mail" -->
+<!ATTLIST ganttproject:resources contact CDATA #IMPLIED>
+<!-- Localized version of "Phone" -->
+<!ATTLIST ganttproject:resources phone CDATA #IMPLIED>
+
+<!-- One resource description - name, role, contact -->
+<!ELEMENT ganttproject:resource (name,role,mail,phone)>
+<!-- Role for the resource -->
+<!ELEMENT role (#PCDATA)>
+<!-- Mail to the resource -->
+<!ELEMENT mail (#PCDATA)>
+<!-- Phone to the resource -->
+<!ELEMENT phone (#PCDATA)>

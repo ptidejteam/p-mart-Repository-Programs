@@ -1,0 +1,29 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.2.1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.2.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 360 ms]
+15.9.2.1 The Date Constructor Called as a Function:  Date( year, month, date, hours, minutes, seconds, ms )
+Date(1970,0,1,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1969,11,31,15,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1969,11,31,16,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1969,11,31,16,0,0,1) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1999,11,15,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1999,11,16,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1999,11,31,23,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2000,0,1,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2000,0,1,0,0,0,1) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1899,11,31,23,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1900,0,1,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1900,0,1,0,0,0,1) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(1899,11,31,16,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date( 2000,1,29,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date( 2000,1,28,23,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date( 2000,1,27,16,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2004,11,31,23,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2005,0,1,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2005,0,1,0,0,0,1) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2004,11,31,16,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2031,11,31,23,59,59,999) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2032,0,1,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2032,0,1,0,0,0,1) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+Date(2031,11,31,16,0,0,0,0) = Tue Jul 10 2007 13:29:32 GMT-0400 (EDT) PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.2.1.interpreted.arff] ...

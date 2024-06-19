@@ -1,0 +1,38 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.6.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.6.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.8.2.6 Math.ceil(x)
+Math.ceil.length = 1 PASSED!
+Math.ceil(NaN) = NaN PASSED!
+Math.ceil(null) = 0 PASSED!
+Math.ceil() = NaN PASSED!
+Math.ceil(void 0) = NaN PASSED!
+Math.ceil('0') = 0 PASSED!
+Math.ceil('-0') = 0 PASSED!
+Infinity/Math.ceil('0') = Infinity PASSED!
+Infinity/Math.ceil('-0') = -Infinity PASSED!
+Math.ceil(0) = 0 PASSED!
+Math.ceil(-0) = 0 PASSED!
+Infinity/Math.ceil(0) = Infinity PASSED!
+Infinity/Math.ceil(-0) = -Infinity PASSED!
+Math.ceil(Infinity) = Infinity PASSED!
+Math.ceil(-Infinity) = -Infinity PASSED!
+Math.ceil(-Number.MIN_VALUE) = 0 PASSED!
+Infinity/Math.ceil(-Number.MIN_VALUE) = -Infinity PASSED!
+Math.ceil(1) = 1 PASSED!
+Math.ceil(-1) = -1 PASSED!
+Math.ceil(-0.9) = 0 PASSED!
+Infinity/Math.ceil(-0.9) = -Infinity PASSED!
+Math.ceil(0.9 ) = 1 PASSED!
+Math.ceil(-1.1) = -1 PASSED!
+Math.ceil( 1.1) = 2 PASSED!
+Math.ceil(Infinity) = Infinity PASSED!
+Math.ceil(-Infinity) = -Infinity PASSED!
+Math.ceil(-Number.MIN_VALUE) = 0 PASSED!
+Math.ceil(1) = 1 PASSED!
+Math.ceil(-1) = -1 PASSED!
+Math.ceil(-0.9) = 0 PASSED!
+Math.ceil(0.9 ) = 1 PASSED!
+Math.ceil(-1.1) = -1 PASSED!
+Math.ceil( 1.1) = 2 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.6.interpreted.arff] ...

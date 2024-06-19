@@ -1,0 +1,14 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Number\15.7.4.2-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Number\shell.js -f mozilla\js\tests\ecma\Number\15.7.4.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.7.4.2-1 Number.prototype.toString()
+Number.prototype.toString() = 0 PASSED!
+typeof(Number.prototype.toString()) = string PASSED!
+s = Number.prototype.toString; o = new Number(); o.toString = s; o.toString() = 0 PASSED!
+s = Number.prototype.toString; o = new Number(1); o.toString = s; o.toString() = 1 PASSED!
+s = Number.prototype.toString; o = new Number(-1); o.toString = s; o.toString() = -1 PASSED!
+var MYNUM = new Number(255); MYNUM.toString(10) = 255 PASSED!
+var MYNUM = new Number(Number.NaN); MYNUM.toString(10) = NaN PASSED!
+var MYNUM = new Number(Infinity); MYNUM.toString(10) = Infinity PASSED!
+var MYNUM = new Number(-Infinity); MYNUM.toString(10) = -Infinity PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Number\15.7.4.2-1.compiled.arff] ...

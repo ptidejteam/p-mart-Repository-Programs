@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+
+<map version="1.0">
+
+    <mapID target="folder" url="assets/folder.gif" />
+    <mapID target="file" url="assets/file.gif" />
+
+    <mapID target="editentry_html" url="docs/editentry.html"/>
+    <mapID target="pwt-license_html" url="docs/pwt-license.html"/>
+    <mapID target="mainscreen_html" url="docs/mainscreen.html"/>
+    <mapID target="jgoodies-license_html" url="docs/jgoodies-license.html"/>
+    <mapID target="generator_html" url="docs/generator.html"/>
+    <mapID target="clipboard_html" url="docs/clipboard.html"/>
+    <mapID target="importexport_html" url="docs/importexport.html"/>
+    <mapID target="quickstart_html" url="docs/quickstart.html"/>
+    <mapID target="preferences_html" url="docs/preferences.html"/>
+    <mapID target="startscreen_html" url="docs/startscreen.html"/>
+    <mapID target="intro_html" url="docs/intro.html"/>
+    <mapID target="tips_html" url="docs/tips.html" />
+    <mapID target="shortcuts_html" url="docs/shortcuts.html" />
+</map>

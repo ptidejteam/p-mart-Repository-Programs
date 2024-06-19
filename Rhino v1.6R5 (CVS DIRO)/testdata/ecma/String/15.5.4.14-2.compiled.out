@@ -1,0 +1,65 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.14-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.14-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.4.8-2 String.prototype.split
+var s = new String( this is a string object ); s.split('').length = 23 PASSED!
+var s = new String( this is a string object ); s.split('')[0] = t PASSED!
+var s = new String( this is a string object ); s.split('')[1] = h PASSED!
+var s = new String( this is a string object ); s.split('')[2] = i PASSED!
+var s = new String( this is a string object ); s.split('')[3] = s PASSED!
+var s = new String( this is a string object ); s.split('')[4] =   PASSED!
+var s = new String( this is a string object ); s.split('')[5] = i PASSED!
+var s = new String( this is a string object ); s.split('')[6] = s PASSED!
+var s = new String( this is a string object ); s.split('')[7] =   PASSED!
+var s = new String( this is a string object ); s.split('')[8] = a PASSED!
+var s = new String( this is a string object ); s.split('')[9] =   PASSED!
+var s = new String( this is a string object ); s.split('')[10] = s PASSED!
+var s = new String( this is a string object ); s.split('')[11] = t PASSED!
+var s = new String( this is a string object ); s.split('')[12] = r PASSED!
+var s = new String( this is a string object ); s.split('')[13] = i PASSED!
+var s = new String( this is a string object ); s.split('')[14] = n PASSED!
+var s = new String( this is a string object ); s.split('')[15] = g PASSED!
+var s = new String( this is a string object ); s.split('')[16] =   PASSED!
+var s = new String( this is a string object ); s.split('')[17] = o PASSED!
+var s = new String( this is a string object ); s.split('')[18] = b PASSED!
+var s = new String( this is a string object ); s.split('')[19] = j PASSED!
+var s = new String( this is a string object ); s.split('')[20] = e PASSED!
+var s = new String( this is a string object ); s.split('')[21] = c PASSED!
+var s = new String( this is a string object ); s.split('')[22] = t PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0).length = 5 PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0)[0] = this PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0)[1] = is PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0)[2] = a PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0)[3] = string PASSED!
+var s = new String( thisundefinedisundefinedaundefinedstringundefinedobject ); s.split(void 0)[4] = object PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null).length = 5 PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null)[0] = this PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null)[1] = is PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null)[2] = a PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null)[3] = string PASSED!
+var s = new String( thisnullisnullanullstringnullobject ); s.split(null)[4] = object PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true).length = 5 PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true)[0] = this PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true)[1] = is PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true)[2] = a PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true)[3] = string PASSED!
+var s = new String( thistrueistrueatruestringtrueobject ); s.split(true)[4] = object PASSED!
+var s = new String( this123is123a123string123object ); s.split(123).length = 5 PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[0] = this PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[1] = is PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[2] = a PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[3] = string PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[4] = object PASSED!
+var s = new String( this123is123a123string123object ); s.split(123).length = 5 PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[0] = this PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[1] = is PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[2] = a PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[3] = string PASSED!
+var s = new String( this123is123a123string123object ); s.split(123)[4] = object PASSED!
+var s = new String( this is a string ); s.split(':').length = 1 PASSED!
+var s = new String( this is a string ); s.split(':')[0] = this is a string PASSED!
+var s = new String( this is a string ); s.split('strings').length = 1 PASSED!
+var s = new String( this is a string ); s.split('strings')[0] = this is a string PASSED!
+var s = new String( this is a string ); s.split('string').length = 2 PASSED!
+var s = new String( this is a string ); s.split('string')[0] = this is a  PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.14-2.compiled.arff] ...

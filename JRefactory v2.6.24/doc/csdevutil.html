@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Dev Utilities</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> Dev Utilities <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csstub.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::Dev Utilities
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csrtodo.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3" VALIGN="top">
+			<H4>Clean</H4>
+			<P> Java's compiler has a useful make feature built in.  However, it
+			doesn't always quite catch all the dependencies.  I often delete all
+			the class files and then recompile.  This tool creates a script to
+			delete all the .class files in a directory.</P>
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java org.acm.seguin.tools.build.CleanClassFiles [<EM>name</EM> [<EM>dir</EM>]]</PRE>
+					</TD>
+					<TD>Creates a script file in <EM>name</EM> that by deleting class files
+					in any directory that has a java file under <EM>dir</EM>.  The system
+					defaults the script file to standard out, and the default directory is
+					the current directory.</TD>
+				</TR>
+			</TABLE>
+          </P>
+			<H4>Backup</H4>
+			<P>Traverses a directory tree and creates a copy of all .java files
+			it finds. in a parallel directory structure.  This program creates the
+			directory structure if necessary.</P>
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java org.acm.seguin.util.BackupTraversal <EM>sourceDir</EM> <EM>destDir</EM></PRE>
+					</TD>
+					<TD>Copies all .java files found in <EM>sourceDir</EM> to <EM>destDir</EM>.</TD>
+				</TR>
+			</TABLE>
+          </P>
+			<H4>Code Store</H4>
+		   <P>This tool traveses a directory structure and creates a script file
+		   that will build a jar file containing all the .java files it finds.
+		   </P>
+
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+					<TH>
+						<P>Description
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java org.acm.seguin.tools.build.CodeStoreBuilder  [<EM>jarfile</EM> [<EM>script</EM> [<EM>dir</EM>]]]</PRE>
+					</TD>
+					<TD>Creates a jar file named <EM>jarfile</EM> via a script called <EM>script</EM>
+					containing .java files in <EM>dir</EM>.</TD>
+				</TR>
+			</TABLE>
+          </P>
+		<H4>Jar Generator</H4>
+			<P>Once the class files are build, this tool traverses a directory tree
+			and creates a script file that will create a jar of all classes found
+			in the directory tree.  The default script file location is standard out,
+			the default directory is the current directory, and the default jar file
+			is named sample.jar.</P>
+			<TABLE BORDER="1">
+				<TR>
+					<TH>
+						<P>Syntax
+					</TH>
+				</TR>
+				<TR>
+					<TD>
+						<PRE>java org.acm.seguin.tools.build.JarDirectoryBuilder [<EM>jarfile</EM> [<EM>script</EM> [<EM>dir</EM>]]]</PRE>
+					</TD>
+				</TR>
+			</TABLE>
+ 		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csstub.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: October 19, 1999</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csrtodo.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

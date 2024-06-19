@@ -1,0 +1,199 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Frequently Asked Questions</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>About</h4>
+<ul>
+<li>
+<a href="index.html">Index</a>
+</li>
+<li>
+<a href="historyandfuture.html">History and Future</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/builds/jakarta-poi/">Download</a>
+</li>
+<li>
+<a href="plan/POI10Vision.html">1.0 Vision</a>
+</li>
+<li>
+<a href="plan/POI20Vision.html">2.0 Vision</a>
+</li>
+<li>
+<a href="who.html">Who we are</a>
+</li>
+<li>
+<a href="changes.html">Changes</a>
+</li>
+<li>
+<a href="faq.html">FAQ</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Sub-Projects</h4>
+<ul>
+<li>
+<a href="overview.html">Overview</a>
+</li>
+<li>
+<a href="poifs/index.html">POIFS</a>
+</li>
+<li>
+<a href="hssf/index.html">HSSF</a>
+</li>
+<li>
+<a href="hdf/index.html">HDF</a>
+</li>
+<li>
+<a href="hpsf/index.html">HPSF</a>
+</li>
+<li>
+<a href="utils/index.html">POI-Utils</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>References</h4>
+<ul>
+<li>
+<a href="http://jakarta.apache.org/poi/javadocs/">Javadocs</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/test/">Test Results</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/poi/metrics/jdepend-report.html">Metrics</a>
+</li>
+<li>
+<a href="inthenews.html">In The News</a>
+</li>
+<li>
+<a href="livesites.html">Live Sites</a>
+</li>
+<li>
+<a href="http://sc.openoffice.org/excelfileformat.pdf">XLS spec [PDF]</a>
+</li>
+<li>
+<a href="http://xml.apache.org/cocoon/">Apache Cocoon</a>
+</li>
+<li>
+<a href="resolutions/index.html">Resolutions</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>Get Involved</h4>
+<ul>
+<li>
+<a href="contrib.html">Contributing</a>
+</li>
+<li>
+<a href="branching.html">Branching</a>
+</li>
+<li>
+<a href="http://nagoya.apache.org/bugzilla/buglist.cgi?product=POI">Bug Database</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/cvsindex.html">CVS</a>
+</li>
+<li>
+<a href="http://jakarta.apache.org/site/mail.html">Mail Lists</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>Frequently Asked Questions</h1>
+</div>
+<div id="contents">
+<blockquote>
+<ul>
+<li>
+<a href="#faq-1">
+          What is the HSSF "eventmodel"?
+        </a>
+</li>
+<li>
+<a href="#faq-2">
+          Why can't read the document I created using Star Office 5.1?
+        </a>
+</li>
+<li>
+<a href="#faq-3">
+            Why am I getting an exception each time I attempt to read my spreadsheet?
+        </a>
+</li>
+<li>
+<a href="#faq-4">
+            Does HSSF support protected spreadsheets?
+        </a>
+</li>
+</ul>
+</blockquote>
+<a name="faq-1">
+<!--anchor--></a>
+        
+        
+              The HSSF eventmodel package is a new API for reading XLS files more efficiently.  It does
+              require more knowledge on the part of the user, but reduces memory consumption by more than
+              tenfold.  It is based on the AWT event model in combination with SAX.  If you need read-only
+              access to a given XLS file, this is the best way to do it.
+        
+
+    <a name="faq-2">
+<!--anchor--></a>
+        
+        
+              Star Office 5.1 writes some records using the older BIFF standard.  This causes some problems
+              with POI which supports only BIFF8.
+        
+    <a name="faq-3">
+<!--anchor--></a>
+        
+        
+            It's possible your spreadsheet contains a feature that is not currently supported by HSSF.
+            For example - spreadsheets containing cells with rich text are not currently supported.
+        
+    <a name="faq-4">
+<!--anchor--></a>
+        
+        
+            Protecting a spreadsheet encripts it.  We wont touch encription because we're not legally educated
+            and don't understand the full implications of trying to implement this.  If you wish to have a go
+            at this feel free to add it as a plugin module.  We wont be hosting it here however.
+        
+    </div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\7.5.3-4-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\7.5.3-4-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+lexical-011 Future Reserved Words
+lexical-011 Future Reserved Words
+This test requires option javascript.options.strict enabled
+js: "mozilla\js\tests\ecma_2\Exceptions\7.5.3-4-n.js", line 30: uncaught JavaScript runtime exception: ReferenceError: "options" is not defined.
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\7.5.3-4-n.interpreted.arff] ...

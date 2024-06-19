@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Statements\12.7-1-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Statements\shell.js -f mozilla\js\tests\ecma\Statements\12.7-1-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+12.7.1-n The continue statement
+js: "mozilla\js\tests\ecma\Statements\12.7-1-n.js#57(eval)", line 1: uncaught JavaScript runtime exception: SyntaxError: continue must be inside loop
+js: continue
+js: .......^
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Statements\12.7-1-n.interpreted.arff] ...

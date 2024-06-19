@@ -1,0 +1,207 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hpsf/classList.html" TARGET="packageFrame">org.apache.poi.hpsf</A>: Util');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hpsf/classList.html" TARGET="packageFrame">org.apache.poi.hpsf</A>: Util';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">/* ====================================================================
+<a name=2 class="linenum">2    </a> * The Apache Software License, Version 1.1
+<a name=3 class="linenum">3    </a> *
+<a name=4 class="linenum">4    </a> * Copyright (c) 2000 The Apache Software Foundation.  All rights
+<a name=5 class="linenum">5    </a> * reserved.
+<a name=6 class="linenum">6    </a> *
+<a name=7 class="linenum">7    </a> * Redistribution and use in source and binary forms, with or without
+<a name=8 class="linenum">8    </a> * modification, are permitted provided that the following conditions
+<a name=9 class="linenum">9    </a> * are met:
+<a name=10 class="linenum">10   </a> *
+<a name=11 class="linenum">11   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=12 class="linenum">12   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=13 class="linenum">13   </a> *
+<a name=14 class="linenum">14   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=15 class="linenum">15   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=16 class="linenum">16   </a> *    the documentation and/or other materials provided with the
+<a name=17 class="linenum">17   </a> *    distribution.
+<a name=18 class="linenum">18   </a> *
+<a name=19 class="linenum">19   </a> * 3. The end-user documentation included with the redistribution,
+<a name=20 class="linenum">20   </a> *    if any, must include the following acknowledgment:
+<a name=21 class="linenum">21   </a> *       "This product includes software developed by the
+<a name=22 class="linenum">22   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=23 class="linenum">23   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=24 class="linenum">24   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=25 class="linenum">25   </a> *
+<a name=26 class="linenum">26   </a> * 4. The names "Apache" and "Apache Software Foundation" must
+<a name=27 class="linenum">27   </a> *    not be used to endorse or promote products derived from this
+<a name=28 class="linenum">28   </a> *    software without prior written permission. For written
+<a name=29 class="linenum">29   </a> *    permission, please contact apache@apache.org.
+<a name=30 class="linenum">30   </a> *
+<a name=31 class="linenum">31   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=32 class="linenum">32   </a> *    nor may "Apache" appear in their name, without prior written
+<a name=33 class="linenum">33   </a> *    permission of the Apache Software Foundation.
+<a name=34 class="linenum">34   </a> *
+<a name=35 class="linenum">35   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=36 class="linenum">36   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=37 class="linenum">37   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=38 class="linenum">38   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=39 class="linenum">39   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=40 class="linenum">40   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=41 class="linenum">41   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=42 class="linenum">42   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=43 class="linenum">43   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=44 class="linenum">44   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=45 class="linenum">45   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=46 class="linenum">46   </a> * SUCH DAMAGE.
+<a name=47 class="linenum">47   </a> * ====================================================================
+<a name=48 class="linenum">48   </a> *
+<a name=49 class="linenum">49   </a> * This software consists of voluntary contributions made by many
+<a name=50 class="linenum">50   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=51 class="linenum">51   </a> * information on the Apache Software Foundation, please see
+<a name=52 class="linenum">52   </a> * &lt;http://www.apache.org/&gt;.
+<a name=53 class="linenum">53   </a> *
+<a name=54 class="linenum">54   </a> * Portions of this software are based upon public domain software
+<a name=55 class="linenum">55   </a> * originally written at the National Center for Supercomputing Applications,
+<a name=56 class="linenum">56   </a> * University of Illinois, Urbana-Champaign.
+<a name=57 class="linenum">57   </a> */</span>
+<a name=58 class="linenum">58   </a>
+<a name=59 class="linenum">59   </a>package org.apache.poi.hpsf;
+<a name=60 class="linenum">60   </a>
+<a name=61 class="linenum">61   </a>import java.util.*;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a><span class="comment">/**
+<a name=64 class="linenum">64   </a> * &lt;p&gt;Provides various static utility methods.&lt;/p&gt;
+<a name=65 class="linenum">65   </a> *
+<a name=66 class="linenum">66   </a> * @author Rainer Klute (klute@rainer-klute.de)
+<a name=67 class="linenum">67   </a> * @version $Id: Util.java,v 1.1 2002/02/14 04:00:59 mjohnson Exp $
+<a name=68 class="linenum">68   </a> * @since 2002-02-09
+<a name=69 class="linenum">69   </a> */</span>
+<a name=70 class="linenum">70   </a>public class <a class="classDef" name=Util href=Util_java_ref.html#Util>Util</a>
+<a name=71 class="linenum">71   </a>{
+<a name=72 class="linenum">72   </a>
+<a name=73 class="linenum">73   </a>    <span class="comment">/**
+<a name=74 class="linenum">74   </a>     * &lt;p&gt;Checks whether two byte arrays &lt;var&gt;a&lt;/var&gt; and &lt;var&gt;b&lt;/var&gt;
+<a name=75 class="linenum">75   </a>     * are equal. They are equal&lt;/p&gt;
+<a name=76 class="linenum">76   </a>     *
+<a name=77 class="linenum">77   </a>     * &lt;ul&gt;
+<a name=78 class="linenum">78   </a>     * &lt;li&gt;&lt;p&gt;if they have the same length and&lt;/p&gt;&lt;/li&gt;
+<a name=79 class="linenum">79   </a>     *
+<a name=80 class="linenum">80   </a>     * &lt;li&gt;&lt;p&gt;if for each &lt;var&gt;i&lt;/var&gt; with
+<a name=81 class="linenum">81   </a>     * &lt;var&gt;i&lt;/var&gt;&nbsp;&gt;=&nbsp;0 and
+<a name=82 class="linenum">82   </a>     * &lt;var&gt;i&lt;/var&gt;&nbsp;&lt;&nbsp;&lt;var&gt;a.length&lt;/var&gt; holds
+<a name=83 class="linenum">83   </a>     * &lt;var&gt;a&lt;/var&gt;[&lt;var&gt;i&lt;/var&gt;]&nbsp;==&nbsp;&lt;var&gt;b&lt;/var&gt;[&lt;var&gt;i&lt;/var&gt;].&lt;/p&gt;&lt;/li&gt;
+<a name=84 class="linenum">84   </a>     * &lt;/ul&gt;
+<a name=85 class="linenum">85   </a>     */</span>
+<a name=86 class="linenum">86   </a>    public static boolean <a class="methodDef" name=Util.equal(byte,byte) href=Util_java_ref.html#Util.equal(byte,byte)>equal</a>(final byte[] a, final byte[] b)
+<a name=87 class="linenum">87   </a>    {
+<a name=88 class="linenum">88   </a>        if (<a class="varRef" title="byte" href=Util_java.html#Util.equal.a>a</a>.length != <a class="varRef" title="byte" href=Util_java.html#Util.equal.b>b</a>.length)
+<a name=89 class="linenum">89   </a>            return false;
+<a name=90 class="linenum">90   </a>        for (int i = 0; <a class="varRef" title="int" href=Util_java.html#Util.equal.i>i</a> &lt; <a class="varRef" title="byte" href=Util_java.html#Util.equal.a>a</a>.length; <a class="varRef" title="int" href=Util_java.html#Util.equal.i>i</a>++)
+<a name=91 class="linenum">91   </a>            if (<a class="varRef" title="byte" href=Util_java.html#Util.equal.a>a</a>[<a class="varRef" title="int" href=Util_java.html#Util.equal.i>i</a>] != <a class="varRef" title="byte" href=Util_java.html#Util.equal.b>b</a>[<a class="varRef" title="int" href=Util_java.html#Util.equal.i>i</a>])
+<a name=92 class="linenum">92   </a>                return false;
+<a name=93 class="linenum">93   </a>        return true;
+<a name=94 class="linenum">94   </a>    }
+<a name=95 class="linenum">95   </a>
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>
+<a name=98 class="linenum">98   </a>    <span class="comment">/**
+<a name=99 class="linenum">99   </a>     * &lt;p&gt;Copies a part of a byte array into another byte array.&lt;/p&gt;
+<a name=100 class="linenum">100  </a>     */</span>
+<a name=101 class="linenum">101  </a>    public static void <a class="methodDef" name=Util.copy(byte,int,int,byte,int) href=Util_java_ref.html#Util.copy(byte,int,int,byte,int)>copy</a>(final byte[] src, final int srcOffset,
+<a name=102 class="linenum">102  </a>                            final int length,
+<a name=103 class="linenum">103  </a>                            final byte[] dst, final int dstOffset)
+<a name=104 class="linenum">104  </a>    {
+<a name=105 class="linenum">105  </a>        for (int i = 0; <a class="varRef" title="int" href=Util_java.html#Util.copy.i>i</a> &lt; <a class="varRef" title="int" href=Util_java.html#Util.copy.length>length</a>; <a class="varRef" title="int" href=Util_java.html#Util.copy.i>i</a>++)
+<a name=106 class="linenum">106  </a>            <a class="varRef" title="byte" href=Util_java.html#Util.copy.dst>dst</a>[<a class="varRef" title="int" href=Util_java.html#Util.copy.dstOffset>dstOffset</a> + <a class="varRef" title="int" href=Util_java.html#Util.copy.i>i</a>] = <a class="varRef" title="byte" href=Util_java.html#Util.copy.src>src</a>[<a class="varRef" title="int" href=Util_java.html#Util.copy.srcOffset>srcOffset</a> + <a class="varRef" title="int" href=Util_java.html#Util.copy.i>i</a>];
+<a name=107 class="linenum">107  </a>    }
+<a name=108 class="linenum">108  </a>
+<a name=109 class="linenum">109  </a>
+<a name=110 class="linenum">110  </a>
+<a name=111 class="linenum">111  </a>    <span class="comment">/**
+<a name=112 class="linenum">112  </a>     * &lt;p&gt;Concatenates the contents of several byte arrays into a
+<a name=113 class="linenum">113  </a>     * single one.&lt;/p&gt;
+<a name=114 class="linenum">114  </a>     *
+<a name=115 class="linenum">115  </a>     * @param byteArrays The byte arrays to be concatened.
+<a name=116 class="linenum">116  </a>     *
+<a name=117 class="linenum">117  </a>     * @return A new byte array containing the concatenated byte
+<a name=118 class="linenum">118  </a>     * arrays.
+<a name=119 class="linenum">119  </a>     */</span>
+<a name=120 class="linenum">120  </a>    public static byte[] <a class="methodDef" name=Util.cat(byte) href=Util_java_ref.html#Util.cat(byte)>cat</a>(final byte[][] byteArrays)
+<a name=121 class="linenum">121  </a>    {
+<a name=122 class="linenum">122  </a>        int capacity = 0;
+<a name=123 class="linenum">123  </a>        for (int i = 0; <a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a> &lt; <a class="varRef" title="byte" href=Util_java.html#Util.cat.byteArrays>byteArrays</a>.length; <a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a>++)
+<a name=124 class="linenum">124  </a>            <a class="varRef" title="int" href=Util_java.html#Util.cat.capacity>capacity</a> += <a class="varRef" title="byte" href=Util_java.html#Util.cat.byteArrays>byteArrays</a>[<a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a>].length;
+<a name=125 class="linenum">125  </a>        final byte[] result = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=Util_java.html#Util.cat.capacity>capacity</a>];
+<a name=126 class="linenum">126  </a>        int r = 0;
+<a name=127 class="linenum">127  </a>        for (int i = 0; <a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a> &lt; <a class="varRef" title="byte" href=Util_java.html#Util.cat.byteArrays>byteArrays</a>.length; <a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a>++)
+<a name=128 class="linenum">128  </a>            for (int j = 0; <a class="varRef" title="int" href=Util_java.html#Util.cat.j>j</a> &lt; <a class="varRef" title="byte" href=Util_java.html#Util.cat.byteArrays>byteArrays</a>[<a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a>].length; <a class="varRef" title="int" href=Util_java.html#Util.cat.j>j</a>++)
+<a name=129 class="linenum">129  </a>                <a class="varRef" title="byte" href=Util_java.html#Util.cat.result>result</a>[<a class="varRef" title="int" href=Util_java.html#Util.cat.r>r</a>++] = <a class="varRef" title="byte" href=Util_java.html#Util.cat.byteArrays>byteArrays</a>[<a class="varRef" title="int" href=Util_java.html#Util.cat.i>i</a>][<a class="varRef" title="int" href=Util_java.html#Util.cat.j>j</a>];
+<a name=130 class="linenum">130  </a>        return <a class="varRef" title="byte" href=Util_java.html#Util.cat.result>result</a>;
+<a name=131 class="linenum">131  </a>    }
+<a name=132 class="linenum">132  </a>
+<a name=133 class="linenum">133  </a>
+<a name=134 class="linenum">134  </a>
+<a name=135 class="linenum">135  </a>    <span class="comment">/**
+<a name=136 class="linenum">136  </a>     * &lt;p&gt;Copies bytes from a source byte array into a new byte
+<a name=137 class="linenum">137  </a>     * array.&lt;/p&gt;
+<a name=138 class="linenum">138  </a>     *
+<a name=139 class="linenum">139  </a>     * @param src Copy from this byte array.
+<a name=140 class="linenum">140  </a>     *
+<a name=141 class="linenum">141  </a>     * @param offset Start copying here.
+<a name=142 class="linenum">142  </a>     *
+<a name=143 class="linenum">143  </a>     * @param length Copy this many bytes.
+<a name=144 class="linenum">144  </a>     *
+<a name=145 class="linenum">145  </a>     * @return The new byte array. Its length is number of copied bytes.
+<a name=146 class="linenum">146  </a>     */</span>
+<a name=147 class="linenum">147  </a>    public static byte[] <a class="methodDef" name=Util.copy(byte,int,int) href=Util_java_ref.html#Util.copy(byte,int,int)>copy</a>(final byte[] src, final int offset,
+<a name=148 class="linenum">148  </a>                              final int length)
+<a name=149 class="linenum">149  </a>    {
+<a name=150 class="linenum">150  </a>        final byte[] result = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="int" href=Util_java.html#Util.copy.length>length</a>];
+<a name=151 class="linenum">151  </a>        <a class="methodRef" title="Util" href=Util_java.html#Util.copy(byte,int,int,byte,int)>copy</a>(<a class="varRef" title="byte" href=Util_java.html#Util.copy.src>src</a>, <a class="varRef" title="int" href=Util_java.html#Util.copy.offset>offset</a>, <a class="varRef" title="int" href=Util_java.html#Util.copy.length>length</a>, <a class="varRef" title="byte" href=Util_java.html#Util.copy.result>result</a>, 0);
+<a name=152 class="linenum">152  </a>        return <a class="varRef" title="byte" href=Util_java.html#Util.copy.result>result</a>;
+<a name=153 class="linenum">153  </a>    }
+<a name=154 class="linenum">154  </a>
+<a name=155 class="linenum">155  </a>
+<a name=156 class="linenum">156  </a>
+<a name=157 class="linenum">157  </a>    <span class="comment">/**
+<a name=158 class="linenum">158  </a>     * &lt;p&gt;The difference between the Windows epoch (1601-01-01
+<a name=159 class="linenum">159  </a>     * 00:00:00) and the Unix epoch (1970-01-01 00:00:00) in
+<a name=160 class="linenum">160  </a>     * milliseconds: 11644473600000L. (Use your favorite spreadsheet
+<a name=161 class="linenum">161  </a>     * program to verify the correctness of this value. By the way,
+<a name=162 class="linenum">162  </a>     * did you notice that you can tell from the epochs which
+<a name=163 class="linenum">163  </a>     * operating system is the modern one? :-))&lt;/p&gt;
+<a name=164 class="linenum">164  </a>     */</span>
+<a name=165 class="linenum">165  </a>    public final static long <a class="varDef" name=Util.EPOCH_DIFF href=Util_java_ref.html#Util.EPOCH_DIFF>EPOCH_DIFF</a> = 11644473600000L;
+<a name=166 class="linenum">166  </a>
+<a name=167 class="linenum">167  </a>    <span class="comment">/**
+<a name=168 class="linenum">168  </a>     * &lt;p&gt;Converts a Windows FILETIME into a {@link Date}. The Windows
+<a name=169 class="linenum">169  </a>     * FILETIME structure holds a date and time associated with a
+<a name=170 class="linenum">170  </a>     * file. The structure identifies a 64-bit integer specifying the
+<a name=171 class="linenum">171  </a>     * number of 100-nanosecond intervals which have passed since
+<a name=172 class="linenum">172  </a>     * January 1, 1601. This 64-bit value is split into the two double
+<a name=173 class="linenum">173  </a>     * word stored in the structure.&lt;/p&gt;
+<a name=174 class="linenum">174  </a>     *
+<a name=175 class="linenum">175  </a>     * @param high The higher double word of the FILETIME structure.
+<a name=176 class="linenum">176  </a>     *
+<a name=177 class="linenum">177  </a>     * @param low The lower double word of the FILETIME structure.
+<a name=178 class="linenum">178  </a>     */</span>
+<a name=179 class="linenum">179  </a>    public static Date <a class="methodDef" name=Util.filetimeToDate(int,int) href=Util_java_ref.html#Util.filetimeToDate(int,int)>filetimeToDate</a>(final int high, final int low)
+<a name=180 class="linenum">180  </a>    {
+<a name=181 class="linenum">181  </a>        final long filetime = ((long) <a class="varRef" title="int" href=Util_java.html#Util.filetimeToDate.high>high</a>) &lt;&lt; 32 | ((long) <a class="varRef" title="int" href=Util_java.html#Util.filetimeToDate.low>low</a>);
+<a name=182 class="linenum">182  </a>        final long ms_since_16010101 = <a class="varRef" title="long" href=Util_java.html#Util.filetimeToDate.filetime>filetime</a> / (1000 * 10);
+<a name=183 class="linenum">183  </a>        final long ms_since_19700101 = <a class="varRef" title="long" href=Util_java.html#Util.filetimeToDate.ms_since_16010101>ms_since_16010101</a> - <a class="varRef" title="long" href=Util_java.html#Util.EPOCH_DIFF>EPOCH_DIFF</a>;
+<a name=184 class="linenum">184  </a>        return new Date(<a class="varRef" title="long" href=Util_java.html#Util.filetimeToDate.ms_since_19700101>ms_since_19700101</a>);
+<a name=185 class="linenum">185  </a>    }
+<a name=186 class="linenum">186  </a>
+<a name=187 class="linenum">187  </a>}
+<a name=188 class="linenum">188  </a>
+<a name=189 class="linenum">189  </a></pre>

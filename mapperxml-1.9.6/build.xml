@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MapperXML.jpx" default="deploy" basedir=".">
+  <!--Classpath-->
+  <path id="project.class.path">
+    <!-- JUnit 3.7 -->
+    <pathelement path="/usr/local/junit3.7/junit.jar" />
+    <!-- Xerces 2.0.0 Library
+    <pathelement path="/usr/netshare/xerces-2_0_0/xercesImpl.jar" />
+    <pathelement path="/usr/netshare/xerces-2_0_0/xmlParserAPIs.jar" /> -->
+    <!-- Xerces 1.4.4 Library -->
+    <pathelement path="/usr/local/xerces-1_4_4/xerces.jar" />
+    <!-- Java Servlet Library (javax.servlet.*) -->
+    <pathelement path="/usr/local/jakarta-tomcat-4.0.3/common/lib/servlet.jar" />
+    <!-- <pathelement path="/usr/local/jakarta-tomcat-3.3.1/lib/common/servlet.jar" /> -->
+    <!-- Velocity 1.2 Library -->
+    <pathelement path="/usr/netshare/velocity-1.2/velocity-dep-1.2.jar" />
+  </path>
+
+  <!--Initialization-->
+  <target name="init">
+    <property name="releaseNo" value="1.9.6" />
+    <property name="docPath" value="doc" />
+    <property name="outputPath" value="classes" />
+    <property name="sourcePath" value="src" />
+    <property name="libPath" value = "lib" />
+    <property name="binPath" value = "bin" />
+    <property name="deployPath" value="/usr/local/jbuilder4/lib/ext" />
+    <property name="releasePath" value="/home/webmaster/html/projects/mapper" />
+    <property name="installPath" value="mapperxml-${releaseNo}" />
+    <property name="jarFile" value="mapperxml.jar" />
+    <property name="zipFile" value="mapperxml-${releaseNo}.zip" />
+    <property name="zipSrcFile" value="mapperxml-src-${releaseNo}.zip" />
+    <property name="docZipFile" value="mapperdoc.zip" />
+  </target>
+
+  <!--Cleanup previous builds-->
+  <target name="clean" depends="init">
+    <delete dir="${outputPath}" />
+  </target>
+
+  <!--Prepare for compilation-->
+  <target name="prepare" depends="clean">
+    <mkdir dir="${outputPath}" />
+  </target>
+
+  <!--Compile project-->
+  <target name="compile" depends="prepare">
+    <javac srcdir="${sourcePath}" destDir="${outputPath}"
+        debug="on" classpathref="project.class.path" />
+    <copy todir="${outputPath}">
+      <fileset dir="${sourcePath}">
+        <include name="com/**/*.template"/>
+        <include name="com/**/*.gif"/>
+        <include name="com/**/*.jpg"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!--Compile project-->
+  <target name="copy-resources" depends="init">
+    <copy todir="${outputPath}">
+      <fileset dir="${sourcePath}">
+        <include name="com/**/*.template"/>
+        <include name="com/**/*.html"/>
+        <include name="com/**/*.gif"/>
+        <include name="com/**/*.jpg"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Jar project -->
+  <target name="jar">
+    <!-- delete old jar -->
+    <delete file="${libPath}/${jarFile}" />
+    <!-- jar current compile -->
+    <jar jarfile="${libPath}/${jarFile}">
+      <fileset dir="${outputPath}">
+        <include name="com/**/*.class"/>
+        <exclude name="com/**/test/*"/>
+      </fileset>
+      <fileset dir="${sourcePath}">
+        <include name="com/**/*.template"/>
+        <include name="com/**/*.html"/>
+        <include name="com/**/*.gif"/>
+        <include name="com/**/*.jpg"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- JavaDoc Generation -->
+  <target name="javadoc" depends="init">
+    <delete dir="${docPath}/api" />
+    <mkdir dir="${docPath}/api" />
+    <javadoc packagenames="com.*"
+             sourcepath="src"
+             excludepackagenames="test, com/**/test"
+             classpathref="project.class.path"
+             defaultexcludes="yes"
+             destdir="${docPath}/api"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="Mapper Presentation Framework">
+      <doctitle><![CDATA[<h1>Mapper Presentation Framework</h1>]]></doctitle>
+      <bottom><![CDATA[<i>Copyright &#169; 2002 Martin T Phelan. All Rights Reserved.</i>]]></bottom>
+    </javadoc>
+    <zip zipfile="${docZipFile}">
+      <zipfileset dir="doc/api" prefix="api" />
+    </zip>
+  </target>
+
+  <!-- Zip the Release -->
+  <target name="zip-release" depends="init" description="Zip release package">
+    <!-- Binary Release -->
+    <delete file="${zipFile}"/>
+    <zip zipfile="${zipFile}">
+      <zipfileset dir="doc" prefix="${installPath}/doc"/>
+      <zipfileset dir="../MapperEX" prefix="${installPath}/examples/MapperEX">
+        <include name="src/**/*.java"/>
+        <include name="src/**/*.html"/>
+        <include name="src/**/*.xml"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name="MapperEX.jpx"/>
+        <include name="mapperex.war"/>
+      </zipfileset>
+      <zipfileset dir="../MapperLibrary" prefix="${installPath}/examples/MapperLibrary">
+        <include name="src/**/*.java"/>
+        <include name="src/**/*.html"/>
+        <include name="src/**/*.xml"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name="MapperLibrary.jpx"/>
+        <include name="mapperlibrary.war"/>
+      </zipfileset>
+      <zipfileset dir="." includes="README.txt" prefix="${installPath}"/>
+      <zipfileset dir="." includes="license.shtml" prefix="${installPath}"/>
+      <zipfileset dir="." includes="Velocity_LICENSE.txt" prefix="${installPath}"/>
+      <zipfileset dir="." includes="Xerces_LICENSE.txt" prefix="${installPath}"/>
+      <zipfileset dir="." includes="${libPath}/*" prefix="${installPath}"/>
+      <zipfileset dir="." prefix="${installPath}">
+        <include name="${binPath}/*"/>
+        <exclude name="${binPath}/*~"/>
+      </zipfileset>
+    </zip>
+    <!-- Source Release -->
+    <delete file="${zipSrcFile}"/>
+    <zip zipfile="${zipSrcFile}">
+      <zipfileset dir="." prefix="${installPath}">
+        <include name="src/**/*.java"/>
+        <include name="src/**/*.html"/>
+        <include name="src/**/*.xml"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name="MapperXML.jpx"/>
+        <include name="README.txt" />
+        <include name="license.shtml" />
+      </zipfileset>
+    </zip>
+  </target>
+
+  <target name="zipsource" depends="init" >
+    <!-- Source Release -->
+    <delete file="${zipSrcFile}"/>
+    <zip zipfile="${zipSrcFile}">
+      <zipfileset dir="." prefix="${installPath}">
+        <include name="src/**/*.java"/>
+        <include name="src/**/*.html"/>
+        <include name="src/**/*.xml"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name="MapperXML.jpx"/>
+        <include name="README.txt" />
+        <include name="license.shtml" />
+      </zipfileset>
+    </zip>
+  </target>
+
+  <!-- JUnit Tests -->
+  <target name="junit" depends="init" description="Execute Unit Tests">
+    <junit>
+      <classpath>
+        <pathelement location="${outputPath}" />
+        <path refid="project.class.path" />
+      </classpath>
+
+      <formatter type="xml" />
+      <batchtest>
+        <fileset dir="${outputPath}">
+          <include name="**/test/DOM_1_20000929_DocumentAdapterTest.class" />
+        </fileset>
+      </batchtest>
+    </junit>
+
+    <junitreport>
+      <fileset dir=".">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" />
+    </junitreport>
+  </target>
+
+  <!--Deploy project-->
+  <target name="deploy" depends="compile, jar">
+    <copy file="${libPath}/${jarFile}" todir="${deployPath}" />
+  </target>
+
+  <!--Do a project Release -->
+  <target name="release" depends="deploy, javadoc, zip-release">
+    <copy file="${zipFile}" todir="${releasePath}" />
+  </target>
+
+  <!--Quick Deploy project-->
+  <target name="quick" depends="init, jar">
+    <copy file="${libPath}/${jarFile}" todir="${deployPath}" overwrite="yes" />
+  </target>
+
+  <target name="quickdoc" depends="init">
+    <zip zipfile="${docZipFile}">
+      <zipfileset dir="doc/api" prefix="api" />
+    </zip>
+  </target>
+
+</project>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
+<rss version="0.91"><channel><title>POI Changes</title><link>http://poi.apache.org//changes.html</link><description>POI Changes</description><language>en-us</language><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45866 - allowed for change of unicode compression across Continue records</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45964 - support for link formulas in Text Objects</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              43354 - support for evalating formulas with missing args</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45912 - fixed ArrayIndexOutOfBoundsException in EmbeddedObjectRefSubRecord</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45889 - fixed ArrayIndexOutOfBoundsException when constructing HSLF Table with a single row </description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Initial support for creating hyperlinks in HSLF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45876 - fixed BoundSheetRecord to allow sheet names longer than 31 chars</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45890 - fixed HSSFSheet.shiftRows to also update conditional formats</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45865 modified Formula Parser/Evaluator to handle cross-worksheet formulas</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Optimised the FormulaEvaluator to take cell dependencies into account</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              16936 - Initial support for whole-row cell styling</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Update hssf.extractor.ExcelExtractor to optionally output blank cells too</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Include the sheet name in the output of examples.XLS2CSVmra</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45784 - Support long chart titles in SeriesTextRecords</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45777 - Throw an exception if HSSF Footer or Header is attemped to be set too long, rather than having it break during writing out</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45844 - Addtional diagnostics for HSLF SlideShowRecordDumper</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45829 - HSSFPicture.getImageDimension() failed when DPI of image is zero</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45815 - Bit mask values in StyleTextPropAtom were not preserved across read-write</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45814 - Specify RecordType for slide show Handout (4041)</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45805 - Fixed 16-bit signed/unsigned bug in HSSFSheet.getColWidth etc</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45780 - Fixed HSSFSheet.shiftRows to also update Area refs</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45804 - Update HSMF to handle Outlook 3.0 msg files, which have a different string chunk type</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Expose the name of Named Cell Styles via HSSFCellStyle (normally held on the parent style though)</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45978 - Fixed IOOBE in Ref3DPtg.toFormulaString() due eager initialisation of SheetReferences</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Made HSSFFormulaEvaluator no longer require initialisation with sheet or row</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Extended support for cached results of formula cells</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45639 - Fixed AIOOBE due to bad index logic in ColumnInfoRecordsAggregate</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Fixed special cases of INDEX function (single column/single row, errors)</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45761 - Support for Very Hidden excel sheets in HSSF</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45738 - Initial HWPF support for Office Art Shapes</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45720 - Fixed HSSFWorkbook.cloneSheet to correctly clone sheets with drawings</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45728 - Fix for SlideShow.reorderSlide in HSLF</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Initial support for embedded movies and controls in HSLF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45358 - signed/unsigned error when parsing 3-d area refs, performance problem evaluating area refs, and ClassCastExcecption in IF()</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support for HPBF Publisher hyperlinks, including during text extraction</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              26321 and 44958 - preserve position of ArrayRecords and TableRecords among cell value records</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Impove empty header or footer handling in HWPF HeaderStories</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Avoid NPE in hssf.usermodel.HeaderFooter when stripping fields out</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Avoid NPE in EscherBSERecord on older escher records</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Basic text extractraction support in HPBF</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Initial, low level support for Publisher files, in the form of HPBF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45699 - Fix RowRecordsAggregate to tolerate intervening MERGEDCELLS records</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45698 - Fix LinkTable to tolerate multiple EXTERNSHEET records</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45682 - Fix for cloning of CFRecordsAggregate</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Initial support for evaluating external add-in functions like YEARFRAC</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45672 - Fix for MissingRecordAwareHSSFListener to prevent multiple LastCellOfRowDummyRecords when shared formulas are present</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45645 - Fix for HSSFSheet.autoSizeColumn() for widths exceeding Short.MAX_VALUE</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45623 - Support for additional HSSF header and footer fields, including bold and full file path</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45623 - Support stripping HSSF header and footer fields (eg page number) out of header and footer text if required</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45622 - Support stripping HWPF fields (eg macros) out of text, via Range.stripFields(text)</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              New HPSF based TextExtractor for document metadata, org.apache.poi.hpsf.extractor.HPSFPropertiesExtractor</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Properly update the array of Slide's text runs in HSLF when new text shapes are added</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45590 - Fix for Header/footer extraction for .ppt files saved in Office 2007</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Big improvement in how HWPF handles unicode text, and more sanity checking of text ranges within HWPF</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Include headers and footers int he extracted text from HWPF's WordExtractor</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Added support to HWPF for headers and footers</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Improve how HWPF deals with unicode internally. Should avoid some odd behaviour when manipulating unicode text</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45577 - Added implementations for Excel functions NOW and TODAY</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45582 - Fix for workbook streams with extra bytes trailing the EOFRecord</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45537 - Include headers and footers (of slides and notes) in the extracted text from HSLF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45472 - Fixed incorrect default row height in OpenOffice 2.3</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44692 - HSSFPicture.resize() stretched image when there was a text next to it</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45543 - Optionally extract comment text with PowerPointExtractor, and initial hslf model support for comments</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45538 - Include excel headers and footers in the output of ExcelExtractor</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44894 - refactor duplicate logic from EventRecordFactory to RecordFactory</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support for Headers / Footers in HSLF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              44953 - Extensive fixes for data validation</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45519 - Fixed to keep datavalidation records together</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support for creating new HSLF CurrentUserAtoms</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45466 - Partial support for removing excel comments (won't work for all excel versions yet)</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45437 - Detect encrypted word documents, and throw an EncryptedDocumentException instead of a OOM</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45404 - New class, hssf.usermodel.HSSFDataFormatter, for formatting numbers and dates in the same way that Excel does</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45414 - Don't add too many UncalcedRecords to sheets with charts in them</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45398 - Support detecting date formats containing "am/pm" as date times</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45410 - Removed dependency from contrib on commons beanutils,collections and lang</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              New helper, HSSFOptimiser, which handles removing duplicated font and style records, to avoid going over the limits in Excel</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45322 - Fixed NPE in HSSFSheet.autoSizeColumn() when cell number format was not found</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45380 - Missing return keyword in ArrayPtg.toFormulaString()</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              44958 - Record level support for Data Tables. (No formula parser support though)</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              35583 - Include a version class, org.apache.poi.Version, to allow easy introspection of the POI version</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Allow the cloning of one HSSFCellStyle onto another, including cloning styles from one HSSFWorkbook onto another</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45289 - finished support for special comparison operators in COUNTIF</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45126 - Avoid generating multiple NamedRanges with the same name, which Excel dislikes</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Fix cell.getRichStringCellValue() for formula cells with string results</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45365 - Handle more excel number formatting rules in FormatTrackingHSSFListener / XLS2CSVmra</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45373 - Improve the performance of HSSFSheet.shiftRows</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45367 - Fixed bug when last row removed from sheet is row zero</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45348 - Tweaks to RVA formula logic</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45354 - Fixed recognition of named ranges within formulas</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45338 - Fix HSSFWorkbook to give you the same HSSFFont every time, and then fix it to find newly added fonts</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45336 - Fix HSSFColor.getTripletHash()</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45334 - Fixed formula parser to handle dots in identifiers</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45252 - Improvement for HWPF Range.replaceText()</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              45001 - Further fix for HWPF Range.delete() and unicode characters</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              45175 - Support for variable length operands in org.apache.poi.hwpf.sprm.SprmOperation</description></item><item><title> fix</title><link>http://poi.apache.org//changes.html</link><description> fix
+              by 
+              POI-DEVELOPERS
+              :
+              Avoid spurious missing lines with the MissingRecordAware event code, and odd files that contain RowRecords in the middle of the cell Records.</description></item><item><title> add</title><link>http://poi.apache.org//changes.html</link><description> add
+              by 
+              POI-DEVELOPERS
+              :
+              Support for parsing formulas during EventUserModel processing, via the new EventWorkbookBuilder</description></item></channel></rss>

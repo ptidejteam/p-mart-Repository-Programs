@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <title>Installing and Running MapperXML Library Example</title>
+  </head>
+  <body>
+    <h1>Notes for Running MapperXML Library Example</h1>
+    
+    <p>NOTE: This example works, but is not yet complete. Additional features will be added in subsequent releases.</p>
+    <p>These notes are designed for testing with Tomcat or JBoss.  The examples
+    also include an Ant build script.  To run these examples you need the
+    following components installed and configured:</p>
+    <ul>
+      <li>Java VM 1.4+</li>
+      <li>Web Application Server (Tomcat 4+, JBoss, etc)</li>
+      <li>Eclipse or Ant (needed to run build.xml script)</li>
+    </ul>
+    
+    <h2>Running Pre-Built Example</h2>
+    <p>The following are the quick directions to deploy and run the pre-built examples:</p>
+    
+    <ul>
+      <li>Copy the file mapperlibrary.war to your application server's
+          deployment directory (or use it's deployment tool). For
+          JBoss or Tomcat the location is:
+    <pre>
+               [jboss-install-dir]/server/default/deploy
+               -- or --
+               [tomcat-install-dir]/webapps
+    </pre>
+          </li>
+      <li>Start Tomcat or JBoss</li>
+      <li>Browse to http://localhost:8080/mapperlibrary</li>
+    </ul>
+    
+    <h2>Building and Running Example</h2>
+    <p>The following are the quick directions to build and run the examples:</p>
+    
+    <ul>
+      <li>Create a ".build.properties" file in the root of the project</li>
+      <li>Add a property setting in the file: 
+    <pre>
+    deploy.dir=[jboss-install-dir]/server/default/deploy
+               -- or --
+               [tomcat-install-dir]/webapps
+    </pre>
+          where the deploy.dir is the path to your application server's
+          deployment directory.
+          </li>
+      <li>Run the Ant target "deploy" in build.xml</li>
+      <li>Start Tomcat or JBoss</li>
+      <li>Browse to http://localhost:8080/mapperlibrary</li>
+    </ul>
+  
+  </body>
+</html>

@@ -1,0 +1,61 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\GlobalObject\15.1.2.5.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\GlobalObject\shell.js -f mozilla\js\tests\ecma\GlobalObject\15.1.2.5.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: none
+15.1.2.7 isFinite( x )
+isFinite.length = 1 PASSED!
+isFinite.length = null; isFinite.length = 1 PASSED!
+delete isFinite.length = false PASSED!
+delete isFinite.length; isFinite.length = 1 PASSED!
+var MYPROPS=''; for ( p in isFinite ) { MYPROPS+= p }; MYPROPS =  FAILED! expected: prototype
+isFinite() = false PASSED!
+isFinite( null ) = true PASSED!
+isFinite( void 0 ) = false PASSED!
+isFinite( false ) = true PASSED!
+isFinite( true) = true PASSED!
+isFinite( ' ' ) = true PASSED!
+isFinite( new Boolean(true) ) = true PASSED!
+isFinite( new Boolean(false) ) = true PASSED!
+isFinite( 0 ) = true PASSED!
+isFinite( 1 ) = true PASSED!
+isFinite( 2 ) = true PASSED!
+isFinite( 3 ) = true PASSED!
+isFinite( 4 ) = true PASSED!
+isFinite( 5 ) = true PASSED!
+isFinite( 6 ) = true PASSED!
+isFinite( 7 ) = true PASSED!
+isFinite( 8 ) = true PASSED!
+isFinite( 9 ) = true PASSED!
+isFinite( '0' ) = true PASSED!
+isFinite( '1' ) = true PASSED!
+isFinite( '2' ) = true PASSED!
+isFinite( '3' ) = true PASSED!
+isFinite( '4' ) = true PASSED!
+isFinite( '5' ) = true PASSED!
+isFinite( '6' ) = true PASSED!
+isFinite( '7' ) = true PASSED!
+isFinite( '8' ) = true PASSED!
+isFinite( '9' ) = true PASSED!
+isFinite( 0x0a ) = true PASSED!
+isFinite( 0xaa ) = true PASSED!
+isFinite( 0x0A ) = true PASSED!
+isFinite( 0xAA ) = true PASSED!
+isFinite( '0x0a' ) = true PASSED!
+isFinite( '0xaa' ) = true PASSED!
+isFinite( '0x0A' ) = true PASSED!
+isFinite( '0xAA' ) = true PASSED!
+isFinite( 077 ) = true PASSED!
+isFinite( '077' ) = true PASSED!
+isFinite( new String('Infinity') ) = false PASSED!
+isFinite( new String('-Infinity') ) = false PASSED!
+isFinite( 'Infinity' ) = false PASSED!
+isFinite( '-Infinity' ) = false PASSED!
+isFinite( Number.POSITIVE_INFINITY ) = false PASSED!
+isFinite( Number.NEGATIVE_INFINITY ) = false PASSED!
+isFinite( Number.NaN ) = false PASSED!
+isFinite( Infinity ) = false PASSED!
+isFinite( -Infinity ) = false PASSED!
+isFinite( NaN ) = false PASSED!
+isFinite( Number.MAX_VALUE ) = true PASSED!
+isFinite( Number.MIN_VALUE ) = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\GlobalObject\15.1.2.5.interpreted.arff] ...

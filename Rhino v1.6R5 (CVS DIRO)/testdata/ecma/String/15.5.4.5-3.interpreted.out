@@ -1,0 +1,33 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.5-3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.5-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.5.4.5-3 String.prototype.charCodeAt
+var foo = new MyObject('hello');foo.charCodeAt(0) = 104 PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(1) = 101 PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(2) = 108 PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(3) = 108 PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(4) = 111 PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(-1) = NaN PASSED!
+var foo = new MyObject('hello');foo.charCodeAt(5) = NaN PASSED!
+var boo = new MyObject(true);boo.charCodeAt(0) = 116 PASSED!
+var boo = new MyObject(true);boo.charCodeAt(1) = 114 PASSED!
+var boo = new MyObject(true);boo.charCodeAt(2) = 117 PASSED!
+var boo = new MyObject(true);boo.charCodeAt(3) = 101 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(0) = 51 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(1) = 46 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(2) = 49 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(3) = 52 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(4) = 49 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(5) = 53 PASSED!
+var noo = new MyObject(Math.PI);noo.charCodeAt(6) = 57 PASSED!
+var noo = new MyObject(null);noo.charCodeAt(0) = 110 PASSED!
+var noo = new MyObject(null);noo.charCodeAt(1) = 117 PASSED!
+var noo = new MyObject(null);noo.charCodeAt(2) = 108 PASSED!
+var noo = new MyObject(null);noo.charCodeAt(3) = 108 PASSED!
+var noo = new MyObject(null);noo.charCodeAt(4) = NaN PASSED!
+var noo = new MyObject(void 0);noo.charCodeAt(0) = 117 PASSED!
+var noo = new MyObject(void 0);noo.charCodeAt(1) = 110 PASSED!
+var noo = new MyObject(void 0);noo.charCodeAt(2) = 100 PASSED!
+var noo = new MyObject(void 0);noo.charCodeAt(3) = 101 PASSED!
+var noo = new MyObject(void 0);noo.charCodeAt(4) = 102 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.5-3.interpreted.arff] ...

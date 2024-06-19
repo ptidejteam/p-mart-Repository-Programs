@@ -1,0 +1,54 @@
+	<program type="Java">
+		<name>5 - JUnit v3.7</name>
+
+		</designPattern>
+		<designPattern name="Observer">
+			<microArchitectures>
+				<microArchitecture number="72">
+					<roles>
+						<singletons>
+							<singleton roleKind="Class">
+								<entity kind="Class">junit.runner.Version</entity>
+								<properties>
+									<AID value="1.0"/>
+									<DIT value="1.0"/>
+									<NCM value="8.0"/>
+									<NMA value="2.0"/>
+									<NMI value="6.0"/>
+									<NOA value="1.0"/>
+									<NOP value="1.0"/>
+									<WMC value="4.0"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>junit.awtui.AboutDialog</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.AboutDialog</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.textui.TestRunner</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</singleton>
+						</singletons>
+					</roles>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+	</program>

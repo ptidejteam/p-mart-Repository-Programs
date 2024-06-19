@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html">
+  <title></title>
+  <meta content="">
+  <style>
+  </style>
+</head>
+
+<body>
+<h1>Notes for Running MapperXML Library Example</h1>
+
+<p>NOTE: This example works, but is not yet complete. Additional features will be added in subsequent releases.</p>
+<p>These notes are designed for testing with Tomcat 3 or 4.  The examples
+also include an Ant build script.  To run these examples you need the
+following components installed and configured:</p>
+<ul>
+  <li>Java VM 1.3.1</li>
+  <li>Tomcat 3.x or 4.x</li>
+  <li>MapperXML 1.9.2</li>
+  <li>Xerces 1.4.1</li>
+  <li>Oracle Database and JDBC Drivers (classes12.zip/jar)</li>
+  <li>Ant 1.4.1 (optional - needed to run build.xml script)</li>
+</ul>
+
+<p>The following are the quick directions to install the examples:</p>
+
+<h2>Tomcat 3.x</h2>
+<ul>
+  <li>Copy xerces.jar to [tomcat-install-dir]/lib/apps</li>
+  <li>Copy mapperxml.jar to [tomcat-install-dir]/lib/apps</li>
+  <li>Copy Oracle JDBC drivers, classes12.zip to [tomcat-install-dir]/lib/apps</li>
+  <li>Copy mapperlibrary.war to [tomcat-install-dir]/webapps</li>
+  <li>Start Tomcat</li>
+  <li>Browse to http://localhost:8080/mapperlibrary/library</li>
+</ul>
+
+<h2>Tomcat 4.x</h2>
+<ul>
+  <li>Copy xerces.jar to [tomcat-install-dir]/lib</li>
+  <li>Copy mapperxml.jar to [tomcat-install-dir]/lib</li>
+  <li>Copy Oracle JDBC drivers, classes12.zip to [tomcat-install-dir]/lib</li>
+  <li>Copy mapperlibrary.war to [tomcat-install-dir]/webapps</li>
+  <li>Start Tomcat (Catalina)</li>
+  <li>Browse to http://localhost:8080/mapperlibrary/library</li>
+</ul>
+
+<h2>Database Creation/Population</h2>
+
+<p>You use the instructions in <a href="dbdesign.html">dbdesign.html</a> to create and populate the database for the example.</p>
+
+</body>
+</html>

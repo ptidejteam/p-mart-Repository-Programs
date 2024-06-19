@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<document>
+
+ <properties>
+  <title>Velocity Getting Started</title>
+  <author email="jvanzyl@locus.apache.org">Velocity Documentation Team</author>
+ </properties>
+
+<body>
+
+<section name="Getting Started">
+
+<p>
+    This document provides developers with simple documentation for getting
+    started with Velocity. For information about the overall structure of
+    Velocity, please refer to the <a href="design.html">Design</a> document.
+</p>
+
+<p>
+    Instructions for downloading and installing Velocity can be found on the
+    <a href="install.html">Install</a> document.
+</p>
+
+</section>
+
+<section name="View Detailed API Documentation">
+
+<p>
+    If you are working on Unix/Linux and would like to create a full set
+    of detailed API documentation for Velocity, go to the
+    <code>build</code> directory and run the following script.
+</p>
+
+<source><![CDATA[
+./build.sh javadocs
+]]></source>
+
+<p>
+    If you are working on Windows, running <code>build.bat javadocs
+    </code> at the DOS prompt will have the same effect.
+</p>
+
+</section>
+
+</body>
+</document>

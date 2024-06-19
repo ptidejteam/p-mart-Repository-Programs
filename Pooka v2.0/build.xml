@@ -1,0 +1,82 @@
+<project name="Pooka" default="dist" basedir=".">
+
+	<description>
+        Pooka build file
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="releases" location="releases" />
+	<property name="name" value="Pooka" />
+	<property name="ext-libs" value="releases/libs" />
+
+	<target name="init">
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+		<mkdir dir="${releases}" />
+		<path id="compile.classpath">
+			<fileset dir="${releases}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+		<!-- Create the time stamp -->
+		<tstamp />
+
+	</target>
+
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+
+		<!-- create a property containing all .jar files, prefix lib/, and seperated with a space -->
+		<pathconvert property="libs.project" pathsep=" ">
+			<mapper>
+				<chainedmapper>
+
+					<!-- remove absolute path -->
+					<flattenmapper />
+
+					<!-- add lib/ prefix -->
+					<globmapper from="*" to="libs/*" />
+
+				</chainedmapper>
+			</mapper>
+
+			<path>
+				<!-- lib.home contains all jar files, in several subdirectories -->
+				<fileset dir="${releases}/libs">
+					<include name="**/*.jar" />
+				</fileset>
+			</path>
+
+		</pathconvert>
+
+		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+		<jar jarfile="${releases}/${name}.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="net.suberic.pooka.Pooka" />
+				<attribute name="Class-Path" value="${libs.project}" />
+			</manifest>
+		</jar>
+
+		<jar jarfile="${releases}/${name}-src.jar" basedir="${src}" />
+
+		<!--
+		<zip destfile="${releases}/${name}-${DSTAMP}.zip" update="true">
+			<fileset dir="${lib}" includes="**/*.jar" />
+		</zip>
+		-->
+
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+</project>

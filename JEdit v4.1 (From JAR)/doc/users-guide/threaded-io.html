@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Multi-Threaded I/O</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="files.html" title="Chapter 3. Working With Files"><link rel="previous" href="reloading.html" title="Reloading From Disk"><link rel="next" href="printing.html" title="Printing"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Multi-Threaded I/O</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="reloading.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Working With Files</th><td width="20%" align="right"> <a accesskey="n" href="printing.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="threaded-io"></a>Multi-Threaded I/O</h2></div></div><p>
+   To improve responsiveness and perceived performance,
+   jEdit executes all buffer input/output operations asynchronously.
+   While I/O is in progress, the status bar displays the number of
+   remaining I/O operations.
+   The <b>Utilities</b>&gt;<b>Troubleshooting</b>&gt;<b>I/O
+   Progress
+   Monitor</b> command displays a window with more detailed status
+   information and progress meters. This window is floating by default, but
+   it can be set to dock into the view in the
+   <b>Docking</b> pane of the
+   <b>Utilities</b>&gt;<b>Global Options</b>
+   dialog box; see <a href="views.html#docking" title="Window Docking">the section called &#8220;Window Docking&#8221;</a>. I/O requests can also be aborted in
+   this window, however note that aborting a buffer save can result in data loss.
+  </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="reloading.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="files.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="printing.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Reloading From Disk </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Printing</td></tr></table></div></body></html>

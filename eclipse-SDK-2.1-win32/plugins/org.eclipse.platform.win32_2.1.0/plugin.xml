@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+  name="%pluginName"
+  id="org.eclipse.platform.win32"
+  version="2.1.0"
+  provider-name="%providerName">
+</plugin>

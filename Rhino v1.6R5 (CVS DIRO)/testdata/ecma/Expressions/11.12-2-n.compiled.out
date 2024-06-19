@@ -1,0 +1,8 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.12-2-n.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.12-2-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+11.12-2-n Conditional operator ( ? : )
+js: "mozilla\js\tests\ecma\Expressions\11.12-2-n.js#66(eval)", line 1: uncaught JavaScript runtime exception: SyntaxError: missing : in conditional expression
+js: var MYVAR =  true ? 'EXPR1', 'EXPR2' : 'EXPR3'; MYVAR
+js: ...........................^
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.12-2-n.compiled.arff] ...

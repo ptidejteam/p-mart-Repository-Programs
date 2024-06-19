@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Transferring Text</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="editing.html" title="Chapter 4. Editing Text"><link rel="previous" href="scrolling.html" title="Scrolling"><link rel="next" href="markers.html" title="Markers"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Transferring Text</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="scrolling.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Editing Text</th><td width="20%" align="right"> <a accesskey="n" href="markers.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="text-transfer"></a>Transferring Text</h2></div></div><p>
+   jEdit provides a rich set of commands for moving and copying text. Commands
+   are provided for moving chunks of text from buffers to
+   <i>registers</i> and vice-versa. A register is a holding area
+   for an arbitrary length of text, with a single-character name.
+   The system clipboard is mapped to the register named <tt>$</tt>.
+   jEdit offers clipboard-manipulation commands similar
+   to those found in other applications, in addition to a more flexible
+   set of commands for working with registers directly.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2891232"></a>The Clipboard</h3></div></div><p>
+    <b>Edit</b>&gt;<b>Cut</b>
+    (shortcut: <b>Control</b>-<b>X</b>)
+    places the selected text in the clipboard and removes it from the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>Copy</b>
+    (shortcut: <b>Control</b>-<b>C</b>)
+    places the selected text in the clipboard and leaves it in the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>Paste</b>
+    (shortcut: <b>Control</b>-<b>V</b>)
+    inserts the clipboard contents in place of the selection (or at the
+    caret position, if there is no selection).
+   </p><p>
+    The <b>Cut</b> and <b>Copy</b>
+    commands replace the old clipboard contents with the selected text.
+    There are two alternative commands which add the selection at the end of
+    the existing clipboard contents, instead of replacing it.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Cut Append</b>
+    (shortcut: <b>Control</b>-<b>E</b>
+    <b>Control</b>-<b>U</b>)
+    appends the selected text to the clipboard, then removes it from the
+    buffer. After this command has been invoked, the clipboard will consist of
+    the former clipboard contents, followed by a newline, followed by the
+    selected text.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Copy Append</b>
+    (shortcut: <b>Control</b>-<b>E</b>
+    <b>Control</b>-<b>A</b>)
+    is the same as <b>Cut Append</b> except it does not
+    remove the selection from the buffer.
+   </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2891495"></a>Quick Copy</h3></div></div><p>
+    Quick copy is disabled by default, but it can be enabled in the
+    <b>Text Area</b> pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog box. When quick copy is enabled,
+    clicking the middle mouse button in the text area inserts the most recently
+    selected text at the clicked location.
+    If you only have a two-button mouse, you can click the left mouse button
+    while holding down <b>Alt</b> instead of middle-clicking.
+   </p><p>
+    This is implemented by storing the most recently selected text
+    in the register named <tt>%</tt>.
+   </p><p>
+    If jEdit is being run under Java 2 version 1.4 on Unix, you will be
+    able to transfer text with other X Windows applications using the
+    quick copy feature. On other platforms and Java versions, the contents
+    of the quick copy register are only accessible from within jEdit.
+   </p><p>
+    Also, dragging with the middle mouse button
+    creates a selection without moving the
+    caret. As soon as the mouse button is released, the selected text is
+    inserted at the caret position and the selection is deactivated.
+    A message is shown in the status bar while text is being selected to
+    remind you that this is not an ordinary selection.
+   </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2891573"></a>General Register Commands</h3></div></div><p>
+    These commands require more keystrokes than the two methods shown above,
+    but they can operate on any register, allowing an arbitrary number of
+    text chunks to be retained at a time.
+   </p><p>
+    Each command prompts for a single-character register name to be entered
+    after being invoked.
+    Pressing <b>Escape</b> instead of specifying a register name
+    will cancel the operation.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Cut
+    to Register</b>
+    (shortcut: <b>Control</b>-<b>R</b>
+    <b>Control</b>-<b>X</b>
+    <b><i><tt>key</tt></i></b>)
+    stores the selected text in the specified
+    register, removing it from the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Copy
+    to Register</b>
+    (shortcut: <b>Control</b>-<b>R</b>
+    <b>Control</b>-<b>C</b>
+    <b><i><tt>key</tt></i></b>)
+    stores the selected text in the specified
+    register, leaving it in the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Cut
+    Append to Register</b>
+    (shortcut: <b>Control</b>-<b>R</b>
+    <b>Control</b>-<b>U</b>
+    <b><i><tt>key</tt></i></b>)
+    adds the selected text to the existing contents of the specified
+    register, and removes it from the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Copy
+    Append to Register</b>
+    (shortcut: <b>Control</b>-<b>R</b>
+    <b>Control</b>-<b>A</b>
+    <b><i><tt>key</tt></i></b>)
+    adds the selected text to the existing contents of the specified
+    register, without removing it from the buffer.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Paste
+    from Register</b>
+    (shortcut: <b>Control</b>-<b>R</b>
+    <b>Control</b>-<b>V</b>
+    <b><i><tt>key</tt></i></b>) 
+    replaces the selection with the
+    contents of the specified register.
+   </p><p>
+    The last two commands display dialog boxes instead of prompting for a
+    register name.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>Paste Previous</b>
+    (shortcut:
+    <b>Control</b>-<b>E</b>
+    <b>Control</b>-<b>V</b>)
+    displays a dialog box listing recently copied and
+    pasted text. By default, the last 20 strings are remembered; this can be
+    changed in the <b>General</b> pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog box; see <a href="global-opts.html" title="The Global Options Dialog Box">the section called &#8220;The Global Options Dialog Box&#8221;</a>.
+   </p><p>
+    <b>Edit</b>&gt;<b>More Clipboard</b>&gt;<b>View
+    Registers</b> displays a dialog box for
+    viewing the contents of registers (including the clipboard).
+   </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="scrolling.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="editing.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="markers.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Scrolling </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Markers</td></tr></table></div></body></html>

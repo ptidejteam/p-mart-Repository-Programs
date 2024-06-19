@@ -1,0 +1,21 @@
+1b.8.41e	+0	(def_block
+1b.8.41e	+5	r_class
+1b.e.424	+25	id|SWTThreadAlreadyInstanciatedException
+1b.46.45c	+1	(brace
+1c.a.468	+0	(def_block
+1c.a.468	+25	id|SWTThreadAlreadyInstanciatedException
+1c.2f.48d	+0	c_func
+1c.2f.48d	+1	(paren
+1c.30.48e	+1	)paren
+1c.32.490	+1	(brace
+1d.5.497	+5	id|super
+1d.a.49c	+0	c_func
+1d.a.49c	+1	(paren
+1d.b.49d	+2e	l_string|&quot;The SWT Thread has already been instanciated&quot;
+1d.39.4cb	+1	)paren
+1d.3a.4cc	+1	suffix:semicolon
+1e.3.4d1	+1	)brace
+1e.4.4d2	+0	)def_block
+1f.1.4d4	+1	)brace
+1f.2.4d5	+0	)def_block
+20.1.4d7	+0	eof

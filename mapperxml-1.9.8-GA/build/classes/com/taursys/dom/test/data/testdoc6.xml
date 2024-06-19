@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE dataset SYSTEM "testdoc1.dtd">
+<dataset>
+	<!-- Valid XML with DTD -->
+	<person identity="12245667">
+		<lastname>Phelan</lastname>
+		<firstname>Martin</firstname>
+		<middleinitial>T</middleinitial>
+		<address>123 Main Street</address>
+		<!-- Unknown tag -->
+		<weirdtag>Weirdness</weirdtag>
+	</person>
+</dataset>

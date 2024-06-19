@@ -1,0 +1,402 @@
+		<designPattern name="Iterator">
+			<microArchitectures>
+				<microArchitecture number="67">
+					<roles>
+						<clients>
+							<client roleKind="AbstractClass">
+								<entity kind="Class">junit.swingui.TestSelector</entity>
+								<properties>
+									<AID value="1.0"/>
+									<DIT value="1.0"/>
+									<connectivity value="0.6190476190476191"/>
+									<LCOM1 value="32.0"/>
+									<LCOM5 value="0.833333324108805"/>
+									<NCM value="11.0"/>
+									<NMA value="9.0"/>
+									<NMI value="2.0"/>
+									<NOA value="1.0"/>
+									<NOP value="1.0"/>
+									<WMC value="132.0"/>
+									<cohesionAttributes value="0.5"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>java.awt.Component</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Container</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Cursor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Dialog</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.GridBagConstraints</target>
+										<properties>
+											<CBO value="30.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Toolkit</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Window</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Character</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Enumeration</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Vector</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.AbstractButton</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JDialog</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JList</target>
+										<properties>
+											<CBO value="9.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.JRootPane</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.ListModel</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.Sorter</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector</target>
+										<properties>
+											<CBO value="60.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector$TestCellRenderer</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</client>
+						</clients>
+						<aggregates>
+							<aggregate roleKind="AbstractClass">
+								<entity kind="Interface">junit.runner.TestCollector</entity>
+								<properties>
+									<AID value="1.0"/>
+									<CLD value="2.0"/>
+									<DIT value="1.0"/>
+									<NCM value="7.0"/>
+									<NMA value="1.0"/>
+									<NMI value="6.0"/>
+									<NOC value="1.0"/>
+									<NOD value="3.0"/>
+									<NOP value="1.0"/>
+									<WMC value="2.0"/>
+								</properties>
+								<relations/>
+							</aggregate>
+						</aggregates>
+						<concreteAggregates>
+							<concreteAggregate roleKind="Class">
+								<entity kind="Class">junit.runner.LoadingTestCollector</entity>
+								<properties>
+									<AID value="2.9743589743589745"/>
+									<DIT value="3.0"/>
+									<connectivity value="1.5"/>
+									<ICHClass value="8.0"/>
+									<LCOM1 value="20.0"/>
+									<LCOM2 value="5.0"/>
+									<LCOM5 value="0.9999999925494194"/>
+									<NCM value="18.0"/>
+									<NMA value="5.0"/>
+									<NMI value="12.0"/>
+									<NMO value="1.0"/>
+									<NOA value="39.0"/>
+									<NOP value="1.0"/>
+									<SIX value="0.17647058823529413"/>
+									<WMC value="32.0"/>
+									<cohesionAttributes value="0.2916666666666667"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>java.lang.Class</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.String</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Throwable</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.reflect.Modifier</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.awtui.Logo</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.awtui.TestRunner</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.framework.TestSuite</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.ClassPathTestCollector</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.LoadingTestCollector</target>
+										<properties>
+											<CBO value="16.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.TestCaseClassLoader</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.AllTests</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.SimpleTest</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.VectorTest</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.money.MoneyTest</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.AboutDialog</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="12.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.AllTests</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ClassLoaderTest</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ExceptionTestCaseTest</target>
+										<properties>
+											<CBO value="14.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.LoadedFromJar</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.SuiteTest</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</concreteAggregate>
+							<concreteAggregate roleKind="Class">
+								<entity kind="Class">junit.runner.SimpleTestCollector</entity>
+								<properties>
+									<AID value="2.9772727272727275"/>
+									<DIT value="3.0"/>
+									<NCM value="14.0"/>
+									<NMA value="1.0"/>
+									<NMI value="12.0"/>
+									<NMO value="1.0"/>
+									<NOA value="44.0"/>
+									<NOP value="1.0"/>
+									<SIX value="0.23076923076923078"/>
+									<WMC value="7.0"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>java.lang.String</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</concreteAggregate>
+						</concreteAggregates>
+						<iterators>
+							<iterator roleKind="AbstractClass">
+								<entity kind="Ghost">java.util.Enumeration</entity>
+								<properties>
+									<NCM value="2.0"/>
+									<NMA value="2.0"/>
+									<WMC value="3.0"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>junit.framework.TestSuite</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.ClassPathTestCollector</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.runner.TestCaseClassLoader</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.money.MoneyBag</target>
+										<properties>
+											<CBO value="5.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestRunner</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestSelector</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.swingui.TestTreeModel</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.textui.TestRunner</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</iterator>
+						</iterators>
+						<concreteIterators>
+							<concreteIterator roleKind="Class">
+								<entity kind="Ghost">java.util.Hashtable.Enumerator</entity>
+								<properties/>
+								<relations/>
+							</concreteIterator>
+						</concreteIterators>
+					</roles>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>

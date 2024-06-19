@@ -1,0 +1,59 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.3.1-7.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.3.1-7.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+15.9.3.1 Date( year, month, date, hours, minutes, seconds )
+new Date( 1999,11,31,15,59,59).getTime() = 946673999000 PASSED!
+new Date( 1999,11,31,15,59,59).valueOf() = 946673999000 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCFullYear() = 1999 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCMonth() = 11 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCDate() = 31 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCDay() = 5 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCHours() = 20 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCMinutes() = 59 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCSeconds() = 59 PASSED!
+new Date( 1999,11,31,15,59,59).getUTCMilliseconds() = 0 PASSED!
+new Date( 1999,11,31,15,59,59).getFullYear() = 1999 PASSED!
+new Date( 1999,11,31,15,59,59).getMonth() = 11 PASSED!
+new Date( 1999,11,31,15,59,59).getDate() = 31 PASSED!
+new Date( 1999,11,31,15,59,59).getDay() = 5 PASSED!
+new Date( 1999,11,31,15,59,59).getHours() = 15 PASSED!
+new Date( 1999,11,31,15,59,59).getMinutes() = 59 PASSED!
+new Date( 1999,11,31,15,59,59).getSeconds() = 59 PASSED!
+new Date( 1999,11,31,15,59,59).getMilliseconds() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getTime() = 946674000000 PASSED!
+new Date( 1999,11,31,16,0,0).valueOf() = 946674000000 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCFullYear() = 1999 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCMonth() = 11 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCDate() = 31 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCDay() = 5 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCHours() = 21 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCMinutes() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCSeconds() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getUTCMilliseconds() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getFullYear() = 1999 PASSED!
+new Date( 1999,11,31,16,0,0).getMonth() = 11 PASSED!
+new Date( 1999,11,31,16,0,0).getDate() = 31 PASSED!
+new Date( 1999,11,31,16,0,0).getDay() = 5 PASSED!
+new Date( 1999,11,31,16,0,0).getHours() = 16 PASSED!
+new Date( 1999,11,31,16,0,0).getMinutes() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getSeconds() = 0 PASSED!
+new Date( 1999,11,31,16,0,0).getMilliseconds() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getTime() = 946702800000 PASSED!
+new Date( 2000,0,1,0,0,0).valueOf() = 946702800000 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCFullYear() = 2000 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCMonth() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCDate() = 1 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCDay() = 6 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCHours() = 5 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCMinutes() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCSeconds() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getUTCMilliseconds() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getFullYear() = 2000 PASSED!
+new Date( 2000,0,1,0,0,0).getMonth() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getDate() = 1 PASSED!
+new Date( 2000,0,1,0,0,0).getDay() = 6 PASSED!
+new Date( 2000,0,1,0,0,0).getHours() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getMinutes() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getSeconds() = 0 PASSED!
+new Date( 2000,0,1,0,0,0).getMilliseconds() = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.3.1-7.compiled.arff] ...

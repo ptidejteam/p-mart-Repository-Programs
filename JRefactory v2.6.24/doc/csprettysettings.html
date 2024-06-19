@@ -1,0 +1,377 @@
+<HTML><HEAD><TITLE>Example of the c:\temp\.Refactory\pretty.settings file</TITLE></HEAD><BODY>
+<BR>
+<EM>#  Pretty Printer Version</EM><BR>
+<B>version</B>=2.8<BR>
+<BR>
+<EM>#  Pretty.settings</EM><BR>
+<BR>
+<EM>#  This is the number of spaces to indent for each block.</EM><BR>
+<EM>#  Twice this number is the amount of space used for</EM><BR>
+<EM>#  unexpected carrage returns.  Use the word "tab" for tabs</EM><BR>
+<EM>#  and the word "space" for spaces.</EM><BR>
+<B>indent</B>=1<BR>
+<B>indent.char</B>=tab<BR>
+<BR>
+<EM>#  Style for { and }</EM><BR>
+<EM>#  C style means that { is at the end of the line</EM><BR>
+<EM>#  and } is on a line by itself.  For example,</EM><BR>
+<EM>#  if (myTest) {</EM><BR>
+<EM>#    //  This is c style</EM><BR>
+<EM>#  }</EM><BR>
+<EM>#</EM><BR>
+<EM>#  PASCAL style means both { and } are on lines</EM><BR>
+<EM>#  by themselves.  For example,</EM><BR>
+<EM>#  if (myTest)</EM><BR>
+<EM>#  {</EM><BR>
+<EM>#    //  This is PASCAL style</EM><BR>
+<EM>#  }</EM><BR>
+<B>block.style</B>=C<BR>
+<BR>
+<EM>#  The following parameter should be changed to true if you</EM><BR>
+<EM>#  like your parens to have a space before and after them</EM><BR>
+<EM>#  if ( x == y )    //expr.space=true</EM><BR>
+<EM>#  if (x == y)      //expr.space=false</EM><BR>
+<B>expr.space</B>=false<BR>
+<BR>
+<EM>#  The following parameter is the minimum number of blank lines</EM><BR>
+<EM>#  between methods, nested classes, and nested interfaces.</EM><BR>
+<EM>#  It is also the number of lines before and after</EM><BR>
+<EM>#  field declarations, though field declarations will have</EM><BR>
+<EM>#  what ever spacing you used.</EM><BR>
+<EM>#</EM><BR>
+<EM>#  Note that this is a minimum.  If your code already</EM><BR>
+<EM>#  has more space between methods, then it won't shrink</EM><BR>
+<EM>#  the number of blank lines.</EM><BR>
+<B>lines.between</B>=2<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Default Javadoc comments</EM><BR>
+<EM>#</EM><BR>
+<EM>#  The following items are used by the mechanism that</EM><BR>
+<EM>#  automatically inserts javadoc comments.  If you</EM><BR>
+<EM>#  want to make it easer to search your files to find</EM><BR>
+<EM>#  where the values are missing, you can change these</EM><BR>
+<EM>#  to something more unique.</EM><BR>
+<EM>#</EM><BR>
+<BR>
+<EM>#  Default description of the class</EM><BR>
+<B>class.descr</B>=Description of the Class<BR>
+<BR>
+<EM>#  Default description of the interface</EM><BR>
+<B>interface.descr</B>=Description of the Interface<BR>
+<BR>
+<EM>#  Default description of the constructor  {0} stands for the name</EM><BR>
+<EM>#  of the constructor</EM><BR>
+<B>constructor.descr</B>=Constructor for the {0} object<BR>
+<BR>
+<EM>#  Default description of the method</EM><BR>
+<B>method.descr</B>=Description of the Method<BR>
+<BR>
+<EM>#  Default description of the parameter</EM><BR>
+<B>param.descr</B>=Description of Parameter<BR>
+<BR>
+<EM>#  Default description of the return value</EM><BR>
+<B>return.descr</B>=Description of the Returned Value<BR>
+<BR>
+<EM>#  Default description of the exception</EM><BR>
+<B>exception.descr</B>=Description of Exception<BR>
+<BR>
+<BR>
+<BR>
+<EM>#  Default description of the getter.  {0} is the name of the</EM><BR>
+<EM>#  attribute, {1} is the name of the class, {2} is 'class'</EM><BR>
+<EM>#  or 'object' depending on whether it is static or not</EM><BR>
+<B>getter.descr</B>=Gets the {0} attribute of the {1} {2}<BR>
+<BR>
+<EM>#  Default description of the setter.  {0} is the name of the</EM><BR>
+<EM>#  attribute, {1} is the name of the class, {2} is 'class'</EM><BR>
+<EM>#  or 'object' depending on whether it is static or not</EM><BR>
+<B>setter.descr</B>=Sets the {0} attribute of the {1} {2}<BR>
+<BR>
+<EM>#  Parameter description for setters.  {0} is the name of the attribute</EM><BR>
+<B>setter.param.descr</B>=The new {0} value<BR>
+<BR>
+<EM>#  Return description for getters.  {0} is the name of the attribute</EM><BR>
+<B>getter.return.descr</B>=The {0} value<BR>
+<BR>
+<EM>#  Default field description</EM><BR>
+<B>field.descr</B>=Description of the Field<BR>
+<BR>
+<EM>#  Default description of the run method.  {0} is not</EM><BR>
+<EM>#  applicable, {1} is the name of the class, {2} is 'class'</EM><BR>
+<EM>#  or 'object' depending on whether it is static or not</EM><BR>
+<B>run.descr</B>=Main processing method for the {1} {2}<BR>
+<BR>
+<EM>#  Default description of the run method.  {0} is not</EM><BR>
+<EM>#  applicable, {1} is the name of the class, {2} is 'class'</EM><BR>
+<EM>#  or 'object' depending on whether it is static or not</EM><BR>
+<B>main.descr</B>=The main program for the {1} {2}<BR>
+<BR>
+<EM>#  Description of the main arguments</EM><BR>
+<B>main.param.descr</B>=The command line arguments<BR>
+<BR>
+<BR>
+<BR>
+<EM>#  Default description of the add method.  {0} is the name of the</EM><BR>
+<EM>#  attribute, {1} is the name of the class, {2} is 'class'</EM><BR>
+<EM>#  or 'object' depending on whether it is static or not</EM><BR>
+<B>adder.descr</B>=Adds a feature to the {0} attribute of the {1} {2}<BR>
+<BR>
+<EM>#  Description of the add argument</EM><BR>
+<B>adder.param.descr</B>=The feature to be added to the {0} attribute<BR>
+<BR>
+<EM>#  JUnit has a particular format for the names of methods.</EM><BR>
+<EM>#  These setup for the unit tests are done in a method named</EM><BR>
+<EM>#  setUp, the cleanup afterwards is done in tearDown, and</EM><BR>
+<EM>#  the unit tests all start with the word test.  The following</EM><BR>
+<EM>#  are the default descriptions of these methods.</EM><BR>
+<B>junit.setUp.descr</B>=The JUnit setup method<BR>
+<BR>
+<B>junit.test.descr</B>=A unit test for JUnit<BR>
+<BR>
+<B>junit.tearDown.descr</B>=The teardown method for JUnit<BR>
+<BR>
+<B>junit.suite.descr</B>=A unit test suite for JUnit<BR>
+<B>junit.suite.return.descr</B>=The test suite<BR>
+<EM>#</EM><BR>
+<EM>#  Sort order</EM><BR>
+<EM>#</EM><BR>
+<EM>#  To change the relative priorities of the sort, adjust the number after</EM><BR>
+<EM>#  the dot.  For instance, if you want all the instance parts first then</EM><BR>
+<EM>#  static parts second, and within these you want the field, constructor etc</EM><BR>
+<EM>#  to be sorted next, switch the number of sort.1 and sort.2.</EM><BR>
+<BR>
+<BR>
+<EM>#  Check the type first</EM><BR>
+<EM>#    This places the fields first, and initializers last.  Note that to keep</EM><BR>
+<EM>#    things compiling initializers must be after the fields.</EM><BR>
+<B>sort.1</B>=Type(Field,Constructor,Method,NestedClass,NestedInterface,Initializer)<BR>
+<BR>
+<EM>#  Check the class/instance next</EM><BR>
+<EM>#    To place the static methods and variables first, switch the order</EM><BR>
+<EM>#    of instance and static.</EM><BR>
+<B>sort.2</B>=Class(Instance,Static)<BR>
+<BR>
+<EM>#  Check the protection next</EM><BR>
+<EM>#    To sort with public methods/variables use Protection(public)</EM><BR>
+<EM>#    To sort with private methods/variables use Protection(private)</EM><BR>
+<B>sort.3</B>=Protection(public)<BR>
+<BR>
+<EM>#  Group setters and getters last</EM><BR>
+<EM>#    Setters are methods that start with the word 'set'</EM><BR>
+<EM>#    Getters are methods that start with the word 'get' or 'is'</EM><BR>
+<B>sort.4</B>=Method(setter,getter,other)<BR>
+<BR>
+<BR>
+<BR>
+<EM>#  Limits the level that javadoc comments are forced</EM><BR>
+<EM>#  into the document.  The following are valid</EM><BR>
+<EM>#  levels:</EM><BR>
+<EM>#  *  all - all items must have javadoc</EM><BR>
+<EM>#  *  private - same as all</EM><BR>
+<EM>#  *  package - all items except private items must have javadoc</EM><BR>
+<EM>#  *  default - same as package</EM><BR>
+<EM>#  *  protected - protected and public items must have javadoc</EM><BR>
+<EM>#  *  public - only public items must have javadoc</EM><BR>
+<EM>#  *  none - nothing is required to have javadoc</EM><BR>
+<EM>#</EM><BR>
+<EM>#  method.minimum applies to constructors and methods</EM><BR>
+<B>method.minimum</B>=all<BR>
+<BR>
+<EM>#  field.minimum applies to fields</EM><BR>
+<B>field.minimum</B>=protected<BR>
+<BR>
+<EM>#  class.minimum applies to classes and interfaces</EM><BR>
+<B>class.minimum</B>=all<BR>
+<BR>
+<EM>#  Is the date a required field of the class or interface</EM><BR>
+<B>date.required</B>=true<BR>
+<BR>
+<EM>#  Is there a space after the cast</EM><BR>
+<B>cast.space</B>=true<BR>
+<BR>
+<EM>#  Star count for javadoc</EM><BR>
+<B>javadoc.star</B>=2<BR>
+<BR>
+<EM>#  Wordwrap length for javadoc.  You must have at least</EM><BR>
+<EM>#  javadoc.wordwrap.min characters in the comment and you</EM><BR>
+<EM>#  must be passing javadoc.wordwrapp.max for the indenting</EM><BR>
+<EM>#  plus the comment</EM><BR>
+<B>javadoc.wordwrap.max</B>=80<BR>
+<B>javadoc.wordwrap.min</B>=40<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Header:</EM><BR>
+<EM>#  Uncomment these lines if you would like</EM><BR>
+<EM>#  a standard header at the beginning of each file.</EM><BR>
+<EM>#  You are allowed an unlimited number of lines here,</EM><BR>
+<EM>#  just number them sequentially.</EM><BR>
+<EM>#</EM><BR>
+<EM>#header.1=/*</EM><BR>
+<EM>#header.2= *  Copyright 2000</EM><BR>
+<EM>#header.3= *  </EM><BR>
+<EM>#header.4= *  <Your Organization Here></EM><BR>
+<EM>#header.5= *  All rights reserved</EM><BR>
+<EM>#header.6= */</EM><BR>
+<EM>#  The following allow you to require and order</EM><BR>
+<EM>#  tags for the classes, methods, and fields.  To</EM><BR>
+<EM>#  require the tag, add the name of the tag here</EM><BR>
+<EM>#  and then add a TAGNAME.descr field.  To only </EM><BR>
+<EM>#  specify the order, just include the tag here.</EM><BR>
+<BR>
+<EM>#  Here is the order for tags for classes and interfaces</EM><BR>
+<B>class.tags</B>=author,created<BR>
+<BR>
+<EM>#  Here is the order for tags for methods and constructors</EM><BR>
+<B>method.tags</B>=param,return,exception,since<BR>
+<BR>
+<EM>#  Here is the order for tags for fields</EM><BR>
+<B>field.tags</B>=since<BR>
+<BR>
+<EM>#  In all tags that are required, there are some parameters</EM><BR>
+<EM>#  that are available.  These are:</EM><BR>
+<EM>#  {0} refers to the current user</EM><BR>
+<EM>#  {1} refers to the current date</EM><BR>
+<EM>#  {2} refers to the name of the current object</EM><BR>
+<BR>
+<EM>#  Now we are ready to specify the author</EM><BR>
+<B>author.descr</B>={0}<BR>
+<BR>
+<EM>#  Now we are ready to specify the created tag</EM><BR>
+<B>created.descr</B>={1}<BR>
+<BR>
+<EM>#  Whether we put a space before the @</EM><BR>
+<B>space.before.javadoc</B>=false<BR>
+<BR>
+<EM>#  Should we sort the types and imports?</EM><BR>
+<B>sort.top</B>=false<BR>
+<BR>
+<EM>#  Should catch statements look like</EM><BR>
+<EM>#  (true) is:</EM><BR>
+<EM>#  try {</EM><BR>
+<EM>#      //  Something here</EM><BR>
+<EM>#  }</EM><BR>
+<EM>#  catch (IOException ioe) {</EM><BR>
+<EM>#      //  Something here</EM><BR>
+<EM>#  }</EM><BR>
+<EM>#  (false) is:</EM><BR>
+<EM>#  try {</EM><BR>
+<EM>#      //  Something here</EM><BR>
+<EM>#  } catch (IOException ioe) {</EM><BR>
+<EM>#      //  Something here</EM><BR>
+<EM>#  }</EM><BR>
+<EM>#  This value is also used for else statements</EM><BR>
+<B>catch.start.line</B>=true<BR>
+<BR>
+<EM>#  This determines if there should be a space after keywords</EM><BR>
+<EM>#  When this value is true, you get:</EM><BR>
+<EM>#  if (true) {</EM><BR>
+<EM>#      //  Do something</EM><BR>
+<EM>#  }</EM><BR>
+<EM>#  When this value is false, you get:</EM><BR>
+<EM>#  if(true) {</EM><BR>
+<EM>#      //  Do something</EM><BR>
+<EM>#  }</EM><BR>
+<B>keyword.space</B>=true<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Do you want to lineup the names and descriptions</EM><BR>
+<EM>#  in javadoc comments?</EM><BR>
+<EM>#</EM><BR>
+<B>javadoc.id.lineup</B>=true<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  How many spaces should javadoc comments be indented?</EM><BR>
+<EM>#</EM><BR>
+<B>javadoc.indent</B>=2<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  What do you do when a newline is unexpectedly encountered?</EM><BR>
+<EM>#  The valid values are double and param.  Double means that</EM><BR>
+<EM>#  you should indent twice.  Param means try to line up the</EM><BR>
+<EM>#  the parameters.</EM><BR>
+<EM>#</EM><BR>
+<B>surprise.return</B>=double<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  To handle sun's coding standard, you want the method to begin</EM><BR>
+<EM>#  with a PASCAL coding style and the {} beneath that to be C style.</EM><BR>
+<EM>#  This parameter allows you to set the method style different</EM><BR>
+<EM>#  from the rest.</EM><BR>
+<EM>#</EM><BR>
+<B>method.block.style</B>=C<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Should throws part of a method/constructor declaration always be</EM><BR>
+<EM>#  on it's own line?</EM><BR>
+<EM>#</EM><BR>
+<B>throws.newline</B>=false<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Wordwrap the javadoc comments</EM><BR>
+<EM>#</EM><BR>
+<B>reformat.comments</B>=true<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Single line comment type</EM><BR>
+<EM>#</EM><BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Should each single line comment be indented a certain number of spaces</EM><BR>
+<EM>#  from the margin?  For this to work right be sure to indent each line with</EM><BR>
+<EM>#  spaces.</EM><BR>
+<EM>#</EM><BR>
+<B>singleline.comment.ownline</B>=true<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Indent the name of the field to this column (-1 for just one space)</EM><BR>
+<EM>#</EM><BR>
+<B>field.name.indent</B>=-1<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Include javadoc comments where ever they appear</EM><BR>
+<EM>#</EM><BR>
+<B>keep.all.javadoc</B>=false<BR>
+<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  End of line character(s) - either CR, CRNL, or NL</EM><BR>
+<EM>#  CR means carriage return, NL means newline</EM><BR>
+<EM>#</EM><BR>
+<B>end.line</B>=CRNL<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Absolute indent before a single line comment.</EM><BR>
+<EM>#</EM><BR>
+<B>singleline.comment.absoluteindent</B>=0<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  Space used before the start of a single line </EM><BR>
+<EM>#  from the end of the code</EM><BR>
+<EM>#</EM><BR>
+<B>singleline.comment.incrementalindent</B>=0<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  This feature describes how the pretty printer should </EM><BR>
+<EM>#  indent single line comments (//) that share the line</EM><BR>
+<EM>#  with source code.  The two choices are incremental and absolute.</EM><BR>
+<EM>#    incremental  -  use an incremental indent</EM><BR>
+<EM>#    absolute  -  use the absolute indent level</EM><BR>
+<EM>#</EM><BR>
+<B>singleline.comment.indentstyle.shared</B>=incremental<BR>
+<BR>
+<EM>#</EM><BR>
+<EM>#  This feature describes how the pretty printer should</EM><BR>
+<EM>#  indent single line comments (//) that are on their</EM><BR>
+<EM>#  own line.  The two choices are code and absolute.</EM><BR>
+<EM>#    code  -  use the same indent as the current code</EM><BR>
+<EM>#    absolute  -  use the absolute indent level</EM><BR>
+<EM>#</EM><BR>
+<B>singleline.comment.indentstyle.ownline</B>=code<BR>
+<BR>
+</BODY></HTML>

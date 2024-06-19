@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site pack200="true">
+   <description url="http://download.eclipse.org/tools/mylyn/update/weekly/e3.3">
+      Mylyn Update for Eclipse 3.3
+   </description>
+   <feature url="features/org.eclipse.mylyn_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Features"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.context_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.context_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Features"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.ide_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.ide_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.java_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.java_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.team_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.team_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.pde_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.pde_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.bugzilla_feature_3.2.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.bugzilla_feature" version="3.2.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.wikitext_feature_1.1.0.v20090617-0100-e33.jar" id="org.eclipse.mylyn.wikitext_feature" version="1.1.0.v20090617-0100-e33">
+      <category name="Integration"/>
+   </feature>
+   <category-def name="Features" label="Mylyn Features">
+      <description>
+         The Task List and the Task-Focused Interface.
+      </description>
+   </category-def>
+   <category-def name="Integration" label="Mylyn Integration">
+      <description>
+         Mylyn bridges that integrate with documents and programming languages. Mylyn connectors that integrate with task repositories.
+      </description>
+   </category-def>
+</site>

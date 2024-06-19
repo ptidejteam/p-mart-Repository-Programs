@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ganttproject SYSTEM "gantt.dtd">
+<ganttproject>
+	<title>GanttProject - Test project</title>
+	<links prefix="gantt">
+		<home>Home</home>
+		<chart>Chart</chart>
+		<tasks>Tasks</tasks>
+		<resources>Resources</resources>
+	</links>
+	<project>
+		<name title="Project Name">Test project</name>
+		<organization title="Organization">Some fancy organization</organization>
+		<description title="Description">Thorough project description</description>
+	</project>
+	<chart>gantt.png</chart>
+	<resources name="Human" role="Role" contact="Contact">
+		<resource>
+			<name>person1</name>
+			<role>role1</role>
+			<contact>person1@com.com</contact>
+		</resource>
+		<resource>
+			<name>person2</name>
+			<role>role2</role>
+			<contact>person2@com.com</contact>
+		</resource>
+		<resource>
+			<name>person3</name>
+			<role>role2</role>
+			<contact>person3@com.com</contact>
+		</resource>
+		<chart path="gantt-res.png"/>
+	</resources>
+	<tasks name="name" begin="Beginning of task" end="End of task" milestone="Milestone" progress="Advancement" assigned-to="Assigned to" notes="Task notes">
+		<task>
+			<name>Sophisticated task</name>
+			<begin>Aug 19, 2003</begin>
+			<end>Aug 20, 2003</end>
+			<milestone>true</milestone>
+			<progress>50%</progress>
+			<assigned-to>person1</assigned-to>
+			<notes><![CDATA[Aug 19, 2003 - 6:45:10 PM
+-------------------------------
+test notes]]></notes>
+		</task>
+		<task>
+			<name>Easy one</name>
+			<begin>Aug 20, 2003</begin>
+			<end>Aug 21, 2003</end>
+			<milestone>false</milestone>
+			<progress>10%</progress>
+			<assigned-to>person2</assigned-to>
+			<notes><![CDATA[Aug 20, 2003 - 6:45:10 PM
+-------------------------------
+blahblah]]></notes>
+		</task>
+	</tasks>
+	<footer version="Ganttproject (1.9.9)" date="21/09/2003 - 21:14"/>
+</ganttproject>

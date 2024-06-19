@@ -1,0 +1,18 @@
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="headingArea"&gt;&lt;div id="headingContents"&gt;
+      &lt;table&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Stuff
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;&lt;/div&gt;
+    &lt;h1&gt;Test&lt;/h1&gt;
+    &lt;br&gt;
+    &lt;img alt="img" src="img.gif"&gt;
+  &lt;/body&gt;
+&lt;/html&gt;

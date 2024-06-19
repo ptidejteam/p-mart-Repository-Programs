@@ -1,0 +1,15 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\Object\8.6.2-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\Object\shell.js -f mozilla\js\tests\ecma_3\Object\8.6.2-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: (none)
+STATUS: Testing the internal [[Class]] property of native constructors
+PASSED! Current constructor is: Object
+PASSED! Current constructor is: Function
+PASSED! Current constructor is: Array
+PASSED! Current constructor is: String
+PASSED! Current constructor is: Boolean
+PASSED! Current constructor is: Number
+PASSED! Current constructor is: Date
+PASSED! Current constructor is: RegExp
+PASSED! Current constructor is: Error
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\Object\8.6.2-2.compiled.arff] ...

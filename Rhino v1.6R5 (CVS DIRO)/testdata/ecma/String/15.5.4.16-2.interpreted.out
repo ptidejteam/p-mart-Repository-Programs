@@ -1,0 +1,101 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\String\15.5.4.16-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\String\shell.js -f mozilla\js\tests\ecma\String\15.5.4.16-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.5.4.11-2 String.prototype.toLowerCase()
+var s = new String( String.fromCharCode(4256) ); s.toLowerCase().charCodeAt(0) = 4256 FAILED! expected: 4304
+var s = new String( String.fromCharCode(4257) ); s.toLowerCase().charCodeAt(0) = 4257 FAILED! expected: 4305
+var s = new String( String.fromCharCode(4258) ); s.toLowerCase().charCodeAt(0) = 4258 FAILED! expected: 4306
+var s = new String( String.fromCharCode(4259) ); s.toLowerCase().charCodeAt(0) = 4259 FAILED! expected: 4307
+var s = new String( String.fromCharCode(4260) ); s.toLowerCase().charCodeAt(0) = 4260 FAILED! expected: 4308
+var s = new String( String.fromCharCode(4261) ); s.toLowerCase().charCodeAt(0) = 4261 FAILED! expected: 4309
+var s = new String( String.fromCharCode(4262) ); s.toLowerCase().charCodeAt(0) = 4262 FAILED! expected: 4310
+var s = new String( String.fromCharCode(4263) ); s.toLowerCase().charCodeAt(0) = 4263 FAILED! expected: 4311
+var s = new String( String.fromCharCode(4264) ); s.toLowerCase().charCodeAt(0) = 4264 FAILED! expected: 4312
+var s = new String( String.fromCharCode(4265) ); s.toLowerCase().charCodeAt(0) = 4265 FAILED! expected: 4313
+var s = new String( String.fromCharCode(4266) ); s.toLowerCase().charCodeAt(0) = 4266 FAILED! expected: 4314
+var s = new String( String.fromCharCode(4267) ); s.toLowerCase().charCodeAt(0) = 4267 FAILED! expected: 4315
+var s = new String( String.fromCharCode(4268) ); s.toLowerCase().charCodeAt(0) = 4268 FAILED! expected: 4316
+var s = new String( String.fromCharCode(4269) ); s.toLowerCase().charCodeAt(0) = 4269 FAILED! expected: 4317
+var s = new String( String.fromCharCode(4270) ); s.toLowerCase().charCodeAt(0) = 4270 FAILED! expected: 4318
+var s = new String( String.fromCharCode(4271) ); s.toLowerCase().charCodeAt(0) = 4271 FAILED! expected: 4319
+var s = new String( String.fromCharCode(4272) ); s.toLowerCase().charCodeAt(0) = 4272 FAILED! expected: 4320
+var s = new String( String.fromCharCode(4273) ); s.toLowerCase().charCodeAt(0) = 4273 FAILED! expected: 4321
+var s = new String( String.fromCharCode(4274) ); s.toLowerCase().charCodeAt(0) = 4274 FAILED! expected: 4322
+var s = new String( String.fromCharCode(4275) ); s.toLowerCase().charCodeAt(0) = 4275 FAILED! expected: 4323
+var s = new String( String.fromCharCode(4276) ); s.toLowerCase().charCodeAt(0) = 4276 FAILED! expected: 4324
+var s = new String( String.fromCharCode(4277) ); s.toLowerCase().charCodeAt(0) = 4277 FAILED! expected: 4325
+var s = new String( String.fromCharCode(4278) ); s.toLowerCase().charCodeAt(0) = 4278 FAILED! expected: 4326
+var s = new String( String.fromCharCode(4279) ); s.toLowerCase().charCodeAt(0) = 4279 FAILED! expected: 4327
+var s = new String( String.fromCharCode(4280) ); s.toLowerCase().charCodeAt(0) = 4280 FAILED! expected: 4328
+var s = new String( String.fromCharCode(4281) ); s.toLowerCase().charCodeAt(0) = 4281 FAILED! expected: 4329
+var s = new String( String.fromCharCode(4282) ); s.toLowerCase().charCodeAt(0) = 4282 FAILED! expected: 4330
+var s = new String( String.fromCharCode(4283) ); s.toLowerCase().charCodeAt(0) = 4283 FAILED! expected: 4331
+var s = new String( String.fromCharCode(4284) ); s.toLowerCase().charCodeAt(0) = 4284 FAILED! expected: 4332
+var s = new String( String.fromCharCode(4285) ); s.toLowerCase().charCodeAt(0) = 4285 FAILED! expected: 4333
+var s = new String( String.fromCharCode(4286) ); s.toLowerCase().charCodeAt(0) = 4286 FAILED! expected: 4334
+var s = new String( String.fromCharCode(4287) ); s.toLowerCase().charCodeAt(0) = 4287 FAILED! expected: 4335
+var s = new String( String.fromCharCode(4288) ); s.toLowerCase().charCodeAt(0) = 4288 FAILED! expected: 4336
+var s = new String( String.fromCharCode(4289) ); s.toLowerCase().charCodeAt(0) = 4289 FAILED! expected: 4337
+var s = new String( String.fromCharCode(4290) ); s.toLowerCase().charCodeAt(0) = 4290 FAILED! expected: 4338
+var s = new String( String.fromCharCode(4291) ); s.toLowerCase().charCodeAt(0) = 4291 FAILED! expected: 4339
+var s = new String( String.fromCharCode(4292) ); s.toLowerCase().charCodeAt(0) = 4292 FAILED! expected: 4340
+var s = new String( String.fromCharCode(4293) ); s.toLowerCase().charCodeAt(0) = 4293 FAILED! expected: 4341
+var s = new String( String.fromCharCode(4294) ); s.toLowerCase().charCodeAt(0) = 4294 PASSED!
+var s = new String( String.fromCharCode(4295) ); s.toLowerCase().charCodeAt(0) = 4295 PASSED!
+var s = new String( String.fromCharCode(4296) ); s.toLowerCase().charCodeAt(0) = 4296 PASSED!
+var s = new String( String.fromCharCode(4297) ); s.toLowerCase().charCodeAt(0) = 4297 PASSED!
+var s = new String( String.fromCharCode(4298) ); s.toLowerCase().charCodeAt(0) = 4298 PASSED!
+var s = new String( String.fromCharCode(4299) ); s.toLowerCase().charCodeAt(0) = 4299 PASSED!
+var s = new String( String.fromCharCode(4300) ); s.toLowerCase().charCodeAt(0) = 4300 PASSED!
+var s = new String( String.fromCharCode(4301) ); s.toLowerCase().charCodeAt(0) = 4301 PASSED!
+var s = new String( String.fromCharCode(4302) ); s.toLowerCase().charCodeAt(0) = 4302 PASSED!
+var s = new String( String.fromCharCode(4303) ); s.toLowerCase().charCodeAt(0) = 4303 PASSED!
+var s = new String( String.fromCharCode(4304) ); s.toLowerCase().charCodeAt(0) = 4304 PASSED!
+var s = new String( String.fromCharCode(4305) ); s.toLowerCase().charCodeAt(0) = 4305 PASSED!
+var s = new String( String.fromCharCode(4306) ); s.toLowerCase().charCodeAt(0) = 4306 PASSED!
+var s = new String( String.fromCharCode(4307) ); s.toLowerCase().charCodeAt(0) = 4307 PASSED!
+var s = new String( String.fromCharCode(4308) ); s.toLowerCase().charCodeAt(0) = 4308 PASSED!
+var s = new String( String.fromCharCode(4309) ); s.toLowerCase().charCodeAt(0) = 4309 PASSED!
+var s = new String( String.fromCharCode(4310) ); s.toLowerCase().charCodeAt(0) = 4310 PASSED!
+var s = new String( String.fromCharCode(4311) ); s.toLowerCase().charCodeAt(0) = 4311 PASSED!
+var s = new String( String.fromCharCode(4312) ); s.toLowerCase().charCodeAt(0) = 4312 PASSED!
+var s = new String( String.fromCharCode(4313) ); s.toLowerCase().charCodeAt(0) = 4313 PASSED!
+var s = new String( String.fromCharCode(4314) ); s.toLowerCase().charCodeAt(0) = 4314 PASSED!
+var s = new String( String.fromCharCode(4315) ); s.toLowerCase().charCodeAt(0) = 4315 PASSED!
+var s = new String( String.fromCharCode(4316) ); s.toLowerCase().charCodeAt(0) = 4316 PASSED!
+var s = new String( String.fromCharCode(4317) ); s.toLowerCase().charCodeAt(0) = 4317 PASSED!
+var s = new String( String.fromCharCode(4318) ); s.toLowerCase().charCodeAt(0) = 4318 PASSED!
+var s = new String( String.fromCharCode(4319) ); s.toLowerCase().charCodeAt(0) = 4319 PASSED!
+var s = new String( String.fromCharCode(4320) ); s.toLowerCase().charCodeAt(0) = 4320 PASSED!
+var s = new String( String.fromCharCode(4321) ); s.toLowerCase().charCodeAt(0) = 4321 PASSED!
+var s = new String( String.fromCharCode(4322) ); s.toLowerCase().charCodeAt(0) = 4322 PASSED!
+var s = new String( String.fromCharCode(4323) ); s.toLowerCase().charCodeAt(0) = 4323 PASSED!
+var s = new String( String.fromCharCode(4324) ); s.toLowerCase().charCodeAt(0) = 4324 PASSED!
+var s = new String( String.fromCharCode(4325) ); s.toLowerCase().charCodeAt(0) = 4325 PASSED!
+var s = new String( String.fromCharCode(4326) ); s.toLowerCase().charCodeAt(0) = 4326 PASSED!
+var s = new String( String.fromCharCode(4327) ); s.toLowerCase().charCodeAt(0) = 4327 PASSED!
+var s = new String( String.fromCharCode(4328) ); s.toLowerCase().charCodeAt(0) = 4328 PASSED!
+var s = new String( String.fromCharCode(4329) ); s.toLowerCase().charCodeAt(0) = 4329 PASSED!
+var s = new String( String.fromCharCode(4330) ); s.toLowerCase().charCodeAt(0) = 4330 PASSED!
+var s = new String( String.fromCharCode(4331) ); s.toLowerCase().charCodeAt(0) = 4331 PASSED!
+var s = new String( String.fromCharCode(4332) ); s.toLowerCase().charCodeAt(0) = 4332 PASSED!
+var s = new String( String.fromCharCode(4333) ); s.toLowerCase().charCodeAt(0) = 4333 PASSED!
+var s = new String( String.fromCharCode(4334) ); s.toLowerCase().charCodeAt(0) = 4334 PASSED!
+var s = new String( String.fromCharCode(4335) ); s.toLowerCase().charCodeAt(0) = 4335 PASSED!
+var s = new String( String.fromCharCode(4336) ); s.toLowerCase().charCodeAt(0) = 4336 PASSED!
+var s = new String( String.fromCharCode(4337) ); s.toLowerCase().charCodeAt(0) = 4337 PASSED!
+var s = new String( String.fromCharCode(4338) ); s.toLowerCase().charCodeAt(0) = 4338 PASSED!
+var s = new String( String.fromCharCode(4339) ); s.toLowerCase().charCodeAt(0) = 4339 PASSED!
+var s = new String( String.fromCharCode(4340) ); s.toLowerCase().charCodeAt(0) = 4340 PASSED!
+var s = new String( String.fromCharCode(4341) ); s.toLowerCase().charCodeAt(0) = 4341 PASSED!
+var s = new String( String.fromCharCode(4342) ); s.toLowerCase().charCodeAt(0) = 4342 PASSED!
+var s = new String( String.fromCharCode(4343) ); s.toLowerCase().charCodeAt(0) = 4343 PASSED!
+var s = new String( String.fromCharCode(4344) ); s.toLowerCase().charCodeAt(0) = 4344 PASSED!
+var s = new String( String.fromCharCode(4345) ); s.toLowerCase().charCodeAt(0) = 4345 PASSED!
+var s = new String( String.fromCharCode(4346) ); s.toLowerCase().charCodeAt(0) = 4346 PASSED!
+var s = new String( String.fromCharCode(4347) ); s.toLowerCase().charCodeAt(0) = 4347 PASSED!
+var s = new String( String.fromCharCode(4348) ); s.toLowerCase().charCodeAt(0) = 4348 PASSED!
+var s = new String( String.fromCharCode(4349) ); s.toLowerCase().charCodeAt(0) = 4349 PASSED!
+var s = new String( String.fromCharCode(4350) ); s.toLowerCase().charCodeAt(0) = 4350 PASSED!
+var s = new String( String.fromCharCode(4351) ); s.toLowerCase().charCodeAt(0) = 4351 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\String\15.5.4.16-2.interpreted.arff] ...

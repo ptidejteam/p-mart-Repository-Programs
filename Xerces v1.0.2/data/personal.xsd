@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE schema PUBLIC "-//W3C//DTD XMLSCHEMA 19991216//EN"
+                        "http://www.w3.org/TR/1999/WD-xmlschema-1-19991217/structures.dtd">
+<schema>
+
+ <element name="personnel">
+  <type>
+   <element ref="person" minOccurs='1' maxOccurs='*'/>
+   <attribute name="xmlns"/>
+  </type>
+ </element>
+
+ <element name="person">
+  <type>
+   <element ref="name"/>
+   <element ref="email" minOccurs='0' maxOccurs='*'/>
+   <element ref="url"   minOccurs='0' maxOccurs='*'/>
+   <element ref="link"  minOccurs='0' maxOccurs='1'/>
+
+   <attribute name="id"  type="ID" minOccurs='1'/>
+   <attribute name="note" type="string"/>
+   <attribute name="contr" type="NMTOKEN" default="false">
+    <datatype source="string">
+     <enumeration value="true"/>
+     <enumeration value="false"/>
+    </datatype>
+   </attribute>
+   <attribute name="salary" type="integer"/>
+  </type>
+ </element>
+
+ <element name="name">
+  <type content='elementOnly'>
+   <group order='all'>
+    <element ref="family"/>
+    <element ref="given"/>
+   </group>
+  </type>
+ </element>
+
+ <element name="family" type='string'/>
+
+ <element name="given" type='string'/>
+
+ <element name="email" type='string'/>
+
+ <element name="url">
+  <type content="empty">
+   <attribute name="href" type="string" default="http://"/>
+  </type>
+ </element>
+
+ <element name="link">
+  <type content="empty">
+   <attribute name="manager" type="IDREF"/>
+   <attribute name="subordinates" type="IDREFS"/>
+  </type>
+ </element>
+
+ <notation name='gif' public='-//APP/Photoshop/4.0' system='photoshop.exe'/>
+
+</schema>

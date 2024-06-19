@@ -1,0 +1,19 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Array\15.4.4.5.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Array\shell.js -f mozilla\js\tests\ecma\Array\15.4.4.5.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.4.4.3-1 Array.prototype.join()
+Array.prototype.join.length = 1 PASSED!
+delete Array.prototype.join.length = false PASSED!
+delete Array.prototype.join.length; Array.prototype.join.length = 1 PASSED!
+var TEST_ARRAY = new Array(); TEST_ARRAY.join() =  PASSED!
+var TEST_ARRAY = new Array(); TEST_ARRAY.join(' ') =  PASSED!
+var TEST_ARRAY = new Array(null, void 0, true, false, 123, new Object(), new Boolean(true) ); TEST_ARRAY.join('&') = &&true&false&123&[object Object]&true PASSED!
+var TEST_ARRAY = new Array(null, void 0, true, false, 123, new Object(), new Boolean(true) ); TEST_ARRAY.join('') = truefalse123[object Object]true PASSED!
+var TEST_ARRAY = new Array(null, void 0, true, false, 123, new Object(), new Boolean(true) ); TEST_ARRAY.join(void 0) = ,,true,false,123,[object Object],true PASSED!
+var TEST_ARRAY = new Array(null, void 0, true, false, 123, new Object(), new Boolean(true) ); TEST_ARRAY.join() = ,,true,false,123,[object Object],true PASSED!
+var TEST_ARRAY = new Array(null, void 0, true, false, 123, new Object(), new Boolean(true) ); TEST_ARRAY.join('') = truefalse123[object Object]true PASSED!
+var TEST_ARRAY = new Array(true) ); TEST_ARRAY.join('') = true PASSED!
+TEST_ARRAY.join(	) = 0	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99 PASSED!
+(new Array( Boolean(true), Boolean(false), null,  void 0, Number(1e+21), Number(1e-7))).join() = true,false,,,1e+21,1e-7 PASSED!
+var OB = new Object_1('true,false,111,0.5,1.23e6,NaN,void 0,null'); OB.join(':') = true:false:111:0.5:1230000:NaN:: PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Array\15.4.4.5.interpreted.arff] ...

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry
+        excluding="org/apache/log4j/test/serialization/|org/apache/log4j/jmx/|org/apache/log4j/test/serialization/T/"
+        kind="src" path="src/java"/>
+    <classpathentry excluding="T/" kind="src" path="src/java/org/apache/log4j/test/serialization"/>
+    <classpathentry kind="src" path="src/java/org/apache/log4j/test/serialization/T"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="lib" path="lib/ant.jar"/>
+    <classpathentry kind="lib" path="lib/jaxp.jar"/>
+    <classpathentry kind="lib" path="lib/jboss-j2ee.jar"/>
+    <classpathentry kind="lib" path="lib/mail.jar"/>
+    <classpathentry kind="lib" path="lib/parser.jar"/>
+    <classpathentry kind="src" path="/JUnit"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

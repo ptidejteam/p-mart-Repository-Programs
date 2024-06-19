@@ -1,0 +1,65 @@
+MapperXML
+Version 1.9.7 (FUTURE - NOT YET RELEASED)
+Release Notes:
+
+To Do
+===============================================================
+o   New MCheckBox component
+o   Deprecate get/setList and replace with get/setListValueHolder in
+    SelectModel, DefaultSelectModel, SelectField & HTMLSelect
+o   Remove deprecated methods in MComboBox
+o   Harden code to eliminate/reduce null pointer exceptions when
+    developer does not set all properties or invoke initialize
+    methods properly. Use Debug.WARN messages instead with
+    specific cause/recommendations.
+o   Modify ServletFormFactory for cache control (min, max)
+o   See if the classloader can be set in the init method of
+    ServletApp.
+o   Create SubDoc/SubForm component
+o   Example for Default actions with Triggers and Buttons
+o   Add behavior to remaining components for recycle - clear
+    values. Also consider adding property 'renderAlways' so
+    that a control can be set to only render a part of a
+    document once (drop-down, sale-items, etc).
+o   Add undo and/or cancel to MapperGUI components
+o   Create an option list descriptor for use by ComponentFactory
+    to use for binding HTMLSelect components.
+o   Modify HTMLCheckbox. Add boolean property - only process input
+    during POST.
+o   Modify HTMLComponentFactory to preset selectedValue and
+    unselectedValue properties from HTML document for HTMLCheckbox
+
+Fixes TODO
+================================================================
+
+Quick Highlights
+================================================================
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+
+Other Changes:
+================================================================
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none

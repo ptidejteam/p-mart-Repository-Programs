@@ -1,0 +1,71 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Boolean\15.6.2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Boolean\shell.js -f mozilla\js\tests\ecma\Boolean\15.6.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.6.2 15.6.2 The Boolean Constructor; 15.6.2.1 new Boolean( value ); 15.6.2.2 new Boolean()
+typeof (new Boolean(1)) = object PASSED!
+(new Boolean(1)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(1);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(1)).valueOf() = true PASSED!
+typeof new Boolean(1) = object PASSED!
+(new Boolean(0)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(0);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(0)).valueOf() = false PASSED!
+typeof new Boolean(0) = object PASSED!
+(new Boolean(-1)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(-1);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(-1)).valueOf() = true PASSED!
+typeof new Boolean(-1) = object PASSED!
+(new Boolean('1')).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean('1');TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean('1')).valueOf() = true PASSED!
+typeof new Boolean('1') = object PASSED!
+(new Boolean('0')).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean('0');TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean('0')).valueOf() = true PASSED!
+typeof new Boolean('0') = object PASSED!
+(new Boolean('-1')).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean('-1');TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean('-1')).valueOf() = true PASSED!
+typeof new Boolean('-1') = object PASSED!
+(new Boolean(new Boolean(true))).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(new Boolean(true));TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(new Boolean(true))).valueOf() = true PASSED!
+typeof new Boolean(new Boolean(true)) = object PASSED!
+(new Boolean(Number.NaN)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(Number.NaN);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(Number.NaN)).valueOf() = false PASSED!
+typeof new Boolean(Number.NaN) = object PASSED!
+(new Boolean(null)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(null);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(null)).valueOf() = false PASSED!
+typeof new Boolean(null) = object PASSED!
+(new Boolean(void 0)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(void 0);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(void 0)).valueOf() = false PASSED!
+typeof new Boolean(void 0) = object PASSED!
+(new Boolean(Number.POSITIVE_INFINITY)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(Number.POSITIVE_INFINITY);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(Number.POSITIVE_INFINITY)).valueOf() = true PASSED!
+typeof new Boolean(Number.POSITIVE_INFINITY) = object PASSED!
+(new Boolean(Number.NEGATIVE_INFINITY)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean(Number.NEGATIVE_INFINITY);TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean(Number.NEGATIVE_INFINITY)).valueOf() = true PASSED!
+typeof new Boolean(Number.NEGATIVE_INFINITY) = object PASSED!
+(new Boolean(Number.NEGATIVE_INFINITY)).constructor = function Boolean() { [native code for Boolean.Boolean, arity=1] }
+ PASSED!
+TESTBOOL=new Boolean();TESTBOOL.toString=Object.prototype.toString;TESTBOOL.toString() = [object Boolean] PASSED!
+(new Boolean()).valueOf() = false PASSED!
+typeof new Boolean() = object PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Boolean\15.6.2.interpreted.arff] ...

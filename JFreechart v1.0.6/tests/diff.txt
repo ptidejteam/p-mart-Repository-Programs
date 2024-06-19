@@ -1,0 +1,137 @@
+Index: org/jfree/chart/axis/junit/QuarterDateFormatTests.java
+===================================================================
+RCS file: /cvsroot/jfreechart/jfreechart/tests/org/jfree/chart/axis/junit/Attic/QuarterDateFormatTests.java,v
+retrieving revision 1.1.2.1
+diff -u -r1.1.2.1 QuarterDateFormatTests.java
+--- org/jfree/chart/axis/junit/QuarterDateFormatTests.java	3 Oct 2006 15:41:21 -0000	1.1.2.1
++++ org/jfree/chart/axis/junit/QuarterDateFormatTests.java	8 Jun 2007 15:14:02 -0000
+@@ -2,7 +2,7 @@
+  * JFreeChart : a free chart library for the Java(tm) platform
+  * ===========================================================
+  *
+- * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
++ * (C) Copyright 2000-2007, by Object Refinery Limited and Contributors.
+  *
+  * Project Info:  http://www.jfree.org/jfreechart/index.html
+  *
+@@ -27,7 +27,7 @@
+  * ---------------------------
+  * QuarterDateFormatTests.java
+  * ---------------------------
+- * (C) Copyright 2005, by Object Refinery Limited and Contributors.
++ * (C) Copyright 2005, 2007, by Object Refinery Limited and Contributors.
+  *
+  * Original Author:  David Gilbert (for Object Refinery Limited);
+  * Contributor(s):   -;
+@@ -37,6 +37,7 @@
+  * Changes
+  * -------
+  * 10-May-2005 : Version 1 (DG);
++ * 08-Jun-2007 : Added check for new field in testEquals() (DG);
+  *
+  */
+ 
+@@ -83,45 +84,43 @@
+      * Confirm that the equals method can distinguish all the required fields.
+      */
+     public void testEquals() {
+-        QuarterDateFormat qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
+-        QuarterDateFormat qf2 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
++        QuarterDateFormat qf1 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
++        QuarterDateFormat qf2 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
+         assertTrue(qf1.equals(qf2));
+         assertTrue(qf2.equals(qf1));
+         
+-        qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("PST"), new String[] {"1", "2", "3", "4"}
+-        );
++        qf1 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"1", "2", "3", "4"});
+         assertFalse(qf1.equals(qf2));
+-        qf2 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("PST"), new String[] {"1", "2", "3", "4"}
+-        );
++        qf2 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"1", "2", "3", "4"});
+         assertTrue(qf1.equals(qf2));
+         
+-        qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("PST"), new String[] {"A", "2", "3", "4"}
+-        );
++        qf1 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"A", "2", "3", "4"});
+         assertFalse(qf1.equals(qf2));
+-        qf2 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("PST"), new String[] {"A", "2", "3", "4"}
+-        );
++        qf2 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"A", "2", "3", "4"});
+         assertTrue(qf1.equals(qf2));
+ 
++        qf1 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"A", "2", "3", "4"}, true);
++        assertFalse(qf1.equals(qf2));
++        qf2 = new QuarterDateFormat(TimeZone.getTimeZone("PST"), 
++                new String[] {"A", "2", "3", "4"}, true);
++        assertTrue(qf1.equals(qf2));
+     }
+    
+     /**
+      * Two objects that are equal are required to return the same hashCode. 
+      */
+     public void testHashCode() {
+-        QuarterDateFormat qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
+-        QuarterDateFormat qf2 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
++        QuarterDateFormat qf1 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
++        QuarterDateFormat qf2 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
+         assertTrue(qf1.equals(qf2));
+         int h1 = qf1.hashCode();
+         int h2 = qf2.hashCode();
+@@ -132,9 +131,8 @@
+      * Confirm that cloning works.
+      */
+     public void testCloning() {
+-        QuarterDateFormat qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
++        QuarterDateFormat qf1 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
+         QuarterDateFormat qf2 = null;
+         qf2 = (QuarterDateFormat) qf1.clone();
+         assertTrue(qf1 != qf2);
+@@ -146,9 +144,8 @@
+      * Serialize an instance, restore it, and check for equality.
+      */
+     public void testSerialization() {
+-        QuarterDateFormat qf1 = new QuarterDateFormat(
+-            TimeZone.getTimeZone("GMT"), new String[] {"1", "2", "3", "4"}
+-        );
++        QuarterDateFormat qf1 = new QuarterDateFormat(TimeZone.getTimeZone(
++                "GMT"), new String[] {"1", "2", "3", "4"});
+         QuarterDateFormat qf2 = null;
+         try {
+             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+@@ -156,9 +153,8 @@
+             out.writeObject(qf1);
+             out.close();
+ 
+-            ObjectInput in = new ObjectInputStream(
+-                new ByteArrayInputStream(buffer.toByteArray())
+-            );
++            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(
++                    buffer.toByteArray()));
+             qf2 = (QuarterDateFormat) in.readObject();
+             in.close();
+         }

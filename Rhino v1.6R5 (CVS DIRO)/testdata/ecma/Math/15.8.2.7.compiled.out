@@ -1,0 +1,50 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.7.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.7.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+15.8.2.7 Math.cos(x)
+Math.cos.length = 1 PASSED!
+Math.cos() = NaN PASSED!
+Math.cos(void 0) = NaN PASSED!
+Math.cos(false) = 1 PASSED!
+Math.cos(null) = 1 PASSED!
+Math.cos('0') = 1 PASSED!
+Math.cos('Infinity') = NaN PASSED!
+Math.cos('3.14159265359') = -1 PASSED!
+Math.cos(NaN) = NaN PASSED!
+Math.cos(0) = 1 PASSED!
+Math.cos(-0) = 1 PASSED!
+Math.cos(Infinity) = NaN PASSED!
+Math.cos(-Infinity) = NaN PASSED!
+Math.cos(0.7853981633974) = 0.7071067811865817 PASSED!
+Math.cos(1.570796326795) = -1.0341155355510722e-13 PASSED!
+Math.cos(2.356194490192) = -0.7071067811863034 PASSED!
+Math.cos(3.14159265359) = -1 PASSED!
+Math.cos(3.926990816987) = -0.7071067811867184 PASSED!
+Math.cos(4.712388980385) = 3.097905714554716e-13 PASSED!
+Math.cos(5.497787143782) = 0.70710678118645 PASSED!
+Math.cos(Math.PI*2) = 1 PASSED!
+Math.cos(Math.PI/4) = 0.7071067811865476 PASSED!
+Math.cos(Math.PI/2) = 6.123233995736766e-17 PASSED!
+Math.cos(3*Math.PI/4) = -0.7071067811865475 PASSED!
+Math.cos(Math.PI) = -1 PASSED!
+Math.cos(5*Math.PI/4) = -0.7071067811865477 PASSED!
+Math.cos(3*Math.PI/2) = -1.8369701987210297e-16 PASSED!
+Math.cos(7*Math.PI/4) = 0.7071067811865474 PASSED!
+Math.cos(Math.PI*2) = 1 PASSED!
+Math.cos(-0.7853981633974) = 0.7071067811865817 PASSED!
+Math.cos(-1.570796326795) = -1.0341155355510722e-13 PASSED!
+Math.cos(-2.3561944901920) = -0.7071067811863034 PASSED!
+Math.cos(-3.14159265359) = -1 PASSED!
+Math.cos(-3.926990816987) = -0.7071067811867184 PASSED!
+Math.cos(-4.712388980385) = 3.097905714554716e-13 PASSED!
+Math.cos(-5.497787143782) = 0.70710678118645 PASSED!
+Math.cos(-6.28318530718) = 1 PASSED!
+Math.cos(-Math.PI/4) = 0.7071067811865476 PASSED!
+Math.cos(-Math.PI/2) = 6.123233995736766e-17 PASSED!
+Math.cos(-3*Math.PI/4) = -0.7071067811865475 PASSED!
+Math.cos(-Math.PI) = -1 PASSED!
+Math.cos(-5*Math.PI/4) = -0.7071067811865477 PASSED!
+Math.cos(-3*Math.PI/2) = -1.8369701987210297e-16 PASSED!
+Math.cos(-7*Math.PI/4) = 0.7071067811865474 PASSED!
+Math.cos(-Math.PI*2) = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.7.compiled.arff] ...

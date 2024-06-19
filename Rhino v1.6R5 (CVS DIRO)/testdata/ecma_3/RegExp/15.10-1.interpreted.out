@@ -1,0 +1,942 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\RegExp\15.10-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\RegExp\shell.js -f mozilla\js\tests\ecma_3\RegExp\15.10-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 85721
+STATUS: Testing regular expression edge cases
+PASSED! Section 1 of test -
+regexp = /abc/
+string = 'abc'
+PASSED! Section 2 of test -
+regexp = /abc/
+string = 'xabcy'
+PASSED! Section 3 of test -
+regexp = /abc/
+string = 'ababc'
+PASSED! Section 4 of test -
+regexp = /ab*c/
+string = 'abc'
+PASSED! Section 5 of test -
+regexp = /ab*bc/
+string = 'abc'
+PASSED! Section 6 of test -
+regexp = /ab*bc/
+string = 'abbc'
+PASSED! Section 7 of test -
+regexp = /ab*bc/
+string = 'abbbbc'
+PASSED! Section 8 of test -
+regexp = /.{1}/
+string = 'abbbbc'
+PASSED! Section 9 of test -
+regexp = /.{3,4}/
+string = 'abbbbc'
+PASSED! Section 10 of test -
+regexp = /ab{0,}bc/
+string = 'abbbbc'
+PASSED! Section 11 of test -
+regexp = /ab+bc/
+string = 'abbc'
+PASSED! Section 12 of test -
+regexp = /ab+bc/
+string = 'abbbbc'
+PASSED! Section 13 of test -
+regexp = /ab{1,}bc/
+string = 'abbbbc'
+PASSED! Section 14 of test -
+regexp = /ab{1,3}bc/
+string = 'abbbbc'
+PASSED! Section 15 of test -
+regexp = /ab{3,4}bc/
+string = 'abbbbc'
+PASSED! Section 16 of test -
+regexp = /ab?bc/
+string = 'abbc'
+PASSED! Section 17 of test -
+regexp = /ab?bc/
+string = 'abc'
+PASSED! Section 18 of test -
+regexp = /ab{0,1}bc/
+string = 'abc'
+PASSED! Section 19 of test -
+regexp = /ab?c/
+string = 'abc'
+PASSED! Section 20 of test -
+regexp = /ab{0,1}c/
+string = 'abc'
+PASSED! Section 21 of test -
+regexp = /^abc$/
+string = 'abc'
+PASSED! Section 22 of test -
+regexp = /^abc/
+string = 'abcc'
+PASSED! Section 23 of test -
+regexp = /abc$/
+string = 'aabc'
+PASSED! Section 24 of test -
+regexp = /^/
+string = 'abc'
+PASSED! Section 25 of test -
+regexp = /$/
+string = 'abc'
+PASSED! Section 26 of test -
+regexp = /a.c/
+string = 'abc'
+PASSED! Section 27 of test -
+regexp = /a.c/
+string = 'axc'
+PASSED! Section 28 of test -
+regexp = /a.*c/
+string = 'axyzc'
+PASSED! Section 29 of test -
+regexp = /a[bc]d/
+string = 'abd'
+PASSED! Section 30 of test -
+regexp = /a[b-d]e/
+string = 'ace'
+PASSED! Section 31 of test -
+regexp = /a[b-d]/
+string = 'aac'
+PASSED! Section 32 of test -
+regexp = /a[-b]/
+string = 'a-'
+PASSED! Section 33 of test -
+regexp = /a[b-]/
+string = 'a-'
+PASSED! Section 34 of test -
+regexp = /a]/
+string = 'a]'
+PASSED! Section 36 of test -
+regexp = /a[^bc]d/
+string = 'aed'
+PASSED! Section 37 of test -
+regexp = /a[^-b]c/
+string = 'adc'
+PASSED! Section 39 of test -
+regexp = /\ba\b/
+string = 'a-'
+PASSED! Section 40 of test -
+regexp = /\ba\b/
+string = '-a'
+PASSED! Section 41 of test -
+regexp = /\ba\b/
+string = '-a-'
+PASSED! Section 42 of test -
+regexp = /\By\b/
+string = 'xy'
+PASSED! Section 43 of test -
+regexp = /\by\B/
+string = 'yz'
+PASSED! Section 44 of test -
+regexp = /\By\B/
+string = 'xyz'
+PASSED! Section 45 of test -
+regexp = /\w/
+string = 'a'
+PASSED! Section 46 of test -
+regexp = /\W/
+string = '-'
+PASSED! Section 47 of test -
+regexp = /a\Sb/
+string = 'a-b'
+PASSED! Section 48 of test -
+regexp = /\d/
+string = '1'
+PASSED! Section 49 of test -
+regexp = /\D/
+string = '-'
+PASSED! Section 50 of test -
+regexp = /[\w]/
+string = 'a'
+PASSED! Section 51 of test -
+regexp = /[\W]/
+string = '-'
+PASSED! Section 52 of test -
+regexp = /a[\S]b/
+string = 'a-b'
+PASSED! Section 53 of test -
+regexp = /[\d]/
+string = '1'
+PASSED! Section 54 of test -
+regexp = /[\D]/
+string = '-'
+PASSED! Section 55 of test -
+regexp = /ab|cd/
+string = 'abc'
+PASSED! Section 56 of test -
+regexp = /ab|cd/
+string = 'abcd'
+PASSED! Section 57 of test -
+regexp = /()ef/
+string = 'def'
+PASSED! Section 58 of test -
+regexp = /a\(b/
+string = 'a(b'
+PASSED! Section 59 of test -
+regexp = /a\(*b/
+string = 'ab'
+PASSED! Section 60 of test -
+regexp = /a\(*b/
+string = 'a((b'
+PASSED! Section 61 of test -
+regexp = /a\\b/
+string = 'a\b'
+PASSED! Section 62 of test -
+regexp = /((a))/
+string = 'abc'
+PASSED! Section 63 of test -
+regexp = /(a)b(c)/
+string = 'abc'
+PASSED! Section 64 of test -
+regexp = /a+b+c/
+string = 'aabbabc'
+PASSED! Section 65 of test -
+regexp = /a{1,}b{1,}c/
+string = 'aabbabc'
+PASSED! Section 66 of test -
+regexp = /a.+?c/
+string = 'abcabc'
+PASSED! Section 67 of test -
+regexp = /(a+|b)*/
+string = 'ab'
+PASSED! Section 68 of test -
+regexp = /(a+|b){0,}/
+string = 'ab'
+PASSED! Section 69 of test -
+regexp = /(a+|b)+/
+string = 'ab'
+PASSED! Section 70 of test -
+regexp = /(a+|b){1,}/
+string = 'ab'
+PASSED! Section 71 of test -
+regexp = /(a+|b)?/
+string = 'ab'
+PASSED! Section 72 of test -
+regexp = /(a+|b){0,1}/
+string = 'ab'
+PASSED! Section 73 of test -
+regexp = /[^ab]*/
+string = 'cde'
+PASSED! Section 74 of test -
+regexp = /([abc])*d/
+string = 'abbbcd'
+PASSED! Section 75 of test -
+regexp = /([abc])*bcd/
+string = 'abcd'
+PASSED! Section 76 of test -
+regexp = /a|b|c|d|e/
+string = 'e'
+PASSED! Section 77 of test -
+regexp = /(a|b|c|d|e)f/
+string = 'ef'
+PASSED! Section 78 of test -
+regexp = /abcd*efg/
+string = 'abcdefg'
+PASSED! Section 79 of test -
+regexp = /ab*/
+string = 'xabyabbbz'
+PASSED! Section 80 of test -
+regexp = /ab*/
+string = 'xayabbbz'
+PASSED! Section 81 of test -
+regexp = /(ab|cd)e/
+string = 'abcde'
+PASSED! Section 82 of test -
+regexp = /[abhgefdc]ij/
+string = 'hij'
+PASSED! Section 83 of test -
+regexp = /(abc|)ef/
+string = 'abcdef'
+PASSED! Section 84 of test -
+regexp = /(a|b)c*d/
+string = 'abcd'
+PASSED! Section 85 of test -
+regexp = /(ab|ab*)bc/
+string = 'abc'
+PASSED! Section 86 of test -
+regexp = /a([bc]*)c*/
+string = 'abc'
+PASSED! Section 87 of test -
+regexp = /a([bc]*)(c*d)/
+string = 'abcd'
+PASSED! Section 88 of test -
+regexp = /a([bc]+)(c*d)/
+string = 'abcd'
+PASSED! Section 89 of test -
+regexp = /a([bc]*)(c+d)/
+string = 'abcd'
+PASSED! Section 90 of test -
+regexp = /a[bcd]*dcdcde/
+string = 'adcdcde'
+PASSED! Section 91 of test -
+regexp = /(ab|a)b*c/
+string = 'abc'
+PASSED! Section 92 of test -
+regexp = /((a)(b)c)(d)/
+string = 'abcd'
+PASSED! Section 93 of test -
+regexp = /[a-zA-Z_][a-zA-Z0-9_]*/
+string = 'alpha'
+PASSED! Section 94 of test -
+regexp = /^a(bc+|b[eh])g|.h$/
+string = 'abh'
+PASSED! Section 95 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/
+string = 'effgz'
+PASSED! Section 96 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/
+string = 'ij'
+PASSED! Section 97 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/
+string = 'reffgz'
+PASSED! Section 98 of test -
+regexp = /((((((((((a))))))))))/
+string = 'a'
+PASSED! Section 99 of test -
+regexp = /((((((((((a))))))))))\10/
+string = 'aa'
+PASSED! Section 100 of test -
+regexp = /((((((((((a))))))))))/
+string = 'a!'
+PASSED! Section 101 of test -
+regexp = /(((((((((a)))))))))/
+string = 'a'
+PASSED! Section 102 of test -
+regexp = /(.*)c(.*)/
+string = 'abcde'
+PASSED! Section 103 of test -
+regexp = /abcd/
+string = 'abcd'
+PASSED! Section 104 of test -
+regexp = /a(bc)d/
+string = 'abcd'
+PASSED! Section 105 of test -
+regexp = /a[-]?c/
+string = 'ac'
+PASSED! Section 106 of test -
+regexp = /(abc)\1/
+string = 'abcabc'
+PASSED! Section 107 of test -
+regexp = /([a-c]*)\1/
+string = 'abcabc'
+PASSED! Section 108 of test -
+regexp = /(a)|\1/
+string = 'a'
+PASSED! Section 109 of test -
+regexp = /(([a-c])b*?\2)*/
+string = 'ababbbcbc'
+PASSED! Section 110 of test -
+regexp = /(([a-c])b*?\2){3}/
+string = 'ababbbcbc'
+PASSED! Section 113 of test -
+regexp = /abc/i
+string = 'ABC'
+PASSED! Section 114 of test -
+regexp = /abc/i
+string = 'XABCY'
+PASSED! Section 115 of test -
+regexp = /abc/i
+string = 'ABABC'
+PASSED! Section 116 of test -
+regexp = /ab*c/i
+string = 'ABC'
+PASSED! Section 117 of test -
+regexp = /ab*bc/i
+string = 'ABC'
+PASSED! Section 118 of test -
+regexp = /ab*bc/i
+string = 'ABBC'
+PASSED! Section 119 of test -
+regexp = /ab*?bc/i
+string = 'ABBBBC'
+PASSED! Section 120 of test -
+regexp = /ab{0,}?bc/i
+string = 'ABBBBC'
+PASSED! Section 121 of test -
+regexp = /ab+?bc/i
+string = 'ABBC'
+PASSED! Section 122 of test -
+regexp = /ab+bc/i
+string = 'ABBBBC'
+PASSED! Section 123 of test -
+regexp = /ab{1,}?bc/i
+string = 'ABBBBC'
+PASSED! Section 124 of test -
+regexp = /ab{1,3}?bc/i
+string = 'ABBBBC'
+PASSED! Section 125 of test -
+regexp = /ab{3,4}?bc/i
+string = 'ABBBBC'
+PASSED! Section 126 of test -
+regexp = /ab??bc/i
+string = 'ABBC'
+PASSED! Section 127 of test -
+regexp = /ab??bc/i
+string = 'ABC'
+PASSED! Section 128 of test -
+regexp = /ab{0,1}?bc/i
+string = 'ABC'
+PASSED! Section 129 of test -
+regexp = /ab??c/i
+string = 'ABC'
+PASSED! Section 130 of test -
+regexp = /ab{0,1}?c/i
+string = 'ABC'
+PASSED! Section 131 of test -
+regexp = /^abc$/i
+string = 'ABC'
+PASSED! Section 132 of test -
+regexp = /^abc/i
+string = 'ABCC'
+PASSED! Section 133 of test -
+regexp = /abc$/i
+string = 'AABC'
+PASSED! Section 134 of test -
+regexp = /^/i
+string = 'ABC'
+PASSED! Section 135 of test -
+regexp = /$/i
+string = 'ABC'
+PASSED! Section 136 of test -
+regexp = /a.c/i
+string = 'ABC'
+PASSED! Section 137 of test -
+regexp = /a.c/i
+string = 'AXC'
+PASSED! Section 138 of test -
+regexp = /a.*?c/i
+string = 'AXYZC'
+PASSED! Section 139 of test -
+regexp = /a[bc]d/i
+string = 'ABD'
+PASSED! Section 140 of test -
+regexp = /a[b-d]e/i
+string = 'ACE'
+PASSED! Section 141 of test -
+regexp = /a[b-d]/i
+string = 'AAC'
+PASSED! Section 142 of test -
+regexp = /a[-b]/i
+string = 'A-'
+PASSED! Section 143 of test -
+regexp = /a[b-]/i
+string = 'A-'
+PASSED! Section 144 of test -
+regexp = /a]/i
+string = 'A]'
+PASSED! Section 146 of test -
+regexp = /a[^bc]d/i
+string = 'AED'
+PASSED! Section 147 of test -
+regexp = /a[^-b]c/i
+string = 'ADC'
+PASSED! Section 149 of test -
+regexp = /ab|cd/i
+string = 'ABC'
+PASSED! Section 150 of test -
+regexp = /ab|cd/i
+string = 'ABCD'
+PASSED! Section 151 of test -
+regexp = /()ef/i
+string = 'DEF'
+PASSED! Section 152 of test -
+regexp = /a\(b/i
+string = 'A(B'
+PASSED! Section 153 of test -
+regexp = /a\(*b/i
+string = 'AB'
+PASSED! Section 154 of test -
+regexp = /a\(*b/i
+string = 'A((B'
+PASSED! Section 155 of test -
+regexp = /a\\b/i
+string = 'A\B'
+PASSED! Section 156 of test -
+regexp = /((a))/i
+string = 'ABC'
+PASSED! Section 157 of test -
+regexp = /(a)b(c)/i
+string = 'ABC'
+PASSED! Section 158 of test -
+regexp = /a+b+c/i
+string = 'AABBABC'
+PASSED! Section 159 of test -
+regexp = /a{1,}b{1,}c/i
+string = 'AABBABC'
+PASSED! Section 160 of test -
+regexp = /a.+?c/i
+string = 'ABCABC'
+PASSED! Section 161 of test -
+regexp = /a.*?c/i
+string = 'ABCABC'
+PASSED! Section 162 of test -
+regexp = /a.{0,5}?c/i
+string = 'ABCABC'
+PASSED! Section 163 of test -
+regexp = /(a+|b)*/i
+string = 'AB'
+PASSED! Section 164 of test -
+regexp = /(a+|b){0,}/i
+string = 'AB'
+PASSED! Section 165 of test -
+regexp = /(a+|b)+/i
+string = 'AB'
+PASSED! Section 166 of test -
+regexp = /(a+|b){1,}/i
+string = 'AB'
+PASSED! Section 167 of test -
+regexp = /(a+|b)?/i
+string = 'AB'
+PASSED! Section 168 of test -
+regexp = /(a+|b){0,1}/i
+string = 'AB'
+PASSED! Section 169 of test -
+regexp = /(a+|b){0,1}?/i
+string = 'AB'
+PASSED! Section 170 of test -
+regexp = /[^ab]*/i
+string = 'CDE'
+PASSED! Section 171 of test -
+regexp = /([abc])*d/i
+string = 'ABBBCD'
+PASSED! Section 172 of test -
+regexp = /([abc])*bcd/i
+string = 'ABCD'
+PASSED! Section 173 of test -
+regexp = /a|b|c|d|e/i
+string = 'E'
+PASSED! Section 174 of test -
+regexp = /(a|b|c|d|e)f/i
+string = 'EF'
+PASSED! Section 175 of test -
+regexp = /abcd*efg/i
+string = 'ABCDEFG'
+PASSED! Section 176 of test -
+regexp = /ab*/i
+string = 'XABYABBBZ'
+PASSED! Section 177 of test -
+regexp = /ab*/i
+string = 'XAYABBBZ'
+PASSED! Section 178 of test -
+regexp = /(ab|cd)e/i
+string = 'ABCDE'
+PASSED! Section 179 of test -
+regexp = /[abhgefdc]ij/i
+string = 'HIJ'
+PASSED! Section 180 of test -
+regexp = /(abc|)ef/i
+string = 'ABCDEF'
+PASSED! Section 181 of test -
+regexp = /(a|b)c*d/i
+string = 'ABCD'
+PASSED! Section 182 of test -
+regexp = /(ab|ab*)bc/i
+string = 'ABC'
+PASSED! Section 183 of test -
+regexp = /a([bc]*)c*/i
+string = 'ABC'
+PASSED! Section 184 of test -
+regexp = /a([bc]*)(c*d)/i
+string = 'ABCD'
+PASSED! Section 185 of test -
+regexp = /a([bc]+)(c*d)/i
+string = 'ABCD'
+PASSED! Section 186 of test -
+regexp = /a([bc]*)(c+d)/i
+string = 'ABCD'
+PASSED! Section 187 of test -
+regexp = /a[bcd]*dcdcde/i
+string = 'ADCDCDE'
+PASSED! Section 188 of test -
+regexp = /(ab|a)b*c/i
+string = 'ABC'
+PASSED! Section 189 of test -
+regexp = /((a)(b)c)(d)/i
+string = 'ABCD'
+PASSED! Section 190 of test -
+regexp = /[a-zA-Z_][a-zA-Z0-9_]*/i
+string = 'ALPHA'
+PASSED! Section 191 of test -
+regexp = /^a(bc+|b[eh])g|.h$/i
+string = 'ABH'
+PASSED! Section 192 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/i
+string = 'EFFGZ'
+PASSED! Section 193 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/i
+string = 'IJ'
+PASSED! Section 194 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/i
+string = 'REFFGZ'
+PASSED! Section 195 of test -
+regexp = /((((((((((a))))))))))/i
+string = 'A'
+PASSED! Section 196 of test -
+regexp = /((((((((((a))))))))))\10/i
+string = 'AA'
+PASSED! Section 197 of test -
+regexp = /((((((((((a))))))))))/i
+string = 'A!'
+PASSED! Section 198 of test -
+regexp = /(((((((((a)))))))))/i
+string = 'A'
+PASSED! Section 199 of test -
+regexp = /(?:(?:(?:(?:(?:(?:(?:(?:(?:(a))))))))))/i
+string = 'A'
+PASSED! Section 200 of test -
+regexp = /(?:(?:(?:(?:(?:(?:(?:(?:(?:(a|b|c))))))))))/i
+string = 'C'
+PASSED! Section 201 of test -
+regexp = /(.*)c(.*)/i
+string = 'ABCDE'
+PASSED! Section 202 of test -
+regexp = /abcd/i
+string = 'ABCD'
+PASSED! Section 203 of test -
+regexp = /a(bc)d/i
+string = 'ABCD'
+PASSED! Section 204 of test -
+regexp = /a[-]?c/i
+string = 'AC'
+PASSED! Section 205 of test -
+regexp = /(abc)\1/i
+string = 'ABCABC'
+PASSED! Section 206 of test -
+regexp = /([a-c]*)\1/i
+string = 'ABCABC'
+PASSED! Section 207 of test -
+regexp = /a(?!b)./
+string = 'abad'
+PASSED! Section 208 of test -
+regexp = /a(?=d)./
+string = 'abad'
+PASSED! Section 209 of test -
+regexp = /a(?=c|d)./
+string = 'abad'
+PASSED! Section 210 of test -
+regexp = /a(?:b|c|d)(.)/
+string = 'ace'
+PASSED! Section 211 of test -
+regexp = /a(?:b|c|d)*(.)/
+string = 'ace'
+PASSED! Section 212 of test -
+regexp = /a(?:b|c|d)+?(.)/
+string = 'ace'
+PASSED! Section 213 of test -
+regexp = /a(?:b|c|d)+?(.)/
+string = 'acdbcdbe'
+PASSED! Section 214 of test -
+regexp = /a(?:b|c|d)+(.)/
+string = 'acdbcdbe'
+PASSED! Section 215 of test -
+regexp = /a(?:b|c|d){2}(.)/
+string = 'acdbcdbe'
+PASSED! Section 216 of test -
+regexp = /a(?:b|c|d){4,5}(.)/
+string = 'acdbcdbe'
+PASSED! Section 217 of test -
+regexp = /a(?:b|c|d){4,5}?(.)/
+string = 'acdbcdbe'
+PASSED! Section 218 of test -
+regexp = /((foo)|(bar))*/
+string = 'foobar'
+PASSED! Section 219 of test -
+regexp = /a(?:b|c|d){6,7}(.)/
+string = 'acdbcdbe'
+PASSED! Section 220 of test -
+regexp = /a(?:b|c|d){6,7}?(.)/
+string = 'acdbcdbe'
+PASSED! Section 221 of test -
+regexp = /a(?:b|c|d){5,6}(.)/
+string = 'acdbcdbe'
+PASSED! Section 222 of test -
+regexp = /a(?:b|c|d){5,6}?(.)/
+string = 'acdbcdbe'
+PASSED! Section 223 of test -
+regexp = /a(?:b|c|d){5,7}(.)/
+string = 'acdbcdbe'
+PASSED! Section 224 of test -
+regexp = /a(?:b|c|d){5,7}?(.)/
+string = 'acdbcdbe'
+PASSED! Section 225 of test -
+regexp = /a(?:b|(c|e){1,2}?|d)+?(.)/
+string = 'ace'
+PASSED! Section 226 of test -
+regexp = /^(.+)?B/
+string = 'AB'
+PASSED! Section 227 of test -
+regexp = /^([^a-z])|(\^)$/
+string = '.'
+PASSED! Section 228 of test -
+regexp = /^[<>]&/
+string = '<&OUT'
+PASSED! Section 231 of test -
+regexp = /((a{4})+)/
+string = 'aaaaaaaaa'
+PASSED! Section 232 of test -
+regexp = /(((aa){2})+)/
+string = 'aaaaaaaaaa'
+PASSED! Section 233 of test -
+regexp = /(((a{2}){2})+)/
+string = 'aaaaaaaaaa'
+PASSED! Section 234 of test -
+regexp = /(?:(f)(o)(o)|(b)(a)(r))*/
+string = 'foobar'
+PASSED! Section 239 of test -
+regexp = /(?:..)*a/
+string = 'aba'
+PASSED! Section 240 of test -
+regexp = /(?:..)*?a/
+string = 'aba'
+PASSED! Section 241 of test -
+regexp = /^(?:b|a(?=(.)))*\1/
+string = 'abc'
+PASSED! Section 242 of test -
+regexp = /^(){3,5}/
+string = 'abc'
+PASSED! Section 243 of test -
+regexp = /^(a+)*ax/
+string = 'aax'
+PASSED! Section 244 of test -
+regexp = /^((a|b)+)*ax/
+string = 'aax'
+PASSED! Section 245 of test -
+regexp = /^((a|bc)+)*ax/
+string = 'aax'
+PASSED! Section 246 of test -
+regexp = /(a|x)*ab/
+string = 'cab'
+PASSED! Section 247 of test -
+regexp = /(a)*ab/
+string = 'cab'
+PASSED! Section 269 of test -
+regexp = /(?:c|d)(?:)(?:a(?:)(?:b)(?:b(?:))(?:b(?:)(?:b)))/
+string = 'cabbbb'
+PASSED! Section 270 of test -
+regexp = /(?:c|d)(?:)(?:aaaaaaaa(?:)(?:bbbbbbbb)(?:bbbbbbbb(?:))(?:bbbbbbbb(?:)(?:bbbbbbbb)))/
+string = 'caaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+PASSED! Section 271 of test -
+regexp = /(ab)\d\1/i
+string = 'Ab4ab'
+PASSED! Section 272 of test -
+regexp = /(ab)\d\1/i
+string = 'ab4Ab'
+PASSED! Section 273 of test -
+regexp = /foo\w*\d{4}baz/
+string = 'foobar1234baz'
+PASSED! Section 274 of test -
+regexp = /x(~~)*(?:(?:F)?)?/
+string = 'x~~'
+PASSED! Section 300 of test -
+regexp = /(?=(a+?))(\1ab)/
+string = 'aaab'
+PASSED! Section 301 of test -
+regexp = /(\w+:)+/
+string = 'one:'
+PASSED! Section 303 of test -
+regexp = /(?=(a+?))(\1ab)/
+string = 'aaab'
+PASSED! Section 304 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'abcd'
+PASSED! Section 305 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'xy:z:::abcd'
+PASSED! Section 306 of test -
+regexp = /^[^bcd]*(c+)/
+string = 'aexycd'
+PASSED! Section 307 of test -
+regexp = /(a*)b+/
+string = 'caab'
+PASSED! Section 308 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'abcd'
+PASSED! Section 309 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'xy:z:::abcd'
+PASSED! Section 310 of test -
+regexp = /^[^bcd]*(c+)/
+string = 'aexycd'
+PASSED! Section 312 of test -
+regexp = /([[:]+)/
+string = 'a:[b]:'
+PASSED! Section 313 of test -
+regexp = /([[=]+)/
+string = 'a=[b]='
+PASSED! Section 314 of test -
+regexp = /([[.]+)/
+string = 'a.[b].'
+PASSED! Section 321 of test -
+regexp = /$/
+string = 'a\nb\n'
+PASSED! Section 324 of test -
+regexp = /$/
+string = 'b\na\n'
+PASSED! Section 327 of test -
+regexp = /$/
+string = 'b\na'
+PASSED! Section 330 of test -
+regexp = /$/m
+string = 'a\nb\n'
+PASSED! Section 333 of test -
+regexp = /$/m
+string = 'b\na\n'
+PASSED! Section 336 of test -
+regexp = /$/m
+string = 'b\na'
+PASSED! Section 341 of test -
+regexp = /a$/
+string = 'b\na'
+PASSED! Section 342 of test -
+regexp = /a$/m
+string = 'a\nb\n'
+PASSED! Section 344 of test -
+regexp = /a$/m
+string = 'b\na\n'
+PASSED! Section 347 of test -
+regexp = /a$/m
+string = 'b\na'
+PASSED! Section 352 of test -
+regexp = /aa$/
+string = 'b\naa'
+PASSED! Section 353 of test -
+regexp = /aa$/m
+string = 'aa\nb\n'
+PASSED! Section 355 of test -
+regexp = /aa$/m
+string = 'b\naa\n'
+PASSED! Section 358 of test -
+regexp = /aa$/m
+string = 'b\naa'
+PASSED! Section 363 of test -
+regexp = /ab$/
+string = 'b\nab'
+PASSED! Section 364 of test -
+regexp = /ab$/m
+string = 'ab\nb\n'
+PASSED! Section 366 of test -
+regexp = /ab$/m
+string = 'b\nab\n'
+PASSED! Section 369 of test -
+regexp = /ab$/m
+string = 'b\nab'
+PASSED! Section 374 of test -
+regexp = /abb$/
+string = 'b\nabb'
+PASSED! Section 375 of test -
+regexp = /abb$/m
+string = 'abb\nb\n'
+PASSED! Section 377 of test -
+regexp = /abb$/m
+string = 'b\nabb\n'
+PASSED! Section 380 of test -
+regexp = /abb$/m
+string = 'b\nabb'
+PASSED! Section 381 of test -
+regexp = /(^|x)(c)/
+string = 'ca'
+PASSED! Section 382 of test -
+regexp = /foo.bart/
+string = 'foo.bart'
+PASSED! Section 383 of test -
+regexp = /^d[x][x][x]/m
+string = 'abcd\ndxxx'
+PASSED! Section 384 of test -
+regexp = /tt+$/
+string = 'xxxtt'
+PASSED! Section 390 of test -
+regexp = /(\d+\.\d+)/
+string = '3.1415926'
+PASSED! Section 391 of test -
+regexp = /\.c(pp|xx|c)?$/i
+string = 'IO.c'
+PASSED! Section 392 of test -
+regexp = /(\.c(pp|xx|c)?$)/i
+string = 'IO.c'
+PASSED! Section 393 of test -
+regexp = /(^|a)b/
+string = 'ab'
+PASSED! Section 394 of test -
+regexp = /^([ab]*?)(b)?(c)$/
+string = 'abac'
+PASSED! Section 395 of test -
+regexp = /^(?:.,){2}c/i
+string = 'a,b,c'
+PASSED! Section 396 of test -
+regexp = /^(.,){2}c/i
+string = 'a,b,c'
+PASSED! Section 397 of test -
+regexp = /^(?:[^,]*,){2}c/
+string = 'a,b,c'
+PASSED! Section 398 of test -
+regexp = /^([^,]*,){2}c/
+string = 'a,b,c'
+PASSED! Section 399 of test -
+regexp = /^([^,]*,){3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 400 of test -
+regexp = /^([^,]*,){3,}d/
+string = 'aaa,b,c,d'
+PASSED! Section 401 of test -
+regexp = /^([^,]*,){0,3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 402 of test -
+regexp = /^([^,]{1,3},){3}d/i
+string = 'aaa,b,c,d'
+PASSED! Section 403 of test -
+regexp = /^([^,]{1,3},){3,}d/
+string = 'aaa,b,c,d'
+PASSED! Section 404 of test -
+regexp = /^([^,]{1,3},){0,3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 405 of test -
+regexp = /^([^,]{1,},){3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 406 of test -
+regexp = /^([^,]{1,},){3,}d/
+string = 'aaa,b,c,d'
+PASSED! Section 407 of test -
+regexp = /^([^,]{1,},){0,3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 408 of test -
+regexp = /^([^,]{0,3},){3}d/i
+string = 'aaa,b,c,d'
+PASSED! Section 409 of test -
+regexp = /^([^,]{0,3},){3,}d/
+string = 'aaa,b,c,d'
+PASSED! Section 410 of test -
+regexp = /^([^,]{0,3},){0,3}d/
+string = 'aaa,b,c,d'
+PASSED! Section 412 of test -
+regexp = /^(a(b)?)+$/
+string = 'aba'
+PASSED! Section 413 of test -
+regexp = /^(aa(bb)?)+$/
+string = 'aabbaa'
+PASSED! Section 414 of test -
+regexp = /^.{9}abc.*\n/m
+string = '123\nabcabcabcabc\n'
+PASSED! Section 415 of test -
+regexp = /^(a)?a$/
+string = 'a'
+PASSED! Section 416 of test -
+regexp = /^(a\1?)(a\1?)(a\2?)(a\3?)$/
+string = 'aaaaaa'
+PASSED! Section 418 of test -
+regexp = /^(0+)?(?:x(1))?/
+string = 'x1'
+PASSED! Section 419 of test -
+regexp = /^([0-9a-fA-F]+)(?:x([0-9a-fA-F]+)?)(?:x([0-9a-fA-F]+))?/
+string = '012cxx0190'
+PASSED! Section 420 of test -
+regexp = /^(b+?|a){1,2}c/
+string = 'bbbac'
+PASSED! Section 421 of test -
+regexp = /^(b+?|a){1,2}c/
+string = 'bbbbac'
+PASSED! Section 422 of test -
+regexp = /((?:aaaa|bbbb)cccc)?/
+string = 'aaaacccc'
+PASSED! Section 423 of test -
+regexp = /((?:aaaa|bbbb)cccc)?/
+string = 'bbbbcccc'
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\RegExp\15.10-1.interpreted.arff] ...

@@ -1,0 +1,181 @@
+<html><head><title>
+${xgump.project.name} : ExtendedFormatRecord</title></head><body bgcolor="#ffffff" text="#000000" vlink="#330000" alink="#330044" link="#0000aa">
+<h2 class="thisclassname">ExtendedFormatRecord</h2>
+<table width=100% cellspacing=0 cellpadding=0>
+<tr><td width=32% valign=top>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#ff4b42><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.hssf.record. <a href=../../../../../org/apache/poi/hssf/record/uml-Record.html>Record</a>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#sid>sid</a> :short<br>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record()>Record</a>()<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record(short,short,short)>Record</a>(short id, short size, byte[] data)<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#Record(short,short,byte[],short)>Record</a>(short id, short size, byte[] data, int offset)<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#validateSid(short)>validateSid</a>(short id) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#fillFields(byte[],byte[])>fillFields</a>(byte[] data, short size) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/Record.html#fillFields(byte[],short,byte[])>fillFields</a>(byte[] data, short size, int offset) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#serialize()>serialize</a>() :byte[]<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#serialize(int,int)>serialize</a>(int offset, byte[] data) :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#getRecordSize()>getRecordSize</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#isValue()>isValue</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#isInValueSection()>isInValueSection</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#toString()>toString</a>() :java.lang.String<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#processContinueRecord(byte[])>processContinueRecord</a>(byte[] record) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/Record.html#getSid()>getSid</a>() :short<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width=12 align=center valign=top>
+<img src=../../../../../images/ext.gif>
+</td><td width=32% valign=top align=center>
+<table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#fff742><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
+org.apache.poi.hssf.record. <a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html>ExtendedFormatRecord</a>
+</td></tr><tr><td>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#sid>sid</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#NULL>NULL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#XF_STYLE>XF_STYLE</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#XF_CELL>XF_CELL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#NONE>NONE</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THIN>THIN</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#MEDIUM>MEDIUM</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DASHED>DASHED</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DOTTED>DOTTED</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THICK>THICK</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DOUBLE>DOUBLE</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#HAIR>HAIR</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#MEDIUM_DASHED>MEDIUM_DASHED</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DASH_DOT>DASH_DOT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#MEDIUM_DASH_DOT>MEDIUM_DASH_DOT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DASH_DOT_DOT>DASH_DOT_DOT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#MEDIUM_DASH_DOT_DOT>MEDIUM_DASH_DOT_DOT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#SLANTED_DASH_DOT>SLANTED_DASH_DOT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#GENERAL>GENERAL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#LEFT>LEFT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#CENTER>CENTER</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#RIGHT>RIGHT</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#FILL>FILL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#JUSTIFY>JUSTIFY</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#CENTER_SELECTION>CENTER_SELECTION</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#VERTICAL_TOP>VERTICAL_TOP</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#VERTICAL_CENTER>VERTICAL_CENTER</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#VERTICAL_BOTTOM>VERTICAL_BOTTOM</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#VERTICAL_JUSTIFY>VERTICAL_JUSTIFY</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#NO_FILL>NO_FILL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#SOLID_FILL>SOLID_FILL</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#FINE_DOTS>FINE_DOTS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#ALT_BARS>ALT_BARS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#SPARSE_DOTS>SPARSE_DOTS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THICK_HORZ_BANDS>THICK_HORZ_BANDS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THICK_VERT_BANDS>THICK_VERT_BANDS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THICK_BACKWARD_DIAG>THICK_BACKWARD_DIAG</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THICK_FORWARD_DIAG>THICK_FORWARD_DIAG</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#BIG_SPOTS>BIG_SPOTS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#BRICKS>BRICKS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THIN_HORZ_BANDS>THIN_HORZ_BANDS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THIN_VERT_BANDS>THIN_VERT_BANDS</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THIN_BACKWARD_DIAG>THIN_BACKWARD_DIAG</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#THIN_FORWARD_DIAG>THIN_FORWARD_DIAG</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#SQUARES>SQUARES</a> :short</u><br>
+<u>+<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#DIAMONDS>DIAMONDS</a> :short</u><br>
+</td></tr><tr><td>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#ExtendedFormatRecord()>ExtendedFormatRecord</a>()<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#ExtendedFormatRecord(short,short,short)>ExtendedFormatRecord</a>(short id, short size, byte[] data)<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#ExtendedFormatRecord(short,short,byte[],short)>ExtendedFormatRecord</a>(short id, short size, byte[] data, int offset)<br>
+#<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#validateSid(short)>validateSid</a>(short id) :void<br>
+#<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#fillFields(byte[],short,byte[])>fillFields</a>(byte[] data, short size, int offset) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setFontIndex(short)>setFontIndex</a>(short index) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setFormatIndex(short)>setFormatIndex</a>(short index) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setCellOptions(short)>setCellOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setLocked(boolean)>setLocked</a>(boolean locked) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setHidden(boolean)>setHidden</a>(boolean hidden) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setXFType(short)>setXFType</a>(short type) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#set123Prefix(boolean)>set123Prefix</a>(boolean prefix) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setParentIndex(short)>setParentIndex</a>(short parent) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAlignmentOptions(short)>setAlignmentOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAlignment(short)>setAlignment</a>(short align) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setWrapText(boolean)>setWrapText</a>(boolean wrapped) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setVerticalAlignment(short)>setVerticalAlignment</a>(short align) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setJustifyLast(short)>setJustifyLast</a>(short justify) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setRotation(short)>setRotation</a>(short rotation) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentionOptions(short)>setIndentionOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndent(short)>setIndent</a>(short indent) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setShrinkToFit(boolean)>setShrinkToFit</a>(boolean shrink) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setMergeCells(boolean)>setMergeCells</a>(boolean merge) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setReadingOrder(short)>setReadingOrder</a>(short order) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentFormat(boolean)>setIndentNotParentFormat</a>(boolean parent) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentFont(boolean)>setIndentNotParentFont</a>(boolean font) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentAlignment(boolean)>setIndentNotParentAlignment</a>(boolean alignment) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentBorder(boolean)>setIndentNotParentBorder</a>(boolean border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentPattern(boolean)>setIndentNotParentPattern</a>(boolean pattern) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setIndentNotParentCellOptions(boolean)>setIndentNotParentCellOptions</a>(boolean options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBorderOptions(short)>setBorderOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBorderLeft(short)>setBorderLeft</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBorderRight(short)>setBorderRight</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBorderTop(short)>setBorderTop</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBorderBottom(short)>setBorderBottom</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setPaletteOptions(short)>setPaletteOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setLeftBorderPaletteIdx(short)>setLeftBorderPaletteIdx</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setRightBorderPaletteIdx(short)>setRightBorderPaletteIdx</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setDiag(short)>setDiag</a>(short diag) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAdtlPaletteOptions(short)>setAdtlPaletteOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setTopBorderPaletteIdx(short)>setTopBorderPaletteIdx</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setBottomBorderPaletteIdx(short)>setBottomBorderPaletteIdx</a>(short border) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAdtlDiag(short)>setAdtlDiag</a>(short diag) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAdtlDiagLineStyle(short)>setAdtlDiagLineStyle</a>(short diag) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setAdtlFillPattern(short)>setAdtlFillPattern</a>(short fill) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setFillPaletteOptions(short)>setFillPaletteOptions</a>(short options) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setFillForeground(short)>setFillForeground</a>(short color) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#setFillBackground(short)>setFillBackground</a>(short color) :void<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getFontIndex()>getFontIndex</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getFormatIndex()>getFormatIndex</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getCellOptions()>getCellOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isLocked()>isLocked</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isHidden()>isHidden</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getXFType()>getXFType</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#get123Prefix()>get123Prefix</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getParentIndex()>getParentIndex</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAlignmentOptions()>getAlignmentOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAlignment()>getAlignment</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getWrapText()>getWrapText</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getVerticalAlignment()>getVerticalAlignment</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getJustifyLast()>getJustifyLast</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getRotation()>getRotation</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getIndentionOptions()>getIndentionOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getIndent()>getIndent</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getShrinkToFit()>getShrinkToFit</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getMergeCells()>getMergeCells</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getReadingOrder()>getReadingOrder</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentFormat()>isIndentNotParentFormat</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentFont()>isIndentNotParentFont</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentAlignment()>isIndentNotParentAlignment</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentBorder()>isIndentNotParentBorder</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentPattern()>isIndentNotParentPattern</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#isIndentNotParentCellOptions()>isIndentNotParentCellOptions</a>() :boolean<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBorderOptions()>getBorderOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBorderLeft()>getBorderLeft</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBorderRight()>getBorderRight</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBorderTop()>getBorderTop</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBorderBottom()>getBorderBottom</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getPaletteOptions()>getPaletteOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getLeftBorderPaletteIdx()>getLeftBorderPaletteIdx</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getRightBorderPaletteIdx()>getRightBorderPaletteIdx</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getDiag()>getDiag</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAdtlPaletteOptions()>getAdtlPaletteOptions</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getTopBorderPaletteIdx()>getTopBorderPaletteIdx</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getBottomBorderPaletteIdx()>getBottomBorderPaletteIdx</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAdtlDiag()>getAdtlDiag</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAdtlDiagLineStyle()>getAdtlDiagLineStyle</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getAdtlFillPattern()>getAdtlFillPattern</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getFillPaletteOptions()>getFillPaletteOptions</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getFillForeground()>getFillForeground</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getFillBackground()>getFillBackground</a>() :short<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#toString()>toString</a>() :java.lang.String<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#serialize(int,int)>serialize</a>(int offset, byte[] data) :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getRecordSize()>getRecordSize</a>() :int<br>
++<a href=../../../../../org/apache/poi/hssf/record/ExtendedFormatRecord.html#getSid()>getSid</a>() :short<br>
+</td></tr></table></td></tr>
+</table>
+</td><td width="12" align="center" valign="top">
+</td>
+<td width=32% valign=top>
+</td></tr>
+</table></body></html>

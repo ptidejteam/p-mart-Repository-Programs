@@ -1,0 +1,9 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\String\15.5.3.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\String\shell.js -f mozilla\js\tests\ecma_3\String\15.5.3.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+BUGNUMBER: 304376
+STATUS: String.prototype should be readonly and permanent
+FAILED!: String.prototype should be readonly and permanent
+FAILED!: Expected value 'TypeError', Actual value 'No Error'
+FAILED!: 
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\String\15.5.3.1.compiled.arff] ...

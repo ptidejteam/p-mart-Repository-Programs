@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+    <classpathentry kind="lib" path="libs/apple-extensions.jar"/>
+    <classpathentry kind="lib" path="libs/commons-cli-1.0.jar"/>
+    <classpathentry kind="lib" path="libs/log4j.jar"/>
+    <classpathentry kind="lib" path="libs/swt-pi-osx.jar"/>
+    <classpathentry kind="lib" path="libs/swt-win32.jar"/>
+    <classpathentry kind="lib" path="libs/jce.jar"/>
+    <classpathentry kind="lib" path="libs/jsse.jar"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

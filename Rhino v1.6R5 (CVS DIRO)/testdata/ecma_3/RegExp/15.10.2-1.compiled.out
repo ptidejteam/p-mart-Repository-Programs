@@ -1,0 +1,45 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\RegExp\15.10.2-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\RegExp\shell.js -f mozilla\js\tests\ecma_3\RegExp\15.10.2-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+BUGNUMBER: (none)
+STATUS: RegExp conformance test
+PASSED! Section 1 of test -
+regexp = /a|ab/
+string = 'abc'
+PASSED! Section 2 of test -
+regexp = /((a)|(ab))((c)|(bc))/
+string = 'abc'
+PASSED! Section 3 of test -
+regexp = /a[a-z]{2,4}/
+string = 'abcdefghi'
+PASSED! Section 4 of test -
+regexp = /a[a-z]{2,4}?/
+string = 'abcdefghi'
+PASSED! Section 5 of test -
+regexp = /(aa|aabaac|ba|b|c)*/
+string = 'aabaac'
+PASSED! Section 6 of test -
+regexp = /^(a+)\1*,\1+$/
+string = 'aaaaaaaaaa,aaaaaaaaaaaaaaa'
+PASSED! Section 7 of test -
+regexp = /(z)((a+)?(b+)?(c))*/
+string = 'zaacbbbcac'
+PASSED! Section 8 of test -
+regexp = /(a*)*/
+string = 'b'
+PASSED! Section 9 of test -
+regexp = /(a*)b\1+/
+string = 'baaaac'
+PASSED! Section 10 of test -
+regexp = /(?=(a+))/
+string = 'baaabac'
+PASSED! Section 11 of test -
+regexp = /(?=(a+))a*b\1/
+string = 'baaabac'
+PASSED! Section 12 of test -
+regexp = /(.*?)a(?!(a+)b\2c)\2(.*)/
+string = 'baaabaac'
+PASSED! Section 13 of test -
+regexp = /(?=(a+))/
+string = 'baaabac'
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\RegExp\15.10.2-1.compiled.arff] ...

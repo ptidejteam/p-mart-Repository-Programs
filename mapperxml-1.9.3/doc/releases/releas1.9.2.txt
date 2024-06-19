@@ -1,0 +1,103 @@
+Mapper
+Version 1.9.2
+Release Notes:
+
+Quick Highlights
+================================================================
+o   Added new Button component which is a visible Trigger component.
+o   Added new DocumentElement component which can be used to simply
+    hide/show any Element (including children) in XML document.
+o   Added Simple hyperlink component: HTMLAnchorURL
+o   Added HTMLTextArea component for inputting long text.
+o   ServletApp now responds with 404 if ServletForm not found.
+o   Added new property on all Fields to control WHEN they receive
+    their input.  Normally, they receive their input after the
+    openForm method has been invoked.  Now, with the "earlyInputNotify"
+    property set to true, a Field can receive its input at the
+    same time the Parameter components do.  This will support the
+    use of Fields which are used as parameters for the application.
+o   Added new "visible" property to superclass Component. Now components
+    can be hidden or shown when rendered.
+o   Initial release of stand-alone code generator for MapperXML.
+    The initial release will generate simple ServletApp's and
+    ServletForm's using the Velocity template engine.
+o   Added internal logging and debugging subsystem for Mapper. This
+    logging system uses an adapter to provide actual logging.  Thus
+    it can be adapted to make use of any existing logging system.
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+o   The setModel method in Parameter no longer throws a ModelException.
+    A ModelException was never thrown in the implementation.
+o   The setModel method in SelectField no longer throws a ModelException.
+    If the wrong kind of model is passed, an IllegalArgumentException is
+    thrown instead.
+o   com.taursys.dom.XMLProxy - deprecated and scheduled for removal
+o   com.taursys.dom.XMLFactory - deprecated and scheduled for removal
+o   HTMLInputText - Added new constructor which accepts a DataTypes.TYPE_XXX
+    type for this component.
+
+Internal API Interface Changes/Deprecations:
+================================================================
+o   Cleaned up visibility problems in DataTypes.  Numerous internal
+    variables and methods were exposed - changed to private.
+o   com.taursys.xml.Container changed return type of method
+    getRenderDispatcher() from Dispatcher to RenderDispatcher.
+o   Deprecated parameterless constructors for all Renderers.
+o   Deprecated render method which takes component as parameter for
+    all renderers.
+o   Moved all rendering behavior to seperate TemplateRenderer subcomponent.
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+o   Added new Button component which is a visible Trigger component.
+o   Added Simple hyperlink component: HTMLAnchorURL
+o   Added HTMLTextArea component for inputting long text.
+o   New package com.taursys.debug for logging sub-system.
+o   New stand-alone code generator in com.taursys.tools
+o   Added new "visible" property to Component.  This
+    controls their visibility during rendering.  If they are
+    set invisible, they will be removed from the Document
+    during rendering, otherwise they will be left in (or
+    restored if previously removed).
+
+Other Changes:
+================================================================
+o   Modified Template to check for null valueHolder during rendering
+    to avoid null pointer exception.  If the valueHolder is
+    now null during rendering, the resulting template will
+    be empty and a warning message will be issued in the
+    log.
+o   Modified ServletApp doGet method to respond with a 404 not found
+    error if the ServletFormFactory could not find the requested
+    ServletForm.  Originally it would throw an Exception if not
+    found.
+o   Modified ServletForm and added setters for request and
+    response objects.  Other minor internal changes.
+o   Modified PropertyAccessor which is used to set properties
+    of Value Objects. Eliminated problem of cryptic null pointer
+    exception when trying to set a primative to null.  Now there is
+    a explicit exception for this condition:
+    ModelPropertyAccessorException.REASON_NULL_VALUE_FOR_PRIMATIVE
+o   Parameter - added method to expose to subclass whether or not
+    notification has been setup yet.  Needed to support new early
+    input notification feature.
+o   Updated HTMLComponentFactory and ComponentFactory for new
+    components.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Mapper Known Limitations/Problems/Bugs:
+================================================================
+none

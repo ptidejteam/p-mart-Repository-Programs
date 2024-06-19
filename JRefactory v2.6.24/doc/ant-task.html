@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::Pretty Printer</TITLE>
+</HEAD>
+<BODY>
+<P>
+<TABLE BORDER="0">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#DDDDDD">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> Pretty Printer<BR>
+			<LI> <A HREF="csrefactory.html">JRefactory</A><BR>
+			<LI> <A HREF="csprint.html">Printing</A> <BR>
+			<LI> <A HREF="cselixirext.html">Elixir Extensions</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Numbering</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csdevutil.html">Dev Utilities</A> <BR>
+			<LI> <A HREF="csrtodo.html">Requested Features</A> <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="cspretty.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Pretty Ant Task
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="csrefactory.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3">
+
+<font SIZE="2">
+<p>Based on jEdit's excellent JavaStyle plug-in a source beautifier task is also
+provided. Please refer to JavaStyle's documentation for more details.
+&lt;pretty/&gt; simply gives you the chance to integrate source-beautification
+on selected source files into your build process. It's great tool for teams that
+work on open source projects. The coding convention is defined in a
+pretty.settings file and &lt;pretty/&gt; task defined before the compile target.
+&lt;pretty/&gt; is smart enough not to reformat unmodified code if cvs=&quot;true&quot;
+parameter specified and using CVS as the source control system.</p>
+
+<h4>Parameters</h4>
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+<tr>
+  <td width="12%" valign="top"><b>Attribute</b></td>
+  <td width="78%" valign="top"><b>Description</b></td>
+  <td width="10%" valign="top"><b>Required</b></td>
+</tr>
+<tr>
+    <td valign="top"><font SIZE="2">settingsdir</font></td>
+    <td valign="top">Directory where JavaStyle settings are placed. Under this
+      directory a &quot;.Refactory&quot; sub-directory holds the style settings.
+      A <a href="csprettysettings.html">sample</a> is provided.</td>
+    <td align="center" valign="top">Yes</td>
+</tr>
+<tr>
+    <td valign="top"><font size="2">cvs</font></td>
+    <td valign="top">If true then try to beautify only files that are either new
+    or modified in CVS, do not try to reformat something not modified by current
+    user, so the file is not modified unnecessarily.</td>
+    <td align="center" valign="top">No, default is false</td>
+</tr>
+</table>
+
+<h4>Usage example</h4>
+<pre>&lt;taskdef name=&quot;pretty&quot; classname=&quot;org.acm.seguin.ant.Pretty&quot; classpath=&quot;lib/pretty.jar;lib/JavaStyle.jar&quot;/&gt;
+
+&lt;pretty settingsDir=&quot;${my.config.dir}&quot; cvs=&quot;true&quot;&gt;
+	&lt;fileset dir=&quot;${src.dir}&quot;&gt;
+		&lt;include name=&quot;**/*.java&quot; /&gt;
+	&lt;/fileset&gt;
+&lt;/pretty&gt;</font></pre>
+<h4><font size="2">Notes</font></h4>
+<p><font size="2">The actual source beautifier package is not bundled with
+XDoclet. You can download it from <a href="http://plugins.jedit.org/plugins/JavaStyle">http://plugins.jedit.org/plugins/JavaStyle</a>.</font></p>
+
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="cspretty.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: July 30, 2001</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="csrefactory.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

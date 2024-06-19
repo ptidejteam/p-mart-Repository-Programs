@@ -1,0 +1,10 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.6.1-5.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.6.1-5.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 422 ms]
+dowhile-005 do...while with a labeled continue statement
+BUGNUMBER: 316293
+dowhile-005 do...while with a labeled continue statement
+number of loop iterations = 0 PASSED!
+break out of inner loop = pass PASSED!
+break out of outer loop = pass PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.6.1-5.compiled.arff] ...

@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Library System - Book List - Version: @build.tag@</title>
+  <link rel="stylesheet" type="text/css" href="../style/common.css" />
+</head>
+<body>
+<table border="1" width="100%" summary="Library System - Book List">
+  <caption>Library System - Book List</caption>
+  <tbody>
+    <tr>
+      <td>Catalog No</td>
+      <td>Title</td>
+      <td>Keywords</td>
+      <td>Cost</td>
+      <td>Date Added</td>
+      <td>Delete</td>
+    </tr>
+    <tr id="Book__TEMPLATE_NODE">
+      <td><a href="MSG:BookEdit.html?catalogNo={0}" id="Book__catalogNo__1">
+        <span id="Book__catalogNo__2">0123456789</span></a></td>
+      <td><span id="Book__title">This is the Title of My First Book</span></td>
+      <td><span id="Book__keywords">anything, everything</span></td>
+      <td><span id="Book__cost__NUMBER:###,##0.00">25.99</span></td>
+      <td><span id="Book__dateAdded__DATE:MM/dd/yyyy">05/31/2006</span></td>
+      <td>
+        <a href="MSG:BookList.html?action=Delete&amp;catalogNo={0}" id="Book__catalogNo__3">
+          Delete
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><a href="MainMenu.html">Main Menu</a></p>
+<p><span id="msg">Error message goes here</span></p>
+</body>
+</html>

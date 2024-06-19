@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.18.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.18.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 360 ms]
+15.8.2.18 Math.tan(x)
+Math.tan.length = 1 PASSED!
+Math.tan() = NaN PASSED!
+Math.tan(void 0) = NaN PASSED!
+Math.tan(null) = 0 PASSED!
+Math.tan(false) = 0 PASSED!
+Math.tan(NaN) = NaN PASSED!
+Math.tan(0) = 0 PASSED!
+Math.tan(-0) = 0 PASSED!
+Math.tan(Infinity) = NaN PASSED!
+Math.tan(-Infinity) = NaN PASSED!
+Math.tan(Math.PI/4) = 0.9999999999999999 PASSED!
+Math.tan(3*Math.PI/4) = -1.0000000000000002 PASSED!
+Math.tan(Math.PI) = -1.2246467991473532e-16 PASSED!
+Math.tan(5*Math.PI/4) = 0.9999999999999997 PASSED!
+Math.tan(7*Math.PI/4) = -1.0000000000000004 PASSED!
+Infinity/Math.tan(-0) = -Infinity PASSED!
+Math.tan(3*Math.PI/2) >= 5443000000000000 = true PASSED!
+Math.tan(Math.PI/2) >= 5443000000000000 = true PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.18.interpreted.arff] ...

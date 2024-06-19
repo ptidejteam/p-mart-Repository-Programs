@@ -1,0 +1,16 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.14-12.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.14-12.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+try-012 The try statement
+BUGNUMBER: 336872
+try-012 The try statement
+eval( x = "hi" ): evaluated inner finally block = PASS PASSED!
+eval( x = "hi" ): evaluated outer catch block  = PASS PASSED!
+eval( x = "hi" ):  evaluated outer finally block = PASS PASSED!
+eval( throw "boo" ): evaluated inner finally block = PASS PASSED!
+eval( throw "boo" ): evaluated outer catch block  = PASS PASSED!
+eval( throw "boo" ):  evaluated outer finally block = PASS PASSED!
+eval( throw 3 ): evaluated inner finally block = PASS PASSED!
+eval( throw 3 ): evaluated outer catch block  = PASS PASSED!
+eval( throw 3 ):  evaluated outer finally block = PASS PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.14-12.compiled.arff] ...

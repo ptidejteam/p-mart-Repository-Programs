@@ -1,0 +1,697 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/util/classList.html" TARGET="packageFrame">org.apache.poi.util</A>: ShortList');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/util/classList.html" TARGET="packageFrame">org.apache.poi.util</A>: ShortList';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.util;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import java.util.*;
+<a name=59 class="linenum">59   </a>
+<a name=60 class="linenum">60   </a><span class="comment">/**
+<a name=61 class="linenum">61   </a> * A List of short's; as full an implementation of the java.util.List
+<a name=62 class="linenum">62   </a> * interface as possible, with an eye toward minimal creation of
+<a name=63 class="linenum">63   </a> * objects
+<a name=64 class="linenum">64   </a> *
+<a name=65 class="linenum">65   </a> * the mimicry of List is as follows:
+<a name=66 class="linenum">66   </a> * &lt;ul&gt;
+<a name=67 class="linenum">67   </a> * &lt;li&gt; if possible, operations designated 'optional' in the List
+<a name=68 class="linenum">68   </a> *      interface are attempted
+<a name=69 class="linenum">69   </a> * &lt;li&gt; wherever the List interface refers to an Object, substitute
+<a name=70 class="linenum">70   </a> *      short
+<a name=71 class="linenum">71   </a> * &lt;li&gt; wherever the List interface refers to a Collection or List,
+<a name=72 class="linenum">72   </a> *      substitute ShortList
+<a name=73 class="linenum">73   </a> * &lt;/ul&gt;
+<a name=74 class="linenum">74   </a> *
+<a name=75 class="linenum">75   </a> * the mimicry is not perfect, however:
+<a name=76 class="linenum">76   </a> * &lt;ul&gt;
+<a name=77 class="linenum">77   </a> * &lt;li&gt; operations involving Iterators or ListIterators are not
+<a name=78 class="linenum">78   </a> *      supported
+<a name=79 class="linenum">79   </a> * &lt;li&gt; remove(Object) becomes removeValue to distinguish it from
+<a name=80 class="linenum">80   </a> *      remove(short index)
+<a name=81 class="linenum">81   </a> * &lt;li&gt; subList is not supported
+<a name=82 class="linenum">82   </a> * &lt;/ul&gt;
+<a name=83 class="linenum">83   </a> *
+<a name=84 class="linenum">84   </a> * @author Marc Johnson
+<a name=85 class="linenum">85   </a> */</span>
+<a name=86 class="linenum">86   </a>
+<a name=87 class="linenum">87   </a>public class <a class="classDef" name=ShortList href=ShortList_java_ref.html#ShortList>ShortList</a>
+<a name=88 class="linenum">88   </a>{
+<a name=89 class="linenum">89   </a>    private short[]          <a class="varDef" name=ShortList._array href=ShortList_java_ref.html#ShortList._array>_array</a>;
+<a name=90 class="linenum">90   </a>    private int              <a class="varDef" name=ShortList._limit href=ShortList_java_ref.html#ShortList._limit>_limit</a>;
+<a name=91 class="linenum">91   </a>    private static final int <a class="varDef" name=ShortList._default_size href=ShortList_java_ref.html#ShortList._default_size>_default_size</a> = 128;
+<a name=92 class="linenum">92   </a>
+<a name=93 class="linenum">93   </a>    <span class="comment">/**
+<a name=94 class="linenum">94   </a>     * create an ShortList of default size
+<a name=95 class="linenum">95   </a>     */</span>
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>    public <a class="methodDef" name=ShortList.ShortList() href=ShortList_java_ref.html#ShortList.ShortList()>ShortList</a>()
+<a name=98 class="linenum">98   </a>    {
+<a name=99 class="linenum">99   </a>        this(<a class="varRef" title="int" href=ShortList_java.html#ShortList._default_size>_default_size</a>);
+<a name=100 class="linenum">100  </a>    }
+<a name=101 class="linenum">101  </a>
+<a name=102 class="linenum">102  </a>    <span class="comment">/**
+<a name=103 class="linenum">103  </a>     * create a copy of an existing ShortList
+<a name=104 class="linenum">104  </a>     *
+<a name=105 class="linenum">105  </a>     * @param list the existing ShortList
+<a name=106 class="linenum">106  </a>     */</span>
+<a name=107 class="linenum">107  </a>
+<a name=108 class="linenum">108  </a>    public <a class="methodDef" name=ShortList.ShortList(ShortList) href=ShortList_java_ref.html#ShortList.ShortList(ShortList)>ShortList</a>(final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> list)
+<a name=109 class="linenum">109  </a>    {
+<a name=110 class="linenum">110  </a>        this(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.ShortList.list>list</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length);
+<a name=111 class="linenum">111  </a>        System.arraycopy(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.ShortList.list>list</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length);
+<a name=112 class="linenum">112  </a>        <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> = <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.ShortList.list>list</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>;
+<a name=113 class="linenum">113  </a>    }
+<a name=114 class="linenum">114  </a>
+<a name=115 class="linenum">115  </a>    <span class="comment">/**
+<a name=116 class="linenum">116  </a>     * create an ShortList with a predefined initial size
+<a name=117 class="linenum">117  </a>     *
+<a name=118 class="linenum">118  </a>     * @param initialCapacity the size for the internal array
+<a name=119 class="linenum">119  </a>     */</span>
+<a name=120 class="linenum">120  </a>
+<a name=121 class="linenum">121  </a>    public <a class="methodDef" name=ShortList.ShortList(int) href=ShortList_java_ref.html#ShortList.ShortList(int)>ShortList</a>(final int initialCapacity)
+<a name=122 class="linenum">122  </a>    {
+<a name=123 class="linenum">123  </a>        <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a> = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#short>short</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.ShortList.initialCapacity>initialCapacity</a> ];
+<a name=124 class="linenum">124  </a>        <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> = 0;
+<a name=125 class="linenum">125  </a>    }
+<a name=126 class="linenum">126  </a>
+<a name=127 class="linenum">127  </a>    <span class="comment">/**
+<a name=128 class="linenum">128  </a>     * add the specfied value at the specified index
+<a name=129 class="linenum">129  </a>     *
+<a name=130 class="linenum">130  </a>     * @param index the index where the new value is to be added
+<a name=131 class="linenum">131  </a>     * @param value the new value
+<a name=132 class="linenum">132  </a>     *
+<a name=133 class="linenum">133  </a>     * @exception IndexOutOfBoundsException if the index is out of
+<a name=134 class="linenum">134  </a>     *            range (index &lt; 0 || index &gt; size()).
+<a name=135 class="linenum">135  </a>     */</span>
+<a name=136 class="linenum">136  </a>
+<a name=137 class="linenum">137  </a>    public void <a class="methodDef" name=ShortList.add(int,short) href=ShortList_java_ref.html#ShortList.add(int,short)>add</a>(final int index, final short value)
+<a name=138 class="linenum">138  </a>    {
+<a name=139 class="linenum">139  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a> &gt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=140 class="linenum">140  </a>        {
+<a name=141 class="linenum">141  </a>            throw new IndexOutOfBoundsException();
+<a name=142 class="linenum">142  </a>        }
+<a name=143 class="linenum">143  </a>        else if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a> == <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=144 class="linenum">144  </a>        {
+<a name=145 class="linenum">145  </a>            <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.add(short)>add</a>(<a class="varRef" title="short" href=ShortList_java.html#ShortList.add.value>value</a>);
+<a name=146 class="linenum">146  </a>        }
+<a name=147 class="linenum">147  </a>        else
+<a name=148 class="linenum">148  </a>        {
+<a name=149 class="linenum">149  </a>
+<a name=150 class="linenum">150  </a>            <span class="comment">// index &lt; limit -- insert into the middle</span>
+<a name=151 class="linenum">151  </a>            if (<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length)
+<a name=152 class="linenum">152  </a>            {
+<a name=153 class="linenum">153  </a>                <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.growArray(int)>growArray</a>(<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> * 2);
+<a name=154 class="linenum">154  </a>            }
+<a name=155 class="linenum">155  </a>            System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a>, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a> + 1,
+<a name=156 class="linenum">156  </a>                             <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> - <a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a>);
+<a name=157 class="linenum">157  </a>            <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.add.index>index</a> ] = <a class="varRef" title="short" href=ShortList_java.html#ShortList.add.value>value</a>;
+<a name=158 class="linenum">158  </a>            <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>++;
+<a name=159 class="linenum">159  </a>        }
+<a name=160 class="linenum">160  </a>    }
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>    <span class="comment">/**
+<a name=163 class="linenum">163  </a>     * Appends the specified element to the end of this list
+<a name=164 class="linenum">164  </a>     *
+<a name=165 class="linenum">165  </a>     * @param value element to be appended to this list.
+<a name=166 class="linenum">166  </a>     *
+<a name=167 class="linenum">167  </a>     * @return true (as per the general contract of the Collection.add
+<a name=168 class="linenum">168  </a>     *         method).
+<a name=169 class="linenum">169  </a>     */</span>
+<a name=170 class="linenum">170  </a>
+<a name=171 class="linenum">171  </a>    public boolean <a class="methodDef" name=ShortList.add(short) href=ShortList_java_ref.html#ShortList.add(short)>add</a>(final short value)
+<a name=172 class="linenum">172  </a>    {
+<a name=173 class="linenum">173  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length)
+<a name=174 class="linenum">174  </a>        {
+<a name=175 class="linenum">175  </a>            <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.growArray(int)>growArray</a>(<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> * 2);
+<a name=176 class="linenum">176  </a>        }
+<a name=177 class="linenum">177  </a>        <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>++ ] = <a class="varRef" title="short" href=ShortList_java.html#ShortList.add.value>value</a>;
+<a name=178 class="linenum">178  </a>        return true;
+<a name=179 class="linenum">179  </a>    }
+<a name=180 class="linenum">180  </a>
+<a name=181 class="linenum">181  </a>    <span class="comment">/**
+<a name=182 class="linenum">182  </a>     * Appends all of the elements in the specified collection to the
+<a name=183 class="linenum">183  </a>     * end of this list, in the order that they are returned by the
+<a name=184 class="linenum">184  </a>     * specified collection's iterator.  The behavior of this
+<a name=185 class="linenum">185  </a>     * operation is unspecified if the specified collection is
+<a name=186 class="linenum">186  </a>     * modified while the operation is in progress.  (Note that this
+<a name=187 class="linenum">187  </a>     * will occur if the specified collection is this list, and it's
+<a name=188 class="linenum">188  </a>     * nonempty.)
+<a name=189 class="linenum">189  </a>     *
+<a name=190 class="linenum">190  </a>     * @param c collection whose elements are to be added to this
+<a name=191 class="linenum">191  </a>     *          list.
+<a name=192 class="linenum">192  </a>     *
+<a name=193 class="linenum">193  </a>     * @return true if this list changed as a result of the call.
+<a name=194 class="linenum">194  </a>     */</span>
+<a name=195 class="linenum">195  </a>
+<a name=196 class="linenum">196  </a>    public boolean <a class="methodDef" name=ShortList.addAll(ShortList) href=ShortList_java_ref.html#ShortList.addAll(ShortList)>addAll</a>(final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> c)
+<a name=197 class="linenum">197  </a>    {
+<a name=198 class="linenum">198  </a>        if (<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> != 0)
+<a name=199 class="linenum">199  </a>        {
+<a name=200 class="linenum">200  </a>            if ((<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> + <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>) &gt; <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length)
+<a name=201 class="linenum">201  </a>            {
+<a name=202 class="linenum">202  </a>                <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.growArray(int)>growArray</a>(<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> + <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=203 class="linenum">203  </a>            }
+<a name=204 class="linenum">204  </a>            System.arraycopy(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>, <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=205 class="linenum">205  </a>            <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> += <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>;
+<a name=206 class="linenum">206  </a>        }
+<a name=207 class="linenum">207  </a>        return true;
+<a name=208 class="linenum">208  </a>    }
+<a name=209 class="linenum">209  </a>
+<a name=210 class="linenum">210  </a>    <span class="comment">/**
+<a name=211 class="linenum">211  </a>     * Inserts all of the elements in the specified collection into
+<a name=212 class="linenum">212  </a>     * this list at the specified position.  Shifts the element
+<a name=213 class="linenum">213  </a>     * currently at that position (if any) and any subsequent elements
+<a name=214 class="linenum">214  </a>     * to the right (increases their indices).  The new elements will
+<a name=215 class="linenum">215  </a>     * appear in this list in the order that they are returned by the
+<a name=216 class="linenum">216  </a>     * specified collection's iterator.  The behavior of this
+<a name=217 class="linenum">217  </a>     * operation is unspecified if the specified collection is
+<a name=218 class="linenum">218  </a>     * modified while the operation is in progress.  (Note that this
+<a name=219 class="linenum">219  </a>     * will occur if the specified collection is this list, and it's
+<a name=220 class="linenum">220  </a>     * nonempty.)
+<a name=221 class="linenum">221  </a>     *
+<a name=222 class="linenum">222  </a>     * @param index index at which to insert first element from the
+<a name=223 class="linenum">223  </a>     *              specified collection.
+<a name=224 class="linenum">224  </a>     * @param c elements to be inserted into this list.
+<a name=225 class="linenum">225  </a>     *
+<a name=226 class="linenum">226  </a>     * @return true if this list changed as a result of the call.
+<a name=227 class="linenum">227  </a>     *
+<a name=228 class="linenum">228  </a>     * @exception IndexOutOfBoundsException if the index is out of
+<a name=229 class="linenum">229  </a>     *            range (index &lt; 0 || index &gt; size())
+<a name=230 class="linenum">230  </a>     */</span>
+<a name=231 class="linenum">231  </a>
+<a name=232 class="linenum">232  </a>    public boolean <a class="methodDef" name=ShortList.addAll(int,ShortList) href=ShortList_java_ref.html#ShortList.addAll(int,ShortList)>addAll</a>(final int index, final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> c)
+<a name=233 class="linenum">233  </a>    {
+<a name=234 class="linenum">234  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.addAll.index>index</a> &gt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=235 class="linenum">235  </a>        {
+<a name=236 class="linenum">236  </a>            throw new IndexOutOfBoundsException();
+<a name=237 class="linenum">237  </a>        }
+<a name=238 class="linenum">238  </a>        if (<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> != 0)
+<a name=239 class="linenum">239  </a>        {
+<a name=240 class="linenum">240  </a>            if ((<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> + <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>) &gt; <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length)
+<a name=241 class="linenum">241  </a>            {
+<a name=242 class="linenum">242  </a>                <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.growArray(int)>growArray</a>(<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> + <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=243 class="linenum">243  </a>            }
+<a name=244 class="linenum">244  </a>
+<a name=245 class="linenum">245  </a>            <span class="comment">// make a hole</span>
+<a name=246 class="linenum">246  </a>            System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.addAll.index>index</a>, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.addAll.index>index</a> + <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>,
+<a name=247 class="linenum">247  </a>                             <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> - <a class="varRef" title="int" href=ShortList_java.html#ShortList.addAll.index>index</a>);
+<a name=248 class="linenum">248  </a>
+<a name=249 class="linenum">249  </a>            <span class="comment">// fill it in</span>
+<a name=250 class="linenum">250  </a>            System.arraycopy(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.addAll.index>index</a>, <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=251 class="linenum">251  </a>            <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> += <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.addAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>;
+<a name=252 class="linenum">252  </a>        }
+<a name=253 class="linenum">253  </a>        return true;
+<a name=254 class="linenum">254  </a>    }
+<a name=255 class="linenum">255  </a>
+<a name=256 class="linenum">256  </a>    <span class="comment">/**
+<a name=257 class="linenum">257  </a>     * Removes all of the elements from this list.  This list will be
+<a name=258 class="linenum">258  </a>     * empty after this call returns (unless it throws an exception).
+<a name=259 class="linenum">259  </a>     */</span>
+<a name=260 class="linenum">260  </a>
+<a name=261 class="linenum">261  </a>    public void <a class="methodDef" name=ShortList.clear() href=ShortList_java_ref.html#ShortList.clear()>clear</a>()
+<a name=262 class="linenum">262  </a>    {
+<a name=263 class="linenum">263  </a>        <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> = 0;
+<a name=264 class="linenum">264  </a>    }
+<a name=265 class="linenum">265  </a>
+<a name=266 class="linenum">266  </a>    <span class="comment">/**
+<a name=267 class="linenum">267  </a>     * Returns true if this list contains the specified element.  More
+<a name=268 class="linenum">268  </a>     * formally, returns true if and only if this list contains at
+<a name=269 class="linenum">269  </a>     * least one element e such that o == e
+<a name=270 class="linenum">270  </a>     *
+<a name=271 class="linenum">271  </a>     * @param o element whose presence in this list is to be tested.
+<a name=272 class="linenum">272  </a>     *
+<a name=273 class="linenum">273  </a>     * @return true if this list contains the specified element.
+<a name=274 class="linenum">274  </a>     */</span>
+<a name=275 class="linenum">275  </a>
+<a name=276 class="linenum">276  </a>    public boolean <a class="methodDef" name=ShortList.contains(short) href=ShortList_java_ref.html#ShortList.contains(short)>contains</a>(final short o)
+<a name=277 class="linenum">277  </a>    {
+<a name=278 class="linenum">278  </a>        boolean rval = false;
+<a name=279 class="linenum">279  </a>
+<a name=280 class="linenum">280  </a>        for (int j = 0; !<a class="varRef" title="boolean" href=ShortList_java.html#ShortList.contains.rval>rval</a> && (<a class="varRef" title="int" href=ShortList_java.html#ShortList.contains.j>j</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>); <a class="varRef" title="int" href=ShortList_java.html#ShortList.contains.j>j</a>++)
+<a name=281 class="linenum">281  </a>        {
+<a name=282 class="linenum">282  </a>            if (<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.contains.j>j</a> ] == <a class="varRef" title="short" href=ShortList_java.html#ShortList.contains.o>o</a>)
+<a name=283 class="linenum">283  </a>            {
+<a name=284 class="linenum">284  </a>                <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.contains.rval>rval</a> = true;
+<a name=285 class="linenum">285  </a>            }
+<a name=286 class="linenum">286  </a>        }
+<a name=287 class="linenum">287  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.contains.rval>rval</a>;
+<a name=288 class="linenum">288  </a>    }
+<a name=289 class="linenum">289  </a>
+<a name=290 class="linenum">290  </a>    <span class="comment">/**
+<a name=291 class="linenum">291  </a>     * Returns true if this list contains all of the elements of the
+<a name=292 class="linenum">292  </a>     * specified collection.
+<a name=293 class="linenum">293  </a>     *
+<a name=294 class="linenum">294  </a>     * @param c collection to be checked for containment in this list.
+<a name=295 class="linenum">295  </a>     *
+<a name=296 class="linenum">296  </a>     * @return true if this list contains all of the elements of the
+<a name=297 class="linenum">297  </a>     *         specified collection.
+<a name=298 class="linenum">298  </a>     */</span>
+<a name=299 class="linenum">299  </a>
+<a name=300 class="linenum">300  </a>    public boolean <a class="methodDef" name=ShortList.containsAll(ShortList) href=ShortList_java_ref.html#ShortList.containsAll(ShortList)>containsAll</a>(final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> c)
+<a name=301 class="linenum">301  </a>    {
+<a name=302 class="linenum">302  </a>        boolean rval = true;
+<a name=303 class="linenum">303  </a>
+<a name=304 class="linenum">304  </a>        if (this != <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.containsAll.c>c</a>)
+<a name=305 class="linenum">305  </a>        {
+<a name=306 class="linenum">306  </a>            for (int j = 0; <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.containsAll.rval>rval</a> && (<a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a> &lt; <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.containsAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>); <a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a>++)
+<a name=307 class="linenum">307  </a>            {
+<a name=308 class="linenum">308  </a>                if (!<a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.contains(short)>contains</a>(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.containsAll.c>c</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a> ]))
+<a name=309 class="linenum">309  </a>                {
+<a name=310 class="linenum">310  </a>                    <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.containsAll.rval>rval</a> = false;
+<a name=311 class="linenum">311  </a>                }
+<a name=312 class="linenum">312  </a>            }
+<a name=313 class="linenum">313  </a>        }
+<a name=314 class="linenum">314  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.containsAll.rval>rval</a>;
+<a name=315 class="linenum">315  </a>    }
+<a name=316 class="linenum">316  </a>
+<a name=317 class="linenum">317  </a>    <span class="comment">/**
+<a name=318 class="linenum">318  </a>     * Compares the specified object with this list for equality.
+<a name=319 class="linenum">319  </a>     * Returns true if and only if the specified object is also a
+<a name=320 class="linenum">320  </a>     * list, both lists have the same size, and all corresponding
+<a name=321 class="linenum">321  </a>     * pairs of elements in the two lists are equal.  (Two elements e1
+<a name=322 class="linenum">322  </a>     * and e2 are equal if e1 == e2.)  In other words, two lists are
+<a name=323 class="linenum">323  </a>     * defined to be equal if they contain the same elements in the
+<a name=324 class="linenum">324  </a>     * same order.  This definition ensures that the equals method
+<a name=325 class="linenum">325  </a>     * works properly across different implementations of the List
+<a name=326 class="linenum">326  </a>     * interface.
+<a name=327 class="linenum">327  </a>     *
+<a name=328 class="linenum">328  </a>     * @param o the object to be compared for equality with this list.
+<a name=329 class="linenum">329  </a>     *
+<a name=330 class="linenum">330  </a>     * @return true if the specified object is equal to this list.
+<a name=331 class="linenum">331  </a>     */</span>
+<a name=332 class="linenum">332  </a>
+<a name=333 class="linenum">333  </a>    public boolean <a class="methodDef" name=ShortList.equals(Object) href=ShortList_java_ref.html#ShortList.equals(Object)>equals</a>(final Object o)
+<a name=334 class="linenum">334  </a>    {
+<a name=335 class="linenum">335  </a>        boolean rval = this == <a class="varRef" title="Object" href=ShortList_java.html#ShortList.equals.o>o</a>;
+<a name=336 class="linenum">336  </a>
+<a name=337 class="linenum">337  </a>        if (!<a class="varRef" title="boolean" href=ShortList_java.html#ShortList.equals.rval>rval</a> && (<a class="varRef" title="Object" href=ShortList_java.html#ShortList.equals.o>o</a> != null) && (<a class="varRef" title="Object" href=ShortList_java.html#ShortList.equals.o>o</a>.getClass() == this.getClass()))
+<a name=338 class="linenum">338  </a>        {
+<a name=339 class="linenum">339  </a>            <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> other = ( <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> ) <a class="varRef" title="Object" href=ShortList_java.html#ShortList.equals.o>o</a>;
+<a name=340 class="linenum">340  </a>
+<a name=341 class="linenum">341  </a>            if (<a class="varRef" title="ShortList" href=ShortList_java.html#~NO NAME~.other>other</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> == <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=342 class="linenum">342  </a>            {
+<a name=343 class="linenum">343  </a>
+<a name=344 class="linenum">344  </a>                <span class="comment">// assume match</span>
+<a name=345 class="linenum">345  </a>                <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.equals.rval>rval</a> = true;
+<a name=346 class="linenum">346  </a>                for (int j = 0; <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.equals.rval>rval</a> && (<a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>); <a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a>++)
+<a name=347 class="linenum">347  </a>                {
+<a name=348 class="linenum">348  </a>                    <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.equals.rval>rval</a> = <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a> ] == <a class="varRef" title="ShortList" href=ShortList_java.html#~NO NAME~.other>other</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#~NO NAME~.j>j</a> ];
+<a name=349 class="linenum">349  </a>                }
+<a name=350 class="linenum">350  </a>            }
+<a name=351 class="linenum">351  </a>        }
+<a name=352 class="linenum">352  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.equals.rval>rval</a>;
+<a name=353 class="linenum">353  </a>    }
+<a name=354 class="linenum">354  </a>
+<a name=355 class="linenum">355  </a>    <span class="comment">/**
+<a name=356 class="linenum">356  </a>     * Returns the element at the specified position in this list.
+<a name=357 class="linenum">357  </a>     *
+<a name=358 class="linenum">358  </a>     * @param index index of element to return.
+<a name=359 class="linenum">359  </a>     *
+<a name=360 class="linenum">360  </a>     * @return the element at the specified position in this list.
+<a name=361 class="linenum">361  </a>     *
+<a name=362 class="linenum">362  </a>     * @exception IndexOutOfBoundsException if the index is out of
+<a name=363 class="linenum">363  </a>     *            range (index &lt; 0 || index &gt;= size()).
+<a name=364 class="linenum">364  </a>     */</span>
+<a name=365 class="linenum">365  </a>
+<a name=366 class="linenum">366  </a>    public short <a class="methodDef" name=ShortList.get(int) href=ShortList_java_ref.html#ShortList.get(int)>get</a>(final int index)
+<a name=367 class="linenum">367  </a>    {
+<a name=368 class="linenum">368  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.get.index>index</a> &gt;= <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=369 class="linenum">369  </a>        {
+<a name=370 class="linenum">370  </a>            throw new IndexOutOfBoundsException();
+<a name=371 class="linenum">371  </a>        }
+<a name=372 class="linenum">372  </a>        return <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.get.index>index</a> ];
+<a name=373 class="linenum">373  </a>    }
+<a name=374 class="linenum">374  </a>
+<a name=375 class="linenum">375  </a>    <span class="comment">/**
+<a name=376 class="linenum">376  </a>     * Returns the hash code value for this list.  The hash code of a
+<a name=377 class="linenum">377  </a>     * list is defined to be the result of the following calculation:
+<a name=378 class="linenum">378  </a>     *
+<a name=379 class="linenum">379  </a>     * &lt;code&gt;
+<a name=380 class="linenum">380  </a>     * hashCode = 1;
+<a name=381 class="linenum">381  </a>     * Iterator i = list.iterator();
+<a name=382 class="linenum">382  </a>     * while (i.hasNext()) {
+<a name=383 class="linenum">383  </a>     *      Object obj = i.next();
+<a name=384 class="linenum">384  </a>     *      hashCode = 31*hashCode + (obj==null ? 0 : obj.hashCode());
+<a name=385 class="linenum">385  </a>     * }
+<a name=386 class="linenum">386  </a>     * &lt;/code&gt;
+<a name=387 class="linenum">387  </a>     *
+<a name=388 class="linenum">388  </a>     * This ensures that list1.equals(list2) implies that
+<a name=389 class="linenum">389  </a>     * list1.hashCode()==list2.hashCode() for any two lists, list1 and
+<a name=390 class="linenum">390  </a>     * list2, as required by the general contract of Object.hashCode.
+<a name=391 class="linenum">391  </a>     *
+<a name=392 class="linenum">392  </a>     * @return the hash code value for this list.
+<a name=393 class="linenum">393  </a>     */</span>
+<a name=394 class="linenum">394  </a>
+<a name=395 class="linenum">395  </a>    public int <a class="methodDef" name=ShortList.hashCode() href=ShortList_java_ref.html#ShortList.hashCode()>hashCode</a>()
+<a name=396 class="linenum">396  </a>    {
+<a name=397 class="linenum">397  </a>        int hash = 0;
+<a name=398 class="linenum">398  </a>
+<a name=399 class="linenum">399  </a>        for (int j = 0; <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.j>j</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>; <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.j>j</a>++)
+<a name=400 class="linenum">400  </a>        {
+<a name=401 class="linenum">401  </a>            <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.hash>hash</a> = (31 * <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.hash>hash</a>) + <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.j>j</a> ];
+<a name=402 class="linenum">402  </a>        }
+<a name=403 class="linenum">403  </a>        return <a class="varRef" title="int" href=ShortList_java.html#ShortList.hashCode.hash>hash</a>;
+<a name=404 class="linenum">404  </a>    }
+<a name=405 class="linenum">405  </a>
+<a name=406 class="linenum">406  </a>    <span class="comment">/**
+<a name=407 class="linenum">407  </a>     * Returns the index in this list of the first occurrence of the
+<a name=408 class="linenum">408  </a>     * specified element, or -1 if this list does not contain this
+<a name=409 class="linenum">409  </a>     * element.  More formally, returns the lowest index i such that
+<a name=410 class="linenum">410  </a>     * (o == get(i)), or -1 if there is no such index.
+<a name=411 class="linenum">411  </a>     *
+<a name=412 class="linenum">412  </a>     * @param o element to search for.
+<a name=413 class="linenum">413  </a>     *
+<a name=414 class="linenum">414  </a>     * @return the index in this list of the first occurrence of the
+<a name=415 class="linenum">415  </a>     *         specified element, or -1 if this list does not contain
+<a name=416 class="linenum">416  </a>     *         this element.
+<a name=417 class="linenum">417  </a>     */</span>
+<a name=418 class="linenum">418  </a>
+<a name=419 class="linenum">419  </a>    public int <a class="methodDef" name=ShortList.indexOf(short) href=ShortList_java_ref.html#ShortList.indexOf(short)>indexOf</a>(final short o)
+<a name=420 class="linenum">420  </a>    {
+<a name=421 class="linenum">421  </a>        int rval = 0;
+<a name=422 class="linenum">422  </a>
+<a name=423 class="linenum">423  </a>        for (; <a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>; <a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a>++)
+<a name=424 class="linenum">424  </a>        {
+<a name=425 class="linenum">425  </a>            if (<a class="varRef" title="short" href=ShortList_java.html#ShortList.indexOf.o>o</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a> ])
+<a name=426 class="linenum">426  </a>            {
+<a name=427 class="linenum">427  </a>                break;
+<a name=428 class="linenum">428  </a>            }
+<a name=429 class="linenum">429  </a>        }
+<a name=430 class="linenum">430  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a> == <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=431 class="linenum">431  </a>        {
+<a name=432 class="linenum">432  </a>            <a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a> = -1;   <span class="comment">// didn't find it</span>
+<a name=433 class="linenum">433  </a>        }
+<a name=434 class="linenum">434  </a>        return <a class="varRef" title="int" href=ShortList_java.html#ShortList.indexOf.rval>rval</a>;
+<a name=435 class="linenum">435  </a>    }
+<a name=436 class="linenum">436  </a>
+<a name=437 class="linenum">437  </a>    <span class="comment">/**
+<a name=438 class="linenum">438  </a>     * Returns true if this list contains no elements.
+<a name=439 class="linenum">439  </a>     *
+<a name=440 class="linenum">440  </a>     * @return true if this list contains no elements.
+<a name=441 class="linenum">441  </a>     */</span>
+<a name=442 class="linenum">442  </a>
+<a name=443 class="linenum">443  </a>    public boolean <a class="methodDef" name=ShortList.isEmpty() href=ShortList_java_ref.html#ShortList.isEmpty()>isEmpty</a>()
+<a name=444 class="linenum">444  </a>    {
+<a name=445 class="linenum">445  </a>        return <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> == 0;
+<a name=446 class="linenum">446  </a>    }
+<a name=447 class="linenum">447  </a>
+<a name=448 class="linenum">448  </a>    <span class="comment">/**
+<a name=449 class="linenum">449  </a>     * Returns the index in this list of the last occurrence of the
+<a name=450 class="linenum">450  </a>     * specified element, or -1 if this list does not contain this
+<a name=451 class="linenum">451  </a>     * element.  More formally, returns the highest index i such that
+<a name=452 class="linenum">452  </a>     * (o == get(i)), or -1 if there is no such index.
+<a name=453 class="linenum">453  </a>     *
+<a name=454 class="linenum">454  </a>     * @param o element to search for.
+<a name=455 class="linenum">455  </a>     *
+<a name=456 class="linenum">456  </a>     * @return the index in this list of the last occurrence of the
+<a name=457 class="linenum">457  </a>     *         specified element, or -1 if this list does not contain
+<a name=458 class="linenum">458  </a>     *         this element.
+<a name=459 class="linenum">459  </a>     */</span>
+<a name=460 class="linenum">460  </a>
+<a name=461 class="linenum">461  </a>    public int <a class="methodDef" name=ShortList.lastIndexOf(short) href=ShortList_java_ref.html#ShortList.lastIndexOf(short)>lastIndexOf</a>(final short o)
+<a name=462 class="linenum">462  </a>    {
+<a name=463 class="linenum">463  </a>        int rval = <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> - 1;
+<a name=464 class="linenum">464  </a>
+<a name=465 class="linenum">465  </a>        for (; <a class="varRef" title="int" href=ShortList_java.html#ShortList.lastIndexOf.rval>rval</a> &gt;= 0; <a class="varRef" title="int" href=ShortList_java.html#ShortList.lastIndexOf.rval>rval</a>--)
+<a name=466 class="linenum">466  </a>        {
+<a name=467 class="linenum">467  </a>            if (<a class="varRef" title="short" href=ShortList_java.html#ShortList.lastIndexOf.o>o</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.lastIndexOf.rval>rval</a> ])
+<a name=468 class="linenum">468  </a>            {
+<a name=469 class="linenum">469  </a>                break;
+<a name=470 class="linenum">470  </a>            }
+<a name=471 class="linenum">471  </a>        }
+<a name=472 class="linenum">472  </a>        return <a class="varRef" title="int" href=ShortList_java.html#ShortList.lastIndexOf.rval>rval</a>;
+<a name=473 class="linenum">473  </a>    }
+<a name=474 class="linenum">474  </a>
+<a name=475 class="linenum">475  </a>    <span class="comment">/**
+<a name=476 class="linenum">476  </a>     * Removes the element at the specified position in this list.
+<a name=477 class="linenum">477  </a>     * Shifts any subsequent elements to the left (subtracts one from
+<a name=478 class="linenum">478  </a>     * their indices).  Returns the element that was removed from the
+<a name=479 class="linenum">479  </a>     * list.
+<a name=480 class="linenum">480  </a>     *
+<a name=481 class="linenum">481  </a>     * @param index the index of the element to removed.
+<a name=482 class="linenum">482  </a>     *
+<a name=483 class="linenum">483  </a>     * @return the element previously at the specified position.
+<a name=484 class="linenum">484  </a>     *
+<a name=485 class="linenum">485  </a>     * @exception IndexOutOfBoundsException if the index is out of
+<a name=486 class="linenum">486  </a>     *            range (index &lt; 0 || index &gt;= size()).
+<a name=487 class="linenum">487  </a>     */</span>
+<a name=488 class="linenum">488  </a>
+<a name=489 class="linenum">489  </a>    public short <a class="methodDef" name=ShortList.remove(int) href=ShortList_java_ref.html#ShortList.remove(int)>remove</a>(final int index)
+<a name=490 class="linenum">490  </a>    {
+<a name=491 class="linenum">491  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.remove.index>index</a> &gt;= <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=492 class="linenum">492  </a>        {
+<a name=493 class="linenum">493  </a>            throw new IndexOutOfBoundsException();
+<a name=494 class="linenum">494  </a>        }
+<a name=495 class="linenum">495  </a>        short rval = <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.remove.index>index</a> ];
+<a name=496 class="linenum">496  </a>
+<a name=497 class="linenum">497  </a>        System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.remove.index>index</a> + 1, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.remove.index>index</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> - <a class="varRef" title="int" href=ShortList_java.html#ShortList.remove.index>index</a>);
+<a name=498 class="linenum">498  </a>        <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>--;
+<a name=499 class="linenum">499  </a>        return <a class="varRef" title="short" href=ShortList_java.html#ShortList.remove.rval>rval</a>;
+<a name=500 class="linenum">500  </a>    }
+<a name=501 class="linenum">501  </a>
+<a name=502 class="linenum">502  </a>    <span class="comment">/**
+<a name=503 class="linenum">503  </a>     * Removes the first occurrence in this list of the specified
+<a name=504 class="linenum">504  </a>     * element (optional operation).  If this list does not contain
+<a name=505 class="linenum">505  </a>     * the element, it is unchanged.  More formally, removes the
+<a name=506 class="linenum">506  </a>     * element with the lowest index i such that (o.equals(get(i)))
+<a name=507 class="linenum">507  </a>     * (if such an element exists).
+<a name=508 class="linenum">508  </a>     *
+<a name=509 class="linenum">509  </a>     * @param o element to be removed from this list, if present.
+<a name=510 class="linenum">510  </a>     *
+<a name=511 class="linenum">511  </a>     * @return true if this list contained the specified element.
+<a name=512 class="linenum">512  </a>     */</span>
+<a name=513 class="linenum">513  </a>
+<a name=514 class="linenum">514  </a>    public boolean <a class="methodDef" name=ShortList.removeValue(short) href=ShortList_java_ref.html#ShortList.removeValue(short)>removeValue</a>(final short o)
+<a name=515 class="linenum">515  </a>    {
+<a name=516 class="linenum">516  </a>        boolean rval = false;
+<a name=517 class="linenum">517  </a>
+<a name=518 class="linenum">518  </a>        for (int j = 0; !<a class="varRef" title="boolean" href=ShortList_java.html#ShortList.removeValue.rval>rval</a> && (<a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>); <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a>++)
+<a name=519 class="linenum">519  </a>        {
+<a name=520 class="linenum">520  </a>            if (<a class="varRef" title="short" href=ShortList_java.html#ShortList.removeValue.o>o</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a> ])
+<a name=521 class="linenum">521  </a>            {
+<a name=522 class="linenum">522  </a>                System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a> + 1, <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a>, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> - <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeValue.j>j</a>);
+<a name=523 class="linenum">523  </a>                <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>--;
+<a name=524 class="linenum">524  </a>                <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.removeValue.rval>rval</a> = true;
+<a name=525 class="linenum">525  </a>            }
+<a name=526 class="linenum">526  </a>        }
+<a name=527 class="linenum">527  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.removeValue.rval>rval</a>;
+<a name=528 class="linenum">528  </a>    }
+<a name=529 class="linenum">529  </a>
+<a name=530 class="linenum">530  </a>    <span class="comment">/**
+<a name=531 class="linenum">531  </a>     * Removes from this list all the elements that are contained in
+<a name=532 class="linenum">532  </a>     * the specified collection
+<a name=533 class="linenum">533  </a>     *
+<a name=534 class="linenum">534  </a>     * @param c collection that defines which elements will be removed
+<a name=535 class="linenum">535  </a>     *          from this list.
+<a name=536 class="linenum">536  </a>     *
+<a name=537 class="linenum">537  </a>     * @return true if this list changed as a result of the call.
+<a name=538 class="linenum">538  </a>     */</span>
+<a name=539 class="linenum">539  </a>
+<a name=540 class="linenum">540  </a>    public boolean <a class="methodDef" name=ShortList.removeAll(ShortList) href=ShortList_java_ref.html#ShortList.removeAll(ShortList)>removeAll</a>(final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> c)
+<a name=541 class="linenum">541  </a>    {
+<a name=542 class="linenum">542  </a>        boolean rval = false;
+<a name=543 class="linenum">543  </a>
+<a name=544 class="linenum">544  </a>        for (int j = 0; <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeAll.j>j</a> &lt; <a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.removeAll.c>c</a>.<a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>; <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeAll.j>j</a>++)
+<a name=545 class="linenum">545  </a>        {
+<a name=546 class="linenum">546  </a>            if (<a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.removeValue(short)>removeValue</a>(<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.removeAll.c>c</a>.<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.removeAll.j>j</a> ]))
+<a name=547 class="linenum">547  </a>            {
+<a name=548 class="linenum">548  </a>                <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.removeAll.rval>rval</a> = true;
+<a name=549 class="linenum">549  </a>            }
+<a name=550 class="linenum">550  </a>        }
+<a name=551 class="linenum">551  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.removeAll.rval>rval</a>;
+<a name=552 class="linenum">552  </a>    }
+<a name=553 class="linenum">553  </a>
+<a name=554 class="linenum">554  </a>    <span class="comment">/**
+<a name=555 class="linenum">555  </a>     * Retains only the elements in this list that are contained in
+<a name=556 class="linenum">556  </a>     * the specified collection.  In other words, removes from this
+<a name=557 class="linenum">557  </a>     * list all the elements that are not contained in the specified
+<a name=558 class="linenum">558  </a>     * collection.
+<a name=559 class="linenum">559  </a>     *
+<a name=560 class="linenum">560  </a>     * @param c collection that defines which elements this set will
+<a name=561 class="linenum">561  </a>     *          retain.
+<a name=562 class="linenum">562  </a>     *
+<a name=563 class="linenum">563  </a>     * @return true if this list changed as a result of the call.
+<a name=564 class="linenum">564  </a>     */</span>
+<a name=565 class="linenum">565  </a>
+<a name=566 class="linenum">566  </a>    public boolean <a class="methodDef" name=ShortList.retainAll(ShortList) href=ShortList_java_ref.html#ShortList.retainAll(ShortList)>retainAll</a>(final <a class="classRef" href=ShortList_java.html#ShortList>ShortList</a> c)
+<a name=567 class="linenum">567  </a>    {
+<a name=568 class="linenum">568  </a>        boolean rval = false;
+<a name=569 class="linenum">569  </a>
+<a name=570 class="linenum">570  </a>        for (int j = 0; <a class="varRef" title="int" href=ShortList_java.html#ShortList.retainAll.j>j</a> &lt; <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>; )
+<a name=571 class="linenum">571  </a>        {
+<a name=572 class="linenum">572  </a>            if (!<a class="varRef" title="ShortList" href=ShortList_java.html#ShortList.retainAll.c>c</a>.<a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.contains(short)>contains</a>(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.retainAll.j>j</a> ]))
+<a name=573 class="linenum">573  </a>            {
+<a name=574 class="linenum">574  </a>                <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.remove(int)>remove</a>(<a class="varRef" title="int" href=ShortList_java.html#ShortList.retainAll.j>j</a>);
+<a name=575 class="linenum">575  </a>                <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.retainAll.rval>rval</a> = true;
+<a name=576 class="linenum">576  </a>            }
+<a name=577 class="linenum">577  </a>            else
+<a name=578 class="linenum">578  </a>            {
+<a name=579 class="linenum">579  </a>                <a class="varRef" title="int" href=ShortList_java.html#ShortList.retainAll.j>j</a>++;
+<a name=580 class="linenum">580  </a>            }
+<a name=581 class="linenum">581  </a>        }
+<a name=582 class="linenum">582  </a>        return <a class="varRef" title="boolean" href=ShortList_java.html#ShortList.retainAll.rval>rval</a>;
+<a name=583 class="linenum">583  </a>    }
+<a name=584 class="linenum">584  </a>
+<a name=585 class="linenum">585  </a>    <span class="comment">/**
+<a name=586 class="linenum">586  </a>     * Replaces the element at the specified position in this list
+<a name=587 class="linenum">587  </a>     * with the specified element
+<a name=588 class="linenum">588  </a>     *
+<a name=589 class="linenum">589  </a>     * @param index index of element to replace.
+<a name=590 class="linenum">590  </a>     * @param element element to be stored at the specified position.
+<a name=591 class="linenum">591  </a>     *
+<a name=592 class="linenum">592  </a>     * @return the element previously at the specified position.
+<a name=593 class="linenum">593  </a>     *
+<a name=594 class="linenum">594  </a>     * @exception IndexOutOfBoundsException if the index is out of
+<a name=595 class="linenum">595  </a>     *            range (index &lt; 0 || index &gt;= size()).
+<a name=596 class="linenum">596  </a>     */</span>
+<a name=597 class="linenum">597  </a>
+<a name=598 class="linenum">598  </a>    public short <a class="methodDef" name=ShortList.set(int,short) href=ShortList_java_ref.html#ShortList.set(int,short)>set</a>(final int index, final short element)
+<a name=599 class="linenum">599  </a>    {
+<a name=600 class="linenum">600  </a>        if (<a class="varRef" title="int" href=ShortList_java.html#ShortList.set.index>index</a> &gt;= <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=601 class="linenum">601  </a>        {
+<a name=602 class="linenum">602  </a>            throw new IndexOutOfBoundsException();
+<a name=603 class="linenum">603  </a>        }
+<a name=604 class="linenum">604  </a>        short rval = <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.set.index>index</a> ];
+<a name=605 class="linenum">605  </a>
+<a name=606 class="linenum">606  </a>        <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.set.index>index</a> ] = <a class="varRef" title="short" href=ShortList_java.html#ShortList.set.element>element</a>;
+<a name=607 class="linenum">607  </a>        return <a class="varRef" title="short" href=ShortList_java.html#ShortList.set.rval>rval</a>;
+<a name=608 class="linenum">608  </a>    }
+<a name=609 class="linenum">609  </a>
+<a name=610 class="linenum">610  </a>    <span class="comment">/**
+<a name=611 class="linenum">611  </a>     * Returns the number of elements in this list. If this list
+<a name=612 class="linenum">612  </a>     * contains more than Integer.MAX_VALUE elements, returns
+<a name=613 class="linenum">613  </a>     * Integer.MAX_VALUE.
+<a name=614 class="linenum">614  </a>     *
+<a name=615 class="linenum">615  </a>     * @return the number of elements in this ShortList
+<a name=616 class="linenum">616  </a>     */</span>
+<a name=617 class="linenum">617  </a>
+<a name=618 class="linenum">618  </a>    public int <a class="methodDef" name=ShortList.size() href=ShortList_java_ref.html#ShortList.size()>size</a>()
+<a name=619 class="linenum">619  </a>    {
+<a name=620 class="linenum">620  </a>        return <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>;
+<a name=621 class="linenum">621  </a>    }
+<a name=622 class="linenum">622  </a>
+<a name=623 class="linenum">623  </a>    <span class="comment">/**
+<a name=624 class="linenum">624  </a>     * Returns an array containing all of the elements in this list in
+<a name=625 class="linenum">625  </a>     * proper sequence.  Obeys the general contract of the
+<a name=626 class="linenum">626  </a>     * Collection.toArray method.
+<a name=627 class="linenum">627  </a>     *
+<a name=628 class="linenum">628  </a>     * @return an array containing all of the elements in this list in
+<a name=629 class="linenum">629  </a>     *         proper sequence.
+<a name=630 class="linenum">630  </a>     */</span>
+<a name=631 class="linenum">631  </a>
+<a name=632 class="linenum">632  </a>    public short [] <a class="methodDef" name=ShortList.toArray() href=ShortList_java_ref.html#ShortList.toArray()>toArray</a>()
+<a name=633 class="linenum">633  </a>    {
+<a name=634 class="linenum">634  </a>        short[] rval = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#short>short</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a> ];
+<a name=635 class="linenum">635  </a>
+<a name=636 class="linenum">636  </a>        System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.rval>rval</a>, 0, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=637 class="linenum">637  </a>        return <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.rval>rval</a>;
+<a name=638 class="linenum">638  </a>    }
+<a name=639 class="linenum">639  </a>
+<a name=640 class="linenum">640  </a>    <span class="comment">/**
+<a name=641 class="linenum">641  </a>     * Returns an array containing all of the elements in this list in
+<a name=642 class="linenum">642  </a>     * proper sequence.  Obeys the general contract of the
+<a name=643 class="linenum">643  </a>     * Collection.toArray(Object[]) method.
+<a name=644 class="linenum">644  </a>     *
+<a name=645 class="linenum">645  </a>     * @param a the array into which the elements of this list are to
+<a name=646 class="linenum">646  </a>     *          be stored, if it is big enough; otherwise, a new array
+<a name=647 class="linenum">647  </a>     *          is allocated for this purpose.
+<a name=648 class="linenum">648  </a>     *
+<a name=649 class="linenum">649  </a>     * @return an array containing the elements of this list.
+<a name=650 class="linenum">650  </a>     */</span>
+<a name=651 class="linenum">651  </a>
+<a name=652 class="linenum">652  </a>    public short [] <a class="methodDef" name=ShortList.toArray(short) href=ShortList_java_ref.html#ShortList.toArray(short)>toArray</a>(final short [] a)
+<a name=653 class="linenum">653  </a>    {
+<a name=654 class="linenum">654  </a>        short[] rval;
+<a name=655 class="linenum">655  </a>
+<a name=656 class="linenum">656  </a>        if (<a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.a>a</a>.length == <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>)
+<a name=657 class="linenum">657  </a>        {
+<a name=658 class="linenum">658  </a>            System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.a>a</a>, 0, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=659 class="linenum">659  </a>            <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.rval>rval</a> = <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.a>a</a>;
+<a name=660 class="linenum">660  </a>        }
+<a name=661 class="linenum">661  </a>        else
+<a name=662 class="linenum">662  </a>        {
+<a name=663 class="linenum">663  </a>            <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.rval>rval</a> = <a class="methodRef" title="ShortList" href=ShortList_java.html#ShortList.toArray()>toArray</a>();
+<a name=664 class="linenum">664  </a>        }
+<a name=665 class="linenum">665  </a>        return <a class="varRef" title="short" href=ShortList_java.html#ShortList.toArray.rval>rval</a>;
+<a name=666 class="linenum">666  </a>    }
+<a name=667 class="linenum">667  </a>
+<a name=668 class="linenum">668  </a>    private void <a class="methodDef" name=ShortList.growArray(int) href=ShortList_java_ref.html#ShortList.growArray(int)>growArray</a>(final int new_size)
+<a name=669 class="linenum">669  </a>    {
+<a name=670 class="linenum">670  </a>        int     size      = (<a class="varRef" title="int" href=ShortList_java.html#ShortList.growArray.new_size>new_size</a> == <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>.length) ? <a class="varRef" title="int" href=ShortList_java.html#ShortList.growArray.new_size>new_size</a> + 1
+<a name=671 class="linenum">671  </a>                                                        : <a class="varRef" title="int" href=ShortList_java.html#ShortList.growArray.new_size>new_size</a>;
+<a name=672 class="linenum">672  </a>        short[] new_array = new <a class="classRef" href=..\..\..\..\~NO NAME~\null#short>short</a>[ <a class="varRef" title="int" href=ShortList_java.html#ShortList.growArray.size>size</a> ];
+<a name=673 class="linenum">673  </a>
+<a name=674 class="linenum">674  </a>        System.arraycopy(<a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a>, 0, <a class="varRef" title="short" href=ShortList_java.html#ShortList.growArray.new_array>new_array</a>, 0, <a class="varRef" title="int" href=ShortList_java.html#ShortList._limit>_limit</a>);
+<a name=675 class="linenum">675  </a>        <a class="varRef" title="short" href=ShortList_java.html#ShortList._array>_array</a> = <a class="varRef" title="short" href=ShortList_java.html#ShortList.growArray.new_array>new_array</a>;
+<a name=676 class="linenum">676  </a>    }
+<a name=677 class="linenum">677  </a>}   <span class="comment">// end public class ShortList</span>
+<a name=678 class="linenum">678  </a>
+<a name=679 class="linenum">679  </a></pre>

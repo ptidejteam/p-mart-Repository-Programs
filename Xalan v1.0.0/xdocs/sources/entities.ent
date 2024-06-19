@@ -1,0 +1,14 @@
+<?xml encoding="US-ASCII"?>
+
+<!ENTITY xslt4j "Xalan">
+<!ENTITY xml4j "Xerces-Java">
+<!ENTITY xslt4c "Xalan-C++">
+<!ENTITY xml4c "Xerces-C++">
+<!ENTITY done-j SYSTEM "sbk:/sources/xalan/DONE">
+<!ENTITY status-j SYSTEM "sbk:/sources/xalan/STATUS">
+<!ENTITY bugs-j SYSTEM "sbk:/sources/xalan/BUGS">
+<!ENTITY done-c SYSTEM "sbk:/sources/xalan/c/DONE">
+<!ENTITY status-c SYSTEM "sbk:/sources/xalan/c/STATUS">
+<!ENTITY bugs-c SYSTEM "sbk:/sources/xalan/c/BUGS">
+<!ENTITY download "The Xalan download from xml.apache.org includes xerces.jar from Xerces-j version 1.0.3.">
+

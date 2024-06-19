@@ -1,0 +1,229 @@
+				<microArchitecture number="12">
+					<roles>
+						<singletons>
+							<singleton roleKind="Class">
+								<entity kind="Class">com.jmonkey.office.lexi.support.EditorActionManager</entity>
+								<properties>
+									<AID value="2.0"/>
+									<DIT value="2.0"/>
+									<connectivity value="0.5788235294117647"/>
+									<ICHClass value="104.0"/>
+									<LCOM1 value="1508.0"/>
+									<LCOM2 value="130.0"/>
+									<LCOM5 value="0.9955436712970921"/>
+									<NCM value="55.0"/>
+									<NMA value="53.0"/>
+									<NMI value="2.0"/>
+									<NOA value="2.0"/>
+									<NOP value="1.0"/>
+									<WMC value="362.0"/>
+									<cohesionAttributes value="0.05188679245283019"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>com.jmonkey.export.Format</target>
+										<properties>
+											<CBO value="16.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.export.Registry</target>
+										<properties>
+											<CBO value="7.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.Main</target>
+										<properties>
+											<CBO value="90.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.ActionComboBox</target>
+										<properties>
+											<CBO value="106.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.ActionManager</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.ActionToolBar</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.ButtonBorder</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.Editor</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.EditorActionManager</target>
+										<properties>
+											<CBO value="330.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.FindUI</target>
+										<properties>
+											<CBO value="13.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.FontChooser</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.HTMLEditor</target>
+										<properties>
+											<CBO value="51.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.RTFEditor</target>
+										<properties>
+											<CBO value="51.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>com.jmonkey.office.lexi.support.editors.TEXTEditor</target>
+										<properties>
+											<CBO value="52.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Color</target>
+										<properties>
+											<CBO value="39.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Component</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Font</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Graphics</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.GraphicsEnvironment</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.awt.Image</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.String</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.StringBuffer</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Thread</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Collections</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Iterator</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Map</target>
+										<properties>
+											<CBO value="97.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.util.Set</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.Action</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.text.Element</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.text.JTextComponent</target>
+										<properties>
+											<CBO value="10.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.text.MutableAttributeSet</target>
+										<properties>
+											<CBO value="8.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.text.StyleConstants</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>javax.swing.text.StyledDocument</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</singleton>
+						</singletons>
+					</roles>
+				</microArchitecture>
+			</microArchitectures>
+		</designPattern>
+	</program>
+	<program type="Java">

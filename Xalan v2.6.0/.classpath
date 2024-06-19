@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="org/apache/xml/utils/synthetic/|org/apache/xalan/xsltc/util/JavaCupRedirect.java" kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/ant.jar"/>
+	<classpathentry kind="lib" path="lib/BCEL.jar"/>
+	<classpathentry kind="lib" path="lib/bsf.jar"/>
+	<classpathentry kind="lib" path="lib/java_cup.jar"/>
+	<classpathentry kind="lib" path="lib/JLex.jar"/>
+	<classpathentry kind="lib" path="lib/regexp.jar"/>
+	<classpathentry kind="lib" path="lib/runtime.jar"/>
+	<classpathentry kind="lib" path="lib/stylebook-1.0-b3_xalan-2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

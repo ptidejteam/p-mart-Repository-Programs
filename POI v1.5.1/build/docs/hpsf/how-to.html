@@ -1,0 +1,487 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>HPSF HOW-TO</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>Navigation</h4>
+<ul>
+<li>
+<a href="../index.html">Main</a>
+</li>
+</ul>
+</div>
+<div id="submenu">
+<h4>HPSF</h4>
+<ul>
+<li>
+<a href="index.html">Overview</a>
+</li>
+<li>
+<a href="how-to.html">How To</a>
+</li>
+<li>
+<a href="internals.html">Internals</a>
+</li>
+<li>
+<a href="todo.html">To Do</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>HPSF HOW-TO</h1>
+</div>
+<div id="contents">
+ 
+ 
+  
+<h2>How To Use the HPSF APIs</h2>
+<div class="section">
+
+   
+<p>This HOW-TO is organized in three section. You should read them
+    sequentially because the later sections build upon the earlier ones.</p>
+
+   
+<blockquote>
+<ol>
+    
+<li>
+     
+<p>The <a href="#sec1">first section</a> explains how to read
+      the most important standard properties of a Microsoft Office
+      document. Standard properties are things like title, author, creation
+      date etc. It is quite likely that you will find here what you need and
+      don't have to read the other sections.</p>
+    
+</li>
+
+    
+<li>
+     
+<p>The <a href="#sec2">second section</a> goes a small step
+      further and focusses on reading additional standard properties. It also
+      talks about exceptions that may be thrown when dealing with HPSF and
+      shows how you can read properties of embedded objects.</p>
+     
+</li>
+
+    
+<li>
+     
+<p>The <a href="#sec3">third section</a> tells how to read
+      non-standard properties. Non-standard properties are application-specific
+      name/value/type triples.</p>
+     
+</li>
+   
+</ol>
+</blockquote>
+
+   
+<a name="sec1">
+<!--anchor--></a>
+   
+<h3>Reading Standard Properties</h3>
+<div class="section">
+
+    
+<p>
+<i>This section explains how to read
+      the most important standard properties of a Microsoft Office
+      document. Standard properties are things like title, author, creation
+      date etc. Chances are that you will find here what you need and
+      don't have to read the other sections.</i>
+</p>
+
+    
+<p>The first thing you should understand is that properties are stored in
+     separate documents inside the POI filesystem. (If you don't know what a
+     POI filesystem is, read its <a href="../poifs/index.html">documentation</a>.)  A document in a POI
+     filesystem is also called a <b>stream</b>.</p>
+
+    
+<p>The following example shows how to read a POI filesystem's
+     "title" property. Reading other properties is similar. Consider the API
+     documentation of <span class="fixed">org.apache.poi.hpsf.SummaryInformation</span>.</p>
+
+    
+<p>The standard properties this section focusses on can be
+     found in a document called <i>\005SummaryInformation</i> in the root of
+     the POI filesystem. The notation <i>\005</i> in the document's name
+     means the character with the decimal value of 5. In order to read the
+     title, an application has to perform the following steps:</p>
+
+    
+<blockquote>
+<ol>
+     
+<li>
+      
+<p>Open the document <i>\005SummaryInformation</i> located in the root
+       of the POI filesystem.</p>
+     
+</li>
+     
+<li>
+      
+<p>Create an instance of the class
+       <span class="fixed">SummaryInformation</span> from that
+       document.</p>
+     
+</li>
+     
+<li>
+      
+<p>Call the <span class="fixed">SummaryInformation</span> instance's
+       <span class="fixed">getTitle()</span> method.</p>
+     
+</li>
+    
+</ol>
+</blockquote>
+
+    
+<p>Sounds easy, doesn't it? Here are the steps in detail.</p>
+
+
+    
+<h4>Open the document \005SummaryInformation in the root of the        POI filesystem</h4>
+<div class="section">
+
+     
+<p>An application that wants to open a document in a POI filesystem
+      (POIFS) proceeds as shown by the following code fragment. (The full
+      source code of the sample application is available in the
+      <i>examples</i> section of the POI source tree as
+      <i>ReadTitle.java</i>.)</p>
+
+     
+<div class="code">
+<pre>
+import java.io.*;
+import org.apache.poi.hpsf.*;
+import org.apache.poi.poifs.eventfilesystem.*;
+
+// ...
+
+public static void main(String[] args)
+    throws IOException
+{
+    final String filename = args[0];
+    POIFSReader r = new POIFSReader();
+    r.registerListener(new MyPOIFSReaderListener(),
+                       "\005SummaryInformation");
+    r.read(new FileInputStream(filename));
+}</pre>
+</div>
+
+     
+<p>The first interesting statement is</p>
+
+     
+<div class="code">
+<pre>POIFSReader r = new POIFSReader();</pre>
+</div>
+
+     
+<p>It creates a
+      <span class="fixed">org.apache.poi.poifs.eventfilesystem.POIFSReader</span> instance
+      which we shall need to read the POI filesystem. Before the application
+      actually opens the POI filesystem we have to tell the
+      <span class="fixed">POIFSReader</span> which documents we are interested in. In this
+      case the application should do something with the document
+      <i>\005SummaryInformation</i>.</p>
+
+     
+<div class="code">
+<pre>
+r.registerListener(new MyPOIFSReaderListener(),
+                   "\005SummaryInformation");</pre>
+</div>
+
+     
+<p>This method call registers a
+      <span class="fixed">org.apache.poi.poifs.eventfilesystem.POIFSReaderListener</span>
+      with the <span class="fixed">POIFSReader</span>. The <span class="fixed">POIFSReaderListener</span>
+      interface specifies the method <span class="fixed">processPOIFSReaderEvent</span>
+      which processes a document. The class
+      <span class="fixed">MyPOIFSReaderListener</span> implements the
+      <span class="fixed">POIFSReaderListener</span> and thus the
+      <span class="fixed">processPOIFSReaderEvent</span> method. The eventing POI filesystem
+      calls this method when it finds the <i>\005SummaryInformation</i>
+      document. In the sample application <span class="fixed">MyPOIFSReaderListener</span> is
+      a static class in the <i>ReadTitle.java</i> source file.)</p>
+
+     
+<p>Now everything is prepared and reading the POI filesystem can
+      start:</p>
+
+     
+<div class="code">
+<pre>r.read(new FileInputStream(filename));</pre>
+</div>
+
+     
+<p>The following source code fragment shows the
+      <span class="fixed">MyPOIFSReaderListener</span> class and how it retrieves the
+      title.</p>
+
+     
+<div class="code">
+<pre>
+static class MyPOIFSReaderListener implements POIFSReaderListener
+{
+    public void processPOIFSReaderEvent(POIFSReaderEvent e)
+    {
+        SummaryInformation si = null;
+        try
+        {
+            si = (SummaryInformation)
+                 PropertySetFactory.create(e.getStream());
+        }
+        catch (Exception ex)
+        {
+            throw new RuntimeException
+                ("Property set stream \"" +
+                 event.getPath() + event.getName() + "\": " + ex);
+        }
+        final String title = si.getTitle();
+        if (title != null)
+            System.out.println("Title: \"" + title + "\"");
+        else
+            System.out.println("Document has no title.");
+    }
+}
+</pre>
+</div>
+
+     
+<p>The line</p>
+
+     
+<div class="code">
+<pre>SummaryInformation si = null;</pre>
+</div>
+
+     
+<p>declares a <span class="fixed">SummaryInformation</span> variable and initializes it
+      with <span class="fixed">null</span>. We need an instance of this class to access the
+      title. The instance is created in a <span class="fixed">try</span> block:</p>
+
+     
+<div class="code">
+<pre>si = (SummaryInformation)
+                 PropertySetFactory.create(e.getStream());</pre>
+</div>
+
+     
+<p>The expression <span class="fixed">e.getStream()</span> returns the input stream
+      containing the bytes of the property set stream named
+      <i>\005SummaryInformation</i>. This stream is passed into the
+      <span class="fixed">create</span> method of the factory class
+      <span class="fixed">org.apache.poi.hpsf.PropertySetFactory</span> which returns
+      a <span class="fixed">org.apache.poi.hpsf.PropertySet</span> instance. It is more or
+      less safe to cast this result to <span class="fixed">SummaryInformation</span>, a
+      convenience class with methods like <span class="fixed">getTitle()</span>,
+      <span class="fixed">getAuthor()</span> etc.</p>
+
+     
+<p>The <span class="fixed">PropertySetFactory.create</span> method may throw all sorts
+      of exceptions. We'll deal with them in the next sections. For now we just
+      catch all exceptions and throw a <span class="fixed">RuntimeException</span>
+      containing the message text of the origin exception.</p>
+
+     
+<p>If all goes well, the sample application retrieves the title and prints
+     it to the standard output. As you can see you must be prepared for the
+      case that the POI filesystem does not have a title.</p>
+
+     
+<div class="code">
+<pre>final String title = si.getTitle();
+    if (title != null)
+        System.out.println("Title: \"" + title + "\"");
+    else
+        System.out.println("Document has no title.");</pre>
+</div>
+
+     
+<p>Please note that a Microsoft Office document does not necessarily
+      contain the <i>\005SummaryInformation</i> stream. The documents created
+      by the Microsoft Office suite have one, as far as I know. However, an
+      Excel spreadsheet exported from StarOffice 5.2 won't have a
+      <i>\005SummaryInformation</i> stream. In this case the applications
+      won't throw an exception but simply does not call the
+      <span class="fixed">processPOIFSReaderEvent</span> method. You have been warned!</p>
+    
+</div>
+   
+</div>
+
+   
+<a name="sec2">
+<!--anchor--></a>
+   
+<h3>Additional Standard Properties, Exceptions And Embedded Objects</h3>
+<div class="section">
+
+    
+<p>
+<i>This section focusses on reading additional standard properties. It
+     also talks about exceptions that may be thrown when dealing with HPSF and
+     shows how you can read properties of embedded objects.</i>
+</p>
+
+    
+<p>A couple of <b>additional standard properties</b> are not
+     contained in the <i>\005SummaryInformation</i> stream explained above,
+     for example a document's category or the number of multimedia clips in a
+     PowerPoint presentation. Microsoft has invented an additional stream named
+     <i>\005DocumentSummaryInformation</i> to hold these properties. With two
+     minor exceptions you can proceed exactly as described above to read the
+     properties stored in <i>\005DocumentSummaryInformation</i>:</p>
+
+    
+<blockquote>
+<ul>
+     
+<li>
+<p>Instead of <i>\005SummaryInformation</i> use
+       <i>\005DocumentSummaryInformation</i> as the stream's name.</p>
+</li>
+     
+<li>
+<p>Replace all occurrences of the class
+       <span class="fixed">SummaryInformation</span> by
+       <span class="fixed">DocumentSummaryInformation</span>.</p>
+</li>
+    
+</ul>
+</blockquote>
+
+    
+<p>And of course you cannot call <span class="fixed">getTitle()</span> because
+     <span class="fixed">DocumentSummaryInformation</span> has different query methods. See
+     the API documentation for the details!</p>
+
+    
+<p>In the previous section the application simply caught all
+     <b>exceptions</b> and was in no way interested in any
+     details. However, a real application will likely want to know what went
+     wrong and act appropriately. Besides any IO exceptions there are three
+     HPSF resp. POI specific exceptions you should know about:</p>
+
+    
+<blockquote>
+<dl>
+     
+<li>
+<strong>NoPropertySetStreamException:</strong> - </li>
+     
+<p>This exception is thrown if the application tries to create a
+       <span class="fixed">PropertySet</span> or one of its subclasses
+       <span class="fixed">SummaryInformation</span> and
+       <span class="fixed">DocumentSummaryInformation</span> from a stream that is not a
+       property set stream. A faulty property set stream counts as not being a 
+       property set stream at all. An application should be prepared to deal
+       with this case even if opens streams named
+       <i>\005SummaryInformation</i> or
+       <i>\005DocumentSummaryInformation</i> only. These are just names. A
+       stream's name by itself does not ensure that the stream contains the
+       expected contents and that this contents is correct.</p>
+
+     
+<li>
+<strong>UnexpectedPropertySetTypeException</strong> - </li>
+     
+<p>This exception is thrown if a certain type of property set is
+       expected somewhere (e.g. a <span class="fixed">SummaryInformation</span> or
+       <span class="fixed">DocumentSummaryInformation</span>) but the provided property
+       set is not of that type.</p>
+
+     
+<li>
+<strong>MarkUnsupportedException</strong> - </li>
+     
+<p>This exception is thrown if an input stream that is to be parsed
+       into a property set does not support the
+       <span class="fixed">InputStream.mark(int)</span> operation. The POI filesystem uses
+       the <span class="fixed">DocumentInputStream</span> class which does support this
+       operation, so you are safe here. However, if you read a property set
+       stream from another kind of input stream things may be
+       different.</p>
+    
+</dl>
+</blockquote>
+
+    
+<p>Many Microsoft Office documents contain <b>embedded
+      objects</b>, for example an Excel sheet on a page in a Word
+     document. Embedded objects may have property sets of their own. An
+     application can open these property set streams as described above. The
+     only difference is that they are not located in the POI filesystem's root
+     but in a nested directory instead. Just register a
+     <span class="fixed">POIFSReaderListener</span> for the property set streams you are
+     interested in. For example, the <i>POIBrowser</i> application in the
+     contrib section tries to open each and every document in a POI filesystem
+     as a property set stream. If this operation was successful it displays the
+     properties.</p>
+   
+</div>
+
+   
+<a name="sec3">
+<!--anchor--></a>
+   
+<h3>Reading Non-Standard Properties</h3>
+<div class="section">
+
+    
+<p>
+<i>This section tells how to read
+     non-standard properties. Non-standard properties are application-specific
+     name/value/type triples.</i>
+</p>
+
+    
+   
+</div>
+  
+</div>
+ 
+
+<div id="authors">by&nbsp;Rainer Klute</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

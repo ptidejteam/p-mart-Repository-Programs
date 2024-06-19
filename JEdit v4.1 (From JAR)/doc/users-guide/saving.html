@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Saving Files</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="files.html" title="Chapter 3. Working With Files"><link rel="previous" href="opening.html" title="Opening Files"><link rel="next" href="line-separators.html" title="Line Separators"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Saving Files</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="opening.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Working With Files</th><td width="20%" align="right"> <a accesskey="n" href="line-separators.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="saving"></a>Saving Files</h2></div></div><p>
+   Changed made in a buffer do not affect the file on disk until the
+   buffer is <i>saved</i>.
+  </p><p>
+   <b>File</b>&gt;<b>Save</b> (shortcut:
+   <b>Control</b>-<b>S</b>)
+   saves the current buffer to disk.
+  </p><p>
+   <b>File</b>&gt;<b>Save As</b> renames
+   the buffer and saves it in a new location. Note that
+   using this command to save over another open buffer will close the other
+   buffer, to stop two buffers from being able to share the same path name.
+  </p><p>
+   <b>File</b>&gt;<b>Save a Copy As</b> saves
+   the buffer to different location but does not rename it., but doesn't rename the
+   buffer, and doesn't clear the &#8220;modified&#8221; flag. Note that
+   using this command to save over another open buffer will automatically reload
+   the other buffer.
+  </p><p>
+   <b>File</b>&gt;<b>Save All</b>
+   (shortcut: <b>Control</b>-<b>E</b>
+   <b>Control</b>-<b>S</b>) saves all
+   open buffers to disk, asking for confirmation first.
+  </p><div class="sidebar"><p class="title"><b>Two-stage save</b></p><p>
+    To prevent data loss in the unlikely case that jEdit should crash in the
+    middle of saving a file, files are first saved to a temporary file named
+    <tt>#<i><tt>filename</tt></i>#save#</tt>. If this
+    operation is successful, the original file is replaced with the temporary
+    file.
+   </p><p>
+    However, in some situations, this behavior is undesirable. For example,
+    on Unix saving files this way will result in the owner and group of the
+    file being reset. If this bothers you, you can disable this so-called
+    &#8220;two-stage save&#8221; in the <b>Loading and Saving</b>
+    pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog box.
+   </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2878850"></a>Autosave and Crash Recovery</h3></div></div><p>
+    The autosave feature protects your work from computer crashes and
+    such. Every 30 seconds, all buffers with unsaved changes are
+    written out to their respective file names, enclosed in hash
+    (&#8220;#&#8221;) characters. For example, <tt>program.c</tt>
+    will be autosaved to <tt>#program.c#</tt>.
+   </p><p>
+    Saving a buffer using
+    one of the commands in the previous section automatically deletes the
+    autosave file, so they will only ever be visible in the unlikely
+    event of a jEdit (or operating system) crash.
+   </p><p>
+    If an autosave file is
+    found while a buffer is being loaded, jEdit will offer to recover the
+    autosaved data.
+   </p><p>
+    The autosave interval can be changed
+    in the <b>Loading and Saving</b> pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog box; see <a href="global-opts.html" title="The Global Options Dialog Box">the section called &#8220;The Global Options Dialog Box&#8221;</a>.
+   </p></div><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2878929"></a>Backups</h3></div></div><p>
+    The backup feature can be used to roll back to the previous version
+    of a file after changes were made. When a buffer is saved
+    for the first time after being opened, its original contents are
+    &#8220;backed up&#8221; under a different file name.
+   </p><p>
+    The behavior of the backup feature is specified in the<b>Loading and
+    Saving</b> pane of the
+    <b>Utilities</b>&gt;<b>Global Options</b>
+    dialog box.
+   </p><p>
+    The default behavior is to back up the original contents
+    to the buffer's file name suffixed with a tilde (&#8220;~&#8221;).
+    For example, a file named <tt>paper.tex</tt> is backed up to
+    <tt>paper.tex~</tt>.
+   </p><div class="itemizedlist"><ul type="disc"><li><p>
+     The <b>Max number of backups</b> setting determines the
+     number of backups to save. Setting this to zero disables the backup
+     feature. Settings this to more than one adds numbered suffixes to file
+     names. By default only one backup is saved.
+    </p></li><li><p>
+     If the <b>Backup directory</b> setting is non-empty, backups
+     are saved in that location. Otherwise, they are saved in the same directory
+     as the original file. The latter is the default behavior.
+    </p></li><li><p>
+     The <b>Backup filename prefix</b> setting is the prefix that
+     is added to the backed-up file name. This is empty by default.
+    </p></li><li><p>
+     The <b>Backup filename suffix</b> setting is the suffix that
+     is added to the backed-up file name. This is &#8220;~&#8221; by default.
+    </p></li><li><p>
+     Backups can optionally be saved in a specified backup directory, instead of
+     the directory of the original file. This can reduce clutter.
+    </p></li><li><p>
+     The <b>Backup on every save</b> option is off by default,
+     which results in a backup only being created the first time a buffer is
+     saved in an editing session. If switched on, backups are
+     created every time a buffer is saved.
+    </p></li></ul></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="opening.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="files.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="line-separators.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Opening Files </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Line Separators</td></tr></table></div></body></html>

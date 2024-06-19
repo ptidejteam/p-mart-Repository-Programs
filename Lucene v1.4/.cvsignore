@@ -1,0 +1,4 @@
+bin
+*~
+velocity.log
+build.properties

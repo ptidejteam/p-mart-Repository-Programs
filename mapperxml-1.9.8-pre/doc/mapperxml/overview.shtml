@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Overview</title>
+  <link href="../common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="../common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%">
+        <h1>1. MapperXML Overview</h1>
+
+        <p>
+        <center>
+        <img src="media/OverviewMapperXML.jpg" alt="Overview of MapperXML Component">
+        <br/>
+        figure 1.1 - Mapper Architecture
+        </center>
+        </p>
+
+        <h2>1.1 Architecture</h2>
+        <p>MapperXML is a presentation framework for web applications.
+        The MapperXML presentation framework(fig 1.1) is based on the Model-View-Controller pattern.
+        The MVC components use models which can bind to simple java ValueObjects and Collections.
+        The framework is extensible for other presentation applications (reporting, data exchange, etc)
+        by extending and implementing appropriate containers, components and subcomponents.
+        The overall architechure is very flexible through the extensive use of subcomponents.
+        All Components and Containers are made up of subcomponents which can be easily replaced
+        or extended to provide new behavior.
+        </p>
+
+        <h2>1.2 Web Application Approaches</h2>
+
+        <p>MapperXML uses a different approach to building web applications. Many web programming
+        languages involve mixing HTML and programming code in the same unit. This forces the
+        person writing the code to know HTML and programming. It also produces code which is difficult
+        to maintain. Although design patterns have evolved to reduce this problem, they have created
+        new problems. Current JSP Model 2 (fig 1.2) design patterns advocate using a Servlet as the controller
+        and moving as much code as possible to Beans which will be invoked by the JSP.  This approach
+        still leaves some code in the HTML and fragments the programming unit (Servlet+JSP+Bean(s)).
+        </p>
+
+        <p>
+        <center>
+        <img src="media/MODEL2_sml.gif" alt="JSP Model 2 Approach">
+        <br/>
+        figure 1.2 - JSP Model 2 Approach
+        </center>
+        </p>
+
+        <p>MapperXML use some of the designs pioneered by the Enhydra project and the XMLC subproject.  The
+        MapperXML approach has three important features. The first is the role of the ServletApp(Servlet). The
+        ServletApp acts as a very high level application controller and delegator.  The real work is done
+        in the ServletForms.  The ServletApp examines the incoming request and invokes the appropriate
+        ServletForm to handle the request (fig 1.3).
+        </p>
+
+        <p>
+        <center>
+        <img src="media/MODEL_MapperXML.gif" alt="MapperXML Approach">
+        <br/>
+        figure 1.3 - MapperXML Approach
+        </center>
+        </p>
+
+        <p>The other feature is how MapperXML produces the HTML or XML response. MapperXML uses
+        a prototype XML document which is loaded into memory as a org.w3c.dom.Document(DOM). The
+        DOM is then manipulated to produce the desired result. Runtime values can be substituted for
+        prototype values in the DOM (fig 1.4). The DOM is then rendered as a character stream and sent back to
+        the client. The prototype XML/HTML document does not contain any code. The only requirement is use
+        of an "ID" attribute to identify the elements which will be modified at runtime.
+        </p>
+
+        <p>
+        <center>
+        <img src="media/XMLModify.gif" alt="MapperXML DOM Approach">
+        <br/>
+        figure 1.4 - MapperXML DOM Approach
+        </center>
+        </p>
+
+        <p>The final feature is the use of individual MVC components within the ServletForm.  These components
+        are very similar to Java Swing(tm) components. These components can respond to events in the http
+        request (Controller), receive values from the http request and store them in a Model/ValueHolder,
+        and render their values to the DOM (View) (fig 1.5).  MapperXML includes a variety of components to build web
+        applications (fields, buttons, etc).</p>
+
+        <p>
+        <center>
+        <img src="media/ComponentMVC.gif" alt="MapperXML MVC Components">
+        <br/>
+        figure 1.5 - MapperXML MVC Components
+        </center>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="../common/footer.shtml" -->
+</div>
+</body>
+</html>

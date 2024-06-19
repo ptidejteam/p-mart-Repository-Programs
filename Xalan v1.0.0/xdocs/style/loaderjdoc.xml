@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<loader>
+  <processor name="xslt">
+    <parameter name="stylesheet" value="sbk:/style/stylesheets/packages2project.xsl"/>
+  </processor>
+</loader>

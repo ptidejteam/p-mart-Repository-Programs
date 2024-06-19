@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File written by PDE 1.0 -->
+<plugin
+	id="org.eclipse.team.ui"
+	name="%pluginName"
+	version="2.1.0"
+	provider-name="%providerName"
+	class="org.eclipse.team.internal.ui.TeamUIPlugin">
+
+<requires>
+   <import plugin="org.eclipse.core.resources"/>
+   <import plugin="org.eclipse.team.core"/>
+   <import plugin="org.eclipse.ui"/>
+   <import plugin="org.eclipse.compare"/>
+   <import plugin="org.apache.xerces"/>
+</requires>
+
+<runtime>
+   <library name="teamui.jar">
+      <export name="*"/>
+      <packages prefixes="org.eclipse.team.ui, org.eclipse.team.internal.ui"/>
+   </library>
+</runtime>
+
+<extension-point id="configurationWizards" name="%configurationWizards" schema="schema/configurationWizards.exsd"/>
+<extension-point id="targetConfigWizards" name="%targetWizards"/>
+
+<!-- **************** PREFERENCES ******************* -->
+   <extension
+      point = "org.eclipse.ui.preferencePages">
+      	<page id="org.eclipse.team.ui.TeamPreferences"
+      		class="org.eclipse.team.internal.ui.TeamPreferencePage"
+      		name="%TeamPreferencePage.name">
+      	</page>
+       <page id="org.eclipse.team.ui.TextPreferences"
+       	  class="org.eclipse.team.internal.ui.TextPreferencePage"
+       	    name="%TextPreferencePage.name"
+       	    category="org.eclipse.team.ui.TeamPreferences">
+       </page>
+       <page id="org.eclipse.team.ui.IgnorePreferences"
+       	  class="org.eclipse.team.internal.ui.IgnorePreferencePage"
+       	    name="%IgnorePreferencePage.name"
+       	    category="org.eclipse.team.ui.TeamPreferences">
+       </page>
+   </extension>
+   
+<!-- ************** Property Pages *************** -->
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            name="%loginDetails"
+            objectClass="org.eclipse.team.internal.ui.target.SiteElement"
+            id="org.eclipse.team.target.ui.propertyPages.AuthenticatedTargetSitePropertiesPage"
+            class="org.eclipse.team.internal.ui.target.AuthenticatedTargetSitePropertiesPage">
+      </page>
+      <page
+			name="%targetSite"
+			objectClass="org.eclipse.core.resources.IProject"
+			id="org.eclipse.team.internal.ui.target.ProjectTargetMappingPropertiesPage"
+            class="org.eclipse.team.internal.ui.target.ProjectTargetMappingPropertiesPage">
+			<filter
+				name="projectPersistentProperty"
+				value="org.eclipse.team.target=basic">
+			</filter>
+      </page>
+   </extension>
+
+<!-- ****************** POPUP ACTIONS *************** -->
+
+<extension
+     point="org.eclipse.ui.popupMenus">
+	<objectContribution
+       	   id="org.eclipse.team.ui.ResourceContributions"
+           objectClass="org.eclipse.core.resources.IResource" adaptable="true">
+		<menu
+			id="team.main"
+			path="additions"
+			label="%TeamGroupMenu.label">
+			<separator name="group1"/>
+			<separator name="group2"/>
+			<separator name="group3"/>
+			<separator name="group4"/>
+			<separator name="group5"/>
+			<separator name="group6"/>
+			<separator name="group7"/>
+			<separator name="group8"/>
+			<separator name="group9"/>
+			<separator name="group10"/>
+			<separator name="targetGroup"/>
+			<separator name="projectGroup"/>
+		</menu>
+	</objectContribution>	
+	<objectContribution
+	   id="org.eclipse.team.ui.ProjectContributions"
+	   objectClass="org.eclipse.core.resources.IProject" adaptable="true">
+		<action 
+			id="org.eclipse.team.ui.ConfigureProject"
+			label="%ConfigureProject.label"
+			tooltip="%ConfigureProject.tooltip"
+			menubarPath="team.main/projectGroup"
+			enablesFor="1"
+			class="org.eclipse.team.internal.ui.actions.ConfigureProjectAction">
+		</action>
+	</objectContribution>	
+
+	<!-- ****************** Target Management Popup Actions *************** -->
+	
+   	<objectContribution
+         id="org.eclipse.team.ui.targetResourceContributionsActions"
+         objectClass="org.eclipse.core.resources.IResource" adaptable="true">
+		<filter
+               name="projectPersistentProperty"
+               value="org.eclipse.team.target=basic">
+         </filter>      
+         <action      
+            menubarPath="replaceWithMenu/replaceWithGroup"
+            class="org.eclipse.team.internal.ui.target.GetAction"
+            helpContextId="org.eclipse.team.ui.target_get_action_context"
+            id="org.eclipse.team.target.getAction"
+            label="%Deployment.getAction">
+      </action>
+      <action      
+            menubarPath="team.main/targetGroup"
+            class="org.eclipse.team.internal.ui.target.UploadAction"
+            id="org.eclipse.team.target.uploadAction"
+            helpContextId="org.eclipse.team.ui.target_put_action_context"
+            label="%Deployment.uploadAction">
+      </action>
+      <action      
+            menubarPath="team.main/targetGroup"
+            class="org.eclipse.team.internal.ui.target.SyncAction"
+            helpContextId="org.eclipse.team.ui.target_synchronize_action_context"
+            id="org.eclipse.team.target.SyncAction"
+            label="%Deployment.synchronize">
+      </action>
+	</objectContribution>	
+	   
+   <objectContribution
+            objectClass="org.eclipse.team.internal.ui.target.RemoteResourceElement"
+            id="org.eclipse.team.internal.ui.target.RemoteResourceElement">
+         <action
+               label="%SiteExplorerGetAs.label"
+               tooltip="%SiteExplorerGetAs.tooltip"
+               class="org.eclipse.team.internal.ui.target.GetAsAction"
+               helpContextId="org.eclipse.team.ui.target_getas_action_context"
+               id="org.eclipse.team.internal.ui.target.GetAsAction">
+         </action>
+         <action
+               label="%SiteExplorerGetAsProject.label"
+               tooltip="%SiteExplorerGetAsProject.tooltip"
+               class="org.eclipse.team.internal.ui.target.GetAsProjectAction"
+               helpContextId="org.eclipse.team.ui.target_getasproject_action_context"
+               id="org.eclipse.team.internal.ui.target.GetAsProjectAction">
+         </action>
+   </objectContribution>
+   
+   <objectContribution
+            objectClass="org.eclipse.team.internal.ui.target.SiteElement"
+            id="org.eclipse.team.internal.ui.target.SiteElement">
+         <action
+               label="%SiteExplorerDiscardSite.label"
+               tooltip="%SiteExplorerDiscardSite.tooltip"
+               class="org.eclipse.team.internal.ui.target.DiscardSiteAction"
+               helpContextId="org.eclipse.team.ui.target_disconnect_action_context"
+               id="org.eclipse.team.internal.ui.target.DiscardSiteAction">
+         </action>
+   </objectContribution>
+</extension>
+
+<!-- ************** Views ********************** -->
+<extension point="org.eclipse.ui.views">
+	<category 
+		id="org.eclipse.team.ui"
+		name="%Team.viewCategory">
+	</category>
+	<view
+		id="org.eclipse.team.ui.sync.SyncView"
+		name="%SyncView.name"
+		icon="icons/full/cview16/synch_synch.gif"
+		fastViewWidthRatio="0.75"
+		category="org.eclipse.team.ui"
+		class="org.eclipse.team.internal.ui.sync.SyncView">
+	</view>
+</extension>	
+
+<!-- ****************** Import Wizards ********************* -->
+   <extension
+       point="org.eclipse.ui.importWizards">
+      <wizard
+         id="org.eclipse.team.ui.ProjectSetImportWizard"
+         name="%ProjectSetImportWizard.name"
+         class="org.eclipse.team.internal.ui.ProjectSetImportWizard"
+         icon="icons/full/obj/import_projectset.gif">
+         <description>
+            %ProjectSetImportWizard.description
+         </description>
+         <selection class="org.eclipse.core.resources.IProject"/>
+      </wizard>
+<!--      <wizard
+         id="org.eclipse.team.ui.TargetSiteImportWizard"
+         name="%TargetSiteImportWizard.name"
+         class="org.eclipse.team.internal.ui.target.TargetSiteImportWizard">
+         <description>
+            %TargetSiteImportWizard.description
+         </description>
+         <selection class="org.eclipse.team.internal.ui.target.SiteElement"/>
+      </wizard> -->
+   </extension> 
+
+<!-- ****************** Export Wizards ********************* -->
+   <extension
+       point="org.eclipse.ui.exportWizards">
+      <wizard
+         id="org.eclipse.team.ui.ProjectSetExportWizard"
+         name="%ProjectSetExportWizard.name"
+         class="org.eclipse.team.internal.ui.ProjectSetExportWizard"
+         icon="icons/full/obj/export_projectset.gif">
+         <description>
+            %ProjectSetExportWizard.description
+         </description>
+         <selection class="org.eclipse.core.resources.IProject"/>
+      </wizard>
+<!--      <wizard
+         id="org.eclipse.team.ui.target.TargetSiteExportWizard"
+         name="%TargetSiteExportWizard.name"
+         class="org.eclipse.team.internal.ui.target.TargetSiteExportWizard">
+         <description>
+            %TargetSiteExportWizard.description
+         </description>
+         <selection class="org.eclipse.team.internal.ui.target.SiteElement"/>
+      </wizard> -->
+   </extension> 
+
+<!-- ***************** Perspective Extensions ********************** -->
+	<extension point="org.eclipse.ui.perspectiveExtensions">
+        <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+           <view id="org.eclipse.team.ui.sync.SyncView"
+                relative="org.eclipse.ui.views.TaskList"
+                visible="false"
+                relationship="stack"/>
+           <view id="org.eclipse.team.ui.target.SiteExplorerView"
+                relative="org.eclipse.ui.views.ResourceNavigator"
+                visible="false"
+                relationship="stack"/>
+        </perspectiveExtension>
+    </extension> 
+</plugin>

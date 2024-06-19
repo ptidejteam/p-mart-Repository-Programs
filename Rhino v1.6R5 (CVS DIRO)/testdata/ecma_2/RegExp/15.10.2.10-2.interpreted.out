@@ -1,0 +1,37 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\RegExp\15.10.2.10-2.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\RegExp\shell.js -f mozilla\js\tests\ecma_2\RegExp\15.10.2.10-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+RegExp/unicode-001.js new RegExp( pattern, flags )
+/\u0041/ .exec(A).length = 1 PASSED!
+/\u0041/ .exec(A).index = 0 PASSED!
+/\u0041/ .exec(A).input = A PASSED!
+/\u0041/ .exec(A)[0] = A PASSED!
+/\u00412/ .exec(A2).length = 1 PASSED!
+/\u00412/ .exec(A2).index = 0 PASSED!
+/\u00412/ .exec(A2).input = A2 PASSED!
+/\u00412/ .exec(A2)[0] = A2 PASSED!
+/\u00412/ .exec(A2).length = 1 PASSED!
+/\u00412/ .exec(A2).index = 0 PASSED!
+/\u00412/ .exec(A2).input = A2 PASSED!
+/\u00412/ .exec(A2)[0] = A2 PASSED!
+/\u001g/ .exec(u001g).length = 1 PASSED!
+/\u001g/ .exec(u001g).index = 0 PASSED!
+/\u001g/ .exec(u001g).input = u001g PASSED!
+/\u001g/ .exec(u001g)[0] = u001g PASSED!
+/A/ .exec(\u0041).length = 1 PASSED!
+/A/ .exec(\u0041).index = 0 PASSED!
+/A/ .exec(\u0041).input = A PASSED!
+/A/ .exec(\u0041)[0] = A PASSED!
+/A/ .exec(\u00412).length = 1 PASSED!
+/A/ .exec(\u00412).index = 0 PASSED!
+/A/ .exec(\u00412).input = A2 PASSED!
+/A/ .exec(\u00412)[0] = A PASSED!
+/A2/ .exec(\u00412).length = 1 PASSED!
+/A2/ .exec(\u00412).index = 0 PASSED!
+/A2/ .exec(\u00412).input = A2 PASSED!
+/A2/ .exec(\u00412)[0] = A2 PASSED!
+/A/ .exec(A2).length = 1 PASSED!
+/A/ .exec(A2).index = 0 PASSED!
+/A/ .exec(A2).input = A2 PASSED!
+/A/ .exec(A2)[0] = A PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\RegExp\15.10.2.10-2.interpreted.arff] ...

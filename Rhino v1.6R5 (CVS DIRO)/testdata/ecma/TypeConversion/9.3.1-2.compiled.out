@@ -1,0 +1,17 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.3.1-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.3.1-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+9.3.1-2 ToNumber applied to the String type
+Number(00) = 0 PASSED!
+Number(01) = 1 PASSED!
+Number(02) = 2 PASSED!
+Number(03) = 3 PASSED!
+Number(04) = 4 PASSED!
+Number(05) = 5 PASSED!
+Number(06) = 6 PASSED!
+Number(07) = 7 PASSED!
+Number(010) = 10 PASSED!
+Number(011) = 11 PASSED!
+Number(001) = 1 PASSED!
+Number(0001) = 1 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.3.1-2.compiled.arff] ...

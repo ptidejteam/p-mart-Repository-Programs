@@ -1,0 +1,15 @@
+24.11.51f	+0	(def_block
+24.11.51f	+5	r_class
+24.17.525	+15	id|SAXTransformerFactory
+24.48.556	+1	(brace
+3a.f.8eb	+0	(def_block
+3a.f.8eb	+15	id|SAXTransformerFactory
+3a.24.900	+0	c_func
+3a.24.900	+1	(paren
+3a.25.901	+1	)paren
+3a.27.903	+1	(brace
+3a.28.904	+1	)brace
+3a.29.905	+0	)def_block
+8f.1.1610	+1	)brace
+8f.2.1611	+0	)def_block
+90.1.1613	+0	eof

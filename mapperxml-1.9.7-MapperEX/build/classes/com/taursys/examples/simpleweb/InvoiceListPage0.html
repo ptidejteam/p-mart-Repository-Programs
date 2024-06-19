@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>MapperXML Example: Invoice List</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: Invoice List</h1>|
+    Style 0 |
+    <a href="InvoiceListPage.sf?style=1">Style 1</a>|
+    <a href="InvoiceListPage.sf?style=2">Style 2</a>|
+    <a href="InvoiceListPage.sf?style=3">Style 3</a>|
+    <h2>List of Invoices and Invoice Items presented in nested tables</h2>
+    <table border="1">
+      <tr bgcolor="yellow">
+        <td >Invoice Number</td>
+        <td >Customer ID</td>
+        <td >Issue Date</td>
+        <td >Terms</td>
+        <td >Invoice Items</td>
+      </tr>
+      <tr id="invoices">
+        <td id="invoiceNumber">1001</td>
+        <td id="customerID">1</td>
+        <td id="issueDate">00/00/0000</td>
+        <td id="terms">0 net 0</td>
+        <td>
+          <table border="1">
+            <tr bgcolor="orange">
+              <td>Quantity</td>
+              <td>Product ID</td>
+              <td>Unit Price</td>
+              <td>Extension</td>
+            </tr>
+            <tr id="invoiceItems">
+              <td id="quantity">1</td>
+              <td id="productID">XXXX</td>
+              <td id="unitPrice">0.00</td>
+              <td id="extension">0.00</td>
+            </tr>
+            <tr>
+              <td bgcolor="pink" colspan="3">Total</td>
+              <td id="total">0.00</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <hr/>
+    <br/><br/><p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

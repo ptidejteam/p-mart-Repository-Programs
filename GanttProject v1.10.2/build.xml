@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+
+<project default="jar" basedir=".">
+
+	<!-- =================================================================== -->	
+	<!-- Initialization of properties                                        -->
+	<!-- =================================================================== -->
+	<target name="init">
+		<property file="${user.home}/build.properties"/>
+		<property file="build.properties"/>
+
+		<property name="name" value="GanttProject"/>
+		<property name="build.compiler" value="modern"/>
+		<property name="debug" value="on"/>
+		<property name="optimize" value="on"/>
+		<property name="deprecation" value="off"/>
+		<property name="src.dir" value="${basedir}/src"/>
+		<property name="src.tests.dir" value="${basedir}/test"/>
+		<property name="docs.dir" value="${basedir}/docs"/>
+		<property name="data.dir" value="${basedir}/data"/>
+		<property name="libs.dir" value="${basedir}/lib"/>
+		<property name="packages" value="net.*"/>
+		<property name="build.name" value="ganttproject-${version}${version.suffix}"/>
+		<property name="build.dir" value="${basedir}/build"/>
+		<property name="build.dest" value="${build.dir}/classes"/>
+		<property name="build.tests.dest" value="${build.dir}/classes-test"/>
+		<property name="build.tests.results" value="${basedir}/test-results"/>
+		<property name="build.docs" value="${build.dir}/docs"/>
+		<property name="build.javadocs" value="${build.docs}/api"/>
+
+		<property name="build.dist" value="${build.dir}/dist"/>
+		<property name="build.bin.dist" value="${build.dist}/${build.name}"/>
+		<property name="build.src.dist" value="${build.dist}/${build.name}"/>
+		<property name="build.doc.dist" value="${build.dist}/${build.name}"/>
+
+		<property name="build.bin.dist.bin" value="${build.bin.dist}/bin"/>
+		<property name="build.bin.dist.doc" value="${build.bin.dist}/doc"/>
+		<property name="build.bin.dist.lib" value="${build.bin.dist}/lib"/>
+		<property name="build.bin.dist.themes" value="${build.bin.dist}/themes"/>
+
+		<property name="build.src.dist.data" value="${build.src.dist}/data"/>
+		<property name="build.src.dist.lib"  value="${build.src.dist}/lib"/>
+		<property name="build.src.dist.src"  value="${build.src.dist}/src"/>
+
+		<property name="build.doc.dist.doc" value="${build.doc.dist}/doc"/>
+
+		<property name="release.dir" value="${basedir}/releases"/>
+		
+		<path id="build.classpath">
+			<fileset dir="${libs.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+        
+		<path id="optional.classpath">
+			<fileset dir="${libs.dir}/optional">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+
+        <path id="tests.classpath">
+           <pathelement location="${libs.dir}/development/junit-3.8.1.jar"/>
+           <pathelement location="${build.dir}/${build.name}.jar"/>
+        </path>
+        <path id="tests.runtime.classpath">
+           <pathelement location="${libs.dir}/development/junit-3.8.1.jar"/>
+           <pathelement location="${build.dir}/${build.name}.jar"/>
+           <pathelement location="${build.tests.dest}"/>
+        </path>
+	</target>
+
+	<!-- =================================================================== -->	
+	<!-- Initialization of properties for a snapshot release                 -->
+	<!-- =================================================================== -->
+	<target name="snapshot.init">
+		<tstamp>
+			<format property="build.stamp" pattern="yyyy-MM-dd"/>
+		</tstamp>
+		<property name="version.suffix" value="-dev-${build.stamp}"/>
+	</target>
+
+	<!-- =================================================================== -->	
+	<!-- Initialization of properties for a release candidate                -->
+	<!-- =================================================================== -->
+	<target name="rc.init">
+		<fail if="version.suffix">
+			Failed to build a release candidate
+			(property "version.suffix" already set).
+
+			Perhaps, you have typed:
+			- ant clean, release.candidate
+
+			You should type instead:
+			- ant clean
+			- ant release.candidate
+		</fail>
+		<input
+			message="Please enter a number, which will label the release candidate. "
+			validargs="1,2,3,4,5,6,7,8,9"
+			addproperty="rc.number"/>
+		<property name="version.suffix" value="-rc${rc.number}"/>
+		<echo message="version.suffix=${version.suffix}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Cleans everything                                                   -->
+	<!-- =================================================================== -->
+	<target name="clean" depends="init" description="Cleans out old directories">
+		<delete dir="${build.dir}"/>
+		<delete dir="${build.tests.results}"/>
+		<delete>
+			<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+		</delete>
+		<delete file="${basedir}/ganttproject.bat"/>
+		<delete file="${basedir}/ganttproject.sh"/>
+		<delete file="${basedir}/ganttproject.command"/>
+		<!-- <delete dir="${release.dir}"/> intentionally left out -->
+
+		<!-- the following deletes are only temporary: -->
+		<delete dir="${basedir}/classes"/>
+		<delete dir="${libs.dir}/license"/>
+		<delete>
+			<fileset dir="${libs.dir}" includes="*.jar"/>
+		</delete>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Help of the build system                                            -->
+	<!-- =================================================================== -->
+	<target name="help" depends="init">
+		<echo message="${name} build system"/>
+		<echo message=" For a list of possible targets please enter:"/>
+		<echo message=" ant -projecthelp"/>
+	 </target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the build directories                                      -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="init" description="Creates directories and copies resources">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.dest}"/>
+		<mkdir dir="${build.docs}"/>
+		<mkdir dir="${build.javadocs}"/>
+
+		<copy todir="${build.dest}">
+		    <fileset dir="${data.dir}/resources" excludes="dtd/**"/>		    
+		</copy>
+		<copy todir="${build.docs}">
+		    <fileset dir="${basedir}" includes="AUTHORS,COPYING,README"/>	    
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles the source directory                                       -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="prepare" description="Compiles the source code">
+		<javac srcdir="${src.dir}"
+			destdir="${build.dest}"
+			debug="${debug}"
+			deprecation="${deprecation}"
+			optimize="${optimize}"
+			includeAntRuntime="false">
+			<classpath refid="build.classpath"/>
+		</javac>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the jar archive                                             -->
+	<!-- =================================================================== -->
+	<target name="jar" depends="compile" description="Creates the jar archive (default)">
+		<unjar dest="${build.dest}">
+			<fileset dir="${libs.dir}/core">
+				<include name="**/*.jar"/>
+			</fileset>
+		</unjar>
+		<copy todir="${build.dest}">
+		    <fileset dir="${libs.dir}/core">
+		    	<include name="**/*.LICENSE"/>
+		    </fileset>
+		</copy>
+		<copy todir="${build.dest}/docs">
+			<fileset dir="${basedir}" includes="AUTHORS,COPYING,README"/>	    
+		</copy>
+		<jar jarfile="${build.dir}/${build.name}.jar"
+			manifest="${data.dir}/MANIFEST.MF"
+			compress="true"
+			basedir="${build.dest}"/>
+
+		<pathconvert property="optional.classpath.unix" refid="optional.classpath" targetos="unix"/>
+		<pathconvert property="optional.classpath.windows" refid="optional.classpath" targetos="windows"/>
+
+		<echo file="${basedir}/ganttproject.bat" message="java -jar &quot;${basedir}\build\${build.name}.jar&quot; %*"/>
+		<echo file="./ganttproject.command" message="java -Xdock:name=&quot;GanttProject&quot;:icon=ganttproject.gif -Xmaxf0.2 -Xminf0.2 -Dapple.laf.useScreenMenuBar=true -Xverify:none -Xms32m -Xmx128m -jar &quot;${basedir}/build/${build.name}.jar&quot; $@"/>
+		<chmod file="${basedir}/ganttproject.command" perm="ugo+rx"/>
+		<echo file="${basedir}/ganttproject.sh" message="java -jar &quot;${basedir}/build/${build.name}.jar&quot; $@"/>
+		<chmod file="${basedir}/ganttproject.sh" perm="ugo+rx"/>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Builds the binary distribution                                      -->
+	<!-- =================================================================== -->
+	<target name="prep.bin.dist" depends="jar">
+		<delete dir="${build.dist}"/>
+
+		<mkdir dir="${build.dist}"/>
+		<mkdir dir="${build.bin.dist}"/>
+		<mkdir dir="${build.bin.dist.bin}"/>
+		<mkdir dir="${build.bin.dist.doc}"/>
+		<mkdir dir="${build.bin.dist.lib}"/>
+		<mkdir dir="${build.bin.dist.themes}"/>
+
+		<copy todir="${build.bin.dist}">
+			<fileset dir="${data.dir}/resources/icons" includes="ganttproject.*"/>
+		</copy>
+		<copy todir="${build.bin.dist.bin}">
+			<fileset dir="${build.dir}" includes="${build.name}.jar"/>
+		</copy>
+		<copy todir="${build.bin.dist.doc}">
+		    <fileset dir="${basedir}" includes="AUTHORS,COPYING,README"/>
+		</copy>
+		<copy todir="${build.bin.dist.lib}">
+		    <fileset dir="${libs.dir}/optional"/>
+		</copy>
+		<copy todir="${build.bin.dist.themes}">
+			<fileset dir="${data.dir}/themes"/>
+			<fileset dir="${data.dir}" includes="xslt_export/**"/>
+			<fileset dir="${data.dir}" includes="xslfo_export/**"/>
+		</copy>
+
+
+		<path id="run.classpath">
+			<fileset dir="${build.bin.dist.lib}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>		
+		<pathconvert property="run.classpath.unix" refid="run.classpath" targetos="unix">
+			<map from="${basedir}\build\bin\dist" to="$GANTTPROJECT_HOME"/>
+			<map from="${basedir}/build/bin/dist" to="$GANTTPROJECT_HOME"/>
+		</pathconvert>
+		<pathconvert property="run.classpath.windows" refid="run.classpath" targetos="windows">
+			<map from="${basedir}\build\bin\dist" to="%GANTTPROJECT_HOME%"/>
+			<map from="${basedir}/build/bin/dist" to="%GANTTPROJECT_HOME%"/>
+		</pathconvert>
+
+<!-- // We don't need the classpath entries in the startup wrappers anymore,
+     // because we have set these dependencies in the manifest of our main jar.
+     
+		<echo file="${build.bin.dist}/ganttproject.sh">GANTTPROJECT_HOME="."
+java -cp ${run.classpath.unix}:$GANTTPROJECT_HOME/bin/${build.name}.jar net.sourceforge.ganttproject.GanttProject $@
+</echo>
+		<chmod file="${build.bin.dist}/ganttproject.sh" perm="ugo+rx"/>
+		<echo file="${build.bin.dist}/ganttproject.command">GANTTPROJECT_HOME="."
+exec /System/Library/Frameworks/JavaVM.framework/Versions/$jdk/Commands/java  -Xdock:name="Gantt Project":icon=ganttproject.gif  -Xmaxf0.2  -Xminf0.2  -Dapple.laf.useScreenMenuBar=true  -Xverify:none  -Xms32m  -Xmx128m  -jar ${build.name}.jar "$@" 
+</echo>
+		<chmod file="${build.bin.dist}/ganttproject.command" perm="ugo+rx"/>
+		<echo file="${build.bin.dist}/ganttproject.bat">SET GANTTPROJECT_HOME=.
+java -cp ${run.classpath.windows};%GANTTPROJECT_HOME%\bin\${build.name}.jar net.sourceforge.ganttproject.GanttProject %*
+</echo>
+-->
+
+		<echo file="${build.bin.dist}/ganttproject.bat" message="java -jar .\bin\${build.name}.jar %*" />
+		<echo file="${build.bin.dist}/ganttproject.command" message="java -Xdock:name=&quot;GanttProject&quot;:icon=ganttproject.gif -Xmaxf0.2 -Xminf0.2 -Dapple.laf.useScreenMenuBar=true -Xverify:none -Xms32m -Xmx128m -jar ./bin/${build.name}.jar $@"/>
+		<chmod file="${build.bin.dist}/ganttproject.command" perm="ugo+rx"/>
+		<echo file="${build.bin.dist}/ganttproject.sh" message="java -jar ./bin/${build.name}.jar $@"/>
+		<chmod file="${build.bin.dist}/ganttproject.sh" perm="ugo+rx"/>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Builds the release zip file                                         -->
+	<!-- =================================================================== -->
+	<target name="zipfile" depends="prep.bin.dist" description="Builds the release zip file">
+		<mkdir dir="${release.dir}"/>
+		<zip destfile="${release.dir}/${build.name}.zip" basedir="${build.dist}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the release tar file                                         -->
+	<!-- =================================================================== -->
+	<target name="tarfile" depends="prep.bin.dist" description="Builds the release tar file">
+		<mkdir dir="${release.dir}"/>
+		<tar destfile="${release.dir}/${build.name}.tar" basedir="${build.dist}"/>
+	</target>
+	 
+	<!-- =================================================================== -->
+	<!-- Builds the release tar.gz file                                      -->
+	<!-- =================================================================== -->
+	<target name="gzipfile" depends="tarfile" description="Builds the release tar.gz file">
+	 	<gzip src="${release.dir}/${build.name}.tar" zipfile="${release.dir}/${build.name}.tar.gz"/>
+		<delete file="${release.dir}/${build.name}.tar"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the source distribution                                      -->
+	<!-- =================================================================== -->
+    <target name="prep.src.dist" depends="clean">
+		<delete dir="${build.dist}"/>
+
+		<mkdir dir="${build.dist}"/>
+		<mkdir dir="${build.src.dist}"/>
+		<mkdir dir="${build.src.dist.data}"/>
+		<mkdir dir="${build.src.dist.lib}"/>
+		<mkdir dir="${build.src.dist.src}"/>
+
+		<copy todir="${build.src.dist}">
+		    <fileset dir="${basedir}" includes="AUTHORS,COPYING,README,build.xml,build.properties"/>
+		</copy>
+		<copy todir="${build.src.dist.data}">
+		    <fileset dir="${data.dir}"/>
+		</copy>
+		<copy todir="${build.src.dist.lib}">
+		    <fileset dir="${libs.dir}"/>
+		</copy>
+		<copy todir="${build.src.dist.src}">
+		    <fileset dir="${src.dir}"/>
+		</copy>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Builds the zip file with source code                                -->
+	<!-- =================================================================== -->
+    <target name="zipsrc" depends="prep.src.dist" description="Builds the zip file with source code">
+		<mkdir dir="${release.dir}"/>
+		<zip destfile="${release.dir}/${build.name}-src.zip" basedir="${build.dist}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the javadoc distribution                                     -->
+	<!-- =================================================================== -->
+    <target name="prep.doc.dist" depends="javadocs">
+		<delete dir="${build.dist}"/>
+
+		<mkdir dir="${build.dist}"/>
+		<mkdir dir="${build.doc.dist}"/>
+		<mkdir dir="${build.doc.dist.doc}"/>
+
+		<copy todir="${build.doc.dist.doc}">
+		    <fileset dir="${build.docs}"/>
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the documentation (javadoc) zip file                        -->
+	<!-- =================================================================== -->
+    <target name="zipdoc" depends="prep.doc.dist" description="Creates the documentation (javadoc) zip file">
+		<mkdir dir="${release.dir}"/>
+		<zip destfile="${release.dir}/${build.name}-javadoc.zip" basedir="${build.dist}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the 4 release archives                                       -->
+	<!-- =================================================================== -->
+    <target name="release" depends="zipsrc, zipfile, gzipfile, zipdoc" description="Builds the 4 release archives">
+		<!-- The order of depends is important -->
+		<!-- Nothing to do here (all work is done in the depends) -->
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the 4 release archives for a snapshot release                -->
+	<!-- =================================================================== -->
+    <target name="snapshot.release" depends="snapshot.init, release" description="Builds the 4 release archives for a snapshot release">
+		<!-- The order of depends is important -->
+		<!-- Nothing to do here (all work is done in the depends) -->
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Builds the 4 release archives for a release candidate               -->
+	<!-- =================================================================== -->
+    <target name="release.candidate" depends="rc.init, release" description="Builds the 4 release archives for a release candidate">
+		<!-- The order of depends is important -->
+		<!-- Nothing to do here (all work is done in the depends) -->
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the signed jar archive                                      -->
+	<!-- =================================================================== -->
+	<target name="sign" depends="jar" description="Creates the signed jar file">
+		<signjar jar="${build.dir}/${build.name}.jar"
+			alias="${gp.sign.alias}"
+			keystore="${gp.sign.keystore}"
+			storepass="${gp.sign.storepass}"
+			keypass="${gp.sign.keypass}" 
+			signedjar="${build.dir}/${build.name}-signed.jar"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the API documentation                                       -->
+	<!-- =================================================================== -->
+	<target name="javadocs" depends="prepare" description="Creates the API documentatio">
+		<mkdir dir="${build.javadocs}"/>
+		<javadoc packagenames="${packages}"
+			sourcepath="${src.dir}"
+			destdir="${build.javadocs}"
+			author="true"
+			version="true"
+			use="true"
+			windowtitle="${build.name} API"
+			doctitle="${name}"
+			bottom="Copyright &#169; 2002 Alexandre THOMAS."/>
+	</target>
+
+    <target name="compile-tests" depends="jar">
+        <mkdir dir="${build.tests.dest}"/>
+		<javac srcdir="${src.tests.dir}"
+			destdir="${build.tests.dest}"
+			debug="${debug}"
+			deprecation="${deprecation}"
+			optimize="${optimize}"
+			includeAntRuntime="false">
+			<classpath refid="tests.classpath"/>
+		</javac>
+    </target>
+
+    <target name="run-tests" depends="compile-tests">
+      <mkdir dir="${build.tests.results}"/>
+      <junit printsummary="yes" fork="yes" haltonfailure="no">
+        <classpath refid="tests.runtime.classpath"/>
+        <formatter type="plain"/>
+        <test name="net.sourceforge.ganttproject.test.time.GregorianTimeStackTest" todir="${build.tests.results}"/>
+      </junit>
+    </target>
+</project>

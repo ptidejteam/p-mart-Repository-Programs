@@ -1,0 +1,4 @@
+15.3.5.3 arguments was replaced by 13.3.5.3 [[HasInstance]] (V).
+I renamed 15.3.5.3 to be 15.3.5.4. so that the test for the
+"arguments" properties gets grouped under 15.3.5 "Properties of
+Function Instances," even though it's deprecated.

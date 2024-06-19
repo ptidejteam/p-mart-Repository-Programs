@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="org.eclipse.pde.source"
+   name="%pluginName"
+   version="2.1.0"
+   provider-name="%providerName">
+
+   <runtime>
+   </runtime>
+
+   <extension
+         point="org.eclipse.pde.core.source">
+      <location
+            path="src">
+      </location>
+   </extension>
+
+</plugin>

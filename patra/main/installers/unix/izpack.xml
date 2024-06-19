@@ -1,0 +1,38 @@
+<installation version="1.0">
+
+    <!-- izpack src/main/installers/unix/izpack.xml -b . -o target/pwt-1.4-install-unix.jar -k standard -->
+    <info>
+        <appname>Password Tracker</appname>
+        <appsubpath>patra-1.4</appsubpath>
+        <appversion>1.4</appversion>
+        <authors>
+            <author name="Bruno Ranschaert" email="nospam@sdi-consulting.com" />
+        </authors>
+        <url>http://www.sdi-consulting.com/menu/software/applications/patra.html</url>
+        <javaversion>1.6</javaversion>
+    </info>
+
+    <guiprefs width="640" height="200" resizable="no"/>
+   
+    <locale>
+        <langpack iso3="eng"/>
+    </locale>
+
+     <panels>
+        <panel classname="TargetPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="SimpleFinishPanel"/>
+    </panels>
+
+    <packs>
+        <pack name="Base" required="yes">
+            <description>The base files</description>
+            <singlefile src="target/patra-1.4-SNAPSHOT-jar-with-dependencies.jar" target="$INSTALL_PATH/patra-1.4.jar"/>
+            <singlefile src="src/main/installers/unix/patra.sh" target="$INSTALL_PATH/patra-1.4.sh"/>
+            <singlefile src="src/main/installers/unix/pwt-icon.png" target="$INSTALL_PATH/patra-icon.png"/>
+            <singlefile src="src/main/installers/unix/pwt-icon-small.png" target="$INSTALL_PATH/patra-icon-small.png"/>
+            <executable targetfile="$INSTALL_PATH/patra-1.4.sh" stage="never" keep="true" />
+        </pack>
+    </packs>
+    
+</installation>

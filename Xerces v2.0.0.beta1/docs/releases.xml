@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE releases SYSTEM 'dtd/releases.dtd'>
+<releases>
+ <release version='&ParserName; 2.0.0 (beta)'>
+  <desc>
+   First beta release of the Xerces2 code. Besides numerous bug 
+   fixes, this release has changes and additions to XNI. The new
+   XNI parser configuration framework has been added in this release.
+   Refer to the <link idref='xni'>XNI Manual</link> for complete
+   information.
+  </desc>
+  <changes>
+   <add>
+    <note>
+     Added document and DTD scanner interfaces to XNI to allow
+     parser configuration pipelines to be constructed generically.
+    </note>
+    <submitter name='Andy Clark'/>
+   </add>
+   <fix>
+    <note>
+     Fixed bug in DTD grammar for mixed content models that was 
+     building the wrong validation content model.
+    </note>
+    <submitter name='Sandy Gao'/>
+   </fix>
+   <update>
+    <note>
+     Removed SAX dependency from XNI framework. Now the only
+     dependence on external API such as SAX is in the implementation
+     of the AbstractSAXParser and DOMParser so that legacy code
+     doesn't break.
+    </note>
+    <submitter name='Andy Clark'/>
+   </update>
+   <update>
+    <note>
+     Rewrote existing documentation, added XNI information, cleaned
+     up stylesheets, and converted some docs to use custom DTDs.
+    </note>
+    <submitter name='Andy Clark'/>
+   </update>
+   <fix>
+    <note>DTD method ordering problem for INCLUDE/IGNORE sections.</note>
+    <submitter name='Petr Kuzel'/>
+   </fix>
+   <update>
+    <note>Improved DFA build-time performance.</note>
+    <submitter name='ATOZAWA@jp.ibm.com' mailto='ATOZAWA@jp.ibm.com'/>
+   </update>
+   <update>
+    <note>Synchronized with Xerces 1.3.0</note>
+    <submitter name='Arnaud  Le Hors'/>
+   </update>
+  </changes>
+ </release>
+ <release version='&ParserName; 2.0.0 (alpha)'>
+  <desc>Initial alpha release of Xerces2 code.</desc>
+ </release>
+</releases>

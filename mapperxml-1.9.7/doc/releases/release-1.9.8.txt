@@ -1,0 +1,88 @@
+MapperXML
+Version 1.9.8 (PRE-RELEASE)
+Release Notes:
+
+To Do Items
+===============================================================
+o	Add Log4J & Java 1.4 LoggerAdapters. default: Log4J, Java, SimpleLogger
+o   Complete JavaDoc for SelectField/Model changes
+o   Complete Developer's Guide for MapperXML
+o   Example for Default actions with Triggers and Buttons
+o   Increase diagnostic info for NotInListException
+o   Add master context to ServletApp which it will pass on to ServletForms.
+o   Component factory needs support for more html items like <p>,<b>,etc
+o   Create Unit Test for self-test of ServletForms. Develop unit testing
+    methodology and write how-to.
+o   Refactor Dispatcher's to use base class methods
+o   Review/refactor renderers to use properties set in AbstractRenderer
+o   New MCheckBox component
+o   MTextField: add get/setValue() method
+o   All TextFields: if data conversion error occurs, (in DataTypes),
+    need better Exception (maybe ModelParseException?)
+o   Deprecate get/setList and replace with get/setListValueHolder in
+    SelectModel, DefaultSelectModel, SelectField & HTMLSelect
+o   Remove deprecated methods in MComboBox
+o   Harden code to eliminate/reduce null pointer exceptions when
+    developer does not set all properties or invoke initialize
+    methods properly. Use Debug.WARN messages instead with
+    specific cause/recommendations.
+o   Modify ServletFormFactory for cache control of forms (min, max)
+o   Research if the classloader can be set in the init method of
+    ServletApp. Research other alternatives.
+o   Add behavior to remaining components for recycle - clear
+    values. Also consider adding property 'renderAlways' so
+    that a control can be set to only render a part of a
+    document once (drop-down, sale-items, etc).
+o   Add undo and/or cancel to MapperGUI components
+o   Consider creation of an option list descriptor for use by ComponentFactory
+    to use for binding HTMLSelect components.
+o   Modify HTMLCheckbox. Add boolean property - only process input
+    during POST.
+o   Modify HTMLComponentFactory to preset selectedValue and
+    unselectedValue properties from HTML document for HTMLCheckbox
+
+Fixes TODO
+================================================================
+o   Fix problem in component factory - when it is called more than once
+    with SubFormNewsPage, it wipes out functionality - probably
+    multiple components for same section? Normally, it should only
+    be called once, but it should not cause problems if called
+    more than once.
+o   Problem in HTMLComponentFactory - problem when nesting multiple
+    level templates (ie parent-child-grandchild)
+
+=============================================================================
+                       R E L E A S E   N O T E S
+=============================================================================
+
+Quick Highlights
+================================================================
+
+Important Changes
+================================================================
+
+New Features:
+================================================================
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Bux Fixes:
+================================================================
+
+
+Other Changes:
+================================================================
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none
+

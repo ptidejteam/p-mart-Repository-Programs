@@ -1,0 +1,79 @@
+# The jaxp interface and a jaxp parser are required to build the
+# JoranConfigurator. However, these are already available since Ant
+# needs them too.  Note also that these are required to run Chainsaw.
+# They are commented out by default but may be commented in for
+# customizations, e.g. when running Chainsaw from Ant version 1.4
+# or earlier.
+ 
+# jaxp.home=/java/jaxp-1.1 
+# jaxp-api.jar=${jaxp.home}/jaxp.jar
+# jaxp.parser.jar=${jaxp.home}/crimson.jar
+
+
+#
+#   by default assume that all necessary dependencies
+#      are relative to the user's home directory
+#
+lib.home.dir=${user.home}
+
+# JavaMail API OPTIONAL; required to build the SMTPAppender
+javamail.jar=${lib.home.dir}/javamail-1.3.2/mail.jar
+activation.jar=${lib.home.dir}/jaf-1.0.2/activation.jar
+
+# JMS OPTIONAL; required to build the JMSAppender.
+# in order to build the JMSAppender.
+# API jar can be downloaded from http://java.sun.com/products/jms/docs.html
+jms.jar=${lib.home.dir}/jms1.1/lib/jms.jar
+
+# Servlet api
+servlet-api.jar=${lib.home.dir}/jakarta-tomcat-5.5.9/common/lib/servlet-api.jar
+
+# SLF4J api
+slf4j-api.jar=${lib.home.dir}/slf4j-1.0-beta4/slf4j-nop.jar
+
+# The templates for the creation of the web-pages are inherited 
+# from the parent project.
+logging-site=../logging-site
+
+# Describes the relative or full path to the Jakarta ORO Reg Exp jar file
+# Required if you wish to use LogFilePatternReceiver or LikeRule (regexp)
+jakarta-oro.jar=${lib.home.dir}/jakarta-oro-2.0.8/jakarta-oro-2.0.8.jar
+
+
+# DBAppeder/DBReceiver OPTIONAL: 
+#
+# The org.apache.log4j.db package makes use of the
+# javax.sql.DataSource interface which is included part of the JDBC
+# standard extensions. These extensions ship with JDK 1.4 and later
+# but not JDK 1.3 or 1.2.
+#
+# Download it from
+#
+#  http://java.sun.com/products/jdbc/download.html#spec
+#
+#jdbc-stdext.jar=/java/lib/jdbc2_0-stdext.jar
+
+# ---------------------------------------------------
+# JNDI API REQUIRED when building log4j with JDK 1.2)
+# ---------------------------------------------------
+#
+# The JNDI API is required to build ContextJNDISelector, which has
+# become a core log4j class. The JNDI API ships with JDK 1.3 and later,
+# you do not need to load it separately. For JDK 1.2, you can get the
+# JNDI API from
+#
+#     http://java.sun.com/products/jndi/downloads/index.html
+
+#jndi.jar=/java/lib/jndi.jar
+
+#
+#   Jalopy source code reformatter
+#
+#
+jalopy-ant.dir=${lib.home.dir}/jalopy-ant-0.6.2
+
+#
+#   Checkstyle coding convention checker
+#
+checkstyle.jar=${lib.home.dir}/checkstyle-4.0-beta2/checkstyle-all-4.0-beta2.jar
+

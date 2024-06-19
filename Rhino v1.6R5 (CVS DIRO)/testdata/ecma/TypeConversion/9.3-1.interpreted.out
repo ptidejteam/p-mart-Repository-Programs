@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.3-1.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.3-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+9.3-1 ToNumber
+Number(new Number()) = 0 PASSED!
+typeof( Number(new Number()) ) = number PASSED!
+Number(new Number(Number.NaN)) = NaN PASSED!
+typeof( Number(new Number(Number.NaN)) ) = number PASSED!
+Number(new Number(0)) = 0 PASSED!
+typeof( Number(new Number(0)) ) = number PASSED!
+Number(new Number(null)) = 0 PASSED!
+typeof( Number(new Number(null)) ) = number PASSED!
+Number(new Number(true)) = 1 PASSED!
+typeof( Number(new Number(true)) ) = number PASSED!
+Number(new Number(false)) = 0 PASSED!
+typeof( Number(new Number(false)) ) = number PASSED!
+Number(new Boolean(true)) = 1 PASSED!
+typeof( Number(new Boolean(true)) ) = number PASSED!
+Number(new Boolean(false)) = 0 PASSED!
+typeof( Number(new Boolean(false)) ) = number PASSED!
+Number(new Array(2,4,8,16,32)) = NaN PASSED!
+typeof( Number(new Array(2,4,8,16,32)) ) = number PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.3-1.interpreted.arff] ...

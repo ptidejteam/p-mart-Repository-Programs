@@ -1,0 +1,636 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_3\RegExp\15.10-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_3\shell.js -f mozilla\js\tests\ecma_3\RegExp\shell.js -f mozilla\js\tests\ecma_3\RegExp\15.10-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 85721
+STATUS: Testing regular expression edge cases
+PASSED! Section 1 of test -
+regexp = /abc/
+string = 'xbc'
+PASSED! Section 2 of test -
+regexp = /abc/
+string = 'axc'
+PASSED! Section 3 of test -
+regexp = /abc/
+string = 'abx'
+PASSED! Section 4 of test -
+regexp = /ab+bc/
+string = 'abc'
+PASSED! Section 5 of test -
+regexp = /ab+bc/
+string = 'abq'
+PASSED! Section 6 of test -
+regexp = /ab{1,}bc/
+string = 'abq'
+PASSED! Section 7 of test -
+regexp = /ab{4,5}bc/
+string = 'abbbbc'
+PASSED! Section 8 of test -
+regexp = /ab?bc/
+string = 'abbbbc'
+PASSED! Section 9 of test -
+regexp = /^abc$/
+string = 'abcc'
+PASSED! Section 10 of test -
+regexp = /^abc$/
+string = 'aabc'
+PASSED! Section 11 of test -
+regexp = /abc$/
+string = 'aabcd'
+PASSED! Section 12 of test -
+regexp = /a.*c/
+string = 'axyzd'
+PASSED! Section 13 of test -
+regexp = /a[bc]d/
+string = 'abc'
+PASSED! Section 14 of test -
+regexp = /a[b-d]e/
+string = 'abd'
+PASSED! Section 15 of test -
+regexp = /a[^bc]d/
+string = 'abd'
+PASSED! Section 16 of test -
+regexp = /a[^-b]c/
+string = 'a-c'
+PASSED! Section 17 of test -
+regexp = /a[^]b]c/
+string = 'a]c'
+PASSED! Section 18 of test -
+regexp = /\by\b/
+string = 'xy'
+PASSED! Section 19 of test -
+regexp = /\by\b/
+string = 'yz'
+PASSED! Section 20 of test -
+regexp = /\by\b/
+string = 'xyz'
+PASSED! Section 21 of test -
+regexp = /\Ba\B/
+string = 'a-'
+PASSED! Section 22 of test -
+regexp = /\Ba\B/
+string = '-a'
+PASSED! Section 23 of test -
+regexp = /\Ba\B/
+string = '-a-'
+PASSED! Section 24 of test -
+regexp = /\w/
+string = '-'
+PASSED! Section 25 of test -
+regexp = /\W/
+string = 'a'
+PASSED! Section 26 of test -
+regexp = /a\sb/
+string = 'a-b'
+PASSED! Section 27 of test -
+regexp = /\d/
+string = '-'
+PASSED! Section 28 of test -
+regexp = /\D/
+string = '1'
+PASSED! Section 29 of test -
+regexp = /[\w]/
+string = '-'
+PASSED! Section 30 of test -
+regexp = /[\W]/
+string = 'a'
+PASSED! Section 31 of test -
+regexp = /a[\s]b/
+string = 'a-b'
+PASSED! Section 32 of test -
+regexp = /[\d]/
+string = '-'
+PASSED! Section 33 of test -
+regexp = /[\D]/
+string = '1'
+PASSED! Section 34 of test -
+regexp = /$b/
+string = 'b'
+PASSED! Section 35 of test -
+regexp = /^(ab|cd)e/
+string = 'abcde'
+PASSED! Section 36 of test -
+regexp = /a[bcd]+dcdcde/
+string = 'adcdcde'
+PASSED! Section 37 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/
+string = 'effg'
+PASSED! Section 38 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/
+string = 'bcdd'
+PASSED! Section 39 of test -
+regexp = /[k]/
+string = 'ab'
+PASSED! Section 40 of test -
+regexp = /(a)|\1/
+string = 'x'
+PASSED! Section 41 of test -
+regexp = /((\3|b)\2(a)x)+/
+string = 'aaxabxbaxbbx'
+PASSED! Section 42 of test -
+regexp = /abc/i
+string = 'XBC'
+PASSED! Section 43 of test -
+regexp = /abc/i
+string = 'AXC'
+PASSED! Section 44 of test -
+regexp = /abc/i
+string = 'ABX'
+PASSED! Section 45 of test -
+regexp = /ab+bc/i
+string = 'ABC'
+PASSED! Section 46 of test -
+regexp = /ab+bc/i
+string = 'ABQ'
+PASSED! Section 47 of test -
+regexp = /ab{1,}bc/i
+string = 'ABQ'
+PASSED! Section 48 of test -
+regexp = /ab{4,5}?bc/i
+string = 'ABBBBC'
+PASSED! Section 49 of test -
+regexp = /ab??bc/i
+string = 'ABBBBC'
+PASSED! Section 50 of test -
+regexp = /^abc$/i
+string = 'ABCC'
+PASSED! Section 51 of test -
+regexp = /^abc$/i
+string = 'AABC'
+PASSED! Section 52 of test -
+regexp = /a.*c/i
+string = 'AXYZD'
+PASSED! Section 53 of test -
+regexp = /a[bc]d/i
+string = 'ABC'
+PASSED! Section 54 of test -
+regexp = /a[b-d]e/i
+string = 'ABD'
+PASSED! Section 55 of test -
+regexp = /a[^bc]d/i
+string = 'ABD'
+PASSED! Section 56 of test -
+regexp = /a[^-b]c/i
+string = 'A-C'
+PASSED! Section 57 of test -
+regexp = /a[^]b]c/i
+string = 'A]C'
+PASSED! Section 58 of test -
+regexp = /$b/i
+string = 'B'
+PASSED! Section 59 of test -
+regexp = /^(ab|cd)e/i
+string = 'ABCDE'
+PASSED! Section 60 of test -
+regexp = /a[bcd]+dcdcde/i
+string = 'ADCDCDE'
+PASSED! Section 61 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/i
+string = 'EFFG'
+PASSED! Section 62 of test -
+regexp = /(bc+d$|ef*g.|h?i(j|k))/i
+string = 'BCDD'
+PASSED! Section 63 of test -
+regexp = /[k]/i
+string = 'AB'
+PASSED! Section 64 of test -
+regexp = /^(a\1?){4}$/
+string = 'aaaaaaaaa'
+PASSED! Section 65 of test -
+regexp = /^(a\1?){4}$/
+string = 'aaaaaaaaaaa'
+PASSED! Section 87 of test -
+regexp = /^(?:a?b?)*$/
+string = 'a--'
+PASSED! Section 88 of test -
+regexp = /^b/
+string = 'a\nb\nc\n'
+PASSED! Section 89 of test -
+regexp = /()^b/
+string = 'a\nb\nc\n'
+PASSED! Section 101 of test -
+regexp = /^(?=(a+?))\1ab/
+string = 'aaab'
+PASSED! Section 102 of test -
+regexp = /^(?=(a+?))\1ab/
+string = 'aaab'
+PASSED! Section 103 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'abcd:'
+PASSED! Section 104 of test -
+regexp = /([\w:]+::)?(\w+)$/
+string = 'abcd:'
+PASSED! Section 105 of test -
+regexp = /(>a+)ab/
+string = 'aaab'
+PASSED! Section 106 of test -
+regexp = /a\Z/
+string = 'a\nb\n'
+PASSED! Section 107 of test -
+regexp = /a\z/
+string = 'a\nb\n'
+PASSED! Section 108 of test -
+regexp = /a$/
+string = 'a\nb\n'
+PASSED! Section 109 of test -
+regexp = /a\z/
+string = 'b\na\n'
+PASSED! Section 110 of test -
+regexp = /a\z/m
+string = 'a\nb\n'
+PASSED! Section 111 of test -
+regexp = /a\z/m
+string = 'b\na\n'
+PASSED! Section 112 of test -
+regexp = /aa\Z/
+string = 'aa\nb\n'
+PASSED! Section 113 of test -
+regexp = /aa\z/
+string = 'aa\nb\n'
+PASSED! Section 114 of test -
+regexp = /aa$/
+string = 'aa\nb\n'
+PASSED! Section 115 of test -
+regexp = /aa\z/
+string = 'b\naa\n'
+PASSED! Section 116 of test -
+regexp = /aa\z/m
+string = 'aa\nb\n'
+PASSED! Section 117 of test -
+regexp = /aa\z/m
+string = 'b\naa\n'
+PASSED! Section 118 of test -
+regexp = /aa\Z/
+string = 'ac\nb\n'
+PASSED! Section 119 of test -
+regexp = /aa\z/
+string = 'ac\nb\n'
+PASSED! Section 120 of test -
+regexp = /aa$/
+string = 'ac\nb\n'
+PASSED! Section 121 of test -
+regexp = /aa\Z/
+string = 'b\nac\n'
+PASSED! Section 122 of test -
+regexp = /aa\z/
+string = 'b\nac\n'
+PASSED! Section 123 of test -
+regexp = /aa$/
+string = 'b\nac\n'
+PASSED! Section 124 of test -
+regexp = /aa\Z/
+string = 'b\nac'
+PASSED! Section 125 of test -
+regexp = /aa\z/
+string = 'b\nac'
+PASSED! Section 126 of test -
+regexp = /aa$/
+string = 'b\nac'
+PASSED! Section 127 of test -
+regexp = /aa\Z/m
+string = 'ac\nb\n'
+PASSED! Section 128 of test -
+regexp = /aa\z/m
+string = 'ac\nb\n'
+PASSED! Section 129 of test -
+regexp = /aa$/m
+string = 'ac\nb\n'
+PASSED! Section 130 of test -
+regexp = /aa\Z/m
+string = 'b\nac\n'
+PASSED! Section 131 of test -
+regexp = /aa\z/m
+string = 'b\nac\n'
+PASSED! Section 132 of test -
+regexp = /aa$/m
+string = 'b\nac\n'
+PASSED! Section 133 of test -
+regexp = /aa\Z/m
+string = 'b\nac'
+PASSED! Section 134 of test -
+regexp = /aa\z/m
+string = 'b\nac'
+PASSED! Section 135 of test -
+regexp = /aa$/m
+string = 'b\nac'
+PASSED! Section 136 of test -
+regexp = /aa\Z/
+string = 'ca\nb\n'
+PASSED! Section 137 of test -
+regexp = /aa\z/
+string = 'ca\nb\n'
+PASSED! Section 138 of test -
+regexp = /aa$/
+string = 'ca\nb\n'
+PASSED! Section 139 of test -
+regexp = /aa\Z/
+string = 'b\nca\n'
+PASSED! Section 140 of test -
+regexp = /aa\z/
+string = 'b\nca\n'
+PASSED! Section 141 of test -
+regexp = /aa$/
+string = 'b\nca\n'
+PASSED! Section 142 of test -
+regexp = /aa\Z/
+string = 'b\nca'
+PASSED! Section 143 of test -
+regexp = /aa\z/
+string = 'b\nca'
+PASSED! Section 144 of test -
+regexp = /aa$/
+string = 'b\nca'
+PASSED! Section 145 of test -
+regexp = /aa\Z/m
+string = 'ca\nb\n'
+PASSED! Section 146 of test -
+regexp = /aa\z/m
+string = 'ca\nb\n'
+PASSED! Section 147 of test -
+regexp = /aa$/m
+string = 'ca\nb\n'
+PASSED! Section 148 of test -
+regexp = /aa\Z/m
+string = 'b\nca\n'
+PASSED! Section 149 of test -
+regexp = /aa\z/m
+string = 'b\nca\n'
+PASSED! Section 150 of test -
+regexp = /aa$/m
+string = 'b\nca\n'
+PASSED! Section 151 of test -
+regexp = /aa\Z/m
+string = 'b\nca'
+PASSED! Section 152 of test -
+regexp = /aa\z/m
+string = 'b\nca'
+PASSED! Section 153 of test -
+regexp = /aa$/m
+string = 'b\nca'
+PASSED! Section 154 of test -
+regexp = /ab\Z/
+string = 'ab\nb\n'
+PASSED! Section 155 of test -
+regexp = /ab\z/
+string = 'ab\nb\n'
+PASSED! Section 156 of test -
+regexp = /ab$/
+string = 'ab\nb\n'
+PASSED! Section 157 of test -
+regexp = /ab\z/
+string = 'b\nab\n'
+PASSED! Section 158 of test -
+regexp = /ab\z/m
+string = 'ab\nb\n'
+PASSED! Section 159 of test -
+regexp = /ab\z/m
+string = 'b\nab\n'
+PASSED! Section 160 of test -
+regexp = /ab\Z/
+string = 'ac\nb\n'
+PASSED! Section 161 of test -
+regexp = /ab\z/
+string = 'ac\nb\n'
+PASSED! Section 162 of test -
+regexp = /ab$/
+string = 'ac\nb\n'
+PASSED! Section 163 of test -
+regexp = /ab\Z/
+string = 'b\nac\n'
+PASSED! Section 164 of test -
+regexp = /ab\z/
+string = 'b\nac\n'
+PASSED! Section 165 of test -
+regexp = /ab$/
+string = 'b\nac\n'
+PASSED! Section 166 of test -
+regexp = /ab\Z/
+string = 'b\nac'
+PASSED! Section 167 of test -
+regexp = /ab\z/
+string = 'b\nac'
+PASSED! Section 168 of test -
+regexp = /ab$/
+string = 'b\nac'
+PASSED! Section 169 of test -
+regexp = /ab\Z/m
+string = 'ac\nb\n'
+PASSED! Section 170 of test -
+regexp = /ab\z/m
+string = 'ac\nb\n'
+PASSED! Section 171 of test -
+regexp = /ab$/m
+string = 'ac\nb\n'
+PASSED! Section 172 of test -
+regexp = /ab\Z/m
+string = 'b\nac\n'
+PASSED! Section 173 of test -
+regexp = /ab\z/m
+string = 'b\nac\n'
+PASSED! Section 174 of test -
+regexp = /ab$/m
+string = 'b\nac\n'
+PASSED! Section 175 of test -
+regexp = /ab\Z/m
+string = 'b\nac'
+PASSED! Section 176 of test -
+regexp = /ab\z/m
+string = 'b\nac'
+PASSED! Section 177 of test -
+regexp = /ab$/m
+string = 'b\nac'
+PASSED! Section 178 of test -
+regexp = /ab\Z/
+string = 'ca\nb\n'
+PASSED! Section 179 of test -
+regexp = /ab\z/
+string = 'ca\nb\n'
+PASSED! Section 180 of test -
+regexp = /ab$/
+string = 'ca\nb\n'
+PASSED! Section 181 of test -
+regexp = /ab\Z/
+string = 'b\nca\n'
+PASSED! Section 182 of test -
+regexp = /ab\z/
+string = 'b\nca\n'
+PASSED! Section 183 of test -
+regexp = /ab$/
+string = 'b\nca\n'
+PASSED! Section 184 of test -
+regexp = /ab\Z/
+string = 'b\nca'
+PASSED! Section 185 of test -
+regexp = /ab\z/
+string = 'b\nca'
+PASSED! Section 186 of test -
+regexp = /ab$/
+string = 'b\nca'
+PASSED! Section 187 of test -
+regexp = /ab\Z/m
+string = 'ca\nb\n'
+PASSED! Section 188 of test -
+regexp = /ab\z/m
+string = 'ca\nb\n'
+PASSED! Section 189 of test -
+regexp = /ab$/m
+string = 'ca\nb\n'
+PASSED! Section 190 of test -
+regexp = /ab\Z/m
+string = 'b\nca\n'
+PASSED! Section 191 of test -
+regexp = /ab\z/m
+string = 'b\nca\n'
+PASSED! Section 192 of test -
+regexp = /ab$/m
+string = 'b\nca\n'
+PASSED! Section 193 of test -
+regexp = /ab\Z/m
+string = 'b\nca'
+PASSED! Section 194 of test -
+regexp = /ab\z/m
+string = 'b\nca'
+PASSED! Section 195 of test -
+regexp = /ab$/m
+string = 'b\nca'
+PASSED! Section 196 of test -
+regexp = /abb\Z/
+string = 'abb\nb\n'
+PASSED! Section 197 of test -
+regexp = /abb\z/
+string = 'abb\nb\n'
+PASSED! Section 198 of test -
+regexp = /abb$/
+string = 'abb\nb\n'
+PASSED! Section 199 of test -
+regexp = /abb\z/
+string = 'b\nabb\n'
+PASSED! Section 200 of test -
+regexp = /abb\z/m
+string = 'abb\nb\n'
+PASSED! Section 201 of test -
+regexp = /abb\z/m
+string = 'b\nabb\n'
+PASSED! Section 202 of test -
+regexp = /abb\Z/
+string = 'ac\nb\n'
+PASSED! Section 203 of test -
+regexp = /abb\z/
+string = 'ac\nb\n'
+PASSED! Section 204 of test -
+regexp = /abb$/
+string = 'ac\nb\n'
+PASSED! Section 205 of test -
+regexp = /abb\Z/
+string = 'b\nac\n'
+PASSED! Section 206 of test -
+regexp = /abb\z/
+string = 'b\nac\n'
+PASSED! Section 207 of test -
+regexp = /abb$/
+string = 'b\nac\n'
+PASSED! Section 208 of test -
+regexp = /abb\Z/
+string = 'b\nac'
+PASSED! Section 209 of test -
+regexp = /abb\z/
+string = 'b\nac'
+PASSED! Section 210 of test -
+regexp = /abb$/
+string = 'b\nac'
+PASSED! Section 211 of test -
+regexp = /abb\Z/m
+string = 'ac\nb\n'
+PASSED! Section 212 of test -
+regexp = /abb\z/m
+string = 'ac\nb\n'
+PASSED! Section 213 of test -
+regexp = /abb$/m
+string = 'ac\nb\n'
+PASSED! Section 214 of test -
+regexp = /abb\Z/m
+string = 'b\nac\n'
+PASSED! Section 215 of test -
+regexp = /abb\z/m
+string = 'b\nac\n'
+PASSED! Section 216 of test -
+regexp = /abb$/m
+string = 'b\nac\n'
+PASSED! Section 217 of test -
+regexp = /abb\Z/m
+string = 'b\nac'
+PASSED! Section 218 of test -
+regexp = /abb\z/m
+string = 'b\nac'
+PASSED! Section 219 of test -
+regexp = /abb$/m
+string = 'b\nac'
+PASSED! Section 220 of test -
+regexp = /abb\Z/
+string = 'ca\nb\n'
+PASSED! Section 221 of test -
+regexp = /abb\z/
+string = 'ca\nb\n'
+PASSED! Section 222 of test -
+regexp = /abb$/
+string = 'ca\nb\n'
+PASSED! Section 223 of test -
+regexp = /abb\Z/
+string = 'b\nca\n'
+PASSED! Section 224 of test -
+regexp = /abb\z/
+string = 'b\nca\n'
+PASSED! Section 225 of test -
+regexp = /abb$/
+string = 'b\nca\n'
+PASSED! Section 226 of test -
+regexp = /abb\Z/
+string = 'b\nca'
+PASSED! Section 227 of test -
+regexp = /abb\z/
+string = 'b\nca'
+PASSED! Section 228 of test -
+regexp = /abb$/
+string = 'b\nca'
+PASSED! Section 229 of test -
+regexp = /abb\Z/m
+string = 'ca\nb\n'
+PASSED! Section 230 of test -
+regexp = /abb\z/m
+string = 'ca\nb\n'
+PASSED! Section 231 of test -
+regexp = /abb$/m
+string = 'ca\nb\n'
+PASSED! Section 232 of test -
+regexp = /abb\Z/m
+string = 'b\nca\n'
+PASSED! Section 233 of test -
+regexp = /abb\z/m
+string = 'b\nca\n'
+PASSED! Section 234 of test -
+regexp = /abb$/m
+string = 'b\nca\n'
+PASSED! Section 235 of test -
+regexp = /abb\Z/m
+string = 'b\nca'
+PASSED! Section 236 of test -
+regexp = /abb\z/m
+string = 'b\nca'
+PASSED! Section 237 of test -
+regexp = /abb$/m
+string = 'b\nca'
+PASSED! Section 238 of test -
+regexp = /a*abc?xyz+pqr{3}ab{2,}xy{4,5}pq{0,6}AB{0,}zz/
+string = 'x'
+PASSED! Section 239 of test -
+regexp = /\GX.*X/
+string = 'aaaXbX'
+PASSED! Section 240 of test -
+regexp = /\.c(pp|xx|c)?$/i
+string = 'Changes'
+PASSED! Section 241 of test -
+regexp = /^([a-z]:)/
+string = 'C:/'
+PASSED! Section 242 of test -
+regexp = /(\w)?(abc)\1b/
+string = 'abcab'
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_3\RegExp\15.10-2.compiled.arff] ...

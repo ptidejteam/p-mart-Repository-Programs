@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>MapperXML Example: Invoice List</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: Invoice List</h1>|
+    <a href="InvoiceListPage.sf?style=0">Style 0</a>|
+    <a href="InvoiceListPage.sf?style=1">Style 1</a>|
+    <a href="InvoiceListPage.sf?style=2">Style 2</a>|
+    Style 3 |
+    <h2>List of Invoices and Invoice Items presented in nested tables</h2>
+    <div id="invoices">
+      <h1>The Company</h1>
+      <hr/>
+      <h3>123 Main St, Juneau, AK 99801</h3>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <center>Date: <span id="issueDate">00/00/0000</span></center>
+      <br/>
+      <br/>
+      <p>Cust ID: <span id="customerID">1</span><br/>
+      John Smith<br/>
+      123 Main Street<br/>
+      Juneau, AK 99801<br/>
+      </p>
+      <p>Dear John,</p>
+      <p>We received your order today, and have processed and shipped it. This
+      is only a confirmation of your order. The actual invoice
+      (#<span id="invoiceNumber">0000</span> ) is included in
+      the shipment. The terms for this invoices are <span id="terms">0 net 0</span>.
+      Below is a list of the items you ordered:</p>
+      <center>
+        <table width ="75%" border="1">
+          <tr bgcolor="orange">
+            <td>Quantity</td>
+            <td>Product ID</td>
+            <td>Unit Price</td>
+            <td>Extension</td>
+          </tr>
+          <tr id="invoiceItems">
+            <td id="quantity">1</td>
+            <td id="productID">XXXX</td>
+            <td id="unitPrice">0.00</td>
+            <td id="extension">0.00</td>
+          </tr>
+          <tr>
+            <td bgcolor="pink" colspan="3">Total</td>
+            <td id="total">0.00</td>
+          </tr>
+        </table>
+      </center>
+      <p>We would like to thank you for your order and look forward to being
+      able to serve you again.</p>
+      <p>Sincerely,<br/>
+      Margerie Majors<br/>
+      Sales Representative</p>
+      <hr/>
+      <br/><br/>
+    </div>
+    <p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

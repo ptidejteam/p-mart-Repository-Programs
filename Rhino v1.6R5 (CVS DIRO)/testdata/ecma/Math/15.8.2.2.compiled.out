@@ -1,0 +1,23 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.8.2.2 Math.acos()
+Math.acos.length = 1 PASSED!
+Math.acos(void 0) = NaN PASSED!
+Math.acos() = NaN PASSED!
+Math.acos(null) = 1.5707963267948966 PASSED!
+Math.acos(NaN) = NaN PASSED!
+Math.acos(a string) = NaN PASSED!
+Math.acos('0') = 1.5707963267948966 PASSED!
+Math.acos('1') = 0 PASSED!
+Math.acos('-1') = 3.141592653589793 PASSED!
+Math.acos(1.00000001) = NaN PASSED!
+Math.acos(11.00000001) = NaN PASSED!
+Math.acos(1) = 0 PASSED!
+Math.acos(-1) = 3.141592653589793 PASSED!
+Math.acos(0) = 1.5707963267948966 PASSED!
+Math.acos(-0) = 1.5707963267948966 PASSED!
+Math.acos(Math.SQRT1_2) = 0.7853981633974483 PASSED!
+Math.acos(-Math.SQRT1_2) = 2.356194490192345 PASSED!
+Math.acos(0.9999619230642) = 0.008726646256686874 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.2.compiled.arff] ...

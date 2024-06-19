@@ -1,0 +1,28 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.6.3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.6.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 391 ms]
+11.6.3 Applying the additive operators (+,-) to numbers
+Number.NaN + 1 = NaN PASSED!
+1 + Number.NaN = NaN PASSED!
+Number.NaN - 1 = NaN PASSED!
+1 - Number.NaN = NaN PASSED!
+Number.POSITIVE_INFINITY + Number.POSITIVE_INFINITY = Infinity PASSED!
+Number.NEGATIVE_INFINITY + Number.NEGATIVE_INFINITY = -Infinity PASSED!
+Number.POSITIVE_INFINITY + Number.NEGATIVE_INFINITY = NaN PASSED!
+Number.NEGATIVE_INFINITY + Number.POSITIVE_INFINITY = NaN PASSED!
+Number.POSITIVE_INFINITY - Number.POSITIVE_INFINITY = NaN PASSED!
+Number.NEGATIVE_INFINITY - Number.NEGATIVE_INFINITY = NaN PASSED!
+Number.POSITIVE_INFINITY - Number.NEGATIVE_INFINITY = Infinity PASSED!
+Number.NEGATIVE_INFINITY - Number.POSITIVE_INFINITY = -Infinity PASSED!
+-0 + -0 = 0 PASSED!
+-0 - 0 = 0 PASSED!
+0 + 0 = 0 PASSED!
+0 + -0 = 0 PASSED!
+0 - -0 = 0 PASSED!
+0 - 0 = 0 PASSED!
+-0 - -0 = 0 PASSED!
+-0 + 0 = 0 PASSED!
+Number.MAX_VALUE - Number.MAX_VALUE = 0 PASSED!
+1/Number.MAX_VALUE - 1/Number.MAX_VALUE = 0 PASSED!
+Number.MIN_VALUE - Number.MIN_VALUE = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.6.3.interpreted.arff] ...

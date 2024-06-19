@@ -1,0 +1,194 @@
+/*
+ * Created on 4 mai 2004
+ * Created by Olivier Chalouhi
+ * 
+ * Copyright (C) 2004 Aelitis SARL, All rights Reserved
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details ( see the LICENSE file ).
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * 
+ * AELITIS, SARL au capital de 30,000 euros,
+ * 8 Alle Lenotre, La Grille Royale, 78600 Le Mesnil le Roi, France.
+ */
+package org.gudy.azureus2.ui.swt.mainwindow;
+
+import java.text.NumberFormat;
+import java.util.Iterator;
+
+import org.eclipse.swt.widgets.Display;
+
+import com.aelitis.azureus.core.*;
+import com.aelitis.azureus.plugins.dht.DHTPlugin;
+
+import org.gudy.azureus2.core3.config.COConfigurationManager;
+import org.gudy.azureus2.core3.config.ParameterListener;
+import org.gudy.azureus2.core3.internat.MessageText;
+import org.gudy.azureus2.core3.ipfilter.*;
+import org.gudy.azureus2.core3.logging.LGLogger;
+import org.gudy.azureus2.core3.util.*;
+import org.gudy.azureus2.ui.swt.ImageRepository;
+import org.gudy.azureus2.ui.swt.MinimizedWindow;
+import org.gudy.azureus2.ui.swt.Tab;
+import org.gudy.azureus2.ui.swt.views.IView;
+
+/**
+ * @author Olivier Chalouhi
+ *
+ */
+public class GUIUpdater extends AEThread implements ParameterListener {
+  
+  private AzureusCore		azureus_core;
+  private DHTPlugin     dhtPlugin;
+  private NumberFormat  numberFormat;
+  private MainWindow 		mainWindow;
+  private Display 			display;
+  
+  boolean finished = false;
+  boolean refreshed = true;
+  
+  int waitTime = COConfigurationManager.getIntParameter("GUI Refresh");   
+  
+  public 
+  GUIUpdater(
+  	AzureusCore		_azureus_core,
+	MainWindow 		mainWindow) 
+  {       
+    super("GUI updater");
+    azureus_core		= _azureus_core;
+    this.mainWindow = mainWindow;
+    this.display = mainWindow.getDisplay();
+    this.numberFormat = NumberFormat.getInstance();
+    this.dhtPlugin = (DHTPlugin) AzureusCoreFactory.getSingleton().getPluginManager().getPluginInterfaceByClass( DHTPlugin.class ).getPlugin();      
+    setPriority(Thread.MAX_PRIORITY -2);
+    COConfigurationManager.addParameterListener("GUI Refresh", this);
+  }
+
+  public void runSupport() {
+    while (!finished) {
+      if(refreshed)
+        update();
+      try {
+        Thread.sleep(waitTime);
+      }
+      catch (Exception e) {
+      	Debug.printStackTrace( e );
+      }
+    }
+  }
+
+  /**
+   * @param parameterName the name of the parameter that has changed
+   * @see org.gudy.azureus2.core3.config.ParameterListener#parameterChanged(java.lang.String)
+   */
+  public void parameterChanged(String parameterName) {
+    waitTime = COConfigurationManager.getIntParameter("GUI Refresh");
+  }
+
+  private void update() {
+    refreshed = false;
+    if (display != null && !display.isDisposed())
+      display.asyncExec(new AERunnable(){
+      public void runSupport() {
+        try {
+          IView view = null;
+          if (!mainWindow.getShell().isDisposed() && mainWindow.isVisible() && !mainWindow.getShell().getMinimized()) {
+
+            view = mainWindow.getCurrentView();
+            
+            if (view != null) {
+              view.refresh();
+              Tab.refresh();
+            }
+
+            IpFilter ip_filter = azureus_core.getIpFilterManager().getIPFilter();
+            
+            mainWindow.ipBlocked.setText( 
+            		"{"+
+					DisplayFormatters.formatDateShort(ip_filter.getLastUpdateTime()) + 
+					"} IPs: " + 
+          numberFormat.format(ip_filter.getNbRanges()) + 
+					" - " + 
+          numberFormat.format(ip_filter.getNbIpsBlocked()) + 
+					"/" +
+          numberFormat.format(ip_filter.getNbBannedIps()) +
+					"/" + 
+          numberFormat.format(azureus_core.getIpFilterManager().getBadIps().getNbBadIps()));
+					
+            
+               
+        if( dhtPlugin == null || dhtPlugin.getStatus() == DHTPlugin.STATUS_DISABLED) {
+          mainWindow.dhtStatus.setImage(ImageRepository.getImage("redled"));
+          mainWindow.dhtStatus.setText(MessageText.getString("MainWindow.dht.status.disabled"));
+        } else
+        if(dhtPlugin.getStatus() == DHTPlugin.STATUS_INITALISING) {
+          mainWindow.dhtStatus.setImage(ImageRepository.getImage("yellowled"));
+          mainWindow.dhtStatus.setText(MessageText.getString("MainWindow.dht.status.initializing"));
+        } else
+        if(dhtPlugin.getStatus() == DHTPlugin.STATUS_FAILED) {
+          mainWindow.dhtStatus.setImage(ImageRepository.getImage("redled"));
+          mainWindow.dhtStatus.setText(MessageText.getString("MainWindow.dht.status.failed"));
+        } else
+        if(dhtPlugin.getStatus() == DHTPlugin.STATUS_RUNNING) {
+          mainWindow.dhtStatus.setImage(ImageRepository.getImage("greenled"));
+          if(dhtPlugin.getDHT() == null || dhtPlugin.getDHT().getControl().getStats().getEstimatedDHTSize() == 0 ) {
+            mainWindow.dhtStatus.setText(MessageText.getString("MainWindow.dht.status.running"));
+          } else {
+            mainWindow.dhtStatus.setText(numberFormat.format(dhtPlugin.getDHT().getControl().getStats().getEstimatedDHTSize()) + " " + MessageText.getString("MainWindow.dht.status.users"));
+          }            
+        }
+        
+        int ul_limit = COConfigurationManager.getIntParameter("Max Upload Speed KBs");
+        int dl_limit = COConfigurationManager.getIntParameter("Max Download Speed KBs");
+        
+		    mainWindow.statusDown.setText(
+		    		MessageText.getString("ConfigView.download.abbreviated") + " " + 
+					(dl_limit==0?"":"[" + dl_limit + "K] " ) +
+					DisplayFormatters.formatByteCountToKiBEtcPerSec(mainWindow.globalManager.getStats().getDataReceiveRate() + mainWindow.globalManager.getStats().getProtocolReceiveRate() ));
+		    
+            mainWindow.statusUp.setText(
+            		MessageText.getString("ConfigView.upload.abbreviated") + " " + 
+					(ul_limit==0?"":"[" + ul_limit + "K] " ) +
+					DisplayFormatters.formatByteCountToKiBEtcPerSec(mainWindow.globalManager.getStats().getDataSendRate() + mainWindow.globalManager.getStats().getProtocolSendRate() ));
+          }
+          
+          if(mainWindow.systemTraySWT != null)
+            mainWindow.systemTraySWT.update();
+          
+          try{
+          	mainWindow.downloadBars_mon.enter();
+          
+            Iterator iter = mainWindow.downloadBars.values().iterator();
+            while (iter.hasNext()) {
+              MinimizedWindow mw = (MinimizedWindow) iter.next();
+              mw.refresh();
+            }
+          }finally{
+          	
+          	mainWindow.downloadBars_mon.exit();
+          }
+        } catch (Exception e) {
+          LGLogger.log(LGLogger.ERROR, "Error while trying to update GUI");
+          Debug.printStackTrace( e );
+        } finally {
+          refreshed = true;
+        }
+      }        
+    });
+  }
+
+  public void stopIt() {
+    finished = true;
+    COConfigurationManager.removeParameterListener("GUI Refresh", this);
+    COConfigurationManager.removeParameterListener("config.style.refreshMT", this);
+  }
+}

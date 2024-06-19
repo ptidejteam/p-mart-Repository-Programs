@@ -1,0 +1,11 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-3.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\FunctionObjects\shell.js -f mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+15.3.2.1-3 The Function Constructor
+MyFunc.length = 2000 PASSED!
+var MY_OB = eval('MyFunc(s)') = 0.9999999999999453 PASSED!
+MyObject.length = 2000 PASSED!
+FUN1 = new Function( 'a','b','c', 'return FUN1.length' ); FUN1.length = 3 PASSED!
+FUN1 = new Function( 'a','b','c', 'return FUN1.length' ); FUN1() = 3 PASSED!
+FUN1 = new Function( 'a','b','c', 'return FUN1.length' ); FUN1(1,2,3,4,5) = 3 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\FunctionObjects\15.3.2.1-3.compiled.arff] ...

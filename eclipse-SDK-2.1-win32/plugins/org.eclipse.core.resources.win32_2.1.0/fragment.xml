@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment
+   id="org.eclipse.core.resources.win32"
+   name="%win32FragmentName"
+   provider-name="%providerName"
+   version="2.1.0"
+   plugin-id="org.eclipse.core.resources"
+   plugin-version="2.1.0">
+</fragment>

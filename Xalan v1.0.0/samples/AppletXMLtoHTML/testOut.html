@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+<title>LotusXSL Applets</title>
+</head>
+<body text="#000000" bgcolor="#ffffff">
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#006699"><font size="+1" color="#ffffff"><b>Transforming XML in an Appplet</b></font></td></tr>
+</table>
+    <ol> 
+      <li>
+        <p>Include
+        org.apache.xalan.xslt.client.XSLTProcessorApplet
+        in an HTML client.</p>
+      </li>
+      <li>
+        <p>Specify the XML source document and XSL
+        stylesheet.</p>
+        <p>You can use the DocumentURL and StyleURL PARAM tags 
+        or the setDocumentURL() and setStyleURL() methods. 
+        If the XML document contains a stylesheet Processing
+        Instruction (PI), you do not need to specify an XSL
+        stylesheet.</p>
+      </li>
+      <li>
+        <p>Call the transformToHTML() method, which performs
+        the transformation and returns the new document as a
+        String.</p>
+      </li>
+    </ol>
+  <br>
+</body>
+</html>

@@ -1,0 +1,2 @@
+A property claimed to start before zero, at -512! Resetting it to zero, and hoping for the best
+A property claimed to start before zero, at -512! Resetting it to zero, and hoping for the best

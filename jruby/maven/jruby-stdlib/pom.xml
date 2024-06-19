@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.jruby</groupId>
+    <artifactId>jruby-artifacts</artifactId>
+    <version>1.7.5.dev</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jruby-stdlib</artifactId>
+  <packaging>jar</packaging>
+  <name>JRuby Stdlib</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>readline</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>openssl</artifactId>
+      <version>0.8.9-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk15on</artifactId>
+      <version>${bc.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15on</artifactId>
+      <version>${bc.version}</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <jruby.basedir>${basedir}/../../</jruby.basedir>
+    <jruby.complete.home>${project.build.outputDirectory}/META-INF/jruby.home</jruby.complete.home>
+    <jruby.complete.gems>${jruby.complete.home}/lib/ruby/gems/shared</jruby.complete.gems>
+    <gem.home>${jruby.basedir}/lib/ruby/gems/shared</gem.home>
+    <main.basedir>${project.parent.parent.basedir}</main.basedir>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${gem.home}</directory>
+        <targetPath>${jruby.complete.gems}</targetPath>
+        <includes>
+          <include>gems/rake-${rake.version}/**/*</include>
+          <include>specifications/rake-${rake.version}.gemspec</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${jruby.basedir}</directory>
+        <targetPath>${jruby.complete.home}</targetPath>
+        <includes>
+          <include>bin/jruby</include>
+          <include>bin/*jruby*</include>
+          <include>bin/*gem*</include>
+          <include>bin/*ri*</include>
+          <include>bin/*rdoc*</include>
+          <include>bin/*irb*</include>
+          <include>bin/generate_yaml_index.rb</include>
+          <include>bin/testrb</include>
+          <include>bin/ast*</include>
+          <include>bin/spec.bat</include>
+          <include>bin/rake</include>
+          <include>bin/rake.bat</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${jruby.basedir}</directory>
+        <targetPath>${jruby.complete.home}</targetPath>
+        <includes>
+          <include>lib/ruby/1.8/**</include>
+          <include>lib/ruby/1.9/**</include>
+          <include>lib/ruby/2.0/**</include>
+          <include>lib/ruby/shared/**</include>
+        </includes>
+        <excludes>
+          <exclude>lib/**/bc*.jar</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <plugins>
+    </plugins>
+  </build>
+</project>

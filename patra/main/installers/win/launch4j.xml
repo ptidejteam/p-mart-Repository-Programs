@@ -1,0 +1,22 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>/Users/branscha/Documents/projects/svn-sourceforge/patra-trunk/target/patra-1.4-SNAPSHOT-jar-with-dependencies.jar</jar>
+  <outfile>/Users/branscha/Documents/projects/svn-sourceforge/patra-trunk/target/patra-1.4.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>/Users/branscha/Documents/projects/svn-sourceforge/patra-trunk/src/main/installers/win/pwt-icon.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+  </jre>
+</launch4jConfig>

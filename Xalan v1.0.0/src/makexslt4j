@@ -1,0 +1,128 @@
+###########################################################
+# Makefile for the XSLT engine.
+#
+# See ../Makefile for important environment notes
+#
+###########################################################
+
+# Include common targets and variables
+include ../make.include
+
+SINCE_FILE       = sincexslt.last
+
+# Define our directory structure
+PROJDIR = org$(PATHSEP)apache$(PATHSEP)xalan
+XPATHDIR = $(PROJDIR)$(PATHSEP)xpath
+XMLLIAISONDIR = $(PROJDIR)$(PATHSEP)xpath$(PATHSEP)xml
+XSLT4JDIR = $(PROJDIR)$(PATHSEP)xslt
+CLIENTDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)client
+EXTENSIONSDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)extensions
+TRACEDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)trace
+RESDIR = $(PROJDIR)$(PATHSEP)xslt$(PATHSEP)res
+SUBDIRS = 
+
+SRCS = \
+	$(XSLT4JDIR)$(PATHSEP)Arg.java \
+	$(XSLT4JDIR)$(PATHSEP)AVT.java \
+	$(XSLT4JDIR)$(PATHSEP)AVTPart.java \
+	$(XSLT4JDIR)$(PATHSEP)AVTPartSimple.java \
+	$(XSLT4JDIR)$(PATHSEP)AVTPartXPath.java \
+	$(XSLT4JDIR)$(PATHSEP)Constants.java \
+	$(XSLT4JDIR)$(PATHSEP)DecimalToRoman.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemApplyImport.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemApplyTemplates.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemAttribute.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemAttributeSet.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemCallTemplate.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemChoose.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemComment.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemCopy.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemCopyOf.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemDecimalFormat.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemElement.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemEmpty.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemExtensionCall.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemFallback.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemForEach.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemIf.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemLiteralResult.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemMessage.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemNumber.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemOtherwise.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemParam.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemPI.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemSort.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemTemplate.java \
+	$(XSLT4JDIR)$(PATHSEP)ElemTemplateElement.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemText.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemTextLiteral.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemUse.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemValueOf.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemVariable.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemWhen.java \
+  $(XSLT4JDIR)$(PATHSEP)ElemWithParam.java \
+  $(XSLT4JDIR)$(PATHSEP)ExtensionNSHandler.java \
+  $(XSLT4JDIR)$(PATHSEP)FuncDocument.java \
+  $(XSLT4JDIR)$(PATHSEP)FuncFormatNumb.java \
+  $(XSLT4JDIR)$(PATHSEP)KeyTable.java \
+  $(XSLT4JDIR)$(PATHSEP)NodeSorter.java \
+  $(XSLT4JDIR)$(PATHSEP)NodeSortKey.java \
+  $(XSLT4JDIR)$(PATHSEP)NumeratorFormatter.java \
+  $(XSLT4JDIR)$(PATHSEP)Process.java \
+  $(XSLT4JDIR)$(PATHSEP)ResultTreeFrag.java \
+  $(XSLT4JDIR)$(PATHSEP)Stylesheet.java \
+  $(XSLT4JDIR)$(PATHSEP)StylesheetHandler.java \
+  $(XSLT4JDIR)$(PATHSEP)StylesheetRoot.java \
+  $(XSLT4JDIR)$(PATHSEP)StylesheetSpec.java \
+  $(XSLT4JDIR)$(PATHSEP)UnImplNode.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLTProcessor.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLTProcessorFactory.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLTEngineImpl.java \
+  $(XSLT4JDIR)$(PATHSEP)VariableStack.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLProcessorContext.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLProcessorException.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLProcessorVersion.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLTInputSource.java \
+  $(XSLT4JDIR)$(PATHSEP)XSLTResultTarget.java \
+  $(XSLT4JDIR)$(PATHSEP)TemplateList.java \
+  $(XSLT4JDIR)$(PATHSEP)ResultNameSpace.java \
+  $(XSLT4JDIR)$(PATHSEP)TreeWalker2Result.java \
+  $(XSLT4JDIR)$(PATHSEP)TemplateElementContext.java \
+  $(XSLT4JDIR)$(PATHSEP)Counter.java \
+  $(XSLT4JDIR)$(PATHSEP)CountersTable.java \
+  $(TRACEDIR)$(PATHSEP)GenerateEvent.java \
+  $(TRACEDIR)$(PATHSEP)SelectionEvent.java \
+  $(TRACEDIR)$(PATHSEP)TracerEvent.java \
+  $(TRACEDIR)$(PATHSEP)PrintTraceListener.java \
+  $(TRACEDIR)$(PATHSEP)TraceListener.java \
+  $(CLIENTDIR)$(PATHSEP)XSLTProcessorApplet.java \
+  $(EXTENSIONSDIR)$(PATHSEP)Redirect.java \
+  $(RESDIR)$(PATHSEP)XSLTResourceBundle.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_en.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_el.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_he.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_hy.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_ja_JP_A.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_ja_JP_I.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_ka.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_ja_JP_HI.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_ja_JP_HA.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_zh_CN.java \
+  $(RESDIR)$(PATHSEP)XSLTResources_zh_TW.java \
+  $(RESDIR)$(PATHSEP)XSLTErrorResources.java \
+  $(RESDIR)$(PATHSEP)XSLTErrorResources_en.java
+
+    
+OBJS = $($(subst /,\\,$(SRCS)):%.java=classes/%.class)
+
+all: sincelast makesubdirs
+
+clean::
+	$(RM) $(CLASS_DIR)/$(XSLT4JDIR)/*.class \
+	$(CLASS_DIR)/$(TRACEDIR)/*.class \
+	$(CLASS_DIR)/$(CLIENTDIR)/*.class \
+	$(CLASS_DIR)/$(EXTENSIONSDIR)/*.class \
+	$(CLASS_DIR)/$(RESDIR)/*.class \
+	$(SINCE_FILE)
+
+include ../make.include2

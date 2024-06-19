@@ -1,0 +1,39 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\TypeConversion\9.9-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\TypeConversion\shell.js -f mozilla\js\tests\ecma\TypeConversion\9.9-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+9.9-1 Type Conversion: ToObject
+Object(true).valueOf() = true PASSED!
+typeof Object(true) = object PASSED!
+Object(false).valueOf() = false PASSED!
+typeof Object(false) = object PASSED!
+Object(0).valueOf() = 0 PASSED!
+typeof Object(0) = object PASSED!
+Object(-0).valueOf() = 0 PASSED!
+typeof Object(-0) = object PASSED!
+Object(1).valueOf() = 1 PASSED!
+typeof Object(1) = object PASSED!
+Object(-1).valueOf() = -1 PASSED!
+typeof Object(-1) = object PASSED!
+Object(Number.MAX_VALUE).valueOf() = 1.7976931348623157e+308 PASSED!
+typeof Object(Number.MAX_VALUE) = object PASSED!
+Object(Number.MIN_VALUE).valueOf() = 5e-324 PASSED!
+typeof Object(Number.MIN_VALUE) = object PASSED!
+Object(Number.POSITIVE_INFINITY).valueOf() = Infinity PASSED!
+typeof Object(Number.POSITIVE_INFINITY) = object PASSED!
+Object(Number.NEGATIVE_INFINITY).valueOf() = -Infinity PASSED!
+typeof Object(Number.NEGATIVE_INFINITY) = object PASSED!
+Object(Number.NaN).valueOf() = NaN PASSED!
+typeof Object(Number.NaN) = object PASSED!
+Object('a string').valueOf() = a string PASSED!
+typeof Object('a string') = object PASSED!
+Object('').valueOf() =  PASSED!
+typeof Object('') = object PASSED!
+Object('\r\t\b\n\v\f').valueOf() = 	
+ PASSED!
+typeof Object('\r\t\b\n\v\f') = object PASSED!
+Object( '\'\"\' ).valueOf() = '"\ PASSED!
+typeof Object( '\'\"\' ) = object PASSED!
+Object( new MyObject(true) ).valueOf() = true PASSED!
+typeof Object( new MyObject(true) ) = object PASSED!
+(Object( new MyObject(true) )).toString() = [object Object] PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\TypeConversion\9.9-1.compiled.arff] ...

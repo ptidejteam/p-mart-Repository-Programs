@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Buffers</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="basics.html" title="Chapter 2. jEdit Basics"><link rel="previous" href="basics.html" title="Chapter 2. jEdit Basics"><link rel="next" href="views.html" title="Views"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Buffers</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="basics.html">Prev</a> </td><th width="60%" align="center">Chapter 2. jEdit Basics</th><td width="20%" align="right"> <a accesskey="n" href="views.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="buffers"></a>Buffers</h2></div></div><p>
+   A <i>buffer</i> is the jEdit term for an open file.
+   Several buffers can be opened and edited at once;
+   the combo box above the text area selects the buffer to edit.
+   Different emblems are displayed next to buffer names in the list,
+   depending the buffer's state;
+   a red disk is shown for buffers with unsaved changes,
+   a lock is shown for read-only buffers,
+   and a spark is shown for new buffers which don't yet exist on disk.
+  </p><p>
+   In addition to the buffer combo box, various commands can also be
+   used to select the buffer to edit.
+  </p><p>
+   <b>View</b>&gt;<b>Go to Previous Buffer</b>
+   (keyboard shortcut: <b>Control</b>-<b>Page Up</b>) switches to the previous buffer in the list.
+  </p><p>
+   <b>View</b>&gt;<b>Go to Next Buffer</b>
+   (keyboard shortcut: <b>Control</b>-<b>Page Down</b>) switches to the next buffer in the list.
+  </p><p>
+   <b>View</b>&gt;<b>Go to Recent Buffer</b>
+   (keyboard shortcut: <b>Control</b>-<b>`</b>)
+   switches to the buffer that was being edited prior to the current one.
+  </p><p>
+   <b>View</b>&gt;<b>Show Buffer Switcher</b>
+   (keyboard shortcut: <b>Alt</b>-<b>`</b>)
+   has the same effect as clicking on the buffer switcher combo box.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><h3 class="title"><a name="id2813003"></a>Memory Usage</h3></div></div><p>
+    The maximum number of open buffers depends on available <i>Java
+    heap memory</i>. When in the Java heap, a buffer uses
+    approximately two and a half times it's size on disk. This overhead is caused
+    by the file being stored internally in Unicode (see
+    <a href="encodings.html" title="Character Encodings">the section called &#8220;Character Encodings&#8221;</a>), and various meta-data such as line numbers.
+   </p><p>
+    The status bar at the bottom of the view displays used and total Java
+    heap memory; see <a href="views.html#status-bar" title="The Status Bar">the section called &#8220;The Status Bar&#8221;</a> for details. This can give
+    you a rough idea of how much memory the currently opened files are using.
+    The Java heap grows if it runs out of room, but it only grows to a certain
+    maximum size, and attempts to allocate Java objects that would grow the
+    heap beyond this size fail with out-of-memory errors.
+   </p><p>
+    As a result, if the maximum heap size is set too low,
+    opening large files or performing other memory-intensive operations can
+    fail, even if you have a lot of free
+    system memory.
+   </p><p>
+    To change the heap size on Windows, run &#8220;Set jEdit Parameters&#8221;
+    from the &#8220;jEdit&#8221; group in the
+    Programs menu. Then, in the resulting dialog box, under &#8220;Command
+    line options for Java executable&#8221;, change the option that looks like
+    so:
+   </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen">-mx32m</pre></td></tr></table><p>
+    (See <a href="launcher-starting.html" title="Starting jEdit">the section called &#8220;Starting jEdit&#8221;</a> for more information about the
+    &#8220;Set jEdit Parameters&#8221; dialog box.)
+   </p><p>
+    On Unix, edit the <tt>jedit</tt> shell script and change the
+    line that looks like so:
+   </p><table border="0" bgcolor="#E0E0E0"><tr><td><pre class="screen">JAVA_HEAP_SIZE=32</pre></td></tr></table><p>
+    In both cases, replace &#8220;32&#8221; with the desired heap size, in
+    megabytes.
+   </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="basics.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="basics.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="views.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 2. jEdit Basics </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Views</td></tr></table></div></body></html>

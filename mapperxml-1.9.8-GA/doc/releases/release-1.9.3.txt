@@ -1,0 +1,51 @@
+MapperXML
+Version 1.9.3
+Release Notes:
+
+Quick Highlights
+================================================================
+o   New distribution packaging.  Includes javadoc and examples.
+o   Minor improvements in message for 404 exceptions.
+o   Added feature to support multiple ClassLoaders (such as
+    Tomcat).  You can now put mapperxml in common directory to
+    be shared by all applications.  To use this feature you
+    must set the ServletFormFactory's defaultClassLoader
+    property to the ClassLoader for your application.  This is
+    generally done in the ServletApp's init method:
+
+      getFactory().setDefaultClassLoader(getClass().getClassLoader());
+
+Important Changes
+================================================================
+none
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Bux Fixes:
+================================================================
+none
+
+New Features:
+================================================================
+
+Other Changes:
+================================================================
+o   ServletApp - Added additional diagnostic information to Exception
+    for a 404/NotFound condition.  This will help diagnose why
+    it cannot load a requested ServletForm.
+o   Added new property to ServletFormFactory: defaultClassLoader
+    which is used by createServletForm method to load and create
+    instances of requested ServletForms.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+none

@@ -1,0 +1,2 @@
+Open c:\DOCUME~1\yegor\LOCALS~1\Temp\bug27272_145370.xls in Excel
+Open c:\DOCUME~1\yegor\LOCALS~1\Temp\bug27272_245371.xls in Excel

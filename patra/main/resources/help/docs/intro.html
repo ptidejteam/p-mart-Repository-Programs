@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <meta name="copyright" content="S.D.I.-Consulting BVBA, http://www.sdi-consulting.com">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/help.css">
+    <title>Password Tracker Introduction</title>
+</head>
+<body>
+
+
+<div style="text-align: center;"><img alt="Password Tracker Logo" src="../assets/pwt-logo-normal.jpg"></div>
+<div style="text-align: center;"><font size="-1">
+    Bruno Ranschaert, S.D.I.-Consulting BVBA, &copy; 2006-2009
+</font></div>
+
+<br>
+
+<p>Password Tracker is an application to keep your passwords in an encrypted file on disk, protected by a pass phrase so
+    that they are safe. Even if the file containing your passwords falls in the wrong hands, the pass phrase is needed
+    to decrypt it. The application uses the unpatented Blowfish encryption algorithm which was invented by Bruce
+    Schneier. The encryption is reasonably safe. The application is based on the Password Safe application from
+    Bruce Schneier, it aims to be compatible with it. The application is available under the
+    <a href="pwt-license.html">GNU GPL</a>.</p>
+
+<ul>
+    <li> Take a look at the <a href="quickstart.html">quick start page</a> to get started. </li>
+    <li>Password Tracker homepage: http://patra.sourceforge.net</li>
+    <li>S.D.I.-Consulting home: http://www.sdi-consulting.com</li>
+</ul>
+
+
+<h2>History and Goal</h2>
+
+
+<p>I started using the original Password Safe application from Bruce Schneier, which was a native windows application,
+    and I still find it very useful. I try to maintain a number of different computers running different OS's. On Linux
+    I am using WINE to run password safe. I didn't want to be "locked in" in an old format that I didn't
+    understand, I was afraid my data would get lost at some point. Therefore, I wanted to be able to decode the file
+    format myself to be able to recover my data if this would be necessary. Some things were bothering me a little bit
+    regarding the application.</p>
+
+<ul>
+    <li>No easy buttons to copy uid/pwd (both, not only the password).</li>
+    <li>Cross platform - no dependency on WINE - PC, Linux, OSX.</li>
+    <li>New password safe format 2.0.</li>
+    <li>Import/export to plain text to prevent lock-in.</li>
+    <li>Changing the password generating stuff, sometimes I need longer/shorter passwords with other requirements.</li>
+</ul>
+
+<h2>Credits</h2>
+
+<p>Idea of the application comes from the Password Safe application. This was first written by Bruce Schneier, and than
+    transferred to the open source community. It is now available at: http://passwordsafe.sourceforge.net. The Password
+    Safe project was important to know the file format, especially the header format which is not trivial.</p>
+
+
+<p>I found some more information about the file format in another open source project which is also based on the
+    Password Safe application. It is the Password Safe password database application which can be found at:
+    http://nsd.dyndns.org/pwsafe.</p>
+
+
+<br>
+<span style="font-style: italic;">Password generator:</span><br>
+<ul>
+    <li>The classification system (11 categories) comes from a script written by David Finch. The generator algorithm
+        does not, I wrote this myself.
+    </li>
+</ul>
+
+
+<span style="font-style: italic;">Encryption</span>:<br>
+<ul>
+    <li>Written from scratch based on the example provided by Bruce Schneier in the book: "Applied Cryptography , Second
+        Edition", John Wiley &amp; Sons, 1996, ISBN 0-471-11709-9.
+    </li>
+</ul>
+
+
+<span style="font-style: italic;">Libraries</span>:<br>
+<ul>
+    <li>The prepackaged version uses the <span style="text-decoration: underline;">JGoodies Looks</span> look and feel.
+        You can find more information on the JGoodies website: http://www.jgoodies.com. It is distributed under
+        <a href="jgoodies-license.html">this license</a>.
+    </li>
+</ul>
+
+
+</body>
+</html>

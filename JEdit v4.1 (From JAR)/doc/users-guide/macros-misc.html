@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Miscellaneous Macros</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="macro-index.html" title="Appendix F. Macros Included With jEdit"><link rel="previous" href="macros-properties.html" title="Macros for Listing Properties"><link rel="next" href="macros-text.html" title="Text Macros"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Miscellaneous Macros</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="macros-properties.html">Prev</a> </td><th width="60%" align="center">Appendix F. Macros Included With jEdit</th><td width="20%" align="right"> <a accesskey="n" href="macros-text.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="macros-misc"></a>Miscellaneous Macros</h2></div></div><p>
+    While these macros do not fit easily into the other categories, they all provide
+    interesting and useful functions.
+</p><div class="itemizedlist"><ul type="disc"><li><p><tt>Cascade_jEdit_Windows.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Rearranges view and floating plugin windows.
+    </p></div><p>
+        The windows are arranged in an overlapping &#8220;cascade&#8221;
+        pattern beginning near the upper left corner of the display.
+    </p></li><li><p><tt>Display_Abbreviations.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Displays the abbreviations registered for each of jEdit's
+        editing modes.
+    </p></div><p>
+        The macro provides a read-only view of the abbreviations
+        contained in the &#8220;Abbreviations&#8221; option pane.  Pressing
+        a letter key will scroll the table to the first entry beginning with
+        that letter.  A further option is provided to write a selected mode's
+        abbreviations or all abbreviations in a text buffer for printing as a
+        reference. Notes in the source code listing point out some display options
+        that are configured by modifying global variables.
+    </p></li><li><p><tt>Display_Shortcuts.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Displays a sorted list of the keyboard shortcuts currently in effect.
+    </p></div><p>
+        The macro provides a combined read-only view of command, macro
+        and plugin shortcuts. Pressing a letter key will
+        scroll the table to the first entry beginning with that letter.
+        A further option is provided to write the shortcut assignments in a
+        text buffer for printing as a reference. Notes in the source code
+        listing point out some display options that are configured by
+        modifying global variables.
+    </p></li><li><p><tt>Evaluate_Buffer_in_BeanShell.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        Evaluates contents of current buffer as a BeanShell script,
+        and opens a new
+        buffer to receive any text output.
+    </p></div><p>
+        This is a quick way to test a macro script even before its text
+        is saved to a file.  Opening a new buffer for output is a precaution
+        to prevent the macro from inadvertently erasing or overwriting
+        itself.  BeanShell scripts that operate on the contents of the
+        current buffer will not work meaningfully when tested using this
+        macro.
+    </p></li><li><p><tt>Hex_Convert.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+    Converts byte characters to their hex equivalent, and vice versa.
+  </p></div></li><li><p><tt>Include_Guard.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+		Intended for C/C++ header files, this macro inserts a preprocessor
+		directive in the current buffer to ensure that the header is
+		included only once per compilation unit.
+    </p></div><p>
+        To use the macro, first place the caret at the beginning of the
+		header file before any uncommented text.  The macro will return to
+		this position upon completion.  The defined term that triggers the
+		&#8220;include guard&#8221; is taken from the buffer's name.
+    </p></li><li><p><tt>Make_Bug_Report.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+      Creates a new buffer with installation and error information
+	    extracted from the activity log.
+    </p></div><p>
+	  The macro extracts initial messages written to the activity log
+	  describing the user's operating system, JDK, jEdit version and
+	  installed plugins. It then appends the last set of error messages
+	  written to the activity log.  The new text buffer can be saved and
+	  attached to an email message or a bug report made on SourceForge.
+	</p></li><li><p><tt>Run_Script.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+    Runs script using interpreter based upon buffer's editing mode
+    (by default, determined using file extension). You must have the
+    appropriate interpreter (such as Perl, Python, or Windows Script Host)
+    installed on your system.
+  </p></div></li><li><p><tt>Show_Threads.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+      Displays in a tree format all running Java threads of the current
+      Java Virtual Machine.
+    </p></div></li><li><p><tt>Write_HyperSearch_Results.bsh</tt></p><div class="abstract"><p class="title"><b>Abstract</b></p><p>
+        This macro writes the contents of the &#8220;HyperSearch
+        Results&#8221; window to a new buffer in
+        a simple text report format.
+    </p></div></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="macros-properties.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="macro-index.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="macros-text.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Macros for Listing Properties </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Text Macros</td></tr></table></div></body></html>

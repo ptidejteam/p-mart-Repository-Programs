@@ -1,0 +1,53 @@
+-------------- Sun Feb 17 00:12:18 2002 ---------------
+echo Starting performance measures. This make take a few minutes....
+
+NullAppender:
+
+Results:  2  3  2  2                 - average 2 SimpleLayout
+Results:  2  2  2  2                 - average 2 PatternLayout "%p - %m%n"
+Results:  2  2  2  2                 - average 2 PatternLayout "%-5p - %m%n"
+Results:  5  5  5  5                 - average 5 TTCCLayout/RELATIVE
+Results:  6  13  6  10                 - average 8 PatternLayout "%r [%t] %-5p %c{2} %x - %m%n"
+Results:  6  6  6  5                 - average 5 PatternLayout "%r [%t] %-5p %.10c %x - %m%n"
+Results:  6  6  6  6                 - average 6 PatternLayout "%r [%t] %-5p %.20c %x - %m%n"
+Results:  5  5  5  5                 - average 5 PatternLayout "%r [%t] %-5p %c - %m%n"
+Results:  13  12  22  11                 - average 14 TTCCLayout/ISO8601
+Results:  14  14  13  13                 - average 13 PatternLayout "%d{ISO8601} [%t] %-5p %c %x - %m%n"
+Results:  23  23  24  25                 - average 23 PatternLayout "%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"
+Results: 130 132 128 130                 - average 130 PatternLayout "%l - %m%n"
+Results: 144 142 140 142                 - average 142 PatternLayout "%C.%M.%L - %m%n"
+
+FileAppender:
+
+Results:  14  14  12  11  22  13  14  11 - average 13 SimpleLayout
+Results:  12  12  25  13  24  12  13  12 - average 15 PatternLayout "%p - %m%n"
+Results:  21  24  33  20  20  32  23  21 - average 24 TTCC/RELATIVE
+Results:  20  25  19  19  20  19  19  20 - average 20 PatternLayout "%r [%t] %-5p %c - %m%n"
+Results:  30  30  33  30  44  44  31  30 - average 34 TTCCLayout/ISO8601
+Results:  32  32  32  32  32  32  32  32 - average 32 PatternLayout "%d{ISO8601} [%t] %-5p %c %x - %m%n"
+Results:  42  42  42  42  42  44  47  41 - average 42 PatternLayout "%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"
+================== 107 ===============================
+Results: 174 166 206 170 176 170 168 166 - average 174 PatternLayout "%l - %m%n"
+-------------------------------------
+FileAppender: ImmediateFlush=false
+-------------------------------------
+Results:  8  19  9  8  17  8  9  16 - average 11 SimpleLayout
+Results:  8  8  17  8  9  8  8  9 - average 9 PatternLayout "%p - %m%n"
+Results:  16  16  17  16  16  16  17  16 - average 16 TTCC/RELATIVE
+Results:  15  15  15  15  15  15  15  15 - average 15 PatternLayout "%r [%t] %-5p %c - %m%n"
+Results:  25  25  25  24  39  25  25  25 - average 26 TTCCLayout/ISO8601
+Results:  27  27  27  27  27  27  27  27 - average 27 PatternLayout "%d{ISO8601} [%t] %-5p %c %x - %m%n"
+Results:  37  37  39  37  37  37  37  37 - average 37 PatternLayout "%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"
+Results: 162 160 160 158 166 160 160 160 - average 160 PatternLayout "%l - %m%n"
+==================================
+Async appender
+==================================
+Results:  17  16  17  16  16  16  16  17 - average 16 SimpleLayout
+Results:  18  17  18  17  18  17  17  17 - average 17 PatternLayout "%p - %m%n"
+Results:  31  31  31  31  31  31  31  31 - average 31 TTCCLayout/RELATIVE
+Results:  26  26  26  26  26  26  26  26 - average 26 PatternLayout "%r [%t] %-5p %c - %m%n"
+Results:  35  36  35  35  36  35  36  36 - average 35 TTCCLayout/ISO8601
+Results:  40  41  39  37  38  37  38  38 - average 38 PatternLayout "%d{ISO8601} [%t] %-5p %c %x - %m%n"
+Results:  49  49  49  49  49  49  49  49 - average 49 PatternLayout "%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"
+Results: 130 132 134 132 130 134 132 130 - average 131 PatternLayout "%l - %m%n"
+log4j:ERROR Could not connect to remote log4j server at [localhost]. We will try again later.

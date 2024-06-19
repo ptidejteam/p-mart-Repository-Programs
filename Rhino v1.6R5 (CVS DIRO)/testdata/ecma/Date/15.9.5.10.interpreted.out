@@ -1,0 +1,42 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Date\15.9.5.10.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Date\shell.js -f mozilla\js\tests\ecma\Date\15.9.5.10.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+15.9.5.6 Date.prototype.getFullYear()
+(new Date(1184088687031)).getFullYear() = 2007 PASSED!
+(new Date(1184088687032)).getFullYear() = 2007 PASSED!
+(new Date(1184088687030)).getFullYear() = 2007 PASSED!
+(new Date(1184106687031)).getFullYear() = 2007 PASSED!
+(new Date(1184070687031)).getFullYear() = 2007 PASSED!
+(new Date(-62167219200000)).getFullYear() = -1 PASSED!
+(new Date(-62167219199999)).getFullYear() = -1 PASSED!
+(new Date(-62167219200001)).getFullYear() = -1 PASSED!
+(new Date(-62167201200000)).getFullYear() = 0 PASSED!
+(new Date(-62167237200000)).getFullYear() = -1 PASSED!
+(new Date(0)).getFullYear() = 1969 PASSED!
+(new Date(1)).getFullYear() = 1969 PASSED!
+(new Date(-1)).getFullYear() = 1969 PASSED!
+(new Date(18000000)).getFullYear() = 1970 PASSED!
+(new Date(-18000000)).getFullYear() = 1969 PASSED!
+(new Date(-2208988800000)).getFullYear() = 1899 PASSED!
+(new Date(-2208988799999)).getFullYear() = 1899 PASSED!
+(new Date(-2208988800001)).getFullYear() = 1899 PASSED!
+(new Date(-2208970800000)).getFullYear() = 1900 PASSED!
+(new Date(-2209006800000)).getFullYear() = 1899 PASSED!
+(new Date(946684800000)).getFullYear() = 1999 PASSED!
+(new Date(946684800001)).getFullYear() = 1999 PASSED!
+(new Date(946684799999)).getFullYear() = 1999 PASSED!
+(new Date(946702800000)).getFullYear() = 2000 PASSED!
+(new Date(946666800000)).getFullYear() = 1999 PASSED!
+(new Date(951782400000)).getFullYear() = 2000 PASSED!
+(new Date(951782400001)).getFullYear() = 2000 PASSED!
+(new Date(951782399999)).getFullYear() = 2000 PASSED!
+(new Date(951800400000)).getFullYear() = 2000 PASSED!
+(new Date(951764400000)).getFullYear() = 2000 PASSED!
+(new Date(1104537600000)).getFullYear() = 2004 PASSED!
+(new Date(1104537600001)).getFullYear() = 2004 PASSED!
+(new Date(1104537599999)).getFullYear() = 2004 PASSED!
+(new Date(1104555600000)).getFullYear() = 2005 PASSED!
+(new Date(1104519600000)).getFullYear() = 2004 PASSED!
+(new Date(NaN)).getFullYear() = NaN PASSED!
+Date.prototype.getFullYear.length = 0 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Date\15.9.5.10.interpreted.arff] ...

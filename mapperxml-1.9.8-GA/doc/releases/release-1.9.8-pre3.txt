@@ -1,0 +1,131 @@
+=============================================================================
+                       R E L E A S E   N O T E S
+                               MapperXML
+                          Version 1.9.8-pre3
+=============================================================================
+
+
+=============================================================================
+                       E N H A N C E M E N T S
+=============================================================================
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+o  Modified error handling during input. Old behavior would stop
+   on first ModelParseException. This meant that user input for
+   subsequent fields was lost. Now input processing attempts to
+   process all input fields and keeps track of ALL exceptions.
+   At the end of input processing, it throws a special exception
+   called a MultiModelParseException.
+   
+   The MultiModelParseException contains a List of all the
+   exceptions that occured. The methods getMessage, getLocalizedMessage,
+   and getUserFriendlyMessage return a concatenated String of all
+   the error messages.
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+o Changed attribute renderer to remove attribute when value is blank.
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+o ElementDelegate.setAttributeText/Value(name,"xxx"), will
+  create the attribute if it does not exist.
+o ElementDelegate.setTextNodeText/Value will create TextNode
+  if it does not exist.
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+o HTMLComponentFactory.createComponents now creates and binds a
+  TextNode with the syntax:
+  
+  valueHolder__propertyName 
+  or 
+  __propertyName
+  
+o HTMLComponentFactory.createComponents now supports new syntax. 
+  Examples:
+  
+  valueHolder__propertyName
+  valueHolder__propertyName__1
+  valueHolder__propertyName__DATE:MM/dd/yyyy
+  valueHolder__propertyName__DATE:MM/dd/yyyy__1
+  __propertyName
+  __propertyName__1
+  __propertyName__DATE:MM/dd/yyyy
+  __propertyName__DATE:MM/dd/yyyy__1
+  valueHolder__
+  valueHolder__1
+  valueHolder__TEMPLATE_NODE
+  valueHolder__TEMPLATE_NODE__1
+
+o	HTMLComponentFactory.createComponents now has new method which will
+  set any properties not already set by code of existing components.
+
+---------------------------------------------------------------
+ENHANCEMENT:
+---------------------------------------------------------------
+o Modified method ServletForm.testFullCycle to write file to disk
+  as well as display System.out. This provides a means of visually
+  inspecting a form while testing and developing. You can run the
+  testFullCycle method and open/refresh the file with your
+  browser to review the results.
+
+=============================================================================
+                           B U G   F I X E S
+=============================================================================
+
+---------------------------------------------------------------
+BUGFIX/CHANGE:
+---------------------------------------------------------------
+o Fixed Multipart Request. Was not handling files without an 
+  extension properly. Most browsers send files with extensions
+  as binary.
+o Also modified behavior to allow fetching a parameter value as
+  either a String or byte[].
+o Also deprecated use of _ByteArray suffix, but added code to
+  provide backwards compatibility.
+
+---------------------------------------------------------------
+BUGFIX/CHANGE:
+---------------------------------------------------------------
+o Bug in ElementDelegate.setValueHolder method. Does not bind to
+  bound TextNode.
+
+---------------------------------------------------------------
+BUGFIX/CHANGE:
+---------------------------------------------------------------
+o Fixed HTMLComponentFactory.createComponents. It was not picking up
+  format/format pattern from span tag text node. Worked OK with
+  attribute in input field.
+
+---------------------------------------------------------------
+BUGFIX Build/Website only:
+---------------------------------------------------------------
+o Replaced xslt style sheet used to format JUnit output.
+
+=============================================================================
+                       O T H E R   C H A N G E S
+=============================================================================
+
+Public API Interface Changes/Deprecations:
+================================================================
+none
+
+Internal API Interface Changes/Deprecations:
+================================================================
+none
+
+Other Changes:
+================================================================
+none
+
+=============================================================================
+            K N O W N   L I M I T A T I O N S / P R O B L E M S
+=============================================================================
+
+none

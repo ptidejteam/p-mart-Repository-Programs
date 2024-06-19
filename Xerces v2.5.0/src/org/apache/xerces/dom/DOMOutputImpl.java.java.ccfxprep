@@ -1,0 +1,15 @@
+5d.8.10b3	+0	(def_block
+5d.8.10b3	+5	r_class
+5d.e.10b9	+d	id|DOMOutputImpl
+5d.31.10dc	+1	(brace
+67.c.11d3	+0	(def_block
+67.c.11d3	+d	id|DOMOutputImpl
+67.19.11e0	+0	c_func
+67.19.11e0	+1	(paren
+67.1a.11e1	+1	)paren
+67.1c.11e3	+1	(brace
+67.1d.11e4	+1	)brace
+67.1e.11e5	+0	)def_block
+d1.1.2232	+1	)brace
+d1.2.2233	+0	)def_block
+d2.1.2244	+0	eof

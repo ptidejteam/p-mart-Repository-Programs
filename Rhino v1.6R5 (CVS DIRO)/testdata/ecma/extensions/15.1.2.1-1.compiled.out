@@ -1,0 +1,28 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\extensions\15.1.2.1-1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\extensions\shell.js -f mozilla\js\tests\ecma\extensions\15.1.2.1-1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: none
+15.1.2.1-1 eval(x)
+eval.length = 1 PASSED!
+delete eval.length = false PASSED!
+var PROPS = ''; for ( p in eval ) { PROPS += p }; PROPS =  FAILED! expected: prototype
+eval.length = null; eval.length = 1 PASSED!
+eval() = undefined PASSED!
+eval(void 0) = undefined PASSED!
+eval(null) = null PASSED!
+eval(true) = true PASSED!
+eval(false) = false PASSED!
+typeof eval(new String('Infinity/-0') = object PASSED!
+eval([1,2,3,4,5,6]) = 1,2,3,4,5,6 PASSED!
+eval(new Array(0,1,2,3) = 1,2,3 PASSED!
+eval(1) = 1 PASSED!
+eval(0) = 0 PASSED!
+eval(-1) = -1 PASSED!
+eval(Number.NaN) = NaN PASSED!
+eval(Number.MIN_VALUE) = 5e-324 PASSED!
+eval(-Number.MIN_VALUE) = -5e-324 PASSED!
+eval(Number.POSITIVE_INFINITY) = Infinity PASSED!
+eval(Number.NEGATIVE_INFINITY) = -Infinity PASSED!
+eval( 4294967296 ) = 4294967296 PASSED!
+eval( 2147483648 ) = 2147483648 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\extensions\15.1.2.1-1.compiled.arff] ...

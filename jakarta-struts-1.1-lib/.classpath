@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="commons-collections.jar"/>
+	<classpathentry kind="lib" path="commons-digester.jar"/>
+	<classpathentry kind="lib" path="commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="commons-lang.jar"/>
+	<classpathentry kind="lib" path="commons-logging.jar"/>
+	<classpathentry kind="lib" path="commons-validator.jar"/>
+	<classpathentry kind="lib" path="jakarta-oro.jar"/>
+	<classpathentry kind="lib" path="struts-legacy.jar"/>
+	<classpathentry kind="lib" path="struts.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

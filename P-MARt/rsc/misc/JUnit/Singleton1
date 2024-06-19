@@ -1,0 +1,193 @@
+		<designPattern name="Singleton">
+			<microArchitectures>
+				<microArchitecture number="71">
+					<roles>
+						<singletons>
+							<singleton roleKind="Class">
+								<entity kind="Class">junit.framework.Assert</entity>
+								<properties>
+									<ACMIC value="16.0"/>
+									<AID value="1.0"/>
+									<CLD value="3.0"/>
+									<DIT value="1.0"/>
+									<connectivity value="1.0677419354838709"/>
+									<ICHClass value="113.0"/>
+									<LCOM1 value="992.0"/>
+									<LCOM2 value="464.0"/>
+									<NCM value="39.0"/>
+									<NMA value="33.0"/>
+									<NMI value="6.0"/>
+									<NOA value="1.0"/>
+									<NOC value="4.0"/>
+									<NOD value="32.0"/>
+									<NOP value="1.0"/>
+									<WMC value="113.0"/>
+								</properties>
+								<relations>
+									<relation>
+										<target>java.lang.Double</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Float</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Math</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.Object</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.String</target>
+										<properties>
+											<CBO value="4.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>java.lang.StringBuffer</target>
+										<properties>
+											<CBO value="12.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.extensions.ExceptionTestCase</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.framework.Assert</target>
+										<properties>
+											<CBO value="66.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.framework.TestCase</target>
+										<properties>
+											<CBO value="2.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.SimpleTest</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.VectorTest</target>
+										<properties>
+											<CBO value="10.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.samples.money.MoneyTest</target>
+										<properties>
+											<CBO value="34.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ActiveTestTest</target>
+										<properties>
+											<CBO value="12.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.AssertTest</target>
+										<properties>
+											<CBO value="24.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ClassLoaderTest</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ExceptionTestCaseTest</target>
+										<properties>
+											<CBO value="10.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.ExtensionTest</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.Failure</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.LoadedFromJar</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.RepeatedTestTest</target>
+										<properties>
+											<CBO value="7.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.SorterTest</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.StackFilterTest</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.SuiteTest</target>
+										<properties>
+											<CBO value="18.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.TestCaseTest</target>
+										<properties>
+											<CBO value="14.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.TestImplementorTest</target>
+										<properties>
+											<CBO value="3.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.TestListenerTest</target>
+										<properties>
+											<CBO value="6.0"/>
+										</properties>
+									</relation>
+									<relation>
+										<target>junit.tests.TextRunnerTest</target>
+										<properties>
+											<CBO value="1.0"/>
+										</properties>
+									</relation>
+								</relations>
+							</singleton>
+						</singletons>
+					</roles>
+				</microArchitecture>

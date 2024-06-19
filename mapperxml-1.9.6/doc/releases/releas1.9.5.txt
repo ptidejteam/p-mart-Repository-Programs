@@ -1,0 +1,73 @@
+MapperXML
+Version 1.9.5
+Release Notes:
+
+Quick Highlights
+================================================================
+o   Added support for multipart requests. Supports file uploads.
+o   Minor bug fixes.
+
+New Features:
+================================================================
+o   Added support for multipart requests. This supports file
+    uploads within forms using input type=file.
+    The ServletForm also supports multipart type requests. A
+    multipart request is sent by the browser when form data contains
+    1 or more uploaded files. To support this feature, if the
+    incoming request has a content type of "multipart/form-data",
+    the request is wrapped in another request object which is
+    capable of processing multipart requests. The wrapper request is
+    created via the createRequestWrapper method which you can override.
+    By default, that method returns a HttpMultiPartServletRequest object.
+o   You can now set the default Date format used to parse/format
+    Dates. This will affect ALL default date formating within the
+    application. The format is set in the com.taursys.DataTypes
+    class using the static method setDefaultDateFormat.
+o   ModelParseException - the UserFriendlyMessage property is
+    now being set. (see Mapper Examples: FormatPage).
+
+Public API Interface Changes/Deprecations:
+================================================================
+
+Internal API Interface Changes/Deprecations:
+================================================================
+
+Other Changes:
+================================================================
+o   Updated javadoc for SelectModel, DefaultSelectModel,
+    SelectField and HTMLSelect.
+
+Bux Fixes:
+================================================================
+o   Null pointer exception if "id" is null when rendering any
+    DocumentComponent type component. Now a Debug warning will
+    be issued to the log.
+o   Button is broken - Trigger works but not button. Does not
+    generate action event. Modified lazyAddNotify and
+    lazyRemoveNotify to register as listener for both Trigger
+    and Render event notification.
+o   Default Trigger not firing when its text property is null.
+    Modified to support null text property.
+o   Template renderer is adding "__row#" to nodes who did not
+    even originally have an ID. DOM method node.getAttribute("id")
+    is not returning null when attribute is not present. It
+    is returning an empty String. Changed test to "not null and
+    not empty".
+o   Problem with default date format when parsing.  Output display
+    is YYYY-MM-DD but unable to parse without setting format.
+    Modified all models to use new method in DataTypes to format
+    rather than using the toString methods.
+o   NumberFormatException is not being caught.  Now DefaultTextModel
+    will catch NumberFormatException and process like a
+    ParseException.  Both these are wrapped in a ModelParseException.
+
+===============================================================
+|    K N O W N   L I M I T A T I O N S / P R O B L E M S      |
+|       (note: numbers do not indicate priority)              |
+===============================================================
+
+Known Limitations/Problems/Bugs:
+================================================================
+o   Sometimes, HttpMultiPartServletRequest appears to append a
+    carridge return onto end of binary file (015 octal). Not sure
+    if this is a parsing problem or a browser problem.

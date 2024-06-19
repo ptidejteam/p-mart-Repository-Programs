@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Pages and Forms Architecture</title>
+  <link href="../common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="../common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%"><h1>3. Pages and Forms Architecture</h1>
+
+        <h2>3.1 ServletForm</h2>
+
+        <p>The Mapper presentation framework for the web is modeled after a
+        the architechure of a typical GUI/Swing type application.  A single
+        servlet dispatches requests to the appropriate ServletForm.  The
+        ServletForm is a container similar to a Swing JFrame. You create
+        the various forms for your application by extending this base class.</p>
+
+        <p>The ServletForm dispatches commands and data from the request
+        object to the individual components it contains.  The dispatching
+        occurs in the doGet method of the ServletForm.</p>
+
+        <p>The ServletForm is a reusable object. The ServletApp (master servlet)
+        will normally recycle ServletForms unless their recycle method returns
+        false. The recycle method in the ServletForm dispatches a RecycleEvent
+        to all components.</p>
+
+        <p>The ServletForm is composed of many subcomponents to support the processing
+        of the request: ServletParameterDispatcher, ServletInputDispatcher,
+        RenderDispatcher, ServletTriggerDispatcher, RecycleDispatcher, DocumentAdapter
+        and Responder.</p>
+
+        <p>The following is an example of a very simple ServletForm which
+        contains a single component to display the current time:</p>
+
+        <pre>
+public class FirstPage extends ServletForm {
+  TextField currentTime = new TextField(DataTypes.TYPE_DATE);
+
+  public FirstPage() {
+    this.setDocumentURI("resource:///forms/FirstPage.html");
+    currentTime.setId("currentTime");
+    this.add(currentTime);
+  }
+
+  protected void initForm() throws java.lang.Exception {
+    super.initForm();
+  }
+
+  protected void openForm() throws java.lang.Exception {
+    currentTime.setValue(new Date());
+  }
+        </pre>
+
+        <p>The following is the HTML which is used for by this ServletForm:</p>
+
+        <pre>
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;MapperXML Example: The FirstPage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;MapperXML Example: The FirstPage&lt;/h1&gt;
+  &lt;p&gt;The current time is: &lt;span id="currentTime"&gt;00:00:00&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <h2>3.2 Request Processing Cycle - doGet </h2>
+
+        The ServletApp invokes the ServletForm's doGet method to process the request.
+        This method is invoked by the ServletApp for all request types (GET, POST, etc).
+        The doGet method breaks the single request up into a sequence of events:
+
+        <ol>
+          <li>set Request/Response - Saves request and response in public
+          properties. They are then accessable using the getRequest() and
+          getResponse() methods.</li>
+          <br>
+          <li>initForm - It is typically only only
+          once for a ServletForm instance (checks the isInitialized flag).
+          You will normally override this method and create the DOM during
+          this method.</li>
+          <br>
+          <li>multi-part request check - If this is a multipart type request,
+          uses the request wrapper returned by createRequestWrapper in place
+          of the original request</li>
+          <br>
+          <li>dispatchInitContext - Distributes a shared context to all
+		  components.</li>
+          <br>
+          <li>dispatchParameters - Fetches input values from request for
+		  all Parameter components (and other input components which have
+		  their earlyInputNotify flag set).</li>
+          <br>
+          <li>openForm - You will normally override this method and implement
+		  application specific behavior. You would typically
+          do things like invoke a BusinessDelegate
+          to retrieve requested data and place it in ValueHolders.</li>
+          <br>
+          <li>dispatchInput - Fetches input values from request for all
+		  other input components which do not have their earlyInputNotify
+		  flag set.</li>
+          <br>
+          <li>dispatchActions - Causes Triggers and Buttons events to
+		  occur if their triggering values are present in the request.</li>
+          <br>
+          <li>sendResponse - Provide a response back to the client. This method
+			delegates the work to a Responder.  The default
+            Responder is an HTMLResponder which sends the HTML page back with
+			values updated.
+          </li>
+          <br>
+          <li>handleException - this method is only invoked if an exception
+            occurs in any of the above methods.  Override the method to
+			provide an appropriate response to problems.
+          </li>
+          <li>closeForm - this always occurs at the end of the request
+			cycle. If needed, it provides a way to do clean-up.
+          </li>
+        </ol>
+
+        <h2>3.3 Dispatchers</h2>
+
+        <p>The ServletForm uses a set of specialized subcomponents called
+        dispatchers. These subcomponents dispatch messages to the components
+        you define in the ServletForm.  As you add components (TextFields,
+        Triggers, Parameters) to the ServletForm (Container), those components
+        register with one or more dispatchers to receive notification about
+        events they are interested in.</p>
+
+        <p>It is critical to make sure you ADD components you create to the
+		ServletForm (or a nested container). If you omit this, your components 
+		will not be notified of any events.
+        Container hierarchy is supported, so as long as a component is added
+        to some container (who is ultimately a child of the ServletForm), it
+        will receive notification.</p>
+
+        <p>There are separate dispatchers for each type of event. Some of these
+        include:</p>
+
+        <ul>
+          <li>initContextDispacher</li>
+          <li>initFormDispacher</li>
+          <li>openFormDispacher</li>
+          <li>parameterDispacher</li>
+          <li>renderDispatcher</li>
+          <li>recycleDispatcher</li>
+          <li>inputDispatcher</li>
+          <li>triggerDispatcher</li>
+        </ul>
+
+        <h2>3.4 Document Adapter</h2>
+
+        <p>The actual XML/HTML document is rendered through the use of a
+        XML/HTML template.  The XML/HTML template does NOT contain any code.
+        The Components are bound to the template through the use of the ID
+        attribute:</p>
+
+        <p align="center">&lt;p id=greeting&gt;Hello
+        greeting-name&lt;/p&gt;</p>
+
+        <p>A TextField would have its ID property set to "greeting".  When
+        instructed by its container (ServletForm), it would render its value
+        to the XML/HTML template.</p>
+
+        <p>The XML/HTML template is loaded, parsed into a Document Object
+        Model (DOM) and cached by the ServletForm. The template is normally
+        reused by the ServletForm.</p>
+
+        <p>The DocumentAdapter can be created automatically by the container 
+			if you set the documentURI property. For automated creation, the
+			container uses a DocumentAdapterBuilderFactory. This factory is
+			configured to try using: JTidy, Xerces, JAXP or a user supplied
+			DocumentAdapterBuilder to parse the DOM and create the DocumentAdapter. 
+			You can also manually code the creation
+			of the DocumentAdapter.</p>
+
+        <p>The Document is normally created and attached to this ServletForm in the
+        initForm method.  This method is normally only called once when
+        the ServletForm is first invoked.  Below is an example using the Xerces
+        parser:</p>
+
+        <pre>
+		public MyPage() {
+		  this.setDocumentURI("resource:///forms/MyPage.html");
+		}
+        protected void initForm() throws Exception {
+          super.initForm();
+        }
+        </pre>
+
+        <h2>3.5 Multi-Part Request Wrapper</h2>
+
+        <p>The ServletForm also supports multipart type requests. A multipart request
+        is sent by the browser when form data contains 1 or more uploaded files.
+        To support this feature, if the incoming request has a content type of
+        "multipart/form-data", the request is wrapped in another request object
+        which is capable of processing multipart requests.</p>
+
+        <p>The wrapper request is created via the createRequestWrapper method.
+        By default, createRequestWrapper returns a HttpMultiPartServletRequest
+        object which has a maximum file size of 1 megabyte and maximum single
+        line size of 4,096 bytes. You can change this by overriding the
+        createRequestWrapper method:</p>
+
+        <pre>
+        protected HttpServletRequest createRequestWrapper(HttpServletRequest rq)
+            throws Exception {
+          HttpMultiPartServletRequest multi = new HttpMultiPartServletRequest(rq);
+          // set maximum sizes if defaults if needed
+          multi.setMaxFileSize(2048);
+          multi.setMaxLineLength(80);
+          // parse the request
+          multi.parseRequest();
+          return multi;
+        }
+        </pre>
+
+        <h2>3.6 Responders</h2>
+
+        <p>You can control the response of this ServletForm by changing the Responder
+        subcomponent at runtime.  The default Responder is an HTMLResponder which
+        sends the DOM Document as the response. There are a number of other
+        types of responders you can use:</p>
+
+        <ul>
+          <li>ClientRedirectResponder - redirects the client to a URL as the response.</li>
+          <li>ErrorResponder - sends status code and optional message as response.</li>
+          <li>HTMLResponder (default) - provides rendering and sending Document as response.</li>
+          <li>NoResponseResponder - responds by doing nothing. You must handle generating
+          the reponse through your own code.</li>
+          <li>StreamResponder - responds by sending its input stream as the response. This
+          can be used for sending images or other data back to the client.</li>
+        </ul>
+
+        <p>If your ServletForm needs to send more than one type of response, then
+        you should create the appropriate set of responders and invoke the
+        setResponder method of the ServletForm to change the responder.</p>
+
+        <p>Below is a typical example of using responders. In this example, the
+        ServletForm can respond by either sending the page, or redirecting the
+        client to another page:</p>
+
+        <pre>
+  ...
+  HTMLResponder htmlResponder = new HTMLResponder();
+  ClientRedirectResponder clientRedirectResponder = new ClientRedirectResponder();
+  ...
+  private void jbInit() throws Exception {
+    ...
+    clientRedirectResponder.setRedirectURL("/mapperex/index.html");
+    ...
+  }
+  ...
+  protected void openForm() throws java.lang.Exception {
+    // Set default responder
+    setResponder(htmlResponder);
+    ...
+  }
+  ...
+  void saveButton_actionPerformed(TriggerEvent e) throws Exception {
+    // Save changes and go to main menu
+    delegate.saveChanges((PersonVO)holder.getValue);
+    setResponder(clientRedirectResponder);
+  }
+  ...
+        </pre>
+
+        <p>You can create your own responders by extending one of the existing
+        responders or implementing the Responder interface.</p>
+
+        <h2>3.7 Components</h2>
+
+        <p>In typical applications, you will add Components to this ServletForm and
+        set their properties to bind to the DOM Document elements, the http request
+        parameters, and value objects.  These components are capable of modifying the
+        DOM Document, storing and retrieving value from bound objects, and reading
+        parameters from the http request, and parsing/converting between text values
+        and java data types.  This ServletForm is the base container for these
+        components and contains dispatchers which dispatch events to the components.
+        This ServletForm generates the events within the doGet method
+        in a fixed sequence (see javadoc for doGet).</p>
+
+        <p>The below example creates a HTMLInputText component which binds to an HTML
+        form input text field.  It also binds to the lastName property of a Java
+        value object class.</p>
+
+        <pre>
+        public class MyPage extends ServletForm {
+          HTMLInputText lastName = new HTMLInputText();
+          VOValueHolder person = new VOValueHolder();
+
+          public MyPage() {
+            lastName.setPropertyName("lastName");
+            lastName.setValueHolder(person);
+            lastName.setId("lastName");
+            this.add(lastName);
+          }
+          ...
+          protected void openForm() throws Exception {
+            // Retrieve or create the value object
+            Person personVO = new Person(1629, "Pulaski", "Katherine", null);
+            // Bind value object to person ValueHolder
+            person.setValueObject(personVO);
+          }
+        </pre>
+
+        <p>There are many components you can use in a ServletForm.  Some of these include:
+        Parameter, Template, TextField, Trigger, Button, HTMLAnchorURL,
+        HTMLCheckBox, HTMLInputText, HTMLSelect, HTMLTextArea, and others. The
+        next 2 chapters will describe the components in detail.</p>
+
+        <h2><a name="ComponentFactories">3.8 Component Factories</a></h2>
+
+        <p>
+        MapperXML provides a feature to automate the creation of components at
+		runtime. This feature can create the proper type of component, set many of
+		its	properties including: id, valueHolder, propertyName, parameter, and format.
+        </p>
+		
+        <p>
+		This feature is provided by the HTMLComponentFactory.createComponents
+		method. The createComponents method scans the HTML document looking for
+		elements with ID tags that match a specific syntax. It then creates the
+		component, adds it to the container (in the proper heirarchy), binds it 
+		to the specified ValueHolder, sets the specified properties.
+        </p>
+		
+        <p>
+		This feature allows you to mix manually coded components with automatically
+		created components. As it scans the HTML document to create components,
+		it first checks the container to see if it already exists. If so, it does
+		not duplicate or modify the existing component other than moving it to
+		the correct position in the component heirarchy.
+        </p>
+
+        <center>
+          <table border="1">
+           <tr>
+             <td>Element Tag</td>
+             <td>Type Attribute</td>
+             <td>Suggested Component(s)</td>
+           </tr>
+           <tr>
+             <td>a</td>
+             <td>n/a</td>
+             <td>HTMLAnchorURL</td>
+           </tr>
+           <tr>
+             <td>select</td>
+             <td>na</td>
+             <td>HTMLSelect</td>
+           </tr>
+           <tr>
+             <td>span</td>
+             <td>n/a</td>
+             <td>TextField</td>
+           </tr>
+           <tr>
+             <td>td</td>
+             <td>n/a</td>
+             <td>TextField</td>
+           </tr>
+           <tr>
+             <td>textarea</td>
+             <td>n/a</td>
+             <td>HTMLInputText</td>
+           </tr>
+           <tr>
+             <td>input</td>
+             <td>hidden</td>
+             <td>HTMLInputText</td>
+           </tr>
+           <tr>
+             <td>input</td>
+             <td>password</td>
+             <td>HTMLInputText</td>
+           </tr>
+           <tr>
+             <td>input</td>
+             <td>submit</td>
+             <td>Button, Trigger</td>
+           </tr>
+           <tr>
+             <td>input</td>
+             <td>text</td>
+             <td>HTMLInputText</td>
+           </tr>
+          <tr>
+            <td>input</td>
+            <td>checkbox</td>
+            <td>HTMLCheckBox</td>
+          </tr>
+          </table>
+        </center>
+
+        <p>The <code>createComponents</code> method creates components based on
+        document, set their properties (including valueHolder) and adds them
+        to the container. As it moves through the document, it first checks to
+        see if the component is already in the container (by matching id's).
+        If it is, the existing component is moved to the proper place in the
+        heirarchy. Otherwise it will create a new component.</p>
+
+        <p>The <code>createComponents</code> method builds a component heirarchy
+        which matches the document order and heirarchy. If any newly created
+        component is itself a Container type, then all children of that component
+        are added to it rather than its parent container.</p>
+
+        <p>Only bound components which are bound to one of the given value holders
+        are created. The id's must also follow a strict id naming convention
+        to be automatically created.</p>
+
+        <p>The id must begin with a ValueHolder's alias. It must then be followed
+        by a double-underscore ("__"). Next the propertyName must appear or the
+        keyword "TEMPLATE_NODE".  An optional suffix can be added to ensure
+        unique id's (as required by spec). The optional suffix must be separated
+        from the property name by a double-underscore("__"). The following are
+        examples of valid id format:</p>
+
+        <ul>
+          <li>Person__lastName</li>
+          <li>Person__lastName__2</li>
+          <li>Invoices__TEMPLATE_NODE</li>
+          <li>Invoices__TEMPLATE_NODE__2</li>
+        </ul>
+
+        <p>The alias of the id (first part), must match an alias of a ValueHolder
+        in the given array of ValueHolders, otherwise no Component will be
+        created. The ValueHolder with a matching alias will be set as the new
+        Component's valueHolder.</p>
+
+        <p>If the new Component is an AbstractField subclass, then its
+        propertyName will be set to the propertyName of the id (second part). If
+        the given Element has a "name" attribute, the Component's parameter will
+        be set to the value of the "name" attribute.</p>
+
+        <p>If the new Component is a Template (or subclass), then only its
+        collectionValueHolder property will be set. The associated ValueHolder
+        for this Component must be a CollectionValueHolder, otherwise no
+        Component will be created.</p>
+
+        <p>This method will also attempt to setup the formatting properties
+        for the new Component. This only applies to AbstractField subclasses.
+        The format is extracted from the document within the element's "value"
+        attribute, "href" attribute, or text node. The format must be specified
+        as TYPE:pattern, where TYPE is one of: DATE NUMBER or MSG. The pattern
+        should be a valid pattern for the format type. The following are examples
+        of use:
+          <ul>
+            <li>&lt;span id="Person__birthdate"&gt;DATE:MM/dd/yyyy&lt;/span&gt;</li>
+            <li>&lt;input type="text" id="InvoiceItem__unitPrice"
+                value="NUMBER:###,##0.00" /&gt;</li>
+            <li>&lt;a id="Person__personID"
+                href="MSG:/PersonProfile.mxform?personID={0}"&gt;Link
+                to Person&lt;/a&gt;</li>
+          </ul>
+        </p>
+
+        <p>The following is an example of a ServletForm which uses an
+        HTMLComponentFactory to automatically create and bind all of the
+        components (this example can be found in the distribution examples)</p>
+
+        <pre>
+  public class ComponentFactoryPage extends ServletForm {
+    private VOCollectionValueHolder invoice = new VOCollectionValueHolder();
+    private VOCollectionValueHolder invoiceItem = new VOCollectionValueHolder();
+    private BusinessDelegate bd;
+
+    public ComponentFactoryPage() {
+      try {
+        jbInit();
+      }
+      catch(Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    private void jbInit() throws Exception {
+      this.setDocumentURI("resource:///forms/ComponentFactoryPage.html");
+      invoice.setAlias("Invoice");
+      invoice.setValueObjectClass(
+          com.taursys.examples.simpleweb.InvoiceVO.class);
+      invoiceItem.setValueObjectClass(
+          com.taursys.examples.simpleweb.InvoiceItemVO.class);
+      invoiceItem.setAlias("InvoiceItem");
+      invoiceItem.setParentValueHolder(invoice);
+      invoiceItem.setParentPropertyName("items");
+    }
+
+    protected void initForm() throws java.lang.Exception {
+      super.initForm();
+      // Fetch reference to the Business delegate
+      bd = BusinessDelegate.getInstance();
+
+      // ========= Use HTMLComponentFactory to create components ===========
+
+      HTMLComponentFactory.getInstance().createComponents(this,
+        new ValueHolder[] {invoice, invoiceItem});
+
+      // ===================================================================
+    }
+
+    protected void openForm() throws java.lang.Exception {
+      invoice.setCollection(bd.getAllInvoices());
+    }
+  }
+        </pre>
+
+        <p>MapperXML provides an Abstract Class called ComponentFactory which
+        is intended to automate the creation of Compents. You can create your
+        own extensions of this class for specialized XML documents.  MapperXML
+        also provides a concrete subclass called HTMLComponentFactory.</p>
+
+        <p>This class contains two primary methods:
+          <ul>
+            <li><tt>getSuggestedComponents</tt> - for use by design tools.</li>
+            <li><tt>createComponents</tt> - to automatically create and bind
+            <tt>Components</tt> at runtime.</li>
+          </ul>
+        </p>
+
+        <p>The HTMLComponentFactory initializes the factory's tagTable with suggested
+        components for HTML documents. During the automated Component creation,
+        only the first suggestion is used. The other suggestions are intended
+        for use by design tools. The following are the suggestions created by
+        this class:</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="../common/footer.shtml" -->
+</div>
+</body>
+</html>

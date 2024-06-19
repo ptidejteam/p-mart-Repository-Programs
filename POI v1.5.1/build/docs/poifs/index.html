@@ -1,0 +1,97 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>PoiFS</title>
+<meta value="Leo Simons" name="author">
+<meta value="leosimons@apache.org" name="email">
+<link href="skin/common.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td align="left" valign="middle" id="jakartaLogoTD"><a href="http://jakarta.apache.org"><img alt="Jakarta (go to Jakarta Main)" border="0" src="images/group-logo.gif" id="jakartaLogo"></a></td><td align="right" valign="middle" id="projectLogoTD"><a href="http://jakarta.apache.org/poi/"><img alt="Avalon (go to Avalon Main)" border="0" src="images/project-logo.gif" id="projectLogo"></a></td>
+</tr>
+</table>
+</div>
+<div id="breadcrumbs">
+<a class="menu" href="http://www.apache.org/">apache &gt;</a><a class="menu" href="http://jakarta.apache.org/">jakarta &gt;</a><a class="menu" href="http://jakarta.apache.org/poi/">POI</a><script type="text/javascript" language="JavaScript1.2"></script>
+</div>
+<div id="main">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td valign="top">
+<div id="menu">
+<div id="submenu">
+<h4>Navigation</h4>
+<ul>
+<li>
+<a href="../index.html">Main</a>
+</li>
+<li>
+<a href="how-to.html">How To</a>
+</li>
+<li>
+<a href="fileformat.html">File System Documentation</a>
+</li>
+<li>
+<a href="usecases.html">Use Cases</a>
+</li>
+</ul>
+</div>
+</div>
+</td><td width="10">&nbsp;</td><td valign="top">
+<div id="title">
+<h1>PoiFS</h1>
+</div>
+<div id="contents">
+  
+  
+    
+<h2>Overview</h2>
+<div class="section">
+      
+<p>POIFS is a pure Java implementation of the OLE 2 Compound
+         Document format.</p>
+      
+<p>By definition, all APIs developed by the POI project are
+         based somehow on the POIFS API.</p>
+      
+<p>A common confusion is on just what POIFS buys you or what OLE
+         2 Compound Document format is exactly. POIFS does not buy you
+         DOC, or XLS, but is necessary to generate or read DOC or XLS
+         files. You see, all file formats based on the OLE 2 Compound
+         Document Format have a common structure. The OLE 2 Compound
+         Document Format is essentially a convoluted archive
+         format. Think of POIFS as a "zip" library. Once you can get
+         the data in a zip file you still need to interpret the
+         data. As a general rule, while all of our formats use
+         POIFS, most of them attempt to abstract you from it. There
+         are some circumstances where this is not possible, but as a
+         general rule this is true.</p>
+      
+<p>If you're an end user type just looking to generate XLS
+         files, then you'd be looking for HSSF not POIFS; however, if
+         you have legacy code that uses MFC property sets, POIFS is
+         for you!  Regardless, you may or may not need to know how to
+         use POIFS but ultimately if you use technologies that come
+         from the POI project, you're using POIFS underneith.  Perhaps
+         we should have a branding campaign "POIFS Inside!".  ;-)</p>
+
+    
+</div>
+  
+
+<div id="authors">by&nbsp;Andrew C. Oliver,&nbsp;Nicola Ken Barozzi</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+						 Copyright &copy;2002 Apache Software Foundation. All Rights Reserved.
+
+			</div>
+<a href="http://jakarta.apache.org/ant/"><img border="0" alt="Ant Logo" src="skin/images/ant_logo_medium.gif" align="right"></a><a href="http://xml.apache.org/cocoon/"><img border="0" alt="Cocoon Logo" src="skin/images/built-with-cocoon.gif" align="right"></a><a href="http://www.krysalis.org/"><img border="0" alt="Krysalis Logo" src="skin/images/krysalis-logo-small.gif" align="right"></a><a href="http://www.krysalis.org/centipede/"><img border="0" alt="Krysalis Centipede Logo" src="skin/images/centipede-logo-small.gif" align="right"></a>
+</body>
+</html>

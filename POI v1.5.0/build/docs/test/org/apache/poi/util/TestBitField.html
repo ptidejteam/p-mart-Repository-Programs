@@ -1,0 +1,503 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<link title="Style" type="text/css" rel="stylesheet" href="../../../../stylesheet.css">
+<script language="JavaScript">
+        var TestCases = new Array();
+        var cur;
+        
+    cur = TestCases['org.apache.poi.util.TestBitField'] = new Array();
+  	
+        cur['ant.file'] = 'C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\junit.cent\\xbuild.xml';
+  	
+        cur['ant.home'] = 'tools\\antipede';
+  	
+        cur['ant.java.version'] = '1.3';
+  	
+        cur['ant.project.name'] = 'junit tests build file';
+  	
+        cur['ant.version'] = 'Apache Ant version 1.5alpha compiled on April 2 2002';
+  	
+        cur['antipede.dir'] = 'tools/antipede';
+  	
+        cur['antipede.lib.dir'] = 'tools/antipede/lib';
+  	
+        cur['awt.toolkit'] = 'sun.awt.windows.WToolkit';
+  	
+        cur['basedir'] = 'C:\\Projects\\jakarta-poi-1-5';
+  	
+        cur['build.compiler.debug'] = 'on';
+  	
+        cur['build.compiler.depend'] = 'true';
+  	
+        cur['build.compiler.deprecation'] = 'on';
+  	
+        cur['build.compiler.emacs'] = 'on';
+  	
+        cur['build.compiler.fulldepend'] = 'true';
+  	
+        cur['build.compiler.nowarn'] = 'off';
+  	
+        cur['build.compiler.optimize'] = 'off';
+  	
+        cur['build.compiler.pedantic'] = 'false';
+  	
+        cur['build.compiler.type'] = 'classic';
+  	
+        cur['build.compiler.vm'] = '1.2';
+  	
+        cur['build.compiler.warnings'] = 'true';
+  	
+        cur['build.number'] = '47';
+  	
+        cur['cent.dir.suffix'] = 'cent';
+  	
+        cur['cent.jar.suffix'] = 'cent.jar';
+  	
+        cur['cent.lib.dir.name'] = 'lib';
+  	
+        cur['centipede.tools.cents.forrest.skin.logo.group.href'] = 'http://jakarta.apache.org';
+  	
+        cur['centipede.tools.cents.forrest.skin.logo.group.src'] = 'images/group-logo.gif';
+  	
+        cur['centipede.tools.cents.forrest.skin.logo.project.href'] = 'http://jakarta.apache.org/poi/';
+  	
+        cur['centipede.tools.cents.forrest.skin.logo.project.src'] = 'images/project-logo.gif';
+  	
+        cur['centipede.tools.cents.forrest.skin.name'] = 'avalon-site';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link1'] = 'apache';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link1.href'] = 'http://www.apache.org/';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link2'] = 'jakarta';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link2.href'] = 'http://jakarta.apache.org/';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link3'] = 'POI';
+  	
+        cur['centipede.tools.cents.forrest.skin.navlinks.link3.href'] = 'http://jakarta.apache.org/poi/';
+  	
+        cur['centipede.tools.cents.repository'] = 'http://krysalis.org/jars/';
+  	
+        cur['cent-name'] = 'junit';
+  	
+        cur['cents.dir'] = 'tools/cents';
+  	
+        cur['cent-target'] = 'test';
+  	
+        cur['DSTAMP'] = '20020506';
+  	
+        cur['file.encoding'] = 'Cp1252';
+  	
+        cur['file.encoding.pkg'] = 'sun.io';
+  	
+        cur['file.separator'] = '\\';
+  	
+        cur['HSSF.testdata.path'] = './src/testcases/org/apache/poi/hssf/data';
+  	
+        cur['java.awt.fonts'] = '';
+  	
+        cur['java.awt.graphicsenv'] = 'sun.awt.Win32GraphicsEnvironment';
+  	
+        cur['java.awt.printerjob'] = 'sun.awt.windows.WPrinterJob';
+  	
+        cur['java.class.path'] = 'C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\checkstyle.cent\\lib\\antlr.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\checkstyle.cent\\lib\\checkstyle-2.1.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\checkstyle.cent\\lib\\jakarta-regexp-1.2.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\avalon-excalibur-4.1.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\avalon-framework-4.1.2.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\avalon-scratchpad-20020212.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\cocoon-scratchpad-part.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\cocoon.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\commons-collections-1.0.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\commons-httpclient-20011012.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\jakarta-regexp-1.2.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\logkit-1.0.1.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\forrest.cent\\lib\\resolver-20020130.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\javasrc.cent\\lib\\antlrall.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\javasrc.cent\\lib\\javasrc.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\jdepend.cent\\lib\\ant-jdepend.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\jdepend.cent\\lib\\jdepend.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\junit.cent\\lib\\ant-junit.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\junit.cent\\lib\\junit-3.7.jar;C:\\Projects\\jakarta-poi-1-5\\tools\\cents\\umldoclet.cent\\lib\\UMLDoclet.jar;C:\\Projects\\jakarta-poi-1-5\\lib\\core\\commons-logging-1.0.jar;C:\\Projects\\jakarta-poi-1-5\\lib\\endorsed\\xalan-2.2.0.jar;C:\\Projects\\jakarta-poi-1-5\\lib\\endorsed\\xerces-2.0.0.jar;C:\\Projects\\jakarta-poi-1-5\\lib\\endorsed\\xml-apis.jar;C:\\Projects\\jakarta-poi-1-5\\lib\\optional\\log4j-core.jar;C:\\Projects\\jakarta-poi-1-5\\build\\classes;C:\\Projects\\jakarta-poi-1-5\\build\\testcases;C:\\Projects\\jakarta-poi-1-5\\tools\\antipede\\lib\\ant-1.5-dev-20020402.jar';
+  	
+        cur['java.class.version'] = '47.0';
+  	
+        cur['java.ext.dirs'] = 'C:\\products\\jdk1.3\\jre\\lib\\ext';
+  	
+        cur['java.home'] = 'C:\\products\\jdk1.3\\jre';
+  	
+        cur['java.io.tmpdir'] = 'C:\\DOCUME~1\\GLENST~1\\LOCALS~1\\Temp\\';
+  	
+        cur['java.library.path'] = 'C:\\products\\jdk1.3\\jre\\bin;.;C:\\WINNT\\System32;C:\\WINNT;c:\\progra~1\\gnu\\wincvs~1.3;c:\\products\\ssh;c:\\products\\ant\\bin;C:\\WINNT\\system32;C:\\WINNT;C:\\WINNT\\System32\\Wbem;C:\\PROGRA~1\\Tcl\\bin;c:\\products\\jdk1.3\\bin;c:\\progra~1\\CVSFOR~1;c:\\progra~1\\gnu\\wincvs~1.2;C:\\PROGRA~1\\MICROS~4\\Office;c:\\products\\windiff';
+  	
+        cur['java.runtime.name'] = 'Java(TM) 2 Runtime Environment, Standard Edition';
+  	
+        cur['java.runtime.version'] = '1.3.1_02-b02';
+  	
+        cur['java.specification.name'] = 'Java Platform API Specification';
+  	
+        cur['java.specification.vendor'] = 'Sun Microsystems Inc.';
+  	
+        cur['java.specification.version'] = '1.3';
+  	
+        cur['java.vendor'] = 'Sun Microsystems Inc.';
+  	
+        cur['java.vendor.url'] = 'http://java.sun.com/';
+  	
+        cur['java.vendor.url.bug'] = 'http://java.sun.com/cgi-bin/bugreport.cgi';
+  	
+        cur['java.version'] = '1.3.1_02';
+  	
+        cur['java.vm.info'] = 'mixed mode';
+  	
+        cur['java.vm.name'] = 'Java HotSpot(TM) Client VM';
+  	
+        cur['java.vm.specification.name'] = 'Java Virtual Machine Specification';
+  	
+        cur['java.vm.specification.vendor'] = 'Sun Microsystems Inc.';
+  	
+        cur['java.vm.specification.version'] = '1.0';
+  	
+        cur['java.vm.vendor'] = 'Sun Microsystems Inc.';
+  	
+        cur['java.vm.version'] = '1.3.1_02-b02';
+  	
+        cur['line.separator'] = ' ';
+  	
+        cur['os.arch'] = 'x86';
+  	
+        cur['os.name'] = 'Windows 2000';
+  	
+        cur['os.version'] = '5.0';
+  	
+        cur['path.separator'] = ';';
+  	
+        cur['sun.boot.class.path'] = 'C:\\products\\jdk1.3\\jre\\lib\\rt.jar;C:\\products\\jdk1.3\\jre\\lib\\i18n.jar;C:\\products\\jdk1.3\\jre\\lib\\sunrsasign.jar;C:\\products\\jdk1.3\\jre\\classes';
+  	
+        cur['sun.boot.library.path'] = 'C:\\products\\jdk1.3\\jre\\bin';
+  	
+        cur['sun.cpu.endian'] = 'little';
+  	
+        cur['sun.cpu.isalist'] = 'pentium i486 i386';
+  	
+        cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
+  	
+        cur['task.properties.name'] = 'tasks.properties';
+  	
+        cur['temp.dir'] = 'tools/tmp';
+  	
+        cur['TODAY'] = 'May 6 2002';
+  	
+        cur['tools.dir'] = 'tools';
+  	
+        cur['tools.jar'] = 'c:\\products\\jdk1.3\\jre/../lib/tools.jar';
+  	
+        cur['tools.jar.present'] = 'true';
+  	
+        cur['TSTAMP'] = '1420';
+  	
+        cur['user.dir'] = 'C:\\Projects\\jakarta-poi-1-5';
+  	
+        cur['user.home'] = 'C:\\Documents and Settings\\Glen Stampoultzis';
+  	
+        cur['user.language'] = 'en';
+  	
+        cur['user.name'] = 'Glen Stampoultzis';
+  	
+        cur['user.region'] = 'AU';
+  	
+        cur['user.timezone'] = '';
+  	
+        cur['UTIL.testdata.path'] = './src/testcases/org/apache/poi/util/data';
+  	
+        cur['xgump.module.credits.credit'] = 'This software includes software developed by the Krysalis Project              (http://www.krysalis.org/).     ';
+  	
+        cur['xgump.module.cvs.repository'] = 'jakarta';
+  	
+        cur['xgump.module.description'] = '      The POI project consists of APIs for manipulating various file formats       based upon Microsoft\'s OLE 2 Compound Document format using pure Java.   ';
+  	
+        cur['xgump.module.detailed'] = '      A common misconception is that POI writes Excel files. POI is the       name of the project. POI contains several components, one of which,       HSSF, writes Excel files. The following are components of the entire       POI project.POIFS is the oldest and most stable part of the project.       It is our port of the OLE 2 Compound Document Format to pure Java.       It supports both read and write functionality. All of our components       ultimately rely on it by definition. HSSF is our port of the       Microsoft Excel 97(-2002) file format (BIFF8) to pure Java.       It supports read and write capability. HDF is our port of the       Microsoft Word 97 file format to pure Java.       It supports read and write capability. This component is in the early       stages of design. Jump in!    ';
+  	
+        cur['xgump.module.licence'] = 'This software is released under the Apache Software License 1.1.             For detailed legal and licensing issues, please read the LICENSE.* files            in the /legal directory.   ';
+  	
+        cur['xgump.module.mailing-lists.mailing-list.mail'] = 'forrest-dev@xml.apache.org';
+  	
+        cur['xgump.module.mailing-lists.mailing-list.subscribe'] = 'forrest-dev-subscribe@xml.apache.org';
+  	
+        cur['xgump.module.mailing-lists.mailing-list.unsubscribe'] = 'forrest-dev-unsubscribe@xml.apache.org';
+  	
+        cur['xgump.module.mailing-lists.mailing-list.user'] = 'developer';
+  	
+        cur['xgump.module.name'] = 'apache-poi';
+  	
+        cur['xgump.module.project.ant.target'] = 'gump';
+  	
+        cur['xgump.module.project.ant.vm'] = '1.2';
+  	
+        cur['xgump.module.project.depend.project'] = 'jakarta-ant';
+  	
+        cur['xgump.module.project.home.nested'] = 'build/jakarta-poi';
+  	
+        cur['xgump.module.project.jar.id'] = 'poi';
+  	
+        cur['xgump.module.project.jar.name'] = 'jakarta-poi.jar';
+  	
+        cur['xgump.module.project.javadoc.parent'] = 'build/jakarta-poi/docs/apidocs';
+  	
+        cur['xgump.module.project.nag.from'] = 'Sam Ruby <rubys@us.ibm.com>';
+  	
+        cur['xgump.module.project.nag.to'] = 'poi-dev@jakarta.apache.org';
+  	
+        cur['xgump.module.project.name'] = 'jakarta-poi';
+  	
+        cur['xgump.module.project.option.project'] = 'jakarta-log4j';
+  	
+        cur['xgump.module.project.package'] = 'org.apache.poi';
+  	
+        cur['xgump.module.project.version.fix'] = '0';
+  	
+        cur['xgump.module.project.version.major'] = '1';
+  	
+        cur['xgump.module.project.version.minor'] = '5';
+  	
+        cur['xgump.module.project.version.tag'] = 'FINAL';
+  	
+        cur['xgump.module.project.work.nested'] = 'build/jakarta-poi/classes';
+  	
+        cur['xgump.module.url.href'] = 'http://jakarta.apache.org/poi/';
+  	
+        cur['xgump.module.vendor'] = 'Apache Software Foundation';
+  	
+        cur['xgump.module.what.goal'] = 'just do it';
+  	
+        cur['xgump.module.why'] = '     Why not?   ';
+  	
+        cur['xlayout.build.classes.dir'] = './build/classes';
+  	
+        cur['xlayout.build.contributions.classes.dir'] = './build/contrib/classes';
+  	
+        cur['xlayout.build.contributions.dir'] = './build/contrib';
+  	
+        cur['xlayout.build.contributions.java.dir'] = './build/contrib/java';
+  	
+        cur['xlayout.build.contributions.library.dir'] = './build/contrib/lib';
+  	
+        cur['xlayout.build.dir'] = './build';
+  	
+        cur['xlayout.build.documentation.dir'] = './build/docs';
+  	
+        cur['xlayout.build.documentation.javadocs.dir'] = './build/docs/javadocs';
+  	
+        cur['xlayout.build.documentation.metrics.dir'] = './build/docs/metrics';
+  	
+        cur['xlayout.build.documentation.test.dir'] = './build/docs/test';
+  	
+        cur['xlayout.build.examples.classes.dir'] = './build/examples/classes';
+  	
+        cur['xlayout.build.examples.dir'] = './build/examples';
+  	
+        cur['xlayout.build.examples.java.dir'] = './build/examples/java';
+  	
+        cur['xlayout.build.examples.library.dir'] = './build/examples/lib';
+  	
+        cur['xlayout.build.java.dir'] = './build/java';
+  	
+        cur['xlayout.build.scratchpad.classes.dir'] = './build/scratchpad/classes';
+  	
+        cur['xlayout.build.scratchpad.dir'] = './build/scratchpad';
+  	
+        cur['xlayout.build.scratchpad.java.dir'] = './build/scratchpad/java';
+  	
+        cur['xlayout.build.scratchpad.library.dir'] = './build/scratchpad/lib';
+  	
+        cur['xlayout.build.test.dir'] = './build/testcases';
+  	
+        cur['xlayout.build.work.dir'] = './build/work';
+  	
+        cur['xlayout.distributions.bin.build.dir'] = './dist/bin/build';
+  	
+        cur['xlayout.distributions.bin.dir'] = './dist/bin';
+  	
+        cur['xlayout.distributions.bin.documentation.dir'] = './dist/bin/build/docs';
+  	
+        cur['xlayout.distributions.bin.info.dir'] = './dist/bin';
+  	
+        cur['xlayout.distributions.bin.legal.dir'] = './dist/bin/legal';
+  	
+        cur['xlayout.distributions.bin.library.core.dir'] = './dist/bin/lib';
+  	
+        cur['xlayout.distributions.bin.library.dir'] = './dist/bin/lib';
+  	
+        cur['xlayout.distributions.bin.library.optional.dir'] = './dist/bin/lib/optional';
+  	
+        cur['xlayout.distributions.dir'] = './dist';
+  	
+        cur['xlayout.distributions.source.dir'] = './dist/src';
+  	
+        cur['xlayout.legal.dir'] = './legal';
+  	
+        cur['xlayout.library.core.dir'] = './lib/core';
+  	
+        cur['xlayout.library.dir'] = './lib';
+  	
+        cur['xlayout.library.endorsed.dir'] = './lib/endorsed';
+  	
+        cur['xlayout.library.optional.dir'] = './lib/optional';
+  	
+        cur['xlayout.source.contributions.dir'] = './src/contrib';
+  	
+        cur['xlayout.source.contributions.java.dir'] = './src/contrib/src';
+  	
+        cur['xlayout.source.contributions.library.dir'] = './src/contrib/lib';
+  	
+        cur['xlayout.source.contributions.targets.dir'] = './src/contrib/targets';
+  	
+        cur['xlayout.source.dir'] = './src';
+  	
+        cur['xlayout.source.documentation.content.dir'] = './src/documentation/xdocs';
+  	
+        cur['xlayout.source.documentation.content.xdocs.dir'] = './src/documentation/xdocs';
+  	
+        cur['xlayout.source.documentation.dir'] = './src/documentation';
+  	
+        cur['xlayout.source.documentation.resources.dir'] = './src/documentation/images';
+  	
+        cur['xlayout.source.documentation.resources.images.dir'] = './src/documentation/images';
+  	
+        cur['xlayout.source.examples.dir'] = './src/examples';
+  	
+        cur['xlayout.source.examples.java.dir'] = './src/examples/src';
+  	
+        cur['xlayout.source.examples.library.dir'] = './src/examples/lib';
+  	
+        cur['xlayout.source.examples.targets.dir'] = './src/examples/targets';
+  	
+        cur['xlayout.source.java.dir'] = './src/java';
+  	
+        cur['xlayout.source.scratchpad.dir'] = './src/scratchpad';
+  	
+        cur['xlayout.source.scratchpad.java.dir'] = './src/scratchpad/src';
+  	
+        cur['xlayout.source.scratchpad.library.dir'] = './src/scratchpad/lib';
+  	
+        cur['xlayout.source.scratchpad.targets.dir'] = './src/scratchpad/targets';
+  	
+        cur['xlayout.source.targets.dir'] = './src/targets';
+  	
+        cur['xlayout.source.test.dir'] = './src/testcases';
+  	
+        cur['xstatus.changes.release.action'] = '        Merged project needed info in project-info.xgump.xml     ';
+  	
+        cur['xstatus.changes.release.action.dev'] = 'nicolaken';
+  	
+        cur['xstatus.changes.release.action.type'] = 'add';
+  	
+        cur['xstatus.changes.release.date'] = '2002';
+  	
+        cur['xstatus.changes.release.version'] = '0.1';
+  	
+        cur['xstatus.developers.person.email'] = 'acoliver@apache.org';
+  	
+        cur['xstatus.developers.person.id'] = 'acoliver';
+  	
+        cur['xstatus.developers.person.name'] = 'Andrew C. Oliver';
+  	
+        cur['xstatus.todo.actions.action'] = '      Do it     ';
+  	
+        cur['xstatus.todo.actions.action.assigned-to'] = 'acoliver';
+  	
+        cur['xstatus.todo.actions.action.context'] = 'code';
+  	
+        cur['xstatus.todo.actions.priority'] = 'high';
+  	
+        cur['YEAR'] = '2002';
+  	</script><script language="JavaScript">
+        function displayProperties (name) {
+          var win = window.open('','JUnitSystemProperties','scrollbars=1,resizable=1');
+          var doc = win.document.open();
+          doc.write("<html><head><title>Properties of " + name + "</title>");
+          doc.write("<style>")
+          doc.write("body {font:normal 68% verdana,arial,helvetica;	color:#000000; }");
+          doc.write("table tr td, table tr th { font-size: 68%; }");
+          doc.write("table.properties { border-collapse:collapse; border-left:solid 1 #cccccc; border-top:solid 1 #cccccc; padding:5px; }");
+          doc.write("table.properties th { text-align:left; border-right:solid 1 #cccccc; border-bottom:solid 1 #cccccc; background-color:#eeeeee; }");
+          doc.write("table.properties td { font:normal; text-align:left; border-right:solid 1 #cccccc; border-bottom:solid 1 #cccccc; background-color:#fffffff; }");
+          doc.write("h3 { margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica }");
+          doc.write("</style>");
+          doc.write("</head><body>");
+          doc.write("<h3>Properties of " + name + "</h3>");
+          doc.write("<div align=\"right\"><a href=\"javascript:window.close();\">Close</a></div>");
+          doc.write("<table class='properties'>");
+          doc.write("<tr><th>Name</th><th>Value</th></tr>");
+          for (prop in TestCases[name]) {
+            doc.write("<tr><th>" + prop + "</th><td>" + TestCases[name][prop] + "</td></tr>");
+          }
+          doc.write("</table>");
+          doc.write("</body></html>");
+          doc.close();
+          win.focus();
+        }
+        
+      </script>
+</head>
+<body>
+<h1>Unit Test Results</h1>
+<table width="100%">
+<tr>
+<td align="left"></td><td align="right">Designed for use with <a href="http://www.junit.org">JUnit</a> and <a href="http://jakarta.apache.org">Ant</a>.</td>
+</tr>
+</table>
+<hr size="1">
+<h3>Class org.apache.poi.util.TestBitField</h3>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details">
+<tr valign="top">
+<th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th nowrap="nowrap">Time(s)</th>
+</tr>
+<tr valign="top" class="Pass">
+<td><a href="TestBitField.html">TestBitField</a></td><td>15</td><td>0</td><td>0</td><td>0.701</td>
+</tr>
+</table>
+<h2>Tests</h2>
+<p>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details">
+<tr valign="top">
+<th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap="nowrap">Time(s)</th>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testGetValue</td><td>Success</td><td></td><td>0.010</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testGetShortValue</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testGetRawValue</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testGetShortRawValue</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testIsSet</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testIsAllSet</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSetValue</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSetShortValue</td><td>Success</td><td></td><td>0.010</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testByte</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testClear</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testClearShort</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSet</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSetShort</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSetBoolean</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td>testSetShortBoolean</td><td>Success</td><td></td><td>0.000</td>
+</tr>
+</table>
+</p>
+<div class="Properties">
+<a href="javascript:displayProperties('org.apache.poi.util.TestBitField');">
+          Properties &raquo;
+        </a>
+</div>
+</body>
+</html>

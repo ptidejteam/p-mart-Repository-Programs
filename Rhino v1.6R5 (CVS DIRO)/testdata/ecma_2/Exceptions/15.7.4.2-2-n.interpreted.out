@@ -1,0 +1,7 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Exceptions\15.7.4.2-2-n.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Exceptions\shell.js -f mozilla\js\tests\ecma_2\Exceptions\15.7.4.2-2-n.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+number-001 Exceptions for Number.toString()
+number-001 Number.prototype.toString()
+object = new Object(); object.toString = Number.prototype.toString; object.toString() (threw TypeError: Method "toString" called on incompatible object.) = Passed PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Exceptions\15.7.4.2-2-n.interpreted.arff] ...

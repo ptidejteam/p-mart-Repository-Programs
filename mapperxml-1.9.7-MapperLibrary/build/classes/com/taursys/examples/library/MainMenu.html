@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>Library System Main Menu</title>
+</head>
+
+<body>
+<h1>Library System Main Menu</h1>
+<form method="get" action="BookList.sf">
+  <p>Search Key: <input type="text" size="20" name="searchKey" id="searchKey"/>
+  <input type="submit" value="Search" name="action"/></p>
+</form>
+<p><a href="BookList.sf">List All Books</a></p>
+<p><a href="BookSuggestions.sf">Send Book suggestions to a friend</a></p>
+<p><a href="BookAdd.sf">New Book</a></p>
+<p><a href="MainMenu.sf?action=Logout">Logout</a></p>
+<p><span id="message">Message goes here</span></p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE resources [
+  <!ENTITY apiResources SYSTEM "apiResources.xml">
+  <!ELEMENT resources (resource|human-resource)+>
+  <!ELEMENT resource EMPTY>
+  <!ATTLIST resource 		id CDATA #IMPLIED
+				title CDATA #IMPLIED
+				location CDATA #IMPLIED>
+  <!ELEMENT human-resource EMPTY>
+  <!ATTLIST human-resource 	id CDATA #IMPLIED
+				name CDATA #IMPLIED
+				mailto CDATA #IMPLIED>
+   ]>     
+<resources>
+&apiResources;
+ 	
+  <resource id="Xalan-current" title="Xalan-Java 0.19.4 XSLT Processor" location="http://xml.apache.org/xalan"/>
+    <resource id="Xalan-dist" title="Xalan distribution" location="http://xml.apache.org/dist/"/>
+    <resource id="LotusXSL-current" title="LotusXSL 0.19.4" location="http://www.alphaworks.ibm.com/tech/LotusXSL"/>   
+	
+ <resource id="ApacheLicense" title="The Apache Software License, Version 1.1" location="http://xml.apache.org/dist/LICENSE.txt"/>
+	
+  <resource id="Readme" title="Xalan Repository Release Notes" location="http://www.apache.org/websrc/cvsweb.cgi/xml-xalan/README"/>
+  
+  <resource id="Installation" title="Installing Xalan" location="install.html"/>
+   <resource id="CommandLineUtility" title="Xalan Command-Line Utility" location="commandline.html"/>
+  
+  <resource id="Demo" title="Xalan Browser Demo" location="http://xml.apache.org/xalan/XMLViewer.htm"/>
+
+  
+  <resource id="XSLT" title="W3C Recommendation 16 November 1999 XSL Transformations (XSLT) Version 1.0" location="http://www.w3.org/TR/xslt"/>
+  
+  <resource id="XPath" title="XML Path Language (XPath) Version 1.0" location="http://www.w3.org/TR/xpath"/>
+
+  <resource id="DOM-draft-august" title="August 18 Document Object Model (DOM) Level 1 Specification" location="http://www.w3.org/TR/1998/PR-DOM-Level-1-19980818/"/>
+  <resource id="DOM-draft-october" title="October 1 Document Object Model (DOM) Level 1 Specification" location="http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001"/>
+  <resource id="DOM" title="DOM" location="http://www.w3.org/DOM"/>
+
+    
+  <resource id="xml4j-used" title="Version 3.0.0EA3 of the XML Parser for Java" location="http://www.alphaworks.ibm.com/tech/xml4j"/>    
+  <resource id="xerces-used" title="Version 1.0.3 of Xerces-Java" location="http://xml.apache.org/xerces-j/index.html"/>   
+  
+  <resource id="JRE1.2" title="Sun's JRE-1.2" location="http://java.sun.com/products/jdk/1.2/jre/index.html"/>
+  <resource id="JDK1.2" title="Sun's JDK-1.2" location="http://java.sun.com/products/jdk/1.2/"/>
+  <resource id="JDK1.1" title="Sun's JDK-1.1" location="http://java.sun.com/products/jdk/1.1/"/>
+  <resource id="microsoftJava" title="Microsoft's Java VM" location="http://microsoft.com/java/"/>
+  <resource id="extensionsDoc" title="Xalan Extension Mechanism Doc" location="ltsextensions.html"/>
+  <resource id="demoPage" title="Demonstration Page" location="XMLViewer.htm"/>
+  <resource id="ExamplesDir" title="'examples' directory" location="examples"/>
+  <resource id="DominoExamplesDir" title="'domino' directory" location="examples/domino"/>
+  <resource id="SamplesDir" title="'samples' directory" location="Samples"/>
+  <resource id="ReadMeProductionDir" title="'readme_production' directory" location="../production"/>
+  <resource id="SourceCodeDir" title="'xml-xalan/src' directory" location="../src"/>
+  
+  <resource id="APIOverview" title="API Overview" location="api.html"/>
+	  <resource id="APIDocumentationDir" title="'apidocs' directory" location="apidocs"/>
+	  <resource id="Introduction" title="Overview: XSL Transformer for Java" location="overview.html"/>
+  <resource id="APIDocumentation" title="API Documentation" location="apidocs/index.html"/>	
+  <resource id="ReadmeDocumentation" title="Release Notes" location="readme.html"/>
+  <resource id="readme.xml" title="XML version of the Readme file" location="../docs/readme.xml"/>
+
+  <human-resource id="xalandev" name="Xalan Development Mailing List" mailto="xalan-dev@xml.apache.org"/>
+  <human-resource id="sboag" name="Scott Boag" mailto="scott_boag@lotus.com"/>
+  <human-resource id="dnbertoni" name="David N. Bertoni" mailto="david_n_bertoni@lotus.com"/>
+  <human-resource id="rweir" name="Robert Weir" mailto="robert_weir@lotus.com"/>
+  <human-resource id="scurcuru" name="Shane Curcuru" mailto="shane_curcuru@lotus.com"/>
+  <human-resource id="dleslie" name="Don Leslie" mailto="donald_leslie@lotus.com"/>       
+  <human-resource id="pdick" name="Paul Dick" mailto="paul_dick@lotus.com"/> 
+  <human-resource id="dburson" name="Dean Burson" mailto="dean_burson@lotus.com"/> 
+	 <human-resource id="nmendelsohn" name="Noah Mendelsohn" mailto="noah_mendelsohn@lotus.com"/> 
+		<human-resource id="sanjiva" name="Sanjiva Weerawarana" mailto="sanjiva@watson.ibm.com"/> 
+		  <human-resource id="dday" name="Don Day" mailto="dond@us.ibm.com"/> 
+
+<resource id="SAX" title="SAX" location="http://www.megginson.com/SAX/sax.html"/>	
+<resource id="SAXDocumentHandler" title="org.xml.sax.DocumentHandler" location="http://www.megginson.com/SAX/javadoc/org.xml.sax.DocumentHandler.html#_top"/>
+<!--Javadoc methods-->
+<resource id="XSLTProcessorFactoryGetProcessorDoc" title="XSLTProcessorFactory static getProcessor() method"
+location="apidocs/org/apache/xalan/xslt/XSLTProcessorFactory.html#getProcessor()"/>
+<resource id="XSLTProcessorProcessDoc" title="XSLTProcessor process() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#process(org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTResultTarget)"/>
+<resource id="StylesheetRootProcessDoc" title="StylesheetRoot process() method" location="apidocs/org/apache/xalan/xslt/StylesheetRoot.html#process(org.apache.xalan.xslt.XSLTInputSource, org.apache.xalan.xslt.XSLTResultTarget)"/>
+<resource id="XSLTProcessorProcessStylesheetDoc" title="XSLTProcessor processStylesheet() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#processStylesheet(java.lang.String)"/>     
+<resource id="XSLTProcessorSetStylesheetParamDoc" title="setStylesheetParam() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#setStylesheetParam(java.lang.String, java.lang.String)"/>
+<resource id="XSLTProcessorCreateXString" title="createXString() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXString(java.lang.String)"/>
+<resource id="XSLTProcessorCreateXObject" title="createXObject() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXObject(java.lang.Object)"/>
+<resource id="XSLTProcessorCreateXNumber" title="createXNumber() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXNumber(double)"/>
+<resource id="XSLTProcessorCreateXBoolean" title="createXBoolean() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXBoolean(boolean)"/>
+<resource id="XSLTProcessorCreateXNodeSet" title="createXNodeSet(NodeList nl) method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXNodeSet(org.w3c.dom.NodeList)"/>
+<resource id="XSLTProcessorCreateXNodeSet2" title="createXNodeSet(Node n) method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXNodeSet(org.w3c.dom.Node)"/>
+<resource id="XSLTProcessorCreateXNull" title="createXNull() method" location="apidocs/org/apache/xalan/xslt/XSLTProcessor.html#createXNull()"/>
+<resource id="XSLTProcessorApplettransformtoHTMLstringstringDoc" title="XSLTProcessorApplet transformToHTML() method" location="apidocs/org/apache/xalan/xslt/client/XSLTProcessorApplet.html#transformToHtml(java.lang.String, java.lang.String)"/>
+<resource id="XSLTProcessorAppletsetDocumentURLDoc" title="XSLTProcessorApplet setDocumentURL() method" location="apidocs/org/apache/xalan/xslt/client/XSLTProcessorApplet.html#setDocumentURL(java.lang.String)"/>
+<resource id="XSLTProcessorAppletsetStyleURLDoc" title="XSLTProcessorApplet setStyleURL() method" location="apidocs/org/apache/xalan/xslt/client/XSLTProcessorApplet.html#setStyleURL(java.lang.String)"/>
+
+<resource id="usagepatterns_fr_jindex" title="Usage Patterns" location="../usagepatterns.html"/>
+<resource id="dtm_fr_jindex" title="DTM (Document Table Model)" location="../dtm.html"/>
+<resource id="ext_fr_jindex_o_a_x_x_ext" title="Xalan Extensions" location="../../../../../../extensions.html"/>
+</resources>

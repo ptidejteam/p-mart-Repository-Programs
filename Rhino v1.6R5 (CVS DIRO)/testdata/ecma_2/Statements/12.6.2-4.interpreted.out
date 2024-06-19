@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\Statements\12.6.2-4.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\Statements\shell.js -f mozilla\js\tests\ecma_2\Statements\12.6.2-4.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 328 ms]
+while-004 while statement
+BUGNUMBER: 316725
+while-004 while statement
+DoWhile_1return statement in a while block = pass PASSED!
+DoWhile_2:  while with a labeled continue statement - code inside the loop, before the continue should be executed (10) = true PASSED!
+DoWhile_2:  while with a labeled continue statement - code after labeled continue should not be executed = pass PASSED!
+DoWhile_2:  while with a labeled continue statement - code after loop but inside label should be executed = pass PASSED!
+DoWhile_3: while with a labeled break statement - verify break out of loop = pass PASSED!
+DoWhile_3: while with a labeled break statement - verify break out of label = pass PASSED!
+DoWhile_3: while with a labeled break statement - verify correct exit from label = pass PASSED!
+DoWhile_4: labeled while with an unlabeled break - verify break out of while loop = pass PASSED!
+DoWhile_4: labeled while with an unlabeled break - verify break out of label = pass PASSED!
+DoWhile_4: labeled while with an unlabeled break - verify that statements after label are evaluated = pass PASSED!
+DoWhile_5: while with a labeled continue statement - continue should not execute statements above the loop = true PASSED!
+DoWhile_5: while with a labeled continue statement - code after labeled continue should not be executed = pass PASSED!
+DoWhile_5: while with a labeled continue statement - code after loop but inside label should be executed = pass PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\Statements\12.6.2-4.interpreted.arff] ...

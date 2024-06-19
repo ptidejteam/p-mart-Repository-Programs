@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MapperXML" default="jar" basedir=".">
+
+  <!-- =================================================================== -->
+  <!--            External Properties                                      -->
+  <!-- =================================================================== -->
+
+  <!-- Load User and Project properties -->
+  <property file="${user.home}/.build.properties"/>
+  <property file="${user.home}/.${ant.project.name}.properties"/>
+  <property file=".build.properties"/>
+  <property file="build.properties"/>
+
+  <!-- =================================================================== -->
+  <!--            Fixed Properties                                         -->
+  <!-- =================================================================== -->
+
+  <property name="output.dir"               value="build"/>
+  <property name="output.classes"           value="${output.dir}/classes"/>
+  <property name="output.classes.dir"       value="${output.dir}/classes"/>
+
+  <property name="java.source.dir"          value="src"/>
+  <property name="lib.dir"                  value="lib"/>
+  <property name="doc.dir"                  value="doc"/>
+  <property name="bin.dir"                  value="bin"/>
+  <property name="doc.api.dir"              value="doc/api"/>
+  <property name="web.dir"                  value="web"/>
+  
+  <property name="web.staging.dir"          value="${user.home}/public_html/mapper2site"/>
+
+  <property name="jar.file"                 value="mapperxml.jar" />
+
+  <patternset id="binary.resources">
+    <include name="**/*.gif"/>
+    <include name="**/*.jpg"/>
+    <include name="**/*.png"/>
+    <include name="**/*.pdf"/>
+  </patternset>
+
+  <patternset id="text.resources">
+    <include name="**/*.template"/>
+    <include name="**/*.properties"/>
+    <include name="**/*.html"/>
+    <include name="**/*.shtml"/>
+    <include name="**/*.jsp"/>
+    <include name="**/*.css"/>
+    <include name="**/*.js"/>
+    <exclude name="**/package.html"/>
+  </patternset>
+
+  <!-- =================================================================== -->
+  <!--            Classpath definitions                                    -->
+  <!-- =================================================================== -->
+
+  <!-- Project Classpath -->
+  <path id="project.class.path">
+    <fileset dir="lib" includes="*.jar" excludes="${jar.file}" />
+  </path>
+
+  <!-- =================================================================== -->
+  <!--            Initialization                                           -->
+  <!-- =================================================================== -->
+
+  <target name="init">
+    <tstamp>
+        <format property="build.time" pattern="MM/dd/yyyy HH:mm:ss"/>
+    </tstamp>
+    <property name="releaseNo" 		value="1.9.8-pre" />
+    <property name="zip.prefix"		value="mapperxml-${releaseNo}" />
+    <property name="zip.file" 		value="mapperxml-${releaseNo}.zip" />
+    <property name="zip.src.file"	value="mapperxml-src-${releaseNo}.zip" />
+
+    <filterset id="app.filterset">
+      <filter token="BUILDTIME" value="${build.time}"/>
+      <filter token="app.name" value="${app.name}"/>
+      <filter token="app.base.name" value="${app.base.name}"/>
+      <filter token="app.description" value="${app.description}"/>
+    </filterset>
+    
+  </target>
+
+  <!-- =================================================================== -->
+  <!--            Construction Tasks                                       -->
+  <!-- =================================================================== -->
+
+  <!-- Cleanup previous builds -->
+  <target name="clean" depends="init">
+	<delete includeemptydirs="true">
+	  <fileset dir="${output.classes}" includes="**/*"/>
+	</delete>    
+	<delete >
+	  <fileset dir="${output.dir}" includes="**/*"/>
+	</delete>    
+  </target>
+
+  <!-- Prepare for compilation - create directories -->
+  <target name="prepare" depends="init">
+  	<mkdir dir="lib" />
+    <mkdir dir="${output.dir}" />
+    <mkdir dir="${output.classes}" />
+    <mkdir dir="${doc.dir}" />
+    <mkdir dir="${doc.api.dir}" />
+  </target>
+
+  <!-- Copy resources to build directory -->
+  <target name="copy-resources" depends="prepare">
+    <!-- Copy binary files from source to classes -->
+    <copy todir="${output.classes}">
+      <fileset dir="${java.source.dir}">
+		<patternset refid="binary.resources"/>
+      </fileset>
+    </copy>
+    <!-- Copy text files from source to classes with substitutions -->
+    <copy todir="${output.classes}">
+      <fileset dir="${java.source.dir}">
+		<patternset refid="text.resources"/>
+      </fileset>
+      <filterset refid="app.filterset"/>
+    </copy>
+  </target>
+
+  <!-- Compile project -->
+  <target name="compile" depends="copy-resources">
+    <javac destDir="${output.classes}" debug="on" 
+        classpathref="project.class.path" deprecation="true" >
+      <src path="${java.source.dir}"/>
+    </javac>
+  </target>
+
+  <!-- Assemble jar -->
+  <target name="jar" depends="compile">
+    <jar jarfile="${lib.dir}/${jar.file}">
+      <fileset dir="${output.classes}">
+        <include name="com/**/*.class"/>
+        <exclude name="com/**/test/*"/>
+		<patternset refid="binary.resources"/>
+		<patternset refid="text.resources"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- JavaDoc Generation -->
+  <target name="javadoc" depends="init">
+    <delete dir="${doc.api.dir}" />
+    <mkdir dir="${doc.api.dir}" />
+    <javadoc packagenames="com.*"
+             sourcepath="${java.source.dir}"
+             excludepackagenames="test, com/**/test"
+             classpathref="project.class.path"
+             defaultexcludes="yes"
+             destdir="${doc.api.dir}"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="Mapper Presentation Framework">
+      <doctitle><![CDATA[<h1>Mapper Presentation Framework</h1>]]></doctitle>
+      <bottom><![CDATA[<i>Copyright &#169; 2004 Martin T Phelan. All Rights Reserved.</i>]]></bottom>
+    </javadoc>
+  </target>
+
+  <!-- Zip the Release -->
+  <target name="zip-release" depends="init" description="Zip release package">
+    <!-- Binary Release -->
+    <delete file="${output.dir}/${zip.file}"/>
+    <zip zipfile="${output.dir}/${zip.file}">
+      <zipfileset dir="." prefix="${zip.prefix}">
+        <include name="${bin.dir}/**"/>
+        <include name="${lib.dir}/**"/>
+        <include name="${doc.dir}/**"/>
+        <include name="*.txt"/>
+        <include name="*.html"/>
+        <include name="*.shtml"/>
+      </zipfileset>
+      <zipfileset dir="doc" prefix="${zip.prefix}/doc"/>
+      <!-- MapperEX Example -->
+      <zipfileset dir="../MapperEX" prefix="${zip.prefix}-MapperEX">
+        <include name="${java.source.dir}/**"/>
+        <include name="${output.dir}/*.war"/>
+        <include name="${web.dir}/**"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name=".project"/>
+        <include name=".classpath"/>
+      </zipfileset>
+      <!-- MapperLibrary Example -->
+      <zipfileset dir="../MapperLibrary" prefix="${zip.prefix}-MapperLibrary">
+        <include name="${java.source.dir}/**"/>
+        <include name="${output.dir}/*.war"/>
+        <include name="${web.dir}/**"/>
+        <include name="build.xml"/>
+        <include name="*.html"/>
+        <include name=".project"/>
+        <include name=".classpath"/>
+      </zipfileset>
+    </zip>
+    <!-- Source Release -->
+    <delete file="${output.dir}/${zip.src.file}"/>
+    <zip zipfile="${output.dir}/${zip.src.file}">
+      <zipfileset dir="." prefix="${zip.prefix}">
+        <include name="${java.source.dir}/**"/>
+        <include name="build.xml"/>
+        <include name="license.shtml"/>
+        <include name=".*"/>
+      </zipfileset>
+    </zip>
+  </target>
+
+  <!-- JUnit Tests -->
+  <target name="junit" depends="init" description="Execute Unit Tests">
+    <junit>
+      <classpath>
+        <pathelement location="${output.classes.dir}" />
+        <path refid="project.class.path" />
+      </classpath>
+
+      <formatter type="xml" />
+      <batchtest> 
+        <fileset dir="${output.classes.dir}">
+          <include name="**/test/*Test.class" />
+        </fileset>
+      </batchtest>
+    </junit>
+
+    <junitreport>
+      <fileset dir=".">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${doc.dir}/tests"/>
+    </junitreport>
+    <delete>
+      <fileset dir=".">
+        <include name="TEST-*.xml"/>
+        <include name="TESTS-*.xml"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <!-- Copy JavaDoc and release notes to Web Staging Area -->
+  <target name="copy-javadoc-releases" depends="init">
+	<delete dir="${web.staging.dir}/api"/>
+    <copy todir="${web.staging.dir}">
+      <fileset dir="${doc.dir}">
+        <include name="api/**/*"/>
+      </fileset>
+    </copy>
+	<delete dir="${web.staging.dir}/releases"/>
+    <copy todir="${web.staging.dir}">
+      <fileset dir="${doc.dir}">
+        <include name="releases/**/*"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Upload WebSite -->
+  <target name="upload-website" depends="init">
+    <delete file="${output.dir}/website.zip"/>
+    <zip zipfile="${output.dir}/website.zip">
+      <zipfileset dir="${web.staging.dir}" prefix="htdocs"/>
+    </zip>
+  	<exec executable="scp" failonerror="true">
+  		<arg value="${output.dir}/website.zip"/>
+  		<arg value="martyp@mapper.sourceforge.net:/home/groups/m/ma/mapper"/>
+  	</exec>
+  	<exec executable="ssh" failonerror="true">
+  		<arg value="martyp@mapper.sourceforge.net"/>
+  		<arg value="cd /home/groups/m/ma/mapper;rm -r htdocs/*;unzip website.zip"/>
+  	</exec>
+  </target>
+  
+  <!--Do a project Release -->
+  <target name="build-release" depends="init">
+	<antcall target="clean"/>
+	<antcall target="jar"/>
+	<antcall target="junit"/>
+	<antcall target="javadoc"/>
+	<antcall target="zip-release"/>
+	<antcall target="copy-javadoc-releases"/>
+  </target>
+
+  <!-- Ftp to SourceForge for release -->
+  <target name="upload-sourceforge" depends="init">
+    <ftp server="upload.sourceforge.net"
+         remotedir="incoming"
+         userid="anonymous"
+         password="martyp@mapper.sourceforge.net"
+         depends="yes"
+         binary="yes"
+         verbose="yes"
+         >
+      <fileset dir="${output.dir}">
+        <include name="${zip.file}"/>
+        <include name="${zip.src.file}"/>
+      </fileset>
+      <fileset dir="${lib.dir}">
+        <include name="${jar.file}"/>
+      </fileset>
+    </ftp>
+  </target>
+
+</project>

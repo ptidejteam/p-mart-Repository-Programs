@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE javadocPackages SYSTEM "sbk:/style/dtd/javadocPackages.dtd">
+
+<javadocPackages source="xalan" target="../src">
+  <resources source="sbk:sources/xalan/resources.xml"/>
+  <home source="xalan/javadocOverview.xml" target="javadocOverview.html"/>
+  <package source="xalan/org-apache-xalan-xpath.xml" target="org/apache/xalan/xpath/package.html"/>
+  <package source="xalan/org-apache-xalan-xpath-xdom.xml" target="org/apache/xalan/xpath/xdom/package.html"/>
+  <package source="xalan/org-apache-xalan-xpath-dtm.xml" target="org/apache/xalan/xpath/dtm/package.html"/>
+  <package source="xalan/org-apache-xalan-xpath-xml.xml" target="org/apache/xalan/xpath/xml/package.html"/>
+  <package source="xalan/org-apache-xalan-xslt.xml" target="org/apache/xalan/xslt/package.html"/>
+  <package source="xalan/org-apache-xalan-xslt-trace.xml" target="org/apache/xalan/xslt/trace/package.html"/>
+  <package source="xalan/org-apache-xalan-xslt-client.xml" target="org/apache/xalan/xslt/client/package.html"/>
+  <package source="xalan/org-apache-xalan-xslt-extensions.xml" target="org/apache/xalan/xslt/extensions/package.html"/>
+</javadocPackages>

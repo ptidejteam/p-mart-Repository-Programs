@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Software::JUnit Build Step</TITLE>
+</HEAD>
+<BODY BGCOLOR="#DDDDDD">
+<P>
+<TABLE BORDER="0" WIDTH="600">
+	<TR>
+		<TD WIDTH="150" ALIGN="LEFT" VALIGN="TOP" ROWSPAN="3" BGCOLOR="#AAEEAA">
+			<IMG SRC="JRefactory.jpg" ALT="Author:  Chris Seguin">
+			<A HREF="chrissoft.html">Software</A> <BR>
+			<UL>
+			<LI> <A HREF="csrefactory.html">Refactory</A><BR>
+			<LI> <A HREF="cselixirpp.html">Elixir Pretty Printer Plugin</A> <BR>
+			<LI> <A HREF="csmvss.html">Elixir Microsoft Visual Source Safe Plugin</A> <BR>
+			<LI> <A HREF="csprocess.html">Elixir Process Tracking Plugin</A> <BR>
+			<LI> <A HREF="csprint.html">Elixir Printing Plugin</A> <BR>
+			<LI> <A HREF="csinstall.html">Elixir Installation</A> <BR>
+			<LI> <A HREF="cspretty.html">Pretty Printer</A> <BR>
+			<LI> <A HREF="cslineno.html">Line Number Tool</A> <BR>
+			<LI> <A HREF="csmetrics.html">Metrics</A> <BR>
+			<LI> <A HREF="csstub.html">Stub Generator</A> <BR>
+			<LI> <A HREF="csclean.html">Class file cleaner</A> <BR>
+			<LI> <A HREF="csjar.html">Jar Generator</A> <BR>
+			<LI> <A HREF="cscode.html">Code Store</A> <BR>
+			<LI> <A HREF="csbackup.html">Backup</A> <BR>
+			<LI> JUnit Build Step <BR>
+			</UL>
+			<A HREF="chrisdown.html"><B>Download</B></A> <BR>
+			<B><A HREF="authors.html">Contributors</A></B> <BR>
+		</TD>
+
+		<TD WIDTH="35" ALIGN="LEFT" VALIGN="TOP">
+			<P><A HREF="csbackup.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A>
+		</TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<H2 ALIGN="CENTER">Software::JUnit Build Step
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><A HREF="chrisdown.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Next Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN="3" VALIGN="top">
+			<P>Elixir's IDE has a powerful capability to add some process into
+			the compilation step.  Since in theory, I run the Unit tests for
+			each object immediately after compiling my source code, I don't
+			need this step.</P>
+
+			<P>The reality is that I am sometimes lazy, and don't run my JUnit
+			tests all the time.</P>
+
+			<P>This tool allows me to place the JUnit test cases directly into
+			the compilation process.  If any unit tests fail, then they are listed
+			in the same way that compiler errors are.  With a line number and
+			a file to edit.</P>
+
+			<P>If you haven't used JUnit before, here is the short description
+			of how to use it.</P>
+
+			<OL>
+			<LI> Create an object in the same package as the class you are testing.
+			   The JUnit build step requires that the object have a name of "Test"
+			   or some other prefix followed by the name of the object that you
+			   are testing.  The unit test class must extend
+			   <CODE>junit.framework.TestCase</CODE>.</LI>
+			<LI> Add a constructor that takes a string as input, and passes it off to
+			   the parent class.</LI>
+			<LI> Create the test cases.  Each test case is a method whose name starts
+			   with the word "Test".  Inside each method invoke the method of test case
+			   <CODE>assert(String message, boolean value);</CODE> or
+			   <CODE>assertEquals(String message, * value1, * value2);</CODE>.</LI>
+			<LI> Add a <CODE>protected void setUp()</CODE> method to handle any
+			   initialization. (If there is any intialization before each test
+			   case.)</LI>
+			<LI> Add a <CODE>protected void tearDown()</CODE> method to handle any
+			   cleanup. (If there is any cleanup after each test
+			   case.)</LI>
+			</OL>
+
+			<P>To add this as a build step, you need to place the following
+			into your <EM>MyProject</EM>.project.make file.  The step looks
+			like:</P>
+
+			<PRE>
+&lt;step code="junit.elixir.JUnitBuildStep"&gt;
+  &lt;param name="root" value="c:\MySource\"/&gt;
+  &lt;param name="prefix" value="Test"/&gt;
+&lt;step&gt;
+			</PRE>
+
+			<P>The root parameter tells which directory contains the top
+			level package.  For instance, if I had a class that was in
+			the package org.acm.seguin.refactor.  The root parameter
+			specifies the directoring containing org.</P>
+
+			<P>The prefix parameter tells the build step the name of the
+			unit test object.  The object should be Test plus the name of
+			the object being tested.</P>
+ 		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="35"><A HREF="csbackup.html"><IMG SRC="left.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page" BORDER="2"></A></TD>
+		<TD WIDTH="380" ALIGN="CENTER">
+			<P ALIGN="CENTER"><FONT SIZE="2" COLOR="#AAAAAA">Last Modified: October 19, 1999</FONT>
+		</TD>
+		<TD WIDTH="35" ALIGN="RIGHT">
+			<P ALIGN="RIGHT"><A HREF="chrisdown.html"><IMG SRC="right.gif" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" ALT="Previous Page"
+			BORDER="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

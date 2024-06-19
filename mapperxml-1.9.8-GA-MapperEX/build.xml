@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MapperEX" default="war" basedir=".">
+
+  <!-- =================================================================== -->
+  <!--            External Properties                                      -->
+  <!-- =================================================================== -->
+
+  <!-- Load User and Project properties -->
+  <property file="${user.home}/.build.properties" />
+  <property file="${user.home}/.${ant.project.name}.properties" />
+  <property file=".build.properties" />
+  <property file="build.properties" />
+
+  <!-- =================================================================== -->
+  <!--            Fixed Properties                                         -->
+  <!-- =================================================================== -->
+
+  <property name="output.dir" value="build" />
+  <property name="output.classes.dir" value="${output.dir}/classes" />
+  <property name="output.webinf.dir" value="${output.dir}/WEB-INF" />
+  <property name="output.web" value="${output.dir}/web" />
+  <property name="output.web.forms.dir" value="${output.classes.dir}/forms" />
+
+  <property name="java.source.dir" value="src" />
+  <property name="lib.dir" value="../MapperXML/lib" />
+  <property name="web.dir" value="web" />
+  <property name="webinf.dir" value="${java.source.dir}/metadata" />
+  <property name="web.forms" value="forms" />
+  <property name="web.forms.dir" value="${basedir}/web/forms" />
+
+  <property name="war.file" value="mapperex.war" />
+
+  <property name="deploy.dir" value="/usr/local/tomcat/webapps" />
+
+  <patternset id="binary.resources">
+    <include name="**/*.gif" />
+    <include name="**/*.jpg" />
+    <include name="**/*.png" />
+    <include name="**/*.pdf" />
+  </patternset>
+
+  <patternset id="text.resources">
+    <include name="**/*.template" />
+    <include name="**/*.properties" />
+    <include name="**/*.html" />
+    <include name="**/*.jsp" />
+    <include name="**/*.css" />
+    <include name="**/*.js" />
+  </patternset>
+
+  <!-- =================================================================== -->
+  <!--            Classpath definitions                                    -->
+  <!-- =================================================================== -->
+
+  <!-- Project Classpath -->
+  <path id="project.class.path">
+    <fileset dir="${lib.dir}" includes="*.jar" />
+  </path>
+
+  <!-- =================================================================== -->
+  <!--            Initialization                                           -->
+  <!-- =================================================================== -->
+
+  <target name="init">
+    <tstamp>
+      <format property="build.time" pattern="MM/dd/yyyy HH:mm:ss" />
+    </tstamp>
+    <filterset id="app.filterset">
+      <filter token="BUILDTIME" value="${build.time}" />
+    </filterset>
+  </target>
+
+  <!-- =================================================================== -->
+  <!--            Construction Tasks                                       -->
+  <!-- =================================================================== -->
+
+  <!-- Cleanup previous builds -->
+  <target name="clean" depends="init">
+    <delete dir="${output.dir}" />
+  </target>
+
+  <!-- Prepare for compilation - create directories -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${output.dir}" />
+    <mkdir dir="${output.classes.dir}" />
+  </target>
+
+  <!-- Copy resources to build directory -->
+  <target name="copy-resources" depends="prepare">
+    <!-- Copy binary files from source to classes -->
+    <copy todir="${output.classes.dir}">
+      <fileset dir="${java.source.dir}">
+        <patternset refid="binary.resources" />
+      </fileset>
+    </copy>
+    <!-- Copy text files from source to classes with substitutions -->
+    <copy todir="${output.classes.dir}">
+      <fileset dir="${java.source.dir}">
+        <patternset refid="text.resources" />
+      </fileset>
+      <filterset refid="app.filterset" />
+    </copy>
+    <!-- Copy binary files from dynamic web forms to classes -->
+    <copy todir="${output.web.forms.dir}">
+      <fileset dir="${web.forms.dir}">
+        <patternset refid="binary.resources" />
+      </fileset>
+    </copy>
+    <!-- Copy text files from dynamic web forms to classes with substitutions -->
+    <copy todir="${output.web.forms.dir}">
+      <fileset dir="${web.forms.dir}">
+        <patternset refid="text.resources" />
+      </fileset>
+      <filterset refid="app.filterset" />
+    </copy>
+    <!-- Copy binary files from static web source to web output -->
+    <copy todir="${output.web}">
+      <fileset dir="${web.dir}">
+        <exclude name="${web.forms}/**" />
+        <patternset refid="binary.resources" />
+      </fileset>
+    </copy>
+    <!-- Copy text files from static web source to web output with substitutions -->
+    <copy todir="${output.web}">
+      <fileset dir="${web.dir}">
+        <exclude name="${web.forms}/**" />
+        <patternset refid="text.resources" />
+      </fileset>
+      <filterset refid="app.filterset" />
+    </copy>
+  </target>
+
+  <!-- Compile project -->
+  <target name="compile" depends="copy-resources">
+    <javac destDir="${output.classes.dir}" debug="on" classpathref="project.class.path">
+      <src path="${java.source.dir}" />
+    </javac>
+  </target>
+
+  <!-- Assemble WAR file for web deployment -->
+  <target name="war" depends="clean, compile">
+    <war warfile="${output.dir}/${war.file}" webxml="${webinf.dir}/web.xml">
+      <!-- Java classes and resources -->
+      <classes dir="${output.classes.dir}" />
+      <!-- Libraries to Deploy -->
+      <lib dir="${lib.dir}">
+        <include name="Tidy.jar" />
+        <include name="mapperxml.jar" />
+      </lib>
+      <!-- Static web content to deploy -->
+      <fileset dir="${output.web}" />
+    </war>
+  </target>
+
+  <!-- =================================================================== -->
+  <!--            Main Deployment Tasks                                    -->
+  <!-- =================================================================== -->
+
+  <!-- Deploy WAR file to Server -->
+  <target name="deploy" depends="war" description="Build and deploy application">
+    <copy file="${output.dir}/${war.file}" todir="${deploy.dir}" overwrite="yes" />
+  </target>
+
+</project>

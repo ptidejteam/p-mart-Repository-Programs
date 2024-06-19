@@ -1,0 +1,42 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.4.3.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.4.3.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 359 ms]
+11.4.3  The typeof operator
+typeof(void(0)) = undefined PASSED!
+typeof(null) = object PASSED!
+typeof(true) = boolean PASSED!
+typeof(false) = boolean PASSED!
+typeof(new Boolean()) = object PASSED!
+typeof(new Boolean(true)) = object PASSED!
+typeof(Boolean()) = boolean PASSED!
+typeof(Boolean(false)) = boolean PASSED!
+typeof(Boolean(true)) = boolean PASSED!
+typeof(NaN) = number PASSED!
+typeof(Infinity) = number PASSED!
+typeof(-Infinity) = number PASSED!
+typeof(Math.PI) = number PASSED!
+typeof(0) = number PASSED!
+typeof(1) = number PASSED!
+typeof(-1) = number PASSED!
+typeof('0') = string PASSED!
+typeof(Number()) = number PASSED!
+typeof(Number(0)) = number PASSED!
+typeof(Number(1)) = number PASSED!
+typeof(Nubmer(-1)) = number PASSED!
+typeof(new Number()) = object PASSED!
+typeof(new Number(0)) = object PASSED!
+typeof(new Number(1)) = object PASSED!
+typeof(Math) = object PASSED!
+typeof(Number.prototype.toString) = function PASSED!
+typeof('a string') = string PASSED!
+typeof('') = string PASSED!
+typeof(new Date()) = object PASSED!
+typeof(new Array(1,2,3)) = object PASSED!
+typeof(new String('string object')) = object PASSED!
+typeof(String('string primitive')) = string PASSED!
+typeof(['array', 'of', 'strings']) = object PASSED!
+typeof(new Function()) = function PASSED!
+typeof(parseInt) = function PASSED!
+typeof(test) = function PASSED!
+typeof(String.fromCharCode) = function PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.4.3.interpreted.arff] ...

@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>MapperXML Example: The FormatPage</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>MapperXML Example: The FormatPage</h1>
+    <form method="post" action="FormatPage.sf">
+    <table summary="xxxxx">
+      <tr>
+        <td>Default format date</td>
+        <td><input type="text" name="unformattedDate" id="unformattedDate"
+              value="01/01/01" size="60"/></td>
+      </tr>
+      <tr>
+        <td>Custom format date</td>
+        <td><input type="text" name="formattedDate" id="formattedDate"
+              value="xxxxx" size="60"/></td>
+      </tr>
+      <tr>
+        <td>Default format number</td>
+        <td><input type="text" name="unformattedNumber" id="unformattedNumber"
+              value="xxxxx" size="60"/></td>
+      </tr>
+      <tr>
+        <td>Custom format number</td>
+        <td><input type="text" name="formattedNumber" id="formattedNumber"
+              value="xxxxx" size="60"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"> ----------- MessageFormat example -------------- </td>
+      </tr>
+      <tr>
+        <td>Product No</td>
+        <td><input type="text" name="messageNumber" id="messageNumber"
+              value="xxxxx" size="60"/></td>
+      </tr>
+      <tr>
+        <td>URL for Product</td>
+        <td id="messageNumberOut">xxx</td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit"/></td>
+      </tr>
+    </table>
+    </form>
+    <p><span id="errorMessage">Error message here</span></p>
+    <p><span id="friendlyMessage">Friendly Error message here</span></p>
+    <br/><br/><p><a href="../">Back to Mapper Examples</a></p>
+  </body>
+</html>

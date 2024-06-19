@@ -1,0 +1,39 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.1.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.1.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 344 ms]
+BUGNUMBER: 77391
+15.8.2.1 Math.abs()
+Math.abs.length = 1 PASSED!
+Math.abs() = NaN PASSED!
+Math.abs( void 0 ) = NaN PASSED!
+Math.abs( null ) = 0 PASSED!
+Math.abs( true ) = 1 PASSED!
+Math.abs( false ) = 0 PASSED!
+Math.abs( string primitive) = NaN PASSED!
+Math.abs( string object ) = NaN PASSED!
+Math.abs( Number.NaN ) = NaN PASSED!
+Math.abs(0) = 0 PASSED!
+Math.abs( -0 ) = 0 PASSED!
+Infinity/Math.abs(-0) = Infinity PASSED!
+Math.abs( -Infinity ) = Infinity PASSED!
+Math.abs( Infinity ) = Infinity PASSED!
+Math.abs( - MAX_VALUE ) = 1.7976931348623157e+308 PASSED!
+Math.abs( - MIN_VALUE ) = 5e-324 PASSED!
+Math.abs( MAX_VALUE ) = 1.7976931348623157e+308 PASSED!
+Math.abs( MIN_VALUE ) = 5e-324 PASSED!
+Math.abs( -1 ) = 1 PASSED!
+Math.abs( new Number( -1 ) ) = 1 PASSED!
+Math.abs( 1 ) = 1 PASSED!
+Math.abs( Math.PI ) = 3.141592653589793 PASSED!
+Math.abs( -Math.PI ) = 3.141592653589793 PASSED!
+Math.abs(-1/100000000) = 1e-8 PASSED!
+Math.abs(-Math.pow(2,32)) = 4294967296 PASSED!
+Math.abs(Math.pow(2,32)) = 4294967296 PASSED!
+Math.abs( -0xfff ) = 4095 PASSED!
+Math.abs( -0777 ) = 511 PASSED!
+Math.abs('-1e-1') = 0.1 PASSED!
+Math.abs('0xff') = 255 PASSED!
+Math.abs('077') = 77 PASSED!
+Math.abs( 'Infinity' ) = Infinity PASSED!
+Math.abs( '-Infinity' ) = Infinity PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.1.compiled.arff] ...

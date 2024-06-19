@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>The Context Menu Handler</title><meta name="generator" content="DocBook XSL Stylesheets V1.59.2"><link rel="home" href="index.html" title="jEdit 4.1 User's Guide"><link rel="up" href="launcher-guide.html" title="Appendix G. jEditLauncher for Windows"><link rel="previous" href="launcher-starting.html" title="Starting jEdit"><link rel="next" href="launcher-jedidiff.html" title="Using jEdit and jEditLauncher as a Diff Utility"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The Context Menu Handler</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="launcher-starting.html">Prev</a> </td><th width="60%" align="center">Appendix G. jEditLauncher for Windows</th><td width="20%" align="right"> <a accesskey="n" href="launcher-jedidiff.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="launcher-menu"></a>The Context Menu Handler</h2></div></div><p>
+    The jEditLauncher package also implements a context menu handler for the Windows
+    shell. It is intended to be be installed as a handler available for any
+    file. When you right-click on a file or shortcut icon, the context
+    menu that appears will include an item displaying the jEdit icon and
+    captioned <b>Open with jEdit</b>. If the file has an extension,
+    another item will appear captioned <b>Open *.XXX with jEdit</b>,
+    where XXX is the extension of the selected file. Clicking this item will
+    cause jEdit to load all files with the same extension in the same directory
+    as the selected file. Multiple file selections are also supported; in this
+    circumstance only the <b>Open with jEdit</b> item appears.
+  </p><p>
+    If a single file with a <tt>.bsh</tt> extension
+    is selected, the menu
+    will also contain an item captioned <b>Run script in
+    jEdit</b>. Selecting this item will cause jEditLauncher to
+    run the selected file as a BeanShell script.
+  </p><p>
+    If exactly two files are selected, the menu will contain an entry
+    for <b>Show diff in jEdit</b>.  Selecting this item will
+    load the two files in jEdit and have them displayed side-by-side
+    with their differences highlighted by the
+    JDiff plugin.  The file selected first will
+    be treated as the base for comparison purposes. If the plugin is not
+    installed, an error message will be displayed in jEdit. See <a href="using-plugins.html" title="Chapter 8. Installing and Using Plugins">Chapter 8</a> for more information about installing
+    plugins.
+  </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="launcher-starting.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="launcher-guide.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="launcher-jedidiff.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Starting jEdit </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Using jEdit and jEditLauncher as a Diff Utility</td></tr></table></div></body></html>

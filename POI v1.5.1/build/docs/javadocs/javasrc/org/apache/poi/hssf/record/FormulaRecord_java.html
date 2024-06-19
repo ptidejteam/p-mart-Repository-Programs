@@ -1,0 +1,527 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: FormulaRecord');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/hssf/record/classList.html" TARGET="packageFrame">org.apache.poi.hssf.record</A>: FormulaRecord';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a><span class="comment">/*
+<a name=57 class="linenum">57   </a> * FormulaRecord.java
+<a name=58 class="linenum">58   </a> *
+<a name=59 class="linenum">59   </a> * Created on October 28, 2001, 5:44 PM
+<a name=60 class="linenum">60   </a> */</span>
+<a name=61 class="linenum">61   </a>package org.apache.poi.hssf.record;
+<a name=62 class="linenum">62   </a>
+<a name=63 class="linenum">63   </a>import java.util.Stack;
+<a name=64 class="linenum">64   </a>import java.util.List;
+<a name=65 class="linenum">65   </a>
+<a name=66 class="linenum">66   </a>import org.apache.poi.util.LittleEndian;
+<a name=67 class="linenum">67   </a>import org.apache.poi.hssf.record.formula.*;
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a><span class="comment">/**
+<a name=70 class="linenum">70   </a> * Formula Record - This is not really supported in this release.  Its here for future use.&lt;P&gt;
+<a name=71 class="linenum">71   </a> * REFERENCE:  PG 317/444 Microsoft Excel 97 Developer's Kit (ISBN: 1-57231-498-2)&lt;P&gt;
+<a name=72 class="linenum">72   </a> * @author Andrew C. Oliver (acoliver at apache dot org)
+<a name=73 class="linenum">73   </a> * @version 2.0-pre
+<a name=74 class="linenum">74   </a> */</span>
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>public class <a class="classDef" name=FormulaRecord href=FormulaRecord_java_ref.html#FormulaRecord>FormulaRecord</a>
+<a name=77 class="linenum">77   </a>    extends <a class="classRef" href=Record_java.html#Record>Record</a>
+<a name=78 class="linenum">78   </a>    implements <a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a>, Comparable
+<a name=79 class="linenum">79   </a>{
+<a name=80 class="linenum">80   </a>    
+<a name=81 class="linenum">81   </a>    public static final boolean <a class="varDef" name=FormulaRecord.EXPERIMENTAL_FORMULA_SUPPORT_ENABLED href=FormulaRecord_java_ref.html#FormulaRecord.EXPERIMENTAL_FORMULA_SUPPORT_ENABLED>EXPERIMENTAL_FORMULA_SUPPORT_ENABLED</a>=false;
+<a name=82 class="linenum">82   </a>    
+<a name=83 class="linenum">83   </a>    public static final short <a class="varDef" name=FormulaRecord.sid href=FormulaRecord_java_ref.html#FormulaRecord.sid>sid</a> =
+<a name=84 class="linenum">84   </a>        0x06;   <span class="comment">// docs say 406...because of a bug Microsoft support site article #Q184647)</span>
+<a name=85 class="linenum">85   </a>    
+<a name=86 class="linenum">86   </a>    private short             <a class="varDef" name=FormulaRecord.field_1_row href=FormulaRecord_java_ref.html#FormulaRecord.field_1_row>field_1_row</a>;
+<a name=87 class="linenum">87   </a>    private short             <a class="varDef" name=FormulaRecord.field_2_column href=FormulaRecord_java_ref.html#FormulaRecord.field_2_column>field_2_column</a>;
+<a name=88 class="linenum">88   </a>    private short             <a class="varDef" name=FormulaRecord.field_3_xf href=FormulaRecord_java_ref.html#FormulaRecord.field_3_xf>field_3_xf</a>;
+<a name=89 class="linenum">89   </a>    private double            <a class="varDef" name=FormulaRecord.field_4_value href=FormulaRecord_java_ref.html#FormulaRecord.field_4_value>field_4_value</a>;
+<a name=90 class="linenum">90   </a>    private short             <a class="varDef" name=FormulaRecord.field_5_options href=FormulaRecord_java_ref.html#FormulaRecord.field_5_options>field_5_options</a>;
+<a name=91 class="linenum">91   </a>    private int               <a class="varDef" name=FormulaRecord.field_6_zero href=FormulaRecord_java_ref.html#FormulaRecord.field_6_zero>field_6_zero</a>;
+<a name=92 class="linenum">92   </a>    private short             <a class="varDef" name=FormulaRecord.field_7_expression_len href=FormulaRecord_java_ref.html#FormulaRecord.field_7_expression_len>field_7_expression_len</a>;
+<a name=93 class="linenum">93   </a>    private Stack             <a class="varDef" name=FormulaRecord.field_8_parsed_expr href=FormulaRecord_java_ref.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>;
+<a name=94 class="linenum">94   </a>    
+<a name=95 class="linenum">95   </a>    private byte[]            <a class="varDef" name=FormulaRecord.all_data href=FormulaRecord_java_ref.html#FormulaRecord.all_data>all_data</a>; <span class="comment">//if formula support is not enabled then</span>
+<a name=96 class="linenum">96   </a>                                        <span class="comment">//we'll just store/reserialize</span>
+<a name=97 class="linenum">97   </a>
+<a name=98 class="linenum">98   </a>    <span class="comment">/** Creates new FormulaRecord */</span>
+<a name=99 class="linenum">99   </a>
+<a name=100 class="linenum">100  </a>    public <a class="methodDef" name=FormulaRecord.FormulaRecord() href=FormulaRecord_java_ref.html#FormulaRecord.FormulaRecord()>FormulaRecord</a>()
+<a name=101 class="linenum">101  </a>    {
+<a name=102 class="linenum">102  </a>        field_8_parsed_expr = new Stack();
+<a name=103 class="linenum">103  </a>    }
+<a name=104 class="linenum">104  </a>
+<a name=105 class="linenum">105  </a>    <span class="comment">/**
+<a name=106 class="linenum">106  </a>     * Constructs a Formula record and sets its fields appropriately.
+<a name=107 class="linenum">107  </a>     *
+<a name=108 class="linenum">108  </a>     * @param id     id must be 0x06 (NOT 0x406 see MSKB #Q184647 for an "explanation of
+<a name=109 class="linenum">109  </a>     * this bug in the documentation) or an exception will be throw upon validation
+<a name=110 class="linenum">110  </a>     * @param size  the size of the data area of the record
+<a name=111 class="linenum">111  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=112 class="linenum">112  </a>     */</span>
+<a name=113 class="linenum">113  </a>
+<a name=114 class="linenum">114  </a>    public <a class="methodDef" name=FormulaRecord.FormulaRecord(short,short,byte) href=FormulaRecord_java_ref.html#FormulaRecord.FormulaRecord(short,short,byte)>FormulaRecord</a>(short id, short size, byte [] data)
+<a name=115 class="linenum">115  </a>    {
+<a name=116 class="linenum">116  </a>        super(<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.id>id</a>, <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.size>size</a>, <a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.data>data</a>);
+<a name=117 class="linenum">117  </a>    }
+<a name=118 class="linenum">118  </a>
+<a name=119 class="linenum">119  </a>    <span class="comment">/**
+<a name=120 class="linenum">120  </a>     * Constructs a Formula record and sets its fields appropriately.
+<a name=121 class="linenum">121  </a>     *
+<a name=122 class="linenum">122  </a>     * @param id     id must be 0x06 (NOT 0x406 see MSKB #Q184647 for an "explanation of
+<a name=123 class="linenum">123  </a>     * this bug in the documentation) or an exception will be throw upon validation
+<a name=124 class="linenum">124  </a>     * @param size  the size of the data area of the record
+<a name=125 class="linenum">125  </a>     * @param data  data of the record (should not contain sid/len)
+<a name=126 class="linenum">126  </a>     * @param offset of the record's data
+<a name=127 class="linenum">127  </a>     */</span>
+<a name=128 class="linenum">128  </a>
+<a name=129 class="linenum">129  </a>    public <a class="methodDef" name=FormulaRecord.FormulaRecord(short,short,byte,int) href=FormulaRecord_java_ref.html#FormulaRecord.FormulaRecord(short,short,byte,int)>FormulaRecord</a>(short id, short size, byte [] data, int offset)
+<a name=130 class="linenum">130  </a>    {
+<a name=131 class="linenum">131  </a>        super(<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.id>id</a>, <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.size>size</a>, <a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.data>data</a>, <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.FormulaRecord.offset>offset</a>);
+<a name=132 class="linenum">132  </a>    }
+<a name=133 class="linenum">133  </a>
+<a name=134 class="linenum">134  </a>    protected void <a class="methodDef" name=FormulaRecord.fillFields(byte,short,int) href=FormulaRecord_java_ref.html#FormulaRecord.fillFields(byte,short,int)>fillFields</a>(byte [] data, short size, int offset)
+<a name=135 class="linenum">135  </a>    {
+<a name=136 class="linenum">136  </a>        if (<a class="varRef" title="boolean" href=FormulaRecord_java.html#FormulaRecord.EXPERIMENTAL_FORMULA_SUPPORT_ENABLED>EXPERIMENTAL_FORMULA_SUPPORT_ENABLED</a>) {
+<a name=137 class="linenum">137  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_1_row>field_1_row</a>            = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 0 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=138 class="linenum">138  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_2_column>field_2_column</a>         = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 2 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=139 class="linenum">139  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_3_xf>field_3_xf</a>             = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 4 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=140 class="linenum">140  </a>        <a class="varRef" title="double" href=FormulaRecord_java.html#FormulaRecord.field_4_value>field_4_value</a>          = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getDouble(byte,int)>getDouble</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 6 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=141 class="linenum">141  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_5_options>field_5_options</a>        = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 14 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=142 class="linenum">142  </a>        <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.field_6_zero>field_6_zero</a>           = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getInt(byte,int)>getInt</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 16 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=143 class="linenum">143  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_7_expression_len>field_7_expression_len</a> = <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.getShort(byte,int)>getShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, 20 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=144 class="linenum">144  </a>        <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>    = <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getParsedExpressionTokens(byte,short,int)>getParsedExpressionTokens</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>, <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.fillFields.size>size</a>,
+<a name=145 class="linenum">145  </a>                                 <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>);
+<a name=146 class="linenum">146  </a>        
+<a name=147 class="linenum">147  </a>        } else {
+<a name=148 class="linenum">148  </a>            <a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a> = new <a class="classRef" href=..\..\..\..\..\~NO NAME~\null#byte>byte</a>[<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.fillFields.size>size</a>+4];
+<a name=149 class="linenum">149  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>,0,<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.sid>sid</a>);
+<a name=150 class="linenum">150  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>,2,<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.fillFields.size>size</a>);
+<a name=151 class="linenum">151  </a>            System.arraycopy(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.fillFields.data>data</a>,<a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.fillFields.offset>offset</a>,<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>,4,<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.fillFields.size>size</a>);
+<a name=152 class="linenum">152  </a>        }
+<a name=153 class="linenum">153  </a>
+<a name=154 class="linenum">154  </a>    }
+<a name=155 class="linenum">155  </a>
+<a name=156 class="linenum">156  </a>    private Stack <a class="methodDef" name=FormulaRecord.getParsedExpressionTokens(byte,short,int) href=FormulaRecord_java_ref.html#FormulaRecord.getParsedExpressionTokens(byte,short,int)>getParsedExpressionTokens</a>(byte [] data, short size,
+<a name=157 class="linenum">157  </a>                                            int offset)
+<a name=158 class="linenum">158  </a>    {
+<a name=159 class="linenum">159  </a>        Stack stack = new Stack();
+<a name=160 class="linenum">160  </a>        <span class="comment">/*int   pos   = 22 + offset;
+<a name=161 class="linenum">161  </a>
+<a name=162 class="linenum">162  </a>        while (pos &lt; size)
+<a name=163 class="linenum">163  </a>        {
+<a name=164 class="linenum">164  </a>            Ptg ptg = Ptg.createPtg(data, pos);
+<a name=165 class="linenum">165  </a>
+<a name=166 class="linenum">166  </a>            pos += ptg.getSize();
+<a name=167 class="linenum">167  </a>            stack.push(ptg);
+<a name=168 class="linenum">168  </a>        }*/</span>
+<a name=169 class="linenum">169  </a>        return <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.getParsedExpressionTokens.stack>stack</a>;
+<a name=170 class="linenum">170  </a>    }
+<a name=171 class="linenum">171  </a>
+<a name=172 class="linenum">172  </a>    public void <a class="methodDef" name=FormulaRecord.setRow(short) href=FormulaRecord_java_ref.html#FormulaRecord.setRow(short)>setRow</a>(short row)
+<a name=173 class="linenum">173  </a>    {
+<a name=174 class="linenum">174  </a>        field_1_row = <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.setRow.row>row</a>;
+<a name=175 class="linenum">175  </a>    }
+<a name=176 class="linenum">176  </a>
+<a name=177 class="linenum">177  </a>    public void <a class="methodDef" name=FormulaRecord.setColumn(short) href=FormulaRecord_java_ref.html#FormulaRecord.setColumn(short)>setColumn</a>(short column)
+<a name=178 class="linenum">178  </a>    {
+<a name=179 class="linenum">179  </a>        field_2_column = <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.setColumn.column>column</a>;
+<a name=180 class="linenum">180  </a>    }
+<a name=181 class="linenum">181  </a>
+<a name=182 class="linenum">182  </a>    public void <a class="methodDef" name=FormulaRecord.setXFIndex(short) href=FormulaRecord_java_ref.html#FormulaRecord.setXFIndex(short)>setXFIndex</a>(short xf)
+<a name=183 class="linenum">183  </a>    {
+<a name=184 class="linenum">184  </a>        field_3_xf = <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.setXFIndex.xf>xf</a>;
+<a name=185 class="linenum">185  </a>    }
+<a name=186 class="linenum">186  </a>
+<a name=187 class="linenum">187  </a>    <span class="comment">/**
+<a name=188 class="linenum">188  </a>     * set the calculated value of the formula
+<a name=189 class="linenum">189  </a>     *
+<a name=190 class="linenum">190  </a>     * @param value  calculated value
+<a name=191 class="linenum">191  </a>     */</span>
+<a name=192 class="linenum">192  </a>
+<a name=193 class="linenum">193  </a>    public void <a class="methodDef" name=FormulaRecord.setValue(double) href=FormulaRecord_java_ref.html#FormulaRecord.setValue(double)>setValue</a>(double value)
+<a name=194 class="linenum">194  </a>    {
+<a name=195 class="linenum">195  </a>        <a class="varRef" title="double" href=FormulaRecord_java.html#FormulaRecord.field_4_value>field_4_value</a> = <a class="varRef" title="double" href=FormulaRecord_java.html#FormulaRecord.setValue.value>value</a>;
+<a name=196 class="linenum">196  </a>    }
+<a name=197 class="linenum">197  </a>
+<a name=198 class="linenum">198  </a>    <span class="comment">/**
+<a name=199 class="linenum">199  </a>     * set the option flags
+<a name=200 class="linenum">200  </a>     *
+<a name=201 class="linenum">201  </a>     * @param options  bitmask
+<a name=202 class="linenum">202  </a>     */</span>
+<a name=203 class="linenum">203  </a>
+<a name=204 class="linenum">204  </a>    public void <a class="methodDef" name=FormulaRecord.setOptions(short) href=FormulaRecord_java_ref.html#FormulaRecord.setOptions(short)>setOptions</a>(short options)
+<a name=205 class="linenum">205  </a>    {
+<a name=206 class="linenum">206  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_5_options>field_5_options</a> = <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.setOptions.options>options</a>;
+<a name=207 class="linenum">207  </a>    }
+<a name=208 class="linenum">208  </a>
+<a name=209 class="linenum">209  </a>    <span class="comment">/**
+<a name=210 class="linenum">210  </a>     * set the length (in number of tokens) of the expression
+<a name=211 class="linenum">211  </a>     * @param len  length
+<a name=212 class="linenum">212  </a>     */</span>
+<a name=213 class="linenum">213  </a>
+<a name=214 class="linenum">214  </a>    public void <a class="methodDef" name=FormulaRecord.setExpressionLength(short) href=FormulaRecord_java_ref.html#FormulaRecord.setExpressionLength(short)>setExpressionLength</a>(short len)
+<a name=215 class="linenum">215  </a>    {
+<a name=216 class="linenum">216  </a>        <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_7_expression_len>field_7_expression_len</a> = <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.setExpressionLength.len>len</a>;
+<a name=217 class="linenum">217  </a>    }
+<a name=218 class="linenum">218  </a>
+<a name=219 class="linenum">219  </a>    public short <a class="methodDef" name=FormulaRecord.getRow() href=FormulaRecord_java_ref.html#FormulaRecord.getRow()>getRow</a>()
+<a name=220 class="linenum">220  </a>    {
+<a name=221 class="linenum">221  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_1_row>field_1_row</a>;
+<a name=222 class="linenum">222  </a>    }
+<a name=223 class="linenum">223  </a>
+<a name=224 class="linenum">224  </a>    public short <a class="methodDef" name=FormulaRecord.getColumn() href=FormulaRecord_java_ref.html#FormulaRecord.getColumn()>getColumn</a>()
+<a name=225 class="linenum">225  </a>    {
+<a name=226 class="linenum">226  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_2_column>field_2_column</a>;
+<a name=227 class="linenum">227  </a>    }
+<a name=228 class="linenum">228  </a>
+<a name=229 class="linenum">229  </a>    public short <a class="methodDef" name=FormulaRecord.getXFIndex() href=FormulaRecord_java_ref.html#FormulaRecord.getXFIndex()>getXFIndex</a>()
+<a name=230 class="linenum">230  </a>    {
+<a name=231 class="linenum">231  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_3_xf>field_3_xf</a>;
+<a name=232 class="linenum">232  </a>    }
+<a name=233 class="linenum">233  </a>
+<a name=234 class="linenum">234  </a>    <span class="comment">/**
+<a name=235 class="linenum">235  </a>     * get the calculated value of the formula
+<a name=236 class="linenum">236  </a>     *
+<a name=237 class="linenum">237  </a>     * @return calculated value
+<a name=238 class="linenum">238  </a>     */</span>
+<a name=239 class="linenum">239  </a>
+<a name=240 class="linenum">240  </a>    public double <a class="methodDef" name=FormulaRecord.getValue() href=FormulaRecord_java_ref.html#FormulaRecord.getValue()>getValue</a>()
+<a name=241 class="linenum">241  </a>    {
+<a name=242 class="linenum">242  </a>        return <a class="varRef" title="double" href=FormulaRecord_java.html#FormulaRecord.field_4_value>field_4_value</a>;
+<a name=243 class="linenum">243  </a>    }
+<a name=244 class="linenum">244  </a>
+<a name=245 class="linenum">245  </a>    <span class="comment">/**
+<a name=246 class="linenum">246  </a>     * get the option flags
+<a name=247 class="linenum">247  </a>     *
+<a name=248 class="linenum">248  </a>     * @return bitmask
+<a name=249 class="linenum">249  </a>     */</span>
+<a name=250 class="linenum">250  </a>
+<a name=251 class="linenum">251  </a>    public short <a class="methodDef" name=FormulaRecord.getOptions() href=FormulaRecord_java_ref.html#FormulaRecord.getOptions()>getOptions</a>()
+<a name=252 class="linenum">252  </a>    {
+<a name=253 class="linenum">253  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_5_options>field_5_options</a>;
+<a name=254 class="linenum">254  </a>    }
+<a name=255 class="linenum">255  </a>
+<a name=256 class="linenum">256  </a>    <span class="comment">/**
+<a name=257 class="linenum">257  </a>     * get the length (in number of tokens) of the expression
+<a name=258 class="linenum">258  </a>     * @return  expression length
+<a name=259 class="linenum">259  </a>     */</span>
+<a name=260 class="linenum">260  </a>
+<a name=261 class="linenum">261  </a>    public short <a class="methodDef" name=FormulaRecord.getExpressionLength() href=FormulaRecord_java_ref.html#FormulaRecord.getExpressionLength()>getExpressionLength</a>()
+<a name=262 class="linenum">262  </a>    {
+<a name=263 class="linenum">263  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.field_7_expression_len>field_7_expression_len</a>;
+<a name=264 class="linenum">264  </a>    }
+<a name=265 class="linenum">265  </a>
+<a name=266 class="linenum">266  </a>    <span class="comment">/**
+<a name=267 class="linenum">267  </a>     * push a token onto the stack
+<a name=268 class="linenum">268  </a>     *
+<a name=269 class="linenum">269  </a>     * @param ptg  the token
+<a name=270 class="linenum">270  </a>     */</span>
+<a name=271 class="linenum">271  </a>
+<a name=272 class="linenum">272  </a>    public void <a class="methodDef" name=FormulaRecord.pushExpressionToken(Ptg) href=FormulaRecord_java_ref.html#FormulaRecord.pushExpressionToken(Ptg)>pushExpressionToken</a>(<a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ptg)
+<a name=273 class="linenum">273  </a>    {
+<a name=274 class="linenum">274  </a>        <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.push(<a class="varRef" title="Ptg" href=FormulaRecord_java.html#FormulaRecord.pushExpressionToken.ptg>ptg</a>);
+<a name=275 class="linenum">275  </a>    }
+<a name=276 class="linenum">276  </a>
+<a name=277 class="linenum">277  </a>    <span class="comment">/**
+<a name=278 class="linenum">278  </a>     * pop a token off of the stack
+<a name=279 class="linenum">279  </a>     *
+<a name=280 class="linenum">280  </a>     * @return Ptg - the token
+<a name=281 class="linenum">281  </a>     */</span>
+<a name=282 class="linenum">282  </a>
+<a name=283 class="linenum">283  </a>    public <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> <a class="methodDef" name=FormulaRecord.popExpressionToken() href=FormulaRecord_java_ref.html#FormulaRecord.popExpressionToken()>popExpressionToken</a>()
+<a name=284 class="linenum">284  </a>    {
+<a name=285 class="linenum">285  </a>        return ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ) <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.pop();
+<a name=286 class="linenum">286  </a>    }
+<a name=287 class="linenum">287  </a>
+<a name=288 class="linenum">288  </a>    <span class="comment">/**
+<a name=289 class="linenum">289  </a>     * peek at the token on the top of stack
+<a name=290 class="linenum">290  </a>     *
+<a name=291 class="linenum">291  </a>     * @return Ptg - the token
+<a name=292 class="linenum">292  </a>     */</span>
+<a name=293 class="linenum">293  </a>
+<a name=294 class="linenum">294  </a>    public <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> <a class="methodDef" name=FormulaRecord.peekExpressionToken() href=FormulaRecord_java_ref.html#FormulaRecord.peekExpressionToken()>peekExpressionToken</a>()
+<a name=295 class="linenum">295  </a>    {
+<a name=296 class="linenum">296  </a>        return ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ) <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.peek();
+<a name=297 class="linenum">297  </a>    }
+<a name=298 class="linenum">298  </a>
+<a name=299 class="linenum">299  </a>    <span class="comment">/**
+<a name=300 class="linenum">300  </a>     * get the size of the stack
+<a name=301 class="linenum">301  </a>     * @return size of the stack
+<a name=302 class="linenum">302  </a>     */</span>
+<a name=303 class="linenum">303  </a>
+<a name=304 class="linenum">304  </a>    public int <a class="methodDef" name=FormulaRecord.getNumberOfExpressionTokens() href=FormulaRecord_java_ref.html#FormulaRecord.getNumberOfExpressionTokens()>getNumberOfExpressionTokens</a>()
+<a name=305 class="linenum">305  </a>    {
+<a name=306 class="linenum">306  </a>        return <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.size();
+<a name=307 class="linenum">307  </a>    }
+<a name=308 class="linenum">308  </a>
+<a name=309 class="linenum">309  </a>    <span class="comment">/**
+<a name=310 class="linenum">310  </a>     * get the stack as a list
+<a name=311 class="linenum">311  </a>     *
+<a name=312 class="linenum">312  </a>     * @return list of tokens (casts stack to a list and returns it!)
+<a name=313 class="linenum">313  </a>     */</span>
+<a name=314 class="linenum">314  </a>
+<a name=315 class="linenum">315  </a>    public List <a class="methodDef" name=FormulaRecord.getParsedExpression() href=FormulaRecord_java_ref.html#FormulaRecord.getParsedExpression()>getParsedExpression</a>()
+<a name=316 class="linenum">316  </a>    {
+<a name=317 class="linenum">317  </a>        return ( List ) <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>;
+<a name=318 class="linenum">318  </a>    }
+<a name=319 class="linenum">319  </a>
+<a name=320 class="linenum">320  </a>    <span class="comment">/**
+<a name=321 class="linenum">321  </a>     * called by constructor, should throw runtime exception in the event of a
+<a name=322 class="linenum">322  </a>     * record passed with a differing ID.
+<a name=323 class="linenum">323  </a>     *
+<a name=324 class="linenum">324  </a>     * @param id alleged id for this record
+<a name=325 class="linenum">325  </a>     */</span>
+<a name=326 class="linenum">326  </a>
+<a name=327 class="linenum">327  </a>    protected void <a class="methodDef" name=FormulaRecord.validateSid(short) href=FormulaRecord_java_ref.html#FormulaRecord.validateSid(short)>validateSid</a>(short id)
+<a name=328 class="linenum">328  </a>    {
+<a name=329 class="linenum">329  </a>        if (<a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.validateSid.id>id</a> != <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.sid>sid</a>)
+<a name=330 class="linenum">330  </a>        {
+<a name=331 class="linenum">331  </a>            throw new RecordFormatException("NOT A FORMULA RECORD");
+<a name=332 class="linenum">332  </a>        }
+<a name=333 class="linenum">333  </a>    }
+<a name=334 class="linenum">334  </a>
+<a name=335 class="linenum">335  </a>    public short <a class="methodDef" name=FormulaRecord.getSid() href=FormulaRecord_java_ref.html#FormulaRecord.getSid()>getSid</a>()
+<a name=336 class="linenum">336  </a>    {
+<a name=337 class="linenum">337  </a>        return <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.sid>sid</a>;
+<a name=338 class="linenum">338  </a>    }
+<a name=339 class="linenum">339  </a>
+<a name=340 class="linenum">340  </a>    <span class="comment">/**
+<a name=341 class="linenum">341  </a>     * called by the class that is responsible for writing this sucker.
+<a name=342 class="linenum">342  </a>     * Subclasses should implement this so that their data is passed back in a
+<a name=343 class="linenum">343  </a>     * byte array.
+<a name=344 class="linenum">344  </a>     *
+<a name=345 class="linenum">345  </a>     * @return byte array containing instance data
+<a name=346 class="linenum">346  </a>     */</span>
+<a name=347 class="linenum">347  </a>
+<a name=348 class="linenum">348  </a>    public int <a class="methodDef" name=FormulaRecord.serialize(int,byte) href=FormulaRecord_java_ref.html#FormulaRecord.serialize(int,byte)>serialize</a>(int offset, byte [] data)
+<a name=349 class="linenum">349  </a>    {
+<a name=350 class="linenum">350  </a>        if (<a class="varRef" title="boolean" href=FormulaRecord_java.html#FormulaRecord.EXPERIMENTAL_FORMULA_SUPPORT_ENABLED>EXPERIMENTAL_FORMULA_SUPPORT_ENABLED</a>) {
+<a name=351 class="linenum">351  </a>        int ptgSize = <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize()>getTotalPtgSize</a>();
+<a name=352 class="linenum">352  </a>
+<a name=353 class="linenum">353  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 0 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="varRef" title="short" href=FormulaRecord_java.html#FormulaRecord.sid>sid</a>);
+<a name=354 class="linenum">354  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 2 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, ( short ) (24 + <a class="varRef" title="int" href=FormulaRecord_java.html#~NO NAME~.ptgSize>ptgSize</a>));
+<a name=355 class="linenum">355  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 4 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getRow()>getRow</a>());
+<a name=356 class="linenum">356  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 6 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getColumn()>getColumn</a>());
+<a name=357 class="linenum">357  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 8 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getXFIndex()>getXFIndex</a>());
+<a name=358 class="linenum">358  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putDouble(byte,int,double)>putDouble</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 10 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getValue()>getValue</a>());
+<a name=359 class="linenum">359  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 18 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getOptions()>getOptions</a>());
+<a name=360 class="linenum">360  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putInt(byte,int,int)>putInt</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 20 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.field_6_zero>field_6_zero</a>);
+<a name=361 class="linenum">361  </a>        <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian>LittleEndian</a>.<a class="methodRef" title="LittleEndian" href=..\..\..\..\..\org\apache\poi\util\LittleEndian_java.html#LittleEndian.putShort(byte,int,short)>putShort</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>, 24 + <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>, <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getExpressionLength()>getExpressionLength</a>());
+<a name=362 class="linenum">362  </a>        } else {
+<a name=363 class="linenum">363  </a>            System.arraycopy(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>,0,<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serialize.data>data</a>,<a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serialize.offset>offset</a>,<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>.length);
+<a name=364 class="linenum">364  </a>        }
+<a name=365 class="linenum">365  </a>
+<a name=366 class="linenum">366  </a>        <span class="comment">// serializePtgs(data, 26+offset);</span>
+<a name=367 class="linenum">367  </a>        return <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getRecordSize()>getRecordSize</a>();
+<a name=368 class="linenum">368  </a>    }
+<a name=369 class="linenum">369  </a>
+<a name=370 class="linenum">370  </a>    public int <a class="methodDef" name=FormulaRecord.getRecordSize() href=FormulaRecord_java_ref.html#FormulaRecord.getRecordSize()>getRecordSize</a>()
+<a name=371 class="linenum">371  </a>    {
+<a name=372 class="linenum">372  </a>        int retval =0;
+<a name=373 class="linenum">373  </a>        
+<a name=374 class="linenum">374  </a>        if (<a class="varRef" title="boolean" href=FormulaRecord_java.html#FormulaRecord.EXPERIMENTAL_FORMULA_SUPPORT_ENABLED>EXPERIMENTAL_FORMULA_SUPPORT_ENABLED</a>) {
+<a name=375 class="linenum">375  </a>            <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getRecordSize.retval>retval</a> = <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize()>getTotalPtgSize</a>() + 28;
+<a name=376 class="linenum">376  </a>        } else {
+<a name=377 class="linenum">377  </a>            <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getRecordSize.retval>retval</a> =<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.all_data>all_data</a>.length;
+<a name=378 class="linenum">378  </a>        }
+<a name=379 class="linenum">379  </a>        return <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getRecordSize.retval>retval</a>;
+<a name=380 class="linenum">380  </a>
+<a name=381 class="linenum">381  </a>        <span class="comment">// return getTotalPtgSize() + 28;</span>
+<a name=382 class="linenum">382  </a>    }
+<a name=383 class="linenum">383  </a>
+<a name=384 class="linenum">384  </a>    private int <a class="methodDef" name=FormulaRecord.getTotalPtgSize() href=FormulaRecord_java_ref.html#FormulaRecord.getTotalPtgSize()>getTotalPtgSize</a>()
+<a name=385 class="linenum">385  </a>    {
+<a name=386 class="linenum">386  </a>        List list   = <a class="methodRef" title="FormulaRecord" href=FormulaRecord_java.html#FormulaRecord.getParsedExpression()>getParsedExpression</a>();
+<a name=387 class="linenum">387  </a>        int  retval = 0;
+<a name=388 class="linenum">388  </a>
+<a name=389 class="linenum">389  </a>        for (int k = 0; <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.k>k</a> &lt; <a class="varRef" title="List" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.list>list</a>.size(); <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.k>k</a>++)
+<a name=390 class="linenum">390  </a>        {
+<a name=391 class="linenum">391  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ptg = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ) <a class="varRef" title="List" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.list>list</a>.get(<a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.k>k</a>);
+<a name=392 class="linenum">392  </a>
+<a name=393 class="linenum">393  </a>            <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.retval>retval</a> += <a class="varRef" title="Ptg" href=FormulaRecord_java.html#~NO NAME~.ptg>ptg</a>.<a class="methodRef" title="Ptg" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg.getSize()>getSize</a>();
+<a name=394 class="linenum">394  </a>        }
+<a name=395 class="linenum">395  </a>        return <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.getTotalPtgSize.retval>retval</a>;
+<a name=396 class="linenum">396  </a>    }
+<a name=397 class="linenum">397  </a>
+<a name=398 class="linenum">398  </a>    private void <a class="methodDef" name=FormulaRecord.serializePtgs(byte,int) href=FormulaRecord_java_ref.html#FormulaRecord.serializePtgs(byte,int)>serializePtgs</a>(byte [] data, int offset)
+<a name=399 class="linenum">399  </a>    {
+<a name=400 class="linenum">400  </a>        int pos = <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.offset>offset</a>;
+<a name=401 class="linenum">401  </a>
+<a name=402 class="linenum">402  </a>        for (int k = 0; <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.k>k</a> &lt; <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.size(); <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.k>k</a>++)
+<a name=403 class="linenum">403  </a>        {
+<a name=404 class="linenum">404  </a>            <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ptg = ( <a class="classRef" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg>Ptg</a> ) <a class="varRef" title="Stack" href=FormulaRecord_java.html#FormulaRecord.field_8_parsed_expr>field_8_parsed_expr</a>.get(<a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.k>k</a>);
+<a name=405 class="linenum">405  </a>
+<a name=406 class="linenum">406  </a>            <a class="varRef" title="Ptg" href=FormulaRecord_java.html#~NO NAME~.ptg>ptg</a>.<a class="methodRef" title="Ptg" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg.writeBytes(byte,int)>writeBytes</a>(<a class="varRef" title="byte" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.data>data</a>, <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.pos>pos</a>);
+<a name=407 class="linenum">407  </a>            <a class="varRef" title="int" href=FormulaRecord_java.html#FormulaRecord.serializePtgs.pos>pos</a> += <a class="varRef" title="Ptg" href=FormulaRecord_java.html#~NO NAME~.ptg>ptg</a>.<a class="methodRef" title="Ptg" href=..\..\..\..\..\org\apache\poi\hssf\record\formula\Ptg_java.html#Ptg.getSize()>getSize</a>();
+<a name=408 class="linenum">408  </a>        }
+<a name=409 class="linenum">409  </a>    }
+<a name=410 class="linenum">410  </a>
+<a name=411 class="linenum">411  </a>    public boolean <a class="methodDef" name=FormulaRecord.isBefore(CellValueRecordInterface) href=FormulaRecord_java_ref.html#FormulaRecord.isBefore(CellValueRecordInterface)>isBefore</a>(<a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a> i)
+<a name=412 class="linenum">412  </a>    {
+<a name=413 class="linenum">413  </a>        if (this.getRow() &gt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isBefore.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=414 class="linenum">414  </a>        {
+<a name=415 class="linenum">415  </a>            return false;
+<a name=416 class="linenum">416  </a>        }
+<a name=417 class="linenum">417  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isBefore.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=418 class="linenum">418  </a>                && (this.getColumn() &gt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isBefore.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=419 class="linenum">419  </a>        {
+<a name=420 class="linenum">420  </a>            return false;
+<a name=421 class="linenum">421  </a>        }
+<a name=422 class="linenum">422  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isBefore.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=423 class="linenum">423  </a>                && (this.getColumn() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isBefore.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=424 class="linenum">424  </a>        {
+<a name=425 class="linenum">425  </a>            return false;
+<a name=426 class="linenum">426  </a>        }
+<a name=427 class="linenum">427  </a>        return true;
+<a name=428 class="linenum">428  </a>    }
+<a name=429 class="linenum">429  </a>
+<a name=430 class="linenum">430  </a>    public boolean <a class="methodDef" name=FormulaRecord.isAfter(CellValueRecordInterface) href=FormulaRecord_java_ref.html#FormulaRecord.isAfter(CellValueRecordInterface)>isAfter</a>(<a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a> i)
+<a name=431 class="linenum">431  </a>    {
+<a name=432 class="linenum">432  </a>        if (this.getRow() &lt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isAfter.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=433 class="linenum">433  </a>        {
+<a name=434 class="linenum">434  </a>            return false;
+<a name=435 class="linenum">435  </a>        }
+<a name=436 class="linenum">436  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isAfter.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=437 class="linenum">437  </a>                && (this.getColumn() &lt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isAfter.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=438 class="linenum">438  </a>        {
+<a name=439 class="linenum">439  </a>            return false;
+<a name=440 class="linenum">440  </a>        }
+<a name=441 class="linenum">441  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isAfter.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=442 class="linenum">442  </a>                && (this.getColumn() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isAfter.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=443 class="linenum">443  </a>        {
+<a name=444 class="linenum">444  </a>            return false;
+<a name=445 class="linenum">445  </a>        }
+<a name=446 class="linenum">446  </a>        return true;
+<a name=447 class="linenum">447  </a>    }
+<a name=448 class="linenum">448  </a>
+<a name=449 class="linenum">449  </a>    public boolean <a class="methodDef" name=FormulaRecord.isEqual(CellValueRecordInterface) href=FormulaRecord_java_ref.html#FormulaRecord.isEqual(CellValueRecordInterface)>isEqual</a>(<a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a> i)
+<a name=450 class="linenum">450  </a>    {
+<a name=451 class="linenum">451  </a>        return ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isEqual.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=452 class="linenum">452  </a>                && (this.getColumn() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.isEqual.i>i</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()));
+<a name=453 class="linenum">453  </a>    }
+<a name=454 class="linenum">454  </a>
+<a name=455 class="linenum">455  </a>    public boolean <a class="methodDef" name=FormulaRecord.isInValueSection() href=FormulaRecord_java_ref.html#FormulaRecord.isInValueSection()>isInValueSection</a>()
+<a name=456 class="linenum">456  </a>    {
+<a name=457 class="linenum">457  </a>        return true;
+<a name=458 class="linenum">458  </a>    }
+<a name=459 class="linenum">459  </a>
+<a name=460 class="linenum">460  </a>    public boolean <a class="methodDef" name=FormulaRecord.isValue() href=FormulaRecord_java_ref.html#FormulaRecord.isValue()>isValue</a>()
+<a name=461 class="linenum">461  </a>    {
+<a name=462 class="linenum">462  </a>        return true;
+<a name=463 class="linenum">463  </a>    }
+<a name=464 class="linenum">464  </a>
+<a name=465 class="linenum">465  </a>    public int <a class="methodDef" name=FormulaRecord.compareTo(Object) href=FormulaRecord_java_ref.html#FormulaRecord.compareTo(Object)>compareTo</a>(Object obj)
+<a name=466 class="linenum">466  </a>    {
+<a name=467 class="linenum">467  </a>        <a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a> loc = ( CellValueRecordInterface ) <a class="varRef" title="Object" href=FormulaRecord_java.html#FormulaRecord.compareTo.obj>obj</a>;
+<a name=468 class="linenum">468  </a>
+<a name=469 class="linenum">469  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=470 class="linenum">470  </a>                && (this.getColumn() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=471 class="linenum">471  </a>        {
+<a name=472 class="linenum">472  </a>            return 0;
+<a name=473 class="linenum">473  </a>        }
+<a name=474 class="linenum">474  </a>        if (this.getRow() &lt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=475 class="linenum">475  </a>        {
+<a name=476 class="linenum">476  </a>            return -1;
+<a name=477 class="linenum">477  </a>        }
+<a name=478 class="linenum">478  </a>        if (this.getRow() &gt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=479 class="linenum">479  </a>        {
+<a name=480 class="linenum">480  </a>            return 1;
+<a name=481 class="linenum">481  </a>        }
+<a name=482 class="linenum">482  </a>        if (this.getColumn() &lt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>())
+<a name=483 class="linenum">483  </a>        {
+<a name=484 class="linenum">484  </a>            return -1;
+<a name=485 class="linenum">485  </a>        }
+<a name=486 class="linenum">486  </a>        if (this.getColumn() &gt; <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.compareTo.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>())
+<a name=487 class="linenum">487  </a>        {
+<a name=488 class="linenum">488  </a>            return 1;
+<a name=489 class="linenum">489  </a>        }
+<a name=490 class="linenum">490  </a>        return -1;
+<a name=491 class="linenum">491  </a>    }
+<a name=492 class="linenum">492  </a>
+<a name=493 class="linenum">493  </a>    public boolean <a class="methodDef" name=FormulaRecord.equals(Object) href=FormulaRecord_java_ref.html#FormulaRecord.equals(Object)>equals</a>(Object obj)
+<a name=494 class="linenum">494  </a>    {
+<a name=495 class="linenum">495  </a>        if (!(<a class="varRef" title="Object" href=FormulaRecord_java.html#FormulaRecord.equals.obj>obj</a> instanceof CellValueRecordInterface))
+<a name=496 class="linenum">496  </a>        {
+<a name=497 class="linenum">497  </a>            return false;
+<a name=498 class="linenum">498  </a>        }
+<a name=499 class="linenum">499  </a>        <a class="classRef" href=CellValueRecordInterface_java.html#CellValueRecordInterface>CellValueRecordInterface</a> loc = ( CellValueRecordInterface ) <a class="varRef" title="Object" href=FormulaRecord_java.html#FormulaRecord.equals.obj>obj</a>;
+<a name=500 class="linenum">500  </a>
+<a name=501 class="linenum">501  </a>        if ((this.getRow() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.equals.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getRow()>getRow</a>())
+<a name=502 class="linenum">502  </a>                && (this.getColumn() == <a class="varRef" title="CellValueRecordInterface" href=FormulaRecord_java.html#FormulaRecord.equals.loc>loc</a>.<a class="methodRef" title="CellValueRecordInterface" href=CellValueRecordInterface_java.html#CellValueRecordInterface.getColumn()>getColumn</a>()))
+<a name=503 class="linenum">503  </a>        {
+<a name=504 class="linenum">504  </a>            return true;
+<a name=505 class="linenum">505  </a>        }
+<a name=506 class="linenum">506  </a>        return false;
+<a name=507 class="linenum">507  </a>    }
+<a name=508 class="linenum">508  </a>}
+<a name=509 class="linenum">509  </a></pre>

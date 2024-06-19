@@ -1,0 +1,15 @@
+2e.8.6f4	+0	(def_block
+2e.8.6f4	+5	r_class
+2e.e.6fa	+9	id|Undefined
+2f.1.71c	+1	(brace
+34.d.7a6	+0	(def_block
+34.d.7a6	+9	id|Undefined
+34.16.7af	+0	c_func
+34.16.7af	+1	(paren
+34.17.7b0	+1	)paren
+35.5.7b6	+1	(brace
+36.5.7bc	+1	)brace
+36.6.7bd	+0	)def_block
+3c.1.804	+1	)brace
+3c.2.805	+0	)def_block
+3d.1.806	+0	eof

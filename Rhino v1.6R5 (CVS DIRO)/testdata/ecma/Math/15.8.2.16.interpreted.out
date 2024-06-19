@@ -1,0 +1,20 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Math\15.8.2.16.interpreted.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt -1 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Math\shell.js -f mozilla\js\tests\ecma\Math\15.8.2.16.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 329 ms]
+15.8.2.16 Math.sin(x)
+Math.sin.length = 1 PASSED!
+Math.sin() = NaN PASSED!
+Math.sin(null) = 0 PASSED!
+Math.sin(void 0) = NaN PASSED!
+Math.sin(false) = 0 PASSED!
+Math.sin('2.356194490192') = 0.7071067811867916 PASSED!
+Math.sin(NaN) = NaN PASSED!
+Math.sin(0) = 0 PASSED!
+Math.sin(-0) = 0 PASSED!
+Math.sin(Infinity) = NaN PASSED!
+Math.sin(-Infinity) = NaN PASSED!
+Math.sin(0.7853981633974) = 0.7071067811865134 PASSED!
+Math.sin(1.570796326795) = 1 PASSED!
+Math.sin(2.356194490192) = 0.7071067811867916 PASSED!
+Math.sin(3.14159265359) = -2.0682310711021444e-13 PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Math\15.8.2.16.interpreted.arff] ...

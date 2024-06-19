@@ -1,0 +1,751 @@
+/*
+ * Skill.java
+ * Copyright 2001 (C) Bryan McRoberts <mocha@mcs.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * Created on April 21, 2001, 2:15 PM
+ */
+
+package pcgen.core;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
+import pcgen.gui.Chooser;
+
+/**
+ * <code>Skill</code>.
+ *
+ * @author Bryan McRoberts <merton_monk@users.sourceforge.net>
+ * @version $Revision: 1.1 $
+ */
+public class Skill extends PObject
+{
+	private String keyStat = new String();
+
+	private String rootName = new String();
+	private ArrayList classList = new ArrayList();
+	private String isExclusive = "Y";
+	private String untrained = "Y";
+	private ArrayList rankList = new ArrayList();
+	private ArrayList synergyList = new ArrayList();
+	private ArrayList choiceList = new ArrayList();
+	private ArrayList featList = new ArrayList();
+	private int aCheck = 0; // 1=Yes, 2=Only if not proficient
+	private boolean required = false;
+
+	public ArrayList getClassList()
+	{
+		return classList;
+	}
+
+	public String getRootName()
+	{
+		return rootName;
+	}
+
+	public void setRequired(boolean required)
+	{
+		this.required = required;
+	}
+
+	public boolean isRequired()
+	{
+		return required;
+	}
+
+	public String toString()
+	{
+		return name;
+	}
+
+	public String qualifiedName()
+	{
+		if (associatedList.size() == 0)
+			return name;
+		StringBuffer buffer = new StringBuffer(associatedList.size() * 20);
+		buffer.append(name).append("(");
+		for (int i = 0; i < associatedList.size(); i++)
+		{
+			if (i > 0)
+				buffer.append(", ");
+			buffer.append(associatedList.get(i));
+		}
+		buffer.append(")");
+		return buffer.toString();
+	}
+
+	private void setRootName(String aString)
+	{
+		rootName = aString;
+	}
+
+	public String keyStat()
+	{
+		return keyStat;
+	}
+
+	private void setKeyStat(String aString)
+	{
+		keyStat = aString;
+	}
+
+	public Integer modifier()
+	{
+		int stat = statIndex(keyStat);
+		int bonus = 0;
+		final PlayerCharacter aPC = Globals.getCurrentPC();
+		if (aPC == null)
+			return new Integer(0);
+
+		if (stat >= 0)
+		{
+			bonus = aPC.calcStatMod(stat);
+			bonus += aPC.getTotalBonusTo("SKILL", "STAT=" + keyStat, false);
+		}
+		bonus += aPC.getTotalBonusTo("SKILL", name, true);
+		bonus += aPC.getTotalBonusTo("SKILL", "LIST", false);
+		bonus += aPC.getRace().bonusForSkill(this.getName());
+		bonus += bonusTo("SKILL", name);
+		if (synergyList().size() > 0)
+		{
+			for (Iterator e = synergyList().iterator(); e.hasNext();)
+			{
+				boolean flag = true;
+				String aString = (String)e.next();
+				StringTokenizer aTok = new StringTokenizer(aString, "=", false);
+				final String aList = aTok.nextToken();
+				final int minRank = Integer.parseInt(aTok.nextToken());
+				final int aBonus = Integer.parseInt(aTok.nextToken());
+				aTok = new StringTokenizer(aList, ",", false);
+				while (aTok.hasMoreTokens() && flag)
+				{
+					aString = aTok.nextToken();
+					Skill aSkill = aPC.getSkillNamed(aString);
+					flag = ((aSkill != null) && (aSkill.getRank().intValue() >= minRank));
+				}
+				if (flag)
+					bonus += aBonus;
+			}
+		}
+		if (aCheck != 0)
+		{
+			int minBonus = 0;
+			int maxBonus = 0;
+			switch (Globals.loadTypeForStrength(aPC.adjStats(Globals.STRENGTH), aPC.totalWeight()))
+			{
+				case 1: // medium load
+					minBonus = -3;
+					break;
+				case 2: // heavy load
+				case 3: // overload
+					minBonus = -6;
+					break;
+			}
+			for (Iterator e = aPC.getEquipmentOfType("Armor", 1).iterator(); e.hasNext();)
+			{
+				final Equipment eq = (Equipment)e.next();
+				if (aCheck == 1 || !aPC.isProficientWith(eq))
+					maxBonus += eq.acCheck().intValue();
+			}
+			for (Iterator e = aPC.getEquipmentOfType("Shield", 1).iterator(); e.hasNext();)
+			{
+				final Equipment eq = (Equipment)e.next();
+				if (aCheck == 1 || !aPC.isProficientWith(eq))
+					maxBonus += eq.acCheck().intValue();
+			}
+			bonus += Math.min(maxBonus, minBonus);
+		}
+
+		return new Integer(bonus);
+	}
+
+	private void addToClassList(String className)
+	{
+		if (!classList.contains(className))
+			classList.add(className);
+	}
+
+	public boolean isClassSkill(PCClass pc)
+	{
+		int i;
+		final PlayerCharacter aPC = Globals.getCurrentPC();
+		if (aPC.getRace().getCSkillList().contains(name))
+			return true;
+		if (pc == null)
+			return false;
+		if (classList.contains(pc.getName()) || classList.contains(pc.getSubClassName()))
+			return true;
+		for (Iterator e = aPC.getCharacterDomainList().iterator(); e.hasNext();)
+		{
+			final CharacterDomain aCD = (CharacterDomain)e.next();
+			if (aCD.getDomain() != null && aCD.getDomainSource().startsWith("PCClass|" + pc.getName()) && aCD.getDomain().hasSkill(name))
+				return true;
+		}
+		if (aPC != null)
+		{
+			for (Iterator e = aPC.aggregateFeatList().iterator(); e.hasNext();)
+			{
+				final Feat aFeat = (Feat)e.next();
+				if (aFeat.hasCSkill(getName()) || aFeat.getCSkillList().contains("ALL"))
+					return true;
+			}
+
+			for (Iterator e = aPC.getTemplateList().iterator(); e.hasNext();)
+			{
+				final PCTemplate aTemplate = (PCTemplate)e.next();
+				if (aTemplate.hasCSkill(getName()) || aTemplate.getCSkillList().contains("ALL"))
+					return true;
+			}
+		}
+		return pc.skillList().contains(getName());
+	}
+
+	public boolean isCrossClassSkill(PCClass pc)
+	{
+		final PlayerCharacter aPC = Globals.getCurrentPC();
+		if (aPC.getRace().getCcSkillList().contains(name))
+			return true;
+		if (aPC != null)
+		{
+			for (Iterator e = aPC.aggregateFeatList().iterator(); e.hasNext();)
+			{
+				final Feat aFeat = (Feat)e.next();
+				if (aFeat.hasCCSkill(getName()) || aFeat.getCcSkillList().contains("ALL"))
+					return true;
+			}
+
+			for (Iterator e = aPC.getTemplateList().iterator(); e.hasNext();)
+			{
+				final PCTemplate aTemplate = (PCTemplate)e.next();
+				if (aTemplate.hasCCSkill(getName()) || aTemplate.getCcSkillList().contains("ALL"))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isClassSkill(ArrayList aList)
+	{
+		for (Iterator e = aList.iterator(); e.hasNext();)
+		{
+			if (isClassSkill((PCClass)e.next()))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean isCrossClassSkill(ArrayList aList)
+	{
+		for (Iterator e = aList.iterator(); e.hasNext();)
+		{
+			if (isCrossClassSkill((PCClass)e.next()))
+				return true;
+		}
+		return false;
+	}
+
+	public String isExclusive()
+	{
+		return isExclusive;
+	}
+
+	private void setIsExclusive(String aString)
+	{
+		isExclusive = aString;
+	}
+
+	public String untrained()
+	{
+		return untrained;
+	}
+
+	private void setUntrained(String aString)
+	{
+		untrained = aString;
+	}
+
+	public int statIndex(String aString)
+	{
+		int stat = -1;
+		if (aString.equals("STR"))
+			stat = Globals.STRENGTH;
+		else if (aString.equals("DEX"))
+			stat = Globals.DEXTERITY;
+		else if (aString.equals("CON"))
+			stat = Globals.CONSTITUTION;
+		else if (aString.equals("INT"))
+			stat = Globals.INTELLIGENCE;
+		else if (aString.equals("WIS"))
+			stat = Globals.WISDOM;
+		else if (aString.equals("CHA"))
+			stat = Globals.CHARISMA;
+		return stat;
+	}
+
+
+	public void replaceClassRank(String oldClass, String newClass)
+	{
+		final String oldCLassString = oldClass + ":";
+		for (int i = 0; i < rankList.size(); i++)
+		{
+			final String bSkill = (String)rankList.get(i);
+			if (bSkill.startsWith(oldCLassString))
+			{
+				rankList.set(i, newClass + bSkill.substring(oldClass.length()));
+			}
+		}
+	}
+
+	// returns ranks taken specifically in skill
+	public Float getRank()
+	{
+		double rank = 0.0;
+		for (int i = 0; i < rankList.size(); i++)
+		{
+			final String bSkill = (String)rankList.get(i);
+			final int iOffs = bSkill.indexOf(':');
+			//
+			// Ignore -1 return code (as -1 + 1 = 0 and that's the start of the string)
+			//
+			rank += Double.parseDouble(bSkill.substring(iOffs + 1));
+		}
+		return new Float(rank);
+	}
+
+	public ArrayList getRankList()
+	{
+		return rankList;
+	}
+
+	// rank + bonus ranks (racial, class, etc. bonuses)
+	public Float getTotalRank()
+	{
+		return new Float(getRank().doubleValue() + getRankAdj().doubleValue());
+	}
+
+	// returns the total adjustments to rank
+	public Float getRankAdj()
+	{
+		return new Float(Globals.getCurrentPC().getTotalBonusTo("SKILLRANK", getName(), true));
+	}
+
+	// Set the ranks for the specified class to zero
+	public void setZeroRanks(PCClass aClass)
+	{
+		if (aClass == null)
+			return;
+
+		final String aCName = aClass.getName();
+		String bSkill = "";
+		int idx;
+		//
+		// Find the skill and class in question
+		//
+		final String aCNameString = aCName + ":";
+		for (idx = 0; idx < rankList.size(); idx++)
+		{
+			bSkill = (String)rankList.get(idx);
+			if (bSkill.startsWith(aCNameString))
+			{
+				break;
+			}
+		}
+		if (idx >= rankList.size())
+		{
+			return;
+		}
+		final double curRankCost = Double.parseDouble(bSkill.substring(aCName.length() + 1));
+		final String aResp = modRanks(-curRankCost, aClass);
+		if (aResp.length() != 0)
+			System.out.println(aResp);
+	}
+
+
+	public String modRanks(double rankMod, PCClass aClass)
+	{
+		return modRanks(rankMod, aClass, false);
+	}
+
+	public String modRanks(double rankMod, PCClass aClass, boolean ignorePrereqs)
+	{
+		int i = 0;
+		final PlayerCharacter aPC = Globals.getCurrentPC();
+		if (!ignorePrereqs)
+		{
+			if (aClass == null)
+				return "You must be at least level one before you can purchase skills.";
+
+			i = costForPCClass(aClass).intValue();
+			if (i == 0)
+				return "You cannot purchase this exclusive skill.";
+
+			if (rankMod > 0.0 && aClass.getSkillPool().floatValue() < 1.0 / i)
+				return "You do not have enough skill points.";
+
+			final double maxRank = aPC.getMaxRank(getName(), aClass).doubleValue();
+			if (!Globals.isBoolBypassMaxSkillRank() && (rankMod > 0.0))
+			{
+				final double ttlRank = getTotalRank().doubleValue();
+				if (ttlRank >= maxRank)
+					return "Skill rank at maximum (" + maxRank + ") for your level.";
+				if ((ttlRank + rankMod) > maxRank)
+					return "Raising skill would make it above maximum (" + maxRank + ") for your level.";
+			}
+		}
+
+		if ((getRank().doubleValue() + rankMod) < 0.0)
+			return "Cannot lower rank below 0";
+
+
+		String aCName = "None";
+		if (aClass != null)
+			aCName = aClass.getName();
+
+		String bSkill = "";
+		int idx;
+		//
+		// Find the skill and class in question
+		//
+		final String aCNameString = aCName + ":";
+		for (idx = 0; idx < rankList.size(); idx++)
+		{
+			bSkill = (String)rankList.get(idx);
+			if (bSkill.startsWith(aCNameString))
+				break;
+		}
+		if (idx >= rankList.size())
+		{
+			//
+			// If we are trying to lower a rank, and we happen to be using an older
+			// character we've loaded, check to see if there is a value for class "None"
+			// and allow the user to modify this.
+			//
+			if (rankMod < 0.0)
+			{
+				for (idx = 0; idx < rankList.size(); idx++)
+				{
+					bSkill = (String)rankList.get(idx);
+					if (bSkill.startsWith("None:"))
+						break;
+				}
+			}
+			if (idx >= rankList.size())
+				bSkill = aCName + ":0";
+		}
+
+		final int iOffs = bSkill.indexOf(':');
+		double curRank = Double.parseDouble(bSkill.substring(iOffs + 1));
+		if (curRank == 0.0 && rankMod < 0.0)
+		{
+			return "No more ranks found for class: " + aCName + ". Try a different one.";
+		}
+
+
+		if (idx >= rankList.size())
+		{
+			rankList.add(idx, bSkill);
+		}
+
+
+		rankMod = modRanks2(rankMod, idx, bSkill);
+
+		if (!ignorePrereqs)
+		{
+			if (aClass != null)
+				aClass.setSkillPool(new Integer(aClass.getSkillPool().intValue() - (int)(i * rankMod)));
+			aPC.setSkillPoints(aPC.getSkillPoints() - (int)(i * rankMod));
+		}
+		return "";
+	}
+
+
+	private double modRanks2(double g, int idx, String bSkill)
+	{
+		final int iOffs = bSkill.indexOf(':');
+		final double curRank = Double.parseDouble(bSkill.substring(iOffs + 1));
+		double newRank = curRank + g;
+		final PlayerCharacter aPC = Globals.getCurrentPC();
+		if (!aPC.isImporting())
+		{
+			if (choiceList().size() > 0 && g != 0 && curRank != (int)(curRank + g))
+			{
+				ArrayList aArrayList = new ArrayList();
+				String title = new String();
+				for (Iterator e = choiceList().iterator(); e.hasNext();)
+				{
+					String aString = (String)e.next();
+					/** putting commas between lists is a way to OR lists together */
+					StringTokenizer aTok = new StringTokenizer(aString, "(,)", false);
+					title = aTok.nextToken();
+					if (title.equals("Language"))
+					{
+						while (aTok.hasMoreTokens())
+						{
+							aString = aTok.nextToken();
+							/** putting . between TYPE requirements is a way to AND them.
+							 *   e.g. Written.MyType would create a list of all the Global langauges
+							 *   that had both Written and MyType in the TYPE: string.
+							 */
+							final StringTokenizer bTok = new StringTokenizer(aString, ".", false);
+							int col = 0;
+							ArrayList aSet = new ArrayList();
+							/** if first token (col==0) is "PC" then our base list is from the PC's own list of Languages.
+							 *   otherwise the base list comes from the Global list of Langauges. */
+							while (bTok.hasMoreTokens())
+							{
+								String bString = bTok.nextToken();
+								if (col == 0)
+								{
+									if (bString.equalsIgnoreCase("PC") && bTok.hasMoreTokens())
+										aSet.addAll(aPC.getLanguagesList());
+									else
+										aSet = Globals.getLanguageSet();
+								}
+								if (col > 0 || !bString.equalsIgnoreCase("PC"))
+									aSet = Globals.getLanguagesFromListOfType(aSet, bString);
+								col++;
+							}
+							for (Iterator li = aSet.iterator(); li.hasNext();)
+							{
+								Object anObj = li.next();
+								if (!aArrayList.contains(anObj.toString()))
+									aArrayList.add(anObj.toString());
+							}
+						}
+					}
+				}
+
+				final Chooser c = new Chooser();
+				c.setPool((int)(g + curRank) - associatedList.size());
+				c.setPoolFlag(false);
+				c.setAvailableList(aArrayList);
+				c.setSelectedList((ArrayList)associatedList.clone());
+				c.setTitle(title);
+				c.show();
+
+				final int selectedListSize = c.getSelectedList().size();
+				final double h = selectedListSize - associatedList.size();
+				newRank = (double)selectedListSize;
+				g = newRank - getRank().doubleValue(); // change in ranks
+				if (title.equals("Language"))
+				{
+					for (int i = 0; i < selectedListSize; i++)
+					{
+						final String aString = c.getSelectedList().get(i).toString();
+						if (!associatedList.contains(aString))
+						{
+							aPC.addLanguage(aString);
+							associatedList.add(aString);
+						}
+					}
+					for (int i = 0; i < associatedList.size(); i++)
+					{
+						final String aString = associatedList.get(i).toString();
+						if (!c.getSelectedList().contains(aString))
+						{
+							aPC.getLanguagesList().remove(aString);
+							associatedList.remove(aString);
+						}
+					}
+				}
+			}
+		}
+		//
+		// Modify for the chosen class
+		//
+		if (newRank == 0.0)
+		{
+			rankList.remove(idx);
+		}
+		else
+		{
+			bSkill = bSkill.substring(0, iOffs + 1) + newRank;
+			rankList.set(idx, bSkill);
+		}
+		return g;
+	}
+
+
+	public Integer costForPCClass(PCClass pc)
+	{
+		Integer anInt = null;
+		if (featList().size() > 0)
+		{
+			final PlayerCharacter aPC = Globals.getCurrentPC();
+			for (Iterator e = featList().iterator(); e.hasNext();)
+			{
+				final String featName = (String)e.next();
+				if (!aPC.hasFeat(featName) && !aPC.hasFeatAutomatic(featName))
+					return new Integer(Globals.getExcSkillCost());  // treat cost of unqualified skills as exclusive
+			}
+		}
+		if (!passesPreReqTests())
+			return new Integer(Globals.getExcSkillCost()); // treat cost of unqualified skills as exclusive
+
+		if (isClassSkill(pc))
+			anInt = new Integer(1);
+		else if (!isCrossClassSkill(pc) && isExclusive.equals("Y"))
+			anInt = new Integer(Globals.getExcSkillCost());
+		else
+			anInt = new Integer(Globals.getIntCrossClassSkillCost()); // assume cross-class
+
+		return anInt;
+	}
+
+	public Integer costForPCClassList(ArrayList aPCClassList)
+	{
+		int anInt = 0; // assume exclusive (can't buy)
+		final int classListSize = aPCClassList.size();
+		if (classListSize == 0)
+			return new Integer(anInt);
+		for (int i = 0; i < classListSize; i++)
+		{
+			final int cInt = costForPCClass((PCClass)aPCClassList.get(i)).intValue();
+			if (cInt == 1)
+				return new Integer(cInt);
+			if (cInt != anInt)
+				anInt = cInt; // found a cross-class
+		}
+		return new Integer(anInt);
+	}
+
+	public ArrayList synergyList()
+	{
+		return synergyList;
+	}
+
+	private void addSynergyList(String aString)
+	{
+		synergyList().add(aString);
+	}
+
+	public Object clone()
+	{
+		Skill newSkill = (Skill)super.clone();
+		newSkill.required = required;
+		newSkill.setRootName(rootName);
+		newSkill.setKeyStat(this.keyStat());
+		newSkill.setIsExclusive(this.isExclusive());
+		newSkill.rankList = (ArrayList)rankList.clone();
+		newSkill.setUntrained(this.untrained());
+		newSkill.classList = (ArrayList)classList.clone();
+		newSkill.choiceList = (ArrayList)choiceList().clone();
+		newSkill.isSpecified = isSpecified;
+		newSkill.featList = (ArrayList)featList.clone();
+		newSkill.aCheck = aCheck;
+		newSkill.synergyList = (ArrayList)synergyList().clone();
+		return newSkill;
+	}
+
+	public ArrayList choiceList()
+	{
+		return choiceList;
+	}
+
+	private void addChoiceList(String aString)
+	{
+		choiceList().add(aString);
+	}
+
+	public ArrayList featList()
+	{
+		return featList;
+	}
+
+	private void setFeatList(String aString)
+	{
+		final StringTokenizer aTok = new StringTokenizer(aString, "|", false);
+		while (aTok.hasMoreTokens())
+			featList.add(aTok.nextToken());
+	}
+
+	private void setACheck(String aString)
+	{
+		if (aString.startsWith("Y"))
+			aCheck = 1;
+		if (aString.startsWith("P"))
+			aCheck = 2;
+	}
+
+	public void parseLine(String inputLine, File sourceFile, int lineNum)
+	{
+		final StringTokenizer colToken = new StringTokenizer(inputLine, "\t", false);
+		String colString = null;
+		int colMax = colToken.countTokens();
+		int col = 0;
+		if (colMax == 0)
+			return;
+		for (col = 0; col < colMax; col++)
+		{
+			colString = colToken.nextToken();
+			if (super.parseTag(colString))
+				continue;
+			switch (col)
+			{
+				case 0:
+					setName(colString);
+					break;
+				case 1:
+					setKeyStat(colString);
+					break;
+				case 2:
+					final StringTokenizer fieldToken = new StringTokenizer(colString, ",", false);
+					while (fieldToken.hasMoreTokens())
+						addToClassList(fieldToken.nextToken());
+					break;
+				case 3:
+					setIsExclusive(colString);
+					break;
+				case 4:
+					setUntrained(colString);
+					break;
+			}
+			if (colString.startsWith("SYNERGY"))
+				addSynergyList(colString.substring(8));
+			else if (colString.startsWith("CHOOSE"))
+				addChoiceList(colString.substring(7));
+			else if (colString.equals("REQ"))
+				required = true;
+			else if (colString.startsWith("ACHECK"))
+				setACheck(colString.substring(7));
+			else if (colString.startsWith(Globals.s_TAG_TYPE))
+			{
+				setType(colString.substring(Globals.s_TAG_TYPE.length()));
+			}
+			else if (colString.startsWith("ROOT"))
+				setRootName(colString.substring(5));
+			else if (colString.startsWith("DEFINE"))
+				variableList.add("0|" + colString.substring(7));
+			else if (colString.startsWith("KEY:"))
+				setKeyName(colString.substring(4));
+			else if (colString.startsWith("PRE"))
+				preReqArrayList.add(colString);
+			else if (colString.startsWith("QUALIFY:"))
+				addToQualifyListing(colString.substring(8));
+			else if (col > 4)
+				JOptionPane.showMessageDialog
+					(null, "Illegal skill info " + sourceFile.getName() +
+					":" + Integer.toString(lineNum) + " \"" + colString + "\"", "PCGen", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public Skill()
+	{
+	}
+}

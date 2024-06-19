@@ -1,0 +1,29 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma\Expressions\11.4.2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma\shell.js -f mozilla\js\tests\ecma\Expressions\shell.js -f mozilla\js\tests\ecma\Expressions\11.4.2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 313 ms]
+11.4.2 The void operator
+void(new String('string object')) = undefined PASSED!
+void('string primitive') = undefined PASSED!
+void(Number.NaN) = undefined PASSED!
+void(Number.POSITIVE_INFINITY) = undefined PASSED!
+void(1) = undefined PASSED!
+void(0) = undefined PASSED!
+void(-1) = undefined PASSED!
+void(Number.NEGATIVE_INFINITY) = undefined PASSED!
+void(Math.PI) = undefined PASSED!
+void(true) = undefined PASSED!
+void(false) = undefined PASSED!
+void(null) = undefined PASSED!
+void new String('string object') = undefined PASSED!
+void 'string primitive' = undefined PASSED!
+void Number.NaN = undefined PASSED!
+void Number.POSITIVE_INFINITY = undefined PASSED!
+void 1 = undefined PASSED!
+void 0 = undefined PASSED!
+void -1 = undefined PASSED!
+void Number.NEGATIVE_INFINITY = undefined PASSED!
+void Math.PI = undefined PASSED!
+void true = undefined PASSED!
+void false = undefined PASSED!
+void null = undefined PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma\Expressions\11.4.2.compiled.arff] ...

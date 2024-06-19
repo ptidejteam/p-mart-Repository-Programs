@@ -1,0 +1,595 @@
+<head>
+<LINK rel="stylesheet" type="text/css" name="style1" href="..\..\..\..\..\styles.css">
+</head>
+<script language=javascript>
+<!-- Hide from non-javascript browsers
+browserName=navigator.appName;
+if (browserName.indexOf('Netscape')>=0)
+{
+parent.filenameFrame.document.layers[0].document.clear();
+parent.filenameFrame.document.layers[0].document.open();
+parent.filenameFrame.document.layers[0].document.write(
+'<A HREF="org/apache/poi/poifs/property/classList.html" TARGET="packageFrame">org.apache.poi.poifs.property</A>: Property');parent.filenameFrame.document.layers[0].document.close();
+}
+if (browserName.indexOf('Microsoft')>=0)
+{
+parent.frames.filenameFrame.textDiv.innerHTML='<A HREF="org/apache/poi/poifs/property/classList.html" TARGET="packageFrame">org.apache.poi.poifs.property</A>: Property';}
+//-->
+</script><pre>
+<a name=1 class="linenum">1    </a><span class="comment">
+<a name=2 class="linenum">2    </a>/* ====================================================================
+<a name=3 class="linenum">3    </a> * The Apache Software License, Version 1.1
+<a name=4 class="linenum">4    </a> *
+<a name=5 class="linenum">5    </a> * Copyright (c) 2002 The Apache Software Foundation.  All rights
+<a name=6 class="linenum">6    </a> * reserved.
+<a name=7 class="linenum">7    </a> *
+<a name=8 class="linenum">8    </a> * Redistribution and use in source and binary forms, with or without
+<a name=9 class="linenum">9    </a> * modification, are permitted provided that the following conditions
+<a name=10 class="linenum">10   </a> * are met:
+<a name=11 class="linenum">11   </a> *
+<a name=12 class="linenum">12   </a> * 1. Redistributions of source code must retain the above copyright
+<a name=13 class="linenum">13   </a> *    notice, this list of conditions and the following disclaimer.
+<a name=14 class="linenum">14   </a> *
+<a name=15 class="linenum">15   </a> * 2. Redistributions in binary form must reproduce the above copyright
+<a name=16 class="linenum">16   </a> *    notice, this list of conditions and the following disclaimer in
+<a name=17 class="linenum">17   </a> *    the documentation and/or other materials provided with the
+<a name=18 class="linenum">18   </a> *    distribution.
+<a name=19 class="linenum">19   </a> *
+<a name=20 class="linenum">20   </a> * 3. The end-user documentation included with the redistribution,
+<a name=21 class="linenum">21   </a> *    if any, must include the following acknowledgment:
+<a name=22 class="linenum">22   </a> *       "This product includes software developed by the
+<a name=23 class="linenum">23   </a> *        Apache Software Foundation (http://www.apache.org/)."
+<a name=24 class="linenum">24   </a> *    Alternately, this acknowledgment may appear in the software itself,
+<a name=25 class="linenum">25   </a> *    if and wherever such third-party acknowledgments normally appear.
+<a name=26 class="linenum">26   </a> *
+<a name=27 class="linenum">27   </a> * 4. The names "Apache" and "Apache Software Foundation" and
+<a name=28 class="linenum">28   </a> *    "Apache POI" must not be used to endorse or promote products
+<a name=29 class="linenum">29   </a> *    derived from this software without prior written permission. For
+<a name=30 class="linenum">30   </a> *    written permission, please contact apache@apache.org.
+<a name=31 class="linenum">31   </a> *
+<a name=32 class="linenum">32   </a> * 5. Products derived from this software may not be called "Apache",
+<a name=33 class="linenum">33   </a> *    "Apache POI", nor may "Apache" appear in their name, without
+<a name=34 class="linenum">34   </a> *    prior written permission of the Apache Software Foundation.
+<a name=35 class="linenum">35   </a> *
+<a name=36 class="linenum">36   </a> * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+<a name=37 class="linenum">37   </a> * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+<a name=38 class="linenum">38   </a> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<a name=39 class="linenum">39   </a> * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+<a name=40 class="linenum">40   </a> * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+<a name=41 class="linenum">41   </a> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+<a name=42 class="linenum">42   </a> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+<a name=43 class="linenum">43   </a> * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<a name=44 class="linenum">44   </a> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+<a name=45 class="linenum">45   </a> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+<a name=46 class="linenum">46   </a> * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+<a name=47 class="linenum">47   </a> * SUCH DAMAGE.
+<a name=48 class="linenum">48   </a> * ====================================================================
+<a name=49 class="linenum">49   </a> *
+<a name=50 class="linenum">50   </a> * This software consists of voluntary contributions made by many
+<a name=51 class="linenum">51   </a> * individuals on behalf of the Apache Software Foundation.  For more
+<a name=52 class="linenum">52   </a> * information on the Apache Software Foundation, please see
+<a name=53 class="linenum">53   </a> * &lt;http://www.apache.org/&gt;.
+<a name=54 class="linenum">54   </a> *</span>/
+<a name=55 class="linenum">55   </a>
+<a name=56 class="linenum">56   </a>package org.apache.poi.poifs.property;
+<a name=57 class="linenum">57   </a>
+<a name=58 class="linenum">58   </a>import java.io.*;
+<a name=59 class="linenum">59   </a>
+<a name=60 class="linenum">60   </a>import java.util.*;
+<a name=61 class="linenum">61   </a>
+<a name=62 class="linenum">62   </a>import org.apache.poi.poifs.common.POIFSConstants;
+<a name=63 class="linenum">63   </a>import org.apache.poi.poifs.dev.POIFSViewable;
+<a name=64 class="linenum">64   </a>import org.apache.poi.util.ByteField;
+<a name=65 class="linenum">65   </a>import org.apache.poi.util.IntegerField;
+<a name=66 class="linenum">66   </a>import org.apache.poi.util.LittleEndianConsts;
+<a name=67 class="linenum">67   </a>import org.apache.poi.util.ShortField;
+<a name=68 class="linenum">68   </a>
+<a name=69 class="linenum">69   </a><span class="comment">/**
+<a name=70 class="linenum">70   </a> * This abstract base class is the ancestor of all classes
+<a name=71 class="linenum">71   </a> * implementing POIFS Property behavior.
+<a name=72 class="linenum">72   </a> *
+<a name=73 class="linenum">73   </a> * @author Marc Johnson (mjohnson at apache dot org)
+<a name=74 class="linenum">74   </a> */</span>
+<a name=75 class="linenum">75   </a>
+<a name=76 class="linenum">76   </a>public abstract class <a class="classDef" name=Property href=Property_java_ref.html#Property>Property</a>
+<a name=77 class="linenum">77   </a>    implements <a class="classRef" href=Child_java.html#Child>Child</a>, POIFSViewable
+<a name=78 class="linenum">78   </a>{
+<a name=79 class="linenum">79   </a>    static final private byte   <a class="varDef" name=Property._default_fill href=Property_java_ref.html#Property._default_fill>_default_fill</a>             = ( byte ) 0x00;
+<a name=80 class="linenum">80   </a>    static final private int    <a class="varDef" name=Property._name_size_offset href=Property_java_ref.html#Property._name_size_offset>_name_size_offset</a>         = 0x40;
+<a name=81 class="linenum">81   </a>    static final private int    <a class="varDef" name=Property._max_name_length href=Property_java_ref.html#Property._max_name_length>_max_name_length</a>          =
+<a name=82 class="linenum">82   </a>        (<a class="varRef" title="int" href=Property_java.html#Property._name_size_offset>_name_size_offset</a> / <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>) - 1;
+<a name=83 class="linenum">83   </a>    static final protected int  <a class="varDef" name=Property._NO_INDEX href=Property_java_ref.html#Property._NO_INDEX>_NO_INDEX</a>                 = -1;
+<a name=84 class="linenum">84   </a>
+<a name=85 class="linenum">85   </a>    <span class="comment">// useful offsets</span>
+<a name=86 class="linenum">86   </a>    static final private int    <a class="varDef" name=Property._node_color_offset href=Property_java_ref.html#Property._node_color_offset>_node_color_offset</a>        = 0x43;
+<a name=87 class="linenum">87   </a>    static final private int    <a class="varDef" name=Property._previous_property_offset href=Property_java_ref.html#Property._previous_property_offset>_previous_property_offset</a> = 0x44;
+<a name=88 class="linenum">88   </a>    static final private int    <a class="varDef" name=Property._next_property_offset href=Property_java_ref.html#Property._next_property_offset>_next_property_offset</a>     = 0x48;
+<a name=89 class="linenum">89   </a>    static final private int    <a class="varDef" name=Property._child_property_offset href=Property_java_ref.html#Property._child_property_offset>_child_property_offset</a>    = 0x4C;
+<a name=90 class="linenum">90   </a>    static final private int    <a class="varDef" name=Property._seconds_1_offset href=Property_java_ref.html#Property._seconds_1_offset>_seconds_1_offset</a>         = 0x64;
+<a name=91 class="linenum">91   </a>    static final private int    <a class="varDef" name=Property._days_1_offset href=Property_java_ref.html#Property._days_1_offset>_days_1_offset</a>            = 0x68;
+<a name=92 class="linenum">92   </a>    static final private int    <a class="varDef" name=Property._seconds_2_offset href=Property_java_ref.html#Property._seconds_2_offset>_seconds_2_offset</a>         = 0x6C;
+<a name=93 class="linenum">93   </a>    static final private int    <a class="varDef" name=Property._days_2_offset href=Property_java_ref.html#Property._days_2_offset>_days_2_offset</a>            = 0x70;
+<a name=94 class="linenum">94   </a>    static final private int    <a class="varDef" name=Property._start_block_offset href=Property_java_ref.html#Property._start_block_offset>_start_block_offset</a>       = 0x74;
+<a name=95 class="linenum">95   </a>    static final private int    <a class="varDef" name=Property._size_offset href=Property_java_ref.html#Property._size_offset>_size_offset</a>              = 0x78;
+<a name=96 class="linenum">96   </a>
+<a name=97 class="linenum">97   </a>    <span class="comment">// node colors</span>
+<a name=98 class="linenum">98   </a>    static final protected byte <a class="varDef" name=Property._NODE_BLACK href=Property_java_ref.html#Property._NODE_BLACK>_NODE_BLACK</a>               = 1;
+<a name=99 class="linenum">99   </a>    static final protected byte <a class="varDef" name=Property._NODE_RED href=Property_java_ref.html#Property._NODE_RED>_NODE_RED</a>                 = 0;
+<a name=100 class="linenum">100  </a>
+<a name=101 class="linenum">101  </a>    <span class="comment">// documents must be at least this size to be stored in big blocks</span>
+<a name=102 class="linenum">102  </a>    static final private int    <a class="varDef" name=Property._big_block_minimum_bytes href=Property_java_ref.html#Property._big_block_minimum_bytes>_big_block_minimum_bytes</a>  = 4096;
+<a name=103 class="linenum">103  </a>    private String              <a class="varDef" name=Property._name href=Property_java_ref.html#Property._name>_name</a>;
+<a name=104 class="linenum">104  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField>ShortField</a>          <a class="varDef" name=Property._name_size href=Property_java_ref.html#Property._name_size>_name_size</a>;
+<a name=105 class="linenum">105  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField>ByteField</a>           <a class="varDef" name=Property._property_type href=Property_java_ref.html#Property._property_type>_property_type</a>;
+<a name=106 class="linenum">106  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField>ByteField</a>           <a class="varDef" name=Property._node_color href=Property_java_ref.html#Property._node_color>_node_color</a>;
+<a name=107 class="linenum">107  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._previous_property href=Property_java_ref.html#Property._previous_property>_previous_property</a>;
+<a name=108 class="linenum">108  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._next_property href=Property_java_ref.html#Property._next_property>_next_property</a>;
+<a name=109 class="linenum">109  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._child_property href=Property_java_ref.html#Property._child_property>_child_property</a>;
+<a name=110 class="linenum">110  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._seconds_1 href=Property_java_ref.html#Property._seconds_1>_seconds_1</a>;
+<a name=111 class="linenum">111  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._days_1 href=Property_java_ref.html#Property._days_1>_days_1</a>;
+<a name=112 class="linenum">112  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._seconds_2 href=Property_java_ref.html#Property._seconds_2>_seconds_2</a>;
+<a name=113 class="linenum">113  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._days_2 href=Property_java_ref.html#Property._days_2>_days_2</a>;
+<a name=114 class="linenum">114  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._start_block href=Property_java_ref.html#Property._start_block>_start_block</a>;
+<a name=115 class="linenum">115  </a>    private <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField>IntegerField</a>        <a class="varDef" name=Property._size href=Property_java_ref.html#Property._size>_size</a>;
+<a name=116 class="linenum">116  </a>    private byte[]              <a class="varDef" name=Property._raw_data href=Property_java_ref.html#Property._raw_data>_raw_data</a>;
+<a name=117 class="linenum">117  </a>    private int                 <a class="varDef" name=Property._index href=Property_java_ref.html#Property._index>_index</a>;
+<a name=118 class="linenum">118  </a>    private <a class="classRef" href=Child_java.html#Child>Child</a>               <a class="varDef" name=Property._next_child href=Property_java_ref.html#Property._next_child>_next_child</a>;
+<a name=119 class="linenum">119  </a>    private <a class="classRef" href=Child_java.html#Child>Child</a>               <a class="varDef" name=Property._previous_child href=Property_java_ref.html#Property._previous_child>_previous_child</a>;
+<a name=120 class="linenum">120  </a>
+<a name=121 class="linenum">121  </a>    <span class="comment">/**
+<a name=122 class="linenum">122  </a>     * Default constructor
+<a name=123 class="linenum">123  </a>     */</span>
+<a name=124 class="linenum">124  </a>
+<a name=125 class="linenum">125  </a>    protected <a class="methodDef" name=Property.Property() href=Property_java_ref.html#Property.Property()>Property</a>()
+<a name=126 class="linenum">126  </a>    {
+<a name=127 class="linenum">127  </a>        <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a> = new <a class="classRef" href=..\..\..\..\..\~NO NAME~\null#byte>byte</a>[ <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants>POIFSConstants</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants.PROPERTY_SIZE>PROPERTY_SIZE</a> ];
+<a name=128 class="linenum">128  </a>        Arrays.fill(<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>, <a class="varRef" title="byte" href=Property_java.html#Property._default_fill>_default_fill</a>);
+<a name=129 class="linenum">129  </a>        <a class="varRef" title="ShortField" href=Property_java.html#Property._name_size>_name_size</a>         = new <a class="methodRef" title="ShortField" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField.ShortField(int)>ShortField</a>(<a class="varRef" title="int" href=Property_java.html#Property._name_size_offset>_name_size_offset</a>);
+<a name=130 class="linenum">130  </a>        <a class="varRef" title="ByteField" href=Property_java.html#Property._property_type>_property_type</a>     =
+<a name=131 class="linenum">131  </a>            new <a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.ByteField(int)>ByteField</a>(<a class="classRef" href=PropertyConstants_java.html#PropertyConstants>PropertyConstants</a>.<a class="varRef" title="int" href=PropertyConstants_java.html#PropertyConstants.PROPERTY_TYPE_OFFSET>PROPERTY_TYPE_OFFSET</a>);
+<a name=132 class="linenum">132  </a>        <a class="varRef" title="ByteField" href=Property_java.html#Property._node_color>_node_color</a>        = new <a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.ByteField(int)>ByteField</a>(<a class="varRef" title="int" href=Property_java.html#Property._node_color_offset>_node_color_offset</a>);
+<a name=133 class="linenum">133  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._previous_property>_previous_property</a> = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._previous_property_offset>_previous_property_offset</a>,
+<a name=134 class="linenum">134  </a>                                              <a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=135 class="linenum">135  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._next_property>_next_property</a>     = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._next_property_offset>_next_property_offset</a>,
+<a name=136 class="linenum">136  </a>                                              <a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=137 class="linenum">137  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._child_property>_child_property</a>    = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._child_property_offset>_child_property_offset</a>,
+<a name=138 class="linenum">138  </a>                                              <a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=139 class="linenum">139  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_1>_seconds_1</a>         = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._seconds_1_offset>_seconds_1_offset</a>, 0,
+<a name=140 class="linenum">140  </a>                                              <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=141 class="linenum">141  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._days_1>_days_1</a>            = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._days_1_offset>_days_1_offset</a>, 0, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=142 class="linenum">142  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_2>_seconds_2</a>         = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._seconds_2_offset>_seconds_2_offset</a>, 0,
+<a name=143 class="linenum">143  </a>                                              <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=144 class="linenum">144  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._days_2>_days_2</a>            = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._days_2_offset>_days_2_offset</a>, 0, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=145 class="linenum">145  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._start_block>_start_block</a>       = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._start_block_offset>_start_block_offset</a>);
+<a name=146 class="linenum">146  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._size>_size</a>              = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int,byte)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._size_offset>_size_offset</a>, 0, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=147 class="linenum">147  </a>        <a class="varRef" title="int" href=Property_java.html#Property._index>_index</a>             = <a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>;
+<a name=148 class="linenum">148  </a>        <a class="methodRef" title="Property" href=Property_java.html#Property.setName(String)>setName</a>("");
+<a name=149 class="linenum">149  </a>        <a class="methodRef" title="Property" href=Property_java.html#Property.setNextChild(Child)>setNextChild</a>(null);
+<a name=150 class="linenum">150  </a>        <a class="methodRef" title="Property" href=Property_java.html#Property.setPreviousChild(Child)>setPreviousChild</a>(null);
+<a name=151 class="linenum">151  </a>    }
+<a name=152 class="linenum">152  </a>
+<a name=153 class="linenum">153  </a>    <span class="comment">/**
+<a name=154 class="linenum">154  </a>     * Constructor from byte data
+<a name=155 class="linenum">155  </a>     *
+<a name=156 class="linenum">156  </a>     * @param index index number
+<a name=157 class="linenum">157  </a>     * @param array byte data
+<a name=158 class="linenum">158  </a>     * @param offset offset into byte data
+<a name=159 class="linenum">159  </a>     */</span>
+<a name=160 class="linenum">160  </a>
+<a name=161 class="linenum">161  </a>    protected <a class="methodDef" name=Property.Property(int,byte,int) href=Property_java_ref.html#Property.Property(int,byte,int)>Property</a>(final int index, final byte [] array, final int offset)
+<a name=162 class="linenum">162  </a>    {
+<a name=163 class="linenum">163  </a>        <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a> = new <a class="classRef" href=..\..\..\..\..\~NO NAME~\null#byte>byte</a>[ <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants>POIFSConstants</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants.PROPERTY_SIZE>PROPERTY_SIZE</a> ];
+<a name=164 class="linenum">164  </a>        System.arraycopy(<a class="varRef" title="byte" href=Property_java.html#Property.Property.array>array</a>, <a class="varRef" title="int" href=Property_java.html#Property.Property.offset>offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>, 0,
+<a name=165 class="linenum">165  </a>                         <a class="classRef" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants>POIFSConstants</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\poifs\common\POIFSConstants_java.html#POIFSConstants.PROPERTY_SIZE>PROPERTY_SIZE</a>);
+<a name=166 class="linenum">166  </a>        <a class="varRef" title="ShortField" href=Property_java.html#Property._name_size>_name_size</a>         = new <a class="methodRef" title="ShortField" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField.ShortField(int,short)>ShortField</a>(<a class="varRef" title="int" href=Property_java.html#Property._name_size_offset>_name_size_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=167 class="linenum">167  </a>        <a class="varRef" title="ByteField" href=Property_java.html#Property._property_type>_property_type</a>     =
+<a name=168 class="linenum">168  </a>            new <a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.ByteField(int,byte)>ByteField</a>(<a class="classRef" href=PropertyConstants_java.html#PropertyConstants>PropertyConstants</a>.<a class="varRef" title="int" href=PropertyConstants_java.html#PropertyConstants.PROPERTY_TYPE_OFFSET>PROPERTY_TYPE_OFFSET</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=169 class="linenum">169  </a>        <a class="varRef" title="ByteField" href=Property_java.html#Property._node_color>_node_color</a>        = new <a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.ByteField(int,byte)>ByteField</a>(<a class="varRef" title="int" href=Property_java.html#Property._node_color_offset>_node_color_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=170 class="linenum">170  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._previous_property>_previous_property</a> = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._previous_property_offset>_previous_property_offset</a>,
+<a name=171 class="linenum">171  </a>                                              <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=172 class="linenum">172  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._next_property>_next_property</a>     = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._next_property_offset>_next_property_offset</a>,
+<a name=173 class="linenum">173  </a>                                              <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=174 class="linenum">174  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._child_property>_child_property</a>    = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._child_property_offset>_child_property_offset</a>,
+<a name=175 class="linenum">175  </a>                                              <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=176 class="linenum">176  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_1>_seconds_1</a>         = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._seconds_1_offset>_seconds_1_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=177 class="linenum">177  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._days_1>_days_1</a>            = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._days_1_offset>_days_1_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=178 class="linenum">178  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_2>_seconds_2</a>         = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._seconds_2_offset>_seconds_2_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=179 class="linenum">179  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._days_2>_days_2</a>            = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._days_2_offset>_days_2_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=180 class="linenum">180  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._start_block>_start_block</a>       = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._start_block_offset>_start_block_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=181 class="linenum">181  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._size>_size</a>              = new <a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.IntegerField(int,int)>IntegerField</a>(<a class="varRef" title="int" href=Property_java.html#Property._size_offset>_size_offset</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=182 class="linenum">182  </a>        <a class="varRef" title="int" href=Property_java.html#Property._index>_index</a>             = <a class="varRef" title="int" href=Property_java.html#Property.Property.index>index</a>;
+<a name=183 class="linenum">183  </a>        int name_length = (<a class="varRef" title="ShortField" href=Property_java.html#Property._name_size>_name_size</a>.<a class="methodRef" title="ShortField" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField.get()>get</a>() / <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>)
+<a name=184 class="linenum">184  </a>                          - 1;
+<a name=185 class="linenum">185  </a>
+<a name=186 class="linenum">186  </a>        if (<a class="varRef" title="int" href=Property_java.html#Property.Property.name_length>name_length</a> &lt; 1)
+<a name=187 class="linenum">187  </a>        {
+<a name=188 class="linenum">188  </a>            <a class="varRef" title="String" href=Property_java.html#Property._name>_name</a> = "";
+<a name=189 class="linenum">189  </a>        }
+<a name=190 class="linenum">190  </a>        else
+<a name=191 class="linenum">191  </a>        {
+<a name=192 class="linenum">192  </a>            char[] char_array  = new <a class="classRef" href=..\..\..\..\..\~NO NAME~\null#char>char</a>[ <a class="varRef" title="int" href=Property_java.html#Property.Property.name_length>name_length</a> ];
+<a name=193 class="linenum">193  </a>            int    name_offset = 0;
+<a name=194 class="linenum">194  </a>
+<a name=195 class="linenum">195  </a>            for (int j = 0; <a class="varRef" title="int" href=Property_java.html#~NO NAME~.j>j</a> &lt; <a class="varRef" title="int" href=Property_java.html#Property.Property.name_length>name_length</a>; <a class="varRef" title="int" href=Property_java.html#~NO NAME~.j>j</a>++)
+<a name=196 class="linenum">196  </a>            {
+<a name=197 class="linenum">197  </a>                <a class="varRef" title="char" href=Property_java.html#~NO NAME~.char_array>char_array</a>[ <a class="varRef" title="int" href=Property_java.html#~NO NAME~.j>j</a> ] = ( char ) new <a class="methodRef" title="ShortField" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField.ShortField(int,short)>ShortField</a>(<a class="varRef" title="int" href=Property_java.html#~NO NAME~.name_offset>name_offset</a>,
+<a name=198 class="linenum">198  </a>                                                          <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>).get();
+<a name=199 class="linenum">199  </a>                <a class="varRef" title="int" href=Property_java.html#~NO NAME~.name_offset>name_offset</a>     += <a class="classRef" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts>LittleEndianConsts</a>.<a class="varRef" title="int" href=..\..\..\..\..\org\apache\poi\util\LittleEndianConsts_java.html#LittleEndianConsts.SHORT_SIZE>SHORT_SIZE</a>;
+<a name=200 class="linenum">200  </a>            }
+<a name=201 class="linenum">201  </a>            <a class="varRef" title="String" href=Property_java.html#Property._name>_name</a> = new String(<a class="varRef" title="char" href=Property_java.html#~NO NAME~.char_array>char_array</a>, 0, <a class="varRef" title="int" href=Property_java.html#Property.Property.name_length>name_length</a>);
+<a name=202 class="linenum">202  </a>        }
+<a name=203 class="linenum">203  </a>        <a class="varRef" title="Child" href=Property_java.html#Property._next_child>_next_child</a>     = null;
+<a name=204 class="linenum">204  </a>        <a class="varRef" title="Child" href=Property_java.html#Property._previous_child>_previous_child</a> = null;
+<a name=205 class="linenum">205  </a>    }
+<a name=206 class="linenum">206  </a>
+<a name=207 class="linenum">207  </a>    <span class="comment">/**
+<a name=208 class="linenum">208  </a>     * Write the raw data to an OutputStream.
+<a name=209 class="linenum">209  </a>     *
+<a name=210 class="linenum">210  </a>     * @param stream the OutputStream to which the data should be
+<a name=211 class="linenum">211  </a>     *               written.
+<a name=212 class="linenum">212  </a>     *
+<a name=213 class="linenum">213  </a>     * @exception IOException on problems writing to the specified
+<a name=214 class="linenum">214  </a>     *            stream.
+<a name=215 class="linenum">215  </a>     */</span>
+<a name=216 class="linenum">216  </a>
+<a name=217 class="linenum">217  </a>    public void <a class="methodDef" name=Property.writeData(OutputStream) href=Property_java_ref.html#Property.writeData(OutputStream)>writeData</a>(final OutputStream stream)
+<a name=218 class="linenum">218  </a>        throws IOException
+<a name=219 class="linenum">219  </a>    {
+<a name=220 class="linenum">220  </a>        <a class="varRef" title="OutputStream" href=Property_java.html#Property.writeData.stream>stream</a>.write(<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=221 class="linenum">221  </a>    }
+<a name=222 class="linenum">222  </a>
+<a name=223 class="linenum">223  </a>    <span class="comment">/**
+<a name=224 class="linenum">224  </a>     * Set the start block for the document referred to by this
+<a name=225 class="linenum">225  </a>     * Property.
+<a name=226 class="linenum">226  </a>     *
+<a name=227 class="linenum">227  </a>     * @param startBlock the start block index
+<a name=228 class="linenum">228  </a>     */</span>
+<a name=229 class="linenum">229  </a>
+<a name=230 class="linenum">230  </a>    public void <a class="methodDef" name=Property.setStartBlock(int) href=Property_java_ref.html#Property.setStartBlock(int)>setStartBlock</a>(final int startBlock)
+<a name=231 class="linenum">231  </a>    {
+<a name=232 class="linenum">232  </a>        <a class="varRef" title="IntegerField" href=Property_java.html#Property._start_block>_start_block</a>.<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.set(int,byte)>set</a>(<a class="varRef" title="int" href=Property_java.html#Property.setStartBlock.startBlock>startBlock</a>, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=233 class="linenum">233  </a>    }
+<a name=234 class="linenum">234  </a>
+<a name=235 class="linenum">235  </a>    <span class="comment">/**
+<a name=236 class="linenum">236  </a>     * @return the start block
+<a name=237 class="linenum">237  </a>     */</span>
+<a name=238 class="linenum">238  </a>
+<a name=239 class="linenum">239  </a>    public int <a class="methodDef" name=Property.getStartBlock() href=Property_java_ref.html#Property.getStartBlock()>getStartBlock</a>()
+<a name=240 class="linenum">240  </a>    {
+<a name=241 class="linenum">241  </a>        return <a class="varRef" title="IntegerField" href=Property_java.html#Property._start_block>_start_block</a>.<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>();
+<a name=242 class="linenum">242  </a>    }
+<a name=243 class="linenum">243  </a>
+<a name=244 class="linenum">244  </a>    <span class="comment">/**
+<a name=245 class="linenum">245  </a>     * find out the document size
+<a name=246 class="linenum">246  </a>     *
+<a name=247 class="linenum">247  </a>     * @return size in bytes
+<a name=248 class="linenum">248  </a>     */</span>
+<a name=249 class="linenum">249  </a>
+<a name=250 class="linenum">250  </a>    public int <a class="methodDef" name=Property.getSize() href=Property_java_ref.html#Property.getSize()>getSize</a>()
+<a name=251 class="linenum">251  </a>    {
+<a name=252 class="linenum">252  </a>        return <a class="varRef" title="IntegerField" href=Property_java.html#Property._size>_size</a>.<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>();
+<a name=253 class="linenum">253  </a>    }
+<a name=254 class="linenum">254  </a>
+<a name=255 class="linenum">255  </a>    <span class="comment">/**
+<a name=256 class="linenum">256  </a>     * Based on the currently defined size, should this property use
+<a name=257 class="linenum">257  </a>     * small blocks?
+<a name=258 class="linenum">258  </a>     *
+<a name=259 class="linenum">259  </a>     * @return true if the size is less than _big_block_minimum_bytes
+<a name=260 class="linenum">260  </a>     */</span>
+<a name=261 class="linenum">261  </a>
+<a name=262 class="linenum">262  </a>    public boolean <a class="methodDef" name=Property.shouldUseSmallBlocks() href=Property_java_ref.html#Property.shouldUseSmallBlocks()>shouldUseSmallBlocks</a>()
+<a name=263 class="linenum">263  </a>    {
+<a name=264 class="linenum">264  </a>        return <a class="classRef" href=Property_java.html#Property>Property</a>.<a class="methodRef" title="Property" href=Property_java.html#Property.isSmall(int)>isSmall</a>(<a class="varRef" title="IntegerField" href=Property_java.html#Property._size>_size</a>.<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>());
+<a name=265 class="linenum">265  </a>    }
+<a name=266 class="linenum">266  </a>
+<a name=267 class="linenum">267  </a>    <span class="comment">/**
+<a name=268 class="linenum">268  </a>     * does the length indicate a small document?
+<a name=269 class="linenum">269  </a>     *
+<a name=270 class="linenum">270  </a>     * @param length length in bytes
+<a name=271 class="linenum">271  </a>     *
+<a name=272 class="linenum">272  </a>     * @return true if the length is less than
+<a name=273 class="linenum">273  </a>     *         _big_block_minimum_bytes
+<a name=274 class="linenum">274  </a>     */</span>
+<a name=275 class="linenum">275  </a>
+<a name=276 class="linenum">276  </a>    public static boolean <a class="methodDef" name=Property.isSmall(int) href=Property_java_ref.html#Property.isSmall(int)>isSmall</a>(final int length)
+<a name=277 class="linenum">277  </a>    {
+<a name=278 class="linenum">278  </a>        return <a class="varRef" title="int" href=Property_java.html#Property.isSmall.length>length</a> &lt; <a class="varRef" title="int" href=Property_java.html#Property._big_block_minimum_bytes>_big_block_minimum_bytes</a>;
+<a name=279 class="linenum">279  </a>    }
+<a name=280 class="linenum">280  </a>
+<a name=281 class="linenum">281  </a>    <span class="comment">/**
+<a name=282 class="linenum">282  </a>     * Get the name of this property
+<a name=283 class="linenum">283  </a>     *
+<a name=284 class="linenum">284  </a>     * @return property name as String
+<a name=285 class="linenum">285  </a>     */</span>
+<a name=286 class="linenum">286  </a>
+<a name=287 class="linenum">287  </a>    public String <a class="methodDef" name=Property.getName() href=Property_java_ref.html#Property.getName()>getName</a>()
+<a name=288 class="linenum">288  </a>    {
+<a name=289 class="linenum">289  </a>        return <a class="varRef" title="String" href=Property_java.html#Property._name>_name</a>;
+<a name=290 class="linenum">290  </a>    }
+<a name=291 class="linenum">291  </a>
+<a name=292 class="linenum">292  </a>    <span class="comment">/**
+<a name=293 class="linenum">293  </a>     * @return true if a directory type Property
+<a name=294 class="linenum">294  </a>     */</span>
+<a name=295 class="linenum">295  </a>
+<a name=296 class="linenum">296  </a>    abstract public boolean <a class="methodDef" name=Property.isDirectory() href=Property_java_ref.html#Property.isDirectory()>isDirectory</a>();
+<a name=297 class="linenum">297  </a>
+<a name=298 class="linenum">298  </a>    <span class="comment">/**
+<a name=299 class="linenum">299  </a>     * Set the name; silently truncates the name if it's too long.
+<a name=300 class="linenum">300  </a>     *
+<a name=301 class="linenum">301  </a>     * @param name the new name
+<a name=302 class="linenum">302  </a>     */</span>
+<a name=303 class="linenum">303  </a>
+<a name=304 class="linenum">304  </a>    protected final void <a class="methodDef" name=Property.setName(String) href=Property_java_ref.html#Property.setName(String)>setName</a>(final String name)
+<a name=305 class="linenum">305  </a>    {
+<a name=306 class="linenum">306  </a>        char[] char_array = <a class="varRef" title="String" href=Property_java.html#Property.setName.name>name</a>.toCharArray();
+<a name=307 class="linenum">307  </a>        int    limit      = Math.min(<a class="varRef" title="char" href=Property_java.html#Property.setName.char_array>char_array</a>.length, <a class="varRef" title="int" href=Property_java.html#Property._max_name_length>_max_name_length</a>);
+<a name=308 class="linenum">308  </a>
+<a name=309 class="linenum">309  </a>        <a class="varRef" title="String" href=Property_java.html#Property._name>_name</a> = new String(<a class="varRef" title="char" href=Property_java.html#Property.setName.char_array>char_array</a>, 0, <a class="varRef" title="int" href=Property_java.html#Property.setName.limit>limit</a>);
+<a name=310 class="linenum">310  </a>        short offset = 0;
+<a name=311 class="linenum">311  </a>        int   j      = 0;
+<a name=312 class="linenum">312  </a>
+<a name=313 class="linenum">313  </a>        for (; <a class="varRef" title="int" href=Property_java.html#Property.setName.j>j</a> &lt; <a class="varRef" title="int" href=Property_java.html#Property.setName.limit>limit</a>; <a class="varRef" title="int" href=Property_java.html#Property.setName.j>j</a>++)
+<a name=314 class="linenum">314  </a>        {
+<a name=315 class="linenum">315  </a>            new ShortField(<a class="varRef" title="short" href=Property_java.html#Property.setName.offset>offset</a>, ( short ) <a class="varRef" title="char" href=Property_java.html#Property.setName.char_array>char_array</a>[ <a class="varRef" title="int" href=Property_java.html#Property.setName.j>j</a> ], <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=316 class="linenum">316  </a>            <a class="varRef" title="short" href=Property_java.html#Property.setName.offset>offset</a> += LittleEndianConsts.SHORT_SIZE;
+<a name=317 class="linenum">317  </a>        }
+<a name=318 class="linenum">318  </a>        for (; <a class="varRef" title="int" href=Property_java.html#Property.setName.j>j</a> &lt; <a class="varRef" title="int" href=Property_java.html#Property._max_name_length>_max_name_length</a> + 1; <a class="varRef" title="int" href=Property_java.html#Property.setName.j>j</a>++)
+<a name=319 class="linenum">319  </a>        {
+<a name=320 class="linenum">320  </a>            new ShortField(<a class="varRef" title="short" href=Property_java.html#Property.setName.offset>offset</a>, ( short ) 0, <a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>);
+<a name=321 class="linenum">321  </a>            <a class="varRef" title="short" href=Property_java.html#Property.setName.offset>offset</a> += LittleEndianConsts.SHORT_SIZE;
+<a name=322 class="linenum">322  </a>        }
+<a name=323 class="linenum">323  </a>
+<a name=324 class="linenum">324  </a>        <span class="comment">// double the count, and include the null at the end</span>
+<a name=325 class="linenum">325  </a>        <a class="varRef" title="ShortField" href=Property_java.html#Property._name_size>_name_size</a>
+<a name=326 class="linenum">326  </a>            .set(( short ) ((limit + 1)
+<a name=327 class="linenum">327  </a>                            * LittleEndianConsts.SHORT_SIZE), _raw_data);
+<a name=328 class="linenum">328  </a>    }
+<a name=329 class="linenum">329  </a>
+<a name=330 class="linenum">330  </a>    /**
+<a name=331 class="linenum">331  </a>     * Set the property type. Makes no attempt to validate the value.
+<a name=332 class="linenum">332  </a>     *
+<a name=333 class="linenum">333  </a>     * @param propertyType the property type (root, file, directory)
+<a name=334 class="linenum">334  </a>     */
+<a name=335 class="linenum">335  </a>
+<a name=336 class="linenum">336  </a>    protected void setPropertyType(final byte propertyType)
+<a name=337 class="linenum">337  </a>    {
+<a name=338 class="linenum">338  </a>        _property_type.set(propertyType, _raw_data);
+<a name=339 class="linenum">339  </a>    }
+<a name=340 class="linenum">340  </a>
+<a name=341 class="linenum">341  </a>    /**
+<a name=342 class="linenum">342  </a>     * Set the node color.
+<a name=343 class="linenum">343  </a>     *
+<a name=344 class="linenum">344  </a>     * @param nodeColor the node color (red or black)
+<a name=345 class="linenum">345  </a>     */
+<a name=346 class="linenum">346  </a>
+<a name=347 class="linenum">347  </a>    protected void setNodeColor(final byte nodeColor)
+<a name=348 class="linenum">348  </a>    {
+<a name=349 class="linenum">349  </a>        _node_color.set(nodeColor, _raw_data);
+<a name=350 class="linenum">350  </a>    }
+<a name=351 class="linenum">351  </a>
+<a name=352 class="linenum">352  </a>    /**
+<a name=353 class="linenum">353  </a>     * Set the child property.
+<a name=354 class="linenum">354  </a>     *
+<a name=355 class="linenum">355  </a>     * @param child the child property's index in the Property Table
+<a name=356 class="linenum">356  </a>     */
+<a name=357 class="linenum">357  </a>
+<a name=358 class="linenum">358  </a>    protected void setChildProperty(final int child)
+<a name=359 class="linenum">359  </a>    {
+<a name=360 class="linenum">360  </a>        _child_property.set(child, _raw_data);
+<a name=361 class="linenum">361  </a>    }
+<a name=362 class="linenum">362  </a>
+<a name=363 class="linenum">363  </a>    /**
+<a name=364 class="linenum">364  </a>     * Get the child property (its index in the Property Table)
+<a name=365 class="linenum">365  </a>     *
+<a name=366 class="linenum">366  </a>     * @return child property index
+<a name=367 class="linenum">367  </a>     */
+<a name=368 class="linenum">368  </a>
+<a name=369 class="linenum">369  </a>    protected int getChildIndex()
+<a name=370 class="linenum">370  </a>    {
+<a name=371 class="linenum">371  </a>        return _child_property.get();
+<a name=372 class="linenum">372  </a>    }
+<a name=373 class="linenum">373  </a>
+<a name=374 class="linenum">374  </a>    /**
+<a name=375 class="linenum">375  </a>     * Set the size of the document associated with this Property
+<a name=376 class="linenum">376  </a>     *
+<a name=377 class="linenum">377  </a>     * @param size the size of the document, in bytes
+<a name=378 class="linenum">378  </a>     */
+<a name=379 class="linenum">379  </a>
+<a name=380 class="linenum">380  </a>    protected void setSize(final int size)
+<a name=381 class="linenum">381  </a>    {
+<a name=382 class="linenum">382  </a>        _size.set(size, _raw_data);
+<a name=383 class="linenum">383  </a>    }
+<a name=384 class="linenum">384  </a>
+<a name=385 class="linenum">385  </a>    /**
+<a name=386 class="linenum">386  </a>     * Set the index for this Property
+<a name=387 class="linenum">387  </a>     *
+<a name=388 class="linenum">388  </a>     * @param index this Property's index within its containing
+<a name=389 class="linenum">389  </a>     *              Property Table
+<a name=390 class="linenum">390  </a>     */
+<a name=391 class="linenum">391  </a>
+<a name=392 class="linenum">392  </a>    protected void setIndex(final int index)
+<a name=393 class="linenum">393  </a>    {
+<a name=394 class="linenum">394  </a>        _index = index;
+<a name=395 class="linenum">395  </a>    }
+<a name=396 class="linenum">396  </a>
+<a name=397 class="linenum">397  </a>    /**
+<a name=398 class="linenum">398  </a>     * get the index for this Property
+<a name=399 class="linenum">399  </a>     *
+<a name=400 class="linenum">400  </a>     * @return the index of this Property within its Property Table
+<a name=401 class="linenum">401  </a>     */
+<a name=402 class="linenum">402  </a>
+<a name=403 class="linenum">403  </a>    protected int getIndex()
+<a name=404 class="linenum">404  </a>    {
+<a name=405 class="linenum">405  </a>        return _index;
+<a name=406 class="linenum">406  </a>    }
+<a name=407 class="linenum">407  </a>
+<a name=408 class="linenum">408  </a>    /**
+<a name=409 class="linenum">409  </a>     * Perform whatever activities need to be performed prior to
+<a name=410 class="linenum">410  </a>     * writing
+<a name=411 class="linenum">411  </a>     */
+<a name=412 class="linenum">412  </a>
+<a name=413 class="linenum">413  </a>    abstract protected void preWrite();
+<a name=414 class="linenum">414  </a>
+<a name=415 class="linenum">415  </a>    /**
+<a name=416 class="linenum">416  </a>     * get the next sibling
+<a name=417 class="linenum">417  </a>     *
+<a name=418 class="linenum">418  </a>     * @return index of next sibling
+<a name=419 class="linenum">419  </a>     */
+<a name=420 class="linenum">420  </a>
+<a name=421 class="linenum">421  </a>    int getNextChildIndex()
+<a name=422 class="linenum">422  </a>    {
+<a name=423 class="linenum">423  </a>        return _next_property.get();
+<a name=424 class="linenum">424  </a>    }
+<a name=425 class="linenum">425  </a>
+<a name=426 class="linenum">426  </a>    /**
+<a name=427 class="linenum">427  </a>     * get the previous sibling
+<a name=428 class="linenum">428  </a>     *
+<a name=429 class="linenum">429  </a>     * @return index of previous sibling
+<a name=430 class="linenum">430  </a>     */
+<a name=431 class="linenum">431  </a>
+<a name=432 class="linenum">432  </a>    int getPreviousChildIndex()
+<a name=433 class="linenum">433  </a>    {
+<a name=434 class="linenum">434  </a>        return _previous_property.get();
+<a name=435 class="linenum">435  </a>    }
+<a name=436 class="linenum">436  </a>
+<a name=437 class="linenum">437  </a>    /**
+<a name=438 class="linenum">438  </a>     * determine whether the specified index is valid
+<a name=439 class="linenum">439  </a>     *
+<a name=440 class="linenum">440  </a>     * @param index value to be checked
+<a name=441 class="linenum">441  </a>     *
+<a name=442 class="linenum">442  </a>     * @return true if the index is valid
+<a name=443 class="linenum">443  </a>     */
+<a name=444 class="linenum">444  </a>
+<a name=445 class="linenum">445  </a>    static boolean isValidIndex(int index)
+<a name=446 class="linenum">446  </a>    {
+<a name=447 class="linenum">447  </a>        return index != _NO_INDEX;
+<a name=448 class="linenum">448  </a>    }
+<a name=449 class="linenum">449  </a>
+<a name=450 class="linenum">450  </a>    /* ********** START implementation of Child ********** */
+<a name=451 class="linenum">451  </a>
+<a name=452 class="linenum">452  </a>    /**
+<a name=453 class="linenum">453  </a>     * Get the next Child, if any
+<a name=454 class="linenum">454  </a>     *
+<a name=455 class="linenum">455  </a>     * @return the next Child; may return null
+<a name=456 class="linenum">456  </a>     */
+<a name=457 class="linenum">457  </a>
+<a name=458 class="linenum">458  </a>    public Child getNextChild()
+<a name=459 class="linenum">459  </a>    {
+<a name=460 class="linenum">460  </a>        return _next_child;
+<a name=461 class="linenum">461  </a>    }
+<a name=462 class="linenum">462  </a>
+<a name=463 class="linenum">463  </a>    /**
+<a name=464 class="linenum">464  </a>     * Get the previous Child, if any
+<a name=465 class="linenum">465  </a>     *
+<a name=466 class="linenum">466  </a>     * @return the previous Child; may return null
+<a name=467 class="linenum">467  </a>     */
+<a name=468 class="linenum">468  </a>
+<a name=469 class="linenum">469  </a>    public Child getPreviousChild()
+<a name=470 class="linenum">470  </a>    {
+<a name=471 class="linenum">471  </a>        return _previous_child;
+<a name=472 class="linenum">472  </a>    }
+<a name=473 class="linenum">473  </a>
+<a name=474 class="linenum">474  </a>    /**
+<a name=475 class="linenum">475  </a>     * Set the next Child
+<a name=476 class="linenum">476  </a>     *
+<a name=477 class="linenum">477  </a>     * @param child the new 'next' child; may be null, which has the
+<a name=478 class="linenum">478  </a>     *              effect of saying there is no 'next' child
+<a name=479 class="linenum">479  </a>     */
+<a name=480 class="linenum">480  </a>
+<a name=481 class="linenum">481  </a>    public void setNextChild(final Child child)
+<a name=482 class="linenum">482  </a>    {
+<a name=483 class="linenum">483  </a>        _next_child = child;
+<a name=484 class="linenum">484  </a>        _next_property.set((child == null) ? _NO_INDEX
+<a name=485 class="linenum">485  </a>                                           : (( Property ) child)
+<a name=486 class="linenum">486  </a>                                               .getIndex(), _raw_data);
+<a name=487 class="linenum">487  </a>    }
+<a name=488 class="linenum">488  </a>
+<a name=489 class="linenum">489  </a>    /**
+<a name=490 class="linenum">490  </a>     * Set the previous Child
+<a name=491 class="linenum">491  </a>     *
+<a name=492 class="linenum">492  </a>     * @param child the new 'previous' child; may be null, which has
+<a name=493 class="linenum">493  </a>     *              the effect of saying there is no 'previous' child
+<a name=494 class="linenum">494  </a>     */
+<a name=495 class="linenum">495  </a>
+<a name=496 class="linenum">496  </a>    public void setPreviousChild(final Child child)
+<a name=497 class="linenum">497  </a>    {
+<a name=498 class="linenum">498  </a>        _previous_child = child;
+<a name=499 class="linenum">499  </a>        _previous_property.set((child == null) ? _NO_INDEX
+<a name=500 class="linenum">500  </a>                                               : (( Property ) child)
+<a name=501 class="linenum">501  </a>                                                   .getIndex(), _raw_data);
+<a name=502 class="linenum">502  </a>    }
+<a name=503 class="linenum">503  </a>
+<a name=504 class="linenum">504  </a>    /* **********  END  implementation of Child ********** */
+<a name=505 class="linenum">505  </a>    /* ********** START begin implementation of POIFSViewable ********** */
+<a name=506 class="linenum">506  </a>
+<a name=507 class="linenum">507  </a>    /**
+<a name=508 class="linenum">508  </a>     * Get an array of objects, some of which may implement
+<a name=509 class="linenum">509  </a>     * POIFSViewable
+<a name=510 class="linenum">510  </a>     *
+<a name=511 class="linenum">511  </a>     * @return an array of Object; may not be null, but may be empty
+<a name=512 class="linenum">512  </a>     */
+<a name=513 class="linenum">513  </a>
+<a name=514 class="linenum">514  </a>    public Object [] getViewableArray()
+<a name=515 class="linenum">515  </a>    {
+<a name=516 class="linenum">516  </a>        Object[] results = new Object[ 5 ];
+<a name=517 class="linenum">517  </a>
+<a name=518 class="linenum">518  </a>        results[ 0 ] = "Name          = \"" + getName() + "\"";
+<a name=519 class="linenum">519  </a>        results[ 1 ] = "Property Type = " + _property_type.get();
+<a name=520 class="linenum">520  </a>        results[ 2 ] = "Node Color    = " + _node_color.get();
+<a name=521 class="linenum">521  </a>        long time = _days_1.get();
+<a name=522 class="linenum">522  </a>
+<a name=523 class="linenum">523  </a>        time         &lt;&lt;= 32;
+<a name=524 class="linenum">524  </a>        time         += (( long ) _seconds_1.get()) & 0x0000FFFFL;
+<a name=525 class="linenum">525  </a>        results[ 3 ] = "Time 1        = " + time;
+<a name=526 class="linenum">526  </a>        time         = _days_2.get();
+<a name=527 class="linenum">527  </a>        time         &lt;&lt;= 32;
+<a name=528 class="linenum">528  </a>        time         += (( long ) _seconds_2.get()) & 0x0000FFFFL;
+<a name=529 class="linenum">529  </a>        results[ 4 ] = "Time 2        = " + time;
+<a name=530 class="linenum">530  </a>        return results;
+<a name=531 class="linenum">531  </a>    }
+<a name=532 class="linenum">532  </a>
+<a name=533 class="linenum">533  </a>    /**
+<a name=534 class="linenum">534  </a>     * Get an Iterator of objects, some of which may implement
+<a name=535 class="linenum">535  </a>     * POIFSViewable
+<a name=536 class="linenum">536  </a>     *
+<a name=537 class="linenum">537  </a>     * @return an Iterator; may not be null, but may have an empty
+<a name=538 class="linenum">538  </a>     * back end store
+<a name=539 class="linenum">539  </a>     */
+<a name=540 class="linenum">540  </a>
+<a name=541 class="linenum">541  </a>    public Iterator getViewableIterator()
+<a name=542 class="linenum">542  </a>    {
+<a name=543 class="linenum">543  </a>        return Collections.EMPTY_LIST.iterator();
+<a name=544 class="linenum">544  </a>    }
+<a name=545 class="linenum">545  </a>
+<a name=546 class="linenum">546  </a>    /**
+<a name=547 class="linenum">547  </a>     * Give viewers a hint as to whether to call getViewableArray or
+<a name=548 class="linenum">548  </a>     * getViewableIterator
+<a name=549 class="linenum">549  </a>     *
+<a name=550 class="linenum">550  </a>     * @return true if a viewer should call getViewableArray, false if
+<a name=551 class="linenum">551  </a>     *         a viewer should call getViewableIterator
+<a name=552 class="linenum">552  </a>     */
+<a name=553 class="linenum">553  </a>
+<a name=554 class="linenum">554  </a>    public boolean preferArray()
+<a name=555 class="linenum">555  </a>    {
+<a name=556 class="linenum">556  </a>        return true;
+<a name=557 class="linenum">557  </a>    }
+<a name=558 class="linenum">558  </a>
+<a name=559 class="linenum">559  </a>    /**
+<a name=560 class="linenum">560  </a>     * Provides a short description of the object, to be used when a
+<a name=561 class="linenum">561  </a>     * POIFSViewable object has not provided its contents.
+<a name=562 class="linenum">562  </a>     *
+<a name=563 class="linenum">563  </a>     * @return short description
+<a name=564 class="linenum">564  </a>     */
+<a name=565 class="linenum">565  </a>
+<a name=566 class="linenum">566  </a>    public String getShortDescription()
+<a name=567 class="linenum">567  </a>    {
+<a name=568 class="linenum">568  </a>        StringBuffer buffer = new StringBuffer();
+<a name=569 class="linenum">569  </a>
+<a name=570 class="linenum">570  </a>        buffer.append("Property: \"").append(getName()).append("\"");
+<a name=571 class="linenum">571  </a>        return buffer.toString();
+<a name=572 class="linenum">572  </a>    }
+<a name=573 class="linenum">573  </a>
+<a name=574 class="linenum">574  </a>    /* **********  END  begin implementation of POIFSViewable ********** */
+<a name=575 class="linenum">575  </a>}   // end public abstract class Property
+<a name=576 class="linenum">576  </a>
+<a name=577 class="linenum">577  </a>??????????????<a class="methodRef" title="ShortField" href=..\..\..\..\..\org\apache\poi\util\ShortField_java.html#ShortField.set(short,byte)>set</a>??????????????????????????????<a class="varRef" title="int" href=Property_java.html#Property.setName.limit>limit</a>???????????????????????????????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.setPropertyType(byte) href=Property_java_ref.html#Property.setPropertyType(byte)>setPropertyType</a>?????????<a class="varRef" title="ByteField" href=Property_java.html#Property._property_type>_property_type</a>????????????????????????<a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.set(byte,byte)>set</a>????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property.setPropertyType.propertyType>propertyType</a>??????????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.setNodeColor(byte) href=Property_java_ref.html#Property.setNodeColor(byte)>setNodeColor</a>?????????<a class="varRef" title="ByteField" href=Property_java.html#Property._node_color>_node_color</a>?????????????????????<a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.set(byte,byte)>set</a>?????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property.setNodeColor.nodeColor>nodeColor</a>????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.setChildProperty(int) href=Property_java_ref.html#Property.setChildProperty(int)>setChildProperty</a>?????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._child_property>_child_property</a>?????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.set(int,byte)>set</a>?????????????????????????????<a class="varRef" title="int" href=Property_java.html#Property.setChildProperty.child>child</a>????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>???????????????????<a class="methodDef" name=Property.getChildIndex() href=Property_java_ref.html#Property.getChildIndex()>getChildIndex</a>????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._child_property>_child_property</a>????????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????<span class="comment">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.setSize(int) href=Property_java_ref.html#Property.setSize(int)>setSize</a>?????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._size>_size</a>???????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.set(int,byte)>set</a>???????????????????<a class="varRef" title="int" href=Property_java.html#Property.setSize.size>size</a>?????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.setIndex(int) href=Property_java_ref.html#Property.setIndex(int)>setIndex</a>?????????<a class="varRef" title="int" href=Property_java.html#Property._index>_index</a>??????????????????<a class="varRef" title="int" href=Property_java.html#Property.setIndex.index>index</a>?????<span class="comment">?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>???????????????????<a class="methodDef" name=Property.getIndex() href=Property_java_ref.html#Property.getIndex()>getIndex</a>????????????????<a class="varRef" title="int" href=Property_java.html#Property._index>_index</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????</span>?????????????????????????????<a class="methodDef" name=Property.preWrite() href=Property_java_ref.html#Property.preWrite()>preWrite</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????</span>?????????<a class="methodDef" name=Property.getNextChildIndex() href=Property_java_ref.html#Property.getNextChildIndex()>getNextChildIndex</a>????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._next_property>_next_property</a>???????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????</span>?????????<a class="methodDef" name=Property.getPreviousChildIndex() href=Property_java_ref.html#Property.getPreviousChildIndex()>getPreviousChildIndex</a>????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._previous_property>_previous_property</a>???????????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????<span class="comment">?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.isValidIndex(int) href=Property_java_ref.html#Property.isValidIndex(int)>isValidIndex</a>????????????????<a class="varRef" title="int" href=Property_java.html#Property.isValidIndex.index>index</a>?????????????????????????<a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>?????<span class="comment">?????????????????????????????????????????????????????????</span>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????<a class="classRef" href=Child_java.html#Child>Child</a>??????????????????<a class="methodDef" name=Property.getNextChild() href=Property_java_ref.html#Property.getNextChild()>getNextChild</a>????????????????<a class="varRef" title="Child" href=Property_java.html#Property._next_child>_next_child</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????<a class="classRef" href=Child_java.html#Child>Child</a>??????????????????<a class="methodDef" name=Property.getPreviousChild() href=Property_java_ref.html#Property.getPreviousChild()>getPreviousChild</a>????????????????<a class="varRef" title="Child" href=Property_java.html#Property._previous_child>_previous_child</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>?????????????????<a class="methodDef" name=Property.setNextChild(Child) href=Property_java_ref.html#Property.setNextChild(Child)>setNextChild</a>????????????????????????????????????<a class="classRef" href=Child_java.html#Child>Child</a>?????????<a class="varRef" title="Child" href=Property_java.html#Property._next_child>_next_child</a>???????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setNextChild.child>child</a>?????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._next_property>_next_property</a>????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.set(int,byte)>set</a>?????????????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setNextChild.child>child</a>??????????????????????????????????????????????<a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>?????????????????????????????????????????????????<a class="classRef" href=Property_java.html#Property>Property</a>????????????????????????????????????????????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setNextChild.child>child</a>?????????????????????????????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>?????????????????<a class="methodDef" name=Property.setPreviousChild(Child) href=Property_java_ref.html#Property.setPreviousChild(Child)>setPreviousChild</a>????????????????????????????????????????<a class="classRef" href=Child_java.html#Child>Child</a>?????????<a class="varRef" title="Child" href=Property_java.html#Property._previous_child>_previous_child</a>???????????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setPreviousChild.child>child</a>?????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._previous_property>_previous_property</a>????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.set(int,byte)>set</a>?????????????????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setPreviousChild.child>child</a>??????????????????????????????????????????????????<a class="varRef" title="int" href=Property_java.html#Property._NO_INDEX>_NO_INDEX</a>?????????????????????????????????????????????????????<a class="classRef" href=Property_java.html#Property>Property</a>????????????????????????????????????????????????????????????????<a class="varRef" title="Child" href=Property_java.html#Property.setPreviousChild.child>child</a>?????????????????????????????????????????????????????????????????<a class="varRef" title="byte" href=Property_java.html#Property._raw_data>_raw_data</a>?????<span class="comment">?????????????????????????????????????????????????????????</span>?????<span class="comment">???????????????????????????????????????????????????????????????????????</span>?????<span class="comment">????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>??????????????????????<a class="methodDef" name=Property.getViewableArray() href=Property_java_ref.html#Property.getViewableArray()>getViewableArray</a>?????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>???????????????????????????????????????????????<a class="methodRef" title="Property" href=Property_java.html#Property.getName()>getName</a>?????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>?????????????????????????????????????????????<a class="varRef" title="ByteField" href=Property_java.html#Property._property_type>_property_type</a>????????????????????????????????????????????????????????????<a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.get()>get</a>?????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>?????????????????????????????????????????????<a class="varRef" title="ByteField" href=Property_java.html#Property._node_color>_node_color</a>?????????????????????????????????????????????????????????<a class="methodRef" title="ByteField" href=..\..\..\..\..\org\apache\poi\util\ByteField_java.html#ByteField.get()>get</a>?????????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._days_1>_days_1</a>?????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>?????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>???????????????????????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_1>_seconds_1</a>??????????????????????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>?????????????????????????????????????????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>?????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>????????????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._days_2>_days_2</a>????????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>?????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>???????????????????????????????????<a class="varRef" title="IntegerField" href=Property_java.html#Property._seconds_2>_seconds_2</a>??????????????????????????????????????????????<a class="methodRef" title="IntegerField" href=..\..\..\..\..\org\apache\poi\util\IntegerField_java.html#IntegerField.get()>get</a>?????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>?????????????????????????????????????????????<a class="varRef" title="long" href=Property_java.html#Property.getViewableArray.time>time</a>????????????????<a class="varRef" title="Object" href=Property_java.html#Property.getViewableArray.results>results</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>?????????????????????<a class="methodDef" name=Property.getViewableIterator() href=Property_java_ref.html#Property.getViewableIterator()>getViewableIterator</a>?????<span class="comment">?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>????????????????????<a class="methodDef" name=Property.preferArray() href=Property_java_ref.html#Property.preferArray()>preferArray</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????</span>???????????????????<a class="methodDef" name=Property.getShortDescription() href=Property_java_ref.html#Property.getShortDescription()>getShortDescription</a>?????????<a class="varRef" title="StringBuffer" href=Property_java.html#Property.getShortDescription.buffer>buffer</a>??????????????????????????????????????????????<a class="methodRef" title="Property" href=Property_java.html#Property.getName()>getName</a>????????????????<a class="varRef" title="StringBuffer" href=Property_java.html#Property.getShortDescription.buffer>buffer</a>?????<span class="comment">???????????????????????????????????????????????????????????????????????</span>?????<span class="comment">?????????????????????????????????????</span></pre>

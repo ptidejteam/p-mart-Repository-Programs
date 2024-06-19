@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>MapperXML: Pages and Forms Architecture</title>
+  <link href="common/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="10" cellspacing="0"
+style="page-break-before: always">
+  <tbody>
+    <tr valign="top">
+      <td colspan="2" bgcolor="#e6e6ff"><img src="common/mapperlogo.gif"
+        name="Graphic1" alt="Mapper Logo" align="bottom" width="500"
+        height="115" border="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#0000ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+    <tr valign="top">
+      <td width="15%" bgcolor="#9999cc">
+        <div class="leftnav">
+        <!--#include virtual="common/leftnavmain.shtml" -->
+        </div>
+      </td>
+      <td width="85%"><h1>3. Pages and Forms Architecture</h1>
+
+        <h2>3.1 ServletForm</h2>
+
+        <p>The Mapper presentation framework for the web is modeled after a
+        the architechure of a typical GUI/Swing type application.  A single
+        servlet dispatches requests to the appropriate ServletForm.  The
+        ServletForm is a container similar to a Swing JFrame.</p>
+
+        <p>The ServletForm dispatches commands and data from the request
+        object to the individual components it contains.  The dispatching
+        occurs in the doGet method of the ServletForm (which you can override
+        if needed).  The default behavior of the doGet method invokes the
+        following series of protected methods (again which you can
+        override):</p>
+        <ul>
+          <li><p>initForm - called only once per instance.  Usually the
+            template is loaded during this method.</p>
+          </li>
+          <li><p>dispatchParameters - delegates work to a ParameterDispatcher
+            which dispatches parameter values from the request object to
+            registered Parameter components.</p>
+          </li>
+          <li><p>openForm - no default behavior. Typically you would retrieve
+            needed data based on Parameter values and place the data
+            (ValueObjects and/or Collections) in ValueHolders.  This would
+            bind the Components to the data.</p>
+          </li>
+          <li><p>dispatchInput - delegates work to a InputDispatcher which
+            dispatches parameter values from the request object to registered
+            Fields.</p>
+          </li>
+          <li><p>dispatchActions - delegates work to a TriggerDispatcher
+            which dispatches trigger events to registered Trigger components
+            based on parameter values present in the request object.</p>
+          </li>
+          <li><p>sendResponse - delegates work to a Responder.  The default
+            Responder is an HTMLResponder which dispatches a render message
+            to registered Components.  The Components, in turn, invoke their
+            Renderer subcomponent to actually render their value to the
+            DOM.  The HTMLResponder then sets the response type to text/html
+            and sends the DOM back to the browser as its response.</p>
+          </li>
+          <li><p>handleException - this method is invoked if an exception
+            occurs in any of the above methods.  By default this method
+            simply re-throws the exception.</p>
+          </li>
+        </ul>
+
+        <h2>3.2 Dispatchers</h2>
+
+        <h2>3.3 Document Adapter</h2>
+
+        <p>The actual XML/HTML document is rendered through the use of a
+        XML/HTML template.  The XML/HTML template does NOT contain any code.
+        The Components are bound to the template through the use of the ID
+        attribute:</p>
+
+        <p align="center">&lt;p id=greeting&gt;Hello
+        greeting-name&lt;/p&gt;</p>
+
+        <p>A TextField would have its ID property set to "greeting".  When
+        instructed by its container (ServletForm), it would render its value
+        to the XML/HTML template.</p>
+
+        <p>The XML/HTML template is loaded, parsed into a Document Object
+        Model (DOM) and cached by the ServletForm. The template is normally
+        reused by the ServletForm.  You can also use the DOM produced by XMLC
+        (see the Enhydra Project).</p>
+
+        <h2>3.4 Responders</h2>
+
+        <h2>3.5 Components</h2>
+
+        <p>The ServletForm contains a collection of Components which handle
+        presentation and actions.  The Components are very similar to Swing
+        components.  The most common generic Components are:</p>
+        <ul>
+          <li><p>Parameter -input only Component</p>
+          </li>
+          <li><p>TextField - similar to a JTextField</p>
+          </li>
+          <li><p>SelectField - similar to a JComboBox</p>
+          </li>
+          <li><p>Trigger - similar to a JButton</p>
+          </li>
+          <li><p>Template - similar to a JTable</p>
+          </li>
+        </ul>
+        <p>There is more information about the components in later chapters</p>
+
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" width="100%" valign="top" bgcolor="#9999ff"
+      style="font-size: 3pt">.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+<!--#include virtual="common/footer.shtml" -->
+</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<document>
+
+ <properties>
+  <title>Velocity Changes</title>
+  <author email="jon@latchkey.com">Jon S. Stevens</author>
+ </properties>
+
+<body>
+
+<section name="Velocity Changes">
+
+<p>
+   This document tracks the changes in Velocity between releases.
+</p>
+
+<subsection name="1.0.1-dev">
+<p>
+Changes to version 1.0
+</p>
+
+</subsection>
+<subsection name="1.0b3">
+<p>
+   Released as version 1.0 on April 2, 2001
+</p>
+
+<ul>
+   <li>
+        Documentation: Fix the VTL Reference guide for the #if
+        statement. Thanks to Joaquim Carvalho for the find. (JSS)
+   </li>
+   <li>
+        Documentation: Fixed the html in the user guide that generates
+        the TOC so that the numbers come out in proper order. (JSS)
+   </li>
+   <li>
+       Added common base class for application-level exceptions in package
+       org.apache.velocity.exception.  Thanks to Kyle Downey for the 
+       suggestion.  (gmj)
+    </li>
+    <li>
+       Added javadoc to o.a.v.context.AbstractContext clarifying which
+       of the internalXXX methods are required.  Thanks to 
+       Joshua Levy  for the suggestion. (gmj)
+    </li>
+    <li>
+       Added license and javadoc to examples/context_example/DBContext.java
+       to clarify why some internalXXX methods are stubbed out.  (gmj)
+    </li>
+    <li>
+       Documentation : Clarification of VM properties and added note on
+       VM declaration / usage order in user guide. (gmj)
+    </li>
+    <li>
+       Fixed HttpServletRequestWrap.java - getInputStream() wasn't calling
+       the method on the wrapped HttpServletRequest. Thanks to 
+       Shahar Solomianik. (gmj)
+    </li>
+    <li>
+       Removed build.compiler from the build.xml file. (JSS)
+    </li>
+    <li>
+       Fixed problem found by jon where high concurrency would lead to 
+       a dry parser pool, which would lead to vast unpleasantness masked
+       as resource access errors.  All seems to be better now.  Simple
+       fix, so little risk.  (gmj)
+    </li>
+    <li>
+       Added <code>parser.pool.size</code> as a configuration parameter to
+       help tune Velocity configurations for high concurrency loads. (gmj)
+    </li>
+    <li>
+       Documentation : developers-guide - information/example on making a
+       custom logger, and start of work on documenting resource loaders. (gmj)
+     </li>
+     <li>
+       Removed some debugging gibberish from 
+       InternalContextAdapterImpl.java (gmj)
+     </li>
+     <li>
+       Committed John McNally's Texen patch to texen's Generator.java 
+       to keep from accumulating introspection cache data in iterative 
+       calls to parse() with template caching off. (gmj)
+     </li>
+     <li>
+       Documentation : added some special-case Context information and a 
+       secion on Vel and XML in the developers guide. (gmj)
+      </li>
+</ul>
+
+</subsection>
+
+<subsection name="1.0b2">
+
+<p>
+   Released as version 1.0 beta 2 on March 26, 2001
+</p>
+
+<ul> 
+    <li>
+        Make the distribution have CRLF for all of the text files (JSS).
+    </li>
+    <li>
+        Fixed release packaging to create things in the right directory
+        structure (JSS).
+    </li>
+    <li>
+         Re-added 'include' support for Configuration. (JVZ)
+    </li>
+    <li>
+         Fixed VMProxy bug when reference arg was null. (#1074) (gmj)
+    </li>
+    <li>
+         Fixed nullpointer problem in cache refresh in ResourceManager 
+	     (reported by Ilkka Priha) (gmj)
+    </li>
+    <li>
+         VelocityServlet now respects the 'default.contentType' 
+         property again.  That must have fallen out during the 'request 
+         process' rework in VelServlet.  (reported by csterg@aias.gr) (gmj)
+    </li>
+    <li>
+        Changed AnakiaTask and TexenTask to use the canonical 
+        template file path rather than the literal string specified.  
+        Motivated for ease of gump-tion.  Also added
+        failonerror to the testcases.xml for the same reason. (gmj)
+    </li>
+    <li>
+       Added Sam's suggestion for normalizing \n[\r] when comparing 
+       results to expected results in the testbed via BaseTestCase  (gmj)
+    </li>
+    <li>
+       Qualified import statments in Generator.java.  Added tests for 
+       automatic boolean mapping in TexenTestCase.java. Added default 
+       boolean mapping to texen for properties used with  the 
+       contextProperties option.  Allow variants on boolean values in
+       Configuration.java, and changes to relevant templates in testbed.
+       Added default objects to context in TexenTask.java. (JVZ)
+     </li>
+     <li>
+        Documentation changes to Configuration.java (DLR)
+     </li>
+     <li>
+       Augmented the MethodInvocationException message in ASTMethod to 
+       make the stacktraces more useful - noted from some traffic on 
+       Turbine list.   (gmj)
+     </li>
+     <li>
+         Added powered by logo. Look in
+         xdocs/images/powered-by-logo.psd/.gif (JSS)
+     </li>
+     <li>
+       Changed the internals of the Configuration class so that
+       setProperty(K,V) will replace the value at K with V;
+       addProperty(K,V) works the way setProperty(K,V) used
+       to: if there is a value already stored at K then
+       V is added to the vector. If nothing is being stored
+       at K then the scalar V is simply added. setProperty(K,V)
+       is basically a short form for clearProperty(K)/addProperty(K,V).
+       Also added setConfiguration(C), so that an application using
+       velocity could easily take a subset of the application
+       configuration using C.subset(velocityProps) and set the
+       whole velocity configuration at once. This is now how
+       the velocity service works in Turbine. (JVZ)
+     </li>
+
+     <li>
+       Added support to the Runtime/Velocity classes for
+       addProperty(K,V). (JVZ)
+     </li>
+       
+     <li>
+       Added support to Runtime/Velocity classes for setConfiguration.
+       (JVZ)
+     </li>
+     
+     <li>
+        Confirmed that the build.bat works on Win98 as well as made the
+        classpath that the build.bat generates equal to the one that
+        build.sh generates. (JSS)
+     </li>
+</ul>
+</subsection>
+
+<subsection name="1.0b1">
+<ul>
+    <li>
+        Initial release.
+    </li>
+</ul>
+</subsection>
+
+</section>
+
+</body>
+</document>

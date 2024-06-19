@@ -1,0 +1,16 @@
+java -classpath ..\..\emma-2.0.5312\out\emma.jar emmarun -f -r arff -sp mozilla\js\rhino\src -Dreport.out.file mozilla\js\tests\ecma_2\extensions\11.8.6-2.compiled.arff -classpath mozilla\js\rhino\build\classes org.mozilla.javascript.tools.shell.Main -opt 0 -f mozilla\js\tests\shell.js -f mozilla\js\tests\ecma_2\shell.js -f mozilla\js\tests\ecma_2\extensions\shell.js -f mozilla\js\tests\ecma_2\extensions\11.8.6-2.js  
+EMMA: processing classpath ...
+EMMA: [128 class(es) processed in 343 ms]
+instanceof-002 Determining Instance Relationships
+instanceof-002 Determining Instance Relationships
+pat.__proto__ == Engineer.prototype = true PASSED!
+pat.__proto__.__proto__ == WorkerBee.prototype = true PASSED!
+pat.__proto__.__proto__.__proto__ == Employee.prototype = true PASSED!
+pat.__proto__.__proto__.__proto__.__proto__ == Object.prototype = true PASSED!
+pat.__proto__.__proto__.__proto__.__proto__.__proto__ == null = true PASSED!
+pat instanceof Engineer = true PASSED!
+pat instanceof WorkerBee ) = true PASSED!
+pat instanceof Employee ) = true PASSED!
+pat instanceof Object ) = true PASSED!
+pat instanceof SalesPerson ) = false PASSED!
+EMMA: writing [arff] report to [C:\PROJECTS\concerntagger_1.5.3\tests\Rhino\mozilla\js\tests\ecma_2\extensions\11.8.6-2.compiled.arff] ...

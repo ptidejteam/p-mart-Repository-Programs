@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="lib" path="lib/core/commons-httpclient.jar"/>
+    <classpathentry kind="lib" path="lib/development/junit-3.8.1.jar"/>
+    <classpathentry kind="lib" path="lib/core/commons-logging.jar"/>
+    <classpathentry kind="lib" path="lib/core/helpgui-1.1.jar"/>
+    <classpathentry kind="lib" path="lib/core/jakarta-slide-webdavlib-2.1b1.jar"/>
+    <classpathentry kind="lib" path="lib/core/jdom-20040226-.jar"/>
+    <classpathentry kind="lib" path="lib/core/jgoodies-looks-1.2.2.jar"/>
+    <classpathentry kind="lib" path="lib/optional/avalon.jar"/>
+    <classpathentry kind="lib" path="lib/optional/batik.jar"/>
+    <classpathentry kind="lib" path="lib/optional/fop.jar"/>
+    <classpathentry kind="lib" path="lib/optional/fop-font-metrics.jar"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>
